@@ -1,0 +1,28 @@
+name: Quality
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+      - run: python -m pip install -r requirements-dev.txt
+      - run: python scripts/validate.py
+      - run: check-jsonschema --schemafile schema/project.schema.json projects/*/project.json
+      - name: Reject likely secrets
+        run: |
+          if grep -RInE '(BEGIN (RSA|OPENSSH|EC) PRIVATE KEY|tskey-[A-Za-z0-9_-]{20,}|ghp_[A-Za-z0-9]{20,})' --exclude-dir=.git --exclude-dir=node_modules .; then
+            echo "Potential secret detected"
+            exit 1
+          fi

@@ -1,0 +1,150 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/SzczepanGrela/grela-dev-roadmap/schema/project.schema.json",
+  "title": "grela.dev roadmap project",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schemaVersion", "slug", "order", "name", "summary", "repository", "classification", "hosting", "status", "progress", "complexity", "forecast", "focus", "tasks", "verification", "media", "decisions", "audit"],
+  "properties": {
+    "schemaVersion": {"const": 1},
+    "slug": {"type": "string", "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"},
+    "order": {"type": "integer", "minimum": 1, "maximum": 14},
+    "name": {"$ref": "#/$defs/localized"},
+    "summary": {"$ref": "#/$defs/localized"},
+    "repository": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["owner", "currentName", "targetName", "url", "ownerId", "repositoryId", "defaultBranch", "visibility"],
+      "properties": {
+        "owner": {"const": "SzczepanGrela"},
+        "currentName": {"type": "string", "minLength": 1},
+        "targetName": {"type": "string", "minLength": 1},
+        "url": {"type": "string", "format": "uri", "pattern": "^https://github\\.com/SzczepanGrela/"},
+        "ownerId": {"const": 115424220},
+        "repositoryId": {"type": "integer", "minimum": 1},
+        "defaultBranch": {"enum": ["main", "master"]},
+        "visibility": {"const": "public"}
+      }
+    },
+    "classification": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["kind", "technologies", "hosted"],
+      "properties": {
+        "kind": {"enum": ["web", "desktop", "repository", "developer-tool"]},
+        "technologies": {"type": "array", "minItems": 1, "items": {"type": "string"}, "uniqueItems": true},
+        "hosted": {"type": "boolean"}
+      }
+    },
+    "hosting": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["target", "url", "deploymentState"],
+      "properties": {
+        "target": {"enum": ["none", "vps", "static-pages"]},
+        "url": {"type": ["string", "null"], "format": "uri"},
+        "deploymentState": {"enum": ["not-applicable", "not-started", "configured", "deployed", "degraded"]}
+      }
+    },
+    "status": {"enum": ["planned", "active", "paused", "blocked", "complete", "maintenance"]},
+    "progress": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["overall", "implementation", "quality", "documentation", "delivery"],
+      "properties": {
+        "overall": {"$ref": "#/$defs/percentage"},
+        "implementation": {"$ref": "#/$defs/percentage"},
+        "quality": {"$ref": "#/$defs/percentage"},
+        "documentation": {"$ref": "#/$defs/percentage"},
+        "delivery": {"$ref": "#/$defs/percentage"}
+      }
+    },
+    "complexity": {"type": "integer", "minimum": 1, "maximum": 5},
+    "forecast": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["remainingHoursMin", "remainingHoursMax", "hoursPerWeek", "earliest", "latest", "confidence"],
+      "properties": {
+        "remainingHoursMin": {"type": "integer", "minimum": 0},
+        "remainingHoursMax": {"type": "integer", "minimum": 0},
+        "hoursPerWeek": {"const": 16},
+        "earliest": {"type": "string", "format": "date"},
+        "latest": {"type": "string", "format": "date"},
+        "confidence": {"enum": ["low", "medium", "high"]}
+      }
+    },
+    "focus": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["current", "next"],
+      "properties": {
+        "current": {"$ref": "#/$defs/localized"},
+        "next": {"$ref": "#/$defs/localized"}
+      }
+    },
+    "tasks": {
+      "type": "array",
+      "minItems": 4,
+      "items": {"$ref": "#/$defs/task"}
+    },
+    "verification": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["worktree", "tests", "ci", "production"],
+      "properties": {
+        "worktree": {"type": "string"},
+        "tests": {"type": "string"},
+        "ci": {"type": "string"},
+        "production": {"type": "string"}
+      }
+    },
+    "media": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["screenshot", "fallback", "captureEnabled", "attribution"],
+      "properties": {
+        "screenshot": {"type": "string", "pattern": "^assets/screenshots/"},
+        "fallback": {"type": "string", "pattern": "^assets/placeholders/"},
+        "captureEnabled": {"type": "boolean"},
+        "attribution": {"type": "string"}
+      }
+    },
+    "decisions": {"type": "array", "items": {"$ref": "#/$defs/localized"}},
+    "audit": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["date", "sources", "notes"],
+      "properties": {
+        "date": {"const": "2026-08-24"},
+        "sources": {"type": "array", "minItems": 1, "items": {"type": "string"}},
+        "notes": {"$ref": "#/$defs/localized"}
+      }
+    }
+  },
+  "$defs": {
+    "percentage": {"type": "integer", "minimum": 0, "maximum": 100},
+    "localized": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["en", "pl"],
+      "properties": {"en": {"type": "string", "minLength": 1}, "pl": {"type": "string", "minLength": 1}}
+    },
+    "task": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "title", "dimension", "status", "completion", "weight", "difficulty", "hoursMin", "hoursMax", "evidence"],
+      "properties": {
+        "id": {"type": "string", "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"},
+        "title": {"$ref": "#/$defs/localized"},
+        "dimension": {"enum": ["implementation", "quality", "documentation", "delivery"]},
+        "status": {"enum": ["planned", "in-progress", "blocked", "done"]},
+        "completion": {"$ref": "#/$defs/percentage"},
+        "weight": {"type": "integer", "minimum": 1, "maximum": 5},
+        "difficulty": {"type": "integer", "minimum": 1, "maximum": 5},
+        "hoursMin": {"type": "integer", "minimum": 0},
+        "hoursMax": {"type": "integer", "minimum": 0},
+        "evidence": {"type": "string", "minLength": 1}
+      }
+    }
+  }
+}

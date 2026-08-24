@@ -1,0 +1,32 @@
+name: Refresh screenshots
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "23 5 * * 1"
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  capture:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+          cache: npm
+      - run: npm ci
+      - run: npx playwright install --with-deps chromium
+      - run: node scripts/capture-screenshots.mjs
+      - name: Create or update screenshot pull request
+        uses: peter-evans/create-pull-request@v7
+        with:
+          branch: automation/screenshots
+          delete-branch: true
+          commit-message: "chore: refresh project screenshots"
+          title: "chore: refresh project screenshots"
+          body: "Automated weekly refresh of available grela.dev application screenshots. Failed captures preserve the previous image."
+          labels: automation,media

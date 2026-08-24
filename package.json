@@ -1,0 +1,11 @@
+{
+  "name": "grela-dev-roadmap-automation",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "screenshots": "playwright install chromium && node scripts/capture-screenshots.mjs"
+  },
+  "devDependencies": {
+    "playwright": "1.62.1"
+  }
+}

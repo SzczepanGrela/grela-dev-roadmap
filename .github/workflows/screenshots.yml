@@ -13,8 +13,8 @@ jobs:
   capture:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
+      - uses: actions/checkout@v6
+      - uses: actions/setup-node@v6
         with:
           node-version: "22"
           cache: npm
@@ -22,7 +22,7 @@ jobs:
       - run: npx playwright install --with-deps chromium
       - run: node scripts/capture-screenshots.mjs
       - name: Create or update screenshot pull request
-        uses: peter-evans/create-pull-request@v7
+        uses: peter-evans/create-pull-request@v8
         with:
           branch: automation/screenshots
           delete-branch: true

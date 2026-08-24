@@ -40,29 +40,29 @@
   },
   "status": "active",
   "progress": {
-    "implementation": 95,
+    "implementation": 76,
     "quality": 90,
     "documentation": 20,
-    "delivery": 75,
-    "overall": 78
+    "delivery": 39,
+    "overall": 61
   },
   "complexity": 5,
   "forecast": {
-    "remainingHoursMin": 40,
-    "remainingHoursMax": 64,
+    "remainingHoursMin": 74,
+    "remainingHoursMax": 128,
     "hoursPerWeek": 16,
     "earliest": "2026-11-19",
-    "latest": "2027-01-02",
+    "latest": "2027-02-13",
     "confidence": "low"
   },
   "focus": {
     "current": {
-      "en": "Document the system and split authentication policies by operation and identity.",
-      "pl": "Udokumentować system i rozdzielić limity auth per operacja/tożsamość."
+      "en": "Restore transactional email through SMTP and repair immutable release integrity.",
+      "pl": "Przywrócić e-maile przez SMTP i naprawić spójność niezmiennych wydań."
     },
     "next": {
-      "en": "Normalize deployment networks, Redis-backed limits and blue-green rollout.",
-      "pl": "Ujednolicić sieci, limity Redis i wdrożenie blue-green."
+      "en": "Select and migrate the canonical domain, then finish safe blue-green promotion.",
+      "pl": "Wybrać i zmigrować domenę kanoniczną, następnie ukończyć bezpieczne blue-green."
     }
   },
   "tasks": [
@@ -75,7 +75,7 @@
       "dimension": "implementation",
       "status": "in-progress",
       "completion": 95,
-      "weight": 1,
+      "weight": 4,
       "difficulty": 5,
       "hoursMin": 8,
       "hoursMax": 12,
@@ -114,24 +114,84 @@
     {
       "id": "delivery",
       "title": {
-        "en": "Harden identity limits, networks and deployment",
-        "pl": "Wzmocnić limity tożsamości, sieci i deployment"
+        "en": "Harden identity limits, networks and the existing deployment",
+        "pl": "Wzmocnić limity tożsamości, sieci i istniejący deployment"
       },
       "dimension": "delivery",
       "status": "in-progress",
       "completion": 75,
-      "weight": 1,
+      "weight": 3,
       "difficulty": 5,
       "hoursMin": 14,
       "hoursMax": 24,
-      "evidence": "Deployment workflows exist; smakosz.grela.dev has no public DNS."
+      "evidence": "Deployment workflows exist, but production still uses mutable latest images and moving main configuration."
+    },
+    {
+      "id": "email-smtp",
+      "title": {
+        "en": "Replace the expired Brevo API integration with SMTP",
+        "pl": "Zastąpić wygasłą integrację Brevo API wysyłką SMTP"
+      },
+      "dimension": "implementation",
+      "status": "planned",
+      "completion": 0,
+      "weight": 1,
+      "difficulty": 3,
+      "hoursMin": 6,
+      "hoursMax": 12,
+      "evidence": "Transactional email is affected by an expired Brevo API key; the owner selected SMTP as the target integration."
+    },
+    {
+      "id": "cicd-repair",
+      "title": {
+        "en": "Repair immutable CI/CD, preflight, blue-green and rollback",
+        "pl": "Naprawić niezmienne CI/CD, preflight, blue-green i rollback"
+      },
+      "dimension": "delivery",
+      "status": "in-progress",
+      "completion": 25,
+      "weight": 2,
+      "difficulty": 5,
+      "hoursMin": 16,
+      "hoursMax": 28,
+      "evidence": "Images are built in CI, but latest tags, moving main configuration, post-replacement checks and unsafe shared-host cleanup prevent release-safe deployment."
+    },
+    {
+      "id": "domain-migration",
+      "title": {
+        "en": "Select and migrate to the new canonical domain",
+        "pl": "Wybrać i zmigrować nową domenę kanoniczną"
+      },
+      "dimension": "delivery",
+      "status": "planned",
+      "completion": 0,
+      "weight": 1,
+      "difficulty": 3,
+      "hoursMin": 4,
+      "hoursMax": 8,
+      "evidence": "The owner requested a domain change; the target hostname is intentionally pending an explicit decision."
+    },
+    {
+      "id": "central-observability-migration",
+      "title": {
+        "en": "Extract Smakosz monitoring into the shared VPS observability stack",
+        "pl": "Wydzielić monitoring Smakosza do wspólnego stacku obserwowalności VPS"
+      },
+      "dimension": "delivery",
+      "status": "planned",
+      "completion": 0,
+      "weight": 1,
+      "difficulty": 4,
+      "hoursMin": 8,
+      "hoursMax": 16,
+      "evidence": "Prometheus, Grafana, Grafana Image Renderer and Node Exporter currently belong to Smakosz Compose and smakosz_network; Prometheus scrapes only Smakosz and the host."
     }
   ],
   "verification": {
     "worktree": "audited from clean public clone",
     "tests": "not rerun locally; extensive test projects are present",
-    "ci": "latest CI/CD succeeded",
-    "production": "planned domain has no public DNS; actual deployment URL requires confirmation"
+    "ci": "latest CI/CD succeeded, but audit found mutable release inputs and no safe candidate promotion/rollback",
+    "production": "existing deployment is running; target canonical domain for the requested migration requires owner selection"
   },
   "media": {
     "screenshot": "assets/screenshots/smakosz-web-app.png",
@@ -147,18 +207,36 @@
     {
       "en": "Refresh/logout/me must not share the tight login policy.",
       "pl": "Refresh/logout/me nie mogą dzielić ciasnego limitu logowania."
+    },
+    {
+      "en": "Deploy full-SHA release manifests and exact image digests; never production latest or moving main configuration.",
+      "pl": "Wdrażać manifest pełnego SHA i dokładne digests obrazów; nigdy produkcyjne latest ani konfigurację z ruchomego main."
+    },
+    {
+      "en": "Blue-green applies to stateless client/API; PostgreSQL stays shared and Hangfire stays singleton or leader-locked.",
+      "pl": "Blue-green dotyczy bezstanowych klienta/API; PostgreSQL pozostaje wspólny, a Hangfire singletonem lub używa leader locka."
+    },
+    {
+      "en": "Use Brevo SMTP behind an email-sender abstraction and keep all relay credentials in environment secrets.",
+      "pl": "Użyć SMTP Brevo za abstrakcją nadawcy i trzymać wszystkie dane relayu w sekretach środowiska."
+    },
+    {
+      "en": "Run one independent observability stack per VPS environment and preserve Smakosz dashboards, alerts and history during the staged migration.",
+      "pl": "Utrzymywać jeden niezależny stack obserwowalności na środowisko VPS oraz zachować dashboardy, alerty i historię Smakosza podczas migracji etapowej."
     }
   ],
   "audit": {
     "date": "2026-08-24",
     "sources": [
       "public repository tree and source review",
+      "refreshed public main commit 7d75ca159441b6f5f9f335b84f8fbe27361c8fcc",
       "GitHub Actions API",
-      "public DNS"
+      "public DNS",
+      "owner-provided VPS docker ps output from 2026-08-25"
     ],
     "notes": {
-      "en": "The project is technically mature but public documentation and canonical hosting metadata lag behind.",
-      "pl": "Projekt jest technicznie dojrzały, ale dokumentacja i metadane hostingu są opóźnione."
+      "en": "The project is technically mature, but public documentation, canonical hosting metadata, release integrity and ownership of the existing observability stack require work.",
+      "pl": "Projekt jest technicznie dojrzały, ale dokumentacja, metadane hostingu, spójność wydań i odpowiedzialność za istniejący stack obserwowalności wymagają pracy."
     }
   }
 }

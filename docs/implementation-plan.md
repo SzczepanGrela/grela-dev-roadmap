@@ -1,0 +1,250 @@
+# Plan wdrożenia poprawek i standardu DevOps w repozytoriach portfolio Szczepana Greli (Wersja 7)
+
+> [!NOTE]
+> Ten dokument stanowi **zintegrowaną długoterminową mapę drogową (roadmapę)**. Będziemy realizować go krok po kroku (jedno repozytorium na raz). Łączy on prace programistyczne, dokumentacyjne oraz **znormalizowany standard produkcyjnego wdrożenia DevOps** dla wszystkich aplikacji internetowych i usługowych w domenie `grela.dev`.
+
+> [!IMPORTANT]
+> Kanoniczna wersja dokumentu znajduje się w publicznym repozytorium `grela-dev-roadmap`. Szczegółowe raporty i dane maszynowe projektów znajdują się w `projects/<slug>/`. Zaakceptowany standard rate limitingu opisuje [`rate-limiting-standard.md`](rate-limiting-standard.md), a wartości są dobierane indywidualnie do kosztu endpointów.
+
+---
+
+## 🛠️ Znormalizowany Standard Architektury DevOps
+
+Wszystkie wdrażane aplikacje webowe będą realizowane według jednolitego, bezpiecznego wzorca architektonicznego Zero-Trust:
+
+```mermaid
+graph TD
+    User[Użytkownik Internetu] -->|HTTPS| CF[Cloudflare Orange Cloud<br/>SSL Edge / DDoS / IP Masking]
+    CF -->|HTTPS| NPM[Nginx Proxy Manager<br/>Reverse Proxy na VPS]
+    NPM -->|HTTP 127.0.0.1:PORT| Docker[Kontener Docker<br/>Dedykowane konto Linux app-user]
+    
+    subgraph CI/CD Pipeline via Tailscale
+        GHA[GitHub Actions Runner] -->|Ephemeral Node + OAuth| TS[Tailscale Network<br/>Tailnet Private]
+        TS -->|Tailscale SSH<br/>Port SSH 2137 zablokowany publicznie| Launcher[deploy_launcher.sh<br/>/home/app-user/deploy_launcher.sh]
+        Launcher -->|git pull & exec| DeployScript[infra/deploy.sh<br/>Skrypt w repozytorium /infra/]
+        DeployScript --> Docker
+    end
+```
+
+### Kluczowe zasady DevOps dla przyszłych agentów AI:
+1.  **Bezpieczeństwo sieciowe (Zero Trust & Tailscale OIDC):**
+    *   Niestandardowy port SSH (`2137`) na VPS pozostaje zamknięty dla publicznego internetu.
+    *   Wdrożenia CI/CD z GitHub Actions odbywają się wewnątrz prywatnej sieci Tailnet przy użyciu **Tailscale SSH** na port 2137.
+    *   **Uwierzytelnianie: GitHub OIDC Federation (BEZ oauth-secret!):**
+        *   Używamy akcji **`tailscale/github-action@v4`** (UWAGA: wersje `@v2` i `@v3` NIE obsługują parametru `audience` i wymagają `oauth-secret` — NIE UŻYWAĆ!).
+        *   Akcja przyjmuje dwa parametry: `oauth-client-id` (Client ID) oraz `audience` (Audience URL). Nie wymaga żadnego tajnego klucza (`oauth-secret`/`tskey-client-...`).
+        *   Job deployu MUSI mieć ustawione `permissions: { id-token: write, contents: read }`.
+    *   **Konfiguracja OIDC Credential w Tailscale Admin Console** (dla każdego nowego repozytorium):
+        1.  Wejdź w `Settings → Trust Credentials → Add OIDC Credential`.
+        2.  **Tags:** Wybierz istniejący tag `tag:ci-vps` (dla VPS) lub `tag:ci-rbpi` (dla Raspberry Pi).
+        3.  **Issuer:** wybierz w aktualnym formularzu dostawcę **GitHub Actions**. Konsola przypisze issuer `https://token.actions.githubusercontent.com`; nie wybieraj ręcznie „Custom issuer”, jeżeli preset GitHub Actions jest dostępny.
+        4.  **Subject:** `repo:SzczepanGrela@115424220/<REPO_NAME>@<REPOSITORY_ID>:ref:refs/heads/main` (aktualny format z niezmiennym owner ID i repository ID; nazwa, ID oraz gałąź muszą być zgodne).
+        5.  Zakres credentiala musi obejmować `auth_keys` i właściwy tag. Po zapisaniu Tailscale wygeneruje **Client ID** (np. `TcXhsYKQyJ11CNTRL-xxx`) oraz **Audience** (np. `api.tailscale.com/TcXhsYKQyJ11CNTRL-xxx`). Zapisz obie wartości. Client ID i Audience są identyfikatorami federacji, nie sekretami, ale dla spójności przechowujemy je w GitHub Actions Secrets.
+        6.  Aktualny przepływ należy porównać z oficjalną dokumentacją [Tailscale GitHub Action](https://tailscale.com/docs/integrations/github/github-action) i [Workload identity federation](https://tailscale.com/docs/features/workload-identity-federation). Niniejszą instrukcję zweryfikowano 2026-08-24.
+    *   **Reguły ACL w Tailscale:** Tag `tag:ci-vps` ma zezwolenie na ruch do `100.105.105.105` (VPS) na porcie `2137`. Tag `tag:ci-rbpi` ma zezwolenie na ruch do `100.104.104.104` (Raspberry Pi) na porcie `2137`.
+    *   **Niezmienne GitHub IDs używane w OIDC:** owner `SzczepanGrela` = `115424220`; repozytoria: `inventory-generator` = `808164658`, `pos-order-system` = `808641042`, `netfilmx-movie-catalog` = `825161832`, `air-quality-app` = `940601553`, `audio-master` = `1010455644`, `tic-tac-toe-ai` = `1013262916`, `SmakoszWebApp` = `1014036592`, `UrlShortenerSystem` = `1015668631`, `OlxScrapper` = `1026959784`, `clean-commits-skill` = `1241862529`, `movie-rag` = `1241944352`, `leetcode` = `1258649476`, `SpotifyAdBlocker` = `1266821047`, `grela-dev` = `1296412137`. Po zmianie nazwy repo ID pozostaje bez zmian.
+2.  **Struktura Repozytorium & Podział Skryptów Deployu (`/infra` Standard):**
+    *   **Katalog `/infra` w repozytorium:** Wszystkie pliki konfiguracyjne i skrypty serwerowe (`Dockerfile`, `deploy.sh`, skrypty pomocnicze) **muszą znajdować się w katalogu `/infra`** wewnątrz repozytorium Git każdego projektu.
+    *   **Podział na Launcher i Skrypt Główny:**
+        *   `deploy-launcher.sh` — minimalny skrypt znajdujący się w katalogu domowym użytkownika na serwerze (`/home/<app-user>/deploy-launcher.sh`), wywoływany zdalnie przez GitHub Actions. Jego zadaniem jest przejście do `/home/<app-user>/app`, pobranie zmian (`git fetch origin main && git reset --hard origin/main`) oraz wywołanie skryptu `/home/<app-user>/app/infra/deploy.sh`.
+        *   `infra/deploy.sh` — właściwy skrypt wdrożeniowy wewnątrz repozytorium w katalogu `/infra/`. Odpowiada za budowanie obrazu Docker (`docker build`), preflight i podmianę kontenerów, limity CPU/RAM oraz podłączenie kontenera NPM do dedykowanej sieci.
+        *   Skrypt pojedynczej aplikacji **nie wykonuje globalnego `docker image prune -f` bez polityki retencji**. Na współdzielonym VPS mogłoby to usunąć obraz potrzebny innej aplikacji lub do rollbacku. Obrazy są jednoznacznie tagowane (commit SHA/release), a sprzątanie ogranicza się do artefaktów danej aplikacji starszych niż ustalona retencja i następuje dopiero po udanym health checku.
+3.  **Ochrona przed nadużyciami (Rate Limiting & DoS Protection):**
+    *   **Każda publiczna aplikacja webowa** posiada zaimplementowany **Rate Limiting** zapobiegający przeciążeniom serwera, drenażowi zasobów i atakom typu DoS.
+    *   Ochrona działa wielowarstwowo: Cloudflare Rate Limiting na krawędzi, Nginx Proxy Manager `limit_req` na poziomie reverse proxy oraz wbudowane middleware Rate Limiting w aplikacji (.NET `Microsoft.AspNetCore.RateLimiting` / Express / FastAPI).
+    *   Szczególny nacisk położony jest na endpointy generujące pliki i zużywające CPU/RAM (np. `/api/export/docx`).
+4.  **Izolacja systemowa (Dedykowane konta Linux):**
+    *   Każdy projekt ma na serwerze VPS własnego użytkownika technicznego (np. `inventory-generator`, `movie-rag`, `smakosz`) należącego do grupy `docker`.
+    *   Aplikacje są odizolowane w swoich katalogach domowych `/home/<app-user>/app/`.
+    *   **Ważne:** członkostwo w grupie `docker` daje w praktyce uprawnienia równoważne rootowi. Osobne konto porządkuje własność i klucze, ale samo nie jest twardą granicą bezpieczeństwa. Docelowy hardening to rootless Docker albo bardzo wąskie polecenia przez `sudo`/kontrolowany launcher bez bezpośredniego dostępu do socketa Dockera.
+5.  **Routing, SSL i Advanced Proxy Rules (Cloudflare + Nginx Proxy Manager):**
+    *   **Cloudflare (Orange Cloud / Proxied):** Obsługuje certyfikaty SSL na krawędzi, chroni przed DDoS i ukrywa rzeczywiste IP serwera (Origin IP).
+    *   **Certyfikat SSL w NPM:** Używamy gotowego certyfikatu **`grela.dev wildcard (CF Origin)`** z włączonymi opcjami `Force SSL`, `HTTP/2 Support` oraz `HSTS Enabled`.
+    *   **Jednolity Standard Przekierowań w NPM (Isolated App Networks + Container Name Forwarding):**
+        *   **Dedykowana Sieć Dockerowa:** Każda aplikacja tworzy własną, wyizolowaną sieć Dockerową z myślnikami (np. `inventory-network`, `movierag-network`, `smakosz-network`).
+        *   **Dołączenie Kontenera NPM:** Podczas wdrożenia kontener `nginx-proxy-manager` jest dynamicznie podłączany do dedykowanej sieci danej aplikacji (`docker network connect <app-network> nginx-proxy-manager`). Zapewnia to pełną izolację między różnymi aplikacjami na serwerze, jednocześnie umożliwiając NPM bezpieczny forwarding.
+        *   **Forward Hostname w NPM:** W NPM wpisujemy zawsze **nazwę kontenera Docker** (np. `inventory-generator:8080`, `movierag-frontend:80`, `movierag-api:8000`), eliminuje to kolizje portów na hoście.
+        *   *Wielokontenerowe aplikacje (np. `movie-rag`, `smakosz-web-app`):* Użycie **Custom Locations** w NPM do rozdzielania ruchu po nazwach kontenerów (np. `/` -> `movierag-frontend:80`, `/api/*` -> `movierag-api:8000`).
+        *   *Zaawansowane reguły proxy (Advanced / Directives):* Dla endpointów LLM / RAG / SSE wyłączamy buforowanie (`proxy_buffering off;`, `chunked_transfer_encoding off;`) i zwiększamy timeout (`proxy_read_timeout 300s;`).
+6.  **Zarządzanie sekretami i higiena Dockera:**
+    *   **Standaryzowane Sekrety Repozytorium w GitHub Actions (bez hardcoded defaults w kodzie):**
+        *   `TS_CLIENT_ID` — Client ID z OIDC Credential w Tailscale Admin Console (np. `TcXhsYKQyJ11CNTRL-xxx`).
+        *   `TS_AUDIENCE` — Audience URL z OIDC Credential (np. `api.tailscale.com/TcXhsYKQyJ11CNTRL-xxx`).
+        *   `SSH_PRIVATE_KEY` — Zawartość dedykowanego klucza prywatnego SSH (ed25519) odpowiadającego plikowi `authorized_keys` na VPS.
+        *   `SSH_HOST` — IP w sieci Tailnet (`100.105.105.105`) lub nazwa węzła Tailscale.
+        *   `SSH_PORT` — Niestandardowy port SSH (`2137`).
+        *   `SSH_USER` — Dedykowany użytkownik aplikacji na VPS (np. `inventory-generator`).
+        *   `SSH_KNOWN_HOSTS` — wcześniej zweryfikowany wpis host key dla docelowej nazwy/IP i portu; nie pobieramy go bez weryfikacji w tym samym jobie, który ma mu zaufać.
+    *   **UWAGA: NIE używamy `TS_OAUTH_SECRET` / `oauth-secret` / `tskey-client-...`** — dzięki OIDC Federation w `@v4` ten klucz nie jest potrzebny.
+    *   **Zmienne środowiskowe na serwerze:** Plik `/home/<app-user>/app/.env` (prawa dostępu `600`, poza systemem kontroli wersji Git).
+    *   **Retencja obrazów:** Zachowujemy co najmniej ostatni sprawdzony obraz rollbacku. Czyszczenie jest per aplikacja, po udanym wdrożeniu i według czasu/etykiety; nie uruchamiamy bezwarunkowego globalnego prune z każdego deployu.
+7.  **Referencyjny Szablon `.github/workflows/deploy.yml` (Przetestowany, Działający):**
+    ```yaml
+    deploy:
+      name: Deploy to VPS
+      needs: [test-and-build, build-docker-image]
+      if: github.ref == 'refs/heads/main' && github.event_name == 'push'
+      runs-on: ubuntu-latest
+      concurrency:
+        group: deploy
+        cancel-in-progress: false
+      permissions:
+        contents: read
+        id-token: write
+      steps:
+        - name: Connect to Tailscale
+          uses: tailscale/github-action@v4
+          with:
+            oauth-client-id: ${{ secrets.TS_CLIENT_ID }}
+            audience: ${{ secrets.TS_AUDIENCE }}
+            tags: tag:ci-vps
+            ping: ${{ secrets.SSH_HOST }}
+        - name: Setup SSH key
+          run: |
+            mkdir -p ~/.ssh
+            echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/deploy_key
+            chmod 600 ~/.ssh/deploy_key
+            printf '%s\n' "${{ secrets.SSH_KNOWN_HOSTS }}" > ~/.ssh/known_hosts
+        - name: Deploy and verify
+          run: |
+            ssh -i ~/.ssh/deploy_key -p ${{ secrets.SSH_PORT }} \
+              ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} bash /home/${{ secrets.SSH_USER }}/deploy-launcher.sh
+    ```
+
+---
+
+## 🤝 Zasady Współpracy i Kontroli Użytkownika
+
+> [!IMPORTANT]
+> **Pełna kontrola użytkownika (Brak samodzielnych decyzji AI):**
+> *   Każda zmiana w kodzie (np. logika tabel w Wordzie, interfejs NetFilmx, scrapery) będzie przedyskutowana z Tobą **przed jej zaimplementowaniem**. Agent AI nie będzie samodzielnie podejmował decyzji o architekturze ani dokonywał zmian bez Twojej wiedzy.
+> *   Wszelkie commity i wypchnięcie zmian na GitHub (`git commit` / `git push`) oraz zmiany nazw repozytoriów będą wykonywane **dopiero po Twojej wyraźnej akceptacji** konkretnego pliku/kodu lub jako polecenie uruchomione przez Ciebie w terminalu.
+> *   Działamy ściśle w trybie **Pair Programming** — AI proponuje rozwiązania i pisze kod do wglądu, a Ty pełnisz rolę zatwierdzającego (Driver/Navigator).
+
+---
+
+## 🗂️ Organizacja pracy (Rozdzielenie czatów)
+
+Aby zapobiec przepełnieniu kontekstu (tzw. context bloating) i utrzymać wysoką wydajność:
+1.  **Ten czat** służy jako **Koordynator Główny** — tu śledzimy postępy na roadmapie, zarządzamy listą zadań i podejmujemy decyzje strategiczne.
+2.  **Dla każdego konkretnego kroku** zalecamy **otwieranie osobnego, świeżego czatu**. Przyszły agent AI odczytuje kanoniczny plik `/home/szcze/projects/grela-dev-roadmap/docs/implementation-plan.md` i raport danego projektu z `projects/<slug>/report.md`, a następnie dostosowuje się do standardu DevOps.
+
+---
+
+## Proposed Changes (Chronologiczna kolejność prac)
+
+### 1. `Projekt-ST1-Generator-Spisu` -> `inventory-generator` ✅ **[UKOŃCZONE]**
+*   **Proponowana nazwa:** `inventory-generator`
+*   **Subdomena:** `inventory.grela.dev` (lub `spis.grela.dev`)
+*   **Port kontenera:** `127.0.0.1:8080`
+*   **Konto Linux na VPS:** `inventory-app`
+*   **Technologia:** C# (WinForms) + biblioteka Word
+*   **Zadania Dev:** Zmiana nazwy na `inventory-generator`, licencja MIT, README.md (EN). Poprawa układu tabeli w plikach MS Word (szerokość kolumn, czcionki, obramowania), aby była czytelna i schludna.
+*   **Zadania DevOps:** Stworzenie Dockerfile, `deploy.sh`, workflow `.github/workflows/deploy.yml` (Tailscale SSH), konfiguracja NPM & Cloudflare. Upewnienie się, że aplikacja ma favicon, wielowarstwowy rate limiting oraz preflight sprawdzający nowy kontener przed usunięciem działającego kontenera produkcyjnego; docelowo przejście na blue-green deployment.
+
+### 2. `Punkt_Skladania_Zamowien` (Maj 2024)
+*   **Proponowana nazwa:** `pos-order-system`
+*   **Dystrybucja:** Aplikacja desktopowa; bez publicznego hostingu i subdomeny.
+*   **Technologia:** C# (WinForms)
+*   **Zadania Dev:** Zmiana nazwy na `pos-order-system`, licencja MIT, README.md (EN) z datą, tagi, audyt znanych błędów, testy logiki oraz przygotowanie powtarzalnego wydania desktopowego.
+*   **Zadania DevOps:** Quality CI dla kompilacji i testów oraz automatyzacja artefaktu wydania. Standard webowego rate limitingu, NPM, favicon i blue-green nie ma zastosowania.
+
+### 3. `ST2-NetFilmx` (Lipiec 2024)
+*   **Proponowana nazwa:** `netfilmx-movie-catalog`
+*   **Subdomena:** `netfilmx.grela.dev`
+*   **Port kontenera:** `127.0.0.1:8082`
+*   **Konto Linux na VPS:** `netfilmx-app`
+*   **Technologia:** C# (ASP.NET Core MVC)
+*   **Zadania Dev:** Zmiana nazwy na `netfilmx-movie-catalog`, licencja MIT, README.md (EN). Odświeżenie panelu admina (Admin UI) i dodanie estetycznego interfejsu dla zwykłych użytkowników (User UI).
+*   **Zadania DevOps:** Wdrożenie kontenerowe ASP.NET Core MVC pod subdomenę `netfilmx.grela.dev`. Upewnienie się, że aplikacja ma favicon, wielowarstwowy rate limiting oraz preflight sprawdzający nowy kontener przed usunięciem działającego kontenera produkcyjnego; docelowo przejście na blue-green deployment.
+
+### 4. `AirQualityApp` (Luty 2025)
+*   **Proponowana nazwa:** `air-quality-app`
+*   **Subdomena:** `air.grela.dev`
+*   **Port kontenera:** `127.0.0.1:8083`
+*   **Konto Linux na VPS:** `airquality-app`
+*   **Technologia:** Python
+*   **Zadania Dev:** Zmiana nazwy na `air-quality-app`, licencja MIT, README.md (EN). Implementacja brakujących funkcjonalności (zapisywanie historii pomiarów, wykresy jakości powietrza w matplotlib/plotly).
+*   **Zadania DevOps:** Konteneryzacja aplikacji Python i wdrożenie pod `air.grela.dev`. Upewnienie się, że aplikacja ma favicon, wielowarstwowy rate limiting oraz preflight sprawdzający nowy kontener przed usunięciem działającego kontenera produkcyjnego; docelowo przejście na blue-green deployment.
+
+### 5. `AudioMaster` (Czerwiec 2025)
+*   **Proponowana nazwa:** `audio-master`
+*   **Technologia:** Python (GUI + ffmpeg)
+*   **Zadania Dev:** Zmiana nazwy na `audio-master`, licencja MIT, README.md (EN). **Współautorstwo:** Dodanie sekcji atrybucji współautorów.
+
+### 6. `kolkokrzyzyk` (Lipiec 2025)
+*   **Proponowana nazwa:** `tic-tac-toe-ai`
+*   **Subdomena:** `tictactoe.grela.dev`
+*   **Port kontenera:** `127.0.0.1:8084`
+*   **Konto Linux na VPS:** `tictactoe-app`
+*   **Technologia:** Python
+*   **Zadania Dev:** Zmiana nazwy na `tic-tac-toe-ai`, licencja MIT, README.md (EN). **Współautorstwo:** Dodanie sekcji atrybucji współautorów.
+*   **Zadania DevOps:** Wdrożenie wersji webowej gry pod `tictactoe.grela.dev`. Upewnienie się, że aplikacja ma favicon, wielowarstwowy rate limiting oraz preflight sprawdzający nowy kontener przed usunięciem działającego kontenera produkcyjnego; docelowo przejście na blue-green deployment.
+
+### 7. `SmakoszWebApp` (Lipiec 2025)
+*   **Proponowana nazwa:** `smakosz-web-app`
+*   **Subdomena:** `smakosz.grela.dev` (lub dedykowana domena)
+*   **Konto Linux na VPS:** `smakosz-app`
+*   **Technologia:** C# (.NET 10) + Blazor WASM (PWA) + PyTorch/ONNX + Docker
+*   **Zadania Dev:** Zmiana nazwy na `smakosz-web-app`, licencja MIT, stworzenie obszernego README.md (EN) na podstawie Twojej pracy inżynierskiej (`2026.IN.w67131.pdf`).
+*   **Zadania DevOps:** Wdrożenie hybrydowe (.NET 10, PostgreSQL 18, Hangfire Orchestrator, Blazor WASM PWA, Cloudflare R2, Tailscale). **Refaktoryzacja sieci:** Zmiana nazwy starej sieci `smakosz_network` na znormalizowaną `smakosz-network` (użycie myślników/pauz) i ponowne przepięcie kontenera NPM. Upewnienie się, że aplikacja ma favicon, wielowarstwowy rate limiting oraz preflight sprawdzający nowy kontener przed usunięciem działającego kontenera produkcyjnego; docelowo przejście na blue-green deployment.
+
+### 8. `UrlShortenerSystem` (Lipiec 2025)
+*   **Proponowana nazwa:** `url-shortener-system`
+*   **Subdomena:** `s.grela.dev` (lub `shortener.grela.dev`)
+*   **Port kontenera:** `127.0.0.1:8085`
+*   **Konto Linux na VPS:** `shortener-app`
+*   **Technologia:** C# (.NET) + HTML/JS/CSS (nowe UI)
+*   **Zadania Dev:** Zmiana nazwy na `url-shortener-system`, licencja MIT, README.md (EN). Stworzenie prostego, responsywnego UI w HTML/JS do skracania linków.
+*   **Zadania DevOps:** Wdrożenie produkcyjne API + UI pod subdomenę `s.grela.dev`. Upewnienie się, że aplikacja ma favicon, wielowarstwowy rate limiting oraz preflight sprawdzający nowy kontener przed usunięciem działającego kontenera produkcyjnego; docelowo przejście na blue-green deployment.
+
+### 9. `OlxScrapper` (Lipiec 2025)
+*   **Proponowana nazwa:** `flat-finder`
+*   **Subdomena:** `flatfinder.grela.dev`
+*   **Port kontenera:** `127.0.0.1:8086`
+*   **Konto Linux na VPS:** `flatfinder-app`
+*   **Technologia:** Python + HTML
+*   **Zadania Dev:** Zmiana nazwy na `flat-finder`, licencja MIT, README.md (EN). Uporządkowanie skryptów ML i scrapera, dokończenie skryptu treningowego i zintegrowanie go z aplikacją.
+*   **Zadania DevOps:** Wdrożenie produkcyjne dashboardu wyszukiwarki mieszkań pod `flatfinder.grela.dev`. Upewnienie się, że aplikacja ma favicon, wielowarstwowy rate limiting oraz preflight sprawdzający nowy kontener przed usunięciem działającego kontenera produkcyjnego; docelowo przejście na blue-green deployment.
+
+### 10. `clean-commits-skill` (Maj 2026)
+*   **Nazwa:** Bez zmian (`clean-commits-skill`)
+*   **Zadania Dev:** Dodanie daty do README.md, licencja MIT, tagi.
+
+### 11. `movie-rag` (Maj 2026)
+*   **Nazwa:** Bez zmian (`movie-rag`)
+*   **Subdomena:** `movierag.grela.dev`
+*   **Port kontenera:** `127.0.0.1:8087`
+*   **Konto Linux na VPS:** `movierag-app`
+*   **Zadania Dev:** Dodanie daty do README.md, licencja MIT, schemat przepływu RAG.
+*   **Zadania DevOps:** Konteneryzacja pipeline'u RAG i wdrożenie pod `movierag.grela.dev`. **Refaktoryzacja sieci:** Zmiana nazwy starej sieci `movierag_network` na znormalizowaną `movierag-network` (użycie myślników/pauz) i ponowne przepięcie kontenera NPM. Upewnienie się, że aplikacja ma favicon, wielowarstwowy rate limiting oraz preflight sprawdzający nowy kontener przed usunięciem działającego kontenera produkcyjnego; docelowo przejście na blue-green deployment.
+
+### 12. `leetcode` (Czerwiec 2026)
+*   **Proponowana nazwa:** `leetcode-solutions`
+*   **Zadania Dev:** Zmiana nazwy na `leetcode-solutions`, licencja MIT, README.md (EN) z indeksem zadań.
+
+### 13. `SpotifyAdBlocker` (Czerwiec 2026)
+*   **Proponowana nazwa:** `spotify-ad-blocker`
+*   **Zadania Dev:** Dodanie daty do README.md, licencja MIT, usunięcie plików `.idea` i `.exe`.
+
+### 14. `grela-dev` (Lipiec 2026 - Najnowszy)
+*   **Nazwa:** Bez zmian (`grela-dev`)
+*   **Domena:** `grela.dev` (Główna domena)
+*   **Port kontenera:** `127.0.0.1:8000`
+*   **Konto Linux na VPS:** `greladev-app`
+*   **Technologia:** HTML/JS (React/JSX)
+*   **Zadania Dev:** Dodanie pliku `LICENSE` (MIT) oraz pliku README.md (EN). Aktualizacja linków w kodzie strony portfolio do nowych nazw repozytoriów.
+*   **Zadania DevOps:** Wdrożenie produkcyjne strony portfolio pod główną domenę `grela.dev`. Upewnienie się, że aplikacja ma favicon, wielowarstwowy rate limiting oraz preflight sprawdzający nowy kontener przed usunięciem działającego kontenera produkcyjnego; docelowo przejście na blue-green deployment.
+
+---
+
+## Verification Plan
+
+### Automated Steps
+- Walidacja zmian statusów i nazw repozytoriów poprzez `gh repo view`.
+- Automatyczny build kontenerów Docker i wdrożenie przez GitHub Actions via Tailscale SSH.
+
+### Manual Verification
+- Testy dostępności usług w przeglądarce pod subdomenami `x.grela.dev` po HTTPS.
+- Weryfikacja Cloudflare Orange Cloud (ukrywanie Origin IP) oraz działanie Nginx Proxy Manager.
+- Ostateczny przegląd spójności strony portfolio `grela.dev` oraz profilu GitHub.

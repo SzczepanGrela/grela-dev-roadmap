@@ -1,0 +1,37 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="675" viewBox="0 0 1200 675" role="img" aria-labelledby="title desc">
+  <title id="title">MovieRAG roadmap placeholder</title>
+  <desc id="desc">Original geometric roadmap illustration for MovieRAG.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#07111f"/>
+      <stop offset="1" stop-color="#172033"/>
+    </linearGradient>
+    <linearGradient id="route" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#8b5cf6"/>
+      <stop offset="1" stop-color="#f43f5e"/>
+    </linearGradient>
+    <filter id="glow" x="-30%" y="-30%" width="160%" height="160%">
+      <feGaussianBlur stdDeviation="10" result="blur"/>
+      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+  </defs>
+  <rect width="1200" height="675" rx="36" fill="url(#bg)"/>
+  <g opacity=".12" stroke="#e2e8f0">
+    <path d="M0 140H1200M0 280H1200M0 420H1200M0 560H1200"/>
+    <path d="M180 0V675M420 0V675M660 0V675M900 0V675"/>
+  </g>
+  <path d="M120 448H350Q390 448 390 408V270Q390 230 430 230H690Q730 230 730 270V360Q730 400 770 400H1080"
+        fill="none" stroke="url(#route)" stroke-width="18" stroke-linecap="round" stroke-linejoin="round" filter="url(#glow)"/>
+  <g fill="#07111f" stroke-width="12">
+    <circle cx="120" cy="448" r="32" stroke="#8b5cf6"/>
+    <circle cx="390" cy="310" r="32" stroke="#8b5cf6"/>
+    <circle cx="560" cy="230" r="32" stroke="#f43f5e"/>
+    <circle cx="730" cy="330" r="32" stroke="#f43f5e"/>
+    <circle cx="930" cy="400" r="32" stroke="#f43f5e"/>
+    <circle cx="1080" cy="400" r="32" stroke="#f43f5e"/>
+  </g>
+  <text x="92" y="112" fill="#94a3b8" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="24" letter-spacing="6">PROJECT 11</text>
+  <text x="92" y="178" fill="#f8fafc" font-family="Inter, ui-sans-serif, system-ui, sans-serif" font-size="58" font-weight="700">MovieRAG</text>
+  <text x="94" y="610" fill="#94a3b8" font-family="Inter, ui-sans-serif, system-ui, sans-serif" font-size="24">grela.dev roadmap · original placeholder</text>
+</svg>
+

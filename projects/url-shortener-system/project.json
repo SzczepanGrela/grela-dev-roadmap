@@ -1,0 +1,161 @@
+{
+  "schemaVersion": 1,
+  "slug": "url-shortener-system",
+  "order": 8,
+  "name": {
+    "en": "URL Shortener System",
+    "pl": "URL Shortener System"
+  },
+  "summary": {
+    "en": "URL shortening and analytics services awaiting production modernization and a public UI.",
+    "pl": "Usługi skracania URL i analityki oczekujące modernizacji produkcyjnej oraz publicznego UI."
+  },
+  "repository": {
+    "owner": "SzczepanGrela",
+    "currentName": "UrlShortenerSystem",
+    "targetName": "url-shortener-system",
+    "url": "https://github.com/SzczepanGrela/UrlShortenerSystem",
+    "ownerId": 115424220,
+    "repositoryId": 1015668631,
+    "defaultBranch": "master",
+    "visibility": "public"
+  },
+  "classification": {
+    "kind": "web",
+    "technologies": [
+      "C#",
+      "ASP.NET Core",
+      "Entity Framework",
+      "SQL Server"
+    ],
+    "hosted": true
+  },
+  "hosting": {
+    "target": "vps",
+    "url": "https://s.grela.dev",
+    "deploymentState": "not-started"
+  },
+  "status": "paused",
+  "progress": {
+    "implementation": 60,
+    "quality": 55,
+    "documentation": 5,
+    "delivery": 0,
+    "overall": 36
+  },
+  "complexity": 5,
+  "forecast": {
+    "remainingHoursMin": 80,
+    "remainingHoursMax": 120,
+    "hoursPerWeek": 16,
+    "earliest": "2026-12-25",
+    "latest": "2027-02-24",
+    "confidence": "low"
+  },
+  "focus": {
+    "current": {
+      "en": "Replace unsafe forwarded-header handling and split redirect/create/manage policies.",
+      "pl": "Zastąpić niebezpieczne XFF i rozdzielić polityki redirect/create/manage."
+    },
+    "next": {
+      "en": "Add UI, Linux database strategy, CI/CD, containers and public deployment.",
+      "pl": "Dodać UI, bazę dla Linuxa, CI/CD, kontenery i wdrożenie."
+    }
+  },
+  "tasks": [
+    {
+      "id": "implementation",
+      "title": {
+        "en": "Modernize API security and bounded analytics",
+        "pl": "Zmodernizować bezpieczeństwo API i kolejkę analityki"
+      },
+      "dimension": "implementation",
+      "status": "in-progress",
+      "completion": 60,
+      "weight": 1,
+      "difficulty": 5,
+      "hoursMin": 26,
+      "hoursMax": 38,
+      "evidence": "API and tests exist, but one global limiter trusts arbitrary forwarded headers and click analytics spawn unbounded tasks."
+    },
+    {
+      "id": "quality",
+      "title": {
+        "en": "Restore and expand security/integration/load checks",
+        "pl": "Przywrócić i rozbudować testy bezpieczeństwa/integracji/load"
+      },
+      "dimension": "quality",
+      "status": "in-progress",
+      "completion": 55,
+      "weight": 1,
+      "difficulty": 5,
+      "hoursMin": 18,
+      "hoursMax": 28,
+      "evidence": "Test projects exist; no current GitHub Actions workflow runs."
+    },
+    {
+      "id": "documentation",
+      "title": {
+        "en": "Rename and document the public repository",
+        "pl": "Zmienić nazwę i udokumentować repozytorium"
+      },
+      "dimension": "documentation",
+      "status": "in-progress",
+      "completion": 5,
+      "weight": 1,
+      "difficulty": 2,
+      "hoursMin": 12,
+      "hoursMax": 18,
+      "evidence": "No README or recognized license; default branch is master."
+    },
+    {
+      "id": "delivery",
+      "title": {
+        "en": "Build web UI and production platform",
+        "pl": "Zbudować UI i platformę produkcyjną"
+      },
+      "dimension": "delivery",
+      "status": "planned",
+      "completion": 0,
+      "weight": 1,
+      "difficulty": 5,
+      "hoursMin": 24,
+      "hoursMax": 36,
+      "evidence": "No Docker, CI/CD or public DNS exists."
+    }
+  ],
+  "verification": {
+    "worktree": "audited from clean public clone",
+    "tests": "test projects exist; not rerun in this audit",
+    "ci": "no GitHub Actions runs",
+    "production": "s.grela.dev has no public DNS"
+  },
+  "media": {
+    "screenshot": "assets/screenshots/url-shortener-system.png",
+    "fallback": "assets/placeholders/url-shortener-system.svg",
+    "captureEnabled": false,
+    "attribution": "Original generated placeholder until a web UI exists."
+  },
+  "decisions": [
+    {
+      "en": "Redirect traffic must not share the low creation limit.",
+      "pl": "Ruch przekierowań nie może dzielić niskiego limitu tworzenia."
+    },
+    {
+      "en": "Use trusted proxy middleware, SSRF/private-address validation and a bounded analytics worker.",
+      "pl": "Użyć trusted proxy, ochrony SSRF/private IP i ograniczonego workera analityki."
+    }
+  ],
+  "audit": {
+    "date": "2026-08-24",
+    "sources": [
+      "public repository source review",
+      "GitHub repository metadata",
+      "public DNS"
+    ],
+    "notes": {
+      "en": "This is a substantial modernization rather than a simple containerization task.",
+      "pl": "To duża modernizacja, a nie tylko konteneryzacja."
+    }
+  }
+}

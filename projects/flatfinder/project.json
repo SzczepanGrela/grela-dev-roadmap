@@ -1,0 +1,163 @@
+{
+  "schemaVersion": 1,
+  "slug": "flatfinder",
+  "order": 9,
+  "name": {
+    "en": "Flatfinder",
+    "pl": "Flatfinder"
+  },
+  "summary": {
+    "en": "Multi-portal property search, scraping and multimodal classification platform under reconstruction.",
+    "pl": "Wielportalowa wyszukiwarka, scraper i platforma multimodalnej klasyfikacji nieruchomości w przebudowie."
+  },
+  "repository": {
+    "owner": "SzczepanGrela",
+    "currentName": "OlxScrapper",
+    "targetName": "flat-finder",
+    "url": "https://github.com/SzczepanGrela/OlxScrapper",
+    "ownerId": 115424220,
+    "repositoryId": 1026959784,
+    "defaultBranch": "main",
+    "visibility": "public"
+  },
+  "classification": {
+    "kind": "web",
+    "technologies": [
+      "Python",
+      "FastAPI",
+      "Next.js",
+      "PyTorch",
+      "Playwright",
+      "SQLAlchemy"
+    ],
+    "hosted": true
+  },
+  "hosting": {
+    "target": "vps",
+    "url": "https://flatfinder.grela.dev",
+    "deploymentState": "not-started"
+  },
+  "status": "paused",
+  "progress": {
+    "implementation": 55,
+    "quality": 65,
+    "documentation": 55,
+    "delivery": 0,
+    "overall": 43
+  },
+  "complexity": 5,
+  "forecast": {
+    "remainingHoursMin": 160,
+    "remainingHoursMax": 240,
+    "hoursPerWeek": 16,
+    "earliest": "2027-03-05",
+    "latest": "2027-06-09",
+    "confidence": "low"
+  },
+  "focus": {
+    "current": {
+      "en": "Reproduce and fix the red CI, then establish the actual milestone baseline.",
+      "pl": "Odtworzyć i naprawić czerwone CI, następnie ustalić faktyczny stan milestone'ów."
+    },
+    "next": {
+      "en": "Complete frontend, job-based private scraping, model pipeline and deployment.",
+      "pl": "Dokończyć frontend, prywatny scraping jobowy, modele i wdrożenie."
+    }
+  },
+  "tasks": [
+    {
+      "id": "implementation",
+      "title": {
+        "en": "Complete the rewrite and frontend",
+        "pl": "Dokończyć rewrite i frontend"
+      },
+      "dimension": "implementation",
+      "status": "in-progress",
+      "completion": 55,
+      "weight": 1,
+      "difficulty": 5,
+      "hoursMin": 64,
+      "hoursMax": 96,
+      "evidence": "Backend, scrapers and training code are substantial; frontend remains a placeholder."
+    },
+    {
+      "id": "quality",
+      "title": {
+        "en": "Fix CI and validate real/mock workflows",
+        "pl": "Naprawić CI i zweryfikować real/mock workflows"
+      },
+      "dimension": "quality",
+      "status": "in-progress",
+      "completion": 65,
+      "weight": 1,
+      "difficulty": 5,
+      "hoursMin": 38,
+      "hoursMax": 56,
+      "evidence": "Many tests exist, but the last two CI runs failed and logs have expired."
+    },
+    {
+      "id": "documentation",
+      "title": {
+        "en": "Finish architecture, training and deployment guides",
+        "pl": "Dokończyć architekturę, trening i deployment"
+      },
+      "dimension": "documentation",
+      "status": "in-progress",
+      "completion": 55,
+      "weight": 1,
+      "difficulty": 2,
+      "hoursMin": 18,
+      "hoursMax": 28,
+      "evidence": "README exists; deployment documentation is explicitly a Phase 0 stub; no license."
+    },
+    {
+      "id": "delivery",
+      "title": {
+        "en": "Create safe job infrastructure and public demo",
+        "pl": "Utworzyć bezpieczne joby i publiczne demo"
+      },
+      "dimension": "delivery",
+      "status": "planned",
+      "completion": 0,
+      "weight": 1,
+      "difficulty": 5,
+      "hoursMin": 40,
+      "hoursMax": 60,
+      "evidence": "No deployment and no DNS; scraping endpoint currently performs long work through SSE."
+    }
+  ],
+  "verification": {
+    "worktree": "audited from clean public clone; .claude/settings.local.json is tracked",
+    "tests": "large test suite present; not rerun",
+    "ci": "last two runs failed; archived logs return HTTP 410",
+    "production": "flatfinder.grela.dev has no public DNS"
+  },
+  "media": {
+    "screenshot": "assets/screenshots/flatfinder.png",
+    "fallback": "assets/placeholders/flatfinder.svg",
+    "captureEnabled": false,
+    "attribution": "Original Flatfinder design placeholder; existing design assets remain in their source repository."
+  },
+  "decisions": [
+    {
+      "en": "Public anonymous scraping is forbidden; use authenticated jobs and per-portal concurrency.",
+      "pl": "Publiczny anonimowy scraping jest zabroniony; używać uwierzytelnionych jobów i concurrency per portal."
+    },
+    {
+      "en": "Training and teacher VLM stay offline/private.",
+      "pl": "Trening i teacher VLM pozostają offline/prywatne."
+    }
+  ],
+  "audit": {
+    "date": "2026-08-24",
+    "sources": [
+      "public repository source and docs",
+      "GitHub Actions API",
+      "public DNS"
+    ],
+    "notes": {
+      "en": "The report separates the impressive code volume from milestone completion and deploy readiness.",
+      "pl": "Raport oddziela dużą ilość kodu od ukończenia milestone'ów i gotowości do deployu."
+    }
+  }
+}

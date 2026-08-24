@@ -1,0 +1,165 @@
+{
+  "schemaVersion": 1,
+  "slug": "movie-rag",
+  "order": 11,
+  "name": {
+    "en": "MovieRAG",
+    "pl": "MovieRAG"
+  },
+  "summary": {
+    "en": "Semantic and agentic movie search over plots, scenes, themes and cast.",
+    "pl": "Semantyczne i agentowe wyszukiwanie filmów po fabule, scenach, motywach i obsadzie."
+  },
+  "repository": {
+    "owner": "SzczepanGrela",
+    "currentName": "movie-rag",
+    "targetName": "movie-rag",
+    "url": "https://github.com/SzczepanGrela/movie-rag",
+    "ownerId": 115424220,
+    "repositoryId": 1241944352,
+    "defaultBranch": "main",
+    "visibility": "public"
+  },
+  "classification": {
+    "kind": "web",
+    "technologies": [
+      "Python",
+      "FastAPI",
+      "React",
+      "PostgreSQL",
+      "pgvector",
+      "EmbeddingGemma",
+      "Groq",
+      "Docker"
+    ],
+    "hosted": true
+  },
+  "hosting": {
+    "target": "vps",
+    "url": "https://movierag.grela.dev",
+    "deploymentState": "deployed"
+  },
+  "status": "maintenance",
+  "progress": {
+    "implementation": 95,
+    "quality": 90,
+    "documentation": 70,
+    "delivery": 85,
+    "overall": 88
+  },
+  "complexity": 5,
+  "forecast": {
+    "remainingHoursMin": 24,
+    "remainingHoursMax": 40,
+    "hoursPerWeek": 16,
+    "earliest": "2027-03-18",
+    "latest": "2027-07-01",
+    "confidence": "medium"
+  },
+  "focus": {
+    "current": {
+      "en": "Add a license, backups and endpoint-specific resource policies.",
+      "pl": "Dodać licencję, backupy i polityki zasobów per endpoint."
+    },
+    "next": {
+      "en": "Complete Lighthouse, deployment hardening and v1.0.0 release.",
+      "pl": "Dokończyć Lighthouse, hardening deploymentu i wydanie v1.0.0."
+    }
+  },
+  "tasks": [
+    {
+      "id": "implementation",
+      "title": {
+        "en": "Maintain search and Ask AI features",
+        "pl": "Utrzymać Search i Ask AI"
+      },
+      "dimension": "implementation",
+      "status": "in-progress",
+      "completion": 95,
+      "weight": 1,
+      "difficulty": 5,
+      "hoursMin": 5,
+      "hoursMax": 8,
+      "evidence": "Semantic search, scene retrieval, agentic SSE answers and React frontend are live."
+    },
+    {
+      "id": "quality",
+      "title": {
+        "en": "Add load, cancellation and external-failure coverage",
+        "pl": "Dodać testy obciążenia, anulowania i błędów zewnętrznych"
+      },
+      "dimension": "quality",
+      "status": "in-progress",
+      "completion": 90,
+      "weight": 1,
+      "difficulty": 5,
+      "hoursMin": 6,
+      "hoursMax": 10,
+      "evidence": "Latest CI/CD succeeded and backend/frontend tests exist."
+    },
+    {
+      "id": "documentation",
+      "title": {
+        "en": "Finish licensing, attribution and operational docs",
+        "pl": "Dokończyć licencję, atrybucję i dokumentację operacyjną"
+      },
+      "dimension": "documentation",
+      "status": "in-progress",
+      "completion": 70,
+      "weight": 1,
+      "difficulty": 2,
+      "hoursMin": 5,
+      "hoursMax": 8,
+      "evidence": "README is detailed but GitHub recognizes no license; roadmap lists backups and Lighthouse."
+    },
+    {
+      "id": "delivery",
+      "title": {
+        "en": "Add backups, quotas, preflight and blue-green readiness",
+        "pl": "Dodać backupy, quota, preflight i gotowość blue-green"
+      },
+      "dimension": "delivery",
+      "status": "in-progress",
+      "completion": 85,
+      "weight": 1,
+      "difficulty": 5,
+      "hoursMin": 8,
+      "hoursMax": 14,
+      "evidence": "Production returns 200 and CI/CD is green; remaining operational polish is documented."
+    }
+  ],
+  "verification": {
+    "worktree": "audited from clean public clone",
+    "tests": "backend/frontend suites present",
+    "ci": "latest CI/CD succeeded",
+    "production": "https://movierag.grela.dev returned HTTP 200"
+  },
+  "media": {
+    "screenshot": "assets/screenshots/movie-rag.png",
+    "fallback": "assets/placeholders/movie-rag.svg",
+    "captureEnabled": true,
+    "attribution": "Original application UI; movie posters and metadata retain TMDB/IMDb/Wikipedia source rights."
+  },
+  "decisions": [
+    {
+      "en": "Search and Ask AI use separate policies and SLAs.",
+      "pl": "Search i Ask AI używają osobnych polityk i SLA."
+    },
+    {
+      "en": "Ask AI keeps Turnstile, daily quota, global concurrency and a Groq circuit breaker.",
+      "pl": "Ask AI zachowuje Turnstile, quota, global concurrency i circuit breaker Groq."
+    }
+  ],
+  "audit": {
+    "date": "2026-08-24",
+    "sources": [
+      "public repository README, roadmap and source",
+      "GitHub Actions API",
+      "production HTTP"
+    ],
+    "notes": {
+      "en": "The application is live and mature; remaining work is production polish rather than core delivery.",
+      "pl": "Aplikacja jest dojrzała i live; pozostał głównie polish produkcyjny."
+    }
+  }
+}

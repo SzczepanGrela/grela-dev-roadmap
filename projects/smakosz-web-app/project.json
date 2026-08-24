@@ -1,0 +1,164 @@
+{
+  "schemaVersion": 1,
+  "slug": "smakosz-web-app",
+  "order": 7,
+  "name": {
+    "en": "Smakosz Web App",
+    "pl": "Smakosz Web App"
+  },
+  "summary": {
+    "en": "Restaurant and dish discovery platform with moderation, recommendations and ML operations.",
+    "pl": "Platforma odkrywania restauracji i dań z moderacją, rekomendacjami i operacjami ML."
+  },
+  "repository": {
+    "owner": "SzczepanGrela",
+    "currentName": "SmakoszWebApp",
+    "targetName": "smakosz-web-app",
+    "url": "https://github.com/SzczepanGrela/SmakoszWebApp",
+    "ownerId": 115424220,
+    "repositoryId": 1014036592,
+    "defaultBranch": "main",
+    "visibility": "public"
+  },
+  "classification": {
+    "kind": "web",
+    "technologies": [
+      "C#",
+      ".NET 10",
+      "Blazor",
+      "PostgreSQL",
+      "ONNX",
+      "Hangfire",
+      "Docker"
+    ],
+    "hosted": true
+  },
+  "hosting": {
+    "target": "vps",
+    "url": "https://smakosz.grela.dev",
+    "deploymentState": "configured"
+  },
+  "status": "active",
+  "progress": {
+    "implementation": 95,
+    "quality": 90,
+    "documentation": 20,
+    "delivery": 75,
+    "overall": 78
+  },
+  "complexity": 5,
+  "forecast": {
+    "remainingHoursMin": 40,
+    "remainingHoursMax": 64,
+    "hoursPerWeek": 16,
+    "earliest": "2026-11-19",
+    "latest": "2027-01-02",
+    "confidence": "low"
+  },
+  "focus": {
+    "current": {
+      "en": "Document the system and split authentication policies by operation and identity.",
+      "pl": "Udokumentować system i rozdzielić limity auth per operacja/tożsamość."
+    },
+    "next": {
+      "en": "Normalize deployment networks, Redis-backed limits and blue-green rollout.",
+      "pl": "Ujednolicić sieci, limity Redis i wdrożenie blue-green."
+    }
+  },
+  "tasks": [
+    {
+      "id": "implementation",
+      "title": {
+        "en": "Maintain the broad production feature set",
+        "pl": "Utrzymać szeroki zestaw funkcji produkcyjnych"
+      },
+      "dimension": "implementation",
+      "status": "in-progress",
+      "completion": 95,
+      "weight": 1,
+      "difficulty": 5,
+      "hoursMin": 8,
+      "hoursMax": 12,
+      "evidence": "API, clients, orchestrator, workers, moderation and recommendation code are extensive."
+    },
+    {
+      "id": "quality",
+      "title": {
+        "en": "Extend security and distributed behavior tests",
+        "pl": "Rozbudować testy bezpieczeństwa i zachowania rozproszonego"
+      },
+      "dimension": "quality",
+      "status": "in-progress",
+      "completion": 90,
+      "weight": 1,
+      "difficulty": 5,
+      "hoursMin": 10,
+      "hoursMax": 16,
+      "evidence": "Latest CI/CD succeeded and the repository has a large test suite."
+    },
+    {
+      "id": "documentation",
+      "title": {
+        "en": "Create public README, license and architecture guide",
+        "pl": "Utworzyć publiczny README, licencję i opis architektury"
+      },
+      "dimension": "documentation",
+      "status": "in-progress",
+      "completion": 20,
+      "weight": 1,
+      "difficulty": 2,
+      "hoursMin": 8,
+      "hoursMax": 12,
+      "evidence": "GitHub exposes no README or recognized license."
+    },
+    {
+      "id": "delivery",
+      "title": {
+        "en": "Harden identity limits, networks and deployment",
+        "pl": "Wzmocnić limity tożsamości, sieci i deployment"
+      },
+      "dimension": "delivery",
+      "status": "in-progress",
+      "completion": 75,
+      "weight": 1,
+      "difficulty": 5,
+      "hoursMin": 14,
+      "hoursMax": 24,
+      "evidence": "Deployment workflows exist; smakosz.grela.dev has no public DNS."
+    }
+  ],
+  "verification": {
+    "worktree": "audited from clean public clone",
+    "tests": "not rerun locally; extensive test projects are present",
+    "ci": "latest CI/CD succeeded",
+    "production": "planned domain has no public DNS; actual deployment URL requires confirmation"
+  },
+  "media": {
+    "screenshot": "assets/screenshots/smakosz-web-app.png",
+    "fallback": "assets/placeholders/smakosz-web-app.svg",
+    "captureEnabled": false,
+    "attribution": "Original application UI; capture remains disabled until the canonical domain resolves."
+  },
+  "decisions": [
+    {
+      "en": "Use user identity for authenticated writes and IP only as a safety floor.",
+      "pl": "Dla zapisów używać user ID, a IP jako dodatkowego bezpiecznika."
+    },
+    {
+      "en": "Refresh/logout/me must not share the tight login policy.",
+      "pl": "Refresh/logout/me nie mogą dzielić ciasnego limitu logowania."
+    }
+  ],
+  "audit": {
+    "date": "2026-08-24",
+    "sources": [
+      "public repository tree and source review",
+      "GitHub Actions API",
+      "public DNS"
+    ],
+    "notes": {
+      "en": "The project is technically mature but public documentation and canonical hosting metadata lag behind.",
+      "pl": "Projekt jest technicznie dojrzały, ale dokumentacja i metadane hostingu są opóźnione."
+    }
+  }
+}

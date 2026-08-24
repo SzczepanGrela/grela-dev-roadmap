@@ -1,0 +1,159 @@
+{
+  "schemaVersion": 1,
+  "slug": "spotify-ad-blocker",
+  "order": 13,
+  "name": {
+    "en": "Spotify Ad Blocker",
+    "pl": "Spotify Ad Blocker"
+  },
+  "summary": {
+    "en": "Windows tray utility that detects and skips Spotify advertisements.",
+    "pl": "Narzędzie Windows w trayu wykrywające i pomijające reklamy Spotify."
+  },
+  "repository": {
+    "owner": "SzczepanGrela",
+    "currentName": "SpotifyAdBlocker",
+    "targetName": "SpotifyAdBlocker",
+    "url": "https://github.com/SzczepanGrela/SpotifyAdBlocker",
+    "ownerId": 115424220,
+    "repositoryId": 1266821047,
+    "defaultBranch": "main",
+    "visibility": "public"
+  },
+  "classification": {
+    "kind": "desktop",
+    "technologies": [
+      "C#",
+      "Windows",
+      "WinForms"
+    ],
+    "hosted": false
+  },
+  "hosting": {
+    "target": "none",
+    "url": null,
+    "deploymentState": "not-applicable"
+  },
+  "status": "paused",
+  "progress": {
+    "implementation": 80,
+    "quality": 10,
+    "documentation": 55,
+    "delivery": 45,
+    "overall": 54
+  },
+  "complexity": 3,
+  "forecast": {
+    "remainingHoursMin": 16,
+    "remainingHoursMax": 24,
+    "hoursPerWeek": 16,
+    "earliest": "2027-03-30",
+    "latest": "2027-07-20",
+    "confidence": "medium"
+  },
+  "focus": {
+    "current": {
+      "en": "Create test seams for detection, process and audio behavior.",
+      "pl": "Utworzyć testowalne granice detekcji, procesów i audio."
+    },
+    "next": {
+      "en": "Add license, bilingual documentation, compliance notice, CI and release packaging.",
+      "pl": "Dodać licencję, dokumentację PL/EN, compliance, CI i wydanie."
+    }
+  },
+  "tasks": [
+    {
+      "id": "implementation",
+      "title": {
+        "en": "Stabilize Windows integration behavior",
+        "pl": "Ustabilizować integrację Windows"
+      },
+      "dimension": "implementation",
+      "status": "in-progress",
+      "completion": 80,
+      "weight": 1,
+      "difficulty": 3,
+      "hoursMin": 4,
+      "hoursMax": 6,
+      "evidence": "Core tray, process, audio and hotkey code exists."
+    },
+    {
+      "id": "quality",
+      "title": {
+        "en": "Add unit tests and Windows CI",
+        "pl": "Dodać unit testy i CI Windows"
+      },
+      "dimension": "quality",
+      "status": "in-progress",
+      "completion": 10,
+      "weight": 1,
+      "difficulty": 3,
+      "hoursMin": 5,
+      "hoursMax": 7,
+      "evidence": "No tests or workflows exist."
+    },
+    {
+      "id": "documentation",
+      "title": {
+        "en": "Publish bilingual legal and usage documentation",
+        "pl": "Opublikować dwujęzyczną dokumentację prawną i użytkową"
+      },
+      "dimension": "documentation",
+      "status": "in-progress",
+      "completion": 55,
+      "weight": 1,
+      "difficulty": 2,
+      "hoursMin": 3,
+      "hoursMax": 5,
+      "evidence": "Polish README exists; no recognized license."
+    },
+    {
+      "id": "delivery",
+      "title": {
+        "en": "Create signed/reproducible Windows release",
+        "pl": "Utworzyć powtarzalne wydanie Windows"
+      },
+      "dimension": "delivery",
+      "status": "in-progress",
+      "completion": 45,
+      "weight": 1,
+      "difficulty": 3,
+      "hoursMin": 4,
+      "hoursMax": 6,
+      "evidence": "No release automation; IDE and executable artifacts are already absent."
+    }
+  ],
+  "verification": {
+    "worktree": "audited from clean public clone",
+    "tests": "none",
+    "ci": "no GitHub Actions runs",
+    "production": "not applicable; Windows desktop utility"
+  },
+  "media": {
+    "screenshot": "assets/screenshots/spotify-ad-blocker.png",
+    "fallback": "assets/placeholders/spotify-ad-blocker.svg",
+    "captureEnabled": false,
+    "attribution": "Original generated desktop placeholder until an application screenshot is selected."
+  },
+  "decisions": [
+    {
+      "en": "No web hosting or HTTP rate limiting.",
+      "pl": "Bez hostingu webowego i HTTP rate limitingu."
+    },
+    {
+      "en": "Document compatibility and service-policy risk without claiming endorsement by Spotify.",
+      "pl": "Udokumentować ryzyko zgodności bez sugerowania poparcia Spotify."
+    }
+  ],
+  "audit": {
+    "date": "2026-08-24",
+    "sources": [
+      "public repository source and README",
+      "GitHub metadata"
+    ],
+    "notes": {
+      "en": "The roadmap must not imply affiliation with Spotify or legal certainty.",
+      "pl": "Roadmapa nie może sugerować powiązania ze Spotify ani pewności prawnej."
+    }
+  }
+}

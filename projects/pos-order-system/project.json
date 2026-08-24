@@ -1,0 +1,159 @@
+{
+  "schemaVersion": 1,
+  "slug": "pos-order-system",
+  "order": 2,
+  "name": {
+    "en": "POS Order System",
+    "pl": "POS Order System"
+  },
+  "summary": {
+    "en": "Windows desktop point-of-sale ordering application.",
+    "pl": "Desktopowy system Windows do składania i obsługi zamówień."
+  },
+  "repository": {
+    "owner": "SzczepanGrela",
+    "currentName": "pos-order-system",
+    "targetName": "pos-order-system",
+    "url": "https://github.com/SzczepanGrela/pos-order-system",
+    "ownerId": 115424220,
+    "repositoryId": 808641042,
+    "defaultBranch": "main",
+    "visibility": "public"
+  },
+  "classification": {
+    "kind": "desktop",
+    "technologies": [
+      "C#",
+      ".NET Framework",
+      "WinForms"
+    ],
+    "hosted": false
+  },
+  "hosting": {
+    "target": "none",
+    "url": null,
+    "deploymentState": "not-applicable"
+  },
+  "status": "paused",
+  "progress": {
+    "implementation": 75,
+    "quality": 25,
+    "documentation": 85,
+    "delivery": 45,
+    "overall": 59
+  },
+  "complexity": 3,
+  "forecast": {
+    "remainingHoursMin": 16,
+    "remainingHoursMax": 24,
+    "hoursPerWeek": 16,
+    "earliest": "2026-09-14",
+    "latest": "2026-09-21",
+    "confidence": "medium"
+  },
+  "focus": {
+    "current": {
+      "en": "Audit deferred functional defects and separate UI from testable logic.",
+      "pl": "Zaudytować odłożone błędy i oddzielić logikę od UI."
+    },
+    "next": {
+      "en": "Add CI, tests and a reproducible desktop release artifact.",
+      "pl": "Dodać CI, testy i powtarzalny artefakt wydania."
+    }
+  },
+  "tasks": [
+    {
+      "id": "implementation",
+      "title": {
+        "en": "Stabilize the existing desktop application",
+        "pl": "Ustabilizować aplikację desktopową"
+      },
+      "dimension": "implementation",
+      "status": "in-progress",
+      "completion": 75,
+      "weight": 1,
+      "difficulty": 3,
+      "hoursMin": 5,
+      "hoursMax": 7,
+      "evidence": "Repository is clean and compiles through dotnet test, but no test assembly ran."
+    },
+    {
+      "id": "quality",
+      "title": {
+        "en": "Create automated logic and smoke tests",
+        "pl": "Utworzyć testy logiki i smoke"
+      },
+      "dimension": "quality",
+      "status": "in-progress",
+      "completion": 25,
+      "weight": 1,
+      "difficulty": 3,
+      "hoursMin": 5,
+      "hoursMax": 8,
+      "evidence": "No CI runs and no effective automated test suite were found."
+    },
+    {
+      "id": "documentation",
+      "title": {
+        "en": "Complete repository and usage documentation",
+        "pl": "Dokończyć dokumentację repozytorium i użycia"
+      },
+      "dimension": "documentation",
+      "status": "in-progress",
+      "completion": 85,
+      "weight": 1,
+      "difficulty": 2,
+      "hoursMin": 2,
+      "hoursMax": 3,
+      "evidence": "English README and MIT license exist."
+    },
+    {
+      "id": "delivery",
+      "title": {
+        "en": "Automate a Windows desktop release",
+        "pl": "Zautomatyzować wydanie Windows"
+      },
+      "dimension": "delivery",
+      "status": "in-progress",
+      "completion": 45,
+      "weight": 1,
+      "difficulty": 3,
+      "hoursMin": 4,
+      "hoursMax": 6,
+      "evidence": "No workflow or release artifact is configured."
+    }
+  ],
+  "verification": {
+    "worktree": "clean",
+    "tests": "dotnet test exited 0 but discovered no tests",
+    "ci": "no GitHub Actions runs",
+    "production": "not applicable; desktop-only decision"
+  },
+  "media": {
+    "screenshot": "assets/screenshots/pos-order-system.png",
+    "fallback": "assets/placeholders/pos-order-system.svg",
+    "captureEnabled": false,
+    "attribution": "Generated original placeholder until a desktop screenshot is selected."
+  },
+  "decisions": [
+    {
+      "en": "The project remains desktop-only and will not use pos.grela.dev.",
+      "pl": "Projekt pozostaje desktopowy i nie używa pos.grela.dev."
+    },
+    {
+      "en": "Web rate limiting and blue-green deployment do not apply.",
+      "pl": "Webowy rate limiting i blue-green nie mają zastosowania."
+    }
+  ],
+  "audit": {
+    "date": "2026-08-24",
+    "sources": [
+      "local worktree and git history",
+      "GitHub repository metadata"
+    ],
+    "notes": {
+      "en": "The previous hosting entry was an architectural mismatch and is removed.",
+      "pl": "Poprzedni plan hostingu był niespójny z architekturą i został usunięty."
+    }
+  }
+}

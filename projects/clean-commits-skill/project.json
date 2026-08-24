@@ -1,0 +1,155 @@
+{
+  "schemaVersion": 1,
+  "slug": "clean-commits-skill",
+  "order": 10,
+  "name": {
+    "en": "Clean Commits Skill",
+    "pl": "Clean Commits Skill"
+  },
+  "summary": {
+    "en": "Plan-first skill for turning a dirty Git worktree into safe atomic commits.",
+    "pl": "Skill plan-first do bezpiecznego dzielenia brudnego worktree na atomowe commity."
+  },
+  "repository": {
+    "owner": "SzczepanGrela",
+    "currentName": "clean-commits-skill",
+    "targetName": "clean-commits-skill",
+    "url": "https://github.com/SzczepanGrela/clean-commits-skill",
+    "ownerId": 115424220,
+    "repositoryId": 1241862529,
+    "defaultBranch": "main",
+    "visibility": "public"
+  },
+  "classification": {
+    "kind": "developer-tool",
+    "technologies": [
+      "Markdown",
+      "Claude Code",
+      "Git"
+    ],
+    "hosted": false
+  },
+  "hosting": {
+    "target": "none",
+    "url": null,
+    "deploymentState": "not-applicable"
+  },
+  "status": "maintenance",
+  "progress": {
+    "implementation": 95,
+    "quality": 75,
+    "documentation": 85,
+    "delivery": 60,
+    "overall": 81
+  },
+  "complexity": 2,
+  "forecast": {
+    "remainingHoursMin": 6,
+    "remainingHoursMax": 10,
+    "hoursPerWeek": 16,
+    "earliest": "2027-03-07",
+    "latest": "2027-06-13",
+    "confidence": "high"
+  },
+  "focus": {
+    "current": {
+      "en": "Replace installation placeholders and add release metadata.",
+      "pl": "Poprawić placeholdery instalacji i dodać metadane wydania."
+    },
+    "next": {
+      "en": "Automate evaluation checks and publish a versioned release.",
+      "pl": "Zautomatyzować ewaluację i opublikować wersjonowane wydanie."
+    }
+  },
+  "tasks": [
+    {
+      "id": "implementation",
+      "title": {
+        "en": "Polish skill behavior and compatibility",
+        "pl": "Dopracować zachowanie i kompatybilność skilla"
+      },
+      "dimension": "implementation",
+      "status": "in-progress",
+      "completion": 95,
+      "weight": 1,
+      "difficulty": 2,
+      "hoursMin": 1,
+      "hoursMax": 2,
+      "evidence": "Core skill, safety rules and an eval scenario exist."
+    },
+    {
+      "id": "quality",
+      "title": {
+        "en": "Automate eval and packaging checks",
+        "pl": "Zautomatyzować eval i testy paczki"
+      },
+      "dimension": "quality",
+      "status": "in-progress",
+      "completion": 75,
+      "weight": 1,
+      "difficulty": 2,
+      "hoursMin": 2,
+      "hoursMax": 3,
+      "evidence": "Manual scenario table and one eval exist; no CI workflow."
+    },
+    {
+      "id": "documentation",
+      "title": {
+        "en": "Correct installation identity and dates",
+        "pl": "Poprawić dane instalacji i daty"
+      },
+      "dimension": "documentation",
+      "status": "in-progress",
+      "completion": 85,
+      "weight": 1,
+      "difficulty": 2,
+      "hoursMin": 1,
+      "hoursMax": 2,
+      "evidence": "README still contains <your-username>; MIT is recognized."
+    },
+    {
+      "id": "delivery",
+      "title": {
+        "en": "Create tagged release and installation verification",
+        "pl": "Utworzyć tag i zweryfikować instalację"
+      },
+      "dimension": "delivery",
+      "status": "in-progress",
+      "completion": 60,
+      "weight": 1,
+      "difficulty": 2,
+      "hoursMin": 2,
+      "hoursMax": 3,
+      "evidence": "No formal release automation exists."
+    }
+  ],
+  "verification": {
+    "worktree": "audited from clean public clone",
+    "tests": "one eval scenario plus manual scenarios",
+    "ci": "no GitHub Actions runs",
+    "production": "not applicable; developer tool"
+  },
+  "media": {
+    "screenshot": "assets/screenshots/clean-commits-skill.png",
+    "fallback": "assets/placeholders/clean-commits-skill.svg",
+    "captureEnabled": false,
+    "attribution": "Original generated developer-tool placeholder."
+  },
+  "decisions": [
+    {
+      "en": "No web hosting or HTTP rate limiting.",
+      "pl": "Bez hostingu webowego i HTTP rate limitingu."
+    }
+  ],
+  "audit": {
+    "date": "2026-08-24",
+    "sources": [
+      "public repository and README",
+      "GitHub metadata"
+    ],
+    "notes": {
+      "en": "This is close to release-ready and mainly needs packaging polish.",
+      "pl": "Projekt jest blisko wydania i wymaga głównie dopracowania paczki."
+    }
+  }
+}

@@ -1,0 +1,164 @@
+{
+  "schemaVersion": 1,
+  "slug": "netfilmx-movie-catalog",
+  "order": 3,
+  "name": {
+    "en": "NetFilmx Movie Catalog",
+    "pl": "NetFilmx Movie Catalog"
+  },
+  "summary": {
+    "en": "ASP.NET Core VOD catalogue with HLS processing, R2 storage and administration.",
+    "pl": "Katalog VOD ASP.NET Core z HLS, magazynem R2 i panelem administracyjnym."
+  },
+  "repository": {
+    "owner": "SzczepanGrela",
+    "currentName": "netfilmx-movie-catalog",
+    "targetName": "netfilmx-movie-catalog",
+    "url": "https://github.com/SzczepanGrela/netfilmx-movie-catalog",
+    "ownerId": 115424220,
+    "repositoryId": 825161832,
+    "defaultBranch": "main",
+    "visibility": "public"
+  },
+  "classification": {
+    "kind": "web",
+    "technologies": [
+      "C#",
+      "ASP.NET Core 8",
+      "FFmpeg",
+      "Hangfire",
+      "Cloudflare R2",
+      "Docker"
+    ],
+    "hosted": true
+  },
+  "hosting": {
+    "target": "vps",
+    "url": "https://netfilmx.grela.dev",
+    "deploymentState": "deployed"
+  },
+  "status": "active",
+  "progress": {
+    "implementation": 80,
+    "quality": 65,
+    "documentation": 75,
+    "delivery": 60,
+    "overall": 71
+  },
+  "complexity": 5,
+  "forecast": {
+    "remainingHoursMin": 48,
+    "remainingHoursMax": 72,
+    "hoursPerWeek": 16,
+    "earliest": "2026-10-05",
+    "latest": "2026-10-22",
+    "confidence": "low"
+  },
+  "focus": {
+    "current": {
+      "en": "Reconcile 12 local commits and the large uncommitted feature set without data loss.",
+      "pl": "Uporządkować 12 lokalnych commitów i duży niezacommitowany zakres bez utraty pracy."
+    },
+    "next": {
+      "en": "Fix the vulnerable dependency and production hardening before release.",
+      "pl": "Naprawić podatną zależność i zabezpieczenia przed wydaniem."
+    }
+  },
+  "tasks": [
+    {
+      "id": "implementation",
+      "title": {
+        "en": "Finish i18n, storage and processing refactor",
+        "pl": "Dokończyć i18n, storage i refaktoryzację przetwarzania"
+      },
+      "dimension": "implementation",
+      "status": "in-progress",
+      "completion": 80,
+      "weight": 1,
+      "difficulty": 5,
+      "hoursMin": 16,
+      "hoursMax": 24,
+      "evidence": "Local branch is 12 commits ahead with 45 changed/untracked paths."
+    },
+    {
+      "id": "quality",
+      "title": {
+        "en": "Resolve warnings, skipped tests and dependency advisory",
+        "pl": "Usunąć warningi, skipped testy i podatność zależności"
+      },
+      "dimension": "quality",
+      "status": "in-progress",
+      "completion": 65,
+      "weight": 1,
+      "difficulty": 5,
+      "hoursMin": 14,
+      "hoursMax": 20,
+      "evidence": "79 tests passed, 2 skipped; AutoMapper 13.0.1 reports GHSA-rvv3-g6hj-g44x."
+    },
+    {
+      "id": "documentation",
+      "title": {
+        "en": "Align architecture and operator documentation",
+        "pl": "Uzgodnić dokumentację architektury i operacji"
+      },
+      "dimension": "documentation",
+      "status": "in-progress",
+      "completion": 75,
+      "weight": 1,
+      "difficulty": 2,
+      "hoursMin": 4,
+      "hoursMax": 6,
+      "evidence": "README and MIT exist but do not cover all current local changes."
+    },
+    {
+      "id": "delivery",
+      "title": {
+        "en": "Add endpoint-specific limits and safe deployment",
+        "pl": "Dodać limity per endpoint i bezpieczny deploy"
+      },
+      "dimension": "delivery",
+      "status": "in-progress",
+      "completion": 60,
+      "weight": 1,
+      "difficulty": 5,
+      "hoursMin": 14,
+      "hoursMax": 22,
+      "evidence": "Production returns 200; remote CI is green but predates local work."
+    }
+  ],
+  "verification": {
+    "worktree": "dirty; main is 12 commits ahead of origin/main",
+    "tests": "79 passed, 2 skipped locally; build emits nullable warnings",
+    "ci": "latest origin run succeeded but does not include local work",
+    "production": "https://netfilmx.grela.dev returned HTTP 200"
+  },
+  "media": {
+    "screenshot": "assets/screenshots/netfilmx-movie-catalog.png",
+    "fallback": "assets/placeholders/netfilmx-movie-catalog.svg",
+    "captureEnabled": true,
+    "attribution": "Original application UI; media artwork may retain source-specific rights."
+  },
+  "decisions": [
+    {
+      "en": "Do not apply a low request limit to individual HLS segments.",
+      "pl": "Nie stosować niskiego limitu requestów do segmentów HLS."
+    },
+    {
+      "en": "Keep Hangfire and administrative surfaces private or strongly authorized.",
+      "pl": "Hangfire i powierzchnie administracyjne mają być prywatne lub silnie autoryzowane."
+    }
+  ],
+  "audit": {
+    "date": "2026-08-24",
+    "sources": [
+      "local worktree, diff and git history",
+      "local dotnet test",
+      "GitHub Actions API",
+      "production HTTP"
+    ],
+    "notes": {
+      "en": "Security-sensitive findings are public at advisory level without exploit instructions.",
+      "pl": "Znaleziska bezpieczeństwa są publiczne na poziomie advisory, bez instrukcji wykorzystania."
+    }
+  }
+}

@@ -1,0 +1,162 @@
+{
+  "schemaVersion": 1,
+  "slug": "inventory-generator",
+  "order": 1,
+  "name": {
+    "en": "Inventory Generator",
+    "pl": "Inventory Generator"
+  },
+  "summary": {
+    "en": "Local-first inventory editor and server-side DOCX, CSV and HTML generator.",
+    "pl": "Lokalny edytor inwentarza z serwerowym generowaniem DOCX, CSV i HTML."
+  },
+  "repository": {
+    "owner": "SzczepanGrela",
+    "currentName": "inventory-generator",
+    "targetName": "inventory-generator",
+    "url": "https://github.com/SzczepanGrela/inventory-generator",
+    "ownerId": 115424220,
+    "repositoryId": 808164658,
+    "defaultBranch": "main",
+    "visibility": "public"
+  },
+  "classification": {
+    "kind": "web",
+    "technologies": [
+      "C#",
+      ".NET 8",
+      "JavaScript",
+      "OpenXML",
+      "Docker"
+    ],
+    "hosted": true
+  },
+  "hosting": {
+    "target": "vps",
+    "url": "https://inventory.grela.dev",
+    "deploymentState": "configured"
+  },
+  "status": "active",
+  "progress": {
+    "implementation": 90,
+    "quality": 75,
+    "documentation": 90,
+    "delivery": 45,
+    "overall": 76
+  },
+  "complexity": 3,
+  "forecast": {
+    "remainingHoursMin": 16,
+    "remainingHoursMax": 24,
+    "hoursPerWeek": 16,
+    "earliest": "2026-09-07",
+    "latest": "2026-09-10",
+    "confidence": "high"
+  },
+  "focus": {
+    "current": {
+      "en": "Review and preserve the local CSS fix, then harden export limits.",
+      "pl": "Zweryfikować lokalną poprawkę CSS i wzmocnić limity eksportu."
+    },
+    "next": {
+      "en": "Enable DNS, preflight deployment and production verification.",
+      "pl": "Uruchomić DNS, preflight i weryfikację produkcyjną."
+    }
+  },
+  "tasks": [
+    {
+      "id": "implementation",
+      "title": {
+        "en": "Finish UI and export safeguards",
+        "pl": "Dokończyć UI i zabezpieczenia eksportu"
+      },
+      "dimension": "implementation",
+      "status": "in-progress",
+      "completion": 90,
+      "weight": 1,
+      "difficulty": 3,
+      "hoursMin": 2,
+      "hoursMax": 3,
+      "evidence": "Application is functional; one uncommitted CSS file remains."
+    },
+    {
+      "id": "quality",
+      "title": {
+        "en": "Expand export and browser coverage",
+        "pl": "Rozbudować testy eksportu i przeglądarki"
+      },
+      "dimension": "quality",
+      "status": "in-progress",
+      "completion": 75,
+      "weight": 1,
+      "difficulty": 3,
+      "hoursMin": 4,
+      "hoursMax": 6,
+      "evidence": "Local dotnet test: 2 passed; latest remote CI succeeded."
+    },
+    {
+      "id": "documentation",
+      "title": {
+        "en": "Keep public documentation and metadata current",
+        "pl": "Utrzymać dokumentację i metadane"
+      },
+      "dimension": "documentation",
+      "status": "in-progress",
+      "completion": 90,
+      "weight": 1,
+      "difficulty": 2,
+      "hoursMin": 2,
+      "hoursMax": 3,
+      "evidence": "Bilingual README and MIT license exist."
+    },
+    {
+      "id": "delivery",
+      "title": {
+        "en": "Complete public deployment hardening",
+        "pl": "Dokończyć produkcyjne wdrożenie"
+      },
+      "dimension": "delivery",
+      "status": "in-progress",
+      "completion": 45,
+      "weight": 1,
+      "difficulty": 3,
+      "hoursMin": 8,
+      "hoursMax": 12,
+      "evidence": "Deploy workflow exists, but public DNS does not resolve."
+    }
+  ],
+  "verification": {
+    "worktree": "dirty: wwwroot/css/style.css",
+    "tests": "2 passed locally on 2026-08-24",
+    "ci": "latest run succeeded",
+    "production": "workflow configured; inventory.grela.dev has no public DNS"
+  },
+  "media": {
+    "screenshot": "assets/screenshots/inventory-generator.png",
+    "fallback": "assets/placeholders/inventory-generator.svg",
+    "captureEnabled": false,
+    "attribution": "Original application UI; no automated capture until DNS is active."
+  },
+  "decisions": [
+    {
+      "en": "Keep the local-first stateless architecture.",
+      "pl": "Zachować bezstanową architekturę local-first."
+    },
+    {
+      "en": "Use per-format export limits plus body, row and concurrency caps.",
+      "pl": "Stosować limity per format oraz limity body, rekordów i współbieżności."
+    }
+  ],
+  "audit": {
+    "date": "2026-08-24",
+    "sources": [
+      "local worktree and git history",
+      "GitHub Actions API",
+      "public DNS"
+    ],
+    "notes": {
+      "en": "Remote is stable; uncommitted user CSS must not be overwritten.",
+      "pl": "Origin jest stabilny; lokalnej zmiany CSS użytkownika nie wolno nadpisać."
+    }
+  }
+}

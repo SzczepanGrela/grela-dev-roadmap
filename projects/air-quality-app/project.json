@@ -1,0 +1,164 @@
+{
+  "schemaVersion": 1,
+  "slug": "air-quality-app",
+  "order": 4,
+  "name": {
+    "en": "Air Quality App",
+    "pl": "Air Quality App"
+  },
+  "summary": {
+    "en": "Polish air-quality dashboard with history, maps, interpolation and ML estimates.",
+    "pl": "Panel jakości powietrza w Polsce z historią, mapami, interpolacją i estymacją ML."
+  },
+  "repository": {
+    "owner": "SzczepanGrela",
+    "currentName": "air-quality-app",
+    "targetName": "air-quality-app",
+    "url": "https://github.com/SzczepanGrela/air-quality-app",
+    "ownerId": 115424220,
+    "repositoryId": 940601553,
+    "defaultBranch": "main",
+    "visibility": "public"
+  },
+  "classification": {
+    "kind": "web",
+    "technologies": [
+      "Python",
+      "FastAPI",
+      "React",
+      "PostgreSQL",
+      "PostGIS",
+      "PyTorch",
+      "Docker"
+    ],
+    "hosted": true
+  },
+  "hosting": {
+    "target": "vps",
+    "url": "https://air.grela.dev",
+    "deploymentState": "configured"
+  },
+  "status": "active",
+  "progress": {
+    "implementation": 75,
+    "quality": 65,
+    "documentation": 85,
+    "delivery": 35,
+    "overall": 64
+  },
+  "complexity": 5,
+  "forecast": {
+    "remainingHoursMin": 40,
+    "remainingHoursMax": 60,
+    "hoursPerWeek": 16,
+    "earliest": "2026-10-22",
+    "latest": "2026-11-18",
+    "confidence": "low"
+  },
+  "focus": {
+    "current": {
+      "en": "Finish and test the uncommitted AQI, estimation and UI changes.",
+      "pl": "Dokończyć i przetestować niezacommitowane zmiany AQI, estymacji i UI."
+    },
+    "next": {
+      "en": "Split tile/estimate/history limits and enable production hosting.",
+      "pl": "Rozdzielić limity kafelków, estymacji i historii oraz uruchomić hosting."
+    }
+  },
+  "tasks": [
+    {
+      "id": "implementation",
+      "title": {
+        "en": "Finish AQI model and dashboard iteration",
+        "pl": "Dokończyć model AQI i iterację dashboardu"
+      },
+      "dimension": "implementation",
+      "status": "in-progress",
+      "completion": 75,
+      "weight": 1,
+      "difficulty": 5,
+      "hoursMin": 14,
+      "hoursMax": 20,
+      "evidence": "17 tracked files and 3 new files are locally modified."
+    },
+    {
+      "id": "quality",
+      "title": {
+        "en": "Run complete backend/frontend acceptance suite",
+        "pl": "Uruchomić pełny zestaw testów backend/frontend"
+      },
+      "dimension": "quality",
+      "status": "in-progress",
+      "completion": 65,
+      "weight": 1,
+      "difficulty": 5,
+      "hoursMin": 10,
+      "hoursMax": 14,
+      "evidence": "Last committed CI succeeded; dirty local state is not yet verified in its project environment."
+    },
+    {
+      "id": "documentation",
+      "title": {
+        "en": "Maintain data and model transparency",
+        "pl": "Utrzymać przejrzystość danych i modeli"
+      },
+      "dimension": "documentation",
+      "status": "in-progress",
+      "completion": 85,
+      "weight": 1,
+      "difficulty": 2,
+      "hoursMin": 4,
+      "hoursMax": 6,
+      "evidence": "Detailed bilingual architecture README and MIT license exist."
+    },
+    {
+      "id": "delivery",
+      "title": {
+        "en": "Enable DNS, deploy and endpoint-aware protection",
+        "pl": "Uruchomić DNS, deploy i ochronę per endpoint"
+      },
+      "dimension": "delivery",
+      "status": "in-progress",
+      "completion": 35,
+      "weight": 1,
+      "difficulty": 5,
+      "hoursMin": 12,
+      "hoursMax": 20,
+      "evidence": "Deploy is opt-in and air.grela.dev has no public DNS."
+    }
+  ],
+  "verification": {
+    "worktree": "dirty with significant backend/frontend changes",
+    "tests": "last committed CI passed; local dirty state not run because dependencies are absent",
+    "ci": "latest run succeeded",
+    "production": "deploy disabled; air.grela.dev has no public DNS"
+  },
+  "media": {
+    "screenshot": "assets/screenshots/air-quality-app.png",
+    "fallback": "assets/placeholders/air-quality-app.svg",
+    "captureEnabled": false,
+    "attribution": "Original application UI; map screenshots require OpenStreetMap attribution."
+  },
+  "decisions": [
+    {
+      "en": "Map tiles use a high cached limit; estimates use a lower CPU-aware limit.",
+      "pl": "Kafelki używają wysokiego limitu z cache; estymacje niższego limitu CPU."
+    },
+    {
+      "en": "Workers, training and PostgreSQL remain private.",
+      "pl": "Workery, trening i PostgreSQL pozostają prywatne."
+    }
+  ],
+  "audit": {
+    "date": "2026-08-24",
+    "sources": [
+      "local worktree and diff",
+      "GitHub Actions API",
+      "public DNS"
+    ],
+    "notes": {
+      "en": "The local work is valuable but counts as in progress until tested and pushed.",
+      "pl": "Lokalna praca jest wartościowa, ale pozostaje w toku do czasu testów i pushu."
+    }
+  }
+}

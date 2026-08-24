@@ -1,0 +1,159 @@
+{
+  "schemaVersion": 1,
+  "slug": "audio-master",
+  "order": 5,
+  "name": {
+    "en": "AudioMaster",
+    "pl": "AudioMaster"
+  },
+  "summary": {
+    "en": "Cross-platform desktop audio editor using PySide6 and FFmpeg.",
+    "pl": "Wieloplatformowy desktopowy edytor audio oparty o PySide6 i FFmpeg."
+  },
+  "repository": {
+    "owner": "SzczepanGrela",
+    "currentName": "audio-master",
+    "targetName": "audio-master",
+    "url": "https://github.com/SzczepanGrela/audio-master",
+    "ownerId": 115424220,
+    "repositoryId": 1010455644,
+    "defaultBranch": "main",
+    "visibility": "public"
+  },
+  "classification": {
+    "kind": "desktop",
+    "technologies": [
+      "Python",
+      "PySide6",
+      "FFmpeg"
+    ],
+    "hosted": false
+  },
+  "hosting": {
+    "target": "none",
+    "url": null,
+    "deploymentState": "not-applicable"
+  },
+  "status": "maintenance",
+  "progress": {
+    "implementation": 90,
+    "quality": 45,
+    "documentation": 90,
+    "delivery": 75,
+    "overall": 77
+  },
+  "complexity": 3,
+  "forecast": {
+    "remainingHoursMin": 12,
+    "remainingHoursMax": 20,
+    "hoursPerWeek": 16,
+    "earliest": "2026-10-28",
+    "latest": "2026-11-27",
+    "confidence": "medium"
+  },
+  "focus": {
+    "current": {
+      "en": "Add meaningful automated processing tests and release checks.",
+      "pl": "Dodać wartościowe testy przetwarzania i kontroli wydania."
+    },
+    "next": {
+      "en": "Publish a reproducible packaged desktop release.",
+      "pl": "Opublikować powtarzalne wydanie desktopowe."
+    }
+  },
+  "tasks": [
+    {
+      "id": "implementation",
+      "title": {
+        "en": "Polish cross-platform processing behavior",
+        "pl": "Dopracować wieloplatformowe przetwarzanie"
+      },
+      "dimension": "implementation",
+      "status": "in-progress",
+      "completion": 90,
+      "weight": 1,
+      "difficulty": 3,
+      "hoursMin": 2,
+      "hoursMax": 4,
+      "evidence": "Repository is clean; desktop features and documentation are present."
+    },
+    {
+      "id": "quality",
+      "title": {
+        "en": "Test audio transformations and failure paths",
+        "pl": "Przetestować transformacje audio i błędy"
+      },
+      "dimension": "quality",
+      "status": "in-progress",
+      "completion": 45,
+      "weight": 1,
+      "difficulty": 3,
+      "hoursMin": 5,
+      "hoursMax": 8,
+      "evidence": "Quality workflow is green, but coverage is limited."
+    },
+    {
+      "id": "documentation",
+      "title": {
+        "en": "Maintain bilingual setup and attribution",
+        "pl": "Utrzymać konfigurację i atrybucję"
+      },
+      "dimension": "documentation",
+      "status": "in-progress",
+      "completion": 90,
+      "weight": 1,
+      "difficulty": 2,
+      "hoursMin": 1,
+      "hoursMax": 2,
+      "evidence": "README and MIT exist; IDE and executable artifacts are no longer tracked."
+    },
+    {
+      "id": "delivery",
+      "title": {
+        "en": "Create repeatable desktop packages",
+        "pl": "Utworzyć powtarzalne paczki desktopowe"
+      },
+      "dimension": "delivery",
+      "status": "in-progress",
+      "completion": 75,
+      "weight": 1,
+      "difficulty": 3,
+      "hoursMin": 4,
+      "hoursMax": 6,
+      "evidence": "No public hosted service is required."
+    }
+  ],
+  "verification": {
+    "worktree": "clean",
+    "tests": "quality workflow succeeded",
+    "ci": "latest Quality checks succeeded",
+    "production": "not applicable; desktop application"
+  },
+  "media": {
+    "screenshot": "assets/screenshots/audio-master.png",
+    "fallback": "assets/placeholders/audio-master.svg",
+    "captureEnabled": false,
+    "attribution": "Use the original screenshot already stored in the AudioMaster repository when imported."
+  },
+  "decisions": [
+    {
+      "en": "No web hosting or HTTP rate limiting.",
+      "pl": "Bez hostingu webowego i HTTP rate limitingu."
+    },
+    {
+      "en": "Limit local FFmpeg concurrency and input sizes instead.",
+      "pl": "Ograniczać lokalną współbieżność FFmpeg i rozmiary wejścia."
+    }
+  ],
+  "audit": {
+    "date": "2026-08-24",
+    "sources": [
+      "local worktree and git history",
+      "GitHub Actions API"
+    ],
+    "notes": {
+      "en": "Previous hygiene tasks to remove IDE/executable artifacts are already complete.",
+      "pl": "Poprzednie zadania usunięcia artefaktów IDE/exe są już wykonane."
+    }
+  }
+}

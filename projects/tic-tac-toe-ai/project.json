@@ -1,0 +1,163 @@
+{
+  "schemaVersion": 1,
+  "slug": "tic-tac-toe-ai",
+  "order": 6,
+  "name": {
+    "en": "Tic-Tac-Toe AI",
+    "pl": "Tic-Tac-Toe AI"
+  },
+  "summary": {
+    "en": "Interactive Tic-Tac-Toe laboratory for classic, reinforcement-learning and ONNX agents.",
+    "pl": "Interaktywne laboratorium kółka i krzyżyka dla agentów klasycznych, RL i ONNX."
+  },
+  "repository": {
+    "owner": "SzczepanGrela",
+    "currentName": "tic-tac-toe-ai",
+    "targetName": "tic-tac-toe-ai",
+    "url": "https://github.com/SzczepanGrela/tic-tac-toe-ai",
+    "ownerId": 115424220,
+    "repositoryId": 1013262916,
+    "defaultBranch": "main",
+    "visibility": "public"
+  },
+  "classification": {
+    "kind": "web",
+    "technologies": [
+      "Python",
+      "FastAPI",
+      "PyTorch",
+      "ONNX",
+      "Playwright",
+      "Docker"
+    ],
+    "hosted": true
+  },
+  "hosting": {
+    "target": "vps",
+    "url": "https://tictactoe.grela.dev",
+    "deploymentState": "deployed"
+  },
+  "status": "maintenance",
+  "progress": {
+    "implementation": 98,
+    "quality": 95,
+    "documentation": 95,
+    "delivery": 85,
+    "overall": 94
+  },
+  "complexity": 3,
+  "forecast": {
+    "remainingHoursMin": 12,
+    "remainingHoursMax": 20,
+    "hoursPerWeek": 16,
+    "earliest": "2026-11-02",
+    "latest": "2026-12-05",
+    "confidence": "high"
+  },
+  "focus": {
+    "current": {
+      "en": "Verify outer Cloudflare/NPM limits and narrow trusted proxy addresses.",
+      "pl": "Zweryfikować limity Cloudflare/NPM i zawęzić zaufane adresy proxy."
+    },
+    "next": {
+      "en": "Move limiter state to Redis before true blue-green traffic.",
+      "pl": "Przenieść stan limiterów do Redis przed prawdziwym blue-green."
+    }
+  },
+  "tasks": [
+    {
+      "id": "implementation",
+      "title": {
+        "en": "Maintain the completed interactive AI lab",
+        "pl": "Utrzymać ukończone laboratorium AI"
+      },
+      "dimension": "implementation",
+      "status": "in-progress",
+      "completion": 98,
+      "weight": 1,
+      "difficulty": 3,
+      "hoursMin": 2,
+      "hoursMax": 3,
+      "evidence": "Human/AI/local modes, replay, localization, favicon and win animation are shipped."
+    },
+    {
+      "id": "quality",
+      "title": {
+        "en": "Keep full quality and browser coverage green",
+        "pl": "Utrzymać testy jakości i przeglądarkowe"
+      },
+      "dimension": "quality",
+      "status": "in-progress",
+      "completion": 95,
+      "weight": 1,
+      "difficulty": 3,
+      "hoursMin": 2,
+      "hoursMax": 4,
+      "evidence": "Latest Quality and Deploy workflows succeeded."
+    },
+    {
+      "id": "documentation",
+      "title": {
+        "en": "Keep model and operations documentation current",
+        "pl": "Utrzymać dokumentację modeli i operacji"
+      },
+      "dimension": "documentation",
+      "status": "in-progress",
+      "completion": 95,
+      "weight": 1,
+      "difficulty": 2,
+      "hoursMin": 2,
+      "hoursMax": 3,
+      "evidence": "README, MIT and infra documentation are present."
+    },
+    {
+      "id": "delivery",
+      "title": {
+        "en": "Finish layered limits and blue-green readiness",
+        "pl": "Dokończyć warstwy limitów i gotowość blue-green"
+      },
+      "dimension": "delivery",
+      "status": "in-progress",
+      "completion": 85,
+      "weight": 1,
+      "difficulty": 3,
+      "hoursMin": 6,
+      "hoursMax": 10,
+      "evidence": "Live HTTPS and preflight rollback work; steady state is not true blue-green."
+    }
+  ],
+  "verification": {
+    "worktree": "clean at 5164282",
+    "tests": "66 backend/integration tests and 5 browser tests covered by latest CI",
+    "ci": "latest Quality and Deploy succeeded",
+    "production": "https://tictactoe.grela.dev returned HTTP 200"
+  },
+  "media": {
+    "screenshot": "assets/screenshots/tic-tac-toe-ai.png",
+    "fallback": "assets/placeholders/tic-tac-toe-ai.svg",
+    "captureEnabled": true,
+    "attribution": "Original application UI and original geometric SVG favicon."
+  },
+  "decisions": [
+    {
+      "en": "Keep the current preflight-plus-rollback deploy before implementing blue-green.",
+      "pl": "Zachować preflight z rollbackiem przed wdrożeniem blue-green."
+    },
+    {
+      "en": "Rate limits remain 30 moves/min, 3 series/min and two concurrent AI operations.",
+      "pl": "Limity pozostają 30 ruchów/min, 3 serie/min i dwie równoległe operacje AI."
+    }
+  ],
+  "audit": {
+    "date": "2026-08-24",
+    "sources": [
+      "local worktree and git history",
+      "GitHub Actions API",
+      "production HTTP"
+    ],
+    "notes": {
+      "en": "The project is feature-complete and now in hardening/maintenance.",
+      "pl": "Projekt jest funkcjonalnie ukończony i znajduje się w fazie hardening/maintenance."
+    }
+  }
+}

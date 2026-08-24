@@ -1,0 +1,153 @@
+{
+  "schemaVersion": 1,
+  "slug": "leetcode-solutions",
+  "order": 12,
+  "name": {
+    "en": "LeetCode Solutions",
+    "pl": "LeetCode Solutions"
+  },
+  "summary": {
+    "en": "Small collection of Python solutions awaiting indexing, tests and repository standardization.",
+    "pl": "Mały zbiór rozwiązań Python oczekujący indeksu, testów i standaryzacji repozytorium."
+  },
+  "repository": {
+    "owner": "SzczepanGrela",
+    "currentName": "leetcode",
+    "targetName": "leetcode-solutions",
+    "url": "https://github.com/SzczepanGrela/leetcode",
+    "ownerId": 115424220,
+    "repositoryId": 1258649476,
+    "defaultBranch": "main",
+    "visibility": "public"
+  },
+  "classification": {
+    "kind": "repository",
+    "technologies": [
+      "Python"
+    ],
+    "hosted": false
+  },
+  "hosting": {
+    "target": "none",
+    "url": null,
+    "deploymentState": "not-applicable"
+  },
+  "status": "paused",
+  "progress": {
+    "implementation": 60,
+    "quality": 0,
+    "documentation": 0,
+    "delivery": 12,
+    "overall": 27
+  },
+  "complexity": 2,
+  "forecast": {
+    "remainingHoursMin": 12,
+    "remainingHoursMax": 20,
+    "hoursPerWeek": 16,
+    "earliest": "2027-03-23",
+    "latest": "2027-07-09",
+    "confidence": "high"
+  },
+  "focus": {
+    "current": {
+      "en": "Add tests and normalize the existing fifteen solutions.",
+      "pl": "Dodać testy i ujednolicić piętnaście rozwiązań."
+    },
+    "next": {
+      "en": "Rename the repository and publish an indexed README with MIT.",
+      "pl": "Zmienić nazwę repo i opublikować indeks README z MIT."
+    }
+  },
+  "tasks": [
+    {
+      "id": "implementation",
+      "title": {
+        "en": "Normalize solution implementations",
+        "pl": "Ujednolicić implementacje rozwiązań"
+      },
+      "dimension": "implementation",
+      "status": "in-progress",
+      "completion": 60,
+      "weight": 1,
+      "difficulty": 2,
+      "hoursMin": 4,
+      "hoursMax": 6,
+      "evidence": "Fifteen solution files exist without a package or common interface."
+    },
+    {
+      "id": "quality",
+      "title": {
+        "en": "Add parameterized correctness tests",
+        "pl": "Dodać parametryzowane testy poprawności"
+      },
+      "dimension": "quality",
+      "status": "planned",
+      "completion": 0,
+      "weight": 1,
+      "difficulty": 2,
+      "hoursMin": 3,
+      "hoursMax": 5,
+      "evidence": "No tests or CI exist."
+    },
+    {
+      "id": "documentation",
+      "title": {
+        "en": "Create indexed README, date and MIT license",
+        "pl": "Utworzyć indeks README, datę i licencję MIT"
+      },
+      "dimension": "documentation",
+      "status": "planned",
+      "completion": 0,
+      "weight": 1,
+      "difficulty": 2,
+      "hoursMin": 3,
+      "hoursMax": 5,
+      "evidence": "No README or license exists."
+    },
+    {
+      "id": "delivery",
+      "title": {
+        "en": "Rename and publish repository metadata",
+        "pl": "Zmienić nazwę i opublikować metadane"
+      },
+      "dimension": "delivery",
+      "status": "in-progress",
+      "completion": 12,
+      "weight": 1,
+      "difficulty": 2,
+      "hoursMin": 2,
+      "hoursMax": 4,
+      "evidence": "Repository is public but not standardized."
+    }
+  ],
+  "verification": {
+    "worktree": "audited from clean public clone",
+    "tests": "none",
+    "ci": "no GitHub Actions runs",
+    "production": "not applicable; source repository"
+  },
+  "media": {
+    "screenshot": "assets/screenshots/leetcode-solutions.png",
+    "fallback": "assets/placeholders/leetcode-solutions.svg",
+    "captureEnabled": false,
+    "attribution": "Original generated code-repository placeholder."
+  },
+  "decisions": [
+    {
+      "en": "Do not build a hosted service; an optional future index may be static.",
+      "pl": "Nie budować usługi; ewentualny indeks może być statyczny."
+    }
+  ],
+  "audit": {
+    "date": "2026-08-24",
+    "sources": [
+      "public repository tree",
+      "GitHub metadata"
+    ],
+    "notes": {
+      "en": "Progress reflects solved exercises, not repository readiness.",
+      "pl": "Postęp uwzględnia rozwiązane zadania, ale nie gotowość repozytorium."
+    }
+  }
+}

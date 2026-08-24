@@ -1,0 +1,160 @@
+{
+  "schemaVersion": 1,
+  "slug": "grela-dev",
+  "order": 14,
+  "name": {
+    "en": "grela.dev Portfolio",
+    "pl": "grela.dev Portfolio"
+  },
+  "summary": {
+    "en": "Personal portfolio currently represented by design explorations rather than a production-ready site.",
+    "pl": "Portfolio osobiste istniejące obecnie jako eksploracje designu, nie gotowa strona produkcyjna."
+  },
+  "repository": {
+    "owner": "SzczepanGrela",
+    "currentName": "grela-dev",
+    "targetName": "grela-dev",
+    "url": "https://github.com/SzczepanGrela/grela-dev",
+    "ownerId": 115424220,
+    "repositoryId": 1296412137,
+    "defaultBranch": "main",
+    "visibility": "public"
+  },
+  "classification": {
+    "kind": "web",
+    "technologies": [
+      "JavaScript",
+      "React",
+      "Static Site"
+    ],
+    "hosted": true
+  },
+  "hosting": {
+    "target": "vps",
+    "url": "https://grela.dev",
+    "deploymentState": "degraded"
+  },
+  "status": "active",
+  "progress": {
+    "implementation": 55,
+    "quality": 0,
+    "documentation": 10,
+    "delivery": 10,
+    "overall": 26
+  },
+  "complexity": 4,
+  "forecast": {
+    "remainingHoursMin": 80,
+    "remainingHoursMax": 120,
+    "hoursPerWeek": 16,
+    "earliest": "2027-05-04",
+    "latest": "2027-09-10",
+    "confidence": "low"
+  },
+  "focus": {
+    "current": {
+      "en": "Turn the design workspace into a buildable static application and repair TLS.",
+      "pl": "Przekształcić workspace designu w budowalną stronę i naprawić TLS."
+    },
+    "next": {
+      "en": "Connect project data, update repository links, test and deploy.",
+      "pl": "Podłączyć dane projektów, poprawić linki, przetestować i wdrożyć."
+    }
+  },
+  "tasks": [
+    {
+      "id": "implementation",
+      "title": {
+        "en": "Build the production portfolio from existing designs",
+        "pl": "Zbudować portfolio z istniejących designów"
+      },
+      "dimension": "implementation",
+      "status": "in-progress",
+      "completion": 55,
+      "weight": 1,
+      "difficulty": 4,
+      "hoursMin": 40,
+      "hoursMax": 60,
+      "evidence": "React/HTML design explorations exist, but no application scaffold or package manifest."
+    },
+    {
+      "id": "quality",
+      "title": {
+        "en": "Add accessibility, browser and build coverage",
+        "pl": "Dodać testy dostępności, przeglądarki i buildu"
+      },
+      "dimension": "quality",
+      "status": "planned",
+      "completion": 0,
+      "weight": 1,
+      "difficulty": 4,
+      "hoursMin": 12,
+      "hoursMax": 18,
+      "evidence": "No tests or CI exist."
+    },
+    {
+      "id": "documentation",
+      "title": {
+        "en": "Add README, MIT and content-maintenance guide",
+        "pl": "Dodać README, MIT i instrukcję utrzymania treści"
+      },
+      "dimension": "documentation",
+      "status": "in-progress",
+      "completion": 10,
+      "weight": 1,
+      "difficulty": 2,
+      "hoursMin": 8,
+      "hoursMax": 12,
+      "evidence": "No README or recognized license exists."
+    },
+    {
+      "id": "delivery",
+      "title": {
+        "en": "Repair TLS and deploy a static production build",
+        "pl": "Naprawić TLS i wdrożyć statyczny build"
+      },
+      "dimension": "delivery",
+      "status": "in-progress",
+      "completion": 10,
+      "weight": 1,
+      "difficulty": 4,
+      "hoursMin": 20,
+      "hoursMax": 30,
+      "evidence": "DNS exists, but public HTTPS returned Cloudflare 525 during audit."
+    }
+  ],
+  "verification": {
+    "worktree": "clean; fsmonitor daemon reports a local IPC warning",
+    "tests": "none",
+    "ci": "no GitHub Actions runs",
+    "production": "grela.dev resolves through Cloudflare but returned HTTP 525"
+  },
+  "media": {
+    "screenshot": "assets/screenshots/grela-dev.png",
+    "fallback": "assets/placeholders/grela-dev.svg",
+    "captureEnabled": false,
+    "attribution": "Original portfolio design assets; capture disabled until TLS succeeds."
+  },
+  "decisions": [
+    {
+      "en": "Build as a static site; application rate limiting is unnecessary until dynamic endpoints exist.",
+      "pl": "Budować statycznie; limiter aplikacyjny jest zbędny do czasu dynamicznych endpointów."
+    },
+    {
+      "en": "The roadmap site remains a separate repository and data source.",
+      "pl": "Strona roadmapy pozostaje osobnym repozytorium i źródłem danych."
+    }
+  ],
+  "audit": {
+    "date": "2026-08-24",
+    "sources": [
+      "local repository tree and git history",
+      "GitHub metadata",
+      "public DNS and HTTPS"
+    ],
+    "notes": {
+      "en": "The design direction is substantial, but production engineering has not started.",
+      "pl": "Kierunek designu jest rozbudowany, lecz engineering produkcyjny jeszcze się nie rozpoczął."
+    }
+  }
+}

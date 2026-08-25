@@ -6,7 +6,8 @@
     "dev": "astro dev",
     "build": "astro check && astro build",
     "preview": "astro preview",
-    "check": "astro check && python3 scripts/validate.py",
+    "check": "astro check && python3 scripts/validate.py && python3 scripts/sync_reports.py --check",
+    "test:browser": "node scripts/test-browser.mjs",
     "screenshots": "playwright install chromium && node scripts/capture-screenshots.mjs"
   },
   "devDependencies": {

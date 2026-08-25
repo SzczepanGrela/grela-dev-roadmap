@@ -39,12 +39,12 @@ There is no single low HTTP limit shared by every `grela.dev` application.
 | Inventory Generator | Reads approximately 120/min/IP; CSV/HTML export approximately 10/min/IP; DOCX approximately 5/min/IP with burst 2; 2–4 concurrent exports; cap request body and row count. |
 | NetFilmx | Login approximately 5/15 min per IP+login; registration approximately 3/hour/IP; search 30–60/min; admin upload 2–5/hour/user; one FFmpeg transcode on the current VPS. HLS segments use CDN, connection and bandwidth controls instead of a small request limit. |
 | Air Quality | Cached metadata high limit; stations/history 60–120/min; search 30–60/min; estimation 20–30/min; map tiles 300–600/min with edge cache. Workers/training remain private. |
-| Tic-Tac-Toe AI | Moves 30/min/IP; match series 3/min/IP; two concurrent AI operations. Move state to Redis before multiple workers or true blue-green traffic. |
+| Tic-Tac-Toe AI | Move token bucket refills at 30/min/IP with burst 10; match requests consume a separate 30-game/min/IP budget according to requested games; two concurrent AI operations. Move state to Redis before multiple workers or true blue-green traffic. |
 | Smakosz | Separate login/register/reset/resend/refresh policies; authenticated write/upload/review limits per user; upload size and daily quota; search 30/min and suggest 60/min with burst; cache/concurrency for recommendations. Internal workers and Hangfire stay private. |
 | URL Shortener | Redirects receive a high adaptive edge limit; link creation 5–10/min/IP plus daily quota; management per authenticated user. Add SSRF/private-address protection, anti-phishing controls and a bounded analytics queue. |
 | Flatfinder | Scraping is authenticated/private and job-based, with one global job per portal and a low daily quota; export 1–3/min/user; listing reads moderate. Training and teacher VLM are never public endpoints. Respect portal backoff and terms. |
 | MovieRAG | Search 20–30/min/IP with embedding cache/concurrency; Ask AI 2–5/10 min/IP, Turnstile, daily quota, 1–2 global LLM operations, SSE connection/time limits and a Groq circuit breaker. |
-| grela.dev portfolio | Static edge caching and a generous NPM baseline; no application limiter until a dynamic endpoint exists. A future contact form uses Turnstile and 3–5 submissions/hour/IP. |
+| grela.dev portfolio | Cloudflare Pages static edge caching and WAF; no NPM or application limiter until a dynamic endpoint exists. A future contact form uses Turnstile and 3–5 submissions/hour/IP. |
 
 POS Order System, AudioMaster, clean-commits-skill, LeetCode solutions and SpotifyAdBlocker are not public web services and do not receive HTTP rate limiting.
 

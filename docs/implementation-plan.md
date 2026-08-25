@@ -1,10 +1,10 @@
-# Plan wdrożenia poprawek i standardu DevOps w repozytoriach portfolio Szczepana Greli (Wersja 9)
+# Plan wdrożenia poprawek i standardu DevOps w repozytoriach portfolio Szczepana Greli (Wersja 10)
 
 > [!NOTE]
 > Ten dokument stanowi **zintegrowaną długoterminową mapę drogową (roadmapę)**. Będziemy realizować go krok po kroku (jedno repozytorium na raz). Łączy on prace programistyczne, dokumentacyjne oraz **znormalizowany standard produkcyjnego wdrożenia DevOps** dla wszystkich aplikacji internetowych i usługowych w domenie `grela.dev`.
 
 > [!IMPORTANT]
-> Kanoniczna wersja dokumentu znajduje się w publicznym repozytorium `grela-dev-roadmap`. Szczegółowe raporty i dane maszynowe projektów znajdują się w `projects/<slug>/`. Zaakceptowany standard rate limitingu opisuje [`rate-limiting-standard.md`](rate-limiting-standard.md), a wartości są dobierane indywidualnie do kosztu endpointów.
+> Kanoniczna wersja dokumentu znajduje się w publicznym repozytorium `grela-dev-roadmap`. Szczegółowe raporty i dane maszynowe projektów znajdują się w `projects/<slug>/`. Zaakceptowany standard rate limitingu opisuje [`rate-limiting-standard.md`](rate-limiting-standard.md), a maszynowo czytelne profile i kontrole v2 znajdują się w [`delivery-controls.json`](../standards/delivery-controls.json). Wartości są dobierane indywidualnie do kosztu endpointów.
 
 ---
 
@@ -213,7 +213,7 @@ Aby zapobiec przepełnieniu kontekstu (tzw. context bloating) i utrzymać wysok�
 *   **Konto Linux na VPS:** `tictactoe-app`
 *   **Technologia:** Python
 *   **Zadania Dev:** Zmiana nazwy na `tic-tac-toe-ai`, licencja MIT, README.md (EN). **Współautorstwo:** Dodanie sekcji atrybucji współautorów.
-*   **Zadania DevOps:** Wdrożenie wersji webowej gry pod `tictactoe.grela.dev`. Upewnienie się, że aplikacja ma favicon i wielowarstwowy rate limiting; wdrożenie obowiązkowego preflightu, blue-green i automatycznego rollbacku zgodnie ze standardem powyżej.
+*   **Zadania DevOps:** Wdrożenie wersji webowej gry pod `tictactoe.grela.dev`. Utrzymać token bucket ruchów (30/min z burstem 10), naliczać seriom koszt według liczby gier i zachować limit dwóch równoległych operacji AI. Zweryfikować Cloudflare/NPM i prawdziwe IP klienta, następnie przejść na Redis, niezmienne obrazy GHCR, readiness, stabilny gateway, blue-green i automatyczny rollback zgodnie ze standardem powyżej.
 
 ### 7. `SmakoszWebApp` (Lipiec 2025)
 *   **Proponowana nazwa:** `smakosz-web-app`
@@ -264,11 +264,9 @@ Aby zapobiec przepełnieniu kontekstu (tzw. context bloating) i utrzymać wysok�
 ### 14. `grela-dev` (Lipiec 2026 - Najnowszy)
 *   **Nazwa:** Bez zmian (`grela-dev`)
 *   **Domena:** `grela.dev` (Główna domena)
-*   **Port kontenera:** `127.0.0.1:8000`
-*   **Konto Linux na VPS:** `greladev-app`
 *   **Technologia:** HTML/JS (React/JSX)
 *   **Zadania Dev:** Dodanie pliku `LICENSE` (MIT) oraz pliku README.md (EN). Aktualizacja linków w kodzie strony portfolio do nowych nazw repozytoriów.
-*   **Zadania DevOps:** Wdrożenie produkcyjne strony portfolio pod główną domenę `grela.dev`. Upewnienie się, że aplikacja ma favicon i wielowarstwowy rate limiting; dla hostingu statycznego zastosować preview/preflight, atomową promocję i rollback dostawcy zgodnie ze standardem powyżej.
+*   **Zadania DevOps:** Wdrożenie statycznego portfolio pod `grela.dev` przez Cloudflare Pages. Użyć preview deploymentów, przetestowanego niezmiennego buildu, atomowej promocji i rollbacku platformy. Skonfigurować domenę/TLS, cache/WAF, favicon, metadane i monitoring dostępności; nie dodawać kontenera VPS, NPM ani limitera aplikacyjnego bez dynamicznych endpointów.
 
 ---
 

@@ -20,7 +20,7 @@ Each `project.json` records the exact source revision and worktree/source state 
 - One work day equals eight hours of focused engineering work.
 - Task day ranges are derived from task hours and conservatively rounded up to the nearest quarter day.
 - Project totals equal the sum of normalized task ranges.
-- Calendar forecasts assume 30 focused hours per week and follow the explicit project `order`; they are planning ranges, not delivery commitments.
+- Calendar forecasts assume 30 focused hours per week, distributed as six focused hours on each weekday, and follow the explicit project `order`; they are planning ranges, not delivery commitments.
 - Confidence communicates uncertainty in the known scope and environment, independently from task difficulty.
 
 ---
@@ -31,4 +31,4 @@ Zakresy opisują pozostały aktywny nakład inżynierski, a nie czas kalendarzow
 
 Wszystkie estymacje zakładają pracę wspomaganą Codexem i audyt kodu konkretnego projektu. Korzyść nie jest jednym rabatem procentowym: jest większa dla wąskich zmian w typowanym i przetestowanym kodzie, a mniejsza dla legacy, brudnych worktree, infrastruktury produkcyjnej, migracji, kwestii prawnych i ręcznych prób rollbacku.
 
-Jeden dzień roboczy oznacza osiem godzin skupionej pracy. Dni są wyliczane z godzin i zaokrąglane w górę do ćwierci dnia. Suma projektu jest sumą zadań, a prognoza kalendarzowa zakłada 30 godzin pracy tygodniowo i kolejność projektów zapisaną w danych. Prognoza nie jest zobowiązaniem terminowym.
+Jeden dzień roboczy oznacza osiem godzin skupionej pracy. Dni są wyliczane z godzin i zaokrąglane w górę do ćwierci dnia. Suma projektu jest sumą zadań, a prognoza kalendarzowa zakłada 30 godzin pracy tygodniowo, po sześć godzin w każdy dzień roboczy, oraz kolejność projektów zapisaną w danych. Prognoza nie jest zobowiązaniem terminowym.

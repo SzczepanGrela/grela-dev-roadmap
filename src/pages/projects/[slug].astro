@@ -1,6 +1,6 @@
 ---
 import BaseLayout from "../../layouts/BaseLayout.astro";
-import { projects, type RoadmapProject } from "../../lib/projects";
+import { deliveryStandard, projects, type RoadmapProject } from "../../lib/projects";
 
 export function getStaticPaths() {
   return projects.map((project) => ({ params: { slug: project.slug }, props: { project } }));
@@ -10,6 +10,8 @@ interface Props { project: RoadmapProject }
 const { project } = Astro.props;
 const status = { planned: "Planowany", active: "Aktywny", paused: "Wstrzymany", blocked: "Zablokowany", complete: "Ukończony", maintenance: "Utrzymywany" }[project.status];
 const progressLabels = { implementation: "Implementacja", quality: "Jakość", documentation: "Dokumentacja", delivery: "Wdrożenie" };
+const controlsById = new Map(deliveryStandard.controls.map((control) => [control.id, control]));
+const tasksById = new Map(project.tasks.map((task) => [task.id, task]));
 const baseUrl = import.meta.env.BASE_URL.endsWith("/") ? import.meta.env.BASE_URL : `${import.meta.env.BASE_URL}/`;
 ---
 
@@ -25,7 +27,8 @@ const baseUrl = import.meta.env.BASE_URL.endsWith("/") ? import.meta.env.BASE_UR
         <div class="report-preview"><img src={project.mediaUrl} alt={`Podgląd projektu ${project.name.pl}`} /></div>
         <article class="report-section"><span class="section-number">01</span><h2>Bieżący kierunek</h2><div class="report-focus"><div><span>Teraz</span><p>{project.focus.current.pl}</p></div><div><span>Następnie</span><p>{project.focus.next.pl}</p></div></div></article>
         <article class="report-section"><span class="section-number">02</span><h2>Zadania</h2><div class="report-task-list">{project.tasks.map((task) => <section data-task-status={task.status}><div><span>{progressLabels[task.dimension]}</span><b>{task.completion}%</b></div><h3>{task.title.pl}</h3><p>{task.evidence}</p><footer><span>Trudność {task.difficulty}/5</span><span>{task.hoursMin}–{task.hoursMax} godz. · {task.daysMin}–{task.daysMax} dni rob.</span></footer></section>)}</div></article>
-        <article class="report-section"><span class="section-number">03</span><h2>Decyzje</h2><ol class="decision-list">{project.decisions.map((decision) => <li>{decision.pl}</li>)}</ol></article>
+        <article class="report-section"><span class="section-number">03</span><h2>Zgodność ze standardem v2</h2><p class="compliance-profile-label">Profil: <strong>{deliveryStandard.profiles[project.compliance.profile].pl}</strong> · audyt {project.compliance.assessmentDate}</p><div class="compliance-detail-grid">{project.compliance.controls.map((control) => { const definition = controlsById.get(control.id)!; return <section data-compliance-status={control.status}><header><h3>{definition.title.pl}</h3><span><i></i>{deliveryStandard.statuses[control.status].pl}</span></header><p>{control.evidence.pl}</p>{control.taskIds.length > 0 && <ul>{control.taskIds.map((taskId) => <li>{tasksById.get(taskId)?.title.pl}</li>)}</ul>}</section>; })}</div></article>
+        <article class="report-section"><span class="section-number">04</span><h2>Decyzje</h2><ol class="decision-list">{project.decisions.map((decision) => <li>{decision.pl}</li>)}</ol></article>
       </section>
       <aside class="report-aside">
         <h2>Stan projektu</h2>

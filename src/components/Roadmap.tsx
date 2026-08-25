@@ -1,9 +1,10 @@
 import { useEffect, useMemo, useState } from "react";
-import type { Language, RoadmapProject, RoadmapTask } from "../lib/projects";
+import type { ComplianceProfile, ComplianceStatus, DeliveryStandard, Language, RoadmapProject, RoadmapTask } from "../lib/projects";
 
-interface Props { projects: RoadmapProject[] }
+interface Props { projects: RoadmapProject[]; standard: DeliveryStandard }
 type Theme = "light" | "dark";
 type Filter = "all" | "active" | "maintenance" | "paused";
+type ProfileFilter = "all" | ComplianceProfile;
 
 const copy = {
   pl: {
@@ -19,6 +20,8 @@ const copy = {
     planned: "Planowany", inProgress: "W toku", blocked: "Zablokowany", done: "Gotowy",
     confidence: "Pewność prognozy", source: "Dane pochodzą z audytowanych plików projektu", estimate: "Estymacja Codex + audyt kodu · 8 h/dzień",
     noResults: "Żaden projekt nie pasuje do filtrów.", reset: "Wyczyść filtry", list: "Pełna lista projektów", selectProject: "Wybierz projekt",
+    compliance: "Zgodność ze standardem", complianceHint: "Audytowalne kontrole v2 dla każdego profilu projektu", allProfiles: "Wszystkie profile",
+    gapsOnly: "Tylko braki", showAllControls: "Pokaż wszystkie", complianceReady: "gotowych kontroli", profile: "Profil",
   },
   en: {
     eyebrow: "PUBLIC DELIVERY MAP", heading: "From idea to production.",
@@ -33,8 +36,12 @@ const copy = {
     planned: "Planned", inProgress: "In progress", blocked: "Blocked", done: "Done",
     confidence: "Forecast confidence", source: "Data comes from audited project records", estimate: "Codex-assisted, source-audited · 8 hrs/day",
     noResults: "No projects match these filters.", reset: "Reset filters", list: "Complete project list", selectProject: "Select project",
+    compliance: "Standard compliance", complianceHint: "Auditable v2 controls for every project profile", allProfiles: "All profiles",
+    gapsOnly: "Gaps only", showAllControls: "Show all", complianceReady: "controls complete", profile: "Profile",
   },
 };
+
+const gapStatuses = new Set<ComplianceStatus>(["partial", "missing", "unverified", "blocked"]);
 
 const statusLabels: Record<RoadmapProject["status"], Record<Language, string>> = {
   planned: { pl: "Planowany", en: "Planned" }, active: { pl: "Aktywny", en: "Active" },
@@ -91,12 +98,14 @@ function TaskRail({ tasks, language }: { tasks: RoadmapTask[]; language: Languag
   ))}</div>;
 }
 
-export default function Roadmap({ projects }: Props) {
+export default function Roadmap({ projects, standard }: Props) {
   const baseUrl = import.meta.env.BASE_URL.endsWith("/") ? import.meta.env.BASE_URL : `${import.meta.env.BASE_URL}/`;
   const [language, setLanguage] = useState<Language>("pl");
   const [theme, setTheme] = useState<Theme>("dark");
   const [filter, setFilter] = useState<Filter>("all");
   const [technology, setTechnology] = useState("all");
+  const [profileFilter, setProfileFilter] = useState<ProfileFilter>("all");
+  const [gapsOnly, setGapsOnly] = useState(false);
   const [selectedSlug, setSelectedSlug] = useState(projects.find((project) => project.status === "active")?.slug ?? projects[0]?.slug);
   const t = copy[language];
 
@@ -114,6 +123,10 @@ export default function Roadmap({ projects }: Props) {
     (filter === "all" || project.status === filter) && (technology === "all" || project.classification.technologies.includes(technology)),
   ), [projects, filter, technology]);
   const selected = filtered.find((project) => project.slug === selectedSlug) ?? filtered[0] ?? projects.find((project) => project.slug === selectedSlug) ?? projects[0];
+  const matrixProjects = projects.filter((project) =>
+    (profileFilter === "all" || project.compliance.profile === profileFilter) &&
+    (!gapsOnly || project.compliance.controls.some((control) => gapStatuses.has(control.status))),
+  );
   const average = Math.round(projects.reduce((total, project) => total + project.progress.overall, 0) / projects.length);
   const deployed = projects.filter((project) => project.hosting.deploymentState === "deployed").length;
   const auditDate = [...projects].sort((a, b) => b.audit.date.localeCompare(a.audit.date))[0].audit.date;
@@ -184,13 +197,22 @@ export default function Roadmap({ projects }: Props) {
         <div className="project-title-row"><div><span className="status-badge"><i />{statusLabels[selected.status][language]}</span><h2>{selected.name[language]}</h2></div><div className="score"><strong>{selected.progress.overall}%</strong><span>{t.progress}</span></div></div>
         <p className="project-summary">{selected.summary[language]}</p><div className="technology-list">{selected.classification.technologies.map((item) => <span key={item}>{item}</span>)}</div>
         <div className="focus-grid"><article><span><i className="pulse" />{t.now}</span><p>{selected.focus.current[language]}</p></article><article><span><i className="arrow">→</i>{t.next}</span><p>{selected.focus.next[language]}</p></article></div>
-        <div className="project-facts"><article><span>{t.complexity}</span><Difficulty value={selected.complexity} /></article><article><span>{t.forecast}</span><strong>{formatDate(language, selected.forecast.earliest)} – {formatDate(language, selected.forecast.latest)}</strong></article><article><span>{t.remaining}</span><strong>{selected.forecast.remainingHoursMin}–{selected.forecast.remainingHoursMax} {t.hours}<br />{selected.forecast.remainingDaysMin}–{selected.forecast.remainingDaysMax} {t.days}</strong></article><article><span>{t.confidence}</span><strong>{selected.forecast.confidence.toUpperCase()}</strong></article></div>
+        <div className="project-facts"><article><span>{t.complexity}</span><Difficulty value={selected.complexity} /></article><article><span>{t.forecast}</span><strong>{formatDate(language, selected.forecast.earliest)} – {formatDate(language, selected.forecast.latest)}</strong></article><article><span>{t.remaining}</span><strong>{selected.forecast.remainingHoursMin}–{selected.forecast.remainingHoursMax} {t.hours}<br />{selected.forecast.remainingDaysMin}–{selected.forecast.remainingDaysMax} {t.days}</strong></article><article><span>{t.confidence}</span><strong>{selected.forecast.confidence.toUpperCase()}</strong></article><article><span>{t.profile}</span><strong>{standard.profiles[selected.compliance.profile][language]}</strong></article><article><span>{t.compliance}</span><strong>{selected.compliance.controls.filter((control) => control.status === "complete").length}/{selected.compliance.controls.filter((control) => control.status !== "not-applicable").length} {t.complianceReady}</strong></article></div>
         <div className="project-links">{selected.hosting.url && <a className="primary-link" href={selected.hosting.url} target="_blank" rel="noreferrer">{t.live} ↗</a>}<a href={selected.repository.url} target="_blank" rel="noreferrer">{t.repository} ↗</a><a href={`${baseUrl}projects/${selected.slug}/`}>{t.details} →</a></div>
       </div>
       <div className="project-tasks"><div className="tasks-heading"><span className="section-number">02</span><div><h3>{t.taskLine}</h3><small title={selected.estimation.sourceRevision}>{t.estimate}</small></div><b>{selected.tasks.length}</b></div><TaskRail tasks={selected.tasks} language={language} /></div>
     </section>}
 
-    <section className="project-index"><div className="section-heading compact"><div><span className="section-number">03</span><h2>{t.list}</h2></div><span className="data-note">● {t.source}</span></div><div className="index-table">{projects.map((project) => <button key={project.slug} onClick={() => { selectProject(project.slug); window.scrollTo({ top: 500, behavior: "smooth" }); }}><span className="index-order">{String(project.order).padStart(2, "0")}</span><span className="index-status" data-status={project.status} /><strong>{project.name[language]}</strong><span>{project.classification.technologies.slice(0, 3).join(" · ")}</span><b>{project.progress.overall}%</b><i>→</i></button>)}</div></section>
+    <section className="compliance-section" aria-labelledby="compliance-title">
+      <div className="section-heading"><div><span className="section-number">03</span><h2 id="compliance-title">{t.compliance}</h2><p>{t.complianceHint}</p></div><div className="compliance-legend">{(["complete", "partial", "missing", "unverified", "blocked"] as ComplianceStatus[]).map((status) => <span key={status}><i data-compliance-status={status} />{standard.statuses[status][language]}</span>)}</div></div>
+      <div className="compliance-toolbar"><label><span>{t.profile}</span><select value={profileFilter} onChange={(event) => setProfileFilter(event.target.value as ProfileFilter)}><option value="all">{t.allProfiles}</option>{Object.entries(standard.profiles).map(([value, label]) => <option value={value} key={value}>{label[language]}</option>)}</select></label><button className={gapsOnly ? "active" : ""} onClick={() => setGapsOnly((value) => !value)}>{gapsOnly ? t.showAllControls : t.gapsOnly}</button></div>
+      <div className="compliance-matrix">
+        <div className="compliance-header"><span>{t.projects}</span>{standard.controls.map((control, index) => <abbr title={control.title[language]} key={control.id}>{String(index + 1).padStart(2, "0")}</abbr>)}</div>
+        {matrixProjects.map((project) => <div className="compliance-row" key={project.slug}><button className="matrix-project" onClick={() => { selectProject(project.slug); document.querySelector(".project-detail")?.scrollIntoView({ behavior: "smooth" }); }}><strong>{project.name[language]}</strong><small>{standard.profiles[project.compliance.profile][language]}</small></button>{project.compliance.controls.map((control) => { const definition = standard.controls.find((item) => item.id === control.id)!; return <span className="compliance-cell" data-compliance-status={control.status} data-control={definition.title[language]} title={`${definition.title[language]} — ${standard.statuses[control.status][language]}: ${control.evidence[language]}`} aria-label={`${definition.title[language]}: ${standard.statuses[control.status][language]}`} key={control.id}><i /><b>{standard.statuses[control.status][language]}</b></span>; })}</div>)}
+      </div>
+    </section>
+
+    <section className="project-index"><div className="section-heading compact"><div><span className="section-number">04</span><h2>{t.list}</h2></div><span className="data-note">● {t.source}</span></div><div className="index-table">{projects.map((project) => <button key={project.slug} onClick={() => { selectProject(project.slug); window.scrollTo({ top: 500, behavior: "smooth" }); }}><span className="index-order">{String(project.order).padStart(2, "0")}</span><span className="index-status" data-status={project.status} /><strong>{project.name[language]}</strong><span>{project.classification.technologies.slice(0, 3).join(" · ")}</span><b>{project.progress.overall}%</b><i>→</i></button>)}</div></section>
     <footer><span>grela.dev / roadmap</span><span>Static data · Astro + React</span><span>© {new Date().getFullYear()} Szczepan Grela</span></footer>
   </main>;
 }

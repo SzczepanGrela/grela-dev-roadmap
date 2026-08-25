@@ -1,9 +1,9 @@
 ---
 import Roadmap from "../components/Roadmap";
 import BaseLayout from "../layouts/BaseLayout.astro";
-import { projects } from "../lib/projects";
+import { deliveryStandard, projects } from "../lib/projects";
 ---
 
 <BaseLayout>
-  <Roadmap projects={projects} client:load />
+  <Roadmap projects={projects} standard={deliveryStandard} client:load />
 </BaseLayout>

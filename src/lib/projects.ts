@@ -1,6 +1,22 @@
 export type Language = "pl" | "en";
 
 export type Localized = Record<Language, string>;
+export type ComplianceProfile = "vps-web" | "static-web" | "desktop" | "repository" | "developer-tool";
+export type ComplianceStatus = "complete" | "partial" | "missing" | "unverified" | "blocked" | "not-applicable";
+
+export interface DeliveryControl {
+  id: string;
+  title: Localized;
+  description: Localized;
+  profiles: ComplianceProfile[];
+}
+
+export interface DeliveryStandard {
+  standardVersion: number;
+  profiles: Record<ComplianceProfile, Localized>;
+  statuses: Record<ComplianceStatus, Localized>;
+  controls: DeliveryControl[];
+}
 
 export interface RoadmapTask {
   id: string;
@@ -74,6 +90,17 @@ export interface RoadmapProject {
     next: Localized;
   };
   tasks: RoadmapTask[];
+  compliance: {
+    standardVersion: number;
+    profile: ComplianceProfile;
+    assessmentDate: string;
+    controls: Array<{
+      id: string;
+      status: ComplianceStatus;
+      evidence: Localized;
+      taskIds: string[];
+    }>;
+  };
   verification: Record<string, string>;
   media: {
     screenshot: string;
@@ -94,6 +121,13 @@ const projectModules = import.meta.glob("../../projects/*/project.json", {
   eager: true,
   import: "default",
 }) as Record<string, Omit<RoadmapProject, "mediaUrl">>;
+
+const standardModules = import.meta.glob("../../standards/delivery-controls.json", {
+  eager: true,
+  import: "default",
+}) as Record<string, DeliveryStandard>;
+
+export const deliveryStandard = Object.values(standardModules)[0];
 
 const mediaModules = import.meta.glob("../../assets/{screenshots,placeholders}/*.{png,svg}", {
   eager: true,

@@ -1,8 +1,8 @@
 # Tic-Tac-Toe AI — status report / raport stanu
 
 Audit date / data audytu: **2026-08-25**<br>
-Estimated completion / szacowane ukończenie: **63%**<br>
-Forecast / prognoza: **2026-09-28–2026-10-21**, 21–36 h, high confidence / pewność: high
+Estimated completion / szacowane ukończenie: **73%**<br>
+Forecast / prognoza: **2026-09-28–2026-10-21**, 17–28 h, high confidence / pewność: high
 
 > This report is synchronized from `project.json` and the versioned delivery-control catalog. / Raport jest synchronizowany z `project.json` i wersjonowanym katalogiem kontroli wdrożeniowych.
 
@@ -16,10 +16,10 @@ The project is feature-complete and now in hardening/maintenance.
 
 ### Audit evidence
 
-- **Repozytorium:** `SzczepanGrela/tic-tac-toe-ai` @ `5164282681e04d2279400d86b9a494aa817558d0`
-- **Source state:** local worktree with 10 changed paths after tested UI, limiter and proxy fixes
-- **Tests and CI:** Quality and Deploy succeeded at 5164282; 68 non-browser and 7 Playwright tests pass locally for the dirty candidate; no ruleset or environment exists.
-- **Production:** tictactoe.grela.dev returned HTTPS 200 through Cloudflare; the local candidate is not deployed.
+- **Repozytorium:** `SzczepanGrela/tic-tac-toe-ai` @ `69083b6c5e741646e352cccaab03cd6b21c65cb3`
+- **Source state:** clean main synchronized with origin after the production rollout
+- **Tests and CI:** Quality 32871780435 and Deploy 32871780001 succeeded for 69083b6; no ruleset or production environment exists.
+- **Production:** Public health returned status ok with all eight agents ready; the deployed frontend contains stale-response protection and NPM logs the verified visitor IP.
 
 ### v2 standard compliance
 
@@ -28,10 +28,10 @@ Profile: **VPS web application**. Statuses reflect only evidence available on th
 | Control | Status | Evidence |
 | --- | --- | --- |
 | Repository governance | Partial | GitHub returned no active ruleset or environment; remaining elements were assessed from the repository. |
-| Quality CI | Partial | Quality and Deploy succeeded at 5164282; 68 non-browser and 7 Playwright tests pass locally for the dirty candidate; no ruleset or environment exists. |
+| Quality CI | Complete | Quality 32871780435 passed Python 3.12/3.13 tests, eight Playwright scenarios, four training smoke jobs and the Docker build for 69083b6. |
 | Immutable release | Missing | The required complete implementation was not found in the audited tic tac toe ai source. |
 | Deployment access | Partial | tic tac toe ai has some mechanisms but does not yet satisfy the complete v2 control. |
-| Network, TLS and client identity | Partial | tictactoe.grela.dev returned HTTPS 200 through Cloudflare; the local candidate is not deployed. |
+| Network, TLS and client identity | Partial | Cloudflare HTTPS, global NPM CF-Connecting-IP restoration and exact-NPM application trust are deployed; the visitor address was verified end-to-end without retaining it, while direct-origin rejection still needs an external test. |
 | Abuse protection | Partial | tic tac toe ai has some mechanisms but does not yet satisfy the complete v2 control. |
 | Runtime safety | Partial | tic tac toe ai has some mechanisms but does not yet satisfy the complete v2 control. |
 | Readiness and preflight | Partial | tic tac toe ai has some mechanisms but does not yet satisfy the complete v2 control. |
@@ -44,15 +44,15 @@ Profile: **VPS web application**. Statuses reflect only evidence available on th
 
 #### Ship and verify the current fixes
 
-**Implementation · In progress · 90% · difficulty 2/5 · 1–2 h**
+**Implementation · Done · 100% · difficulty 2/5 · 0–0 h**
 
-Reset, scoreboard, weighted token bucket, Retry-After and trusted-proxy changes pass locally but are not deployed.
+Reset, scoreboard, weighted token bucket, Retry-After, stale-response protection and trusted-proxy changes were deployed at 69083b6.
 
 #### Keep backend and browser coverage green
 
-**Quality · In progress · 95% · difficulty 2/5 · 1–2 h**
+**Quality · Done · 100% · difficulty 2/5 · 0–0 h**
 
-The candidate passes 68 non-browser and seven Playwright tests plus a Docker build.
+Quality 32871780435 passed backend tests on Python 3.12/3.13, eight Playwright tests, all training smoke jobs and the Docker build.
 
 #### Enable ruleset and production environment
 
@@ -62,15 +62,15 @@ GitHub returned no ruleset or environment.
 
 #### Update limits and operations runbook
 
-**Documentation · In progress · 80% · difficulty 2/5 · 1–2 h**
+**Documentation · Done · 100% · difficulty 2/5 · 0–0 h**
 
-Documentation must reflect weighted games, trusted proxy handling and the final deployment model.
+The application runbook and portfolio standard document weighted games and the Cloudflare-to-NPM-to-application trust chain.
 
 #### Configure and test Cloudflare and NPM
 
-**Delivery · In progress · 35% · difficulty 3/5 · 2–4 h**
+**Delivery · In progress · 70% · difficulty 3/5 · 1–2 h**
 
-Application limits exist locally; edge/proxy rules and multi-user real-IP isolation remain unverified.
+NPM now restores visitor IPs globally and the application trusts only NPM; the visitor address was verified end-to-end against the workstation without retaining it in the roadmap. TTT-specific Cloudflare/NPM limits and a non-Cloudflare direct-origin rejection test remain.
 
 #### Build once in CI and deploy a GHCR digest
 
@@ -94,6 +94,7 @@ No central metrics or alerts cover rate rejections, AI saturation and rollback f
 
 - Keep the current preflight-plus-rollback deploy before implementing blue-green.
 - Moves use a 30/min token bucket with burst 10; series consume tokens by requested game count.
+- UFW/DOCKER-USER admits origin HTTPS only from Cloudflare; NPM validates and normalizes CF-Connecting-IP, while the application trusts only NPM as the forwarding peer and rate-limits the resulting visitor IP.
 - The project follows the v2 standard profile: vps-web.
 
 ## Polski
@@ -106,10 +107,10 @@ Projekt jest funkcjonalnie ukończony i znajduje się w fazie hardening/maintena
 
 ### Dowody audytu
 
-- **Repozytorium:** `SzczepanGrela/tic-tac-toe-ai` @ `5164282681e04d2279400d86b9a494aa817558d0`
-- **Stan źródła:** local worktree with 10 changed paths after tested UI, limiter and proxy fixes
-- **Testy i CI:** Quality and Deploy succeeded at 5164282; 68 non-browser and 7 Playwright tests pass locally for the dirty candidate; no ruleset or environment exists.
-- **Produkcja:** tictactoe.grela.dev returned HTTPS 200 through Cloudflare; the local candidate is not deployed.
+- **Repozytorium:** `SzczepanGrela/tic-tac-toe-ai` @ `69083b6c5e741646e352cccaab03cd6b21c65cb3`
+- **Stan źródła:** clean main synchronized with origin after the production rollout
+- **Testy i CI:** Quality 32871780435 and Deploy 32871780001 succeeded for 69083b6; no ruleset or production environment exists.
+- **Produkcja:** Public health returned status ok with all eight agents ready; the deployed frontend contains stale-response protection and NPM logs the verified visitor IP.
 
 ### Zgodność ze standardem v2
 
@@ -118,10 +119,10 @@ Profil: **Aplikacja webowa na VPS**. Statusy odzwierciedlają wyłącznie dowody
 | Kontrola | Status | Dowód |
 | --- | --- | --- |
 | Zarządzanie repozytorium | Częściowe | GitHub nie zwrócił aktywnego rulesetu ani środowiska; pozostałe elementy oceniono z repozytorium. |
-| Quality CI | Częściowe | Quality CI istnieje, ale nie obejmuje całego bieżącego stanu lub części wymaganych kontroli v2. |
+| Quality CI | Gotowe | Quality 32871780435 przeszedł testy Python 3.12/3.13, osiem scenariuszy Playwright, cztery treningi smoke i build Dockera dla 69083b6. |
 | Niezmienne wydanie | Brak | W audytowanym źródle projektu tic tac toe ai nie znaleziono wymaganej kompletnej implementacji. |
 | Dostęp wdrożeniowy | Częściowe | Projekt tic tac toe ai ma część mechanizmów, ale nie spełnia jeszcze całej kontroli v2. |
-| Sieć, TLS i tożsamość klienta | Częściowe | Część publicznego HTTPS lub routingu działa, ale pełny zaufany łańcuch sieciowy nie został potwierdzony. |
+| Sieć, TLS i tożsamość klienta | Częściowe | HTTPS Cloudflare, globalne odtwarzanie CF-Connecting-IP w NPM i zaufanie aplikacji wyłącznie do NPM są wdrożone; adres odwiedzającego potwierdzono end-to-end bez zapisywania go, ale odrzucenie bezpośredniego ruchu do originu wymaga testu zewnętrznego. |
 | Ochrona przed nadużyciami | Częściowe | Projekt tic tac toe ai ma część mechanizmów, ale nie spełnia jeszcze całej kontroli v2. |
 | Bezpieczeństwo runtime | Częściowe | Projekt tic tac toe ai ma część mechanizmów, ale nie spełnia jeszcze całej kontroli v2. |
 | Readiness i preflight | Częściowe | Projekt tic tac toe ai ma część mechanizmów, ale nie spełnia jeszcze całej kontroli v2. |
@@ -134,15 +135,15 @@ Profil: **Aplikacja webowa na VPS**. Statusy odzwierciedlają wyłącznie dowody
 
 #### Wypchnąć i zweryfikować bieżące poprawki
 
-**Implementacja · W toku · 90% · trudność 2/5 · 1–2 h**
+**Implementacja · Gotowe · 100% · trudność 2/5 · 0–0 h**
 
-Reset, scoreboard, weighted token bucket, Retry-After and trusted-proxy changes pass locally but are not deployed.
+Reset, scoreboard, weighted token bucket, Retry-After, stale-response protection and trusted-proxy changes were deployed at 69083b6.
 
 #### Utrzymać pełne testy backendu i przeglądarki
 
-**Jakość · W toku · 95% · trudność 2/5 · 1–2 h**
+**Jakość · Gotowe · 100% · trudność 2/5 · 0–0 h**
 
-The candidate passes 68 non-browser and seven Playwright tests plus a Docker build.
+Quality 32871780435 passed backend tests on Python 3.12/3.13, eight Playwright tests, all training smoke jobs and the Docker build.
 
 #### Włączyć ruleset i środowisko production
 
@@ -152,15 +153,15 @@ GitHub returned no ruleset or environment.
 
 #### Uaktualnić limity i runbook operacyjny
 
-**Dokumentacja · W toku · 80% · trudność 2/5 · 1–2 h**
+**Dokumentacja · Gotowe · 100% · trudność 2/5 · 0–0 h**
 
-Documentation must reflect weighted games, trusted proxy handling and the final deployment model.
+The application runbook and portfolio standard document weighted games and the Cloudflare-to-NPM-to-application trust chain.
 
 #### Skonfigurować i przetestować Cloudflare oraz NPM
 
-**Wdrożenie · W toku · 35% · trudność 3/5 · 2–4 h**
+**Wdrożenie · W toku · 70% · trudność 3/5 · 1–2 h**
 
-Application limits exist locally; edge/proxy rules and multi-user real-IP isolation remain unverified.
+NPM now restores visitor IPs globally and the application trusts only NPM; the visitor address was verified end-to-end against the workstation without retaining it in the roadmap. TTT-specific Cloudflare/NPM limits and a non-Cloudflare direct-origin rejection test remain.
 
 #### Budować raz w CI i wdrażać digest GHCR
 
@@ -184,4 +185,5 @@ No central metrics or alerts cover rate rejections, AI saturation and rollback f
 
 - Zachować preflight z rollbackiem przed wdrożeniem blue-green.
 - Ruchy używają token bucket 30/min z burstem 10; serie zużywają tokeny według liczby gier.
+- UFW/DOCKER-USER dopuszcza HTTPS do originu wyłącznie z Cloudflare; NPM weryfikuje i normalizuje CF-Connecting-IP, a aplikacja ufa jako peerowi proxy tylko NPM i limituje wynikowe IP odwiedzającego.
 - Projekt podlega profilowi standardu v2: vps-web.

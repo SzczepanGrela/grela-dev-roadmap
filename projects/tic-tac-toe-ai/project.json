@@ -39,18 +39,18 @@
   },
   "status": "maintenance",
   "progress": {
-    "implementation": 90,
-    "quality": 63,
-    "documentation": 80,
-    "delivery": 9,
-    "overall": 63
+    "implementation": 100,
+    "quality": 67,
+    "documentation": 100,
+    "delivery": 18,
+    "overall": 73
   },
   "complexity": 3,
   "forecast": {
-    "remainingHoursMin": 21,
-    "remainingHoursMax": 36,
-    "remainingDaysMin": 2.75,
-    "remainingDaysMax": 4.5,
+    "remainingHoursMin": 17,
+    "remainingHoursMax": 28,
+    "remainingDaysMin": 2.25,
+    "remainingDaysMax": 3.5,
     "hoursPerDay": 8,
     "hoursPerWeek": 30,
     "earliest": "2026-09-28",
@@ -60,13 +60,13 @@
   "estimation": {
     "date": "2026-08-25",
     "mode": "codex-assisted-source-audited",
-    "sourceRevision": "5164282681e04d2279400d86b9a494aa817558d0",
-    "sourceState": "local worktree with 10 changed paths after tested UI, limiter and proxy fixes"
+    "sourceRevision": "69083b6c5e741646e352cccaab03cd6b21c65cb3",
+    "sourceState": "clean main synchronized with origin after the production rollout"
   },
   "focus": {
     "current": {
-      "en": "Ship the tested reset, scoreboard, limiter and proxy fixes.",
-      "pl": "Wypchnąć przetestowane poprawki resetu, punktacji, limitera i proxy."
+      "en": "Complete edge limits, direct-origin validation and repository governance.",
+      "pl": "Dokończyć limity edge, walidację bezpośredniego originu i ochronę repozytorium."
     },
     "next": {
       "en": "Move to immutable artifacts, Redis and true blue-green.",
@@ -81,15 +81,15 @@
         "pl": "Wypchnąć i zweryfikować bieżące poprawki"
       },
       "dimension": "implementation",
-      "status": "in-progress",
-      "completion": 90,
+      "status": "done",
+      "completion": 100,
       "weight": 2,
       "difficulty": 2,
-      "hoursMin": 1,
-      "hoursMax": 2,
-      "daysMin": 0.25,
-      "daysMax": 0.25,
-      "evidence": "Reset, scoreboard, weighted token bucket, Retry-After and trusted-proxy changes pass locally but are not deployed."
+      "hoursMin": 0,
+      "hoursMax": 0,
+      "daysMin": 0,
+      "daysMax": 0,
+      "evidence": "Reset, scoreboard, weighted token bucket, Retry-After, stale-response protection and trusted-proxy changes were deployed at 69083b6."
     },
     {
       "id": "quality-maintenance",
@@ -98,15 +98,15 @@
         "pl": "Utrzymać pełne testy backendu i przeglądarki"
       },
       "dimension": "quality",
-      "status": "in-progress",
-      "completion": 95,
+      "status": "done",
+      "completion": 100,
       "weight": 2,
       "difficulty": 2,
-      "hoursMin": 1,
-      "hoursMax": 2,
-      "daysMin": 0.25,
-      "daysMax": 0.25,
-      "evidence": "The candidate passes 68 non-browser and seven Playwright tests plus a Docker build."
+      "hoursMin": 0,
+      "hoursMax": 0,
+      "daysMin": 0,
+      "daysMax": 0,
+      "evidence": "Quality 32871780435 passed backend tests on Python 3.12/3.13, eight Playwright tests, all training smoke jobs and the Docker build."
     },
     {
       "id": "repository-governance",
@@ -132,15 +132,15 @@
         "pl": "Uaktualnić limity i runbook operacyjny"
       },
       "dimension": "documentation",
-      "status": "in-progress",
-      "completion": 80,
+      "status": "done",
+      "completion": 100,
       "weight": 1,
       "difficulty": 2,
-      "hoursMin": 1,
-      "hoursMax": 2,
-      "daysMin": 0.25,
-      "daysMax": 0.25,
-      "evidence": "Documentation must reflect weighted games, trusted proxy handling and the final deployment model."
+      "hoursMin": 0,
+      "hoursMax": 0,
+      "daysMin": 0,
+      "daysMax": 0,
+      "evidence": "The application runbook and portfolio standard document weighted games and the Cloudflare-to-NPM-to-application trust chain."
     },
     {
       "id": "edge-verification",
@@ -150,14 +150,14 @@
       },
       "dimension": "delivery",
       "status": "in-progress",
-      "completion": 35,
+      "completion": 70,
       "weight": 2,
       "difficulty": 3,
-      "hoursMin": 2,
-      "hoursMax": 4,
+      "hoursMin": 1,
+      "hoursMax": 2,
       "daysMin": 0.25,
-      "daysMax": 0.5,
-      "evidence": "Application limits exist locally; edge/proxy rules and multi-user real-IP isolation remain unverified."
+      "daysMax": 0.25,
+      "evidence": "NPM now restores visitor IPs globally and the application trusts only NPM; the visitor address was verified end-to-end against the workstation without retaining it in the roadmap. TTT-specific Cloudflare/NPM limits and a non-Cloudflare direct-origin rejection test remain."
     },
     {
       "id": "immutable-deploy",
@@ -212,10 +212,10 @@
     }
   ],
   "verification": {
-    "worktree": "local worktree with 10 changed paths after tested UI, limiter and proxy fixes",
-    "tests": "Quality and Deploy succeeded at 5164282; 68 non-browser and 7 Playwright tests pass locally for the dirty candidate; no ruleset or environment exists.",
-    "ci": "Quality and Deploy succeeded at 5164282; 68 non-browser and 7 Playwright tests pass locally for the dirty candidate; no ruleset or environment exists.",
-    "production": "tictactoe.grela.dev returned HTTPS 200 through Cloudflare; the local candidate is not deployed."
+    "worktree": "clean main synchronized with origin at 69083b6",
+    "tests": "68 local backend and 8 local Playwright tests passed; the Docker image built successfully.",
+    "ci": "Quality 32871780435 and Deploy 32871780001 succeeded for 69083b6; no ruleset or production environment exists.",
+    "production": "Public health returned status ok with all eight agents ready; the deployed frontend contains stale-response protection and NPM logs the verified visitor IP."
   },
   "media": {
     "screenshot": "assets/screenshots/tic-tac-toe-ai.png",
@@ -231,6 +231,10 @@
     {
       "en": "Moves use a 30/min token bucket with burst 10; series consume tokens by requested game count.",
       "pl": "Ruchy używają token bucket 30/min z burstem 10; serie zużywają tokeny według liczby gier."
+    },
+    {
+      "en": "UFW/DOCKER-USER admits origin HTTPS only from Cloudflare; NPM validates and normalizes CF-Connecting-IP, while the application trusts only NPM as the forwarding peer and rate-limits the resulting visitor IP.",
+      "pl": "UFW/DOCKER-USER dopuszcza HTTPS do originu wyłącznie z Cloudflare; NPM weryfikuje i normalizuje CF-Connecting-IP, a aplikacja ufa jako peerowi proxy tylko NPM i limituje wynikowe IP odwiedzającego."
     },
     {
       "en": "The project follows the v2 standard profile: vps-web.",
@@ -267,14 +271,12 @@
       },
       {
         "id": "quality-ci",
-        "status": "partial",
+        "status": "complete",
         "evidence": {
-          "en": "Quality and Deploy succeeded at 5164282; 68 non-browser and 7 Playwright tests pass locally for the dirty candidate; no ruleset or environment exists.",
-          "pl": "Quality CI istnieje, ale nie obejmuje całego bieżącego stanu lub części wymaganych kontroli v2."
+          "en": "Quality 32871780435 passed Python 3.12/3.13 tests, eight Playwright scenarios, four training smoke jobs and the Docker build for 69083b6.",
+          "pl": "Quality 32871780435 przeszedł testy Python 3.12/3.13, osiem scenariuszy Playwright, cztery treningi smoke i build Dockera dla 69083b6."
         },
-        "taskIds": [
-          "quality-maintenance"
-        ]
+        "taskIds": []
       },
       {
         "id": "immutable-release",
@@ -302,8 +304,8 @@
         "id": "network-tls-client-ip",
         "status": "partial",
         "evidence": {
-          "en": "tictactoe.grela.dev returned HTTPS 200 through Cloudflare; the local candidate is not deployed.",
-          "pl": "Część publicznego HTTPS lub routingu działa, ale pełny zaufany łańcuch sieciowy nie został potwierdzony."
+          "en": "Cloudflare HTTPS, global NPM CF-Connecting-IP restoration and exact-NPM application trust are deployed; the visitor address was verified end-to-end without retaining it, while direct-origin rejection still needs an external test.",
+          "pl": "HTTPS Cloudflare, globalne odtwarzanie CF-Connecting-IP w NPM i zaufanie aplikacji wyłącznie do NPM są wdrożone; adres odwiedzającego potwierdzono end-to-end bez zapisywania go, ale odrzucenie bezpośredniego ruchu do originu wymaga testu zewnętrznego."
         },
         "taskIds": [
           "edge-verification"

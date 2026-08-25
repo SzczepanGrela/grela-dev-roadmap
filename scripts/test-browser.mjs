@@ -3,9 +3,12 @@ import { chromium } from "playwright";
 
 const port = 4323;
 const baseUrl = `http://127.0.0.1:${port}`;
-const server = spawn("npm", ["run", "preview", "--", "--host", "127.0.0.1", "--port", String(port)], {
+const server = spawn(process.execPath, ["node_modules/astro/bin/astro.mjs", "preview", "--host", "127.0.0.1", "--port", String(port)], {
   stdio: ["ignore", "pipe", "pipe"],
 });
+let serverOutput = "";
+server.stdout.on("data", (chunk) => { serverOutput += chunk; });
+server.stderr.on("data", (chunk) => { serverOutput += chunk; });
 
 const waitForServer = async () => {
   for (let attempt = 0; attempt < 50; attempt += 1) {
@@ -17,7 +20,21 @@ const waitForServer = async () => {
     }
     await new Promise((resolve) => setTimeout(resolve, 200));
   }
-  throw new Error("Astro preview server did not start");
+  throw new Error(`Astro preview server did not start\n${serverOutput}`);
+};
+
+const stopServer = async () => {
+  if (server.exitCode !== null) return;
+  await new Promise((resolve) => {
+    const forceStop = setTimeout(() => {
+      if (server.exitCode === null) server.kill("SIGKILL");
+    }, 2_000);
+    server.once("exit", () => {
+      clearTimeout(forceStop);
+      resolve();
+    });
+    server.kill("SIGTERM");
+  });
 };
 
 const assert = (condition, message) => {
@@ -49,5 +66,5 @@ try {
   console.log("Browser verification passed for desktop, mobile and project detail views.");
 } finally {
   if (browser) await browser.close();
-  server.kill("SIGTERM");
+  await stopServer();
 }

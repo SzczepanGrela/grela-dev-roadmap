@@ -2,7 +2,7 @@
 
 Public, machine-readable roadmap and audited status reports for Szczepan Grela's portfolio projects.
 
-Live site: <https://szczepangrela.github.io/grela-dev-roadmap/>
+Live site: <https://roadmap.grela.dev/>
 
 The repository now includes a local-first Astro/React prototype of the static roadmap. It reads the validated project records at build time and generates an interactive overview plus one detail page per project. Publishing remains intentionally disabled while the design is reviewed on localhost.
 

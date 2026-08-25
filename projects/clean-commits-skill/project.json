@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 1,
+  "schemaVersion": 2,
   "slug": "clean-commits-skill",
   "order": 10,
   "name": {
@@ -36,22 +36,22 @@
   },
   "status": "maintenance",
   "progress": {
-    "implementation": 95,
-    "quality": 75,
-    "documentation": 85,
-    "delivery": 60,
-    "overall": 81
+    "implementation": 75,
+    "quality": 0,
+    "documentation": 65,
+    "delivery": 0,
+    "overall": 40
   },
   "complexity": 2,
   "forecast": {
-    "remainingHoursMin": 6,
-    "remainingHoursMax": 9,
-    "remainingDaysMin": 0.75,
-    "remainingDaysMax": 1.25,
+    "remainingHoursMin": 7,
+    "remainingHoursMax": 11,
+    "remainingDaysMin": 1,
+    "remainingDaysMax": 1.5,
     "hoursPerDay": 8,
     "hoursPerWeek": 30,
-    "earliest": "2026-11-15",
-    "latest": "2027-01-02",
+    "earliest": "2026-11-25",
+    "latest": "2027-01-25",
     "confidence": "high"
   },
   "estimation": {
@@ -72,79 +72,96 @@
   },
   "tasks": [
     {
-      "id": "implementation",
+      "id": "skill-behavior",
       "title": {
-        "en": "Polish skill behavior and compatibility",
+        "en": "Refine skill behavior and compatibility",
         "pl": "Dopracować zachowanie i kompatybilność skilla"
       },
       "dimension": "implementation",
       "status": "in-progress",
-      "completion": 95,
+      "completion": 75,
+      "weight": 2,
+      "difficulty": 2,
+      "hoursMin": 1,
+      "hoursMax": 2,
+      "daysMin": 0.25,
+      "daysMax": 0.25,
+      "evidence": "The skill exists and is documented; representative compatibility cases remain."
+    },
+    {
+      "id": "skill-evals",
+      "title": {
+        "en": "Add evals and Git fixture tests",
+        "pl": "Dodać evale i testy fixture Git"
+      },
+      "dimension": "quality",
+      "status": "planned",
+      "completion": 0,
+      "weight": 2,
+      "difficulty": 3,
+      "hoursMin": 2,
+      "hoursMax": 3,
+      "daysMin": 0.25,
+      "daysMax": 0.5,
+      "evidence": "No automated workflow or representative evaluation suite is present."
+    },
+    {
+      "id": "repository-governance",
+      "title": {
+        "en": "Add Quality and a ruleset",
+        "pl": "Dodać Quality i ruleset"
+      },
+      "dimension": "quality",
+      "status": "planned",
+      "completion": 0,
       "weight": 1,
       "difficulty": 2,
       "hoursMin": 1,
       "hoursMax": 2,
       "daysMin": 0.25,
       "daysMax": 0.25,
-      "evidence": "Core skill, safety rules and an eval scenario exist."
+      "evidence": "GitHub returned no workflow run or ruleset."
     },
     {
-      "id": "quality",
+      "id": "installation-docs",
       "title": {
-        "en": "Automate eval and packaging checks",
-        "pl": "Zautomatyzować eval i testy paczki"
-      },
-      "dimension": "quality",
-      "status": "in-progress",
-      "completion": 75,
-      "weight": 1,
-      "difficulty": 2,
-      "hoursMin": 2,
-      "hoursMax": 3,
-      "daysMin": 0.25,
-      "daysMax": 0.5,
-      "evidence": "Manual scenario table and one eval exist; no CI workflow."
-    },
-    {
-      "id": "documentation",
-      "title": {
-        "en": "Correct installation identity and dates",
-        "pl": "Poprawić dane instalacji i daty"
+        "en": "Fix installation, version and dates",
+        "pl": "Poprawić instalację, wersję i daty"
       },
       "dimension": "documentation",
       "status": "in-progress",
-      "completion": 85,
+      "completion": 65,
       "weight": 1,
       "difficulty": 2,
       "hoursMin": 1,
       "hoursMax": 1,
       "daysMin": 0.25,
       "daysMax": 0.25,
-      "evidence": "README still contains <your-username>; MIT is recognized."
+      "evidence": "README placeholders and release metadata need finalization."
     },
     {
-      "id": "delivery",
+      "id": "skill-release",
       "title": {
-        "en": "Create tagged release and installation verification",
-        "pl": "Utworzyć tag i zweryfikować instalację"
+        "en": "Publish a versioned verified package",
+        "pl": "Opublikować wersjonowany i sprawdzony pakiet"
       },
       "dimension": "delivery",
-      "status": "in-progress",
-      "completion": 60,
-      "weight": 1,
-      "difficulty": 2,
+      "status": "planned",
+      "completion": 0,
+      "weight": 2,
+      "difficulty": 3,
       "hoursMin": 2,
       "hoursMax": 3,
       "daysMin": 0.25,
       "daysMax": 0.5,
-      "evidence": "No formal release automation exists."
+      "evidence": "There is no tagged, checksummed and installation-tested release."
     }
   ],
   "verification": {
-    "worktree": "audited from clean public clone",
-    "tests": "one eval scenario plus manual scenarios",
-    "ci": "no GitHub Actions runs",
-    "production": "not applicable; developer tool"
+    "worktree": "clean public main shallow clone",
+    "tests": "No GitHub Actions runs, ruleset or environment were found.",
+    "ci": "No GitHub Actions runs, ruleset or environment were found.",
+    "production": "Not applicable: this is a versioned Codex developer skill."
   },
   "media": {
     "screenshot": "assets/screenshots/clean-commits-skill.png",
@@ -156,17 +173,145 @@
     {
       "en": "No web hosting or HTTP rate limiting.",
       "pl": "Bez hostingu webowego i HTTP rate limitingu."
+    },
+    {
+      "en": "The project follows the v2 standard profile: developer-tool.",
+      "pl": "Projekt podlega profilowi standardu v2: developer-tool."
     }
   ],
   "audit": {
-    "date": "2026-08-24",
+    "date": "2026-08-25",
     "sources": [
-      "public repository and README",
-      "GitHub metadata"
+      "audited source tree and git status",
+      "GitHub repository, Actions, rulesets and environments API",
+      "public DNS and HTTPS checks where applicable"
     ],
     "notes": {
       "en": "This is close to release-ready and mainly needs packaging polish.",
       "pl": "Projekt jest blisko wydania i wymaga głównie dopracowania paczki."
     }
+  },
+  "compliance": {
+    "standardVersion": 2,
+    "profile": "developer-tool",
+    "assessmentDate": "2026-08-25",
+    "controls": [
+      {
+        "id": "governance",
+        "status": "partial",
+        "evidence": {
+          "en": "GitHub returned no active ruleset or environment; remaining elements were assessed from the repository.",
+          "pl": "GitHub nie zwrócił aktywnego rulesetu ani środowiska; pozostałe elementy oceniono z repozytorium."
+        },
+        "taskIds": [
+          "repository-governance"
+        ]
+      },
+      {
+        "id": "quality-ci",
+        "status": "missing",
+        "evidence": {
+          "en": "No GitHub Actions runs, ruleset or environment were found.",
+          "pl": "GitHub nie zwrócił żadnego wykonanego workflow Quality dla tego repozytorium."
+        },
+        "taskIds": [
+          "skill-evals"
+        ]
+      },
+      {
+        "id": "immutable-release",
+        "status": "missing",
+        "evidence": {
+          "en": "The required complete implementation was not found in the audited clean commits skill source.",
+          "pl": "W audytowanym źródle projektu clean commits skill nie znaleziono wymaganej kompletnej implementacji."
+        },
+        "taskIds": [
+          "skill-release"
+        ]
+      },
+      {
+        "id": "deployment-access",
+        "status": "not-applicable",
+        "evidence": {
+          "en": "The control does not apply to the clean commits skill project profile.",
+          "pl": "Kontrola nie dotyczy profilu projektu clean commits skill."
+        },
+        "taskIds": []
+      },
+      {
+        "id": "network-tls-client-ip",
+        "status": "not-applicable",
+        "evidence": {
+          "en": "Not applicable: this is a versioned Codex developer skill.",
+          "pl": "Kontrola sieci webowej i TLS nie dotyczy tego profilu projektu."
+        },
+        "taskIds": []
+      },
+      {
+        "id": "abuse-protection",
+        "status": "not-applicable",
+        "evidence": {
+          "en": "The control does not apply to the clean commits skill project profile.",
+          "pl": "Kontrola nie dotyczy profilu projektu clean commits skill."
+        },
+        "taskIds": []
+      },
+      {
+        "id": "runtime-safety",
+        "status": "not-applicable",
+        "evidence": {
+          "en": "The control does not apply to the clean commits skill project profile.",
+          "pl": "Kontrola nie dotyczy profilu projektu clean commits skill."
+        },
+        "taskIds": []
+      },
+      {
+        "id": "readiness-preflight",
+        "status": "not-applicable",
+        "evidence": {
+          "en": "The control does not apply to the clean commits skill project profile.",
+          "pl": "Kontrola nie dotyczy profilu projektu clean commits skill."
+        },
+        "taskIds": []
+      },
+      {
+        "id": "atomic-promotion-rollback",
+        "status": "not-applicable",
+        "evidence": {
+          "en": "The control does not apply to the clean commits skill project profile.",
+          "pl": "Kontrola nie dotyczy profilu projektu clean commits skill."
+        },
+        "taskIds": []
+      },
+      {
+        "id": "coordination-retention",
+        "status": "missing",
+        "evidence": {
+          "en": "The required complete implementation was not found in the audited clean commits skill source.",
+          "pl": "W audytowanym źródle projektu clean commits skill nie znaleziono wymaganej kompletnej implementacji."
+        },
+        "taskIds": [
+          "skill-release"
+        ]
+      },
+      {
+        "id": "observability",
+        "status": "not-applicable",
+        "evidence": {
+          "en": "The control does not apply to the clean commits skill project profile.",
+          "pl": "Kontrola nie dotyczy profilu projektu clean commits skill."
+        },
+        "taskIds": []
+      },
+      {
+        "id": "web-identity",
+        "status": "not-applicable",
+        "evidence": {
+          "en": "The control does not apply to the clean commits skill project profile.",
+          "pl": "Kontrola nie dotyczy profilu projektu clean commits skill."
+        },
+        "taskIds": []
+      }
+    ]
   }
 }

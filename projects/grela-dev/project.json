@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 1,
+  "schemaVersion": 2,
   "slug": "grela-dev",
   "order": 14,
   "name": {
@@ -30,121 +30,189 @@
     "hosted": true
   },
   "hosting": {
-    "target": "vps",
+    "target": "static-pages",
     "url": "https://grela.dev",
     "deploymentState": "degraded"
   },
   "status": "active",
   "progress": {
-    "implementation": 55,
+    "implementation": 20,
     "quality": 0,
-    "documentation": 10,
-    "delivery": 10,
-    "overall": 26
+    "documentation": 13,
+    "delivery": 5,
+    "overall": 11
   },
   "complexity": 4,
   "forecast": {
-    "remainingHoursMin": 48,
-    "remainingHoursMax": 80,
-    "remainingDaysMin": 6,
-    "remainingDaysMax": 10,
+    "remainingHoursMin": 49,
+    "remainingHoursMax": 83,
+    "remainingDaysMin": 6.25,
+    "remainingDaysMax": 10.5,
     "hoursPerDay": 8,
     "hoursPerWeek": 30,
-    "earliest": "2026-12-04",
-    "latest": "2027-02-04",
+    "earliest": "2026-12-17",
+    "latest": "2027-03-03",
     "confidence": "low"
   },
   "estimation": {
     "date": "2026-08-25",
     "mode": "codex-assisted-source-audited",
     "sourceRevision": "2b3e09330e50e6c291e5696a97ec8430d1ef2935",
-    "sourceState": "clean local worktree; fsmonitor IPC warning"
+    "sourceState": "clean local design worktree; fsmonitor IPC warning during audit"
   },
   "focus": {
     "current": {
-      "en": "Turn the design workspace into a buildable static application and repair TLS.",
-      "pl": "Przekształcić workspace designu w budowalną stronę i naprawić TLS."
+      "en": "Turn the prototypes into a buildable Cloudflare Pages static site.",
+      "pl": "Przekształcić prototypy w budowalną statyczną stronę Cloudflare Pages."
     },
     "next": {
-      "en": "Connect project data, update repository links, test and deploy.",
-      "pl": "Podłączyć dane projektów, poprawić linki, przetestować i wdrożyć."
+      "en": "Connect project data, domain, preview and atomic publishing.",
+      "pl": "Podłączyć dane projektów, domenę, preview i atomową publikację."
     }
   },
   "tasks": [
     {
-      "id": "implementation",
+      "id": "portfolio-build",
       "title": {
-        "en": "Build the production portfolio from existing designs",
-        "pl": "Zbudować portfolio z istniejących designów"
+        "en": "Build the portfolio from existing prototypes",
+        "pl": "Zbudować portfolio z istniejących prototypów"
       },
       "dimension": "implementation",
       "status": "in-progress",
-      "completion": 55,
-      "weight": 1,
+      "completion": 20,
+      "weight": 4,
       "difficulty": 4,
       "hoursMin": 24,
       "hoursMax": 40,
       "daysMin": 3,
       "daysMax": 5,
-      "evidence": "React/HTML design explorations exist, but no application scaffold or package manifest."
+      "evidence": "The repository contains HTML/JSX design explorations but no buildable application."
     },
     {
-      "id": "quality",
+      "id": "portfolio-quality",
       "title": {
-        "en": "Add accessibility, browser and build coverage",
-        "pl": "Dodać testy dostępności, przeglądarki i buildu"
+        "en": "Add build, accessibility and browser tests",
+        "pl": "Dodać testy buildu, dostępności i przeglądarki"
+      },
+      "dimension": "quality",
+      "status": "planned",
+      "completion": 0,
+      "weight": 2,
+      "difficulty": 3,
+      "hoursMin": 8,
+      "hoursMax": 12,
+      "daysMin": 1,
+      "daysMax": 1.5,
+      "evidence": "No package definition, tests or workflow runs exist."
+    },
+    {
+      "id": "repository-governance",
+      "title": {
+        "en": "Add Quality, a ruleset and Pages environment",
+        "pl": "Dodać Quality, ruleset i environment Pages"
       },
       "dimension": "quality",
       "status": "planned",
       "completion": 0,
       "weight": 1,
-      "difficulty": 4,
-      "hoursMin": 8,
-      "hoursMax": 12,
-      "daysMin": 1,
-      "daysMax": 1.5,
-      "evidence": "No tests or CI exist."
+      "difficulty": 2,
+      "hoursMin": 2,
+      "hoursMax": 3,
+      "daysMin": 0.25,
+      "daysMax": 0.5,
+      "evidence": "GitHub returned no Actions runs, ruleset or environment."
     },
     {
-      "id": "documentation",
+      "id": "portfolio-docs",
       "title": {
-        "en": "Add README, MIT and content-maintenance guide",
-        "pl": "Dodać README, MIT i instrukcję utrzymania treści"
+        "en": "Add README, MIT and content maintenance docs",
+        "pl": "Dodać README, MIT i utrzymanie treści"
       },
       "dimension": "documentation",
       "status": "in-progress",
-      "completion": 10,
-      "weight": 1,
-      "difficulty": 2,
+      "completion": 20,
+      "weight": 2,
+      "difficulty": 3,
       "hoursMin": 4,
       "hoursMax": 8,
       "daysMin": 0.5,
       "daysMax": 1,
-      "evidence": "No README or recognized license exists."
+      "evidence": "The design workspace lacks repository documentation and a recognized license."
     },
     {
-      "id": "delivery",
+      "id": "cloudflare-pages",
       "title": {
-        "en": "Repair TLS and deploy a static production build",
-        "pl": "Naprawić TLS i wdrożyć statyczny build"
+        "en": "Deploy Cloudflare Pages preview and production",
+        "pl": "Wdrożyć preview i produkcję Cloudflare Pages"
+      },
+      "dimension": "delivery",
+      "status": "planned",
+      "completion": 0,
+      "weight": 3,
+      "difficulty": 4,
+      "hoursMin": 6,
+      "hoursMax": 10,
+      "daysMin": 0.75,
+      "daysMax": 1.25,
+      "evidence": "Managed static hosting, immutable build output and atomic promotion are not configured."
+    },
+    {
+      "id": "domain-tls",
+      "title": {
+        "en": "Repair domain, TLS and rollback",
+        "pl": "Naprawić domenę, TLS i rollback"
       },
       "dimension": "delivery",
       "status": "in-progress",
-      "completion": 10,
+      "completion": 15,
+      "weight": 2,
+      "difficulty": 3,
+      "hoursMin": 2,
+      "hoursMax": 4,
+      "daysMin": 0.25,
+      "daysMax": 0.5,
+      "evidence": "The public domain currently returns Cloudflare 525."
+    },
+    {
+      "id": "static-observability",
+      "title": {
+        "en": "Add availability and deployment monitoring",
+        "pl": "Dodać monitoring dostępności i wdrożeń"
+      },
+      "dimension": "delivery",
+      "status": "planned",
+      "completion": 0,
       "weight": 1,
-      "difficulty": 4,
-      "hoursMin": 12,
-      "hoursMax": 20,
-      "daysMin": 1.5,
-      "daysMax": 2.5,
-      "evidence": "DNS exists, but public HTTPS returned Cloudflare 525 during audit."
+      "difficulty": 2,
+      "hoursMin": 1,
+      "hoursMax": 2,
+      "daysMin": 0.25,
+      "daysMax": 0.25,
+      "evidence": "No availability check or deployment failure alert was verified."
+    },
+    {
+      "id": "web-identity",
+      "title": {
+        "en": "Add favicon, metadata and project previews",
+        "pl": "Dodać favicon, metadata i podglądy projektów"
+      },
+      "dimension": "documentation",
+      "status": "planned",
+      "completion": 0,
+      "weight": 1,
+      "difficulty": 3,
+      "hoursMin": 2,
+      "hoursMax": 4,
+      "daysMin": 0.25,
+      "daysMax": 0.5,
+      "evidence": "No final static application or favicon exists."
     }
   ],
   "verification": {
-    "worktree": "clean; fsmonitor daemon reports a local IPC warning",
-    "tests": "none",
-    "ci": "no GitHub Actions runs",
-    "production": "grela.dev resolves through Cloudflare but returned HTTP 525"
+    "worktree": "clean local design worktree; fsmonitor IPC warning during audit",
+    "tests": "No buildable project, GitHub Actions run, ruleset or environment was found.",
+    "ci": "No buildable project, GitHub Actions run, ruleset or environment was found.",
+    "production": "grela.dev resolved through Cloudflare but returned HTTP 525 on 2026-08-25."
   },
   "media": {
     "screenshot": "assets/screenshots/grela-dev.png",
@@ -160,18 +228,158 @@
     {
       "en": "The roadmap site remains a separate repository and data source.",
       "pl": "Strona roadmapy pozostaje osobnym repozytorium i źródłem danych."
+    },
+    {
+      "en": "The project follows the v2 standard profile: static-web.",
+      "pl": "Projekt podlega profilowi standardu v2: static-web."
     }
   ],
   "audit": {
-    "date": "2026-08-24",
+    "date": "2026-08-25",
     "sources": [
-      "local repository tree and git history",
-      "GitHub metadata",
-      "public DNS and HTTPS"
+      "audited source tree and git status",
+      "GitHub repository, Actions, rulesets and environments API",
+      "public DNS and HTTPS checks where applicable"
     ],
     "notes": {
       "en": "The design direction is substantial, but production engineering has not started.",
       "pl": "Kierunek designu jest rozbudowany, lecz engineering produkcyjny jeszcze się nie rozpoczął."
     }
+  },
+  "compliance": {
+    "standardVersion": 2,
+    "profile": "static-web",
+    "assessmentDate": "2026-08-25",
+    "controls": [
+      {
+        "id": "governance",
+        "status": "missing",
+        "evidence": {
+          "en": "GitHub returned no active ruleset or environment; remaining elements were assessed from the repository.",
+          "pl": "GitHub nie zwrócił aktywnego rulesetu ani środowiska; pozostałe elementy oceniono z repozytorium."
+        },
+        "taskIds": [
+          "repository-governance"
+        ]
+      },
+      {
+        "id": "quality-ci",
+        "status": "missing",
+        "evidence": {
+          "en": "No buildable project, GitHub Actions run, ruleset or environment was found.",
+          "pl": "GitHub nie zwrócił żadnego wykonanego workflow Quality dla tego repozytorium."
+        },
+        "taskIds": [
+          "portfolio-quality"
+        ]
+      },
+      {
+        "id": "immutable-release",
+        "status": "missing",
+        "evidence": {
+          "en": "The required complete implementation was not found in the audited grela dev source.",
+          "pl": "W audytowanym źródle projektu grela dev nie znaleziono wymaganej kompletnej implementacji."
+        },
+        "taskIds": [
+          "cloudflare-pages"
+        ]
+      },
+      {
+        "id": "deployment-access",
+        "status": "not-applicable",
+        "evidence": {
+          "en": "The control does not apply to the grela dev project profile.",
+          "pl": "Kontrola nie dotyczy profilu projektu grela dev."
+        },
+        "taskIds": []
+      },
+      {
+        "id": "network-tls-client-ip",
+        "status": "partial",
+        "evidence": {
+          "en": "grela.dev resolved through Cloudflare but returned HTTP 525 on 2026-08-25.",
+          "pl": "Część publicznego HTTPS lub routingu działa, ale pełny zaufany łańcuch sieciowy nie został potwierdzony."
+        },
+        "taskIds": [
+          "domain-tls"
+        ]
+      },
+      {
+        "id": "abuse-protection",
+        "status": "partial",
+        "evidence": {
+          "en": "grela dev has some mechanisms but does not yet satisfy the complete v2 control.",
+          "pl": "Projekt grela dev ma część mechanizmów, ale nie spełnia jeszcze całej kontroli v2."
+        },
+        "taskIds": [
+          "cloudflare-pages"
+        ]
+      },
+      {
+        "id": "runtime-safety",
+        "status": "not-applicable",
+        "evidence": {
+          "en": "The control does not apply to the grela dev project profile.",
+          "pl": "Kontrola nie dotyczy profilu projektu grela dev."
+        },
+        "taskIds": []
+      },
+      {
+        "id": "readiness-preflight",
+        "status": "missing",
+        "evidence": {
+          "en": "The required complete implementation was not found in the audited grela dev source.",
+          "pl": "W audytowanym źródle projektu grela dev nie znaleziono wymaganej kompletnej implementacji."
+        },
+        "taskIds": [
+          "cloudflare-pages"
+        ]
+      },
+      {
+        "id": "atomic-promotion-rollback",
+        "status": "missing",
+        "evidence": {
+          "en": "The required complete implementation was not found in the audited grela dev source.",
+          "pl": "W audytowanym źródle projektu grela dev nie znaleziono wymaganej kompletnej implementacji."
+        },
+        "taskIds": [
+          "cloudflare-pages",
+          "domain-tls"
+        ]
+      },
+      {
+        "id": "coordination-retention",
+        "status": "missing",
+        "evidence": {
+          "en": "The required complete implementation was not found in the audited grela dev source.",
+          "pl": "W audytowanym źródle projektu grela dev nie znaleziono wymaganej kompletnej implementacji."
+        },
+        "taskIds": [
+          "cloudflare-pages"
+        ]
+      },
+      {
+        "id": "observability",
+        "status": "missing",
+        "evidence": {
+          "en": "The required complete implementation was not found in the audited grela dev source.",
+          "pl": "W audytowanym źródle projektu grela dev nie znaleziono wymaganej kompletnej implementacji."
+        },
+        "taskIds": [
+          "static-observability"
+        ]
+      },
+      {
+        "id": "web-identity",
+        "status": "missing",
+        "evidence": {
+          "en": "The required complete implementation was not found in the audited grela dev source.",
+          "pl": "W audytowanym źródle projektu grela dev nie znaleziono wymaganej kompletnej implementacji."
+        },
+        "taskIds": [
+          "web-identity"
+        ]
+      }
+    ]
   }
 }

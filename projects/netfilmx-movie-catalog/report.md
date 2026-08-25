@@ -1,62 +1,187 @@
 # NetFilmx Movie Catalog — status report / raport stanu
 
-Audit date / data audytu: **2026-08-24**  
-Estimated completion / szacowane ukończenie: **71%**  
-Forecast / prognoza: **2026-10-05–2026-10-22**, 48–72 h, low confidence / niska pewność
+Audit date / data audytu: **2026-08-25**<br>
+Estimated completion / szacowane ukończenie: **43%**<br>
+Forecast / prognoza: **2026-09-11–2026-09-24**, 46–75 h, low confidence / pewność: low
+
+> This report is synchronized from `project.json` and the versioned delivery-control catalog. / Raport jest synchronizowany z `project.json` i wersjonowanym katalogiem kontroli wdrożeniowych.
 
 ## English
 
 ### Purpose and current state
 
-NetFilmx is a hosted .NET movie-catalog application with a sizeable local modernization in progress. The public endpoint returned HTTP 200, but the local branch is 12 commits ahead and has 45 changed or untracked paths. Remote green CI therefore does not validate the full local candidate.
+ASP.NET Core VOD catalogue with HLS processing, R2 storage and administration.
 
-### Completed and verified
+Security-sensitive findings are public at advisory level without exploit instructions.
 
-- The application is deployed and responds publicly at `netfilmx.grela.dev`.
-- The local test suite reported 79 passed and 2 skipped.
-- Existing remote CI is green for the pushed revision.
-- The repository contains application, test and deployment foundations.
+### Audit evidence
 
-### Remaining work and known issues
+- **Repozytorium:** `SzczepanGrela/netfilmx-movie-catalog` @ `d1f1da4534b31f52815d4db82ed64b6f37ecf99f`
+- **Source state:** local worktree with 70 changed paths and unpublished commits
+- **Tests and CI:** Latest public CI/CD runs succeeded, but they do not cover the large local worktree; no ruleset or environment exists.
+- **Production:** netfilmx.grela.dev returned HTTPS 200 through Cloudflare on 2026-08-25.
 
-- Split and review the 12 local commits and 45 dirty/untracked paths without losing user work.
-- Resolve nullable warnings and rerun the complete build with warnings reviewed.
-- Upgrade or remove AutoMapper 13.0.1, which is affected by the high-severity advisory GHSA-rvv3-g6hj-g44x, then verify behavior.
-- Push the reviewed candidate and require CI results for that exact commit.
-- Add layered limits appropriate to catalog search/authentication and protect expensive or write endpoints more strictly than static browsing.
-- Narrow trusted proxy networks and verify the real client IP chain through Cloudflare and NPM.
-- Replace stop-then-start deployment with candidate preflight/rollback, later blue-green.
-- Add browser smoke coverage and refresh the production screenshot.
+### v2 standard compliance
 
-### Decisions
+Profile: **VPS web application**. Statuses reflect only evidence available on the audit date.
 
-The dirty working tree is an explicit risk boundary: its contents are reported, not altered by this roadmap work. The completion forecast has low confidence until the unpublished delta is organized and CI evaluates it. Public reports name the dependency advisory but contain no credentials or exploit recipe.
+| Control | Status | Evidence |
+| --- | --- | --- |
+| Repository governance | Partial | GitHub returned no active ruleset or environment; remaining elements were assessed from the repository. |
+| Quality CI | Partial | Latest public CI/CD runs succeeded, but they do not cover the large local worktree; no ruleset or environment exists. |
+| Immutable release | Missing | The required complete implementation was not found in the audited netfilmx movie catalog source. |
+| Deployment access | Partial | netfilmx movie catalog has some mechanisms but does not yet satisfy the complete v2 control. |
+| Network, TLS and client identity | Partial | netfilmx.grela.dev returned HTTPS 200 through Cloudflare on 2026-08-25. |
+| Abuse protection | Missing | The required complete implementation was not found in the audited netfilmx movie catalog source. |
+| Runtime safety | Partial | netfilmx movie catalog has some mechanisms but does not yet satisfy the complete v2 control. |
+| Readiness and preflight | Partial | netfilmx movie catalog has some mechanisms but does not yet satisfy the complete v2 control. |
+| Atomic promotion and rollback | Missing | The required complete implementation was not found in the audited netfilmx movie catalog source. |
+| Coordination and retention | Partial | netfilmx movie catalog has some mechanisms but does not yet satisfy the complete v2 control. |
+| Observability | Missing | The required complete implementation was not found in the audited netfilmx movie catalog source. |
+| Web identity | Missing | The required complete implementation was not found in the audited netfilmx movie catalog source. |
+
+### Remaining and active tasks
+
+#### Finish i18n, storage and video processing refactor
+
+**Implementation · In progress · 65% · difficulty 5/5 · 12–20 h**
+
+Seventy changed paths include storage, FFmpeg, jobs and UI work that is not represented by public CI.
+
+#### Remove warnings, skipped tests and vulnerabilities
+
+**Quality · In progress · 55% · difficulty 4/5 · 10–16 h**
+
+The public workflow is green, but local changes and deferred security work remain.
+
+#### Require green CI on protected main
+
+**Quality · Planned · 0% · difficulty 2/5 · 2–3 h**
+
+GitHub returned no active ruleset or environment.
+
+#### Align architecture and operations documentation
+
+**Documentation · In progress · 60% · difficulty 3/5 · 3–5 h**
+
+Documentation does not yet describe the complete dirty implementation or v2 delivery model.
+
+#### Add login, upload and transcoding limits
+
+**Delivery · Planned · 0% · difficulty 4/5 · 5–8 h**
+
+No application rate-limit implementation was found; HLS requires bandwidth rather than low request limits.
+
+#### Move build to GHCR and deploy by digest
+
+**Delivery · Planned · 0% · difficulty 4/5 · 5–8 h**
+
+The VPS currently rebuilds a local image and globally prunes Docker images.
+
+#### Add readiness, stable gateway and blue-green
+
+**Delivery · Planned · 0% · difficulty 5/5 · 6–10 h**
+
+Health checks exist, but there is no candidate promotion, drain or public rollback smoke test.
+
+#### Add transcoding and deployment metrics
+
+**Delivery · Planned · 0% · difficulty 3/5 · 3–5 h**
+
+Central monitoring and actionable deployment/transcoding alerts were not verified.
+
+### Architecture decisions
+
+- Do not apply a low request limit to individual HLS segments.
+- Keep Hangfire and administrative surfaces private or strongly authorized.
+- The project follows the v2 standard profile: vps-web.
 
 ## Polski
 
-### Cel i stan bieżący
+### Cel i aktualny stan
 
-NetFilmx to hostowany katalog filmów .NET z dużą lokalną modernizacją w toku. Publiczny endpoint zwrócił HTTP 200, lecz lokalna gałąź jest 12 commitów do przodu i zawiera 45 zmienionych lub nowych ścieżek. Zielone zdalne CI nie sprawdza więc całego lokalnego kandydata.
+Katalog VOD ASP.NET Core z HLS, magazynem R2 i panelem administracyjnym.
 
-### Wykonane i zweryfikowane
+Znaleziska bezpieczeństwa są publiczne na poziomie advisory, bez instrukcji wykorzystania.
 
-- Aplikacja działa publicznie pod `netfilmx.grela.dev`.
-- Lokalne testy: 79 zaliczonych i 2 pominięte.
-- Zdalne CI jest zielone dla aktualnie wypchniętej rewizji.
-- Istnieją podstawy aplikacji, testów i wdrożenia.
+### Dowody audytu
 
-### Do zrobienia i znane problemy
+- **Repozytorium:** `SzczepanGrela/netfilmx-movie-catalog` @ `d1f1da4534b31f52815d4db82ed64b6f37ecf99f`
+- **Stan źródła:** local worktree with 70 changed paths and unpublished commits
+- **Testy i CI:** Latest public CI/CD runs succeeded, but they do not cover the large local worktree; no ruleset or environment exists.
+- **Produkcja:** netfilmx.grela.dev returned HTTPS 200 through Cloudflare on 2026-08-25.
 
-- Uporządkować 12 lokalnych commitów i 45 zmienionych/nowych ścieżek bez naruszania pracy użytkownika.
-- Usunąć lub świadomie obsłużyć ostrzeżenia nullable.
-- Zaktualizować albo usunąć AutoMapper 13.0.1 objęty ostrzeżeniem GHSA-rvv3-g6hj-g44x i wykonać testy regresji.
-- Wypchnąć przejrzany kandydat i wymagać CI dokładnie dla tego commitu.
-- Wdrożyć warstwowe limity dla wyszukiwania, logowania i kosztownych/zapisujących endpointów.
-- Zawęzić zaufane proxy i sprawdzić łańcuch adresu klienta przez Cloudflare i NPM.
-- Dodać preflight z rollbackiem, a docelowo blue-green.
-- Dodać browser smoke i odświeżyć screenshot produkcji.
+### Zgodność ze standardem v2
 
-### Decyzje
+Profil: **Aplikacja webowa na VPS**. Statusy odzwierciedlają wyłącznie dowody dostępne w dniu audytu.
 
-Brudny worktree jest granicą ryzyka: raport go opisuje, ale roadmapa go nie modyfikuje. Prognoza ma niską pewność do czasu uporządkowania niewypchniętych zmian i zweryfikowania ich przez CI.
+| Kontrola | Status | Dowód |
+| --- | --- | --- |
+| Zarządzanie repozytorium | Częściowe | GitHub nie zwrócił aktywnego rulesetu ani środowiska; pozostałe elementy oceniono z repozytorium. |
+| Quality CI | Częściowe | Quality CI istnieje, ale nie obejmuje całego bieżącego stanu lub części wymaganych kontroli v2. |
+| Niezmienne wydanie | Brak | W audytowanym źródle projektu netfilmx movie catalog nie znaleziono wymaganej kompletnej implementacji. |
+| Dostęp wdrożeniowy | Częściowe | Projekt netfilmx movie catalog ma część mechanizmów, ale nie spełnia jeszcze całej kontroli v2. |
+| Sieć, TLS i tożsamość klienta | Częściowe | Część publicznego HTTPS lub routingu działa, ale pełny zaufany łańcuch sieciowy nie został potwierdzony. |
+| Ochrona przed nadużyciami | Brak | W audytowanym źródle projektu netfilmx movie catalog nie znaleziono wymaganej kompletnej implementacji. |
+| Bezpieczeństwo runtime | Częściowe | Projekt netfilmx movie catalog ma część mechanizmów, ale nie spełnia jeszcze całej kontroli v2. |
+| Readiness i preflight | Częściowe | Projekt netfilmx movie catalog ma część mechanizmów, ale nie spełnia jeszcze całej kontroli v2. |
+| Atomowa promocja i rollback | Brak | W audytowanym źródle projektu netfilmx movie catalog nie znaleziono wymaganej kompletnej implementacji. |
+| Koordynacja i retencja | Częściowe | Projekt netfilmx movie catalog ma część mechanizmów, ale nie spełnia jeszcze całej kontroli v2. |
+| Obserwowalność | Brak | W audytowanym źródle projektu netfilmx movie catalog nie znaleziono wymaganej kompletnej implementacji. |
+| Tożsamość webowa | Brak | W audytowanym źródle projektu netfilmx movie catalog nie znaleziono wymaganej kompletnej implementacji. |
 
+### Zadania pozostałe i bieżące
+
+#### Dokończyć i18n, storage i przetwarzanie wideo
+
+**Implementacja · W toku · 65% · trudność 5/5 · 12–20 h**
+
+Seventy changed paths include storage, FFmpeg, jobs and UI work that is not represented by public CI.
+
+#### Usunąć warningi, skipped testy i podatności
+
+**Jakość · W toku · 55% · trudność 4/5 · 10–16 h**
+
+The public workflow is green, but local changes and deferred security work remain.
+
+#### Wymagać zielonego CI na chronionym main
+
+**Jakość · Planowane · 0% · trudność 2/5 · 2–3 h**
+
+GitHub returned no active ruleset or environment.
+
+#### Uzgodnić dokumentację architektury i operacji
+
+**Dokumentacja · W toku · 60% · trudność 3/5 · 3–5 h**
+
+Documentation does not yet describe the complete dirty implementation or v2 delivery model.
+
+#### Dodać limity logowania, uploadu i transkodowania
+
+**Wdrożenie · Planowane · 0% · trudność 4/5 · 5–8 h**
+
+No application rate-limit implementation was found; HLS requires bandwidth rather than low request limits.
+
+#### Przenieść build do GHCR i wdrażać digest
+
+**Wdrożenie · Planowane · 0% · trudność 4/5 · 5–8 h**
+
+The VPS currently rebuilds a local image and globally prunes Docker images.
+
+#### Dodać readiness, stabilny gateway i blue-green
+
+**Wdrożenie · Planowane · 0% · trudność 5/5 · 6–10 h**
+
+Health checks exist, but there is no candidate promotion, drain or public rollback smoke test.
+
+#### Dodać metryki transkodowania i wdrożeń
+
+**Wdrożenie · Planowane · 0% · trudność 3/5 · 3–5 h**
+
+Central monitoring and actionable deployment/transcoding alerts were not verified.
+
+### Decyzje architektoniczne
+
+- Nie stosować niskiego limitu requestów do segmentów HLS.
+- Hangfire i powierzchnie administracyjne mają być prywatne lub silnie autoryzowane.
+- Projekt podlega profilowi standardu v2: vps-web.

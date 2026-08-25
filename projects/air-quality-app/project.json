@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 1,
+  "schemaVersion": 2,
   "slug": "air-quality-app",
   "order": 4,
   "name": {
@@ -40,22 +40,22 @@
   },
   "status": "active",
   "progress": {
-    "implementation": 75,
-    "quality": 65,
-    "documentation": 85,
-    "delivery": 35,
-    "overall": 64
+    "implementation": 70,
+    "quality": 43,
+    "documentation": 32,
+    "delivery": 13,
+    "overall": 45
   },
   "complexity": 5,
   "forecast": {
-    "remainingHoursMin": 27,
-    "remainingHoursMax": 43,
-    "remainingDaysMin": 3.5,
-    "remainingDaysMax": 5.5,
+    "remainingHoursMin": 36,
+    "remainingHoursMax": 58,
+    "remainingDaysMin": 4.5,
+    "remainingDaysMax": 7.25,
     "hoursPerDay": 8,
     "hoursPerWeek": 30,
-    "earliest": "2026-09-20",
-    "latest": "2026-10-03",
+    "earliest": "2026-09-21",
+    "latest": "2026-10-08",
     "confidence": "low"
   },
   "estimation": {
@@ -76,79 +76,164 @@
   },
   "tasks": [
     {
-      "id": "implementation",
+      "id": "aqi-dashboard",
       "title": {
-        "en": "Finish AQI model and dashboard iteration",
-        "pl": "Dokończyć model AQI i iterację dashboardu"
+        "en": "Finish AQI model, estimation and dashboard",
+        "pl": "Dokończyć model AQI, estymację i dashboard"
       },
       "dimension": "implementation",
       "status": "in-progress",
-      "completion": 75,
-      "weight": 1,
-      "difficulty": 5,
+      "completion": 70,
+      "weight": 3,
+      "difficulty": 4,
       "hoursMin": 8,
       "hoursMax": 12,
       "daysMin": 1,
       "daysMax": 1.5,
-      "evidence": "17 tracked files and 3 new files are locally modified."
+      "evidence": "Twenty changed paths cover data collection, estimation, API and frontend behavior."
     },
     {
-      "id": "quality",
+      "id": "quality-suite",
       "title": {
-        "en": "Run complete backend/frontend acceptance suite",
-        "pl": "Uruchomić pełny zestaw testów backend/frontend"
+        "en": "Run complete backend, frontend and migration tests",
+        "pl": "Uruchomić pełne testy backendu, frontendu i migracji"
       },
       "dimension": "quality",
       "status": "in-progress",
       "completion": 65,
-      "weight": 1,
-      "difficulty": 5,
+      "weight": 2,
+      "difficulty": 4,
       "hoursMin": 8,
       "hoursMax": 12,
       "daysMin": 1,
       "daysMax": 1.5,
-      "evidence": "Last committed CI succeeded; dirty local state is not yet verified in its project environment."
+      "evidence": "Public CI is green at HEAD, while the dirty candidate requires complete environment verification."
     },
     {
-      "id": "documentation",
+      "id": "repository-governance",
       "title": {
-        "en": "Maintain data and model transparency",
-        "pl": "Utrzymać przejrzystość danych i modeli"
+        "en": "Enable ruleset and production environment",
+        "pl": "Włączyć ruleset i środowisko produkcyjne"
+      },
+      "dimension": "quality",
+      "status": "planned",
+      "completion": 0,
+      "weight": 1,
+      "difficulty": 2,
+      "hoursMin": 1,
+      "hoursMax": 2,
+      "daysMin": 0.25,
+      "daysMax": 0.25,
+      "evidence": "GitHub returned neither a ruleset nor an environment."
+    },
+    {
+      "id": "data-model-docs",
+      "title": {
+        "en": "Document sources, models and operations",
+        "pl": "Udokumentować źródła, modele i operacje"
       },
       "dimension": "documentation",
       "status": "in-progress",
-      "completion": 85,
+      "completion": 65,
       "weight": 1,
-      "difficulty": 2,
+      "difficulty": 3,
       "hoursMin": 3,
       "hoursMax": 5,
       "daysMin": 0.5,
       "daysMax": 0.75,
-      "evidence": "Detailed bilingual architecture README and MIT license exist."
+      "evidence": "Model transparency and the deployment runbook need to match the dirty candidate."
     },
     {
-      "id": "delivery",
+      "id": "endpoint-protection",
       "title": {
-        "en": "Enable DNS, deploy and endpoint-aware protection",
-        "pl": "Uruchomić DNS, deploy i ochronę per endpoint"
+        "en": "Split map, history and estimation limits",
+        "pl": "Rozdzielić limity mapy, historii i estymacji"
       },
       "dimension": "delivery",
       "status": "in-progress",
-      "completion": 35,
-      "weight": 1,
+      "completion": 45,
+      "weight": 2,
+      "difficulty": 4,
+      "hoursMin": 3,
+      "hoursMax": 5,
+      "daysMin": 0.5,
+      "daysMax": 0.75,
+      "evidence": "A global in-memory middleware exists locally; endpoint cost, real IP and external layers remain."
+    },
+    {
+      "id": "immutable-deploy",
+      "title": {
+        "en": "Publish images and manifest by digest",
+        "pl": "Publikować obrazy i manifest po digestach"
+      },
+      "dimension": "delivery",
+      "status": "planned",
+      "completion": 0,
+      "weight": 2,
+      "difficulty": 4,
+      "hoursMin": 4,
+      "hoursMax": 7,
+      "daysMin": 0.5,
+      "daysMax": 1,
+      "evidence": "The current workflow builds test images while the VPS deploy uses moving source state."
+    },
+    {
+      "id": "blue-green",
+      "title": {
+        "en": "Implement compatible migrations and blue-green",
+        "pl": "Wdrożyć kompatybilne migracje i blue-green"
+      },
+      "dimension": "delivery",
+      "status": "planned",
+      "completion": 0,
+      "weight": 2,
       "difficulty": 5,
-      "hoursMin": 8,
-      "hoursMax": 14,
-      "daysMin": 1,
-      "daysMax": 1.75,
-      "evidence": "Deploy is opt-in and air.grela.dev has no public DNS."
+      "hoursMin": 5,
+      "hoursMax": 8,
+      "daysMin": 0.75,
+      "daysMax": 1,
+      "evidence": "Readiness exists, but promotion, public smoke rollback and migration gating do not."
+    },
+    {
+      "id": "service-observability",
+      "title": {
+        "en": "Monitor API, worker, database and limits",
+        "pl": "Monitorować API, worker, bazę i limity"
+      },
+      "dimension": "delivery",
+      "status": "planned",
+      "completion": 0,
+      "weight": 1,
+      "difficulty": 4,
+      "hoursMin": 3,
+      "hoursMax": 5,
+      "daysMin": 0.5,
+      "daysMax": 0.75,
+      "evidence": "No verified central dashboards or alerts cover the complete service."
+    },
+    {
+      "id": "web-identity",
+      "title": {
+        "en": "Add favicon and deployed-site metadata",
+        "pl": "Dodać favicon i metadane wdrożonej strony"
+      },
+      "dimension": "documentation",
+      "status": "planned",
+      "completion": 0,
+      "weight": 1,
+      "difficulty": 2,
+      "hoursMin": 1,
+      "hoursMax": 2,
+      "daysMin": 0.25,
+      "daysMax": 0.25,
+      "evidence": "No favicon reference was found in the audited frontend."
     }
   ],
   "verification": {
-    "worktree": "dirty with significant backend/frontend changes",
-    "tests": "last committed CI passed; local dirty state not run because dependencies are absent",
-    "ci": "latest run succeeded",
-    "production": "deploy disabled; air.grela.dev has no public DNS"
+    "worktree": "local worktree with 20 changed paths",
+    "tests": "Latest CI and deploy workflow succeeded at d627511, but local backend/frontend changes remain unaudited by CI; no ruleset or environment exists.",
+    "ci": "Latest CI and deploy workflow succeeded at d627511, but local backend/frontend changes remain unaudited by CI; no ruleset or environment exists.",
+    "production": "air.grela.dev did not resolve in public DNS on 2026-08-25."
   },
   "media": {
     "screenshot": "assets/screenshots/air-quality-app.png",
@@ -164,18 +249,161 @@
     {
       "en": "Workers, training and PostgreSQL remain private.",
       "pl": "Workery, trening i PostgreSQL pozostają prywatne."
+    },
+    {
+      "en": "The project follows the v2 standard profile: vps-web.",
+      "pl": "Projekt podlega profilowi standardu v2: vps-web."
     }
   ],
   "audit": {
-    "date": "2026-08-24",
+    "date": "2026-08-25",
     "sources": [
-      "local worktree and diff",
-      "GitHub Actions API",
-      "public DNS"
+      "audited source tree and git status",
+      "GitHub repository, Actions, rulesets and environments API",
+      "public DNS and HTTPS checks where applicable"
     ],
     "notes": {
       "en": "The local work is valuable but counts as in progress until tested and pushed.",
       "pl": "Lokalna praca jest wartościowa, ale pozostaje w toku do czasu testów i pushu."
     }
+  },
+  "compliance": {
+    "standardVersion": 2,
+    "profile": "vps-web",
+    "assessmentDate": "2026-08-25",
+    "controls": [
+      {
+        "id": "governance",
+        "status": "partial",
+        "evidence": {
+          "en": "GitHub returned no active ruleset or environment; remaining elements were assessed from the repository.",
+          "pl": "GitHub nie zwrócił aktywnego rulesetu ani środowiska; pozostałe elementy oceniono z repozytorium."
+        },
+        "taskIds": [
+          "repository-governance"
+        ]
+      },
+      {
+        "id": "quality-ci",
+        "status": "partial",
+        "evidence": {
+          "en": "Latest CI and deploy workflow succeeded at d627511, but local backend/frontend changes remain unaudited by CI; no ruleset or environment exists.",
+          "pl": "Quality CI istnieje, ale nie obejmuje całego bieżącego stanu lub części wymaganych kontroli v2."
+        },
+        "taskIds": [
+          "quality-suite"
+        ]
+      },
+      {
+        "id": "immutable-release",
+        "status": "missing",
+        "evidence": {
+          "en": "The required complete implementation was not found in the audited air quality app source.",
+          "pl": "W audytowanym źródle projektu air quality app nie znaleziono wymaganej kompletnej implementacji."
+        },
+        "taskIds": [
+          "immutable-deploy"
+        ]
+      },
+      {
+        "id": "deployment-access",
+        "status": "partial",
+        "evidence": {
+          "en": "air quality app has some mechanisms but does not yet satisfy the complete v2 control.",
+          "pl": "Projekt air quality app ma część mechanizmów, ale nie spełnia jeszcze całej kontroli v2."
+        },
+        "taskIds": [
+          "immutable-deploy"
+        ]
+      },
+      {
+        "id": "network-tls-client-ip",
+        "status": "missing",
+        "evidence": {
+          "en": "air.grela.dev did not resolve in public DNS on 2026-08-25.",
+          "pl": "Docelowa domena lub kompletna konfiguracja routingu/TLS nie jest obecnie dostępna."
+        },
+        "taskIds": [
+          "endpoint-protection"
+        ]
+      },
+      {
+        "id": "abuse-protection",
+        "status": "partial",
+        "evidence": {
+          "en": "air quality app has some mechanisms but does not yet satisfy the complete v2 control.",
+          "pl": "Projekt air quality app ma część mechanizmów, ale nie spełnia jeszcze całej kontroli v2."
+        },
+        "taskIds": [
+          "endpoint-protection"
+        ]
+      },
+      {
+        "id": "runtime-safety",
+        "status": "partial",
+        "evidence": {
+          "en": "air quality app has some mechanisms but does not yet satisfy the complete v2 control.",
+          "pl": "Projekt air quality app ma część mechanizmów, ale nie spełnia jeszcze całej kontroli v2."
+        },
+        "taskIds": [
+          "blue-green"
+        ]
+      },
+      {
+        "id": "readiness-preflight",
+        "status": "partial",
+        "evidence": {
+          "en": "air quality app has some mechanisms but does not yet satisfy the complete v2 control.",
+          "pl": "Projekt air quality app ma część mechanizmów, ale nie spełnia jeszcze całej kontroli v2."
+        },
+        "taskIds": [
+          "blue-green"
+        ]
+      },
+      {
+        "id": "atomic-promotion-rollback",
+        "status": "missing",
+        "evidence": {
+          "en": "The required complete implementation was not found in the audited air quality app source.",
+          "pl": "W audytowanym źródle projektu air quality app nie znaleziono wymaganej kompletnej implementacji."
+        },
+        "taskIds": [
+          "blue-green"
+        ]
+      },
+      {
+        "id": "coordination-retention",
+        "status": "partial",
+        "evidence": {
+          "en": "air quality app has some mechanisms but does not yet satisfy the complete v2 control.",
+          "pl": "Projekt air quality app ma część mechanizmów, ale nie spełnia jeszcze całej kontroli v2."
+        },
+        "taskIds": [
+          "immutable-deploy"
+        ]
+      },
+      {
+        "id": "observability",
+        "status": "missing",
+        "evidence": {
+          "en": "The required complete implementation was not found in the audited air quality app source.",
+          "pl": "W audytowanym źródle projektu air quality app nie znaleziono wymaganej kompletnej implementacji."
+        },
+        "taskIds": [
+          "service-observability"
+        ]
+      },
+      {
+        "id": "web-identity",
+        "status": "missing",
+        "evidence": {
+          "en": "The required complete implementation was not found in the audited air quality app source.",
+          "pl": "W audytowanym źródle projektu air quality app nie znaleziono wymaganej kompletnej implementacji."
+        },
+        "taskIds": [
+          "web-identity"
+        ]
+      }
+    ]
   }
 }

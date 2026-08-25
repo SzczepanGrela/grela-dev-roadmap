@@ -1,57 +1,149 @@
 # LeetCode Solutions — status report / raport stanu
 
-Audit date / data audytu: **2026-08-24**  
-Estimated completion / szacowane ukończenie: **27%**  
-Forecast / prognoza: **2027-03-23–2027-07-09**, 12–20 h, high confidence / wysoka pewność
+Audit date / data audytu: **2026-08-25**<br>
+Estimated completion / szacowane ukończenie: **26%**<br>
+Forecast / prognoza: **2026-12-03–2027-02-08**, 9–16 h, high confidence / pewność: high
+
+> This report is synchronized from `project.json` and the versioned delivery-control catalog. / Raport jest synchronizowany z `project.json` i wersjonowanym katalogiem kontroli wdrożeniowych.
 
 ## English
 
 ### Purpose and current state
 
-LeetCode Solutions is a small collection of 15 Python solution files. It currently lacks the repository layer expected of a public learning portfolio: no README, license, tests or CI were found. It is not a hosted application.
+Small collection of Python solutions awaiting indexing, tests and repository standardization.
 
-### Completed and verified
+Progress reflects solved exercises, not repository readiness.
 
-- Fifteen Python solution files are present.
-- The repository demonstrates completed algorithm exercises.
-- The remaining work is well bounded and has few infrastructure dependencies.
+### Audit evidence
 
-### Remaining work and known issues
+- **Repozytorium:** `SzczepanGrela/leetcode` @ `2f2c8f7c97a360f9a12f12f0e082cea892581e61`
+- **Source state:** clean public main shallow clone
+- **Tests and CI:** No GitHub Actions runs, ruleset or environment were found.
+- **Production:** Not applicable: source solutions remain a repository, not a service.
 
-- Add a README index with problem links, difficulty, topic, approach and complexity.
-- Confirm that repository content contains original solutions rather than copied problem statements.
-- Choose a license for original code while respecting LeetCode content terms.
-- Add pytest cases for representative normal, boundary and invalid inputs.
-- Add formatting/linting and tests in CI.
-- Normalize filenames/module structure without breaking references.
-- Document how to run a single solution and the complete suite.
+### v2 standard compliance
 
-### Decisions
+Profile: **Source repository**. Statuses reflect only evidence available on the audit date.
 
-No web-hosting, NPM, Fail2ban or rate-limiting work applies. The public repository should avoid reproducing copyrighted problem statements; brief links and original explanations are sufficient.
+| Control | Status | Evidence |
+| --- | --- | --- |
+| Repository governance | Missing | GitHub returned no active ruleset or environment; remaining elements were assessed from the repository. |
+| Quality CI | Missing | No GitHub Actions runs, ruleset or environment were found. |
+| Immutable release | Missing | The required complete implementation was not found in the audited leetcode solutions source. |
+| Deployment access | Not applicable | The control does not apply to the leetcode solutions project profile. |
+| Network, TLS and client identity | Not applicable | Not applicable: source solutions remain a repository, not a service. |
+| Abuse protection | Not applicable | The control does not apply to the leetcode solutions project profile. |
+| Runtime safety | Not applicable | The control does not apply to the leetcode solutions project profile. |
+| Readiness and preflight | Not applicable | The control does not apply to the leetcode solutions project profile. |
+| Atomic promotion and rollback | Not applicable | The control does not apply to the leetcode solutions project profile. |
+| Coordination and retention | Missing | The required complete implementation was not found in the audited leetcode solutions source. |
+| Observability | Not applicable | The control does not apply to the leetcode solutions project profile. |
+| Web identity | Not applicable | The control does not apply to the leetcode solutions project profile. |
+
+### Remaining and active tasks
+
+#### Standardize fifteen solutions
+
+**Implementation · In progress · 45% · difficulty 2/5 · 2–4 h**
+
+Solutions need consistent interfaces, naming and edge-case handling.
+
+#### Add parameterized correctness tests
+
+**Quality · Planned · 0% · difficulty 3/5 · 3–4 h**
+
+No automated tests or workflow runs exist.
+
+#### Add Quality and protected main
+
+**Quality · Planned · 0% · difficulty 2/5 · 1–2 h**
+
+GitHub returned no Actions run or ruleset.
+
+#### Add README, original explanations and MIT
+
+**Documentation · Planned · 0% · difficulty 2/5 · 2–4 h**
+
+The public repository lacks README/license metadata and should not copy problem statements.
+
+#### Rename and tag a versioned snapshot
+
+**Delivery · In progress · 30% · difficulty 2/5 · 1–2 h**
+
+The target repository naming and versioned source snapshot are not finished.
+
+### Architecture decisions
+
+- Do not build a hosted service; an optional future index may be static.
+- The project follows the v2 standard profile: repository.
 
 ## Polski
 
-### Cel i stan bieżący
+### Cel i aktualny stan
 
-LeetCode Solutions to mały zbiór 15 plików z rozwiązaniami w Pythonie. Brakuje warstwy wymaganej od publicznego repozytorium edukacyjnego: README, licencji, testów i CI. Projekt nie jest hostowaną aplikacją.
+Mały zbiór rozwiązań Python oczekujący indeksu, testów i standaryzacji repozytorium.
 
-### Wykonane i zweryfikowane
+Postęp uwzględnia rozwiązane zadania, ale nie gotowość repozytorium.
 
-- Istnieje 15 plików rozwiązań Python.
-- Repozytorium pokazuje wykonane ćwiczenia algorytmiczne.
-- Pozostały zakres jest dobrze ograniczony i niezależny od infrastruktury.
+### Dowody audytu
 
-### Do zrobienia i znane problemy
+- **Repozytorium:** `SzczepanGrela/leetcode` @ `2f2c8f7c97a360f9a12f12f0e082cea892581e61`
+- **Stan źródła:** clean public main shallow clone
+- **Testy i CI:** No GitHub Actions runs, ruleset or environment were found.
+- **Produkcja:** Not applicable: source solutions remain a repository, not a service.
 
-- Dodać indeks README z linkiem, trudnością, tematem, podejściem i złożonością.
-- Upewnić się, że publikowane są własne rozwiązania, nie skopiowane treści zadań.
-- Wybrać licencję dla własnego kodu z poszanowaniem warunków LeetCode.
-- Dodać pytest dla przypadków typowych i brzegowych.
-- Dodać formatowanie/linting i testy w CI.
-- Ujednolicić nazwy oraz opisać uruchamianie.
+### Zgodność ze standardem v2
 
-### Decyzje
+Profil: **Repozytorium źródłowe**. Statusy odzwierciedlają wyłącznie dowody dostępne w dniu audytu.
 
-Hosting i rate limiting nie mają zastosowania. Repozytorium nie powinno kopiować chronionych treści zadań; wystarczą linki i własne omówienia.
+| Kontrola | Status | Dowód |
+| --- | --- | --- |
+| Zarządzanie repozytorium | Brak | GitHub nie zwrócił aktywnego rulesetu ani środowiska; pozostałe elementy oceniono z repozytorium. |
+| Quality CI | Brak | GitHub nie zwrócił żadnego wykonanego workflow Quality dla tego repozytorium. |
+| Niezmienne wydanie | Brak | W audytowanym źródle projektu leetcode solutions nie znaleziono wymaganej kompletnej implementacji. |
+| Dostęp wdrożeniowy | Nie dotyczy | Kontrola nie dotyczy profilu projektu leetcode solutions. |
+| Sieć, TLS i tożsamość klienta | Nie dotyczy | Kontrola sieci webowej i TLS nie dotyczy tego profilu projektu. |
+| Ochrona przed nadużyciami | Nie dotyczy | Kontrola nie dotyczy profilu projektu leetcode solutions. |
+| Bezpieczeństwo runtime | Nie dotyczy | Kontrola nie dotyczy profilu projektu leetcode solutions. |
+| Readiness i preflight | Nie dotyczy | Kontrola nie dotyczy profilu projektu leetcode solutions. |
+| Atomowa promocja i rollback | Nie dotyczy | Kontrola nie dotyczy profilu projektu leetcode solutions. |
+| Koordynacja i retencja | Brak | W audytowanym źródle projektu leetcode solutions nie znaleziono wymaganej kompletnej implementacji. |
+| Obserwowalność | Nie dotyczy | Kontrola nie dotyczy profilu projektu leetcode solutions. |
+| Tożsamość webowa | Nie dotyczy | Kontrola nie dotyczy profilu projektu leetcode solutions. |
 
+### Zadania pozostałe i bieżące
+
+#### Ujednolicić piętnaście rozwiązań
+
+**Implementacja · W toku · 45% · trudność 2/5 · 2–4 h**
+
+Solutions need consistent interfaces, naming and edge-case handling.
+
+#### Dodać parametryzowane testy poprawności
+
+**Jakość · Planowane · 0% · trudność 3/5 · 3–4 h**
+
+No automated tests or workflow runs exist.
+
+#### Dodać Quality i chroniony main
+
+**Jakość · Planowane · 0% · trudność 2/5 · 1–2 h**
+
+GitHub returned no Actions run or ruleset.
+
+#### Dodać README, własne omówienia i MIT
+
+**Dokumentacja · Planowane · 0% · trudność 2/5 · 2–4 h**
+
+The public repository lacks README/license metadata and should not copy problem statements.
+
+#### Zmienić nazwę i oznaczyć wersjonowany snapshot
+
+**Wdrożenie · W toku · 30% · trudność 2/5 · 1–2 h**
+
+The target repository naming and versioned source snapshot are not finished.
+
+### Decyzje architektoniczne
+
+- Nie budować usługi; ewentualny indeks może być statyczny.
+- Projekt podlega profilowi standardu v2: repository.

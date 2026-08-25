@@ -1,65 +1,199 @@
 # URL Shortener System — status report / raport stanu
 
-Audit date / data audytu: **2026-08-24**  
-Estimated completion / szacowane ukończenie: **36%**  
-Forecast / prognoza: **2026-12-25–2027-02-24**, 80–120 h, low confidence / niska pewność
+Audit date / data audytu: **2026-08-25**<br>
+Estimated completion / szacowane ukończenie: **25%**<br>
+Forecast / prognoza: **2026-10-27–2026-12-08**, 70–115 h, low confidence / pewność: low
+
+> This report is synchronized from `project.json` and the versioned delivery-control catalog. / Raport jest synchronizowany z `project.json` i wersjonowanym katalogiem kontroli wdrożeniowych.
 
 ## English
 
 ### Purpose and current state
 
-URL Shortener System is an early backend for creating short links, redirecting visitors and collecting analytics. It is still on `master` and lacks a README, license, CI, Docker packaging and user interface. No public `s.grela.dev` DNS route was confirmed. Its abuse profile is materially higher than a normal portfolio page.
+URL shortening and analytics services awaiting production modernization and a public UI.
 
-### Completed and verified
+This is a substantial modernization rather than a simple containerization task.
 
-- Core shortening, redirect and analytics concepts are represented in code.
-- A generic global limiter exists.
-- The repository provides enough foundation to continue rather than restart.
+### Audit evidence
 
-### Remaining work and known issues
+- **Repozytorium:** `SzczepanGrela/UrlShortenerSystem` @ `5596d689aefbf80ac12700a9e9ff77ca14702112`
+- **Source state:** clean public master shallow clone
+- **Tests and CI:** No GitHub Actions runs, ruleset or environment were found.
+- **Production:** s.grela.dev did not resolve in public DNS on 2026-08-25.
 
-- Define ownership, visibility, retention and abuse-reporting rules before public launch.
-- Rename the default branch to `main` and add README, license, tests and CI.
-- Add Docker packaging, health/readiness checks and deployment automation.
-- Replace direct trust of arbitrary `X-Forwarded-For` with framework proxy handling restricted to known Cloudflare/NPM hops.
-- Replace unbounded per-click background tasks with a bounded queue/channel and graceful shutdown.
-- Introduce distributed, atomic limiter state (Redis) for create, redirect and analytics workloads.
-- Apply much stricter limits to anonymous link creation than redirects; use account/IP/device or abuse-signal combinations where appropriate.
-- Validate target schemes, block unsafe destinations where policy requires it, and add malware/phishing reporting and administrative takedown.
-- Add bounded analytics aggregation, privacy documentation and data expiry.
-- Build a minimal accessible UI and browser tests.
-- Use candidate preflight/rollback, then blue-green only after shared state and schema compatibility exist.
+### v2 standard compliance
 
-### Decisions
+Profile: **VPS web application**. Statuses reflect only evidence available on the audit date.
 
-This project needs a dedicated rate-limit profile, not only the shared defaults. Token bucket is suitable for bounded bursts, fixed/sliding windows are useful for quotas, and concurrency/queue limits protect analytics processing. Fail2ban is not a substitute for application abuse controls because valid HTTP requests can still be malicious.
+| Control | Status | Evidence |
+| --- | --- | --- |
+| Repository governance | Missing | GitHub returned no active ruleset or environment; remaining elements were assessed from the repository. |
+| Quality CI | Missing | No GitHub Actions runs, ruleset or environment were found. |
+| Immutable release | Missing | The required complete implementation was not found in the audited url shortener system source. |
+| Deployment access | Missing | The required complete implementation was not found in the audited url shortener system source. |
+| Network, TLS and client identity | Missing | s.grela.dev did not resolve in public DNS on 2026-08-25. |
+| Abuse protection | Partial | url shortener system has some mechanisms but does not yet satisfy the complete v2 control. |
+| Runtime safety | Missing | The required complete implementation was not found in the audited url shortener system source. |
+| Readiness and preflight | Partial | url shortener system has some mechanisms but does not yet satisfy the complete v2 control. |
+| Atomic promotion and rollback | Missing | The required complete implementation was not found in the audited url shortener system source. |
+| Coordination and retention | Missing | The required complete implementation was not found in the audited url shortener system source. |
+| Observability | Missing | The required complete implementation was not found in the audited url shortener system source. |
+| Web identity | Missing | The required complete implementation was not found in the audited url shortener system source. |
+
+### Remaining and active tasks
+
+#### Fix XFF, SSRF and endpoint policies
+
+**Implementation · In progress · 45% · difficulty 5/5 · 18–28 h**
+
+The API has tests and an in-memory limiter, but trusts unsafe client identity and lacks cost-separated policies.
+
+#### Bound and harden the analytics queue
+
+**Implementation · In progress · 35% · difficulty 4/5 · 6–10 h**
+
+Analytics needs bounded ingestion, backpressure and failure isolation.
+
+#### Restore security, integration and load tests
+
+**Quality · In progress · 40% · difficulty 4/5 · 12–20 h**
+
+Tests exist in source but no workflow run verifies them on GitHub.
+
+#### Move to main, CI and a ruleset
+
+**Quality · Planned · 0% · difficulty 3/5 · 2–3 h**
+
+The default branch remains master and GitHub has no workflow or ruleset.
+
+#### Rename and document the architecture
+
+**Documentation · In progress · 25% · difficulty 3/5 · 6–10 h**
+
+The repository lacks a public README/license baseline and target deployment documentation.
+
+#### Build an accessible UI and production containers
+
+**Delivery · Planned · 0% · difficulty 5/5 · 12–20 h**
+
+No frontend, production container topology or deployment workflow is present.
+
+#### Add immutable CI/CD, preflight and blue-green
+
+**Delivery · Planned · 0% · difficulty 5/5 · 8–14 h**
+
+GHCR digests, OIDC deploy, stable routing and rollback do not exist.
+
+#### Configure domain, limits and monitoring
+
+**Delivery · Planned · 0% · difficulty 4/5 · 5–8 h**
+
+The target DNS is absent and edge/proxy limits and monitoring are not configured.
+
+#### Add favicon and public UI metadata
+
+**Documentation · Planned · 0% · difficulty 2/5 · 1–2 h**
+
+No web frontend or favicon exists.
+
+### Architecture decisions
+
+- Redirect traffic must not share the low creation limit.
+- Use trusted proxy middleware, SSRF/private-address validation and a bounded analytics worker.
+- The project follows the v2 standard profile: vps-web.
 
 ## Polski
 
-### Cel i stan bieżący
+### Cel i aktualny stan
 
-URL Shortener System to wczesny backend skracania linków, przekierowań i analityki. Nadal używa gałęzi `master`, nie ma README, licencji, CI, Dockera ani interfejsu. Nie potwierdzono domeny `s.grela.dev`. Ryzyko nadużyć jest znacznie wyższe niż dla zwykłej strony portfolio.
+Usługi skracania URL i analityki oczekujące modernizacji produkcyjnej oraz publicznego UI.
 
-### Wykonane i zweryfikowane
+To duża modernizacja, a nie tylko konteneryzacja.
 
-- Kod reprezentuje podstawy skracania, redirectów i analityki.
-- Istnieje ogólny globalny limiter.
-- Projekt ma fundament pozwalający go rozwijać bez przepisywania od zera.
+### Dowody audytu
 
-### Do zrobienia i znane problemy
+- **Repozytorium:** `SzczepanGrela/UrlShortenerSystem` @ `5596d689aefbf80ac12700a9e9ff77ca14702112`
+- **Stan źródła:** clean public master shallow clone
+- **Testy i CI:** No GitHub Actions runs, ruleset or environment were found.
+- **Produkcja:** s.grela.dev did not resolve in public DNS on 2026-08-25.
 
-- Przed publikacją ustalić własność, widoczność, retencję i obsługę zgłoszeń.
-- Przejść na `main`, dodać README, licencję, testy i CI.
-- Dodać Docker, health/readiness i automatyczny deploy.
-- Nie ufać bezpośrednio dowolnemu `X-Forwarded-For`; akceptować proxy wyłącznie z znanych warstw.
-- Zastąpić nieograniczone taski na każde kliknięcie ograniczoną kolejką z poprawnym shutdownem.
-- Wdrożyć atomowy, współdzielony limiter w Redis.
-- Silnie ograniczyć anonimowe tworzenie linków, ale zachować wysoką przepustowość redirectów.
-- Walidować schematy celów, dodać zgłoszenia phishingu/malware i administracyjny takedown.
-- Ograniczyć i opisać analitykę oraz retencję danych.
-- Dodać dostępny UI, browser tests, preflight/rollback i później blue-green.
+### Zgodność ze standardem v2
 
-### Decyzje
+Profil: **Aplikacja webowa na VPS**. Statusy odzwierciedlają wyłącznie dowody dostępne w dniu audytu.
 
-Projekt potrzebuje własnego profilu limitów. Token bucket obsłuży kontrolowane bursty, okna limity okresowe, a ograniczenia kolejki i współbieżności ochronią analitykę. Fail2ban nie zastępuje ochrony semantycznej aplikacji.
+| Kontrola | Status | Dowód |
+| --- | --- | --- |
+| Zarządzanie repozytorium | Brak | GitHub nie zwrócił aktywnego rulesetu ani środowiska; pozostałe elementy oceniono z repozytorium. |
+| Quality CI | Brak | GitHub nie zwrócił żadnego wykonanego workflow Quality dla tego repozytorium. |
+| Niezmienne wydanie | Brak | W audytowanym źródle projektu url shortener system nie znaleziono wymaganej kompletnej implementacji. |
+| Dostęp wdrożeniowy | Brak | W audytowanym źródle projektu url shortener system nie znaleziono wymaganej kompletnej implementacji. |
+| Sieć, TLS i tożsamość klienta | Brak | Docelowa domena lub kompletna konfiguracja routingu/TLS nie jest obecnie dostępna. |
+| Ochrona przed nadużyciami | Częściowe | Projekt url shortener system ma część mechanizmów, ale nie spełnia jeszcze całej kontroli v2. |
+| Bezpieczeństwo runtime | Brak | W audytowanym źródle projektu url shortener system nie znaleziono wymaganej kompletnej implementacji. |
+| Readiness i preflight | Częściowe | Projekt url shortener system ma część mechanizmów, ale nie spełnia jeszcze całej kontroli v2. |
+| Atomowa promocja i rollback | Brak | W audytowanym źródle projektu url shortener system nie znaleziono wymaganej kompletnej implementacji. |
+| Koordynacja i retencja | Brak | W audytowanym źródle projektu url shortener system nie znaleziono wymaganej kompletnej implementacji. |
+| Obserwowalność | Brak | W audytowanym źródle projektu url shortener system nie znaleziono wymaganej kompletnej implementacji. |
+| Tożsamość webowa | Brak | W audytowanym źródle projektu url shortener system nie znaleziono wymaganej kompletnej implementacji. |
 
+### Zadania pozostałe i bieżące
+
+#### Naprawić XFF, SSRF i polityki endpointów
+
+**Implementacja · W toku · 45% · trudność 5/5 · 18–28 h**
+
+The API has tests and an in-memory limiter, but trusts unsafe client identity and lacks cost-separated policies.
+
+#### Ograniczyć i uodpornić kolejkę analityki
+
+**Implementacja · W toku · 35% · trudność 4/5 · 6–10 h**
+
+Analytics needs bounded ingestion, backpressure and failure isolation.
+
+#### Przywrócić testy bezpieczeństwa, integracji i load
+
+**Jakość · W toku · 40% · trudność 4/5 · 12–20 h**
+
+Tests exist in source but no workflow run verifies them on GitHub.
+
+#### Przejść na main, CI i ruleset
+
+**Jakość · Planowane · 0% · trudność 3/5 · 2–3 h**
+
+The default branch remains master and GitHub has no workflow or ruleset.
+
+#### Zmienić nazwę i udokumentować architekturę
+
+**Dokumentacja · W toku · 25% · trudność 3/5 · 6–10 h**
+
+The repository lacks a public README/license baseline and target deployment documentation.
+
+#### Zbudować dostępny UI i kontenery produkcyjne
+
+**Wdrożenie · Planowane · 0% · trudność 5/5 · 12–20 h**
+
+No frontend, production container topology or deployment workflow is present.
+
+#### Dodać niezmienne CI/CD, preflight i blue-green
+
+**Wdrożenie · Planowane · 0% · trudność 5/5 · 8–14 h**
+
+GHCR digests, OIDC deploy, stable routing and rollback do not exist.
+
+#### Skonfigurować domenę, limity i monitoring
+
+**Wdrożenie · Planowane · 0% · trudność 4/5 · 5–8 h**
+
+The target DNS is absent and edge/proxy limits and monitoring are not configured.
+
+#### Dodać favicon i metadane publicznego UI
+
+**Dokumentacja · Planowane · 0% · trudność 2/5 · 1–2 h**
+
+No web frontend or favicon exists.
+
+### Decyzje architektoniczne
+
+- Ruch przekierowań nie może dzielić niskiego limitu tworzenia.
+- Użyć trusted proxy, ochrony SSRF/private IP i ograniczonego workera analityki.
+- Projekt podlega profilowi standardu v2: vps-web.

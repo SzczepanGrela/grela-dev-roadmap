@@ -1,66 +1,199 @@
 # Flatfinder — status report / raport stanu
 
-Audit date / data audytu: **2026-08-24**  
-Estimated completion / szacowane ukończenie: **43%**  
-Forecast / prognoza: **2027-03-05–2027-06-09**, 160–240 h, low confidence / niska pewność
+Audit date / data audytu: **2026-08-25**<br>
+Estimated completion / szacowane ukończenie: **26%**<br>
+Forecast / prognoza: **2026-11-24–2027-01-21**, 119–192 h, low confidence / pewność: low
+
+> This report is synchronized from `project.json` and the versioned delivery-control catalog. / Raport jest synchronizowany z `project.json` i wersjonowanym katalogiem kontroli wdrożeniowych.
 
 ## English
 
 ### Purpose and current state
 
-Flatfinder combines property scraping, backend processing and model/training work. The backend and data pipeline are substantial, but the frontend is still a placeholder and deployment is a stub. The last two CI runs were red; their retained logs were no longer available (HTTP 410), so the root failure must be reproduced. No license or public hostname is ready.
+Multi-portal property search, scraping and multimodal classification platform under reconstruction.
 
-### Completed and verified
+The report separates the impressive code volume from milestone completion and deploy readiness.
 
-- Significant scraper, backend and training code exists.
-- The project has CI definitions and a non-trivial technical foundation.
-- Repository and workflow state were audited without changing its dirty or generated content.
+### Audit evidence
 
-### Remaining work and known issues
+- **Repozytorium:** `SzczepanGrela/OlxScrapper` @ `28885c20643b6cf68fbd55d2b9dc0df90383c77f`
+- **Source state:** clean public main shallow clone with failing CI
+- **Tests and CI:** The latest two CI runs failed at 28885c2 and a752d73; no ruleset or environment exists.
+- **Production:** flatfinder.grela.dev did not resolve in public DNS on 2026-08-25.
 
-- Reproduce current CI locally or in a fresh run and repair the actual failures.
-- Remove the tracked local-only `.claude/settings.local.json` from version control and document safe local configuration; inspect history before public release.
-- Add a license only after checking rights to training data, listing data and third-party assets.
-- Replace the frontend placeholder with a scoped usable interface.
-- Define lawful data-source terms, robots/politeness behavior, retention, deletion and provenance.
-- Bound scraper concurrency, apply per-source delay/jitter/backoff and respect provider-specific constraints.
-- Separate public UI/API limits from scraper job quotas and administrative training operations.
-- Add a durable job queue, idempotency, retry limits and observability.
-- Package services, add health/readiness and configure the future `flatfinder.grela.dev` route.
-- Design schema-compatible preflight/rollback and eventual blue-green deployment.
-- Add end-to-end tests using stable fixtures instead of depending on live listing pages.
+### v2 standard compliance
 
-### Decisions
+Profile: **VPS web application**. Statuses reflect only evidence available on the audit date.
 
-Flatfinder gets a specialized policy: per-source crawl budgets and concurrency are more important than a single HTTP requests-per-minute number. Public endpoints still use Cloudflare/NPM/application layers, while workers use queues, provider quotas and backpressure. The forecast excludes legal approval delays and therefore remains low confidence.
+| Control | Status | Evidence |
+| --- | --- | --- |
+| Repository governance | Partial | GitHub returned no active ruleset or environment; remaining elements were assessed from the repository. |
+| Quality CI | Blocked | The latest two CI runs failed at 28885c2 and a752d73; no ruleset or environment exists. |
+| Immutable release | Missing | The required complete implementation was not found in the audited flatfinder source. |
+| Deployment access | Missing | The required complete implementation was not found in the audited flatfinder source. |
+| Network, TLS and client identity | Missing | flatfinder.grela.dev did not resolve in public DNS on 2026-08-25. |
+| Abuse protection | Missing | The required complete implementation was not found in the audited flatfinder source. |
+| Runtime safety | Missing | The required complete implementation was not found in the audited flatfinder source. |
+| Readiness and preflight | Missing | The required complete implementation was not found in the audited flatfinder source. |
+| Atomic promotion and rollback | Missing | The required complete implementation was not found in the audited flatfinder source. |
+| Coordination and retention | Missing | The required complete implementation was not found in the audited flatfinder source. |
+| Observability | Missing | The required complete implementation was not found in the audited flatfinder source. |
+| Web identity | Partial | flatfinder has some mechanisms but does not yet satisfy the complete v2 control. |
+
+### Remaining and active tasks
+
+#### Finish package rewrite and frontend
+
+**Implementation · In progress · 45% · difficulty 5/5 · 40–64 h**
+
+The package architecture, backend, scrapers, training and frontend remain at different completion levels.
+
+#### Finish private scraping and model jobs
+
+**Implementation · In progress · 30% · difficulty 5/5 · 18–28 h**
+
+Public anonymous scraping is disallowed; authenticated bounded jobs and offline teacher/training flows remain.
+
+#### Repair CI and verify real/mock workflows
+
+**Quality · Blocked · 25% · difficulty 5/5 · 24–40 h**
+
+The latest public CI is red and blocks trustworthy milestone assessment.
+
+#### Enable a ruleset after CI repair
+
+**Quality · Planned · 0% · difficulty 2/5 · 2–3 h**
+
+GitHub returned no active ruleset or environment.
+
+#### Complete architecture and training documentation
+
+**Documentation · In progress · 45% · difficulty 4/5 · 12–20 h**
+
+The rewrite and legacy paths need a single authoritative architecture and operations description.
+
+#### Build containers and a private job platform
+
+**Delivery · Planned · 0% · difficulty 5/5 · 8–14 h**
+
+No production container/deployment topology exists.
+
+#### Add digests, migrations, preflight and blue-green
+
+**Delivery · Planned · 0% · difficulty 5/5 · 8–12 h**
+
+The stateful application requires schema-compatible promotion and exact release artifacts.
+
+#### Add job quotas, export limits and monitoring
+
+**Delivery · Planned · 0% · difficulty 4/5 · 5–8 h**
+
+Scraping, export and VLM costs require dedicated quotas and central observability.
+
+#### Finish favicon, metadata and representative preview
+
+**Documentation · In progress · 35% · difficulty 2/5 · 2–3 h**
+
+Design assets exist, but no deployed public UI verifies the final identity.
+
+### Architecture decisions
+
+- Public anonymous scraping is forbidden; use authenticated jobs and per-portal concurrency.
+- Training and teacher VLM stay offline/private.
+- The project follows the v2 standard profile: vps-web.
 
 ## Polski
 
-### Cel i stan bieżący
+### Cel i aktualny stan
 
-Flatfinder łączy scraping ofert, backend oraz trening modeli. Backend i pipeline danych są rozbudowane, ale frontend pozostaje placeholderem, a wdrożenie stubem. Dwa ostatnie CI były czerwone; logi wygasły (HTTP 410), więc błąd trzeba odtworzyć. Brak licencji i gotowej domeny.
+Wielportalowa wyszukiwarka, scraper i platforma multimodalnej klasyfikacji nieruchomości w przebudowie.
 
-### Wykonane i zweryfikowane
+Raport oddziela dużą ilość kodu od ukończenia milestone'ów i gotowości do deployu.
 
-- Istnieje znaczący kod scrapera, backendu i treningu.
-- Projekt ma definicje CI i rozbudowany fundament techniczny.
-- Stan repozytorium sprawdzono bez modyfikowania lokalnych treści.
+### Dowody audytu
 
-### Do zrobienia i znane problemy
+- **Repozytorium:** `SzczepanGrela/OlxScrapper` @ `28885c20643b6cf68fbd55d2b9dc0df90383c77f`
+- **Stan źródła:** clean public main shallow clone with failing CI
+- **Testy i CI:** The latest two CI runs failed at 28885c2 and a752d73; no ruleset or environment exists.
+- **Produkcja:** flatfinder.grela.dev did not resolve in public DNS on 2026-08-25.
 
-- Odtworzyć aktualne CI i naprawić rzeczywiste przyczyny błędów.
-- Usunąć z wersjonowania lokalny `.claude/settings.local.json`, opisać konfigurację i sprawdzić historię.
-- Dodać licencję dopiero po weryfikacji praw do danych i zasobów.
-- Zastąpić placeholder frontendu użytecznym, ograniczonym zakresem UI.
-- Ustalić zasady źródeł, robots/politeness, retencję, usuwanie i pochodzenie danych.
-- Ograniczyć współbieżność scrapera oraz dodać opóźnienia, jitter i backoff per źródło.
-- Oddzielić limity publicznego API od quota zadań scrapera i treningu.
-- Dodać trwałą kolejkę, idempotencję, ograniczone retry i obserwowalność.
-- Spakować usługi, dodać health/readiness i domenę.
-- Zaprojektować preflight/rollback oraz docelowe blue-green.
-- Dodać E2E na stabilnych fixture'ach.
+### Zgodność ze standardem v2
 
-### Decyzje
+Profil: **Aplikacja webowa na VPS**. Statusy odzwierciedlają wyłącznie dowody dostępne w dniu audytu.
 
-Najważniejsze są budżety i współbieżność per źródło, nie jeden wspólny limit HTTP. Publiczne endpointy użyją trzech warstw, a workery kolejek, quota i backpressure. Prognoza nie obejmuje ewentualnych opóźnień prawnych.
+| Kontrola | Status | Dowód |
+| --- | --- | --- |
+| Zarządzanie repozytorium | Częściowe | GitHub nie zwrócił aktywnego rulesetu ani środowiska; pozostałe elementy oceniono z repozytorium. |
+| Quality CI | Zablokowane | Najnowszy workflow Quality jest czerwony i blokuje uznanie tej kontroli za spełnioną. |
+| Niezmienne wydanie | Brak | W audytowanym źródle projektu flatfinder nie znaleziono wymaganej kompletnej implementacji. |
+| Dostęp wdrożeniowy | Brak | W audytowanym źródle projektu flatfinder nie znaleziono wymaganej kompletnej implementacji. |
+| Sieć, TLS i tożsamość klienta | Brak | Docelowa domena lub kompletna konfiguracja routingu/TLS nie jest obecnie dostępna. |
+| Ochrona przed nadużyciami | Brak | W audytowanym źródle projektu flatfinder nie znaleziono wymaganej kompletnej implementacji. |
+| Bezpieczeństwo runtime | Brak | W audytowanym źródle projektu flatfinder nie znaleziono wymaganej kompletnej implementacji. |
+| Readiness i preflight | Brak | W audytowanym źródle projektu flatfinder nie znaleziono wymaganej kompletnej implementacji. |
+| Atomowa promocja i rollback | Brak | W audytowanym źródle projektu flatfinder nie znaleziono wymaganej kompletnej implementacji. |
+| Koordynacja i retencja | Brak | W audytowanym źródle projektu flatfinder nie znaleziono wymaganej kompletnej implementacji. |
+| Obserwowalność | Brak | W audytowanym źródle projektu flatfinder nie znaleziono wymaganej kompletnej implementacji. |
+| Tożsamość webowa | Częściowe | Projekt flatfinder ma część mechanizmów, ale nie spełnia jeszcze całej kontroli v2. |
 
+### Zadania pozostałe i bieżące
+
+#### Dokończyć rewrite pakietów i frontend
+
+**Implementacja · W toku · 45% · trudność 5/5 · 40–64 h**
+
+The package architecture, backend, scrapers, training and frontend remain at different completion levels.
+
+#### Dokończyć prywatne joby scrapingu i modeli
+
+**Implementacja · W toku · 30% · trudność 5/5 · 18–28 h**
+
+Public anonymous scraping is disallowed; authenticated bounded jobs and offline teacher/training flows remain.
+
+#### Naprawić CI i zweryfikować real/mock workflows
+
+**Jakość · Zablokowane · 25% · trudność 5/5 · 24–40 h**
+
+The latest public CI is red and blocks trustworthy milestone assessment.
+
+#### Włączyć ruleset po naprawie CI
+
+**Jakość · Planowane · 0% · trudność 2/5 · 2–3 h**
+
+GitHub returned no active ruleset or environment.
+
+#### Dokończyć dokumentację architektury i treningu
+
+**Dokumentacja · W toku · 45% · trudność 4/5 · 12–20 h**
+
+The rewrite and legacy paths need a single authoritative architecture and operations description.
+
+#### Zbudować kontenery i prywatną platformę jobową
+
+**Wdrożenie · Planowane · 0% · trudność 5/5 · 8–14 h**
+
+No production container/deployment topology exists.
+
+#### Dodać digests, migracje, preflight i blue-green
+
+**Wdrożenie · Planowane · 0% · trudność 5/5 · 8–12 h**
+
+The stateful application requires schema-compatible promotion and exact release artifacts.
+
+#### Dodać quota jobów, limity eksportu i monitoring
+
+**Wdrożenie · Planowane · 0% · trudność 4/5 · 5–8 h**
+
+Scraping, export and VLM costs require dedicated quotas and central observability.
+
+#### Dokończyć favicon, metadane i reprezentatywny podgląd
+
+**Dokumentacja · W toku · 35% · trudność 2/5 · 2–3 h**
+
+Design assets exist, but no deployed public UI verifies the final identity.
+
+### Decyzje architektoniczne
+
+- Publiczny anonimowy scraping jest zabroniony; używać uwierzytelnionych jobów i concurrency per portal.
+- Trening i teacher VLM pozostają offline/prywatne.
+- Projekt podlega profilowi standardu v2: vps-web.

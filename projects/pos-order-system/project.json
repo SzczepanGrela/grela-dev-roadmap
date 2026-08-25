@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 1,
+  "schemaVersion": 2,
   "slug": "pos-order-system",
   "order": 2,
   "name": {
@@ -36,22 +36,22 @@
   },
   "status": "paused",
   "progress": {
-    "implementation": 75,
-    "quality": 25,
-    "documentation": 85,
-    "delivery": 45,
-    "overall": 59
+    "implementation": 55,
+    "quality": 0,
+    "documentation": 70,
+    "delivery": 0,
+    "overall": 32
   },
   "complexity": 3,
   "forecast": {
-    "remainingHoursMin": 11,
-    "remainingHoursMax": 19,
-    "remainingDaysMin": 1.5,
-    "remainingDaysMax": 2.5,
+    "remainingHoursMin": 13,
+    "remainingHoursMax": 23,
+    "remainingDaysMin": 1.75,
+    "remainingDaysMax": 3,
     "hoursPerDay": 8,
     "hoursPerWeek": 30,
-    "earliest": "2026-09-06",
-    "latest": "2026-09-09",
+    "earliest": "2026-09-01",
+    "latest": "2026-09-08",
     "confidence": "medium"
   },
   "estimation": {
@@ -72,79 +72,96 @@
   },
   "tasks": [
     {
-      "id": "implementation",
+      "id": "desktop-stability",
       "title": {
-        "en": "Stabilize the existing desktop application",
-        "pl": "Ustabilizować aplikację desktopową"
+        "en": "Separate logic from UI and fix deferred defects",
+        "pl": "Oddzielić logikę od UI i naprawić odłożone błędy"
       },
       "dimension": "implementation",
       "status": "in-progress",
-      "completion": 75,
-      "weight": 1,
+      "completion": 55,
+      "weight": 2,
       "difficulty": 3,
       "hoursMin": 3,
       "hoursMax": 5,
       "daysMin": 0.5,
       "daysMax": 0.75,
-      "evidence": "Repository is clean and compiles through dotnet test, but no test assembly ran."
+      "evidence": "The desktop application still couples behavior to UI and has deferred defects."
     },
     {
-      "id": "quality",
+      "id": "desktop-tests",
       "title": {
-        "en": "Create automated logic and smoke tests",
-        "pl": "Utworzyć testy logiki i smoke"
+        "en": "Add logic and application smoke tests",
+        "pl": "Dodać testy logiki i smoke aplikacji"
       },
       "dimension": "quality",
-      "status": "in-progress",
-      "completion": 25,
-      "weight": 1,
+      "status": "planned",
+      "completion": 0,
+      "weight": 2,
       "difficulty": 3,
       "hoursMin": 4,
       "hoursMax": 7,
       "daysMin": 0.5,
       "daysMax": 1,
-      "evidence": "No CI runs and no effective automated test suite were found."
+      "evidence": "No automated test or GitHub Actions evidence was found."
     },
     {
-      "id": "documentation",
+      "id": "repository-governance",
       "title": {
-        "en": "Complete repository and usage documentation",
-        "pl": "Dokończyć dokumentację repozytorium i użycia"
+        "en": "Add CI and protect the default branch",
+        "pl": "Dodać CI i ochronę głównej gałęzi"
       },
-      "dimension": "documentation",
-      "status": "in-progress",
-      "completion": 85,
+      "dimension": "quality",
+      "status": "planned",
+      "completion": 0,
       "weight": 1,
       "difficulty": 2,
       "hoursMin": 1,
       "hoursMax": 2,
       "daysMin": 0.25,
       "daysMax": 0.25,
-      "evidence": "English README and MIT license exist."
+      "evidence": "GitHub returned no workflow runs or ruleset."
     },
     {
-      "id": "delivery",
+      "id": "desktop-docs",
       "title": {
-        "en": "Automate a Windows desktop release",
-        "pl": "Zautomatyzować wydanie Windows"
+        "en": "Complete usage and maintenance documentation",
+        "pl": "Dokończyć instrukcję użytkowania i utrzymania"
+      },
+      "dimension": "documentation",
+      "status": "in-progress",
+      "completion": 70,
+      "weight": 1,
+      "difficulty": 2,
+      "hoursMin": 1,
+      "hoursMax": 2,
+      "daysMin": 0.25,
+      "daysMax": 0.25,
+      "evidence": "README and MIT exist; release and troubleshooting instructions remain incomplete."
+    },
+    {
+      "id": "windows-release",
+      "title": {
+        "en": "Publish a versioned Windows package with checksum",
+        "pl": "Publikować wersjonowaną paczkę Windows z checksumą"
       },
       "dimension": "delivery",
-      "status": "in-progress",
-      "completion": 45,
-      "weight": 1,
+      "status": "planned",
+      "completion": 0,
+      "weight": 2,
       "difficulty": 3,
-      "hoursMin": 3,
-      "hoursMax": 5,
+      "hoursMin": 4,
+      "hoursMax": 7,
       "daysMin": 0.5,
-      "daysMax": 0.75,
-      "evidence": "No workflow or release artifact is configured."
+      "daysMax": 1,
+      "evidence": "There is no reproducible, checksummed desktop release workflow."
     }
   ],
   "verification": {
-    "worktree": "clean",
-    "tests": "dotnet test exited 0 but discovered no tests",
-    "ci": "no GitHub Actions runs",
-    "production": "not applicable; desktop-only decision"
+    "worktree": "clean local worktree",
+    "tests": "No GitHub Actions runs, ruleset or environment were found.",
+    "ci": "No GitHub Actions runs, ruleset or environment were found.",
+    "production": "Not applicable: the project remains a Windows desktop application."
   },
   "media": {
     "screenshot": "assets/screenshots/pos-order-system.png",
@@ -160,17 +177,145 @@
     {
       "en": "Web rate limiting and blue-green deployment do not apply.",
       "pl": "Webowy rate limiting i blue-green nie mają zastosowania."
+    },
+    {
+      "en": "The project follows the v2 standard profile: desktop.",
+      "pl": "Projekt podlega profilowi standardu v2: desktop."
     }
   ],
   "audit": {
-    "date": "2026-08-24",
+    "date": "2026-08-25",
     "sources": [
-      "local worktree and git history",
-      "GitHub repository metadata"
+      "audited source tree and git status",
+      "GitHub repository, Actions, rulesets and environments API",
+      "public DNS and HTTPS checks where applicable"
     ],
     "notes": {
       "en": "The previous hosting entry was an architectural mismatch and is removed.",
       "pl": "Poprzedni plan hostingu był niespójny z architekturą i został usunięty."
     }
+  },
+  "compliance": {
+    "standardVersion": 2,
+    "profile": "desktop",
+    "assessmentDate": "2026-08-25",
+    "controls": [
+      {
+        "id": "governance",
+        "status": "partial",
+        "evidence": {
+          "en": "GitHub returned no active ruleset or environment; remaining elements were assessed from the repository.",
+          "pl": "GitHub nie zwrócił aktywnego rulesetu ani środowiska; pozostałe elementy oceniono z repozytorium."
+        },
+        "taskIds": [
+          "repository-governance"
+        ]
+      },
+      {
+        "id": "quality-ci",
+        "status": "missing",
+        "evidence": {
+          "en": "No GitHub Actions runs, ruleset or environment were found.",
+          "pl": "GitHub nie zwrócił żadnego wykonanego workflow Quality dla tego repozytorium."
+        },
+        "taskIds": [
+          "desktop-tests"
+        ]
+      },
+      {
+        "id": "immutable-release",
+        "status": "missing",
+        "evidence": {
+          "en": "The required complete implementation was not found in the audited pos order system source.",
+          "pl": "W audytowanym źródle projektu pos order system nie znaleziono wymaganej kompletnej implementacji."
+        },
+        "taskIds": [
+          "windows-release"
+        ]
+      },
+      {
+        "id": "deployment-access",
+        "status": "not-applicable",
+        "evidence": {
+          "en": "The control does not apply to the pos order system project profile.",
+          "pl": "Kontrola nie dotyczy profilu projektu pos order system."
+        },
+        "taskIds": []
+      },
+      {
+        "id": "network-tls-client-ip",
+        "status": "not-applicable",
+        "evidence": {
+          "en": "Not applicable: the project remains a Windows desktop application.",
+          "pl": "Kontrola sieci webowej i TLS nie dotyczy tego profilu projektu."
+        },
+        "taskIds": []
+      },
+      {
+        "id": "abuse-protection",
+        "status": "not-applicable",
+        "evidence": {
+          "en": "The control does not apply to the pos order system project profile.",
+          "pl": "Kontrola nie dotyczy profilu projektu pos order system."
+        },
+        "taskIds": []
+      },
+      {
+        "id": "runtime-safety",
+        "status": "not-applicable",
+        "evidence": {
+          "en": "The control does not apply to the pos order system project profile.",
+          "pl": "Kontrola nie dotyczy profilu projektu pos order system."
+        },
+        "taskIds": []
+      },
+      {
+        "id": "readiness-preflight",
+        "status": "not-applicable",
+        "evidence": {
+          "en": "The control does not apply to the pos order system project profile.",
+          "pl": "Kontrola nie dotyczy profilu projektu pos order system."
+        },
+        "taskIds": []
+      },
+      {
+        "id": "atomic-promotion-rollback",
+        "status": "not-applicable",
+        "evidence": {
+          "en": "The control does not apply to the pos order system project profile.",
+          "pl": "Kontrola nie dotyczy profilu projektu pos order system."
+        },
+        "taskIds": []
+      },
+      {
+        "id": "coordination-retention",
+        "status": "missing",
+        "evidence": {
+          "en": "The required complete implementation was not found in the audited pos order system source.",
+          "pl": "W audytowanym źródle projektu pos order system nie znaleziono wymaganej kompletnej implementacji."
+        },
+        "taskIds": [
+          "windows-release"
+        ]
+      },
+      {
+        "id": "observability",
+        "status": "not-applicable",
+        "evidence": {
+          "en": "The control does not apply to the pos order system project profile.",
+          "pl": "Kontrola nie dotyczy profilu projektu pos order system."
+        },
+        "taskIds": []
+      },
+      {
+        "id": "web-identity",
+        "status": "not-applicable",
+        "evidence": {
+          "en": "The control does not apply to the pos order system project profile.",
+          "pl": "Kontrola nie dotyczy profilu projektu pos order system."
+        },
+        "taskIds": []
+      }
+    ]
   }
 }

@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 1,
+  "schemaVersion": 2,
   "slug": "tic-tac-toe-ai",
   "order": 6,
   "name": {
@@ -39,115 +39,183 @@
   },
   "status": "maintenance",
   "progress": {
-    "implementation": 98,
-    "quality": 95,
-    "documentation": 95,
-    "delivery": 85,
-    "overall": 94
+    "implementation": 90,
+    "quality": 63,
+    "documentation": 80,
+    "delivery": 9,
+    "overall": 63
   },
   "complexity": 3,
   "forecast": {
-    "remainingHoursMin": 8,
-    "remainingHoursMax": 16,
-    "remainingDaysMin": 1,
-    "remainingDaysMax": 2,
+    "remainingHoursMin": 21,
+    "remainingHoursMax": 36,
+    "remainingDaysMin": 2.75,
+    "remainingDaysMax": 4.5,
     "hoursPerDay": 8,
     "hoursPerWeek": 30,
-    "earliest": "2026-09-24",
-    "latest": "2026-10-10",
+    "earliest": "2026-09-28",
+    "latest": "2026-10-21",
     "confidence": "high"
   },
   "estimation": {
     "date": "2026-08-25",
     "mode": "codex-assisted-source-audited",
     "sourceRevision": "5164282681e04d2279400d86b9a494aa817558d0",
-    "sourceState": "clean local worktree"
+    "sourceState": "local worktree with 10 changed paths after tested UI, limiter and proxy fixes"
   },
   "focus": {
     "current": {
-      "en": "Verify outer Cloudflare/NPM limits and narrow trusted proxy addresses.",
-      "pl": "Zweryfikować limity Cloudflare/NPM i zawęzić zaufane adresy proxy."
+      "en": "Ship the tested reset, scoreboard, limiter and proxy fixes.",
+      "pl": "Wypchnąć przetestowane poprawki resetu, punktacji, limitera i proxy."
     },
     "next": {
-      "en": "Move limiter state to Redis before true blue-green traffic.",
-      "pl": "Przenieść stan limiterów do Redis przed prawdziwym blue-green."
+      "en": "Move to immutable artifacts, Redis and true blue-green.",
+      "pl": "Przejść na niezmienne artefakty, Redis i prawdziwe blue-green."
     }
   },
   "tasks": [
     {
-      "id": "implementation",
+      "id": "candidate-rollout",
       "title": {
-        "en": "Maintain the completed interactive AI lab",
-        "pl": "Utrzymać ukończone laboratorium AI"
+        "en": "Ship and verify the current fixes",
+        "pl": "Wypchnąć i zweryfikować bieżące poprawki"
       },
       "dimension": "implementation",
       "status": "in-progress",
-      "completion": 98,
-      "weight": 1,
-      "difficulty": 3,
+      "completion": 90,
+      "weight": 2,
+      "difficulty": 2,
       "hoursMin": 1,
       "hoursMax": 2,
       "daysMin": 0.25,
       "daysMax": 0.25,
-      "evidence": "Human/AI/local modes, replay, localization, favicon and win animation are shipped."
+      "evidence": "Reset, scoreboard, weighted token bucket, Retry-After and trusted-proxy changes pass locally but are not deployed."
     },
     {
-      "id": "quality",
+      "id": "quality-maintenance",
       "title": {
-        "en": "Keep full quality and browser coverage green",
-        "pl": "Utrzymać testy jakości i przeglądarkowe"
+        "en": "Keep backend and browser coverage green",
+        "pl": "Utrzymać pełne testy backendu i przeglądarki"
       },
       "dimension": "quality",
       "status": "in-progress",
       "completion": 95,
-      "weight": 1,
-      "difficulty": 3,
+      "weight": 2,
+      "difficulty": 2,
       "hoursMin": 1,
-      "hoursMax": 3,
+      "hoursMax": 2,
       "daysMin": 0.25,
-      "daysMax": 0.5,
-      "evidence": "Latest Quality and Deploy workflows succeeded."
+      "daysMax": 0.25,
+      "evidence": "The candidate passes 68 non-browser and seven Playwright tests plus a Docker build."
     },
     {
-      "id": "documentation",
+      "id": "repository-governance",
       "title": {
-        "en": "Keep model and operations documentation current",
-        "pl": "Utrzymać dokumentację modeli i operacji"
+        "en": "Enable ruleset and production environment",
+        "pl": "Włączyć ruleset i środowisko production"
       },
-      "dimension": "documentation",
-      "status": "in-progress",
-      "completion": 95,
+      "dimension": "quality",
+      "status": "planned",
+      "completion": 0,
       "weight": 1,
       "difficulty": 2,
       "hoursMin": 1,
       "hoursMax": 2,
       "daysMin": 0.25,
       "daysMax": 0.25,
-      "evidence": "README, MIT and infra documentation are present."
+      "evidence": "GitHub returned no ruleset or environment."
     },
     {
-      "id": "delivery",
+      "id": "operations-docs",
       "title": {
-        "en": "Finish layered limits and blue-green readiness",
-        "pl": "Dokończyć warstwy limitów i gotowość blue-green"
+        "en": "Update limits and operations runbook",
+        "pl": "Uaktualnić limity i runbook operacyjny"
+      },
+      "dimension": "documentation",
+      "status": "in-progress",
+      "completion": 80,
+      "weight": 1,
+      "difficulty": 2,
+      "hoursMin": 1,
+      "hoursMax": 2,
+      "daysMin": 0.25,
+      "daysMax": 0.25,
+      "evidence": "Documentation must reflect weighted games, trusted proxy handling and the final deployment model."
+    },
+    {
+      "id": "edge-verification",
+      "title": {
+        "en": "Configure and test Cloudflare and NPM",
+        "pl": "Skonfigurować i przetestować Cloudflare oraz NPM"
       },
       "dimension": "delivery",
       "status": "in-progress",
-      "completion": 85,
+      "completion": 35,
+      "weight": 2,
+      "difficulty": 3,
+      "hoursMin": 2,
+      "hoursMax": 4,
+      "daysMin": 0.25,
+      "daysMax": 0.5,
+      "evidence": "Application limits exist locally; edge/proxy rules and multi-user real-IP isolation remain unverified."
+    },
+    {
+      "id": "immutable-deploy",
+      "title": {
+        "en": "Build once in CI and deploy a GHCR digest",
+        "pl": "Budować raz w CI i wdrażać digest GHCR"
+      },
+      "dimension": "delivery",
+      "status": "planned",
+      "completion": 0,
+      "weight": 2,
+      "difficulty": 4,
+      "hoursMin": 4,
+      "hoursMax": 7,
+      "daysMin": 0.5,
+      "daysMax": 1,
+      "evidence": "The VPS still builds a short-SHA image from moving main and globally prunes images."
+    },
+    {
+      "id": "blue-green-redis",
+      "title": {
+        "en": "Implement Redis, stable gateway and blue-green",
+        "pl": "Wdrożyć Redis, stabilny gateway i blue-green"
+      },
+      "dimension": "delivery",
+      "status": "planned",
+      "completion": 0,
+      "weight": 3,
+      "difficulty": 4,
+      "hoursMin": 8,
+      "hoursMax": 12,
+      "daysMin": 1,
+      "daysMax": 1.5,
+      "evidence": "The current preflight removes the checked candidate before recreating production; limiter state is process-local."
+    },
+    {
+      "id": "service-observability",
+      "title": {
+        "en": "Add 429, latency and deployment metrics",
+        "pl": "Dodać metryki 429, opóźnień i wdrożeń"
+      },
+      "dimension": "delivery",
+      "status": "planned",
+      "completion": 0,
       "weight": 1,
       "difficulty": 3,
-      "hoursMin": 5,
-      "hoursMax": 9,
-      "daysMin": 0.75,
-      "daysMax": 1.25,
-      "evidence": "Live HTTPS and preflight rollback work; steady state is not true blue-green."
+      "hoursMin": 3,
+      "hoursMax": 5,
+      "daysMin": 0.5,
+      "daysMax": 0.75,
+      "evidence": "No central metrics or alerts cover rate rejections, AI saturation and rollback failures."
     }
   ],
   "verification": {
-    "worktree": "clean at 5164282",
-    "tests": "66 backend/integration tests and 5 browser tests covered by latest CI",
-    "ci": "latest Quality and Deploy succeeded",
-    "production": "https://tictactoe.grela.dev returned HTTP 200"
+    "worktree": "local worktree with 10 changed paths after tested UI, limiter and proxy fixes",
+    "tests": "Quality and Deploy succeeded at 5164282; 68 non-browser and 7 Playwright tests pass locally for the dirty candidate; no ruleset or environment exists.",
+    "ci": "Quality and Deploy succeeded at 5164282; 68 non-browser and 7 Playwright tests pass locally for the dirty candidate; no ruleset or environment exists.",
+    "production": "tictactoe.grela.dev returned HTTPS 200 through Cloudflare; the local candidate is not deployed."
   },
   "media": {
     "screenshot": "assets/screenshots/tic-tac-toe-ai.png",
@@ -161,20 +229,161 @@
       "pl": "Zachować preflight z rollbackiem przed wdrożeniem blue-green."
     },
     {
-      "en": "Rate limits remain 30 moves/min, 3 series/min and two concurrent AI operations.",
-      "pl": "Limity pozostają 30 ruchów/min, 3 serie/min i dwie równoległe operacje AI."
+      "en": "Moves use a 30/min token bucket with burst 10; series consume tokens by requested game count.",
+      "pl": "Ruchy używają token bucket 30/min z burstem 10; serie zużywają tokeny według liczby gier."
+    },
+    {
+      "en": "The project follows the v2 standard profile: vps-web.",
+      "pl": "Projekt podlega profilowi standardu v2: vps-web."
     }
   ],
   "audit": {
-    "date": "2026-08-24",
+    "date": "2026-08-25",
     "sources": [
-      "local worktree and git history",
-      "GitHub Actions API",
-      "production HTTP"
+      "audited source tree and git status",
+      "GitHub repository, Actions, rulesets and environments API",
+      "public DNS and HTTPS checks where applicable"
     ],
     "notes": {
       "en": "The project is feature-complete and now in hardening/maintenance.",
       "pl": "Projekt jest funkcjonalnie ukończony i znajduje się w fazie hardening/maintenance."
     }
+  },
+  "compliance": {
+    "standardVersion": 2,
+    "profile": "vps-web",
+    "assessmentDate": "2026-08-25",
+    "controls": [
+      {
+        "id": "governance",
+        "status": "partial",
+        "evidence": {
+          "en": "GitHub returned no active ruleset or environment; remaining elements were assessed from the repository.",
+          "pl": "GitHub nie zwrócił aktywnego rulesetu ani środowiska; pozostałe elementy oceniono z repozytorium."
+        },
+        "taskIds": [
+          "repository-governance"
+        ]
+      },
+      {
+        "id": "quality-ci",
+        "status": "partial",
+        "evidence": {
+          "en": "Quality and Deploy succeeded at 5164282; 68 non-browser and 7 Playwright tests pass locally for the dirty candidate; no ruleset or environment exists.",
+          "pl": "Quality CI istnieje, ale nie obejmuje całego bieżącego stanu lub części wymaganych kontroli v2."
+        },
+        "taskIds": [
+          "quality-maintenance"
+        ]
+      },
+      {
+        "id": "immutable-release",
+        "status": "missing",
+        "evidence": {
+          "en": "The required complete implementation was not found in the audited tic tac toe ai source.",
+          "pl": "W audytowanym źródle projektu tic tac toe ai nie znaleziono wymaganej kompletnej implementacji."
+        },
+        "taskIds": [
+          "immutable-deploy"
+        ]
+      },
+      {
+        "id": "deployment-access",
+        "status": "partial",
+        "evidence": {
+          "en": "tic tac toe ai has some mechanisms but does not yet satisfy the complete v2 control.",
+          "pl": "Projekt tic tac toe ai ma część mechanizmów, ale nie spełnia jeszcze całej kontroli v2."
+        },
+        "taskIds": [
+          "immutable-deploy"
+        ]
+      },
+      {
+        "id": "network-tls-client-ip",
+        "status": "partial",
+        "evidence": {
+          "en": "tictactoe.grela.dev returned HTTPS 200 through Cloudflare; the local candidate is not deployed.",
+          "pl": "Część publicznego HTTPS lub routingu działa, ale pełny zaufany łańcuch sieciowy nie został potwierdzony."
+        },
+        "taskIds": [
+          "edge-verification"
+        ]
+      },
+      {
+        "id": "abuse-protection",
+        "status": "partial",
+        "evidence": {
+          "en": "tic tac toe ai has some mechanisms but does not yet satisfy the complete v2 control.",
+          "pl": "Projekt tic tac toe ai ma część mechanizmów, ale nie spełnia jeszcze całej kontroli v2."
+        },
+        "taskIds": [
+          "edge-verification"
+        ]
+      },
+      {
+        "id": "runtime-safety",
+        "status": "partial",
+        "evidence": {
+          "en": "tic tac toe ai has some mechanisms but does not yet satisfy the complete v2 control.",
+          "pl": "Projekt tic tac toe ai ma część mechanizmów, ale nie spełnia jeszcze całej kontroli v2."
+        },
+        "taskIds": [
+          "blue-green-redis"
+        ]
+      },
+      {
+        "id": "readiness-preflight",
+        "status": "partial",
+        "evidence": {
+          "en": "tic tac toe ai has some mechanisms but does not yet satisfy the complete v2 control.",
+          "pl": "Projekt tic tac toe ai ma część mechanizmów, ale nie spełnia jeszcze całej kontroli v2."
+        },
+        "taskIds": [
+          "blue-green-redis"
+        ]
+      },
+      {
+        "id": "atomic-promotion-rollback",
+        "status": "missing",
+        "evidence": {
+          "en": "The required complete implementation was not found in the audited tic tac toe ai source.",
+          "pl": "W audytowanym źródle projektu tic tac toe ai nie znaleziono wymaganej kompletnej implementacji."
+        },
+        "taskIds": [
+          "blue-green-redis"
+        ]
+      },
+      {
+        "id": "coordination-retention",
+        "status": "partial",
+        "evidence": {
+          "en": "tic tac toe ai has some mechanisms but does not yet satisfy the complete v2 control.",
+          "pl": "Projekt tic tac toe ai ma część mechanizmów, ale nie spełnia jeszcze całej kontroli v2."
+        },
+        "taskIds": [
+          "immutable-deploy"
+        ]
+      },
+      {
+        "id": "observability",
+        "status": "missing",
+        "evidence": {
+          "en": "The required complete implementation was not found in the audited tic tac toe ai source.",
+          "pl": "W audytowanym źródle projektu tic tac toe ai nie znaleziono wymaganej kompletnej implementacji."
+        },
+        "taskIds": [
+          "service-observability"
+        ]
+      },
+      {
+        "id": "web-identity",
+        "status": "complete",
+        "evidence": {
+          "en": "The audit verified full implementation of web-identity.",
+          "pl": "Audyt potwierdził pełną realizację kontroli „web-identity”."
+        },
+        "taskIds": []
+      }
+    ]
   }
 }

@@ -1,60 +1,151 @@
 # Spotify Ad Blocker — status report / raport stanu
 
-Audit date / data audytu: **2026-08-24**  
-Estimated completion / szacowane ukończenie: **54%**  
-Forecast / prognoza: **2027-03-30–2027-07-20**, 16–24 h, medium confidence / średnia pewność
+Audit date / data audytu: **2026-08-25**<br>
+Estimated completion / szacowane ukończenie: **27%**<br>
+Forecast / prognoza: **2026-12-07–2027-02-11**, 11–20 h, medium confidence / pewność: medium
+
+> This report is synchronized from `project.json` and the versioned delivery-control catalog. / Raport jest synchronizowany z `project.json` i wersjonowanym katalogiem kontroli wdrożeniowych.
 
 ## English
 
 ### Purpose and current state
 
-Spotify Ad Blocker is a desktop utility with implementation and README already present. No explicit license, automated tests or CI were found. Built executables and IDE metadata are not currently tracked. Because the project interacts with a third-party service, publication needs a clear compatibility and terms review.
+Windows tray utility that detects and skips Spotify advertisements.
 
-### Completed and verified
+The roadmap must not imply affiliation with Spotify or legal certainty.
 
-- Core desktop code and user-facing README exist.
-- The repository does not track `.idea` or built `.exe` artifacts.
-- No VPS hosting or public hostname is required.
+### Audit evidence
 
-### Remaining work and known issues
+- **Repozytorium:** `SzczepanGrela/SpotifyAdBlocker` @ `11c7a3c07a848cf48ccae709f997f99dbaea21be`
+- **Source state:** clean public main shallow clone
+- **Tests and CI:** No GitHub Actions runs, ruleset or environment were found.
+- **Production:** Not applicable: the project is a Windows desktop utility.
 
-- Review current Spotify terms and platform behavior before presenting the tool as supported.
-- Add a clear disclaimer: independent project, no Spotify affiliation, trademarks belong to their owner.
-- Decide licensing after verifying every bundled asset and dependency.
-- Add unit tests for process/state detection and failure recovery using mocks or fixtures.
-- Add CI for build/test/lint on the supported platform.
-- Document supported versions, limitations, privacy and safe uninstall.
-- Produce versioned release artifacts and checksums only after clean-machine testing.
-- Avoid collecting credentials or sensitive listening data.
+### v2 standard compliance
 
-### Decisions
+Profile: **Desktop application**. Statuses reflect only evidence available on the audit date.
 
-No server-side rate limiting applies. Any polling or Spotify API interaction should still use bounded frequency, exponential backoff and official quotas. The roadmap will use an original geometric placeholder, not Spotify artwork or logo, unless separately licensed.
+| Control | Status | Evidence |
+| --- | --- | --- |
+| Repository governance | Missing | GitHub returned no active ruleset or environment; remaining elements were assessed from the repository. |
+| Quality CI | Missing | No GitHub Actions runs, ruleset or environment were found. |
+| Immutable release | Missing | The required complete implementation was not found in the audited spotify ad blocker source. |
+| Deployment access | Not applicable | The control does not apply to the spotify ad blocker project profile. |
+| Network, TLS and client identity | Not applicable | Not applicable: the project is a Windows desktop utility. |
+| Abuse protection | Not applicable | The control does not apply to the spotify ad blocker project profile. |
+| Runtime safety | Not applicable | The control does not apply to the spotify ad blocker project profile. |
+| Readiness and preflight | Not applicable | The control does not apply to the spotify ad blocker project profile. |
+| Atomic promotion and rollback | Not applicable | The control does not apply to the spotify ad blocker project profile. |
+| Coordination and retention | Missing | The required complete implementation was not found in the audited spotify ad blocker source. |
+| Observability | Not applicable | The control does not apply to the spotify ad blocker project profile. |
+| Web identity | Not applicable | The control does not apply to the spotify ad blocker project profile. |
+
+### Remaining and active tasks
+
+#### Stabilize detection, process and audio boundaries
+
+**Implementation · In progress · 55% · difficulty 3/5 · 2–4 h**
+
+Windows integration is coupled and needs testable boundaries and safe process/audio recovery.
+
+#### Add unit tests and Windows CI
+
+**Quality · Planned · 0% · difficulty 3/5 · 3–5 h**
+
+No automated tests or workflow runs exist.
+
+#### Add a license and protected main
+
+**Quality · Planned · 0% · difficulty 2/5 · 1–2 h**
+
+GitHub reports no recognized license or ruleset.
+
+#### Publish PL/EN and compliance documentation
+
+**Documentation · In progress · 35% · difficulty 3/5 · 2–4 h**
+
+README exists, but legal limitations, troubleshooting and attribution need a bilingual treatment.
+
+#### Create a reproducible Windows release
+
+**Delivery · Planned · 0% · difficulty 3/5 · 3–5 h**
+
+No signed or checksummed versioned release workflow exists.
+
+### Architecture decisions
+
+- No web hosting or HTTP rate limiting.
+- Document compatibility and service-policy risk without claiming endorsement by Spotify.
+- The project follows the v2 standard profile: desktop.
 
 ## Polski
 
-### Cel i stan bieżący
+### Cel i aktualny stan
 
-Spotify Ad Blocker to narzędzie desktopowe z istniejącym kodem i README. Nie znaleziono licencji, testów ani CI. Repozytorium nie śledzi plików `.idea` ani zbudowanych `.exe`. Ze względu na integrację z zewnętrzną usługą publikacja wymaga przeglądu zgodności i warunków.
+Narzędzie Windows w trayu wykrywające i pomijające reklamy Spotify.
 
-### Wykonane i zweryfikowane
+Roadmapa nie może sugerować powiązania ze Spotify ani pewności prawnej.
 
-- Istnieją kod aplikacji i README.
-- Artefakty IDE i binaria nie są śledzone.
-- Projekt nie wymaga VPS ani domeny.
+### Dowody audytu
 
-### Do zrobienia i znane problemy
+- **Repozytorium:** `SzczepanGrela/SpotifyAdBlocker` @ `11c7a3c07a848cf48ccae709f997f99dbaea21be`
+- **Stan źródła:** clean public main shallow clone
+- **Testy i CI:** No GitHub Actions runs, ruleset or environment were found.
+- **Produkcja:** Not applicable: the project is a Windows desktop utility.
 
-- Sprawdzić aktualne warunki Spotify i działanie platformy.
-- Dodać informację o braku afiliacji i prawach do znaków.
-- Ustalić licencję po sprawdzeniu zasobów i zależności.
-- Dodać testy detekcji stanu/procesu i odzyskiwania na mockach.
-- Dodać CI build/test/lint.
-- Opisać wspierane wersje, ograniczenia, prywatność i odinstalowanie.
-- Wydać wersjonowane artefakty dopiero po clean-machine test.
-- Nie zbierać danych logowania ani wrażliwych danych odsłuchu.
+### Zgodność ze standardem v2
 
-### Decyzje
+Profil: **Aplikacja desktopowa**. Statusy odzwierciedlają wyłącznie dowody dostępne w dniu audytu.
 
-Limity serwerowe nie dotyczą projektu. Polling lub oficjalne API nadal wymagają ograniczonej częstotliwości, backoff i respektowania quota. Roadmapa nie wykorzysta logo Spotify bez osobnej podstawy prawnej.
+| Kontrola | Status | Dowód |
+| --- | --- | --- |
+| Zarządzanie repozytorium | Brak | GitHub nie zwrócił aktywnego rulesetu ani środowiska; pozostałe elementy oceniono z repozytorium. |
+| Quality CI | Brak | GitHub nie zwrócił żadnego wykonanego workflow Quality dla tego repozytorium. |
+| Niezmienne wydanie | Brak | W audytowanym źródle projektu spotify ad blocker nie znaleziono wymaganej kompletnej implementacji. |
+| Dostęp wdrożeniowy | Nie dotyczy | Kontrola nie dotyczy profilu projektu spotify ad blocker. |
+| Sieć, TLS i tożsamość klienta | Nie dotyczy | Kontrola sieci webowej i TLS nie dotyczy tego profilu projektu. |
+| Ochrona przed nadużyciami | Nie dotyczy | Kontrola nie dotyczy profilu projektu spotify ad blocker. |
+| Bezpieczeństwo runtime | Nie dotyczy | Kontrola nie dotyczy profilu projektu spotify ad blocker. |
+| Readiness i preflight | Nie dotyczy | Kontrola nie dotyczy profilu projektu spotify ad blocker. |
+| Atomowa promocja i rollback | Nie dotyczy | Kontrola nie dotyczy profilu projektu spotify ad blocker. |
+| Koordynacja i retencja | Brak | W audytowanym źródle projektu spotify ad blocker nie znaleziono wymaganej kompletnej implementacji. |
+| Obserwowalność | Nie dotyczy | Kontrola nie dotyczy profilu projektu spotify ad blocker. |
+| Tożsamość webowa | Nie dotyczy | Kontrola nie dotyczy profilu projektu spotify ad blocker. |
 
+### Zadania pozostałe i bieżące
+
+#### Ustabilizować granice detekcji, procesów i audio
+
+**Implementacja · W toku · 55% · trudność 3/5 · 2–4 h**
+
+Windows integration is coupled and needs testable boundaries and safe process/audio recovery.
+
+#### Dodać testy jednostkowe i CI Windows
+
+**Jakość · Planowane · 0% · trudność 3/5 · 3–5 h**
+
+No automated tests or workflow runs exist.
+
+#### Dodać licencję i chroniony main
+
+**Jakość · Planowane · 0% · trudność 2/5 · 1–2 h**
+
+GitHub reports no recognized license or ruleset.
+
+#### Opublikować dokumentację PL/EN i compliance
+
+**Dokumentacja · W toku · 35% · trudność 3/5 · 2–4 h**
+
+README exists, but legal limitations, troubleshooting and attribution need a bilingual treatment.
+
+#### Utworzyć powtarzalne wydanie Windows
+
+**Wdrożenie · Planowane · 0% · trudność 3/5 · 3–5 h**
+
+No signed or checksummed versioned release workflow exists.
+
+### Decyzje architektoniczne
+
+- Bez hostingu webowego i HTTP rate limitingu.
+- Udokumentować ryzyko zgodności bez sugerowania poparcia Spotify.
+- Projekt podlega profilowi standardu v2: desktop.

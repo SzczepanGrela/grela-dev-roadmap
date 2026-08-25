@@ -1,66 +1,175 @@
 # MovieRAG — status report / raport stanu
 
-Audit date / data audytu: **2026-08-24**  
-Estimated completion / szacowane ukończenie: **88%**  
-Forecast / prognoza: **2027-03-18–2027-07-01**, 24–40 h, medium confidence / średnia pewność
+Audit date / data audytu: **2026-08-25**<br>
+Estimated completion / szacowane ukończenie: **56%**<br>
+Forecast / prognoza: **2026-12-01–2027-02-03**, 26–43 h, medium confidence / pewność: medium
+
+> This report is synchronized from `project.json` and the versioned delivery-control catalog. / Raport jest synchronizowany z `project.json` i wersjonowanym katalogiem kontroli wdrożeniowych.
 
 ## English
 
 ### Purpose and current state
 
-MovieRAG is a deployed retrieval-augmented movie application with separate API, frontend and vector database services. It is publicly reachable at `movierag.grela.dev`, returned HTTP 200 and has green CI. The repository already contains a detailed README and roadmap, but no explicit license was found.
+Semantic and agentic movie search over plots, scenes, themes and cast.
 
-### Completed and verified
+The application is live and mature; remaining work is production polish rather than core delivery.
 
-- API, frontend and pgvector-backed retrieval stack are deployed.
-- The public HTTPS endpoint responded successfully.
-- The latest CI passed.
-- Documentation and an internal project roadmap are substantial.
-- Containerized services have been running stably on the shared VPS.
+### Audit evidence
 
-### Remaining work and known issues
+- **Repozytorium:** `SzczepanGrela/movie-rag` @ `8f525098c70afddaa0a0aba847fb3881956649cf`
+- **Source state:** clean public main shallow clone
+- **Tests and CI:** Latest CI/CD runs succeeded; GHCR images exist but use latest/short SHA deployment; no ruleset or environment exists.
+- **Production:** movierag.grela.dev returned HTTPS 200 through Cloudflare on 2026-08-25.
 
-- Decide and add a license after checking model, dataset and poster/artwork rights.
-- Complete documented backup and restore procedures and perform a restore drill.
-- Finish the planned v1 scope and reconcile this public roadmap with the project roadmap.
-- Run Lighthouse/accessibility checks and address material regressions.
-- Add separate limits for browsing/search, model inference and any ingestion/admin endpoints.
-- Use concurrency caps and queues for expensive inference/embedding work; return clear overload responses.
-- Verify Cloudflare/NPM limits and trusted proxy ranges.
-- Add candidate preflight/rollback, then blue-green for stateless API/frontend while keeping database migrations backward-compatible.
-- Add production screenshot refresh and basic service-level monitoring.
+### v2 standard compliance
 
-### Decisions
+Profile: **VPS web application**. Statuses reflect only evidence available on the audit date.
 
-MovieRAG needs cost-aware rather than purely request-count limits. Ordinary browsing can tolerate bursts, but inference, embedding and ingestion need low concurrency, queue bounds and possibly per-user quotas. The database remains a shared stateful dependency during blue-green.
+| Control | Status | Evidence |
+| --- | --- | --- |
+| Repository governance | Partial | GitHub returned no active ruleset or environment; remaining elements were assessed from the repository. |
+| Quality CI | Complete | Latest CI/CD runs succeeded; GHCR images exist but use latest/short SHA deployment; no ruleset or environment exists. |
+| Immutable release | Partial | movie rag has some mechanisms but does not yet satisfy the complete v2 control. |
+| Deployment access | Partial | movie rag has some mechanisms but does not yet satisfy the complete v2 control. |
+| Network, TLS and client identity | Partial | movierag.grela.dev returned HTTPS 200 through Cloudflare on 2026-08-25. |
+| Abuse protection | Partial | movie rag has some mechanisms but does not yet satisfy the complete v2 control. |
+| Runtime safety | Partial | movie rag has some mechanisms but does not yet satisfy the complete v2 control. |
+| Readiness and preflight | Partial | movie rag has some mechanisms but does not yet satisfy the complete v2 control. |
+| Atomic promotion and rollback | Missing | The required complete implementation was not found in the audited movie rag source. |
+| Coordination and retention | Partial | movie rag has some mechanisms but does not yet satisfy the complete v2 control. |
+| Observability | Partial | movie rag has some mechanisms but does not yet satisfy the complete v2 control. |
+| Web identity | Complete | The audit verified full implementation of web-identity. |
+
+### Remaining and active tasks
+
+#### Maintain Search and Ask AI provider resilience
+
+**Implementation · In progress · 85% · difficulty 4/5 · 3–5 h**
+
+Search and Explain are shipped with provider error handling; remaining resilience and cancellation work is bounded.
+
+#### Add load, cancellation and failure tests
+
+**Quality · In progress · 70% · difficulty 4/5 · 5–8 h**
+
+CI is green and rate-limit tests exist; public-chain and sustained-load scenarios remain.
+
+#### Add license, ruleset and production environment
+
+**Quality · Planned · 0% · difficulty 2/5 · 2–3 h**
+
+GitHub reports no recognized license, ruleset or environment.
+
+#### Complete attribution, backups and runbook
+
+**Documentation · In progress · 55% · difficulty 3/5 · 3–5 h**
+
+Operational backup/restore and licensing documentation remain incomplete.
+
+#### Split Search, Ask AI and ingestion limits
+
+**Delivery · In progress · 55% · difficulty 4/5 · 4–7 h**
+
+Ask AI has in-memory per-IP and daily limits plus Turnstile; other costly paths and shared state remain.
+
+#### Deploy digests with preflight and blue-green
+
+**Delivery · Planned · 0% · difficulty 5/5 · 6–10 h**
+
+The workflow publishes images but deploys latest/short tags and globally prunes images without true blue-green.
+
+#### Add backups, telemetry and Groq alerts
+
+**Delivery · Planned · 0% · difficulty 4/5 · 3–5 h**
+
+Central resource/deployment visibility and tested database backups were not verified.
+
+### Architecture decisions
+
+- Search and Ask AI use separate policies and SLAs.
+- Ask AI keeps Turnstile, daily quota, global concurrency and a Groq circuit breaker.
+- The project follows the v2 standard profile: vps-web.
 
 ## Polski
 
-### Cel i stan bieżący
+### Cel i aktualny stan
 
-MovieRAG to wdrożona aplikacja RAG dla filmów z osobnymi usługami API, frontendu i bazy wektorowej. `movierag.grela.dev` zwrócił HTTP 200, a CI jest zielone. Repozytorium ma szczegółowe README i roadmapę, lecz nie znaleziono jawnej licencji.
+Semantyczne i agentowe wyszukiwanie filmów po fabule, scenach, motywach i obsadzie.
 
-### Wykonane i zweryfikowane
+Aplikacja jest dojrzała i live; pozostał głównie polish produkcyjny.
 
-- API, frontend i pgvector działają na VPS.
-- Publiczny HTTPS odpowiedział poprawnie.
-- Najświeższe CI przeszło.
-- Dokumentacja i roadmapa projektu są rozbudowane.
-- Kontenery stabilnie działają na współdzielonym serwerze.
+### Dowody audytu
 
-### Do zrobienia i znane problemy
+- **Repozytorium:** `SzczepanGrela/movie-rag` @ `8f525098c70afddaa0a0aba847fb3881956649cf`
+- **Stan źródła:** clean public main shallow clone
+- **Testy i CI:** Latest CI/CD runs succeeded; GHCR images exist but use latest/short SHA deployment; no ruleset or environment exists.
+- **Produkcja:** movierag.grela.dev returned HTTPS 200 through Cloudflare on 2026-08-25.
 
-- Ustalić i dodać licencję po sprawdzeniu praw do modeli, danych i grafik.
-- Dokończyć backup/restore i wykonać próbne odtworzenie.
-- Zamknąć zakres v1 i zsynchronizować obie roadmapy.
-- Wykonać Lighthouse/accessibility i poprawić istotne regresje.
-- Rozdzielić limity przeglądania, inferencji i ingestion/admin.
-- Ograniczyć współbieżność kosztownych operacji i zastosować kolejki.
-- Zweryfikować Cloudflare/NPM i trusted proxies.
-- Dodać preflight/rollback i blue-green dla stateless usług z kompatybilnymi migracjami.
-- Automatyzować screenshot i monitoring.
+### Zgodność ze standardem v2
 
-### Decyzje
+Profil: **Aplikacja webowa na VPS**. Statusy odzwierciedlają wyłącznie dowody dostępne w dniu audytu.
 
-Limity muszą uwzględniać koszt. Przeglądanie może mieć burst, natomiast inferencja, embedding i ingestion wymagają małej współbieżności, kolejek i ewentualnie quota użytkownika. Baza pozostaje wspólną usługą stanową.
+| Kontrola | Status | Dowód |
+| --- | --- | --- |
+| Zarządzanie repozytorium | Częściowe | GitHub nie zwrócił aktywnego rulesetu ani środowiska; pozostałe elementy oceniono z repozytorium. |
+| Quality CI | Gotowe | GitHub Actions potwierdza zielony, proporcjonalny zestaw kontroli jakości dla audytowanego commitu. |
+| Niezmienne wydanie | Częściowe | Projekt movie rag ma część mechanizmów, ale nie spełnia jeszcze całej kontroli v2. |
+| Dostęp wdrożeniowy | Częściowe | Projekt movie rag ma część mechanizmów, ale nie spełnia jeszcze całej kontroli v2. |
+| Sieć, TLS i tożsamość klienta | Częściowe | Część publicznego HTTPS lub routingu działa, ale pełny zaufany łańcuch sieciowy nie został potwierdzony. |
+| Ochrona przed nadużyciami | Częściowe | Projekt movie rag ma część mechanizmów, ale nie spełnia jeszcze całej kontroli v2. |
+| Bezpieczeństwo runtime | Częściowe | Projekt movie rag ma część mechanizmów, ale nie spełnia jeszcze całej kontroli v2. |
+| Readiness i preflight | Częściowe | Projekt movie rag ma część mechanizmów, ale nie spełnia jeszcze całej kontroli v2. |
+| Atomowa promocja i rollback | Brak | W audytowanym źródle projektu movie rag nie znaleziono wymaganej kompletnej implementacji. |
+| Koordynacja i retencja | Częściowe | Projekt movie rag ma część mechanizmów, ale nie spełnia jeszcze całej kontroli v2. |
+| Obserwowalność | Częściowe | Projekt movie rag ma część mechanizmów, ale nie spełnia jeszcze całej kontroli v2. |
+| Tożsamość webowa | Gotowe | Audyt potwierdził pełną realizację kontroli „web-identity”. |
 
+### Zadania pozostałe i bieżące
+
+#### Utrzymać Search i Ask AI oraz odporność providera
+
+**Implementacja · W toku · 85% · trudność 4/5 · 3–5 h**
+
+Search and Explain are shipped with provider error handling; remaining resilience and cancellation work is bounded.
+
+#### Dodać testy obciążenia, anulowania i awarii
+
+**Jakość · W toku · 70% · trudność 4/5 · 5–8 h**
+
+CI is green and rate-limit tests exist; public-chain and sustained-load scenarios remain.
+
+#### Dodać licencję, ruleset i production environment
+
+**Jakość · Planowane · 0% · trudność 2/5 · 2–3 h**
+
+GitHub reports no recognized license, ruleset or environment.
+
+#### Dokończyć atrybucję, backupy i runbook
+
+**Dokumentacja · W toku · 55% · trudność 3/5 · 3–5 h**
+
+Operational backup/restore and licensing documentation remain incomplete.
+
+#### Rozdzielić limity Search, Ask AI i ingestion
+
+**Wdrożenie · W toku · 55% · trudność 4/5 · 4–7 h**
+
+Ask AI has in-memory per-IP and daily limits plus Turnstile; other costly paths and shared state remain.
+
+#### Wdrażać digests z preflight i blue-green
+
+**Wdrożenie · Planowane · 0% · trudność 5/5 · 6–10 h**
+
+The workflow publishes images but deploys latest/short tags and globally prunes images without true blue-green.
+
+#### Dodać backupy, telemetry i alerty Groq
+
+**Wdrożenie · Planowane · 0% · trudność 4/5 · 3–5 h**
+
+Central resource/deployment visibility and tested database backups were not verified.
+
+### Decyzje architektoniczne
+
+- Search i Ask AI używają osobnych polityk i SLA.
+- Ask AI zachowuje Turnstile, quota, global concurrency i circuit breaker Groq.
+- Projekt podlega profilowi standardu v2: vps-web.

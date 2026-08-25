@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 1,
+  "schemaVersion": 2,
   "slug": "spotify-ad-blocker",
   "order": 13,
   "name": {
@@ -36,22 +36,22 @@
   },
   "status": "paused",
   "progress": {
-    "implementation": 80,
-    "quality": 10,
-    "documentation": 55,
-    "delivery": 45,
-    "overall": 54
+    "implementation": 55,
+    "quality": 0,
+    "documentation": 35,
+    "delivery": 0,
+    "overall": 27
   },
   "complexity": 3,
   "forecast": {
-    "remainingHoursMin": 10,
-    "remainingHoursMax": 18,
-    "remainingDaysMin": 1.25,
-    "remainingDaysMax": 2.25,
+    "remainingHoursMin": 11,
+    "remainingHoursMax": 20,
+    "remainingDaysMin": 1.5,
+    "remainingDaysMax": 2.5,
     "hoursPerDay": 8,
     "hoursPerWeek": 30,
-    "earliest": "2026-11-23",
-    "latest": "2027-01-16",
+    "earliest": "2026-12-07",
+    "latest": "2027-02-11",
     "confidence": "medium"
   },
   "estimation": {
@@ -72,79 +72,96 @@
   },
   "tasks": [
     {
-      "id": "implementation",
+      "id": "windows-integration",
       "title": {
-        "en": "Stabilize Windows integration behavior",
-        "pl": "Ustabilizować integrację Windows"
+        "en": "Stabilize detection, process and audio boundaries",
+        "pl": "Ustabilizować granice detekcji, procesów i audio"
       },
       "dimension": "implementation",
       "status": "in-progress",
-      "completion": 80,
-      "weight": 1,
+      "completion": 55,
+      "weight": 2,
       "difficulty": 3,
       "hoursMin": 2,
       "hoursMax": 4,
       "daysMin": 0.25,
       "daysMax": 0.5,
-      "evidence": "Core tray, process, audio and hotkey code exists."
+      "evidence": "Windows integration is coupled and needs testable boundaries and safe process/audio recovery."
     },
     {
-      "id": "quality",
+      "id": "windows-tests",
       "title": {
         "en": "Add unit tests and Windows CI",
-        "pl": "Dodać unit testy i CI Windows"
+        "pl": "Dodać testy jednostkowe i CI Windows"
       },
       "dimension": "quality",
-      "status": "in-progress",
-      "completion": 10,
-      "weight": 1,
+      "status": "planned",
+      "completion": 0,
+      "weight": 2,
       "difficulty": 3,
       "hoursMin": 3,
       "hoursMax": 5,
       "daysMin": 0.5,
       "daysMax": 0.75,
-      "evidence": "No tests or workflows exist."
+      "evidence": "No automated tests or workflow runs exist."
     },
     {
-      "id": "documentation",
+      "id": "repository-governance",
       "title": {
-        "en": "Publish bilingual legal and usage documentation",
-        "pl": "Opublikować dwujęzyczną dokumentację prawną i użytkową"
+        "en": "Add a license and protected main",
+        "pl": "Dodać licencję i chroniony main"
+      },
+      "dimension": "quality",
+      "status": "planned",
+      "completion": 0,
+      "weight": 1,
+      "difficulty": 2,
+      "hoursMin": 1,
+      "hoursMax": 2,
+      "daysMin": 0.25,
+      "daysMax": 0.25,
+      "evidence": "GitHub reports no recognized license or ruleset."
+    },
+    {
+      "id": "compliance-docs",
+      "title": {
+        "en": "Publish PL/EN and compliance documentation",
+        "pl": "Opublikować dokumentację PL/EN i compliance"
       },
       "dimension": "documentation",
       "status": "in-progress",
-      "completion": 55,
-      "weight": 1,
-      "difficulty": 2,
+      "completion": 35,
+      "weight": 2,
+      "difficulty": 3,
       "hoursMin": 2,
       "hoursMax": 4,
       "daysMin": 0.25,
       "daysMax": 0.5,
-      "evidence": "Polish README exists; no recognized license."
+      "evidence": "README exists, but legal limitations, troubleshooting and attribution need a bilingual treatment."
     },
     {
-      "id": "delivery",
+      "id": "windows-release",
       "title": {
-        "en": "Create signed/reproducible Windows release",
+        "en": "Create a reproducible Windows release",
         "pl": "Utworzyć powtarzalne wydanie Windows"
       },
       "dimension": "delivery",
-      "status": "in-progress",
-      "completion": 45,
-      "weight": 1,
+      "status": "planned",
+      "completion": 0,
+      "weight": 2,
       "difficulty": 3,
       "hoursMin": 3,
       "hoursMax": 5,
       "daysMin": 0.5,
       "daysMax": 0.75,
-      "evidence": "No release automation; IDE and executable artifacts are already absent."
+      "evidence": "No signed or checksummed versioned release workflow exists."
     }
   ],
   "verification": {
-    "worktree": "audited from clean public clone",
-    "tests": "none",
-    "ci": "no GitHub Actions runs",
-    "production": "not applicable; Windows desktop utility"
+    "worktree": "clean public main shallow clone",
+    "tests": "No GitHub Actions runs, ruleset or environment were found.",
+    "ci": "No GitHub Actions runs, ruleset or environment were found.",
+    "production": "Not applicable: the project is a Windows desktop utility."
   },
   "media": {
     "screenshot": "assets/screenshots/spotify-ad-blocker.png",
@@ -160,17 +177,145 @@
     {
       "en": "Document compatibility and service-policy risk without claiming endorsement by Spotify.",
       "pl": "Udokumentować ryzyko zgodności bez sugerowania poparcia Spotify."
+    },
+    {
+      "en": "The project follows the v2 standard profile: desktop.",
+      "pl": "Projekt podlega profilowi standardu v2: desktop."
     }
   ],
   "audit": {
-    "date": "2026-08-24",
+    "date": "2026-08-25",
     "sources": [
-      "public repository source and README",
-      "GitHub metadata"
+      "audited source tree and git status",
+      "GitHub repository, Actions, rulesets and environments API",
+      "public DNS and HTTPS checks where applicable"
     ],
     "notes": {
       "en": "The roadmap must not imply affiliation with Spotify or legal certainty.",
       "pl": "Roadmapa nie może sugerować powiązania ze Spotify ani pewności prawnej."
     }
+  },
+  "compliance": {
+    "standardVersion": 2,
+    "profile": "desktop",
+    "assessmentDate": "2026-08-25",
+    "controls": [
+      {
+        "id": "governance",
+        "status": "missing",
+        "evidence": {
+          "en": "GitHub returned no active ruleset or environment; remaining elements were assessed from the repository.",
+          "pl": "GitHub nie zwrócił aktywnego rulesetu ani środowiska; pozostałe elementy oceniono z repozytorium."
+        },
+        "taskIds": [
+          "repository-governance"
+        ]
+      },
+      {
+        "id": "quality-ci",
+        "status": "missing",
+        "evidence": {
+          "en": "No GitHub Actions runs, ruleset or environment were found.",
+          "pl": "GitHub nie zwrócił żadnego wykonanego workflow Quality dla tego repozytorium."
+        },
+        "taskIds": [
+          "windows-tests"
+        ]
+      },
+      {
+        "id": "immutable-release",
+        "status": "missing",
+        "evidence": {
+          "en": "The required complete implementation was not found in the audited spotify ad blocker source.",
+          "pl": "W audytowanym źródle projektu spotify ad blocker nie znaleziono wymaganej kompletnej implementacji."
+        },
+        "taskIds": [
+          "windows-release"
+        ]
+      },
+      {
+        "id": "deployment-access",
+        "status": "not-applicable",
+        "evidence": {
+          "en": "The control does not apply to the spotify ad blocker project profile.",
+          "pl": "Kontrola nie dotyczy profilu projektu spotify ad blocker."
+        },
+        "taskIds": []
+      },
+      {
+        "id": "network-tls-client-ip",
+        "status": "not-applicable",
+        "evidence": {
+          "en": "Not applicable: the project is a Windows desktop utility.",
+          "pl": "Kontrola sieci webowej i TLS nie dotyczy tego profilu projektu."
+        },
+        "taskIds": []
+      },
+      {
+        "id": "abuse-protection",
+        "status": "not-applicable",
+        "evidence": {
+          "en": "The control does not apply to the spotify ad blocker project profile.",
+          "pl": "Kontrola nie dotyczy profilu projektu spotify ad blocker."
+        },
+        "taskIds": []
+      },
+      {
+        "id": "runtime-safety",
+        "status": "not-applicable",
+        "evidence": {
+          "en": "The control does not apply to the spotify ad blocker project profile.",
+          "pl": "Kontrola nie dotyczy profilu projektu spotify ad blocker."
+        },
+        "taskIds": []
+      },
+      {
+        "id": "readiness-preflight",
+        "status": "not-applicable",
+        "evidence": {
+          "en": "The control does not apply to the spotify ad blocker project profile.",
+          "pl": "Kontrola nie dotyczy profilu projektu spotify ad blocker."
+        },
+        "taskIds": []
+      },
+      {
+        "id": "atomic-promotion-rollback",
+        "status": "not-applicable",
+        "evidence": {
+          "en": "The control does not apply to the spotify ad blocker project profile.",
+          "pl": "Kontrola nie dotyczy profilu projektu spotify ad blocker."
+        },
+        "taskIds": []
+      },
+      {
+        "id": "coordination-retention",
+        "status": "missing",
+        "evidence": {
+          "en": "The required complete implementation was not found in the audited spotify ad blocker source.",
+          "pl": "W audytowanym źródle projektu spotify ad blocker nie znaleziono wymaganej kompletnej implementacji."
+        },
+        "taskIds": [
+          "windows-release"
+        ]
+      },
+      {
+        "id": "observability",
+        "status": "not-applicable",
+        "evidence": {
+          "en": "The control does not apply to the spotify ad blocker project profile.",
+          "pl": "Kontrola nie dotyczy profilu projektu spotify ad blocker."
+        },
+        "taskIds": []
+      },
+      {
+        "id": "web-identity",
+        "status": "not-applicable",
+        "evidence": {
+          "en": "The control does not apply to the spotify ad blocker project profile.",
+          "pl": "Kontrola nie dotyczy profilu projektu spotify ad blocker."
+        },
+        "taskIds": []
+      }
+    ]
   }
 }

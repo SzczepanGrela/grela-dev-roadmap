@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 1,
+  "schemaVersion": 2,
   "slug": "url-shortener-system",
   "order": 8,
   "name": {
@@ -37,22 +37,22 @@
   },
   "status": "paused",
   "progress": {
-    "implementation": 60,
-    "quality": 55,
-    "documentation": 5,
+    "implementation": 41,
+    "quality": 30,
+    "documentation": 17,
     "delivery": 0,
-    "overall": 36
+    "overall": 25
   },
   "complexity": 5,
   "forecast": {
-    "remainingHoursMin": 54,
-    "remainingHoursMax": 86,
-    "remainingDaysMin": 6.75,
-    "remainingDaysMax": 10.75,
+    "remainingHoursMin": 70,
+    "remainingHoursMax": 115,
+    "remainingDaysMin": 8.75,
+    "remainingDaysMax": 14.5,
     "hoursPerDay": 8,
     "hoursPerWeek": 30,
-    "earliest": "2026-10-20",
-    "latest": "2026-11-22",
+    "earliest": "2026-10-27",
+    "latest": "2026-12-08",
     "confidence": "low"
   },
   "estimation": {
@@ -73,79 +73,164 @@
   },
   "tasks": [
     {
-      "id": "implementation",
+      "id": "api-security",
       "title": {
-        "en": "Modernize API security and bounded analytics",
-        "pl": "Zmodernizować bezpieczeństwo API i kolejkę analityki"
+        "en": "Fix XFF, SSRF and endpoint policies",
+        "pl": "Naprawić XFF, SSRF i polityki endpointów"
       },
       "dimension": "implementation",
       "status": "in-progress",
-      "completion": 60,
-      "weight": 1,
+      "completion": 45,
+      "weight": 3,
       "difficulty": 5,
       "hoursMin": 18,
       "hoursMax": 28,
       "daysMin": 2.25,
       "daysMax": 3.5,
-      "evidence": "API and tests exist, but one global limiter trusts arbitrary forwarded headers and click analytics spawn unbounded tasks."
+      "evidence": "The API has tests and an in-memory limiter, but trusts unsafe client identity and lacks cost-separated policies."
     },
     {
-      "id": "quality",
+      "id": "analytics-queue",
       "title": {
-        "en": "Restore and expand security/integration/load checks",
-        "pl": "Przywrócić i rozbudować testy bezpieczeństwa/integracji/load"
+        "en": "Bound and harden the analytics queue",
+        "pl": "Ograniczyć i uodpornić kolejkę analityki"
+      },
+      "dimension": "implementation",
+      "status": "in-progress",
+      "completion": 35,
+      "weight": 2,
+      "difficulty": 4,
+      "hoursMin": 6,
+      "hoursMax": 10,
+      "daysMin": 0.75,
+      "daysMax": 1.25,
+      "evidence": "Analytics needs bounded ingestion, backpressure and failure isolation."
+    },
+    {
+      "id": "security-quality",
+      "title": {
+        "en": "Restore security, integration and load tests",
+        "pl": "Przywrócić testy bezpieczeństwa, integracji i load"
       },
       "dimension": "quality",
       "status": "in-progress",
-      "completion": 55,
+      "completion": 40,
+      "weight": 3,
+      "difficulty": 4,
+      "hoursMin": 12,
+      "hoursMax": 20,
+      "daysMin": 1.5,
+      "daysMax": 2.5,
+      "evidence": "Tests exist in source but no workflow run verifies them on GitHub."
+    },
+    {
+      "id": "repository-governance",
+      "title": {
+        "en": "Move to main, CI and a ruleset",
+        "pl": "Przejść na main, CI i ruleset"
+      },
+      "dimension": "quality",
+      "status": "planned",
+      "completion": 0,
       "weight": 1,
+      "difficulty": 3,
+      "hoursMin": 2,
+      "hoursMax": 3,
+      "daysMin": 0.25,
+      "daysMax": 0.5,
+      "evidence": "The default branch remains master and GitHub has no workflow or ruleset."
+    },
+    {
+      "id": "repository-docs",
+      "title": {
+        "en": "Rename and document the architecture",
+        "pl": "Zmienić nazwę i udokumentować architekturę"
+      },
+      "dimension": "documentation",
+      "status": "in-progress",
+      "completion": 25,
+      "weight": 2,
+      "difficulty": 3,
+      "hoursMin": 6,
+      "hoursMax": 10,
+      "daysMin": 0.75,
+      "daysMax": 1.25,
+      "evidence": "The repository lacks a public README/license baseline and target deployment documentation."
+    },
+    {
+      "id": "frontend-platform",
+      "title": {
+        "en": "Build an accessible UI and production containers",
+        "pl": "Zbudować dostępny UI i kontenery produkcyjne"
+      },
+      "dimension": "delivery",
+      "status": "planned",
+      "completion": 0,
+      "weight": 3,
       "difficulty": 5,
       "hoursMin": 12,
       "hoursMax": 20,
       "daysMin": 1.5,
       "daysMax": 2.5,
-      "evidence": "Test projects exist; no current GitHub Actions workflow runs."
+      "evidence": "No frontend, production container topology or deployment workflow is present."
     },
     {
-      "id": "documentation",
+      "id": "immutable-blue-green",
       "title": {
-        "en": "Rename and document the public repository",
-        "pl": "Zmienić nazwę i udokumentować repozytorium"
-      },
-      "dimension": "documentation",
-      "status": "in-progress",
-      "completion": 5,
-      "weight": 1,
-      "difficulty": 2,
-      "hoursMin": 6,
-      "hoursMax": 10,
-      "daysMin": 0.75,
-      "daysMax": 1.25,
-      "evidence": "No README or recognized license; default branch is master."
-    },
-    {
-      "id": "delivery",
-      "title": {
-        "en": "Build web UI and production platform",
-        "pl": "Zbudować UI i platformę produkcyjną"
+        "en": "Add immutable CI/CD, preflight and blue-green",
+        "pl": "Dodać niezmienne CI/CD, preflight i blue-green"
       },
       "dimension": "delivery",
       "status": "planned",
       "completion": 0,
-      "weight": 1,
+      "weight": 3,
       "difficulty": 5,
-      "hoursMin": 18,
-      "hoursMax": 28,
-      "daysMin": 2.25,
-      "daysMax": 3.5,
-      "evidence": "No Docker, CI/CD or public DNS exists."
+      "hoursMin": 8,
+      "hoursMax": 14,
+      "daysMin": 1,
+      "daysMax": 1.75,
+      "evidence": "GHCR digests, OIDC deploy, stable routing and rollback do not exist."
+    },
+    {
+      "id": "edge-observability",
+      "title": {
+        "en": "Configure domain, limits and monitoring",
+        "pl": "Skonfigurować domenę, limity i monitoring"
+      },
+      "dimension": "delivery",
+      "status": "planned",
+      "completion": 0,
+      "weight": 2,
+      "difficulty": 4,
+      "hoursMin": 5,
+      "hoursMax": 8,
+      "daysMin": 0.75,
+      "daysMax": 1,
+      "evidence": "The target DNS is absent and edge/proxy limits and monitoring are not configured."
+    },
+    {
+      "id": "web-identity",
+      "title": {
+        "en": "Add favicon and public UI metadata",
+        "pl": "Dodać favicon i metadane publicznego UI"
+      },
+      "dimension": "documentation",
+      "status": "planned",
+      "completion": 0,
+      "weight": 1,
+      "difficulty": 2,
+      "hoursMin": 1,
+      "hoursMax": 2,
+      "daysMin": 0.25,
+      "daysMax": 0.25,
+      "evidence": "No web frontend or favicon exists."
     }
   ],
   "verification": {
-    "worktree": "audited from clean public clone",
-    "tests": "test projects exist; not rerun in this audit",
-    "ci": "no GitHub Actions runs",
-    "production": "s.grela.dev has no public DNS"
+    "worktree": "clean public master shallow clone",
+    "tests": "No GitHub Actions runs, ruleset or environment were found.",
+    "ci": "No GitHub Actions runs, ruleset or environment were found.",
+    "production": "s.grela.dev did not resolve in public DNS on 2026-08-25."
   },
   "media": {
     "screenshot": "assets/screenshots/url-shortener-system.png",
@@ -161,18 +246,161 @@
     {
       "en": "Use trusted proxy middleware, SSRF/private-address validation and a bounded analytics worker.",
       "pl": "Użyć trusted proxy, ochrony SSRF/private IP i ograniczonego workera analityki."
+    },
+    {
+      "en": "The project follows the v2 standard profile: vps-web.",
+      "pl": "Projekt podlega profilowi standardu v2: vps-web."
     }
   ],
   "audit": {
-    "date": "2026-08-24",
+    "date": "2026-08-25",
     "sources": [
-      "public repository source review",
-      "GitHub repository metadata",
-      "public DNS"
+      "audited source tree and git status",
+      "GitHub repository, Actions, rulesets and environments API",
+      "public DNS and HTTPS checks where applicable"
     ],
     "notes": {
       "en": "This is a substantial modernization rather than a simple containerization task.",
       "pl": "To duża modernizacja, a nie tylko konteneryzacja."
     }
+  },
+  "compliance": {
+    "standardVersion": 2,
+    "profile": "vps-web",
+    "assessmentDate": "2026-08-25",
+    "controls": [
+      {
+        "id": "governance",
+        "status": "missing",
+        "evidence": {
+          "en": "GitHub returned no active ruleset or environment; remaining elements were assessed from the repository.",
+          "pl": "GitHub nie zwrócił aktywnego rulesetu ani środowiska; pozostałe elementy oceniono z repozytorium."
+        },
+        "taskIds": [
+          "repository-governance"
+        ]
+      },
+      {
+        "id": "quality-ci",
+        "status": "missing",
+        "evidence": {
+          "en": "No GitHub Actions runs, ruleset or environment were found.",
+          "pl": "GitHub nie zwrócił żadnego wykonanego workflow Quality dla tego repozytorium."
+        },
+        "taskIds": [
+          "security-quality"
+        ]
+      },
+      {
+        "id": "immutable-release",
+        "status": "missing",
+        "evidence": {
+          "en": "The required complete implementation was not found in the audited url shortener system source.",
+          "pl": "W audytowanym źródle projektu url shortener system nie znaleziono wymaganej kompletnej implementacji."
+        },
+        "taskIds": [
+          "immutable-blue-green"
+        ]
+      },
+      {
+        "id": "deployment-access",
+        "status": "missing",
+        "evidence": {
+          "en": "The required complete implementation was not found in the audited url shortener system source.",
+          "pl": "W audytowanym źródle projektu url shortener system nie znaleziono wymaganej kompletnej implementacji."
+        },
+        "taskIds": [
+          "immutable-blue-green"
+        ]
+      },
+      {
+        "id": "network-tls-client-ip",
+        "status": "missing",
+        "evidence": {
+          "en": "s.grela.dev did not resolve in public DNS on 2026-08-25.",
+          "pl": "Docelowa domena lub kompletna konfiguracja routingu/TLS nie jest obecnie dostępna."
+        },
+        "taskIds": [
+          "edge-observability"
+        ]
+      },
+      {
+        "id": "abuse-protection",
+        "status": "partial",
+        "evidence": {
+          "en": "url shortener system has some mechanisms but does not yet satisfy the complete v2 control.",
+          "pl": "Projekt url shortener system ma część mechanizmów, ale nie spełnia jeszcze całej kontroli v2."
+        },
+        "taskIds": [
+          "api-security"
+        ]
+      },
+      {
+        "id": "runtime-safety",
+        "status": "missing",
+        "evidence": {
+          "en": "The required complete implementation was not found in the audited url shortener system source.",
+          "pl": "W audytowanym źródle projektu url shortener system nie znaleziono wymaganej kompletnej implementacji."
+        },
+        "taskIds": [
+          "frontend-platform"
+        ]
+      },
+      {
+        "id": "readiness-preflight",
+        "status": "partial",
+        "evidence": {
+          "en": "url shortener system has some mechanisms but does not yet satisfy the complete v2 control.",
+          "pl": "Projekt url shortener system ma część mechanizmów, ale nie spełnia jeszcze całej kontroli v2."
+        },
+        "taskIds": [
+          "immutable-blue-green"
+        ]
+      },
+      {
+        "id": "atomic-promotion-rollback",
+        "status": "missing",
+        "evidence": {
+          "en": "The required complete implementation was not found in the audited url shortener system source.",
+          "pl": "W audytowanym źródle projektu url shortener system nie znaleziono wymaganej kompletnej implementacji."
+        },
+        "taskIds": [
+          "immutable-blue-green"
+        ]
+      },
+      {
+        "id": "coordination-retention",
+        "status": "missing",
+        "evidence": {
+          "en": "The required complete implementation was not found in the audited url shortener system source.",
+          "pl": "W audytowanym źródle projektu url shortener system nie znaleziono wymaganej kompletnej implementacji."
+        },
+        "taskIds": [
+          "immutable-blue-green"
+        ]
+      },
+      {
+        "id": "observability",
+        "status": "missing",
+        "evidence": {
+          "en": "The required complete implementation was not found in the audited url shortener system source.",
+          "pl": "W audytowanym źródle projektu url shortener system nie znaleziono wymaganej kompletnej implementacji."
+        },
+        "taskIds": [
+          "edge-observability"
+        ]
+      },
+      {
+        "id": "web-identity",
+        "status": "missing",
+        "evidence": {
+          "en": "The required complete implementation was not found in the audited url shortener system source.",
+          "pl": "W audytowanym źródle projektu url shortener system nie znaleziono wymaganej kompletnej implementacji."
+        },
+        "taskIds": [
+          "web-identity"
+        ]
+      }
+    ]
   }
 }

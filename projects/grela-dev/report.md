@@ -1,66 +1,187 @@
 # grela.dev Portfolio — status report / raport stanu
 
-Audit date / data audytu: **2026-08-24**  
-Estimated completion / szacowane ukończenie: **26%**  
-Forecast / prognoza: **2027-05-04–2027-09-10**, 80–120 h, low confidence / niska pewność
+Audit date / data audytu: **2026-08-25**<br>
+Estimated completion / szacowane ukończenie: **11%**<br>
+Forecast / prognoza: **2026-12-17–2027-03-03**, 49–83 h, low confidence / pewność: low
+
+> This report is synchronized from `project.json` and the versioned delivery-control catalog. / Raport jest synchronizowany z `project.json` i wersjonowanym katalogiem kontroli wdrożeniowych.
 
 ## English
 
 ### Purpose and current state
 
-grela.dev is the future public portfolio and interactive project roadmap. The repository currently contains design files but no application scaffold, package manifest, README, license, tests or CI. The public HTTPS check returned Cloudflare 525, so the origin TLS path is not healthy. This roadmap repository is intended to become its content source.
+Personal portfolio currently represented by design explorations rather than a production-ready site.
 
-### Completed and verified
+The design direction is substantial, but production engineering has not started.
 
-- Visual direction and source design material exist.
-- Portfolio projects, ordering, normalized status data and shared operational decisions are now defined in the separate `grela-dev-roadmap` repository.
-- The intended public domain and Cloudflare front door exist, even though origin TLS is not yet functioning.
+### Audit evidence
 
-### Remaining work and known issues
+- **Repozytorium:** `SzczepanGrela/grela-dev` @ `2b3e09330e50e6c291e5696a97ec8430d1ef2935`
+- **Source state:** clean local design worktree; fsmonitor IPC warning during audit
+- **Tests and CI:** No buildable project, GitHub Actions run, ruleset or environment was found.
+- **Production:** grela.dev resolved through Cloudflare but returned HTTP 525 on 2026-08-25.
 
-- Repair the Cloudflare-to-origin TLS configuration and verify strict HTTPS end to end.
-- Scaffold the proposed Astro site with a small React/TypeScript island for the interactive line.
-- Consume validated `project.json` records at build time and render without client JavaScript as a functional baseline.
-- Implement the Mini Metro-inspired horizontal desktop route and vertical mobile route.
-- Add bilingual content switching, filters, accessible keyboard/focus behavior and reduced-motion support.
-- Render screenshot/fallback media with dimensions and attribution.
-- Add sitemap, Open Graph metadata, favicon, robots policy and a helpful 404.
-- Add unit, schema, accessibility and Playwright coverage.
-- Add CI, static deployment, cache headers and rollback.
-- Apply a conservative static-site Cloudflare profile; contact/form endpoints, if added, require separate strict application limits and bot controls.
-- Publish a privacy policy before enabling analytics or a contact form.
+### v2 standard compliance
 
-### Decisions
+Profile: **Managed static hosting**. Statuses reflect only evidence available on the audit date.
 
-Astro is the static foundation; React is limited to the interactive roadmap island. Project data remains in the dedicated public roadmap repository and is validated independently. Static pages need edge abuse protection but no broad in-app limiter. Any future form, preview service or dynamic endpoint is reviewed separately.
+| Control | Status | Evidence |
+| --- | --- | --- |
+| Repository governance | Missing | GitHub returned no active ruleset or environment; remaining elements were assessed from the repository. |
+| Quality CI | Missing | No buildable project, GitHub Actions run, ruleset or environment was found. |
+| Immutable release | Missing | The required complete implementation was not found in the audited grela dev source. |
+| Deployment access | Not applicable | The control does not apply to the grela dev project profile. |
+| Network, TLS and client identity | Partial | grela.dev resolved through Cloudflare but returned HTTP 525 on 2026-08-25. |
+| Abuse protection | Partial | grela dev has some mechanisms but does not yet satisfy the complete v2 control. |
+| Runtime safety | Not applicable | The control does not apply to the grela dev project profile. |
+| Readiness and preflight | Missing | The required complete implementation was not found in the audited grela dev source. |
+| Atomic promotion and rollback | Missing | The required complete implementation was not found in the audited grela dev source. |
+| Coordination and retention | Missing | The required complete implementation was not found in the audited grela dev source. |
+| Observability | Missing | The required complete implementation was not found in the audited grela dev source. |
+| Web identity | Missing | The required complete implementation was not found in the audited grela dev source. |
+
+### Remaining and active tasks
+
+#### Build the portfolio from existing prototypes
+
+**Implementation · In progress · 20% · difficulty 4/5 · 24–40 h**
+
+The repository contains HTML/JSX design explorations but no buildable application.
+
+#### Add build, accessibility and browser tests
+
+**Quality · Planned · 0% · difficulty 3/5 · 8–12 h**
+
+No package definition, tests or workflow runs exist.
+
+#### Add Quality, a ruleset and Pages environment
+
+**Quality · Planned · 0% · difficulty 2/5 · 2–3 h**
+
+GitHub returned no Actions runs, ruleset or environment.
+
+#### Add README, MIT and content maintenance docs
+
+**Documentation · In progress · 20% · difficulty 3/5 · 4–8 h**
+
+The design workspace lacks repository documentation and a recognized license.
+
+#### Deploy Cloudflare Pages preview and production
+
+**Delivery · Planned · 0% · difficulty 4/5 · 6–10 h**
+
+Managed static hosting, immutable build output and atomic promotion are not configured.
+
+#### Repair domain, TLS and rollback
+
+**Delivery · In progress · 15% · difficulty 3/5 · 2–4 h**
+
+The public domain currently returns Cloudflare 525.
+
+#### Add availability and deployment monitoring
+
+**Delivery · Planned · 0% · difficulty 2/5 · 1–2 h**
+
+No availability check or deployment failure alert was verified.
+
+#### Add favicon, metadata and project previews
+
+**Documentation · Planned · 0% · difficulty 3/5 · 2–4 h**
+
+No final static application or favicon exists.
+
+### Architecture decisions
+
+- Build as a static site; application rate limiting is unnecessary until dynamic endpoints exist.
+- The roadmap site remains a separate repository and data source.
+- The project follows the v2 standard profile: static-web.
 
 ## Polski
 
-### Cel i stan bieżący
+### Cel i aktualny stan
 
-grela.dev ma być publicznym portfolio i interaktywną roadmapą. Repozytorium zawiera obecnie pliki projektowe, ale nie ma scaffoldu aplikacji, manifestu, README, licencji, testów ani CI. Publiczny HTTPS zwrócił Cloudflare 525, więc połączenie TLS do originu nie działa. Niniejsze repo roadmapy ma być źródłem treści.
+Portfolio osobiste istniejące obecnie jako eksploracje designu, nie gotowa strona produkcyjna.
 
-### Wykonane i zweryfikowane
+Kierunek designu jest rozbudowany, lecz engineering produkcyjny jeszcze się nie rozpoczął.
 
-- Istnieje kierunek wizualny i materiały projektowe.
-- Projekty, kolejność, dane stanu i decyzje operacyjne są już zdefiniowane w osobnym `grela-dev-roadmap`.
-- Domena i Cloudflare istnieją, mimo że origin TLS wymaga naprawy.
+### Dowody audytu
 
-### Do zrobienia i znane problemy
+- **Repozytorium:** `SzczepanGrela/grela-dev` @ `2b3e09330e50e6c291e5696a97ec8430d1ef2935`
+- **Stan źródła:** clean local design worktree; fsmonitor IPC warning during audit
+- **Testy i CI:** No buildable project, GitHub Actions run, ruleset or environment was found.
+- **Produkcja:** grela.dev resolved through Cloudflare but returned HTTP 525 on 2026-08-25.
 
-- Naprawić TLS Cloudflare–origin i sprawdzić strict HTTPS.
-- Utworzyć Astro z małą wyspą React/TypeScript.
-- Czytać zwalidowane `project.json` podczas buildu i zachować działający HTML bez JS.
-- Wdrożyć poziomą linię desktopową i pionową mobilną w stylu Mini Metro.
-- Dodać PL/EN, filtry, klawiaturę, focus i reduced motion.
-- Wyświetlać screenshoty/fallbacki z wymiarami i atrybucją.
-- Dodać sitemap, OG, favicon, robots i 404.
-- Dodać testy jednostkowe, schema, accessibility i Playwright.
-- Dodać CI, statyczny deploy, cache i rollback.
-- Dla statycznej strony użyć łagodnego profilu Cloudflare; formularze wymagają osobnych ścisłych limitów i ochrony botowej.
-- Przed analityką/formularzem opublikować politykę prywatności.
+### Zgodność ze standardem v2
 
-### Decyzje
+Profil: **Zarządzany hosting statyczny**. Statusy odzwierciedlają wyłącznie dowody dostępne w dniu audytu.
 
-Astro jest podstawą statyczną, React tylko interaktywną wyspą roadmapy. Dane pozostają w publicznym repo roadmapy i są walidowane osobno. Każdy przyszły dynamiczny endpoint będzie oceniany oddzielnie.
+| Kontrola | Status | Dowód |
+| --- | --- | --- |
+| Zarządzanie repozytorium | Brak | GitHub nie zwrócił aktywnego rulesetu ani środowiska; pozostałe elementy oceniono z repozytorium. |
+| Quality CI | Brak | GitHub nie zwrócił żadnego wykonanego workflow Quality dla tego repozytorium. |
+| Niezmienne wydanie | Brak | W audytowanym źródle projektu grela dev nie znaleziono wymaganej kompletnej implementacji. |
+| Dostęp wdrożeniowy | Nie dotyczy | Kontrola nie dotyczy profilu projektu grela dev. |
+| Sieć, TLS i tożsamość klienta | Częściowe | Część publicznego HTTPS lub routingu działa, ale pełny zaufany łańcuch sieciowy nie został potwierdzony. |
+| Ochrona przed nadużyciami | Częściowe | Projekt grela dev ma część mechanizmów, ale nie spełnia jeszcze całej kontroli v2. |
+| Bezpieczeństwo runtime | Nie dotyczy | Kontrola nie dotyczy profilu projektu grela dev. |
+| Readiness i preflight | Brak | W audytowanym źródle projektu grela dev nie znaleziono wymaganej kompletnej implementacji. |
+| Atomowa promocja i rollback | Brak | W audytowanym źródle projektu grela dev nie znaleziono wymaganej kompletnej implementacji. |
+| Koordynacja i retencja | Brak | W audytowanym źródle projektu grela dev nie znaleziono wymaganej kompletnej implementacji. |
+| Obserwowalność | Brak | W audytowanym źródle projektu grela dev nie znaleziono wymaganej kompletnej implementacji. |
+| Tożsamość webowa | Brak | W audytowanym źródle projektu grela dev nie znaleziono wymaganej kompletnej implementacji. |
 
+### Zadania pozostałe i bieżące
+
+#### Zbudować portfolio z istniejących prototypów
+
+**Implementacja · W toku · 20% · trudność 4/5 · 24–40 h**
+
+The repository contains HTML/JSX design explorations but no buildable application.
+
+#### Dodać testy buildu, dostępności i przeglądarki
+
+**Jakość · Planowane · 0% · trudność 3/5 · 8–12 h**
+
+No package definition, tests or workflow runs exist.
+
+#### Dodać Quality, ruleset i environment Pages
+
+**Jakość · Planowane · 0% · trudność 2/5 · 2–3 h**
+
+GitHub returned no Actions runs, ruleset or environment.
+
+#### Dodać README, MIT i utrzymanie treści
+
+**Dokumentacja · W toku · 20% · trudność 3/5 · 4–8 h**
+
+The design workspace lacks repository documentation and a recognized license.
+
+#### Wdrożyć preview i produkcję Cloudflare Pages
+
+**Wdrożenie · Planowane · 0% · trudność 4/5 · 6–10 h**
+
+Managed static hosting, immutable build output and atomic promotion are not configured.
+
+#### Naprawić domenę, TLS i rollback
+
+**Wdrożenie · W toku · 15% · trudność 3/5 · 2–4 h**
+
+The public domain currently returns Cloudflare 525.
+
+#### Dodać monitoring dostępności i wdrożeń
+
+**Wdrożenie · Planowane · 0% · trudność 2/5 · 1–2 h**
+
+No availability check or deployment failure alert was verified.
+
+#### Dodać favicon, metadata i podglądy projektów
+
+**Dokumentacja · Planowane · 0% · trudność 3/5 · 2–4 h**
+
+No final static application or favicon exists.
+
+### Decyzje architektoniczne
+
+- Budować statycznie; limiter aplikacyjny jest zbędny do czasu dynamicznych endpointów.
+- Strona roadmapy pozostaje osobnym repozytorium i źródłem danych.
+- Projekt podlega profilowi standardu v2: static-web.

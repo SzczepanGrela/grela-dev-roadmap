@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 1,
+  "schemaVersion": 2,
   "slug": "movie-rag",
   "order": 11,
   "name": {
@@ -41,22 +41,22 @@
   },
   "status": "maintenance",
   "progress": {
-    "implementation": 95,
-    "quality": 90,
-    "documentation": 70,
-    "delivery": 85,
-    "overall": 88
+    "implementation": 85,
+    "quality": 47,
+    "documentation": 55,
+    "delivery": 16,
+    "overall": 56
   },
   "complexity": 5,
   "forecast": {
-    "remainingHoursMin": 18,
-    "remainingHoursMax": 30,
-    "remainingDaysMin": 2.25,
-    "remainingDaysMax": 3.75,
+    "remainingHoursMin": 26,
+    "remainingHoursMax": 43,
+    "remainingDaysMin": 3.25,
+    "remainingDaysMax": 5.5,
     "hoursPerDay": 8,
     "hoursPerWeek": 30,
-    "earliest": "2026-11-19",
-    "latest": "2027-01-09",
+    "earliest": "2026-12-01",
+    "latest": "2027-02-03",
     "confidence": "medium"
   },
   "estimation": {
@@ -77,79 +77,130 @@
   },
   "tasks": [
     {
-      "id": "implementation",
+      "id": "search-explain",
       "title": {
-        "en": "Maintain search and Ask AI features",
-        "pl": "Utrzymać Search i Ask AI"
+        "en": "Maintain Search and Ask AI provider resilience",
+        "pl": "Utrzymać Search i Ask AI oraz odporność providera"
       },
       "dimension": "implementation",
       "status": "in-progress",
-      "completion": 95,
-      "weight": 1,
-      "difficulty": 5,
+      "completion": 85,
+      "weight": 2,
+      "difficulty": 4,
       "hoursMin": 3,
       "hoursMax": 5,
       "daysMin": 0.5,
       "daysMax": 0.75,
-      "evidence": "Semantic search, scene retrieval, agentic SSE answers and React frontend are live."
+      "evidence": "Search and Explain are shipped with provider error handling; remaining resilience and cancellation work is bounded."
     },
     {
-      "id": "quality",
+      "id": "load-failure-tests",
       "title": {
-        "en": "Add load, cancellation and external-failure coverage",
-        "pl": "Dodać testy obciążenia, anulowania i błędów zewnętrznych"
+        "en": "Add load, cancellation and failure tests",
+        "pl": "Dodać testy obciążenia, anulowania i awarii"
       },
       "dimension": "quality",
       "status": "in-progress",
-      "completion": 90,
-      "weight": 1,
-      "difficulty": 5,
+      "completion": 70,
+      "weight": 2,
+      "difficulty": 4,
       "hoursMin": 5,
       "hoursMax": 8,
       "daysMin": 0.75,
       "daysMax": 1,
-      "evidence": "Latest CI/CD succeeded and backend/frontend tests exist."
+      "evidence": "CI is green and rate-limit tests exist; public-chain and sustained-load scenarios remain."
     },
     {
-      "id": "documentation",
+      "id": "repository-governance",
       "title": {
-        "en": "Finish licensing, attribution and operational docs",
-        "pl": "Dokończyć licencję, atrybucję i dokumentację operacyjną"
+        "en": "Add license, ruleset and production environment",
+        "pl": "Dodać licencję, ruleset i production environment"
+      },
+      "dimension": "quality",
+      "status": "planned",
+      "completion": 0,
+      "weight": 1,
+      "difficulty": 2,
+      "hoursMin": 2,
+      "hoursMax": 3,
+      "daysMin": 0.25,
+      "daysMax": 0.5,
+      "evidence": "GitHub reports no recognized license, ruleset or environment."
+    },
+    {
+      "id": "operations-docs",
+      "title": {
+        "en": "Complete attribution, backups and runbook",
+        "pl": "Dokończyć atrybucję, backupy i runbook"
       },
       "dimension": "documentation",
       "status": "in-progress",
-      "completion": 70,
-      "weight": 1,
-      "difficulty": 2,
+      "completion": 55,
+      "weight": 2,
+      "difficulty": 3,
       "hoursMin": 3,
       "hoursMax": 5,
       "daysMin": 0.5,
       "daysMax": 0.75,
-      "evidence": "README is detailed but GitHub recognizes no license; roadmap lists backups and Lighthouse."
+      "evidence": "Operational backup/restore and licensing documentation remain incomplete."
     },
     {
-      "id": "delivery",
+      "id": "cost-protection",
       "title": {
-        "en": "Add backups, quotas, preflight and blue-green readiness",
-        "pl": "Dodać backupy, quota, preflight i gotowość blue-green"
+        "en": "Split Search, Ask AI and ingestion limits",
+        "pl": "Rozdzielić limity Search, Ask AI i ingestion"
       },
       "dimension": "delivery",
       "status": "in-progress",
-      "completion": 85,
-      "weight": 1,
+      "completion": 55,
+      "weight": 2,
+      "difficulty": 4,
+      "hoursMin": 4,
+      "hoursMax": 7,
+      "daysMin": 0.5,
+      "daysMax": 1,
+      "evidence": "Ask AI has in-memory per-IP and daily limits plus Turnstile; other costly paths and shared state remain."
+    },
+    {
+      "id": "immutable-blue-green",
+      "title": {
+        "en": "Deploy digests with preflight and blue-green",
+        "pl": "Wdrażać digests z preflight i blue-green"
+      },
+      "dimension": "delivery",
+      "status": "planned",
+      "completion": 0,
+      "weight": 3,
       "difficulty": 5,
-      "hoursMin": 7,
-      "hoursMax": 12,
-      "daysMin": 1,
-      "daysMax": 1.5,
-      "evidence": "Production returns 200 and CI/CD is green; remaining operational polish is documented."
+      "hoursMin": 6,
+      "hoursMax": 10,
+      "daysMin": 0.75,
+      "daysMax": 1.25,
+      "evidence": "The workflow publishes images but deploys latest/short tags and globally prunes images without true blue-green."
+    },
+    {
+      "id": "service-observability",
+      "title": {
+        "en": "Add backups, telemetry and Groq alerts",
+        "pl": "Dodać backupy, telemetry i alerty Groq"
+      },
+      "dimension": "delivery",
+      "status": "planned",
+      "completion": 0,
+      "weight": 2,
+      "difficulty": 4,
+      "hoursMin": 3,
+      "hoursMax": 5,
+      "daysMin": 0.5,
+      "daysMax": 0.75,
+      "evidence": "Central resource/deployment visibility and tested database backups were not verified."
     }
   ],
   "verification": {
-    "worktree": "audited from clean public clone",
-    "tests": "backend/frontend suites present",
-    "ci": "latest CI/CD succeeded",
-    "production": "https://movierag.grela.dev returned HTTP 200"
+    "worktree": "clean public main shallow clone",
+    "tests": "Latest CI/CD runs succeeded; GHCR images exist but use latest/short SHA deployment; no ruleset or environment exists.",
+    "ci": "Latest CI/CD runs succeeded; GHCR images exist but use latest/short SHA deployment; no ruleset or environment exists.",
+    "production": "movierag.grela.dev returned HTTPS 200 through Cloudflare on 2026-08-25."
   },
   "media": {
     "screenshot": "assets/screenshots/movie-rag.png",
@@ -165,18 +216,157 @@
     {
       "en": "Ask AI keeps Turnstile, daily quota, global concurrency and a Groq circuit breaker.",
       "pl": "Ask AI zachowuje Turnstile, quota, global concurrency i circuit breaker Groq."
+    },
+    {
+      "en": "The project follows the v2 standard profile: vps-web.",
+      "pl": "Projekt podlega profilowi standardu v2: vps-web."
     }
   ],
   "audit": {
-    "date": "2026-08-24",
+    "date": "2026-08-25",
     "sources": [
-      "public repository README, roadmap and source",
-      "GitHub Actions API",
-      "production HTTP"
+      "audited source tree and git status",
+      "GitHub repository, Actions, rulesets and environments API",
+      "public DNS and HTTPS checks where applicable"
     ],
     "notes": {
       "en": "The application is live and mature; remaining work is production polish rather than core delivery.",
       "pl": "Aplikacja jest dojrzała i live; pozostał głównie polish produkcyjny."
     }
+  },
+  "compliance": {
+    "standardVersion": 2,
+    "profile": "vps-web",
+    "assessmentDate": "2026-08-25",
+    "controls": [
+      {
+        "id": "governance",
+        "status": "partial",
+        "evidence": {
+          "en": "GitHub returned no active ruleset or environment; remaining elements were assessed from the repository.",
+          "pl": "GitHub nie zwrócił aktywnego rulesetu ani środowiska; pozostałe elementy oceniono z repozytorium."
+        },
+        "taskIds": [
+          "repository-governance"
+        ]
+      },
+      {
+        "id": "quality-ci",
+        "status": "complete",
+        "evidence": {
+          "en": "Latest CI/CD runs succeeded; GHCR images exist but use latest/short SHA deployment; no ruleset or environment exists.",
+          "pl": "GitHub Actions potwierdza zielony, proporcjonalny zestaw kontroli jakości dla audytowanego commitu."
+        },
+        "taskIds": []
+      },
+      {
+        "id": "immutable-release",
+        "status": "partial",
+        "evidence": {
+          "en": "movie rag has some mechanisms but does not yet satisfy the complete v2 control.",
+          "pl": "Projekt movie rag ma część mechanizmów, ale nie spełnia jeszcze całej kontroli v2."
+        },
+        "taskIds": [
+          "immutable-blue-green"
+        ]
+      },
+      {
+        "id": "deployment-access",
+        "status": "partial",
+        "evidence": {
+          "en": "movie rag has some mechanisms but does not yet satisfy the complete v2 control.",
+          "pl": "Projekt movie rag ma część mechanizmów, ale nie spełnia jeszcze całej kontroli v2."
+        },
+        "taskIds": [
+          "immutable-blue-green"
+        ]
+      },
+      {
+        "id": "network-tls-client-ip",
+        "status": "partial",
+        "evidence": {
+          "en": "movierag.grela.dev returned HTTPS 200 through Cloudflare on 2026-08-25.",
+          "pl": "Część publicznego HTTPS lub routingu działa, ale pełny zaufany łańcuch sieciowy nie został potwierdzony."
+        },
+        "taskIds": [
+          "cost-protection"
+        ]
+      },
+      {
+        "id": "abuse-protection",
+        "status": "partial",
+        "evidence": {
+          "en": "movie rag has some mechanisms but does not yet satisfy the complete v2 control.",
+          "pl": "Projekt movie rag ma część mechanizmów, ale nie spełnia jeszcze całej kontroli v2."
+        },
+        "taskIds": [
+          "cost-protection"
+        ]
+      },
+      {
+        "id": "runtime-safety",
+        "status": "partial",
+        "evidence": {
+          "en": "movie rag has some mechanisms but does not yet satisfy the complete v2 control.",
+          "pl": "Projekt movie rag ma część mechanizmów, ale nie spełnia jeszcze całej kontroli v2."
+        },
+        "taskIds": [
+          "immutable-blue-green"
+        ]
+      },
+      {
+        "id": "readiness-preflight",
+        "status": "partial",
+        "evidence": {
+          "en": "movie rag has some mechanisms but does not yet satisfy the complete v2 control.",
+          "pl": "Projekt movie rag ma część mechanizmów, ale nie spełnia jeszcze całej kontroli v2."
+        },
+        "taskIds": [
+          "immutable-blue-green"
+        ]
+      },
+      {
+        "id": "atomic-promotion-rollback",
+        "status": "missing",
+        "evidence": {
+          "en": "The required complete implementation was not found in the audited movie rag source.",
+          "pl": "W audytowanym źródle projektu movie rag nie znaleziono wymaganej kompletnej implementacji."
+        },
+        "taskIds": [
+          "immutable-blue-green"
+        ]
+      },
+      {
+        "id": "coordination-retention",
+        "status": "partial",
+        "evidence": {
+          "en": "movie rag has some mechanisms but does not yet satisfy the complete v2 control.",
+          "pl": "Projekt movie rag ma część mechanizmów, ale nie spełnia jeszcze całej kontroli v2."
+        },
+        "taskIds": [
+          "immutable-blue-green"
+        ]
+      },
+      {
+        "id": "observability",
+        "status": "partial",
+        "evidence": {
+          "en": "movie rag has some mechanisms but does not yet satisfy the complete v2 control.",
+          "pl": "Projekt movie rag ma część mechanizmów, ale nie spełnia jeszcze całej kontroli v2."
+        },
+        "taskIds": [
+          "service-observability"
+        ]
+      },
+      {
+        "id": "web-identity",
+        "status": "complete",
+        "evidence": {
+          "en": "The audit verified full implementation of web-identity.",
+          "pl": "Audyt potwierdził pełną realizację kontroli „web-identity”."
+        },
+        "taskIds": []
+      }
+    ]
   }
 }

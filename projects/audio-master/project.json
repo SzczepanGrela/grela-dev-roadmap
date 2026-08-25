@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 1,
+  "schemaVersion": 2,
   "slug": "audio-master",
   "order": 5,
   "name": {
@@ -36,22 +36,22 @@
   },
   "status": "maintenance",
   "progress": {
-    "implementation": 90,
-    "quality": 45,
-    "documentation": 90,
-    "delivery": 75,
-    "overall": 77
+    "implementation": 80,
+    "quality": 43,
+    "documentation": 80,
+    "delivery": 0,
+    "overall": 53
   },
   "complexity": 3,
   "forecast": {
-    "remainingHoursMin": 10,
-    "remainingHoursMax": 16,
-    "remainingDaysMin": 1.25,
-    "remainingDaysMax": 2,
+    "remainingHoursMin": 12,
+    "remainingHoursMax": 20,
+    "remainingDaysMin": 1.5,
+    "remainingDaysMax": 2.5,
     "hoursPerDay": 8,
     "hoursPerWeek": 30,
-    "earliest": "2026-09-22",
-    "latest": "2026-10-06",
+    "earliest": "2026-09-23",
+    "latest": "2026-10-13",
     "confidence": "medium"
   },
   "estimation": {
@@ -72,79 +72,96 @@
   },
   "tasks": [
     {
-      "id": "implementation",
+      "id": "audio-processing",
       "title": {
-        "en": "Polish cross-platform processing behavior",
+        "en": "Refine cross-platform processing",
         "pl": "Dopracować wieloplatformowe przetwarzanie"
       },
       "dimension": "implementation",
       "status": "in-progress",
-      "completion": 90,
-      "weight": 1,
+      "completion": 80,
+      "weight": 2,
       "difficulty": 3,
       "hoursMin": 2,
       "hoursMax": 3,
       "daysMin": 0.25,
       "daysMax": 0.5,
-      "evidence": "Repository is clean; desktop features and documentation are present."
+      "evidence": "The processing tool works but needs bounded inputs, cancellation and platform verification."
     },
     {
-      "id": "quality",
+      "id": "audio-tests",
       "title": {
-        "en": "Test audio transformations and failure paths",
-        "pl": "Przetestować transformacje audio i błędy"
+        "en": "Test transforms, failures and cancellation",
+        "pl": "Przetestować transformacje, błędy i anulowanie"
       },
       "dimension": "quality",
       "status": "in-progress",
-      "completion": 45,
-      "weight": 1,
+      "completion": 65,
+      "weight": 2,
       "difficulty": 3,
       "hoursMin": 4,
       "hoursMax": 6,
       "daysMin": 0.5,
       "daysMax": 0.75,
-      "evidence": "Quality workflow is green, but coverage is limited."
+      "evidence": "Quality CI exists; representative FFmpeg behavior needs stronger tests."
     },
     {
-      "id": "documentation",
+      "id": "repository-governance",
       "title": {
-        "en": "Maintain bilingual setup and attribution",
-        "pl": "Utrzymać konfigurację i atrybucję"
+        "en": "Protect main with required Quality",
+        "pl": "Chronić main wymaganym Quality"
       },
-      "dimension": "documentation",
-      "status": "in-progress",
-      "completion": 90,
+      "dimension": "quality",
+      "status": "planned",
+      "completion": 0,
       "weight": 1,
       "difficulty": 2,
       "hoursMin": 1,
       "hoursMax": 2,
       "daysMin": 0.25,
       "daysMax": 0.25,
-      "evidence": "README and MIT exist; IDE and executable artifacts are no longer tracked."
+      "evidence": "No GitHub ruleset is configured."
     },
     {
-      "id": "delivery",
+      "id": "audio-docs",
       "title": {
-        "en": "Create repeatable desktop packages",
-        "pl": "Utworzyć powtarzalne paczki desktopowe"
+        "en": "Maintain configuration and attribution",
+        "pl": "Utrzymać konfigurację i atrybucję"
+      },
+      "dimension": "documentation",
+      "status": "in-progress",
+      "completion": 80,
+      "weight": 1,
+      "difficulty": 2,
+      "hoursMin": 1,
+      "hoursMax": 2,
+      "daysMin": 0.25,
+      "daysMax": 0.25,
+      "evidence": "README exists; release support and cross-platform constraints need final documentation."
+    },
+    {
+      "id": "desktop-release",
+      "title": {
+        "en": "Publish versioned packages with checksums",
+        "pl": "Publikować wersjonowane paczki z checksumami"
       },
       "dimension": "delivery",
-      "status": "in-progress",
-      "completion": 75,
-      "weight": 1,
+      "status": "planned",
+      "completion": 0,
+      "weight": 2,
       "difficulty": 3,
-      "hoursMin": 3,
-      "hoursMax": 5,
+      "hoursMin": 4,
+      "hoursMax": 7,
       "daysMin": 0.5,
-      "daysMax": 0.75,
-      "evidence": "No public hosted service is required."
+      "daysMax": 1,
+      "evidence": "No reproducible release artifact is published by the current workflow."
     }
   ],
   "verification": {
-    "worktree": "clean",
-    "tests": "quality workflow succeeded",
-    "ci": "latest Quality checks succeeded",
-    "production": "not applicable; desktop application"
+    "worktree": "clean local worktree",
+    "tests": "Latest Quality checks succeeded; no ruleset or environment exists.",
+    "ci": "Latest Quality checks succeeded; no ruleset or environment exists.",
+    "production": "Not applicable: AudioMaster is a local desktop/audio-processing tool."
   },
   "media": {
     "screenshot": "assets/screenshots/audio-master.png",
@@ -160,17 +177,143 @@
     {
       "en": "Limit local FFmpeg concurrency and input sizes instead.",
       "pl": "Ograniczać lokalną współbieżność FFmpeg i rozmiary wejścia."
+    },
+    {
+      "en": "The project follows the v2 standard profile: desktop.",
+      "pl": "Projekt podlega profilowi standardu v2: desktop."
     }
   ],
   "audit": {
-    "date": "2026-08-24",
+    "date": "2026-08-25",
     "sources": [
-      "local worktree and git history",
-      "GitHub Actions API"
+      "audited source tree and git status",
+      "GitHub repository, Actions, rulesets and environments API",
+      "public DNS and HTTPS checks where applicable"
     ],
     "notes": {
       "en": "Previous hygiene tasks to remove IDE/executable artifacts are already complete.",
       "pl": "Poprzednie zadania usunięcia artefaktów IDE/exe są już wykonane."
     }
+  },
+  "compliance": {
+    "standardVersion": 2,
+    "profile": "desktop",
+    "assessmentDate": "2026-08-25",
+    "controls": [
+      {
+        "id": "governance",
+        "status": "partial",
+        "evidence": {
+          "en": "GitHub returned no active ruleset or environment; remaining elements were assessed from the repository.",
+          "pl": "GitHub nie zwrócił aktywnego rulesetu ani środowiska; pozostałe elementy oceniono z repozytorium."
+        },
+        "taskIds": [
+          "repository-governance"
+        ]
+      },
+      {
+        "id": "quality-ci",
+        "status": "complete",
+        "evidence": {
+          "en": "Latest Quality checks succeeded; no ruleset or environment exists.",
+          "pl": "GitHub Actions potwierdza zielony, proporcjonalny zestaw kontroli jakości dla audytowanego commitu."
+        },
+        "taskIds": []
+      },
+      {
+        "id": "immutable-release",
+        "status": "missing",
+        "evidence": {
+          "en": "The required complete implementation was not found in the audited audio master source.",
+          "pl": "W audytowanym źródle projektu audio master nie znaleziono wymaganej kompletnej implementacji."
+        },
+        "taskIds": [
+          "desktop-release"
+        ]
+      },
+      {
+        "id": "deployment-access",
+        "status": "not-applicable",
+        "evidence": {
+          "en": "The control does not apply to the audio master project profile.",
+          "pl": "Kontrola nie dotyczy profilu projektu audio master."
+        },
+        "taskIds": []
+      },
+      {
+        "id": "network-tls-client-ip",
+        "status": "not-applicable",
+        "evidence": {
+          "en": "Not applicable: AudioMaster is a local desktop/audio-processing tool.",
+          "pl": "Kontrola sieci webowej i TLS nie dotyczy tego profilu projektu."
+        },
+        "taskIds": []
+      },
+      {
+        "id": "abuse-protection",
+        "status": "not-applicable",
+        "evidence": {
+          "en": "The control does not apply to the audio master project profile.",
+          "pl": "Kontrola nie dotyczy profilu projektu audio master."
+        },
+        "taskIds": []
+      },
+      {
+        "id": "runtime-safety",
+        "status": "not-applicable",
+        "evidence": {
+          "en": "The control does not apply to the audio master project profile.",
+          "pl": "Kontrola nie dotyczy profilu projektu audio master."
+        },
+        "taskIds": []
+      },
+      {
+        "id": "readiness-preflight",
+        "status": "not-applicable",
+        "evidence": {
+          "en": "The control does not apply to the audio master project profile.",
+          "pl": "Kontrola nie dotyczy profilu projektu audio master."
+        },
+        "taskIds": []
+      },
+      {
+        "id": "atomic-promotion-rollback",
+        "status": "not-applicable",
+        "evidence": {
+          "en": "The control does not apply to the audio master project profile.",
+          "pl": "Kontrola nie dotyczy profilu projektu audio master."
+        },
+        "taskIds": []
+      },
+      {
+        "id": "coordination-retention",
+        "status": "missing",
+        "evidence": {
+          "en": "The required complete implementation was not found in the audited audio master source.",
+          "pl": "W audytowanym źródle projektu audio master nie znaleziono wymaganej kompletnej implementacji."
+        },
+        "taskIds": [
+          "desktop-release"
+        ]
+      },
+      {
+        "id": "observability",
+        "status": "not-applicable",
+        "evidence": {
+          "en": "The control does not apply to the audio master project profile.",
+          "pl": "Kontrola nie dotyczy profilu projektu audio master."
+        },
+        "taskIds": []
+      },
+      {
+        "id": "web-identity",
+        "status": "not-applicable",
+        "evidence": {
+          "en": "The control does not apply to the audio master project profile.",
+          "pl": "Kontrola nie dotyczy profilu projektu audio master."
+        },
+        "taskIds": []
+      }
+    ]
   }
 }

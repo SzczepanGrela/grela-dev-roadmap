@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 1,
+  "schemaVersion": 2,
   "slug": "leetcode-solutions",
   "order": 12,
   "name": {
@@ -34,22 +34,22 @@
   },
   "status": "paused",
   "progress": {
-    "implementation": 60,
+    "implementation": 45,
     "quality": 0,
     "documentation": 0,
-    "delivery": 12,
-    "overall": 27
+    "delivery": 30,
+    "overall": 26
   },
   "complexity": 2,
   "forecast": {
-    "remainingHoursMin": 8,
-    "remainingHoursMax": 14,
-    "remainingDaysMin": 1,
-    "remainingDaysMax": 1.75,
+    "remainingHoursMin": 9,
+    "remainingHoursMax": 16,
+    "remainingDaysMin": 1.25,
+    "remainingDaysMax": 2,
     "hoursPerDay": 8,
     "hoursPerWeek": 30,
-    "earliest": "2026-11-21",
-    "latest": "2027-01-12",
+    "earliest": "2026-12-03",
+    "latest": "2027-02-08",
     "confidence": "high"
   },
   "estimation": {
@@ -70,24 +70,24 @@
   },
   "tasks": [
     {
-      "id": "implementation",
+      "id": "solution-consistency",
       "title": {
-        "en": "Normalize solution implementations",
-        "pl": "Ujednolicić implementacje rozwiązań"
+        "en": "Standardize fifteen solutions",
+        "pl": "Ujednolicić piętnaście rozwiązań"
       },
       "dimension": "implementation",
       "status": "in-progress",
-      "completion": 60,
-      "weight": 1,
+      "completion": 45,
+      "weight": 2,
       "difficulty": 2,
       "hoursMin": 2,
       "hoursMax": 4,
       "daysMin": 0.25,
       "daysMax": 0.5,
-      "evidence": "Fifteen solution files exist without a package or common interface."
+      "evidence": "Solutions need consistent interfaces, naming and edge-case handling."
     },
     {
-      "id": "quality",
+      "id": "solution-tests",
       "title": {
         "en": "Add parameterized correctness tests",
         "pl": "Dodać parametryzowane testy poprawności"
@@ -95,54 +95,71 @@
       "dimension": "quality",
       "status": "planned",
       "completion": 0,
-      "weight": 1,
-      "difficulty": 2,
+      "weight": 2,
+      "difficulty": 3,
       "hoursMin": 3,
       "hoursMax": 4,
       "daysMin": 0.5,
       "daysMax": 0.5,
-      "evidence": "No tests or CI exist."
+      "evidence": "No automated tests or workflow runs exist."
     },
     {
-      "id": "documentation",
+      "id": "repository-governance",
       "title": {
-        "en": "Create indexed README, date and MIT license",
-        "pl": "Utworzyć indeks README, datę i licencję MIT"
+        "en": "Add Quality and protected main",
+        "pl": "Dodać Quality i chroniony main"
       },
-      "dimension": "documentation",
+      "dimension": "quality",
       "status": "planned",
       "completion": 0,
-      "weight": 1,
-      "difficulty": 2,
-      "hoursMin": 2,
-      "hoursMax": 4,
-      "daysMin": 0.25,
-      "daysMax": 0.5,
-      "evidence": "No README or license exists."
-    },
-    {
-      "id": "delivery",
-      "title": {
-        "en": "Rename and publish repository metadata",
-        "pl": "Zmienić nazwę i opublikować metadane"
-      },
-      "dimension": "delivery",
-      "status": "in-progress",
-      "completion": 12,
       "weight": 1,
       "difficulty": 2,
       "hoursMin": 1,
       "hoursMax": 2,
       "daysMin": 0.25,
       "daysMax": 0.25,
-      "evidence": "Repository is public but not standardized."
+      "evidence": "GitHub returned no Actions run or ruleset."
+    },
+    {
+      "id": "solution-index",
+      "title": {
+        "en": "Add README, original explanations and MIT",
+        "pl": "Dodać README, własne omówienia i MIT"
+      },
+      "dimension": "documentation",
+      "status": "planned",
+      "completion": 0,
+      "weight": 2,
+      "difficulty": 2,
+      "hoursMin": 2,
+      "hoursMax": 4,
+      "daysMin": 0.25,
+      "daysMax": 0.5,
+      "evidence": "The public repository lacks README/license metadata and should not copy problem statements."
+    },
+    {
+      "id": "repository-release",
+      "title": {
+        "en": "Rename and tag a versioned snapshot",
+        "pl": "Zmienić nazwę i oznaczyć wersjonowany snapshot"
+      },
+      "dimension": "delivery",
+      "status": "in-progress",
+      "completion": 30,
+      "weight": 1,
+      "difficulty": 2,
+      "hoursMin": 1,
+      "hoursMax": 2,
+      "daysMin": 0.25,
+      "daysMax": 0.25,
+      "evidence": "The target repository naming and versioned source snapshot are not finished."
     }
   ],
   "verification": {
-    "worktree": "audited from clean public clone",
-    "tests": "none",
-    "ci": "no GitHub Actions runs",
-    "production": "not applicable; source repository"
+    "worktree": "clean public main shallow clone",
+    "tests": "No GitHub Actions runs, ruleset or environment were found.",
+    "ci": "No GitHub Actions runs, ruleset or environment were found.",
+    "production": "Not applicable: source solutions remain a repository, not a service."
   },
   "media": {
     "screenshot": "assets/screenshots/leetcode-solutions.png",
@@ -154,17 +171,145 @@
     {
       "en": "Do not build a hosted service; an optional future index may be static.",
       "pl": "Nie budować usługi; ewentualny indeks może być statyczny."
+    },
+    {
+      "en": "The project follows the v2 standard profile: repository.",
+      "pl": "Projekt podlega profilowi standardu v2: repository."
     }
   ],
   "audit": {
-    "date": "2026-08-24",
+    "date": "2026-08-25",
     "sources": [
-      "public repository tree",
-      "GitHub metadata"
+      "audited source tree and git status",
+      "GitHub repository, Actions, rulesets and environments API",
+      "public DNS and HTTPS checks where applicable"
     ],
     "notes": {
       "en": "Progress reflects solved exercises, not repository readiness.",
       "pl": "Postęp uwzględnia rozwiązane zadania, ale nie gotowość repozytorium."
     }
+  },
+  "compliance": {
+    "standardVersion": 2,
+    "profile": "repository",
+    "assessmentDate": "2026-08-25",
+    "controls": [
+      {
+        "id": "governance",
+        "status": "missing",
+        "evidence": {
+          "en": "GitHub returned no active ruleset or environment; remaining elements were assessed from the repository.",
+          "pl": "GitHub nie zwrócił aktywnego rulesetu ani środowiska; pozostałe elementy oceniono z repozytorium."
+        },
+        "taskIds": [
+          "repository-governance"
+        ]
+      },
+      {
+        "id": "quality-ci",
+        "status": "missing",
+        "evidence": {
+          "en": "No GitHub Actions runs, ruleset or environment were found.",
+          "pl": "GitHub nie zwrócił żadnego wykonanego workflow Quality dla tego repozytorium."
+        },
+        "taskIds": [
+          "solution-tests"
+        ]
+      },
+      {
+        "id": "immutable-release",
+        "status": "missing",
+        "evidence": {
+          "en": "The required complete implementation was not found in the audited leetcode solutions source.",
+          "pl": "W audytowanym źródle projektu leetcode solutions nie znaleziono wymaganej kompletnej implementacji."
+        },
+        "taskIds": [
+          "repository-release"
+        ]
+      },
+      {
+        "id": "deployment-access",
+        "status": "not-applicable",
+        "evidence": {
+          "en": "The control does not apply to the leetcode solutions project profile.",
+          "pl": "Kontrola nie dotyczy profilu projektu leetcode solutions."
+        },
+        "taskIds": []
+      },
+      {
+        "id": "network-tls-client-ip",
+        "status": "not-applicable",
+        "evidence": {
+          "en": "Not applicable: source solutions remain a repository, not a service.",
+          "pl": "Kontrola sieci webowej i TLS nie dotyczy tego profilu projektu."
+        },
+        "taskIds": []
+      },
+      {
+        "id": "abuse-protection",
+        "status": "not-applicable",
+        "evidence": {
+          "en": "The control does not apply to the leetcode solutions project profile.",
+          "pl": "Kontrola nie dotyczy profilu projektu leetcode solutions."
+        },
+        "taskIds": []
+      },
+      {
+        "id": "runtime-safety",
+        "status": "not-applicable",
+        "evidence": {
+          "en": "The control does not apply to the leetcode solutions project profile.",
+          "pl": "Kontrola nie dotyczy profilu projektu leetcode solutions."
+        },
+        "taskIds": []
+      },
+      {
+        "id": "readiness-preflight",
+        "status": "not-applicable",
+        "evidence": {
+          "en": "The control does not apply to the leetcode solutions project profile.",
+          "pl": "Kontrola nie dotyczy profilu projektu leetcode solutions."
+        },
+        "taskIds": []
+      },
+      {
+        "id": "atomic-promotion-rollback",
+        "status": "not-applicable",
+        "evidence": {
+          "en": "The control does not apply to the leetcode solutions project profile.",
+          "pl": "Kontrola nie dotyczy profilu projektu leetcode solutions."
+        },
+        "taskIds": []
+      },
+      {
+        "id": "coordination-retention",
+        "status": "missing",
+        "evidence": {
+          "en": "The required complete implementation was not found in the audited leetcode solutions source.",
+          "pl": "W audytowanym źródle projektu leetcode solutions nie znaleziono wymaganej kompletnej implementacji."
+        },
+        "taskIds": [
+          "repository-release"
+        ]
+      },
+      {
+        "id": "observability",
+        "status": "not-applicable",
+        "evidence": {
+          "en": "The control does not apply to the leetcode solutions project profile.",
+          "pl": "Kontrola nie dotyczy profilu projektu leetcode solutions."
+        },
+        "taskIds": []
+      },
+      {
+        "id": "web-identity",
+        "status": "not-applicable",
+        "evidence": {
+          "en": "The control does not apply to the leetcode solutions project profile.",
+          "pl": "Kontrola nie dotyczy profilu projektu leetcode solutions."
+        },
+        "taskIds": []
+      }
+    ]
   }
 }

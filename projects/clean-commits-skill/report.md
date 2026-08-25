@@ -1,56 +1,149 @@
 # Clean Commits Skill — status report / raport stanu
 
-Audit date / data audytu: **2026-08-24**  
-Estimated completion / szacowane ukończenie: **81%**  
-Forecast / prognoza: **2027-03-07–2027-06-13**, 6–10 h, high confidence / wysoka pewność
+Audit date / data audytu: **2026-08-25**<br>
+Estimated completion / szacowane ukończenie: **40%**<br>
+Forecast / prognoza: **2026-11-25–2027-01-25**, 7–11 h, high confidence / pewność: high
+
+> This report is synchronized from `project.json` and the versioned delivery-control catalog. / Raport jest synchronizowany z `project.json` i wersjonowanym katalogiem kontroli wdrożeniowych.
 
 ## English
 
 ### Purpose and current state
 
-Clean Commits Skill is documentation/instruction tooling for producing focused Git commits. It already has a useful skill definition, README and MIT license. The remaining work is small and mostly concerns portability and automated validation.
+Plan-first skill for turning a dirty Git worktree into safe atomic commits.
 
-### Completed and verified
+This is close to release-ready and mainly needs packaging polish.
 
-- The skill and supporting documentation are present.
-- MIT licensing is explicit.
-- The repository is compact enough to audit manually.
-- No hosting or production service is required.
+### Audit evidence
 
-### Remaining work and known issues
+- **Repozytorium:** `SzczepanGrela/clean-commits-skill` @ `f6d4f3589aa7842f681290c96e0b1eda54059a83`
+- **Source state:** clean public main shallow clone
+- **Tests and CI:** No GitHub Actions runs, ruleset or environment were found.
+- **Production:** Not applicable: this is a versioned Codex developer skill.
 
-- Replace the literal `<your-username>` placeholder with a portable example or setup variable.
-- Add a minimal CI check for required files, metadata format, links and example consistency.
-- Add a small fixture repository or scripted acceptance scenario.
-- Clarify behavior around dirty worktrees, generated files and user-owned changes.
-- Tag a versioned release after validation.
+### v2 standard compliance
 
-### Decisions
+Profile: **Developer tool**. Statuses reflect only evidence available on the audit date.
 
-No rate limiting, Fail2ban, NPM or deployment topology applies. Quality is measured through instruction validation and representative Git fixtures. The project can finish independently when convenient even though its displayed order follows the portfolio roadmap.
+| Control | Status | Evidence |
+| --- | --- | --- |
+| Repository governance | Partial | GitHub returned no active ruleset or environment; remaining elements were assessed from the repository. |
+| Quality CI | Missing | No GitHub Actions runs, ruleset or environment were found. |
+| Immutable release | Missing | The required complete implementation was not found in the audited clean commits skill source. |
+| Deployment access | Not applicable | The control does not apply to the clean commits skill project profile. |
+| Network, TLS and client identity | Not applicable | Not applicable: this is a versioned Codex developer skill. |
+| Abuse protection | Not applicable | The control does not apply to the clean commits skill project profile. |
+| Runtime safety | Not applicable | The control does not apply to the clean commits skill project profile. |
+| Readiness and preflight | Not applicable | The control does not apply to the clean commits skill project profile. |
+| Atomic promotion and rollback | Not applicable | The control does not apply to the clean commits skill project profile. |
+| Coordination and retention | Missing | The required complete implementation was not found in the audited clean commits skill source. |
+| Observability | Not applicable | The control does not apply to the clean commits skill project profile. |
+| Web identity | Not applicable | The control does not apply to the clean commits skill project profile. |
+
+### Remaining and active tasks
+
+#### Refine skill behavior and compatibility
+
+**Implementation · In progress · 75% · difficulty 2/5 · 1–2 h**
+
+The skill exists and is documented; representative compatibility cases remain.
+
+#### Add evals and Git fixture tests
+
+**Quality · Planned · 0% · difficulty 3/5 · 2–3 h**
+
+No automated workflow or representative evaluation suite is present.
+
+#### Add Quality and a ruleset
+
+**Quality · Planned · 0% · difficulty 2/5 · 1–2 h**
+
+GitHub returned no workflow run or ruleset.
+
+#### Fix installation, version and dates
+
+**Documentation · In progress · 65% · difficulty 2/5 · 1–1 h**
+
+README placeholders and release metadata need finalization.
+
+#### Publish a versioned verified package
+
+**Delivery · Planned · 0% · difficulty 3/5 · 2–3 h**
+
+There is no tagged, checksummed and installation-tested release.
+
+### Architecture decisions
+
+- No web hosting or HTTP rate limiting.
+- The project follows the v2 standard profile: developer-tool.
 
 ## Polski
 
-### Cel i stan bieżący
+### Cel i aktualny stan
 
-Clean Commits Skill to zestaw instrukcji pomagający tworzyć małe, logiczne commity Git. Ma już definicję skilla, README i licencję MIT. Pozostały zakres jest niewielki i dotyczy przenośności oraz automatycznej walidacji.
+Skill plan-first do bezpiecznego dzielenia brudnego worktree na atomowe commity.
 
-### Wykonane i zweryfikowane
+Projekt jest blisko wydania i wymaga głównie dopracowania paczki.
 
-- Skill i dokumentacja istnieją.
-- Licencja MIT jest jawna.
-- Repozytorium jest małe i łatwe do ręcznego audytu.
-- Projekt nie wymaga hostingu.
+### Dowody audytu
 
-### Do zrobienia i znane problemy
+- **Repozytorium:** `SzczepanGrela/clean-commits-skill` @ `f6d4f3589aa7842f681290c96e0b1eda54059a83`
+- **Stan źródła:** clean public main shallow clone
+- **Testy i CI:** No GitHub Actions runs, ruleset or environment were found.
+- **Produkcja:** Not applicable: this is a versioned Codex developer skill.
 
-- Zastąpić dosłowny placeholder `<your-username>` przenośnym przykładem lub zmienną.
-- Dodać CI sprawdzające wymagane pliki, metadane, linki i przykłady.
-- Dodać fixture repozytorium lub skryptowany scenariusz akceptacyjny.
-- Doprecyzować brudny worktree, pliki generowane i zmiany należące do użytkownika.
-- Po walidacji utworzyć wersjonowany release.
+### Zgodność ze standardem v2
 
-### Decyzje
+Profil: **Narzędzie deweloperskie**. Statusy odzwierciedlają wyłącznie dowody dostępne w dniu audytu.
 
-Rate limiting, Fail2ban, NPM i deployment nie mają zastosowania. Jakość będzie sprawdzana przez walidację instrukcji i reprezentatywne fixture'y Git.
+| Kontrola | Status | Dowód |
+| --- | --- | --- |
+| Zarządzanie repozytorium | Częściowe | GitHub nie zwrócił aktywnego rulesetu ani środowiska; pozostałe elementy oceniono z repozytorium. |
+| Quality CI | Brak | GitHub nie zwrócił żadnego wykonanego workflow Quality dla tego repozytorium. |
+| Niezmienne wydanie | Brak | W audytowanym źródle projektu clean commits skill nie znaleziono wymaganej kompletnej implementacji. |
+| Dostęp wdrożeniowy | Nie dotyczy | Kontrola nie dotyczy profilu projektu clean commits skill. |
+| Sieć, TLS i tożsamość klienta | Nie dotyczy | Kontrola sieci webowej i TLS nie dotyczy tego profilu projektu. |
+| Ochrona przed nadużyciami | Nie dotyczy | Kontrola nie dotyczy profilu projektu clean commits skill. |
+| Bezpieczeństwo runtime | Nie dotyczy | Kontrola nie dotyczy profilu projektu clean commits skill. |
+| Readiness i preflight | Nie dotyczy | Kontrola nie dotyczy profilu projektu clean commits skill. |
+| Atomowa promocja i rollback | Nie dotyczy | Kontrola nie dotyczy profilu projektu clean commits skill. |
+| Koordynacja i retencja | Brak | W audytowanym źródle projektu clean commits skill nie znaleziono wymaganej kompletnej implementacji. |
+| Obserwowalność | Nie dotyczy | Kontrola nie dotyczy profilu projektu clean commits skill. |
+| Tożsamość webowa | Nie dotyczy | Kontrola nie dotyczy profilu projektu clean commits skill. |
 
+### Zadania pozostałe i bieżące
+
+#### Dopracować zachowanie i kompatybilność skilla
+
+**Implementacja · W toku · 75% · trudność 2/5 · 1–2 h**
+
+The skill exists and is documented; representative compatibility cases remain.
+
+#### Dodać evale i testy fixture Git
+
+**Jakość · Planowane · 0% · trudność 3/5 · 2–3 h**
+
+No automated workflow or representative evaluation suite is present.
+
+#### Dodać Quality i ruleset
+
+**Jakość · Planowane · 0% · trudność 2/5 · 1–2 h**
+
+GitHub returned no workflow run or ruleset.
+
+#### Poprawić instalację, wersję i daty
+
+**Dokumentacja · W toku · 65% · trudność 2/5 · 1–1 h**
+
+README placeholders and release metadata need finalization.
+
+#### Opublikować wersjonowany i sprawdzony pakiet
+
+**Wdrożenie · Planowane · 0% · trudność 3/5 · 2–3 h**
+
+There is no tagged, checksummed and installation-tested release.
+
+### Decyzje architektoniczne
+
+- Bez hostingu webowego i HTTP rate limitingu.
+- Projekt podlega profilowi standardu v2: developer-tool.

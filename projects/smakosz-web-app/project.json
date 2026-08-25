@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 1,
+  "schemaVersion": 2,
   "slug": "smakosz-web-app",
   "order": 7,
   "name": {
@@ -40,22 +40,22 @@
   },
   "status": "active",
   "progress": {
-    "implementation": 76,
-    "quality": 90,
-    "documentation": 20,
-    "delivery": 39,
-    "overall": 61
+    "implementation": 48,
+    "quality": 49,
+    "documentation": 45,
+    "delivery": 19,
+    "overall": 40
   },
   "complexity": 5,
   "forecast": {
-    "remainingHoursMin": 57,
-    "remainingHoursMax": 96,
-    "remainingDaysMin": 7.25,
-    "remainingDaysMax": 12,
+    "remainingHoursMin": 54,
+    "remainingHoursMax": 90,
+    "remainingDaysMin": 6.75,
+    "remainingDaysMax": 11.25,
     "hoursPerDay": 8,
     "hoursPerWeek": 30,
-    "earliest": "2026-10-08",
-    "latest": "2026-11-02",
+    "earliest": "2026-10-09",
+    "latest": "2026-11-11",
     "confidence": "low"
   },
   "estimation": {
@@ -76,147 +76,164 @@
   },
   "tasks": [
     {
-      "id": "implementation",
+      "id": "product-maintenance",
       "title": {
         "en": "Maintain the broad production feature set",
         "pl": "Utrzymać szeroki zestaw funkcji produkcyjnych"
       },
       "dimension": "implementation",
       "status": "in-progress",
-      "completion": 95,
-      "weight": 4,
+      "completion": 80,
+      "weight": 3,
       "difficulty": 5,
       "hoursMin": 5,
       "hoursMax": 8,
       "daysMin": 0.75,
       "daysMax": 1,
-      "evidence": "API, clients, orchestrator, workers, moderation and recommendation code are extensive."
+      "evidence": "The application is substantial and operational, with deferred product defects still recorded."
     },
     {
-      "id": "quality",
+      "id": "distributed-quality",
       "title": {
-        "en": "Extend security and distributed behavior tests",
+        "en": "Expand security and distributed-behavior tests",
         "pl": "Rozbudować testy bezpieczeństwa i zachowania rozproszonego"
       },
       "dimension": "quality",
       "status": "in-progress",
-      "completion": 90,
-      "weight": 1,
+      "completion": 65,
+      "weight": 3,
       "difficulty": 5,
       "hoursMin": 8,
       "hoursMax": 12,
       "daysMin": 1,
       "daysMax": 1.5,
-      "evidence": "Latest CI/CD succeeded and the repository has a large test suite."
+      "evidence": "CI is green, but multi-slot, migration and singleton-worker failure modes need explicit tests."
     },
     {
-      "id": "documentation",
+      "id": "repository-governance",
       "title": {
-        "en": "Create public README, license and architecture guide",
-        "pl": "Utworzyć publiczny README, licencję i opis architektury"
+        "en": "Consolidate workflows and protect main",
+        "pl": "Scalić workflowy i chronić main"
+      },
+      "dimension": "quality",
+      "status": "planned",
+      "completion": 0,
+      "weight": 1,
+      "difficulty": 3,
+      "hoursMin": 2,
+      "hoursMax": 4,
+      "daysMin": 0.25,
+      "daysMax": 0.5,
+      "evidence": "Two deployment workflows remain and GitHub returned no ruleset or environment."
+    },
+    {
+      "id": "public-documentation",
+      "title": {
+        "en": "Add public README, license and runbook",
+        "pl": "Dodać publiczny README, licencję i runbook"
       },
       "dimension": "documentation",
       "status": "in-progress",
-      "completion": 20,
-      "weight": 1,
-      "difficulty": 2,
+      "completion": 45,
+      "weight": 2,
+      "difficulty": 3,
       "hoursMin": 5,
       "hoursMax": 8,
       "daysMin": 0.75,
       "daysMax": 1,
-      "evidence": "GitHub exposes no README or recognized license."
-    },
-    {
-      "id": "delivery",
-      "title": {
-        "en": "Harden identity limits, networks and the existing deployment",
-        "pl": "Wzmocnić limity tożsamości, sieci i istniejący deployment"
-      },
-      "dimension": "delivery",
-      "status": "in-progress",
-      "completion": 75,
-      "weight": 3,
-      "difficulty": 5,
-      "hoursMin": 10,
-      "hoursMax": 18,
-      "daysMin": 1.25,
-      "daysMax": 2.25,
-      "evidence": "Deployment workflows exist, but production still uses mutable latest images and moving main configuration."
+      "evidence": "GitHub reports no recognized license and the public operational architecture remains incomplete."
     },
     {
       "id": "email-smtp",
       "title": {
-        "en": "Replace the expired Brevo API integration with SMTP",
-        "pl": "Zastąpić wygasłą integrację Brevo API wysyłką SMTP"
+        "en": "Replace expired Brevo API delivery with SMTP",
+        "pl": "Zastąpić wygasłe Brevo API wysyłką SMTP"
       },
       "dimension": "implementation",
       "status": "planned",
       "completion": 0,
-      "weight": 1,
+      "weight": 2,
       "difficulty": 3,
       "hoursMin": 4,
       "hoursMax": 7,
       "daysMin": 0.5,
       "daysMax": 1,
-      "evidence": "Transactional email is affected by an expired Brevo API key; the owner selected SMTP as the target integration."
+      "evidence": "Mail delivery is blocked by an expired API key and should move behind an SMTP sender abstraction."
+    },
+    {
+      "id": "abuse-and-runtime",
+      "title": {
+        "en": "Harden identity, proxy and runtime limits",
+        "pl": "Wzmocnić limity tożsamości, proxy i runtime"
+      },
+      "dimension": "delivery",
+      "status": "in-progress",
+      "completion": 50,
+      "weight": 2,
+      "difficulty": 4,
+      "hoursMin": 5,
+      "hoursMax": 8,
+      "daysMin": 0.75,
+      "daysMax": 1,
+      "evidence": "Application limits and forwarded-header handling exist, but distributed state and outer policies need verification."
     },
     {
       "id": "cicd-repair",
       "title": {
-        "en": "Repair immutable CI/CD, preflight, blue-green and rollback",
-        "pl": "Naprawić niezmienne CI/CD, preflight, blue-green i rollback"
+        "en": "Implement digests, readiness and safe blue-green",
+        "pl": "Wdrożyć digests, readiness i bezpieczne blue-green"
       },
       "dimension": "delivery",
       "status": "in-progress",
-      "completion": 25,
-      "weight": 2,
+      "completion": 30,
+      "weight": 3,
       "difficulty": 5,
       "hoursMin": 14,
       "hoursMax": 24,
       "daysMin": 1.75,
       "daysMax": 3,
-      "evidence": "Images are built in CI, but latest tags, moving main configuration, post-replacement checks and unsafe shared-host cleanup prevent release-safe deployment."
+      "evidence": "Current workflows use moving configuration and require immutable manifests, migration gates and real rollback."
     },
     {
       "id": "domain-migration",
       "title": {
-        "en": "Select and migrate to the new canonical domain",
-        "pl": "Wybrać i zmigrować nową domenę kanoniczną"
+        "en": "Select and migrate the canonical domain",
+        "pl": "Wybrać i zmigrować domenę kanoniczną"
       },
       "dimension": "delivery",
       "status": "planned",
       "completion": 0,
-      "weight": 1,
+      "weight": 2,
       "difficulty": 3,
       "hoursMin": 4,
       "hoursMax": 7,
       "daysMin": 0.5,
       "daysMax": 1,
-      "evidence": "The owner requested a domain change; the target hostname is intentionally pending an explicit decision."
+      "evidence": "The planned smakosz.grela.dev hostname does not resolve and callbacks, cookies and old-domain redirects need migration."
     },
     {
       "id": "central-observability-migration",
       "title": {
-        "en": "Extract Smakosz monitoring into the shared VPS observability stack",
-        "pl": "Wydzielić monitoring Smakosza do wspólnego stacku obserwowalności VPS"
+        "en": "Move monitoring to the shared VPS stack",
+        "pl": "Wydzielić monitoring do wspólnego stacku VPS"
       },
       "dimension": "delivery",
       "status": "planned",
       "completion": 0,
-      "weight": 1,
-      "difficulty": 4,
+      "weight": 3,
+      "difficulty": 5,
       "hoursMin": 7,
       "hoursMax": 12,
       "daysMin": 1,
       "daysMax": 1.5,
-      "evidence": "Prometheus, Grafana, Grafana Image Renderer and Node Exporter currently belong to Smakosz Compose and smakosz_network; Prometheus scrapes only Smakosz and the host."
+      "evidence": "Prometheus, Grafana, renderer and Node Exporter are still coupled to the Smakosz stack."
     }
   ],
   "verification": {
-    "worktree": "audited from clean public clone",
-    "tests": "not rerun locally; extensive test projects are present",
-    "ci": "latest CI/CD succeeded, but audit found mutable release inputs and no safe candidate promotion/rollback",
-    "production": "existing deployment is running; target canonical domain for the requested migration requires owner selection"
+    "worktree": "clean public main shallow clone",
+    "tests": "Both public CI/CD workflows succeeded at 7d75ca1; no ruleset or GitHub environment exists.",
+    "ci": "Both public CI/CD workflows succeeded at 7d75ca1; no ruleset or GitHub environment exists.",
+    "production": "smakosz.grela.dev did not resolve; running Smakosz containers were previously verified on the VPS under another/current address."
   },
   "media": {
     "screenshot": "assets/screenshots/smakosz-web-app.png",
@@ -248,20 +265,159 @@
     {
       "en": "Run one independent observability stack per VPS environment and preserve Smakosz dashboards, alerts and history during the staged migration.",
       "pl": "Utrzymywać jeden niezależny stack obserwowalności na środowisko VPS oraz zachować dashboardy, alerty i historię Smakosza podczas migracji etapowej."
+    },
+    {
+      "en": "The project follows the v2 standard profile: vps-web.",
+      "pl": "Projekt podlega profilowi standardu v2: vps-web."
     }
   ],
   "audit": {
-    "date": "2026-08-24",
+    "date": "2026-08-25",
     "sources": [
-      "public repository tree and source review",
-      "refreshed public main commit 7d75ca159441b6f5f9f335b84f8fbe27361c8fcc",
-      "GitHub Actions API",
-      "public DNS",
-      "owner-provided VPS docker ps output from 2026-08-25"
+      "audited source tree and git status",
+      "GitHub repository, Actions, rulesets and environments API",
+      "public DNS and HTTPS checks where applicable"
     ],
     "notes": {
       "en": "The project is technically mature, but public documentation, canonical hosting metadata, release integrity and ownership of the existing observability stack require work.",
       "pl": "Projekt jest technicznie dojrzały, ale dokumentacja, metadane hostingu, spójność wydań i odpowiedzialność za istniejący stack obserwowalności wymagają pracy."
     }
+  },
+  "compliance": {
+    "standardVersion": 2,
+    "profile": "vps-web",
+    "assessmentDate": "2026-08-25",
+    "controls": [
+      {
+        "id": "governance",
+        "status": "partial",
+        "evidence": {
+          "en": "GitHub returned no active ruleset or environment; remaining elements were assessed from the repository.",
+          "pl": "GitHub nie zwrócił aktywnego rulesetu ani środowiska; pozostałe elementy oceniono z repozytorium."
+        },
+        "taskIds": [
+          "repository-governance"
+        ]
+      },
+      {
+        "id": "quality-ci",
+        "status": "partial",
+        "evidence": {
+          "en": "Both public CI/CD workflows succeeded at 7d75ca1; no ruleset or GitHub environment exists.",
+          "pl": "Quality CI istnieje, ale nie obejmuje całego bieżącego stanu lub części wymaganych kontroli v2."
+        },
+        "taskIds": [
+          "distributed-quality"
+        ]
+      },
+      {
+        "id": "immutable-release",
+        "status": "partial",
+        "evidence": {
+          "en": "smakosz web app has some mechanisms but does not yet satisfy the complete v2 control.",
+          "pl": "Projekt smakosz web app ma część mechanizmów, ale nie spełnia jeszcze całej kontroli v2."
+        },
+        "taskIds": [
+          "cicd-repair"
+        ]
+      },
+      {
+        "id": "deployment-access",
+        "status": "partial",
+        "evidence": {
+          "en": "smakosz web app has some mechanisms but does not yet satisfy the complete v2 control.",
+          "pl": "Projekt smakosz web app ma część mechanizmów, ale nie spełnia jeszcze całej kontroli v2."
+        },
+        "taskIds": [
+          "cicd-repair"
+        ]
+      },
+      {
+        "id": "network-tls-client-ip",
+        "status": "partial",
+        "evidence": {
+          "en": "smakosz.grela.dev did not resolve; running Smakosz containers were previously verified on the VPS under another/current address.",
+          "pl": "Część publicznego HTTPS lub routingu działa, ale pełny zaufany łańcuch sieciowy nie został potwierdzony."
+        },
+        "taskIds": [
+          "domain-migration"
+        ]
+      },
+      {
+        "id": "abuse-protection",
+        "status": "partial",
+        "evidence": {
+          "en": "smakosz web app has some mechanisms but does not yet satisfy the complete v2 control.",
+          "pl": "Projekt smakosz web app ma część mechanizmów, ale nie spełnia jeszcze całej kontroli v2."
+        },
+        "taskIds": [
+          "abuse-and-runtime"
+        ]
+      },
+      {
+        "id": "runtime-safety",
+        "status": "partial",
+        "evidence": {
+          "en": "smakosz web app has some mechanisms but does not yet satisfy the complete v2 control.",
+          "pl": "Projekt smakosz web app ma część mechanizmów, ale nie spełnia jeszcze całej kontroli v2."
+        },
+        "taskIds": [
+          "abuse-and-runtime"
+        ]
+      },
+      {
+        "id": "readiness-preflight",
+        "status": "partial",
+        "evidence": {
+          "en": "smakosz web app has some mechanisms but does not yet satisfy the complete v2 control.",
+          "pl": "Projekt smakosz web app ma część mechanizmów, ale nie spełnia jeszcze całej kontroli v2."
+        },
+        "taskIds": [
+          "cicd-repair"
+        ]
+      },
+      {
+        "id": "atomic-promotion-rollback",
+        "status": "partial",
+        "evidence": {
+          "en": "smakosz web app has some mechanisms but does not yet satisfy the complete v2 control.",
+          "pl": "Projekt smakosz web app ma część mechanizmów, ale nie spełnia jeszcze całej kontroli v2."
+        },
+        "taskIds": [
+          "cicd-repair"
+        ]
+      },
+      {
+        "id": "coordination-retention",
+        "status": "partial",
+        "evidence": {
+          "en": "smakosz web app has some mechanisms but does not yet satisfy the complete v2 control.",
+          "pl": "Projekt smakosz web app ma część mechanizmów, ale nie spełnia jeszcze całej kontroli v2."
+        },
+        "taskIds": [
+          "cicd-repair"
+        ]
+      },
+      {
+        "id": "observability",
+        "status": "partial",
+        "evidence": {
+          "en": "smakosz web app has some mechanisms but does not yet satisfy the complete v2 control.",
+          "pl": "Projekt smakosz web app ma część mechanizmów, ale nie spełnia jeszcze całej kontroli v2."
+        },
+        "taskIds": [
+          "central-observability-migration"
+        ]
+      },
+      {
+        "id": "web-identity",
+        "status": "complete",
+        "evidence": {
+          "en": "The audit verified full implementation of web-identity.",
+          "pl": "Audyt potwierdził pełną realizację kontroli „web-identity”."
+        },
+        "taskIds": []
+      }
+    ]
   }
 }

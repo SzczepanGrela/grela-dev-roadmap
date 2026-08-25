@@ -12,6 +12,7 @@ from urllib.parse import urlparse
 
 ROOT = Path(__file__).resolve().parents[1]
 PROJECTS = ROOT / "projects"
+STANDARD_PATH = ROOT / "standards" / "delivery-controls.json"
 DIMENSION_WEIGHTS = {
     "implementation": 40,
     "quality": 20,
@@ -34,7 +35,7 @@ def weighted_progress(tasks: list[dict], dimension: str) -> int:
     return round(sum(task["completion"] * task["weight"] for task in selected) / denominator)
 
 
-def validate_project(path: Path) -> tuple[dict, list[str]]:
+def validate_project(path: Path, standard: dict) -> tuple[dict, list[str]]:
     errors: list[str] = []
     data = json.loads(path.read_text(encoding="utf-8"))
     slug = path.parent.name
@@ -70,6 +71,38 @@ def validate_project(path: Path) -> tuple[dict, list[str]]:
                 errors.append(
                     f"{path}: days{suffix} in task {task.get('id')} must equal {expected_days}"
                 )
+
+    compliance = data.get("compliance", {})
+    profile = compliance.get("profile")
+    controls = compliance.get("controls", [])
+    catalog_controls = standard.get("controls", [])
+    catalog_by_id = {control["id"]: control for control in catalog_controls}
+    control_ids = [control.get("id") for control in controls]
+    if compliance.get("standardVersion") != standard.get("standardVersion"):
+        errors.append(f"{path}: compliance standardVersion does not match catalog")
+    if len(control_ids) != len(set(control_ids)):
+        errors.append(f"{path}: duplicate compliance control IDs")
+    if set(control_ids) != set(catalog_by_id):
+        errors.append(f"{path}: compliance controls must exactly match the catalog")
+    if profile not in standard.get("profiles", {}):
+        errors.append(f"{path}: unknown compliance profile {profile!r}")
+    for control in controls:
+        control_id = control.get("id")
+        catalog_control = catalog_by_id.get(control_id, {})
+        applicable = profile in catalog_control.get("profiles", [])
+        status = control.get("status")
+        linked_tasks = control.get("taskIds", [])
+        if applicable and status == "not-applicable":
+            errors.append(f"{path}: applicable control {control_id} cannot be not-applicable")
+        if not applicable and status != "not-applicable":
+            errors.append(f"{path}: control {control_id} must be not-applicable for {profile}")
+        unknown_tasks = set(linked_tasks) - set(task_ids)
+        if unknown_tasks:
+            errors.append(f"{path}: control {control_id} links unknown tasks {sorted(unknown_tasks)}")
+        if applicable and status in {"partial", "missing", "unverified", "blocked"} and not linked_tasks:
+            errors.append(f"{path}: incomplete control {control_id} must link at least one task")
+        if status in {"complete", "not-applicable"} and linked_tasks:
+            errors.append(f"{path}: {status} control {control_id} cannot link remaining tasks")
 
     calculated: dict[str, int] = {}
     try:
@@ -122,9 +155,15 @@ def main() -> int:
     if len(paths) != 14:
         errors.append(f"expected 14 projects, found {len(paths)}")
 
+    try:
+        standard = json.loads(STANDARD_PATH.read_text(encoding="utf-8"))
+    except (OSError, json.JSONDecodeError) as exc:
+        print(f"Cannot read delivery standard: {exc}", file=sys.stderr)
+        return 1
+
     for path in paths:
         try:
-            project, project_errors = validate_project(path)
+            project, project_errors = validate_project(path, standard)
             projects.append(project)
             errors.extend(project_errors)
         except (OSError, json.JSONDecodeError) as exc:

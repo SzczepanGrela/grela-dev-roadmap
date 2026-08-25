@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 1,
+  "schemaVersion": 2,
   "slug": "inventory-generator",
   "order": 1,
   "name": {
@@ -38,29 +38,29 @@
   },
   "status": "active",
   "progress": {
-    "implementation": 90,
-    "quality": 75,
-    "documentation": 90,
-    "delivery": 45,
-    "overall": 76
+    "implementation": 80,
+    "quality": 47,
+    "documentation": 75,
+    "delivery": 0,
+    "overall": 53
   },
   "complexity": 3,
   "forecast": {
-    "remainingHoursMin": 11,
-    "remainingHoursMax": 19,
-    "remainingDaysMin": 1.5,
-    "remainingDaysMax": 2.5,
+    "remainingHoursMin": 22,
+    "remainingHoursMax": 38,
+    "remainingDaysMin": 2.75,
+    "remainingDaysMax": 4.75,
     "hoursPerDay": 8,
     "hoursPerWeek": 30,
-    "earliest": "2026-09-03",
-    "latest": "2026-09-05",
+    "earliest": "2026-08-28",
+    "latest": "2026-09-02",
     "confidence": "high"
   },
   "estimation": {
     "date": "2026-08-25",
     "mode": "codex-assisted-source-audited",
     "sourceRevision": "bee8f313dace9e1271c1bee59f8ce4fe3a96346b",
-    "sourceState": "local worktree with one changed path"
+    "sourceState": "local worktree with one modified CSS file"
   },
   "focus": {
     "current": {
@@ -74,79 +74,147 @@
   },
   "tasks": [
     {
-      "id": "implementation",
+      "id": "export-hardening",
       "title": {
         "en": "Finish UI and export safeguards",
         "pl": "Dokończyć UI i zabezpieczenia eksportu"
       },
       "dimension": "implementation",
       "status": "in-progress",
-      "completion": 90,
-      "weight": 1,
+      "completion": 80,
+      "weight": 2,
       "difficulty": 3,
-      "hoursMin": 1,
-      "hoursMax": 2,
+      "hoursMin": 2,
+      "hoursMax": 4,
       "daysMin": 0.25,
-      "daysMax": 0.25,
-      "evidence": "Application is functional; one uncommitted CSS file remains."
+      "daysMax": 0.5,
+      "evidence": "One local CSS change remains; export endpoints still need format-specific body, row and concurrency bounds."
     },
     {
-      "id": "quality",
+      "id": "quality-coverage",
       "title": {
         "en": "Expand export and browser coverage",
         "pl": "Rozbudować testy eksportu i przeglądarki"
       },
       "dimension": "quality",
       "status": "in-progress",
-      "completion": 75,
-      "weight": 1,
+      "completion": 70,
+      "weight": 2,
       "difficulty": 3,
       "hoursMin": 3,
       "hoursMax": 5,
       "daysMin": 0.5,
       "daysMax": 0.75,
-      "evidence": "Local dotnet test: 2 passed; latest remote CI succeeded."
+      "evidence": "Unit and integration projects exist and CI is green; expensive export and browser cases remain."
     },
     {
-      "id": "documentation",
+      "id": "repository-governance",
       "title": {
-        "en": "Keep public documentation and metadata current",
-        "pl": "Utrzymać dokumentację i metadane"
+        "en": "Enable ruleset and required Quality checks",
+        "pl": "Włączyć ruleset i wymagane Quality"
       },
-      "dimension": "documentation",
-      "status": "in-progress",
-      "completion": 90,
+      "dimension": "quality",
+      "status": "planned",
+      "completion": 0,
       "weight": 1,
       "difficulty": 2,
       "hoursMin": 1,
       "hoursMax": 2,
       "daysMin": 0.25,
       "daysMax": 0.25,
-      "evidence": "Bilingual README and MIT license exist."
+      "evidence": "GitHub returned no active ruleset or deployment environment."
     },
     {
-      "id": "delivery",
+      "id": "operations-docs",
       "title": {
-        "en": "Complete public deployment hardening",
-        "pl": "Dokończyć produkcyjne wdrożenie"
+        "en": "Complete operations documentation and favicon",
+        "pl": "Uzupełnić dokumentację operacyjną i favicon"
+      },
+      "dimension": "documentation",
+      "status": "in-progress",
+      "completion": 75,
+      "weight": 1,
+      "difficulty": 2,
+      "hoursMin": 2,
+      "hoursMax": 3,
+      "daysMin": 0.25,
+      "daysMax": 0.5,
+      "evidence": "README and MIT exist, but the public web identity and v2 operations runbook are incomplete."
+    },
+    {
+      "id": "edge-and-limits",
+      "title": {
+        "en": "Enable DNS, TLS and three-layer limits",
+        "pl": "Uruchomić DNS, TLS i trzy warstwy limitów"
       },
       "dimension": "delivery",
-      "status": "in-progress",
-      "completion": 45,
+      "status": "planned",
+      "completion": 0,
+      "weight": 2,
+      "difficulty": 3,
+      "hoursMin": 3,
+      "hoursMax": 5,
+      "daysMin": 0.5,
+      "daysMax": 0.75,
+      "evidence": "The target hostname does not resolve and Cloudflare/NPM controls cannot be verified."
+    },
+    {
+      "id": "immutable-deploy",
+      "title": {
+        "en": "Publish and deploy an image by digest",
+        "pl": "Publikować i wdrażać obraz po digestcie"
+      },
+      "dimension": "delivery",
+      "status": "planned",
+      "completion": 0,
+      "weight": 2,
+      "difficulty": 3,
+      "hoursMin": 4,
+      "hoursMax": 7,
+      "daysMin": 0.5,
+      "daysMax": 1,
+      "evidence": "The current server script rebuilds the image and performs global image pruning."
+    },
+    {
+      "id": "blue-green",
+      "title": {
+        "en": "Implement readiness, blue-green and rollback",
+        "pl": "Wdrożyć readiness, blue-green i rollback"
+      },
+      "dimension": "delivery",
+      "status": "planned",
+      "completion": 0,
+      "weight": 2,
+      "difficulty": 4,
+      "hoursMin": 5,
+      "hoursMax": 8,
+      "daysMin": 0.75,
+      "daysMax": 1,
+      "evidence": "There is no retained inactive slot, stable router or external smoke rollback."
+    },
+    {
+      "id": "service-observability",
+      "title": {
+        "en": "Connect the service to central monitoring",
+        "pl": "Podłączyć usługę do centralnego monitoringu"
+      },
+      "dimension": "delivery",
+      "status": "planned",
+      "completion": 0,
       "weight": 1,
       "difficulty": 3,
-      "hoursMin": 6,
-      "hoursMax": 10,
-      "daysMin": 0.75,
-      "daysMax": 1.25,
-      "evidence": "Deploy workflow exists, but public DNS does not resolve."
+      "hoursMin": 2,
+      "hoursMax": 4,
+      "daysMin": 0.25,
+      "daysMax": 0.5,
+      "evidence": "No cross-application metrics, deployment alerts or 429 visibility were verified."
     }
   ],
   "verification": {
-    "worktree": "dirty: wwwroot/css/style.css",
-    "tests": "2 passed locally on 2026-08-24",
-    "ci": "latest run succeeded",
-    "production": "workflow configured; inventory.grela.dev has no public DNS"
+    "worktree": "local worktree with one modified CSS file",
+    "tests": "Latest GitHub CI/CD run succeeded at bee8f31; no ruleset or environment is configured.",
+    "ci": "Latest GitHub CI/CD run succeeded at bee8f31; no ruleset or environment is configured.",
+    "production": "inventory.grela.dev did not resolve in public DNS on 2026-08-25."
   },
   "media": {
     "screenshot": "assets/screenshots/inventory-generator.png",
@@ -162,18 +230,161 @@
     {
       "en": "Use per-format export limits plus body, row and concurrency caps.",
       "pl": "Stosować limity per format oraz limity body, rekordów i współbieżności."
+    },
+    {
+      "en": "The project follows the v2 standard profile: vps-web.",
+      "pl": "Projekt podlega profilowi standardu v2: vps-web."
     }
   ],
   "audit": {
-    "date": "2026-08-24",
+    "date": "2026-08-25",
     "sources": [
-      "local worktree and git history",
-      "GitHub Actions API",
-      "public DNS"
+      "audited source tree and git status",
+      "GitHub repository, Actions, rulesets and environments API",
+      "public DNS and HTTPS checks where applicable"
     ],
     "notes": {
       "en": "Remote is stable; uncommitted user CSS must not be overwritten.",
       "pl": "Origin jest stabilny; lokalnej zmiany CSS użytkownika nie wolno nadpisać."
     }
+  },
+  "compliance": {
+    "standardVersion": 2,
+    "profile": "vps-web",
+    "assessmentDate": "2026-08-25",
+    "controls": [
+      {
+        "id": "governance",
+        "status": "partial",
+        "evidence": {
+          "en": "GitHub returned no active ruleset or environment; remaining elements were assessed from the repository.",
+          "pl": "GitHub nie zwrócił aktywnego rulesetu ani środowiska; pozostałe elementy oceniono z repozytorium."
+        },
+        "taskIds": [
+          "repository-governance"
+        ]
+      },
+      {
+        "id": "quality-ci",
+        "status": "partial",
+        "evidence": {
+          "en": "Latest GitHub CI/CD run succeeded at bee8f31; no ruleset or environment is configured.",
+          "pl": "Quality CI istnieje, ale nie obejmuje całego bieżącego stanu lub części wymaganych kontroli v2."
+        },
+        "taskIds": [
+          "quality-coverage"
+        ]
+      },
+      {
+        "id": "immutable-release",
+        "status": "missing",
+        "evidence": {
+          "en": "The required complete implementation was not found in the audited inventory generator source.",
+          "pl": "W audytowanym źródle projektu inventory generator nie znaleziono wymaganej kompletnej implementacji."
+        },
+        "taskIds": [
+          "immutable-deploy"
+        ]
+      },
+      {
+        "id": "deployment-access",
+        "status": "partial",
+        "evidence": {
+          "en": "inventory generator has some mechanisms but does not yet satisfy the complete v2 control.",
+          "pl": "Projekt inventory generator ma część mechanizmów, ale nie spełnia jeszcze całej kontroli v2."
+        },
+        "taskIds": [
+          "immutable-deploy"
+        ]
+      },
+      {
+        "id": "network-tls-client-ip",
+        "status": "missing",
+        "evidence": {
+          "en": "inventory.grela.dev did not resolve in public DNS on 2026-08-25.",
+          "pl": "Docelowa domena lub kompletna konfiguracja routingu/TLS nie jest obecnie dostępna."
+        },
+        "taskIds": [
+          "edge-and-limits"
+        ]
+      },
+      {
+        "id": "abuse-protection",
+        "status": "partial",
+        "evidence": {
+          "en": "inventory generator has some mechanisms but does not yet satisfy the complete v2 control.",
+          "pl": "Projekt inventory generator ma część mechanizmów, ale nie spełnia jeszcze całej kontroli v2."
+        },
+        "taskIds": [
+          "edge-and-limits"
+        ]
+      },
+      {
+        "id": "runtime-safety",
+        "status": "partial",
+        "evidence": {
+          "en": "inventory generator has some mechanisms but does not yet satisfy the complete v2 control.",
+          "pl": "Projekt inventory generator ma część mechanizmów, ale nie spełnia jeszcze całej kontroli v2."
+        },
+        "taskIds": [
+          "blue-green"
+        ]
+      },
+      {
+        "id": "readiness-preflight",
+        "status": "missing",
+        "evidence": {
+          "en": "The required complete implementation was not found in the audited inventory generator source.",
+          "pl": "W audytowanym źródle projektu inventory generator nie znaleziono wymaganej kompletnej implementacji."
+        },
+        "taskIds": [
+          "blue-green"
+        ]
+      },
+      {
+        "id": "atomic-promotion-rollback",
+        "status": "missing",
+        "evidence": {
+          "en": "The required complete implementation was not found in the audited inventory generator source.",
+          "pl": "W audytowanym źródle projektu inventory generator nie znaleziono wymaganej kompletnej implementacji."
+        },
+        "taskIds": [
+          "blue-green"
+        ]
+      },
+      {
+        "id": "coordination-retention",
+        "status": "partial",
+        "evidence": {
+          "en": "inventory generator has some mechanisms but does not yet satisfy the complete v2 control.",
+          "pl": "Projekt inventory generator ma część mechanizmów, ale nie spełnia jeszcze całej kontroli v2."
+        },
+        "taskIds": [
+          "immutable-deploy"
+        ]
+      },
+      {
+        "id": "observability",
+        "status": "missing",
+        "evidence": {
+          "en": "The required complete implementation was not found in the audited inventory generator source.",
+          "pl": "W audytowanym źródle projektu inventory generator nie znaleziono wymaganej kompletnej implementacji."
+        },
+        "taskIds": [
+          "service-observability"
+        ]
+      },
+      {
+        "id": "web-identity",
+        "status": "missing",
+        "evidence": {
+          "en": "The required complete implementation was not found in the audited inventory generator source.",
+          "pl": "W audytowanym źródle projektu inventory generator nie znaleziono wymaganej kompletnej implementacji."
+        },
+        "taskIds": [
+          "operations-docs"
+        ]
+      }
+    ]
   }
 }

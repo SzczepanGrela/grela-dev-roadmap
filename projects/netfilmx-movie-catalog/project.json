@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 1,
+  "schemaVersion": 2,
   "slug": "netfilmx-movie-catalog",
   "order": 3,
   "name": {
@@ -39,29 +39,29 @@
   },
   "status": "active",
   "progress": {
-    "implementation": 80,
-    "quality": 65,
-    "documentation": 75,
-    "delivery": 60,
-    "overall": 71
+    "implementation": 65,
+    "quality": 41,
+    "documentation": 60,
+    "delivery": 0,
+    "overall": 43
   },
   "complexity": 5,
   "forecast": {
-    "remainingHoursMin": 35,
-    "remainingHoursMax": 57,
-    "remainingDaysMin": 4.5,
-    "remainingDaysMax": 7.25,
+    "remainingHoursMin": 46,
+    "remainingHoursMax": 75,
+    "remainingDaysMin": 5.75,
+    "remainingDaysMax": 9.5,
     "hoursPerDay": 8,
     "hoursPerWeek": 30,
-    "earliest": "2026-09-14",
-    "latest": "2026-09-23",
+    "earliest": "2026-09-11",
+    "latest": "2026-09-24",
     "confidence": "low"
   },
   "estimation": {
     "date": "2026-08-25",
     "mode": "codex-assisted-source-audited",
     "sourceRevision": "d1f1da4534b31f52815d4db82ed64b6f37ecf99f",
-    "sourceState": "local worktree with 70 changed paths"
+    "sourceState": "local worktree with 70 changed paths and unpublished commits"
   },
   "focus": {
     "current": {
@@ -75,79 +75,147 @@
   },
   "tasks": [
     {
-      "id": "implementation",
+      "id": "application-refactor",
       "title": {
-        "en": "Finish i18n, storage and processing refactor",
-        "pl": "Dokończyć i18n, storage i refaktoryzację przetwarzania"
+        "en": "Finish i18n, storage and video processing refactor",
+        "pl": "Dokończyć i18n, storage i przetwarzanie wideo"
       },
       "dimension": "implementation",
       "status": "in-progress",
-      "completion": 80,
-      "weight": 1,
+      "completion": 65,
+      "weight": 3,
       "difficulty": 5,
       "hoursMin": 12,
       "hoursMax": 20,
       "daysMin": 1.5,
       "daysMax": 2.5,
-      "evidence": "Local branch is 12 commits ahead with 45 changed/untracked paths."
+      "evidence": "Seventy changed paths include storage, FFmpeg, jobs and UI work that is not represented by public CI."
     },
     {
-      "id": "quality",
+      "id": "quality-security",
       "title": {
-        "en": "Resolve warnings, skipped tests and dependency advisory",
-        "pl": "Usunąć warningi, skipped testy i podatność zależności"
+        "en": "Remove warnings, skipped tests and vulnerabilities",
+        "pl": "Usunąć warningi, skipped testy i podatności"
       },
       "dimension": "quality",
       "status": "in-progress",
-      "completion": 65,
-      "weight": 1,
-      "difficulty": 5,
+      "completion": 55,
+      "weight": 3,
+      "difficulty": 4,
       "hoursMin": 10,
       "hoursMax": 16,
       "daysMin": 1.25,
       "daysMax": 2,
-      "evidence": "79 tests passed, 2 skipped; AutoMapper 13.0.1 reports GHSA-rvv3-g6hj-g44x."
+      "evidence": "The public workflow is green, but local changes and deferred security work remain."
     },
     {
-      "id": "documentation",
+      "id": "repository-governance",
       "title": {
-        "en": "Align architecture and operator documentation",
+        "en": "Require green CI on protected main",
+        "pl": "Wymagać zielonego CI na chronionym main"
+      },
+      "dimension": "quality",
+      "status": "planned",
+      "completion": 0,
+      "weight": 1,
+      "difficulty": 2,
+      "hoursMin": 2,
+      "hoursMax": 3,
+      "daysMin": 0.25,
+      "daysMax": 0.5,
+      "evidence": "GitHub returned no active ruleset or environment."
+    },
+    {
+      "id": "architecture-docs",
+      "title": {
+        "en": "Align architecture and operations documentation",
         "pl": "Uzgodnić dokumentację architektury i operacji"
       },
       "dimension": "documentation",
       "status": "in-progress",
-      "completion": 75,
+      "completion": 60,
       "weight": 1,
-      "difficulty": 2,
+      "difficulty": 3,
       "hoursMin": 3,
       "hoursMax": 5,
       "daysMin": 0.5,
       "daysMax": 0.75,
-      "evidence": "README and MIT exist but do not cover all current local changes."
+      "evidence": "Documentation does not yet describe the complete dirty implementation or v2 delivery model."
     },
     {
-      "id": "delivery",
+      "id": "route-protection",
       "title": {
-        "en": "Add endpoint-specific limits and safe deployment",
-        "pl": "Dodać limity per endpoint i bezpieczny deploy"
+        "en": "Add login, upload and transcoding limits",
+        "pl": "Dodać limity logowania, uploadu i transkodowania"
       },
       "dimension": "delivery",
-      "status": "in-progress",
-      "completion": 60,
-      "weight": 1,
+      "status": "planned",
+      "completion": 0,
+      "weight": 2,
+      "difficulty": 4,
+      "hoursMin": 5,
+      "hoursMax": 8,
+      "daysMin": 0.75,
+      "daysMax": 1,
+      "evidence": "No application rate-limit implementation was found; HLS requires bandwidth rather than low request limits."
+    },
+    {
+      "id": "immutable-deploy",
+      "title": {
+        "en": "Move build to GHCR and deploy by digest",
+        "pl": "Przenieść build do GHCR i wdrażać digest"
+      },
+      "dimension": "delivery",
+      "status": "planned",
+      "completion": 0,
+      "weight": 2,
+      "difficulty": 4,
+      "hoursMin": 5,
+      "hoursMax": 8,
+      "daysMin": 0.75,
+      "daysMax": 1,
+      "evidence": "The VPS currently rebuilds a local image and globally prunes Docker images."
+    },
+    {
+      "id": "blue-green",
+      "title": {
+        "en": "Add readiness, stable gateway and blue-green",
+        "pl": "Dodać readiness, stabilny gateway i blue-green"
+      },
+      "dimension": "delivery",
+      "status": "planned",
+      "completion": 0,
+      "weight": 2,
       "difficulty": 5,
-      "hoursMin": 10,
-      "hoursMax": 16,
-      "daysMin": 1.25,
-      "daysMax": 2,
-      "evidence": "Production returns 200; remote CI is green but predates local work."
+      "hoursMin": 6,
+      "hoursMax": 10,
+      "daysMin": 0.75,
+      "daysMax": 1.25,
+      "evidence": "Health checks exist, but there is no candidate promotion, drain or public rollback smoke test."
+    },
+    {
+      "id": "service-observability",
+      "title": {
+        "en": "Add transcoding and deployment metrics",
+        "pl": "Dodać metryki transkodowania i wdrożeń"
+      },
+      "dimension": "delivery",
+      "status": "planned",
+      "completion": 0,
+      "weight": 1,
+      "difficulty": 3,
+      "hoursMin": 3,
+      "hoursMax": 5,
+      "daysMin": 0.5,
+      "daysMax": 0.75,
+      "evidence": "Central monitoring and actionable deployment/transcoding alerts were not verified."
     }
   ],
   "verification": {
-    "worktree": "dirty; main is 12 commits ahead of origin/main",
-    "tests": "79 passed, 2 skipped locally; build emits nullable warnings",
-    "ci": "latest origin run succeeded but does not include local work",
-    "production": "https://netfilmx.grela.dev returned HTTP 200"
+    "worktree": "local worktree with 70 changed paths and unpublished commits",
+    "tests": "Latest public CI/CD runs succeeded, but they do not cover the large local worktree; no ruleset or environment exists.",
+    "ci": "Latest public CI/CD runs succeeded, but they do not cover the large local worktree; no ruleset or environment exists.",
+    "production": "netfilmx.grela.dev returned HTTPS 200 through Cloudflare on 2026-08-25."
   },
   "media": {
     "screenshot": "assets/screenshots/netfilmx-movie-catalog.png",
@@ -163,19 +231,161 @@
     {
       "en": "Keep Hangfire and administrative surfaces private or strongly authorized.",
       "pl": "Hangfire i powierzchnie administracyjne mają być prywatne lub silnie autoryzowane."
+    },
+    {
+      "en": "The project follows the v2 standard profile: vps-web.",
+      "pl": "Projekt podlega profilowi standardu v2: vps-web."
     }
   ],
   "audit": {
-    "date": "2026-08-24",
+    "date": "2026-08-25",
     "sources": [
-      "local worktree, diff and git history",
-      "local dotnet test",
-      "GitHub Actions API",
-      "production HTTP"
+      "audited source tree and git status",
+      "GitHub repository, Actions, rulesets and environments API",
+      "public DNS and HTTPS checks where applicable"
     ],
     "notes": {
       "en": "Security-sensitive findings are public at advisory level without exploit instructions.",
       "pl": "Znaleziska bezpieczeństwa są publiczne na poziomie advisory, bez instrukcji wykorzystania."
     }
+  },
+  "compliance": {
+    "standardVersion": 2,
+    "profile": "vps-web",
+    "assessmentDate": "2026-08-25",
+    "controls": [
+      {
+        "id": "governance",
+        "status": "partial",
+        "evidence": {
+          "en": "GitHub returned no active ruleset or environment; remaining elements were assessed from the repository.",
+          "pl": "GitHub nie zwrócił aktywnego rulesetu ani środowiska; pozostałe elementy oceniono z repozytorium."
+        },
+        "taskIds": [
+          "repository-governance"
+        ]
+      },
+      {
+        "id": "quality-ci",
+        "status": "partial",
+        "evidence": {
+          "en": "Latest public CI/CD runs succeeded, but they do not cover the large local worktree; no ruleset or environment exists.",
+          "pl": "Quality CI istnieje, ale nie obejmuje całego bieżącego stanu lub części wymaganych kontroli v2."
+        },
+        "taskIds": [
+          "quality-security"
+        ]
+      },
+      {
+        "id": "immutable-release",
+        "status": "missing",
+        "evidence": {
+          "en": "The required complete implementation was not found in the audited netfilmx movie catalog source.",
+          "pl": "W audytowanym źródle projektu netfilmx movie catalog nie znaleziono wymaganej kompletnej implementacji."
+        },
+        "taskIds": [
+          "immutable-deploy"
+        ]
+      },
+      {
+        "id": "deployment-access",
+        "status": "partial",
+        "evidence": {
+          "en": "netfilmx movie catalog has some mechanisms but does not yet satisfy the complete v2 control.",
+          "pl": "Projekt netfilmx movie catalog ma część mechanizmów, ale nie spełnia jeszcze całej kontroli v2."
+        },
+        "taskIds": [
+          "immutable-deploy"
+        ]
+      },
+      {
+        "id": "network-tls-client-ip",
+        "status": "partial",
+        "evidence": {
+          "en": "netfilmx.grela.dev returned HTTPS 200 through Cloudflare on 2026-08-25.",
+          "pl": "Część publicznego HTTPS lub routingu działa, ale pełny zaufany łańcuch sieciowy nie został potwierdzony."
+        },
+        "taskIds": [
+          "route-protection"
+        ]
+      },
+      {
+        "id": "abuse-protection",
+        "status": "missing",
+        "evidence": {
+          "en": "The required complete implementation was not found in the audited netfilmx movie catalog source.",
+          "pl": "W audytowanym źródle projektu netfilmx movie catalog nie znaleziono wymaganej kompletnej implementacji."
+        },
+        "taskIds": [
+          "route-protection"
+        ]
+      },
+      {
+        "id": "runtime-safety",
+        "status": "partial",
+        "evidence": {
+          "en": "netfilmx movie catalog has some mechanisms but does not yet satisfy the complete v2 control.",
+          "pl": "Projekt netfilmx movie catalog ma część mechanizmów, ale nie spełnia jeszcze całej kontroli v2."
+        },
+        "taskIds": [
+          "blue-green"
+        ]
+      },
+      {
+        "id": "readiness-preflight",
+        "status": "partial",
+        "evidence": {
+          "en": "netfilmx movie catalog has some mechanisms but does not yet satisfy the complete v2 control.",
+          "pl": "Projekt netfilmx movie catalog ma część mechanizmów, ale nie spełnia jeszcze całej kontroli v2."
+        },
+        "taskIds": [
+          "blue-green"
+        ]
+      },
+      {
+        "id": "atomic-promotion-rollback",
+        "status": "missing",
+        "evidence": {
+          "en": "The required complete implementation was not found in the audited netfilmx movie catalog source.",
+          "pl": "W audytowanym źródle projektu netfilmx movie catalog nie znaleziono wymaganej kompletnej implementacji."
+        },
+        "taskIds": [
+          "blue-green"
+        ]
+      },
+      {
+        "id": "coordination-retention",
+        "status": "partial",
+        "evidence": {
+          "en": "netfilmx movie catalog has some mechanisms but does not yet satisfy the complete v2 control.",
+          "pl": "Projekt netfilmx movie catalog ma część mechanizmów, ale nie spełnia jeszcze całej kontroli v2."
+        },
+        "taskIds": [
+          "immutable-deploy"
+        ]
+      },
+      {
+        "id": "observability",
+        "status": "missing",
+        "evidence": {
+          "en": "The required complete implementation was not found in the audited netfilmx movie catalog source.",
+          "pl": "W audytowanym źródle projektu netfilmx movie catalog nie znaleziono wymaganej kompletnej implementacji."
+        },
+        "taskIds": [
+          "service-observability"
+        ]
+      },
+      {
+        "id": "web-identity",
+        "status": "missing",
+        "evidence": {
+          "en": "The required complete implementation was not found in the audited netfilmx movie catalog source.",
+          "pl": "W audytowanym źródle projektu netfilmx movie catalog nie znaleziono wymaganej kompletnej implementacji."
+        },
+        "taskIds": [
+          "architecture-docs"
+        ]
+      }
+    ]
   }
 }

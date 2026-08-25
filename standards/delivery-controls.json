@@ -1,0 +1,107 @@
+{
+  "standardVersion": 2,
+  "profiles": {
+    "vps-web": {
+      "en": "VPS web application",
+      "pl": "Aplikacja webowa na VPS"
+    },
+    "static-web": {
+      "en": "Managed static hosting",
+      "pl": "Zarządzany hosting statyczny"
+    },
+    "desktop": {
+      "en": "Desktop application",
+      "pl": "Aplikacja desktopowa"
+    },
+    "repository": {
+      "en": "Source repository",
+      "pl": "Repozytorium źródłowe"
+    },
+    "developer-tool": {
+      "en": "Developer tool",
+      "pl": "Narzędzie deweloperskie"
+    }
+  },
+  "statuses": {
+    "complete": {"en": "Complete", "pl": "Gotowe"},
+    "partial": {"en": "Partial", "pl": "Częściowe"},
+    "missing": {"en": "Missing", "pl": "Brak"},
+    "unverified": {"en": "Unverified", "pl": "Niezweryfikowane"},
+    "blocked": {"en": "Blocked", "pl": "Zablokowane"},
+    "not-applicable": {"en": "Not applicable", "pl": "Nie dotyczy"}
+  },
+  "controls": [
+    {
+      "id": "governance",
+      "title": {"en": "Repository governance", "pl": "Zarządzanie repozytorium"},
+      "description": {"en": "Protected default branch, required checks, license and maintained public documentation.", "pl": "Chroniona gałąź domyślna, wymagane kontrole, licencja i aktualna dokumentacja publiczna."},
+      "profiles": ["vps-web", "static-web", "desktop", "repository", "developer-tool"]
+    },
+    {
+      "id": "quality-ci",
+      "title": {"en": "Quality CI", "pl": "Quality CI"},
+      "description": {"en": "Automated build, tests and proportionate security or dependency checks.", "pl": "Automatyczny build, testy oraz proporcjonalne kontrole bezpieczeństwa i zależności."},
+      "profiles": ["vps-web", "static-web", "desktop", "repository", "developer-tool"]
+    },
+    {
+      "id": "immutable-release",
+      "title": {"en": "Immutable release", "pl": "Niezmienne wydanie"},
+      "description": {"en": "One tested artifact identified by a full commit SHA and digest or checksum.", "pl": "Jeden przetestowany artefakt identyfikowany pełnym SHA i digestem lub sumą kontrolną."},
+      "profiles": ["vps-web", "static-web", "desktop", "repository", "developer-tool"]
+    },
+    {
+      "id": "deployment-access",
+      "title": {"en": "Deployment access", "pl": "Dostęp wdrożeniowy"},
+      "description": {"en": "OIDC, least-privilege deployment identity and pinned SSH host identity.", "pl": "OIDC, minimalne uprawnienia tożsamości wdrożeniowej i przypięty host SSH."},
+      "profiles": ["vps-web"]
+    },
+    {
+      "id": "network-tls-client-ip",
+      "title": {"en": "Network, TLS and client identity", "pl": "Sieć, TLS i tożsamość klienta"},
+      "description": {"en": "Isolated routing, origin protection, valid TLS and a trusted real-client-IP chain.", "pl": "Izolowany routing, ochrona originu, poprawny TLS i zaufany łańcuch prawdziwego IP klienta."},
+      "profiles": ["vps-web", "static-web"]
+    },
+    {
+      "id": "abuse-protection",
+      "title": {"en": "Abuse protection", "pl": "Ochrona przed nadużyciami"},
+      "description": {"en": "Cost-aware edge, proxy and application limits plus bounded concurrency where applicable.", "pl": "Limity zależne od kosztu na edge, proxy i w aplikacji oraz ograniczona współbieżność, gdy potrzebna."},
+      "profiles": ["vps-web", "static-web"]
+    },
+    {
+      "id": "runtime-safety",
+      "title": {"en": "Runtime safety", "pl": "Bezpieczeństwo runtime"},
+      "description": {"en": "Dedicated identity and network, no direct public port, secrets hygiene and CPU, RAM and PID limits.", "pl": "Dedykowana tożsamość i sieć, brak publicznego portu, higiena sekretów oraz limity CPU, RAM i PID."},
+      "profiles": ["vps-web"]
+    },
+    {
+      "id": "readiness-preflight",
+      "title": {"en": "Readiness and preflight", "pl": "Readiness i preflight"},
+      "description": {"en": "Candidate or preview is checked on critical paths before production changes.", "pl": "Kandydat lub preview jest sprawdzany na krytycznych ścieżkach przed zmianą produkcji."},
+      "profiles": ["vps-web", "static-web"]
+    },
+    {
+      "id": "atomic-promotion-rollback",
+      "title": {"en": "Atomic promotion and rollback", "pl": "Atomowa promocja i rollback"},
+      "description": {"en": "Blue-green or managed-platform promotion with an external smoke test and automatic rollback.", "pl": "Blue-green lub promocja platformy z zewnętrznym smoke testem i automatycznym rollbackiem."},
+      "profiles": ["vps-web", "static-web"]
+    },
+    {
+      "id": "coordination-retention",
+      "title": {"en": "Coordination and retention", "pl": "Koordynacja i retencja"},
+      "description": {"en": "Serialized releases, capacity checks and scoped retention preserving a known-good artifact.", "pl": "Serializowane wydania, kontrola pojemności i ograniczona retencja zachowująca sprawdzony artefakt."},
+      "profiles": ["vps-web", "static-web", "desktop", "repository", "developer-tool"]
+    },
+    {
+      "id": "observability",
+      "title": {"en": "Observability", "pl": "Obserwowalność"},
+      "description": {"en": "Availability, errors, latency, resource pressure and deployment failures are visible and actionable.", "pl": "Dostępność, błędy, opóźnienia, presja zasobów i awarie wdrożeń są widoczne i obsługiwalne."},
+      "profiles": ["vps-web", "static-web"]
+    },
+    {
+      "id": "web-identity",
+      "title": {"en": "Web identity", "pl": "Tożsamość webowa"},
+      "description": {"en": "Original or licensed favicon, metadata, accessibility baseline and representative preview.", "pl": "Oryginalny lub licencjonowany favicon, metadane, podstawa dostępności i reprezentatywny podgląd."},
+      "profiles": ["vps-web", "static-web"]
+    }
+  ]
+}

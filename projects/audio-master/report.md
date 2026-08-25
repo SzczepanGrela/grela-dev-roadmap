@@ -1,60 +1,151 @@
 # AudioMaster — status report / raport stanu
 
-Audit date / data audytu: **2026-08-24**  
-Estimated completion / szacowane ukończenie: **77%**  
-Forecast / prognoza: **2026-10-28–2026-11-27**, 12–20 h, medium confidence / średnia pewność
+Audit date / data audytu: **2026-08-25**<br>
+Estimated completion / szacowane ukończenie: **53%**<br>
+Forecast / prognoza: **2026-09-23–2026-10-13**, 12–20 h, medium confidence / pewność: medium
+
+> This report is synchronized from `project.json` and the versioned delivery-control catalog. / Raport jest synchronizowany z `project.json` i wersjonowanym katalogiem kontroli wdrożeniowych.
 
 ## English
 
 ### Purpose and current state
 
-AudioMaster is a desktop audio utility. Its repository is clean and already has a quality workflow, README and MIT license. Previously problematic IDE metadata and executable artifacts are no longer tracked. Like the POS project, it is not a hosted web service.
+Cross-platform desktop audio editor using PySide6 and FFmpeg.
 
-### Completed and verified
+Previous hygiene tasks to remove IDE/executable artifacts are already complete.
 
-- Core desktop functionality is implemented.
-- The audited worktree was clean.
-- Quality automation is present and green.
-- README and MIT licensing are present.
-- `.idea` metadata and built `.exe` files are not tracked.
+### Audit evidence
 
-### Remaining work and known issues
+- **Repozytorium:** `SzczepanGrela/audio-master` @ `5846404e980f06541c475f2715a8603caa507f9d`
+- **Source state:** clean local worktree
+- **Tests and CI:** Latest Quality checks succeeded; no ruleset or environment exists.
+- **Production:** Not applicable: AudioMaster is a local desktop/audio-processing tool.
 
-- Expand deterministic tests around audio transformations and invalid/corrupt input.
-- Document supported formats, platform requirements and expected output differences.
-- Produce versioned release artifacts and checksums.
-- Test installation and processing on a clean supported machine.
-- Confirm temporary-file cleanup and behavior for large inputs.
-- Add a representative application screenshot or original illustration for the roadmap.
+### v2 standard compliance
 
-### Decisions
+Profile: **Desktop application**. Statuses reflect only evidence available on the audit date.
 
-There is no HTTP rate-limiting layer. Resource protection belongs inside the desktop process: input-size guards, bounded concurrency, clear progress/cancellation and safe temporary storage. The medium-confidence forecast assumes no major cross-platform packaging change.
+| Control | Status | Evidence |
+| --- | --- | --- |
+| Repository governance | Partial | GitHub returned no active ruleset or environment; remaining elements were assessed from the repository. |
+| Quality CI | Complete | Latest Quality checks succeeded; no ruleset or environment exists. |
+| Immutable release | Missing | The required complete implementation was not found in the audited audio master source. |
+| Deployment access | Not applicable | The control does not apply to the audio master project profile. |
+| Network, TLS and client identity | Not applicable | Not applicable: AudioMaster is a local desktop/audio-processing tool. |
+| Abuse protection | Not applicable | The control does not apply to the audio master project profile. |
+| Runtime safety | Not applicable | The control does not apply to the audio master project profile. |
+| Readiness and preflight | Not applicable | The control does not apply to the audio master project profile. |
+| Atomic promotion and rollback | Not applicable | The control does not apply to the audio master project profile. |
+| Coordination and retention | Missing | The required complete implementation was not found in the audited audio master source. |
+| Observability | Not applicable | The control does not apply to the audio master project profile. |
+| Web identity | Not applicable | The control does not apply to the audio master project profile. |
+
+### Remaining and active tasks
+
+#### Refine cross-platform processing
+
+**Implementation · In progress · 80% · difficulty 3/5 · 2–3 h**
+
+The processing tool works but needs bounded inputs, cancellation and platform verification.
+
+#### Test transforms, failures and cancellation
+
+**Quality · In progress · 65% · difficulty 3/5 · 4–6 h**
+
+Quality CI exists; representative FFmpeg behavior needs stronger tests.
+
+#### Protect main with required Quality
+
+**Quality · Planned · 0% · difficulty 2/5 · 1–2 h**
+
+No GitHub ruleset is configured.
+
+#### Maintain configuration and attribution
+
+**Documentation · In progress · 80% · difficulty 2/5 · 1–2 h**
+
+README exists; release support and cross-platform constraints need final documentation.
+
+#### Publish versioned packages with checksums
+
+**Delivery · Planned · 0% · difficulty 3/5 · 4–7 h**
+
+No reproducible release artifact is published by the current workflow.
+
+### Architecture decisions
+
+- No web hosting or HTTP rate limiting.
+- Limit local FFmpeg concurrency and input sizes instead.
+- The project follows the v2 standard profile: desktop.
 
 ## Polski
 
-### Cel i stan bieżący
+### Cel i aktualny stan
 
-AudioMaster jest desktopowym narzędziem audio. Repozytorium jest czyste, zawiera workflow jakości, README i licencję MIT. Problematyczne metadane IDE i pliki wykonywalne nie są już śledzone. Projekt nie jest usługą webową.
+Wieloplatformowy desktopowy edytor audio oparty o PySide6 i FFmpeg.
 
-### Wykonane i zweryfikowane
+Poprzednie zadania usunięcia artefaktów IDE/exe są już wykonane.
 
-- Główna funkcjonalność desktopowa jest zaimplementowana.
-- Worktree był czysty.
-- Automatyzacja jakości istnieje i jest zielona.
-- README i licencja MIT są obecne.
-- `.idea` i zbudowane pliki `.exe` nie są śledzone.
+### Dowody audytu
 
-### Do zrobienia i znane problemy
+- **Repozytorium:** `SzczepanGrela/audio-master` @ `5846404e980f06541c475f2715a8603caa507f9d`
+- **Stan źródła:** clean local worktree
+- **Testy i CI:** Latest Quality checks succeeded; no ruleset or environment exists.
+- **Produkcja:** Not applicable: AudioMaster is a local desktop/audio-processing tool.
 
-- Rozszerzyć deterministyczne testy transformacji audio i błędnych wejść.
-- Opisać formaty, wymagania platformy i możliwe różnice wyników.
-- Przygotować wersjonowane artefakty z sumami kontrolnymi.
-- Sprawdzić instalację i przetwarzanie na czystym systemie.
-- Zweryfikować sprzątanie plików tymczasowych i duże wejścia.
-- Dodać screenshot aplikacji lub oryginalną ilustrację do roadmapy.
+### Zgodność ze standardem v2
 
-### Decyzje
+Profil: **Aplikacja desktopowa**. Statusy odzwierciedlają wyłącznie dowody dostępne w dniu audytu.
 
-Nie stosujemy limitów HTTP. Ochrona zasobów ma działać w procesie: limity rozmiaru wejścia, ograniczona współbieżność, postęp/anulowanie i bezpieczne pliki tymczasowe.
+| Kontrola | Status | Dowód |
+| --- | --- | --- |
+| Zarządzanie repozytorium | Częściowe | GitHub nie zwrócił aktywnego rulesetu ani środowiska; pozostałe elementy oceniono z repozytorium. |
+| Quality CI | Gotowe | GitHub Actions potwierdza zielony, proporcjonalny zestaw kontroli jakości dla audytowanego commitu. |
+| Niezmienne wydanie | Brak | W audytowanym źródle projektu audio master nie znaleziono wymaganej kompletnej implementacji. |
+| Dostęp wdrożeniowy | Nie dotyczy | Kontrola nie dotyczy profilu projektu audio master. |
+| Sieć, TLS i tożsamość klienta | Nie dotyczy | Kontrola sieci webowej i TLS nie dotyczy tego profilu projektu. |
+| Ochrona przed nadużyciami | Nie dotyczy | Kontrola nie dotyczy profilu projektu audio master. |
+| Bezpieczeństwo runtime | Nie dotyczy | Kontrola nie dotyczy profilu projektu audio master. |
+| Readiness i preflight | Nie dotyczy | Kontrola nie dotyczy profilu projektu audio master. |
+| Atomowa promocja i rollback | Nie dotyczy | Kontrola nie dotyczy profilu projektu audio master. |
+| Koordynacja i retencja | Brak | W audytowanym źródle projektu audio master nie znaleziono wymaganej kompletnej implementacji. |
+| Obserwowalność | Nie dotyczy | Kontrola nie dotyczy profilu projektu audio master. |
+| Tożsamość webowa | Nie dotyczy | Kontrola nie dotyczy profilu projektu audio master. |
 
+### Zadania pozostałe i bieżące
+
+#### Dopracować wieloplatformowe przetwarzanie
+
+**Implementacja · W toku · 80% · trudność 3/5 · 2–3 h**
+
+The processing tool works but needs bounded inputs, cancellation and platform verification.
+
+#### Przetestować transformacje, błędy i anulowanie
+
+**Jakość · W toku · 65% · trudność 3/5 · 4–6 h**
+
+Quality CI exists; representative FFmpeg behavior needs stronger tests.
+
+#### Chronić main wymaganym Quality
+
+**Jakość · Planowane · 0% · trudność 2/5 · 1–2 h**
+
+No GitHub ruleset is configured.
+
+#### Utrzymać konfigurację i atrybucję
+
+**Dokumentacja · W toku · 80% · trudność 2/5 · 1–2 h**
+
+README exists; release support and cross-platform constraints need final documentation.
+
+#### Publikować wersjonowane paczki z checksumami
+
+**Wdrożenie · Planowane · 0% · trudność 3/5 · 4–7 h**
+
+No reproducible release artifact is published by the current workflow.
+
+### Decyzje architektoniczne
+
+- Bez hostingu webowego i HTTP rate limitingu.
+- Ograniczać lokalną współbieżność FFmpeg i rozmiary wejścia.
+- Projekt podlega profilowi standardu v2: desktop.

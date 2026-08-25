@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 1,
+  "schemaVersion": 2,
   "slug": "flatfinder",
   "order": 9,
   "name": {
@@ -39,29 +39,29 @@
   },
   "status": "paused",
   "progress": {
-    "implementation": 55,
-    "quality": 65,
-    "documentation": 55,
+    "implementation": 39,
+    "quality": 20,
+    "documentation": 42,
     "delivery": 0,
-    "overall": 43
+    "overall": 26
   },
   "complexity": 5,
   "forecast": {
-    "remainingHoursMin": 104,
-    "remainingHoursMax": 168,
-    "remainingDaysMin": 13,
-    "remainingDaysMax": 21,
+    "remainingHoursMin": 119,
+    "remainingHoursMax": 192,
+    "remainingDaysMin": 15,
+    "remainingDaysMax": 24,
     "hoursPerDay": 8,
     "hoursPerWeek": 30,
-    "earliest": "2026-11-13",
-    "latest": "2026-12-31",
+    "earliest": "2026-11-24",
+    "latest": "2027-01-21",
     "confidence": "low"
   },
   "estimation": {
     "date": "2026-08-25",
     "mode": "codex-assisted-source-audited",
     "sourceRevision": "28885c20643b6cf68fbd55d2b9dc0df90383c77f",
-    "sourceState": "clean public main shallow clone"
+    "sourceState": "clean public main shallow clone with failing CI"
   },
   "focus": {
     "current": {
@@ -75,79 +75,164 @@
   },
   "tasks": [
     {
-      "id": "implementation",
+      "id": "rewrite-frontend",
       "title": {
-        "en": "Complete the rewrite and frontend",
-        "pl": "Dokończyć rewrite i frontend"
+        "en": "Finish package rewrite and frontend",
+        "pl": "Dokończyć rewrite pakietów i frontend"
       },
       "dimension": "implementation",
       "status": "in-progress",
-      "completion": 55,
-      "weight": 1,
+      "completion": 45,
+      "weight": 4,
       "difficulty": 5,
       "hoursMin": 40,
       "hoursMax": 64,
       "daysMin": 5,
       "daysMax": 8,
-      "evidence": "Backend, scrapers and training code are substantial; frontend remains a placeholder."
+      "evidence": "The package architecture, backend, scrapers, training and frontend remain at different completion levels."
     },
     {
-      "id": "quality",
+      "id": "workflow-safety",
       "title": {
-        "en": "Fix CI and validate real/mock workflows",
+        "en": "Finish private scraping and model jobs",
+        "pl": "Dokończyć prywatne joby scrapingu i modeli"
+      },
+      "dimension": "implementation",
+      "status": "in-progress",
+      "completion": 30,
+      "weight": 3,
+      "difficulty": 5,
+      "hoursMin": 18,
+      "hoursMax": 28,
+      "daysMin": 2.25,
+      "daysMax": 3.5,
+      "evidence": "Public anonymous scraping is disallowed; authenticated bounded jobs and offline teacher/training flows remain."
+    },
+    {
+      "id": "repair-ci",
+      "title": {
+        "en": "Repair CI and verify real/mock workflows",
         "pl": "Naprawić CI i zweryfikować real/mock workflows"
       },
       "dimension": "quality",
-      "status": "in-progress",
-      "completion": 65,
-      "weight": 1,
+      "status": "blocked",
+      "completion": 25,
+      "weight": 4,
       "difficulty": 5,
       "hoursMin": 24,
       "hoursMax": 40,
       "daysMin": 3,
       "daysMax": 5,
-      "evidence": "Many tests exist, but the last two CI runs failed and logs have expired."
+      "evidence": "The latest public CI is red and blocks trustworthy milestone assessment."
     },
     {
-      "id": "documentation",
+      "id": "repository-governance",
       "title": {
-        "en": "Finish architecture, training and deployment guides",
-        "pl": "Dokończyć architekturę, trening i deployment"
+        "en": "Enable a ruleset after CI repair",
+        "pl": "Włączyć ruleset po naprawie CI"
+      },
+      "dimension": "quality",
+      "status": "planned",
+      "completion": 0,
+      "weight": 1,
+      "difficulty": 2,
+      "hoursMin": 2,
+      "hoursMax": 3,
+      "daysMin": 0.25,
+      "daysMax": 0.5,
+      "evidence": "GitHub returned no active ruleset or environment."
+    },
+    {
+      "id": "architecture-docs",
+      "title": {
+        "en": "Complete architecture and training documentation",
+        "pl": "Dokończyć dokumentację architektury i treningu"
       },
       "dimension": "documentation",
       "status": "in-progress",
-      "completion": 55,
-      "weight": 1,
-      "difficulty": 2,
+      "completion": 45,
+      "weight": 2,
+      "difficulty": 4,
       "hoursMin": 12,
       "hoursMax": 20,
       "daysMin": 1.5,
       "daysMax": 2.5,
-      "evidence": "README exists; deployment documentation is explicitly a Phase 0 stub; no license."
+      "evidence": "The rewrite and legacy paths need a single authoritative architecture and operations description."
     },
     {
-      "id": "delivery",
+      "id": "production-platform",
       "title": {
-        "en": "Create safe job infrastructure and public demo",
-        "pl": "Utworzyć bezpieczne joby i publiczne demo"
+        "en": "Build containers and a private job platform",
+        "pl": "Zbudować kontenery i prywatną platformę jobową"
       },
       "dimension": "delivery",
       "status": "planned",
       "completion": 0,
-      "weight": 1,
+      "weight": 3,
       "difficulty": 5,
-      "hoursMin": 28,
-      "hoursMax": 44,
-      "daysMin": 3.5,
-      "daysMax": 5.5,
-      "evidence": "No deployment and no DNS; scraping endpoint currently performs long work through SSE."
+      "hoursMin": 8,
+      "hoursMax": 14,
+      "daysMin": 1,
+      "daysMax": 1.75,
+      "evidence": "No production container/deployment topology exists."
+    },
+    {
+      "id": "immutable-blue-green",
+      "title": {
+        "en": "Add digests, migrations, preflight and blue-green",
+        "pl": "Dodać digests, migracje, preflight i blue-green"
+      },
+      "dimension": "delivery",
+      "status": "planned",
+      "completion": 0,
+      "weight": 3,
+      "difficulty": 5,
+      "hoursMin": 8,
+      "hoursMax": 12,
+      "daysMin": 1,
+      "daysMax": 1.5,
+      "evidence": "The stateful application requires schema-compatible promotion and exact release artifacts."
+    },
+    {
+      "id": "abuse-observability",
+      "title": {
+        "en": "Add job quotas, export limits and monitoring",
+        "pl": "Dodać quota jobów, limity eksportu i monitoring"
+      },
+      "dimension": "delivery",
+      "status": "planned",
+      "completion": 0,
+      "weight": 2,
+      "difficulty": 4,
+      "hoursMin": 5,
+      "hoursMax": 8,
+      "daysMin": 0.75,
+      "daysMax": 1,
+      "evidence": "Scraping, export and VLM costs require dedicated quotas and central observability."
+    },
+    {
+      "id": "web-identity",
+      "title": {
+        "en": "Finish favicon, metadata and representative preview",
+        "pl": "Dokończyć favicon, metadane i reprezentatywny podgląd"
+      },
+      "dimension": "documentation",
+      "status": "in-progress",
+      "completion": 35,
+      "weight": 1,
+      "difficulty": 2,
+      "hoursMin": 2,
+      "hoursMax": 3,
+      "daysMin": 0.25,
+      "daysMax": 0.5,
+      "evidence": "Design assets exist, but no deployed public UI verifies the final identity."
     }
   ],
   "verification": {
-    "worktree": "audited from clean public clone; .claude/settings.local.json is tracked",
-    "tests": "large test suite present; not rerun",
-    "ci": "last two runs failed; archived logs return HTTP 410",
-    "production": "flatfinder.grela.dev has no public DNS"
+    "worktree": "clean public main shallow clone with failing CI",
+    "tests": "The latest two CI runs failed at 28885c2 and a752d73; no ruleset or environment exists.",
+    "ci": "The latest two CI runs failed at 28885c2 and a752d73; no ruleset or environment exists.",
+    "production": "flatfinder.grela.dev did not resolve in public DNS on 2026-08-25."
   },
   "media": {
     "screenshot": "assets/screenshots/flatfinder.png",
@@ -163,18 +248,161 @@
     {
       "en": "Training and teacher VLM stay offline/private.",
       "pl": "Trening i teacher VLM pozostają offline/prywatne."
+    },
+    {
+      "en": "The project follows the v2 standard profile: vps-web.",
+      "pl": "Projekt podlega profilowi standardu v2: vps-web."
     }
   ],
   "audit": {
-    "date": "2026-08-24",
+    "date": "2026-08-25",
     "sources": [
-      "public repository source and docs",
-      "GitHub Actions API",
-      "public DNS"
+      "audited source tree and git status",
+      "GitHub repository, Actions, rulesets and environments API",
+      "public DNS and HTTPS checks where applicable"
     ],
     "notes": {
       "en": "The report separates the impressive code volume from milestone completion and deploy readiness.",
       "pl": "Raport oddziela dużą ilość kodu od ukończenia milestone'ów i gotowości do deployu."
     }
+  },
+  "compliance": {
+    "standardVersion": 2,
+    "profile": "vps-web",
+    "assessmentDate": "2026-08-25",
+    "controls": [
+      {
+        "id": "governance",
+        "status": "partial",
+        "evidence": {
+          "en": "GitHub returned no active ruleset or environment; remaining elements were assessed from the repository.",
+          "pl": "GitHub nie zwrócił aktywnego rulesetu ani środowiska; pozostałe elementy oceniono z repozytorium."
+        },
+        "taskIds": [
+          "repository-governance"
+        ]
+      },
+      {
+        "id": "quality-ci",
+        "status": "blocked",
+        "evidence": {
+          "en": "The latest two CI runs failed at 28885c2 and a752d73; no ruleset or environment exists.",
+          "pl": "Najnowszy workflow Quality jest czerwony i blokuje uznanie tej kontroli za spełnioną."
+        },
+        "taskIds": [
+          "repair-ci"
+        ]
+      },
+      {
+        "id": "immutable-release",
+        "status": "missing",
+        "evidence": {
+          "en": "The required complete implementation was not found in the audited flatfinder source.",
+          "pl": "W audytowanym źródle projektu flatfinder nie znaleziono wymaganej kompletnej implementacji."
+        },
+        "taskIds": [
+          "immutable-blue-green"
+        ]
+      },
+      {
+        "id": "deployment-access",
+        "status": "missing",
+        "evidence": {
+          "en": "The required complete implementation was not found in the audited flatfinder source.",
+          "pl": "W audytowanym źródle projektu flatfinder nie znaleziono wymaganej kompletnej implementacji."
+        },
+        "taskIds": [
+          "production-platform"
+        ]
+      },
+      {
+        "id": "network-tls-client-ip",
+        "status": "missing",
+        "evidence": {
+          "en": "flatfinder.grela.dev did not resolve in public DNS on 2026-08-25.",
+          "pl": "Docelowa domena lub kompletna konfiguracja routingu/TLS nie jest obecnie dostępna."
+        },
+        "taskIds": [
+          "production-platform"
+        ]
+      },
+      {
+        "id": "abuse-protection",
+        "status": "missing",
+        "evidence": {
+          "en": "The required complete implementation was not found in the audited flatfinder source.",
+          "pl": "W audytowanym źródle projektu flatfinder nie znaleziono wymaganej kompletnej implementacji."
+        },
+        "taskIds": [
+          "abuse-observability"
+        ]
+      },
+      {
+        "id": "runtime-safety",
+        "status": "missing",
+        "evidence": {
+          "en": "The required complete implementation was not found in the audited flatfinder source.",
+          "pl": "W audytowanym źródle projektu flatfinder nie znaleziono wymaganej kompletnej implementacji."
+        },
+        "taskIds": [
+          "production-platform"
+        ]
+      },
+      {
+        "id": "readiness-preflight",
+        "status": "missing",
+        "evidence": {
+          "en": "The required complete implementation was not found in the audited flatfinder source.",
+          "pl": "W audytowanym źródle projektu flatfinder nie znaleziono wymaganej kompletnej implementacji."
+        },
+        "taskIds": [
+          "immutable-blue-green"
+        ]
+      },
+      {
+        "id": "atomic-promotion-rollback",
+        "status": "missing",
+        "evidence": {
+          "en": "The required complete implementation was not found in the audited flatfinder source.",
+          "pl": "W audytowanym źródle projektu flatfinder nie znaleziono wymaganej kompletnej implementacji."
+        },
+        "taskIds": [
+          "immutable-blue-green"
+        ]
+      },
+      {
+        "id": "coordination-retention",
+        "status": "missing",
+        "evidence": {
+          "en": "The required complete implementation was not found in the audited flatfinder source.",
+          "pl": "W audytowanym źródle projektu flatfinder nie znaleziono wymaganej kompletnej implementacji."
+        },
+        "taskIds": [
+          "immutable-blue-green"
+        ]
+      },
+      {
+        "id": "observability",
+        "status": "missing",
+        "evidence": {
+          "en": "The required complete implementation was not found in the audited flatfinder source.",
+          "pl": "W audytowanym źródle projektu flatfinder nie znaleziono wymaganej kompletnej implementacji."
+        },
+        "taskIds": [
+          "abuse-observability"
+        ]
+      },
+      {
+        "id": "web-identity",
+        "status": "partial",
+        "evidence": {
+          "en": "flatfinder has some mechanisms but does not yet satisfy the complete v2 control.",
+          "pl": "Projekt flatfinder ma część mechanizmów, ale nie spełnia jeszcze całej kontroli v2."
+        },
+        "taskIds": [
+          "web-identity"
+        ]
+      }
+    ]
   }
 }

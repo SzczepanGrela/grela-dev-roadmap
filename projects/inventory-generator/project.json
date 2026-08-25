@@ -46,12 +46,21 @@
   },
   "complexity": 3,
   "forecast": {
-    "remainingHoursMin": 16,
-    "remainingHoursMax": 24,
-    "hoursPerWeek": 16,
-    "earliest": "2026-09-07",
-    "latest": "2026-09-10",
+    "remainingHoursMin": 11,
+    "remainingHoursMax": 19,
+    "remainingDaysMin": 1.5,
+    "remainingDaysMax": 2.5,
+    "hoursPerDay": 8,
+    "hoursPerWeek": 30,
+    "earliest": "2026-09-03",
+    "latest": "2026-09-05",
     "confidence": "high"
+  },
+  "estimation": {
+    "date": "2026-08-25",
+    "mode": "codex-assisted-source-audited",
+    "sourceRevision": "bee8f313dace9e1271c1bee59f8ce4fe3a96346b",
+    "sourceState": "local worktree with one changed path"
   },
   "focus": {
     "current": {
@@ -75,8 +84,10 @@
       "completion": 90,
       "weight": 1,
       "difficulty": 3,
-      "hoursMin": 2,
-      "hoursMax": 3,
+      "hoursMin": 1,
+      "hoursMax": 2,
+      "daysMin": 0.25,
+      "daysMax": 0.25,
       "evidence": "Application is functional; one uncommitted CSS file remains."
     },
     {
@@ -90,8 +101,10 @@
       "completion": 75,
       "weight": 1,
       "difficulty": 3,
-      "hoursMin": 4,
-      "hoursMax": 6,
+      "hoursMin": 3,
+      "hoursMax": 5,
+      "daysMin": 0.5,
+      "daysMax": 0.75,
       "evidence": "Local dotnet test: 2 passed; latest remote CI succeeded."
     },
     {
@@ -105,8 +118,10 @@
       "completion": 90,
       "weight": 1,
       "difficulty": 2,
-      "hoursMin": 2,
-      "hoursMax": 3,
+      "hoursMin": 1,
+      "hoursMax": 2,
+      "daysMin": 0.25,
+      "daysMax": 0.25,
       "evidence": "Bilingual README and MIT license exist."
     },
     {
@@ -120,8 +135,10 @@
       "completion": 45,
       "weight": 1,
       "difficulty": 3,
-      "hoursMin": 8,
-      "hoursMax": 12,
+      "hoursMin": 6,
+      "hoursMax": 10,
+      "daysMin": 0.75,
+      "daysMax": 1.25,
       "evidence": "Deploy workflow exists, but public DNS does not resolve."
     }
   ],

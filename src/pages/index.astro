@@ -1,0 +1,9 @@
+---
+import Roadmap from "../components/Roadmap";
+import BaseLayout from "../layouts/BaseLayout.astro";
+import { projects } from "../lib/projects";
+---
+
+<BaseLayout>
+  <Roadmap projects={projects} client:load />
+</BaseLayout>

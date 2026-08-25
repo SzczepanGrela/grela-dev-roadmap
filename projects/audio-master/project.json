@@ -44,12 +44,21 @@
   },
   "complexity": 3,
   "forecast": {
-    "remainingHoursMin": 12,
-    "remainingHoursMax": 20,
-    "hoursPerWeek": 16,
-    "earliest": "2026-10-28",
-    "latest": "2026-11-27",
+    "remainingHoursMin": 10,
+    "remainingHoursMax": 16,
+    "remainingDaysMin": 1.25,
+    "remainingDaysMax": 2,
+    "hoursPerDay": 8,
+    "hoursPerWeek": 30,
+    "earliest": "2026-09-22",
+    "latest": "2026-10-06",
     "confidence": "medium"
+  },
+  "estimation": {
+    "date": "2026-08-25",
+    "mode": "codex-assisted-source-audited",
+    "sourceRevision": "5846404e980f06541c475f2715a8603caa507f9d",
+    "sourceState": "clean local worktree"
   },
   "focus": {
     "current": {
@@ -74,7 +83,9 @@
       "weight": 1,
       "difficulty": 3,
       "hoursMin": 2,
-      "hoursMax": 4,
+      "hoursMax": 3,
+      "daysMin": 0.25,
+      "daysMax": 0.5,
       "evidence": "Repository is clean; desktop features and documentation are present."
     },
     {
@@ -88,8 +99,10 @@
       "completion": 45,
       "weight": 1,
       "difficulty": 3,
-      "hoursMin": 5,
-      "hoursMax": 8,
+      "hoursMin": 4,
+      "hoursMax": 6,
+      "daysMin": 0.5,
+      "daysMax": 0.75,
       "evidence": "Quality workflow is green, but coverage is limited."
     },
     {
@@ -105,6 +118,8 @@
       "difficulty": 2,
       "hoursMin": 1,
       "hoursMax": 2,
+      "daysMin": 0.25,
+      "daysMax": 0.25,
       "evidence": "README and MIT exist; IDE and executable artifacts are no longer tracked."
     },
     {
@@ -118,8 +133,10 @@
       "completion": 75,
       "weight": 1,
       "difficulty": 3,
-      "hoursMin": 4,
-      "hoursMax": 6,
+      "hoursMin": 3,
+      "hoursMax": 5,
+      "daysMin": 0.5,
+      "daysMax": 0.75,
       "evidence": "No public hosted service is required."
     }
   ],

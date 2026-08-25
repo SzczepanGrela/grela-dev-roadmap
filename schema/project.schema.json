@@ -4,7 +4,7 @@
   "title": "grela.dev roadmap project",
   "type": "object",
   "additionalProperties": false,
-  "required": ["schemaVersion", "slug", "order", "name", "summary", "repository", "classification", "hosting", "status", "progress", "complexity", "forecast", "focus", "tasks", "verification", "media", "decisions", "audit"],
+  "required": ["schemaVersion", "slug", "order", "name", "summary", "repository", "classification", "hosting", "status", "progress", "complexity", "forecast", "estimation", "focus", "tasks", "verification", "media", "decisions", "audit"],
   "properties": {
     "schemaVersion": {"const": 1},
     "slug": {"type": "string", "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"},
@@ -63,14 +63,28 @@
     "forecast": {
       "type": "object",
       "additionalProperties": false,
-      "required": ["remainingHoursMin", "remainingHoursMax", "hoursPerWeek", "earliest", "latest", "confidence"],
+      "required": ["remainingHoursMin", "remainingHoursMax", "remainingDaysMin", "remainingDaysMax", "hoursPerDay", "hoursPerWeek", "earliest", "latest", "confidence"],
       "properties": {
         "remainingHoursMin": {"type": "integer", "minimum": 0},
         "remainingHoursMax": {"type": "integer", "minimum": 0},
-        "hoursPerWeek": {"const": 16},
+        "remainingDaysMin": {"$ref": "#/$defs/workDays"},
+        "remainingDaysMax": {"$ref": "#/$defs/workDays"},
+        "hoursPerDay": {"const": 8},
+        "hoursPerWeek": {"const": 30},
         "earliest": {"type": "string", "format": "date"},
         "latest": {"type": "string", "format": "date"},
         "confidence": {"enum": ["low", "medium", "high"]}
+      }
+    },
+    "estimation": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["date", "mode", "sourceRevision", "sourceState"],
+      "properties": {
+        "date": {"const": "2026-08-25"},
+        "mode": {"const": "codex-assisted-source-audited"},
+        "sourceRevision": {"type": "string", "pattern": "^[0-9a-f]{40}$"},
+        "sourceState": {"type": "string", "minLength": 1}
       }
     },
     "focus": {
@@ -123,6 +137,7 @@
   },
   "$defs": {
     "percentage": {"type": "integer", "minimum": 0, "maximum": 100},
+    "workDays": {"type": "number", "minimum": 0, "multipleOf": 0.25},
     "localized": {
       "type": "object",
       "additionalProperties": false,
@@ -132,7 +147,7 @@
     "task": {
       "type": "object",
       "additionalProperties": false,
-      "required": ["id", "title", "dimension", "status", "completion", "weight", "difficulty", "hoursMin", "hoursMax", "evidence"],
+      "required": ["id", "title", "dimension", "status", "completion", "weight", "difficulty", "hoursMin", "hoursMax", "daysMin", "daysMax", "evidence"],
       "properties": {
         "id": {"type": "string", "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"},
         "title": {"$ref": "#/$defs/localized"},
@@ -143,6 +158,8 @@
         "difficulty": {"type": "integer", "minimum": 1, "maximum": 5},
         "hoursMin": {"type": "integer", "minimum": 0},
         "hoursMax": {"type": "integer", "minimum": 0},
+        "daysMin": {"$ref": "#/$defs/workDays"},
+        "daysMax": {"$ref": "#/$defs/workDays"},
         "evidence": {"type": "string", "minLength": 1}
       }
     }

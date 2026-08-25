@@ -44,12 +44,21 @@
   },
   "complexity": 4,
   "forecast": {
-    "remainingHoursMin": 80,
-    "remainingHoursMax": 120,
-    "hoursPerWeek": 16,
-    "earliest": "2027-05-04",
-    "latest": "2027-09-10",
+    "remainingHoursMin": 48,
+    "remainingHoursMax": 80,
+    "remainingDaysMin": 6,
+    "remainingDaysMax": 10,
+    "hoursPerDay": 8,
+    "hoursPerWeek": 30,
+    "earliest": "2026-12-04",
+    "latest": "2027-02-04",
     "confidence": "low"
+  },
+  "estimation": {
+    "date": "2026-08-25",
+    "mode": "codex-assisted-source-audited",
+    "sourceRevision": "2b3e09330e50e6c291e5696a97ec8430d1ef2935",
+    "sourceState": "clean local worktree; fsmonitor IPC warning"
   },
   "focus": {
     "current": {
@@ -73,8 +82,10 @@
       "completion": 55,
       "weight": 1,
       "difficulty": 4,
-      "hoursMin": 40,
-      "hoursMax": 60,
+      "hoursMin": 24,
+      "hoursMax": 40,
+      "daysMin": 3,
+      "daysMax": 5,
       "evidence": "React/HTML design explorations exist, but no application scaffold or package manifest."
     },
     {
@@ -88,8 +99,10 @@
       "completion": 0,
       "weight": 1,
       "difficulty": 4,
-      "hoursMin": 12,
-      "hoursMax": 18,
+      "hoursMin": 8,
+      "hoursMax": 12,
+      "daysMin": 1,
+      "daysMax": 1.5,
       "evidence": "No tests or CI exist."
     },
     {
@@ -103,8 +116,10 @@
       "completion": 10,
       "weight": 1,
       "difficulty": 2,
-      "hoursMin": 8,
-      "hoursMax": 12,
+      "hoursMin": 4,
+      "hoursMax": 8,
+      "daysMin": 0.5,
+      "daysMax": 1,
       "evidence": "No README or recognized license exists."
     },
     {
@@ -118,8 +133,10 @@
       "completion": 10,
       "weight": 1,
       "difficulty": 4,
-      "hoursMin": 20,
-      "hoursMax": 30,
+      "hoursMin": 12,
+      "hoursMax": 20,
+      "daysMin": 1.5,
+      "daysMax": 2.5,
       "evidence": "DNS exists, but public HTTPS returned Cloudflare 525 during audit."
     }
   ],

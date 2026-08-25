@@ -44,12 +44,21 @@
   },
   "complexity": 3,
   "forecast": {
-    "remainingHoursMin": 16,
-    "remainingHoursMax": 24,
-    "hoursPerWeek": 16,
-    "earliest": "2026-09-14",
-    "latest": "2026-09-21",
+    "remainingHoursMin": 11,
+    "remainingHoursMax": 19,
+    "remainingDaysMin": 1.5,
+    "remainingDaysMax": 2.5,
+    "hoursPerDay": 8,
+    "hoursPerWeek": 30,
+    "earliest": "2026-09-06",
+    "latest": "2026-09-09",
     "confidence": "medium"
+  },
+  "estimation": {
+    "date": "2026-08-25",
+    "mode": "codex-assisted-source-audited",
+    "sourceRevision": "47e9998d0308c82c80bf01d5a426bd51b7f584e1",
+    "sourceState": "clean local worktree"
   },
   "focus": {
     "current": {
@@ -73,8 +82,10 @@
       "completion": 75,
       "weight": 1,
       "difficulty": 3,
-      "hoursMin": 5,
-      "hoursMax": 7,
+      "hoursMin": 3,
+      "hoursMax": 5,
+      "daysMin": 0.5,
+      "daysMax": 0.75,
       "evidence": "Repository is clean and compiles through dotnet test, but no test assembly ran."
     },
     {
@@ -88,8 +99,10 @@
       "completion": 25,
       "weight": 1,
       "difficulty": 3,
-      "hoursMin": 5,
-      "hoursMax": 8,
+      "hoursMin": 4,
+      "hoursMax": 7,
+      "daysMin": 0.5,
+      "daysMax": 1,
       "evidence": "No CI runs and no effective automated test suite were found."
     },
     {
@@ -103,8 +116,10 @@
       "completion": 85,
       "weight": 1,
       "difficulty": 2,
-      "hoursMin": 2,
-      "hoursMax": 3,
+      "hoursMin": 1,
+      "hoursMax": 2,
+      "daysMin": 0.25,
+      "daysMax": 0.25,
       "evidence": "English README and MIT license exist."
     },
     {
@@ -118,8 +133,10 @@
       "completion": 45,
       "weight": 1,
       "difficulty": 3,
-      "hoursMin": 4,
-      "hoursMax": 6,
+      "hoursMin": 3,
+      "hoursMax": 5,
+      "daysMin": 0.5,
+      "daysMax": 0.75,
       "evidence": "No workflow or release artifact is configured."
     }
   ],

@@ -48,12 +48,21 @@
   },
   "complexity": 5,
   "forecast": {
-    "remainingHoursMin": 74,
-    "remainingHoursMax": 128,
-    "hoursPerWeek": 16,
-    "earliest": "2026-11-19",
-    "latest": "2027-02-13",
+    "remainingHoursMin": 57,
+    "remainingHoursMax": 96,
+    "remainingDaysMin": 7.25,
+    "remainingDaysMax": 12,
+    "hoursPerDay": 8,
+    "hoursPerWeek": 30,
+    "earliest": "2026-10-08",
+    "latest": "2026-11-02",
     "confidence": "low"
+  },
+  "estimation": {
+    "date": "2026-08-25",
+    "mode": "codex-assisted-source-audited",
+    "sourceRevision": "7d75ca159441b6f5f9f335b84f8fbe27361c8fcc",
+    "sourceState": "clean public main shallow clone"
   },
   "focus": {
     "current": {
@@ -77,8 +86,10 @@
       "completion": 95,
       "weight": 4,
       "difficulty": 5,
-      "hoursMin": 8,
-      "hoursMax": 12,
+      "hoursMin": 5,
+      "hoursMax": 8,
+      "daysMin": 0.75,
+      "daysMax": 1,
       "evidence": "API, clients, orchestrator, workers, moderation and recommendation code are extensive."
     },
     {
@@ -92,8 +103,10 @@
       "completion": 90,
       "weight": 1,
       "difficulty": 5,
-      "hoursMin": 10,
-      "hoursMax": 16,
+      "hoursMin": 8,
+      "hoursMax": 12,
+      "daysMin": 1,
+      "daysMax": 1.5,
       "evidence": "Latest CI/CD succeeded and the repository has a large test suite."
     },
     {
@@ -107,8 +120,10 @@
       "completion": 20,
       "weight": 1,
       "difficulty": 2,
-      "hoursMin": 8,
-      "hoursMax": 12,
+      "hoursMin": 5,
+      "hoursMax": 8,
+      "daysMin": 0.75,
+      "daysMax": 1,
       "evidence": "GitHub exposes no README or recognized license."
     },
     {
@@ -122,8 +137,10 @@
       "completion": 75,
       "weight": 3,
       "difficulty": 5,
-      "hoursMin": 14,
-      "hoursMax": 24,
+      "hoursMin": 10,
+      "hoursMax": 18,
+      "daysMin": 1.25,
+      "daysMax": 2.25,
       "evidence": "Deployment workflows exist, but production still uses mutable latest images and moving main configuration."
     },
     {
@@ -137,8 +154,10 @@
       "completion": 0,
       "weight": 1,
       "difficulty": 3,
-      "hoursMin": 6,
-      "hoursMax": 12,
+      "hoursMin": 4,
+      "hoursMax": 7,
+      "daysMin": 0.5,
+      "daysMax": 1,
       "evidence": "Transactional email is affected by an expired Brevo API key; the owner selected SMTP as the target integration."
     },
     {
@@ -152,8 +171,10 @@
       "completion": 25,
       "weight": 2,
       "difficulty": 5,
-      "hoursMin": 16,
-      "hoursMax": 28,
+      "hoursMin": 14,
+      "hoursMax": 24,
+      "daysMin": 1.75,
+      "daysMax": 3,
       "evidence": "Images are built in CI, but latest tags, moving main configuration, post-replacement checks and unsafe shared-host cleanup prevent release-safe deployment."
     },
     {
@@ -168,7 +189,9 @@
       "weight": 1,
       "difficulty": 3,
       "hoursMin": 4,
-      "hoursMax": 8,
+      "hoursMax": 7,
+      "daysMin": 0.5,
+      "daysMax": 1,
       "evidence": "The owner requested a domain change; the target hostname is intentionally pending an explicit decision."
     },
     {
@@ -182,8 +205,10 @@
       "completion": 0,
       "weight": 1,
       "difficulty": 4,
-      "hoursMin": 8,
-      "hoursMax": 16,
+      "hoursMin": 7,
+      "hoursMax": 12,
+      "daysMin": 1,
+      "daysMax": 1.5,
       "evidence": "Prometheus, Grafana, Grafana Image Renderer and Node Exporter currently belong to Smakosz Compose and smakosz_network; Prometheus scrapes only Smakosz and the host."
     }
   ],

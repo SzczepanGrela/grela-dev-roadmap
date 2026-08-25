@@ -47,12 +47,21 @@
   },
   "complexity": 5,
   "forecast": {
-    "remainingHoursMin": 48,
-    "remainingHoursMax": 72,
-    "hoursPerWeek": 16,
-    "earliest": "2026-10-05",
-    "latest": "2026-10-22",
+    "remainingHoursMin": 35,
+    "remainingHoursMax": 57,
+    "remainingDaysMin": 4.5,
+    "remainingDaysMax": 7.25,
+    "hoursPerDay": 8,
+    "hoursPerWeek": 30,
+    "earliest": "2026-09-14",
+    "latest": "2026-09-23",
     "confidence": "low"
+  },
+  "estimation": {
+    "date": "2026-08-25",
+    "mode": "codex-assisted-source-audited",
+    "sourceRevision": "d1f1da4534b31f52815d4db82ed64b6f37ecf99f",
+    "sourceState": "local worktree with 70 changed paths"
   },
   "focus": {
     "current": {
@@ -76,8 +85,10 @@
       "completion": 80,
       "weight": 1,
       "difficulty": 5,
-      "hoursMin": 16,
-      "hoursMax": 24,
+      "hoursMin": 12,
+      "hoursMax": 20,
+      "daysMin": 1.5,
+      "daysMax": 2.5,
       "evidence": "Local branch is 12 commits ahead with 45 changed/untracked paths."
     },
     {
@@ -91,8 +102,10 @@
       "completion": 65,
       "weight": 1,
       "difficulty": 5,
-      "hoursMin": 14,
-      "hoursMax": 20,
+      "hoursMin": 10,
+      "hoursMax": 16,
+      "daysMin": 1.25,
+      "daysMax": 2,
       "evidence": "79 tests passed, 2 skipped; AutoMapper 13.0.1 reports GHSA-rvv3-g6hj-g44x."
     },
     {
@@ -106,8 +119,10 @@
       "completion": 75,
       "weight": 1,
       "difficulty": 2,
-      "hoursMin": 4,
-      "hoursMax": 6,
+      "hoursMin": 3,
+      "hoursMax": 5,
+      "daysMin": 0.5,
+      "daysMax": 0.75,
       "evidence": "README and MIT exist but do not cover all current local changes."
     },
     {
@@ -121,8 +136,10 @@
       "completion": 60,
       "weight": 1,
       "difficulty": 5,
-      "hoursMin": 14,
-      "hoursMax": 22,
+      "hoursMin": 10,
+      "hoursMax": 16,
+      "daysMin": 1.25,
+      "daysMax": 2,
       "evidence": "Production returns 200; remote CI is green but predates local work."
     }
   ],

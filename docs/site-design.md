@@ -10,14 +10,14 @@ Use Astro for static generation and Markdown content, with one React/TypeScript 
 
 ## Mini Metro-inspired overview
 
-- Desktop presents a horizontally scrollable SVG route. Mobile switches to a vertical route.
+- Desktop presents a viewport-fitted, two-row SVG route that snakes back without horizontal scrolling. Mobile switches to a compact vertical route.
 - The main line follows project `order`; branches reveal significant tasks for the selected project.
 - A station is a project. Its progress ring and printed percentage communicate completion.
 - Status palette: grey planned, blue active, violet paused, red blocked/at risk, green complete/maintenance.
 - Status is never communicated by colour alone: every state has text, an icon and a distinct station treatment.
 - Complexity uses one to five diamonds and remains visually independent from status.
 - The active segment draws in on load and a small train marker moves subtly toward the current station.
-- Hover, keyboard focus or tap opens a preview card with screenshot, localized summary, four progress dimensions, current/next task, difficulty, forecast range and repository/live links.
+- Hover, keyboard focus or tap opens a preview card with an uncropped screenshot, localized summary, four progress dimensions, current/next task, difficulty, forecast range and repository/live links.
 - Selecting a station opens a statically generated detail page based on `report.md`.
 
 ## Interaction and accessibility
@@ -50,3 +50,5 @@ The repository therefore uses Playwright in GitHub Actions. A weekly/manual work
 - No browser-side calls to private infrastructure.
 - No claim that forecast dates are commitments.
 - No automatic modification of human-authored task status from GitHub activity alone.
+
+Effort ranges shown in task cards use the source revision recorded in each project, assume Codex-assisted work and convert hours to eight-hour work days as defined in `estimation-methodology.md`.

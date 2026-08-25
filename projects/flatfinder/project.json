@@ -47,12 +47,21 @@
   },
   "complexity": 5,
   "forecast": {
-    "remainingHoursMin": 160,
-    "remainingHoursMax": 240,
-    "hoursPerWeek": 16,
-    "earliest": "2027-03-05",
-    "latest": "2027-06-09",
+    "remainingHoursMin": 104,
+    "remainingHoursMax": 168,
+    "remainingDaysMin": 13,
+    "remainingDaysMax": 21,
+    "hoursPerDay": 8,
+    "hoursPerWeek": 30,
+    "earliest": "2026-11-13",
+    "latest": "2026-12-31",
     "confidence": "low"
+  },
+  "estimation": {
+    "date": "2026-08-25",
+    "mode": "codex-assisted-source-audited",
+    "sourceRevision": "28885c20643b6cf68fbd55d2b9dc0df90383c77f",
+    "sourceState": "clean public main shallow clone"
   },
   "focus": {
     "current": {
@@ -76,8 +85,10 @@
       "completion": 55,
       "weight": 1,
       "difficulty": 5,
-      "hoursMin": 64,
-      "hoursMax": 96,
+      "hoursMin": 40,
+      "hoursMax": 64,
+      "daysMin": 5,
+      "daysMax": 8,
       "evidence": "Backend, scrapers and training code are substantial; frontend remains a placeholder."
     },
     {
@@ -91,8 +102,10 @@
       "completion": 65,
       "weight": 1,
       "difficulty": 5,
-      "hoursMin": 38,
-      "hoursMax": 56,
+      "hoursMin": 24,
+      "hoursMax": 40,
+      "daysMin": 3,
+      "daysMax": 5,
       "evidence": "Many tests exist, but the last two CI runs failed and logs have expired."
     },
     {
@@ -106,8 +119,10 @@
       "completion": 55,
       "weight": 1,
       "difficulty": 2,
-      "hoursMin": 18,
-      "hoursMax": 28,
+      "hoursMin": 12,
+      "hoursMax": 20,
+      "daysMin": 1.5,
+      "daysMax": 2.5,
       "evidence": "README exists; deployment documentation is explicitly a Phase 0 stub; no license."
     },
     {
@@ -121,8 +136,10 @@
       "completion": 0,
       "weight": 1,
       "difficulty": 5,
-      "hoursMin": 40,
-      "hoursMax": 60,
+      "hoursMin": 28,
+      "hoursMax": 44,
+      "daysMin": 3.5,
+      "daysMax": 5.5,
       "evidence": "No deployment and no DNS; scraping endpoint currently performs long work through SSE."
     }
   ],

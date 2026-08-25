@@ -45,12 +45,21 @@
   },
   "complexity": 5,
   "forecast": {
-    "remainingHoursMin": 80,
-    "remainingHoursMax": 120,
-    "hoursPerWeek": 16,
-    "earliest": "2026-12-25",
-    "latest": "2027-02-24",
+    "remainingHoursMin": 54,
+    "remainingHoursMax": 86,
+    "remainingDaysMin": 6.75,
+    "remainingDaysMax": 10.75,
+    "hoursPerDay": 8,
+    "hoursPerWeek": 30,
+    "earliest": "2026-10-20",
+    "latest": "2026-11-22",
     "confidence": "low"
+  },
+  "estimation": {
+    "date": "2026-08-25",
+    "mode": "codex-assisted-source-audited",
+    "sourceRevision": "5596d689aefbf80ac12700a9e9ff77ca14702112",
+    "sourceState": "clean public master shallow clone"
   },
   "focus": {
     "current": {
@@ -74,8 +83,10 @@
       "completion": 60,
       "weight": 1,
       "difficulty": 5,
-      "hoursMin": 26,
-      "hoursMax": 38,
+      "hoursMin": 18,
+      "hoursMax": 28,
+      "daysMin": 2.25,
+      "daysMax": 3.5,
       "evidence": "API and tests exist, but one global limiter trusts arbitrary forwarded headers and click analytics spawn unbounded tasks."
     },
     {
@@ -89,8 +100,10 @@
       "completion": 55,
       "weight": 1,
       "difficulty": 5,
-      "hoursMin": 18,
-      "hoursMax": 28,
+      "hoursMin": 12,
+      "hoursMax": 20,
+      "daysMin": 1.5,
+      "daysMax": 2.5,
       "evidence": "Test projects exist; no current GitHub Actions workflow runs."
     },
     {
@@ -104,8 +117,10 @@
       "completion": 5,
       "weight": 1,
       "difficulty": 2,
-      "hoursMin": 12,
-      "hoursMax": 18,
+      "hoursMin": 6,
+      "hoursMax": 10,
+      "daysMin": 0.75,
+      "daysMax": 1.25,
       "evidence": "No README or recognized license; default branch is master."
     },
     {
@@ -119,8 +134,10 @@
       "completion": 0,
       "weight": 1,
       "difficulty": 5,
-      "hoursMin": 24,
-      "hoursMax": 36,
+      "hoursMin": 18,
+      "hoursMax": 28,
+      "daysMin": 2.25,
+      "daysMax": 3.5,
       "evidence": "No Docker, CI/CD or public DNS exists."
     }
   ],

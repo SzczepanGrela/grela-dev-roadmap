@@ -44,12 +44,21 @@
   },
   "complexity": 3,
   "forecast": {
-    "remainingHoursMin": 16,
-    "remainingHoursMax": 24,
-    "hoursPerWeek": 16,
-    "earliest": "2027-03-30",
-    "latest": "2027-07-20",
+    "remainingHoursMin": 10,
+    "remainingHoursMax": 18,
+    "remainingDaysMin": 1.25,
+    "remainingDaysMax": 2.25,
+    "hoursPerDay": 8,
+    "hoursPerWeek": 30,
+    "earliest": "2026-11-23",
+    "latest": "2027-01-16",
     "confidence": "medium"
+  },
+  "estimation": {
+    "date": "2026-08-25",
+    "mode": "codex-assisted-source-audited",
+    "sourceRevision": "11c7a3c07a848cf48ccae709f997f99dbaea21be",
+    "sourceState": "clean public main shallow clone"
   },
   "focus": {
     "current": {
@@ -73,8 +82,10 @@
       "completion": 80,
       "weight": 1,
       "difficulty": 3,
-      "hoursMin": 4,
-      "hoursMax": 6,
+      "hoursMin": 2,
+      "hoursMax": 4,
+      "daysMin": 0.25,
+      "daysMax": 0.5,
       "evidence": "Core tray, process, audio and hotkey code exists."
     },
     {
@@ -88,8 +99,10 @@
       "completion": 10,
       "weight": 1,
       "difficulty": 3,
-      "hoursMin": 5,
-      "hoursMax": 7,
+      "hoursMin": 3,
+      "hoursMax": 5,
+      "daysMin": 0.5,
+      "daysMax": 0.75,
       "evidence": "No tests or workflows exist."
     },
     {
@@ -103,8 +116,10 @@
       "completion": 55,
       "weight": 1,
       "difficulty": 2,
-      "hoursMin": 3,
-      "hoursMax": 5,
+      "hoursMin": 2,
+      "hoursMax": 4,
+      "daysMin": 0.25,
+      "daysMax": 0.5,
       "evidence": "Polish README exists; no recognized license."
     },
     {
@@ -118,8 +133,10 @@
       "completion": 45,
       "weight": 1,
       "difficulty": 3,
-      "hoursMin": 4,
-      "hoursMax": 6,
+      "hoursMin": 3,
+      "hoursMax": 5,
+      "daysMin": 0.5,
+      "daysMax": 0.75,
       "evidence": "No release automation; IDE and executable artifacts are already absent."
     }
   ],

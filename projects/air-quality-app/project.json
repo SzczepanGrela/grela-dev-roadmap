@@ -48,12 +48,21 @@
   },
   "complexity": 5,
   "forecast": {
-    "remainingHoursMin": 40,
-    "remainingHoursMax": 60,
-    "hoursPerWeek": 16,
-    "earliest": "2026-10-22",
-    "latest": "2026-11-18",
+    "remainingHoursMin": 27,
+    "remainingHoursMax": 43,
+    "remainingDaysMin": 3.5,
+    "remainingDaysMax": 5.5,
+    "hoursPerDay": 8,
+    "hoursPerWeek": 30,
+    "earliest": "2026-09-20",
+    "latest": "2026-10-03",
     "confidence": "low"
+  },
+  "estimation": {
+    "date": "2026-08-25",
+    "mode": "codex-assisted-source-audited",
+    "sourceRevision": "d6275111902d4fc445685770664d97a9ad4fa2f5",
+    "sourceState": "local worktree with 20 changed paths"
   },
   "focus": {
     "current": {
@@ -77,8 +86,10 @@
       "completion": 75,
       "weight": 1,
       "difficulty": 5,
-      "hoursMin": 14,
-      "hoursMax": 20,
+      "hoursMin": 8,
+      "hoursMax": 12,
+      "daysMin": 1,
+      "daysMax": 1.5,
       "evidence": "17 tracked files and 3 new files are locally modified."
     },
     {
@@ -92,8 +103,10 @@
       "completion": 65,
       "weight": 1,
       "difficulty": 5,
-      "hoursMin": 10,
-      "hoursMax": 14,
+      "hoursMin": 8,
+      "hoursMax": 12,
+      "daysMin": 1,
+      "daysMax": 1.5,
       "evidence": "Last committed CI succeeded; dirty local state is not yet verified in its project environment."
     },
     {
@@ -107,8 +120,10 @@
       "completion": 85,
       "weight": 1,
       "difficulty": 2,
-      "hoursMin": 4,
-      "hoursMax": 6,
+      "hoursMin": 3,
+      "hoursMax": 5,
+      "daysMin": 0.5,
+      "daysMax": 0.75,
       "evidence": "Detailed bilingual architecture README and MIT license exist."
     },
     {
@@ -122,8 +137,10 @@
       "completion": 35,
       "weight": 1,
       "difficulty": 5,
-      "hoursMin": 12,
-      "hoursMax": 20,
+      "hoursMin": 8,
+      "hoursMax": 14,
+      "daysMin": 1,
+      "daysMax": 1.75,
       "evidence": "Deploy is opt-in and air.grela.dev has no public DNS."
     }
   ],

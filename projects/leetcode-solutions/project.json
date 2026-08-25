@@ -42,12 +42,21 @@
   },
   "complexity": 2,
   "forecast": {
-    "remainingHoursMin": 12,
-    "remainingHoursMax": 20,
-    "hoursPerWeek": 16,
-    "earliest": "2027-03-23",
-    "latest": "2027-07-09",
+    "remainingHoursMin": 8,
+    "remainingHoursMax": 14,
+    "remainingDaysMin": 1,
+    "remainingDaysMax": 1.75,
+    "hoursPerDay": 8,
+    "hoursPerWeek": 30,
+    "earliest": "2026-11-21",
+    "latest": "2027-01-12",
     "confidence": "high"
+  },
+  "estimation": {
+    "date": "2026-08-25",
+    "mode": "codex-assisted-source-audited",
+    "sourceRevision": "2f2c8f7c97a360f9a12f12f0e082cea892581e61",
+    "sourceState": "clean public main shallow clone"
   },
   "focus": {
     "current": {
@@ -71,8 +80,10 @@
       "completion": 60,
       "weight": 1,
       "difficulty": 2,
-      "hoursMin": 4,
-      "hoursMax": 6,
+      "hoursMin": 2,
+      "hoursMax": 4,
+      "daysMin": 0.25,
+      "daysMax": 0.5,
       "evidence": "Fifteen solution files exist without a package or common interface."
     },
     {
@@ -87,7 +98,9 @@
       "weight": 1,
       "difficulty": 2,
       "hoursMin": 3,
-      "hoursMax": 5,
+      "hoursMax": 4,
+      "daysMin": 0.5,
+      "daysMax": 0.5,
       "evidence": "No tests or CI exist."
     },
     {
@@ -101,8 +114,10 @@
       "completion": 0,
       "weight": 1,
       "difficulty": 2,
-      "hoursMin": 3,
-      "hoursMax": 5,
+      "hoursMin": 2,
+      "hoursMax": 4,
+      "daysMin": 0.25,
+      "daysMax": 0.5,
       "evidence": "No README or license exists."
     },
     {
@@ -116,8 +131,10 @@
       "completion": 12,
       "weight": 1,
       "difficulty": 2,
-      "hoursMin": 2,
-      "hoursMax": 4,
+      "hoursMin": 1,
+      "hoursMax": 2,
+      "daysMin": 0.25,
+      "daysMax": 0.25,
       "evidence": "Repository is public but not standardized."
     }
   ],

@@ -4,6 +4,7 @@
 from __future__ import annotations
 
 import json
+import math
 import sys
 from datetime import date
 from pathlib import Path
@@ -18,6 +19,11 @@ DIMENSION_WEIGHTS = {
     "delivery": 25,
 }
 VALID_TASK_STATUS = {"planned", "in-progress", "blocked", "done"}
+
+
+def work_days(hours: int) -> float:
+    """Convert effort to eight-hour days, rounded up to a quarter day."""
+    return 0 if hours == 0 else math.ceil(hours / 2) / 4
 
 
 def weighted_progress(tasks: list[dict], dimension: str) -> int:
@@ -58,6 +64,12 @@ def validate_project(path: Path) -> tuple[dict, list[str]]:
             errors.append(f"{path}: planned task {task.get('id')} must be 0%")
         if task.get("hoursMin", 0) > task.get("hoursMax", 0):
             errors.append(f"{path}: invalid hour range in task {task.get('id')}")
+        for suffix in ("Min", "Max"):
+            expected_days = work_days(task.get(f"hours{suffix}", 0))
+            if task.get(f"days{suffix}") != expected_days:
+                errors.append(
+                    f"{path}: days{suffix} in task {task.get('id')} must equal {expected_days}"
+                )
 
     calculated: dict[str, int] = {}
     try:
@@ -77,6 +89,13 @@ def validate_project(path: Path) -> tuple[dict, list[str]]:
     forecast = data.get("forecast", {})
     if forecast.get("remainingHoursMin", 0) > forecast.get("remainingHoursMax", 0):
         errors.append(f"{path}: invalid forecast hour range")
+    for suffix in ("Min", "Max"):
+        task_hours = sum(task.get(f"hours{suffix}", 0) for task in tasks)
+        if forecast.get(f"remainingHours{suffix}") != task_hours:
+            errors.append(f"{path}: forecast hours{suffix} must equal task total {task_hours}")
+        expected_days = work_days(task_hours)
+        if forecast.get(f"remainingDays{suffix}") != expected_days:
+            errors.append(f"{path}: forecast days{suffix} must equal {expected_days}")
     try:
         if date.fromisoformat(forecast["earliest"]) > date.fromisoformat(forecast["latest"]):
             errors.append(f"{path}: earliest forecast is after latest")

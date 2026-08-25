@@ -49,12 +49,21 @@
   },
   "complexity": 5,
   "forecast": {
-    "remainingHoursMin": 24,
-    "remainingHoursMax": 40,
-    "hoursPerWeek": 16,
-    "earliest": "2027-03-18",
-    "latest": "2027-07-01",
+    "remainingHoursMin": 18,
+    "remainingHoursMax": 30,
+    "remainingDaysMin": 2.25,
+    "remainingDaysMax": 3.75,
+    "hoursPerDay": 8,
+    "hoursPerWeek": 30,
+    "earliest": "2026-11-19",
+    "latest": "2027-01-09",
     "confidence": "medium"
+  },
+  "estimation": {
+    "date": "2026-08-25",
+    "mode": "codex-assisted-source-audited",
+    "sourceRevision": "8f525098c70afddaa0a0aba847fb3881956649cf",
+    "sourceState": "clean public main shallow clone"
   },
   "focus": {
     "current": {
@@ -78,8 +87,10 @@
       "completion": 95,
       "weight": 1,
       "difficulty": 5,
-      "hoursMin": 5,
-      "hoursMax": 8,
+      "hoursMin": 3,
+      "hoursMax": 5,
+      "daysMin": 0.5,
+      "daysMax": 0.75,
       "evidence": "Semantic search, scene retrieval, agentic SSE answers and React frontend are live."
     },
     {
@@ -93,8 +104,10 @@
       "completion": 90,
       "weight": 1,
       "difficulty": 5,
-      "hoursMin": 6,
-      "hoursMax": 10,
+      "hoursMin": 5,
+      "hoursMax": 8,
+      "daysMin": 0.75,
+      "daysMax": 1,
       "evidence": "Latest CI/CD succeeded and backend/frontend tests exist."
     },
     {
@@ -108,8 +121,10 @@
       "completion": 70,
       "weight": 1,
       "difficulty": 2,
-      "hoursMin": 5,
-      "hoursMax": 8,
+      "hoursMin": 3,
+      "hoursMax": 5,
+      "daysMin": 0.5,
+      "daysMax": 0.75,
       "evidence": "README is detailed but GitHub recognizes no license; roadmap lists backups and Lighthouse."
     },
     {
@@ -123,8 +138,10 @@
       "completion": 85,
       "weight": 1,
       "difficulty": 5,
-      "hoursMin": 8,
-      "hoursMax": 14,
+      "hoursMin": 7,
+      "hoursMax": 12,
+      "daysMin": 1,
+      "daysMax": 1.5,
       "evidence": "Production returns 200 and CI/CD is green; remaining operational polish is documented."
     }
   ],

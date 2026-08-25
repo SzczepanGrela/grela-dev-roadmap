@@ -1,11 +1,23 @@
 {
-  "name": "grela-dev-roadmap-automation",
+  "name": "grela-dev-roadmap",
   "private": true,
   "type": "module",
   "scripts": {
+    "dev": "astro dev",
+    "build": "astro check && astro build",
+    "preview": "astro preview",
+    "check": "astro check && python3 scripts/validate.py",
     "screenshots": "playwright install chromium && node scripts/capture-screenshots.mjs"
   },
   "devDependencies": {
-    "playwright": "1.62.1"
+    "@astrojs/check": "^0.9.10",
+    "playwright": "1.62.1",
+    "typescript": "^5.9.3"
+  },
+  "dependencies": {
+    "@astrojs/react": "^6.0.4",
+    "astro": "^7.2.6",
+    "react": "^19.2.8",
+    "react-dom": "^19.2.8"
   }
 }

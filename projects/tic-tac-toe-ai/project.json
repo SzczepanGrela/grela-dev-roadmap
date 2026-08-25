@@ -47,12 +47,21 @@
   },
   "complexity": 3,
   "forecast": {
-    "remainingHoursMin": 12,
-    "remainingHoursMax": 20,
-    "hoursPerWeek": 16,
-    "earliest": "2026-11-02",
-    "latest": "2026-12-05",
+    "remainingHoursMin": 8,
+    "remainingHoursMax": 16,
+    "remainingDaysMin": 1,
+    "remainingDaysMax": 2,
+    "hoursPerDay": 8,
+    "hoursPerWeek": 30,
+    "earliest": "2026-09-24",
+    "latest": "2026-10-10",
     "confidence": "high"
+  },
+  "estimation": {
+    "date": "2026-08-25",
+    "mode": "codex-assisted-source-audited",
+    "sourceRevision": "5164282681e04d2279400d86b9a494aa817558d0",
+    "sourceState": "clean local worktree"
   },
   "focus": {
     "current": {
@@ -76,8 +85,10 @@
       "completion": 98,
       "weight": 1,
       "difficulty": 3,
-      "hoursMin": 2,
-      "hoursMax": 3,
+      "hoursMin": 1,
+      "hoursMax": 2,
+      "daysMin": 0.25,
+      "daysMax": 0.25,
       "evidence": "Human/AI/local modes, replay, localization, favicon and win animation are shipped."
     },
     {
@@ -91,8 +102,10 @@
       "completion": 95,
       "weight": 1,
       "difficulty": 3,
-      "hoursMin": 2,
-      "hoursMax": 4,
+      "hoursMin": 1,
+      "hoursMax": 3,
+      "daysMin": 0.25,
+      "daysMax": 0.5,
       "evidence": "Latest Quality and Deploy workflows succeeded."
     },
     {
@@ -106,8 +119,10 @@
       "completion": 95,
       "weight": 1,
       "difficulty": 2,
-      "hoursMin": 2,
-      "hoursMax": 3,
+      "hoursMin": 1,
+      "hoursMax": 2,
+      "daysMin": 0.25,
+      "daysMax": 0.25,
       "evidence": "README, MIT and infra documentation are present."
     },
     {
@@ -121,8 +136,10 @@
       "completion": 85,
       "weight": 1,
       "difficulty": 3,
-      "hoursMin": 6,
-      "hoursMax": 10,
+      "hoursMin": 5,
+      "hoursMax": 9,
+      "daysMin": 0.75,
+      "daysMax": 1.25,
       "evidence": "Live HTTPS and preflight rollback work; steady state is not true blue-green."
     }
   ],

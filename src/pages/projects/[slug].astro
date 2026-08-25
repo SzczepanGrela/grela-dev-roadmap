@@ -1,0 +1,38 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import { projects, type RoadmapProject } from "../../lib/projects";
+
+export function getStaticPaths() {
+  return projects.map((project) => ({ params: { slug: project.slug }, props: { project } }));
+}
+
+interface Props { project: RoadmapProject }
+const { project } = Astro.props;
+const status = { planned: "Planowany", active: "Aktywny", paused: "Wstrzymany", blocked: "Zablokowany", complete: "Ukończony", maintenance: "Utrzymywany" }[project.status];
+const progressLabels = { implementation: "Implementacja", quality: "Jakość", documentation: "Dokumentacja", delivery: "Wdrożenie" };
+const baseUrl = import.meta.env.BASE_URL.endsWith("/") ? import.meta.env.BASE_URL : `${import.meta.env.BASE_URL}/`;
+---
+
+<BaseLayout title={`${project.name.pl} — grela.dev roadmap`} description={project.summary.pl}>
+  <main class="report-page" data-status={project.status}>
+    <nav class="report-nav"><a href={baseUrl}>← Wróć do mapy</a><span>grela.dev / roadmap / {project.slug}</span></nav>
+    <header class="report-hero">
+      <div><span class="status-badge"><i></i>{status}</span><h1>{project.name.pl}</h1><p>{project.summary.pl}</p><div class="technology-list">{project.classification.technologies.map((technology) => <span>{technology}</span>)}</div></div>
+      <div class="report-score"><strong>{project.progress.overall}%</strong><span>ukończenia</span></div>
+    </header>
+    <div class="report-layout">
+      <section class="report-main">
+        <div class="report-preview"><img src={project.mediaUrl} alt={`Podgląd projektu ${project.name.pl}`} /></div>
+        <article class="report-section"><span class="section-number">01</span><h2>Bieżący kierunek</h2><div class="report-focus"><div><span>Teraz</span><p>{project.focus.current.pl}</p></div><div><span>Następnie</span><p>{project.focus.next.pl}</p></div></div></article>
+        <article class="report-section"><span class="section-number">02</span><h2>Zadania</h2><div class="report-task-list">{project.tasks.map((task) => <section data-task-status={task.status}><div><span>{progressLabels[task.dimension]}</span><b>{task.completion}%</b></div><h3>{task.title.pl}</h3><p>{task.evidence}</p><footer><span>Trudność {task.difficulty}/5</span><span>{task.hoursMin}–{task.hoursMax} godz. · {task.daysMin}–{task.daysMax} dni rob.</span></footer></section>)}</div></article>
+        <article class="report-section"><span class="section-number">03</span><h2>Decyzje</h2><ol class="decision-list">{project.decisions.map((decision) => <li>{decision.pl}</li>)}</ol></article>
+      </section>
+      <aside class="report-aside">
+        <h2>Stan projektu</h2>
+        {Object.entries(project.progress).filter(([key]) => key !== "overall").map(([key, value]) => <div class="dimension-row"><span>{progressLabels[key as keyof typeof progressLabels]}</span><strong>{value}%</strong><i><b style={`width:${value}%`}></b></i></div>)}
+        <dl><div><dt>Prognoza</dt><dd>{project.forecast.earliest}<br />— {project.forecast.latest}</dd></div><div><dt>Pozostało</dt><dd>{project.forecast.remainingHoursMin}–{project.forecast.remainingHoursMax} godz.<br />{project.forecast.remainingDaysMin}–{project.forecast.remainingDaysMax} dni rob.</dd></div><div><dt>Pewność</dt><dd>{project.forecast.confidence}</dd></div><div><dt>Audyt</dt><dd>{project.audit.date}</dd></div><div><dt>Estymacja</dt><dd>Codex + kod<br />{project.estimation.sourceRevision.slice(0, 7)}</dd></div></dl>
+        <div class="aside-links">{project.hosting.url && <a href={project.hosting.url} target="_blank">Otwórz stronę ↗</a>}<a href={project.repository.url} target="_blank">Repozytorium ↗</a><a href={`${project.repository.url}/blob/${project.repository.defaultBranch}/README.md`} target="_blank">README ↗</a></div>
+      </aside>
+    </div>
+  </main>
+</BaseLayout>

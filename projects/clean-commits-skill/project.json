@@ -45,11 +45,20 @@
   "complexity": 2,
   "forecast": {
     "remainingHoursMin": 6,
-    "remainingHoursMax": 10,
-    "hoursPerWeek": 16,
-    "earliest": "2027-03-07",
-    "latest": "2027-06-13",
+    "remainingHoursMax": 9,
+    "remainingDaysMin": 0.75,
+    "remainingDaysMax": 1.25,
+    "hoursPerDay": 8,
+    "hoursPerWeek": 30,
+    "earliest": "2026-11-15",
+    "latest": "2027-01-02",
     "confidence": "high"
+  },
+  "estimation": {
+    "date": "2026-08-25",
+    "mode": "codex-assisted-source-audited",
+    "sourceRevision": "f6d4f3589aa7842f681290c96e0b1eda54059a83",
+    "sourceState": "clean public main shallow clone"
   },
   "focus": {
     "current": {
@@ -75,6 +84,8 @@
       "difficulty": 2,
       "hoursMin": 1,
       "hoursMax": 2,
+      "daysMin": 0.25,
+      "daysMax": 0.25,
       "evidence": "Core skill, safety rules and an eval scenario exist."
     },
     {
@@ -90,6 +101,8 @@
       "difficulty": 2,
       "hoursMin": 2,
       "hoursMax": 3,
+      "daysMin": 0.25,
+      "daysMax": 0.5,
       "evidence": "Manual scenario table and one eval exist; no CI workflow."
     },
     {
@@ -104,7 +117,9 @@
       "weight": 1,
       "difficulty": 2,
       "hoursMin": 1,
-      "hoursMax": 2,
+      "hoursMax": 1,
+      "daysMin": 0.25,
+      "daysMax": 0.25,
       "evidence": "README still contains <your-username>; MIT is recognized."
     },
     {
@@ -120,6 +135,8 @@
       "difficulty": 2,
       "hoursMin": 2,
       "hoursMax": 3,
+      "daysMin": 0.25,
+      "daysMax": 0.5,
       "evidence": "No formal release automation exists."
     }
   ],

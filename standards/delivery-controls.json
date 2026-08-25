@@ -58,7 +58,7 @@
     {
       "id": "network-tls-client-ip",
       "title": {"en": "Network, TLS and client identity", "pl": "Sieć, TLS i tożsamość klienta"},
-      "description": {"en": "Isolated routing, origin protection, valid TLS and a trusted real-client-IP chain.", "pl": "Izolowany routing, ochrona originu, poprawny TLS i zaufany łańcuch prawdziwego IP klienta."},
+      "description": {"en": "Isolated routing, valid TLS, an origin reachable publicly only from current Cloudflare networks, and a hop-by-hop trusted chain that normalizes CF-Connecting-IP in NPM and exposes the visitor IP to the application only through NPM.", "pl": "Izolowany routing, poprawny TLS, origin dostępny publicznie wyłącznie z aktualnych sieci Cloudflare oraz zaufany łańcuch hop-by-hop, w którym NPM normalizuje CF-Connecting-IP, a aplikacja otrzymuje IP odwiedzającego wyłącznie od NPM."},
       "profiles": ["vps-web", "static-web"]
     },
     {

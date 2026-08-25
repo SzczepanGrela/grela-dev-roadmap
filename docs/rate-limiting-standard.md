@@ -17,10 +17,12 @@ There is no single low HTTP limit shared by every `grela.dev` application.
 
 ## Client identity and proxies
 
-- Cloudflare and NPM must preserve the real client IP.
-- Nginx trusts client-IP headers only from current Cloudflare networks.
-- Applications trust forwarded headers only from NPM or their isolated Docker network.
-- Direct public access to application containers is forbidden.
+- The required request path is `visitor → Cloudflare → VPS firewall → NPM → application`. Rate limits, logs and HTTP Fail2ban rules use the **visitor IP**, not a Cloudflare egress address and not the NPM container address.
+- The VPS permits public `80/443` traffic to the origin only from Cloudflare's current published IPv4 and IPv6 ranges. The allowlist has an explicit update procedure. Because Docker-published ports can bypass ordinary UFW paths on some hosts, verify the effective `DOCKER-USER`/nftables path from an external non-Cloudflare host; a direct request to the origin IP must fail.
+- NPM accepts `CF-Connecting-IP` as identity only when the TCP peer belongs to the current Cloudflare ranges. It uses Nginx real-IP configuration (`set_real_ip_from` for every Cloudflare range and `real_ip_header CF-Connecting-IP`) so `$remote_addr` becomes the visitor address. NPM's standard proxy include then sends `X-Real-IP: $remote_addr` and appends that address to `X-Forwarded-For`; applications must use trusted-proxy processing from the right-hand side instead of blindly selecting the first client-supplied entry.
+- The application trusts proxy headers only when the immediate TCP peer is its NPM address on the application's isolated Docker network. Trusting NPM authorizes that hop to assert the normalized visitor address; it does **not** mean that rate limiting uses NPM's address.
+- `FORWARDED_ALLOW_IPS`/framework equivalents contain the exact NPM container IP or the narrowest stable proxy subnet. They do not contain `*`, all Cloudflare ranges, or the entire set of unrelated Docker networks. Cloudflare addresses are validated at NPM/firewall, not repeated as trusted direct peers in the application.
+- Direct public access to NPM from non-Cloudflare sources and direct public access to application containers are forbidden. Prefer authenticated origin pulls in addition to the network allowlist when operationally practical.
 - Before enabling an HTTP Fail2ban jail, verify the IP recorded in NPM logs. Never risk banning a Cloudflare or NPM address shared by legitimate users.
 - `--forwarded-allow-ips "*"` and direct parsing of arbitrary `X-Forwarded-For` are not acceptable production defaults.
 
@@ -53,6 +55,7 @@ POS Order System, AudioMaster, clean-commits-skill, LeetCode solutions and Spoti
 - Log limit decisions without credentials, tokens or request bodies.
 - Monitor `429` share, latency, concurrent work, queue size, CPU and memory.
 - Establish a normal-traffic baseline before tightening limits.
-- Test real-IP handling through Cloudflare → NPM → application.
+- Test real-IP handling through Cloudflare → NPM → application and record the same visitor IP in NPM and application logs.
+- From an external non-Cloudflare network, test that connecting directly to the origin IP on `80/443` fails; do not assume a UFW rule also covers Docker-published ports.
 - Test a normal burst, a sustained violation, recovery after the window and multi-user isolation.
 - Document exact production values in the owning repository; the figures above are safe starting estimates, not immutable constants.

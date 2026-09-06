@@ -76,7 +76,7 @@
     {
       "id": "readiness-preflight",
       "title": {"en": "Readiness and preflight", "pl": "Readiness i preflight"},
-      "description": {"en": "Candidate or preview is checked on critical paths before production changes.", "pl": "Kandydat lub preview jest sprawdzany na krytycznych ścieżkach przed zmianą produkcji."},
+      "description": {"en": "Every in-house web container declares a Dockerfile HEALTHCHECK against its internal readiness endpoint and includes the required probe; the candidate or preview is checked on critical paths before production changes.", "pl": "Każdy własny kontener webowy deklaruje w Dockerfile HEALTHCHECK wewnętrznego endpointu readiness i zawiera wymagany probe; kandydat lub preview jest sprawdzany na krytycznych ścieżkach przed zmianą produkcji."},
       "profiles": ["vps-web", "static-web"]
     },
     {

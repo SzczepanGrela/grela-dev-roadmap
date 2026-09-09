@@ -54,6 +54,21 @@ nie stanowią ponownego audytu całego serwera.
   Nie kopiować dyrektyw Nginx jako opcji Traefika.
 - [ ] Politykę www dobrać do istniejących DNS/tras; ustawienie redirectu w UI
   nie jest dowodem, że www działa. Sprawdzić brak pętli przekierowań.
+- [ ] Przed wyłączeniem starego proxy porównać pełny rekord hosta i generowaną
+  konfigurację: custom locations, redirect, HSTS, cache, websocket, timeouty,
+  access list oraz rate limiting. Flaga w NPM nie dowodzi równoważnej reguły w
+  Traefiku lub Cloudflare.
+- [ ] HSTS umieszczać na warstwie publicznego TLS. Dla obecnego tunnel-only
+  ingress jest to dokładnie ograniczona reguła odpowiedzi Cloudflare, nie
+  wewnętrzny HTTP do aplikacji. Nie włączać `includeSubDomains`/`preload` bez
+  potwierdzenia trwałego HTTPS dla całego obejmowanego drzewa nazw.
+- [ ] Sprawdzić cache na istniejącym zasobie co najmniej dwoma żądaniami
+  (`MISS`/`HIT`, `Cache-Control`, `Age`). Zmiana TTL względem starego proxy ma
+  być świadomą decyzją; przy niewersjonowanych CSS/JS uwzględnić purge lub
+  wersjonowanie URL.
+- [ ] Nie tłumaczyć mechanicznie generycznych regexów „Block Exploits” ze
+  starego proxy. Udokumentować ich usunięcie i oprzeć ochronę na walidacji
+  aplikacji oraz jawnie skonfigurowanych kontrolach edge/WAF.
 - [ ] Zweryfikować zaufanie connector → proxy → aplikacja oraz odrzucanie
   sfałszowanych nagłówków. Proxy ufa tylko dokładnemu adresowi konektora.
   Aplikacja ufa dokładnemu peerowi proxy oraz dokładnemu konektorowi, jeśli oba
@@ -119,6 +134,8 @@ SYS_ADMIN jako obejścia i nie hot-patchować efemerycznego kontenera.
 Stan na podstawie dowodów z 5–9 września: TTT i Inventory mają działające
 ręczne wdrożenia po digestach i pozytywne healthchecki. TTT przeszedł test
 real-IP i spoofingu; Inventory ma testy dokładnych proxy/niezaufanego peera,
-zielone CI i operator-potwierdzony runtime. Automatyczne CD, pełne limity
+zielone CI i operator-potwierdzony runtime. Dla obu zewnętrznie potwierdzono
+redirect do HTTPS i dokładnie ograniczony HSTS; cache zasobu Inventory zwrócił
+MISS, a następnie HIT. Automatyczne CD, pełne limity
 proxy/edge, wspólny stan limitera i testy rollbacku pozostają zadaniami. Dla
 każdego brakującego odczytu zapisujemy „niezweryfikowane”.

@@ -156,7 +156,7 @@
       "hoursMax": 5,
       "daysMin": 0.5,
       "daysMax": 0.75,
-      "evidence": "Public HTTPS works through the Tunnel/Traefik path. Source now processes X-Forwarded-For only through exact known proxies with a bounded two-hop limit; CI spoof/isolation tests and operator-confirmed runtime deployment passed. Edge/proxy and cost-specific bounds remain."
+      "evidence": "Public HTTPS works through the Tunnel/Traefik path. Exact HTTPS redirect, scoped HSTS and working Cloudflare asset cache were externally observed September 9. Source processes X-Forwarded-For only through exact known proxies with a bounded two-hop limit; CI spoof/isolation tests and operator-confirmed runtime deployment passed. Edge/proxy and cost-specific bounds remain."
     },
     {
       "id": "immutable-deploy",
@@ -265,7 +265,7 @@
     "worktree": "Commit f1c14ebb was made from a clean main baseline with only Program.cs and the forwarded-header integration tests changed.",
     "tests": "Local Release tests passed: one unit and four integration tests. New cases cover two trusted proxy hops, independent client partitions and rejection of spoofed forwarding from an unknown peer.",
     "ci": "GitHub Quality 34241221870 succeeded for f1c14ebb6dcbd5b5b04274558e661e573e1e42d9: restore/build/tests, image build and push, fixable HIGH/CRITICAL Trivy gate, SBOM/provenance and attestation passed.",
-    "production": "On September 9 the operator reported a successful Coolify redeploy of digest 0d112419 with runtime-only exact proxy configuration; selective image, environment, health and public revision checks all had the expected results. The command output was not pasted, so this is operator-declared runtime evidence, not a fresh host audit."
+    "production": "On September 9 the operator reported a successful Coolify redeploy of digest 0d112419 with runtime-only exact proxy configuration; selective image, environment, health and public revision checks all had the expected results. External checks independently observed the exact HTTPS redirect, HSTS max-age 63072000 and a Cloudflare MISS-to-HIT transition for the stylesheet. The runtime command output was not pasted, so those container settings remain operator-declared rather than a fresh host audit."
   },
   "media": {
     "screenshot": "assets/screenshots/inventory-generator.png",
@@ -302,11 +302,12 @@
       "Local source edit and Release test for f1c14ebb on September 8",
       "GitHub Quality run 34241221870 and published digest read on September 8–9",
       "Versioned Coolify v4.3.14 parser inspected via GitHub API",
-      "Operator-declared successful post-deploy image/environment/health checks, September 9"
+      "Operator-declared successful post-deploy image/environment/health checks, September 9",
+      "External HTTP redirect, HSTS and static-asset cache checks, September 9"
     ],
     "notes": {
-      "en": "September 9 reconciliation adds exact-proxy source hardening, CI evidence and the operator-confirmed immutable deployment. Live Inventory IP echo, outer rate policies, automatic CD and rollback tests remain incomplete. Percentages and hours are planning estimates, not measurements.",
-      "pl": "Uzgodnienie z 9 września dodaje zabezpieczenie dokładnie wskazanych proxy, dowód CI i potwierdzone przez operatora niezmienne wdrożenie. Test IP na żywo w Inventory, zewnętrzne limity, automatyczne CD i rollback pozostają niepełne. Procenty i godziny to estymacje, nie pomiary."
+      "en": "September 9 reconciliation adds exact-proxy source hardening, CI evidence, the operator-confirmed immutable deployment and externally verified redirect/HSTS/cache behavior. Live Inventory IP echo, outer rate policies, automatic CD and rollback tests remain incomplete. Percentages and hours are planning estimates, not measurements.",
+      "pl": "Uzgodnienie z 9 września dodaje zabezpieczenie dokładnie wskazanych proxy, dowód CI, potwierdzone przez operatora niezmienne wdrożenie oraz zewnętrznie sprawdzone przekierowanie/HSTS/cache. Test IP na żywo w Inventory, zewnętrzne limity, automatyczne CD i rollback pozostają niepełne. Procenty i godziny to estymacje, nie pomiary."
     }
   },
   "compliance": {
@@ -360,8 +361,8 @@
         "id": "network-tls-client-ip",
         "status": "partial",
         "evidence": {
-          "en": "Public HTTPS works through dedicated Tunnel/Traefik ingress. Exact proxy trust and spoof rejection are source/CI tested and deployed per operator confirmation; live Inventory IP echo and final direct-origin readback remain.",
-          "pl": "Publiczny HTTPS działa przez dedykowany ingress Tunnel/Traefik. Dokładne zaufanie proxy i spoofing przetestowano w źródle/CI oraz wdrożono według operatora; pozostaje test IP Inventory na żywo i końcowy odczyt originu."
+          "en": "Public HTTPS, exact redirect and scoped HSTS were externally observed through dedicated Tunnel/Traefik ingress. Exact proxy trust and spoof rejection are source/CI tested and deployed per operator confirmation; live Inventory IP echo and final direct-origin readback remain.",
+          "pl": "Publiczny HTTPS, dokładne przekierowanie i ograniczony HSTS potwierdzono zewnętrznie przez dedykowany ingress Tunnel/Traefik. Dokładne zaufanie proxy i spoofing przetestowano w źródle/CI oraz wdrożono według operatora; pozostaje test IP Inventory na żywo i końcowy odczyt originu."
         },
         "taskIds": [
           "edge-and-limits"

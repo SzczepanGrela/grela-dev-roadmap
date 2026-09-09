@@ -157,7 +157,7 @@
       "hoursMax": 4,
       "daysMin": 0.25,
       "daysMax": 0.5,
-      "evidence": "Public health works through dedicated Tunnel/Traefik ingress. Runtime exact-peer configuration, real client-IP propagation and forged X-Forwarded-For rejection passed on September 8; outer endpoint limits and final direct-origin readback remain."
+      "evidence": "Public health works through dedicated Tunnel/Traefik ingress. Runtime exact-peer configuration, real client-IP propagation and forged X-Forwarded-For rejection passed on September 8. Exact HTTPS redirect and scoped HSTS were externally observed September 9; outer endpoint limits and final direct-origin readback remain."
     },
     {
       "id": "immutable-deploy",
@@ -249,7 +249,7 @@
     "worktree": "Clean local worktree at the revision returned by the operator-supplied production health check; scope: delivery/configuration reconciliation.",
     "tests": "Successful Quality run verified through GitHub API; earlier backend/browser/training evidence remains historical. No new application tests were run for this documentation update.",
     "ci": "GitHub API September 6: Quality 33940262401 successful for f1a924b6b53d393c5e256bd4e2a727c5e16ed35b; active Protect main ruleset, no environment returned.",
-    "production": "September 5–8 operator evidence: public health returns eight agents ready at revision f1a924b6b53d393c5e256bd4e2a727c5e16ed35b from the immutable Coolify container. Runtime exact proxy peers were configured; an external request resolved to the actual client IP and a forged X-Forwarded-For value did not replace it."
+    "production": "September 5–9 evidence: public health returns eight agents ready at revision f1a924b6b53d393c5e256bd4e2a727c5e16ed35b from the immutable Coolify container. Runtime exact proxy peers were configured; an external request resolved to the actual client IP and a forged X-Forwarded-For value did not replace it. Cloudflare returns the exact HTTPS redirect and HSTS max-age 63072000."
   },
   "media": {
     "screenshot": "assets/screenshots/tic-tac-toe-ai.png",
@@ -281,11 +281,12 @@
       "Operator-supplied September 5–8 VPS inspect, deployment, network, real-IP, spoof and public health outputs; no new full SSH audit",
       "Local source read on September 6 and GitHub Quality/rulesets/environments API",
       "Versioned Coolify v4.3.14 parser inspected via GitHub API",
-      "External real-IP and forged X-Forwarded-For checks, September 8"
+      "External real-IP and forged X-Forwarded-For checks, September 8",
+      "External HTTP redirect and HSTS response checks, September 9"
     ],
     "notes": {
-      "en": "September 9 reconciliation adds the dedicated ingress bridge and successful real-IP/spoof checks. Outer rate policies, remaining runtime fields, automatic CD and rollback tests remain incomplete. Percentages and hours are planning estimates, not measurements.",
-      "pl": "Uzgodnienie z 9 września dodaje dedykowany ingress oraz udane testy real-IP/spoofingu. Zewnętrzne limity, pozostałe pola runtime, automatyczne CD i rollback pozostają niepełne. Procenty i godziny to estymacje, nie pomiary."
+      "en": "September 9 reconciliation adds the dedicated ingress bridge, successful real-IP/spoof checks and externally verified HTTPS redirect/HSTS. Outer rate policies, remaining runtime fields, automatic CD and rollback tests remain incomplete. Percentages and hours are planning estimates, not measurements.",
+      "pl": "Uzgodnienie z 9 września dodaje dedykowany ingress, udane testy real-IP/spoofingu oraz zewnętrznie potwierdzone przekierowanie HTTPS/HSTS. Zewnętrzne limity, pozostałe pola runtime, automatyczne CD i rollback pozostają niepełne. Procenty i godziny to estymacje, nie pomiary."
     }
   },
   "compliance": {
@@ -337,8 +338,8 @@
         "id": "network-tls-client-ip",
         "status": "partial",
         "evidence": {
-          "en": "Public HTTPS, exact trusted peers, canonical client IP and forged-header rejection passed through the dedicated Tunnel/Traefik path; final direct-origin readback remains operator-declared.",
-          "pl": "Publiczny HTTPS, dokładne zaufane proxy, właściwe IP klienta i odrzucenie fałszywego nagłówka przeszły przez dedykowaną ścieżkę Tunnel/Traefik; końcowy odczyt originu pozostaje deklaracją operatora."
+          "en": "Public HTTPS, exact redirect, scoped HSTS, exact trusted peers, canonical client IP and forged-header rejection passed through the dedicated Tunnel/Traefik path; final direct-origin readback remains operator-declared.",
+          "pl": "Publiczny HTTPS, dokładne przekierowanie, ograniczony HSTS, dokładne zaufane proxy, właściwe IP klienta i odrzucenie fałszywego nagłówka przeszły przez dedykowaną ścieżkę Tunnel/Traefik; końcowy odczyt originu pozostaje deklaracją operatora."
         },
         "taskIds": [
           "edge-verification"

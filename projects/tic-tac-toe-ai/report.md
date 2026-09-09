@@ -12,14 +12,14 @@ Forecast / prognoza: **2026-10-08–2026-11-02**, 17–30 h, medium confidence /
 
 Interactive Tic-Tac-Toe laboratory for classic, reinforcement-learning and ONNX agents.
 
-September 9 reconciliation adds the dedicated ingress bridge and successful real-IP/spoof checks. Outer rate policies, remaining runtime fields, automatic CD and rollback tests remain incomplete. Percentages and hours are planning estimates, not measurements.
+September 9 reconciliation adds the dedicated ingress bridge, successful real-IP/spoof checks and externally verified HTTPS redirect/HSTS. Outer rate policies, remaining runtime fields, automatic CD and rollback tests remain incomplete. Percentages and hours are planning estimates, not measurements.
 
 ### Audit evidence
 
 - **Repozytorium:** `SzczepanGrela/tic-tac-toe-ai` @ `f1a924b6b53d393c5e256bd4e2a727c5e16ed35b`
 - **Source state:** Clean local worktree at the revision returned by the operator-supplied production health check; scope: delivery/configuration reconciliation.
 - **Tests and CI:** GitHub API September 6: Quality 33940262401 successful for f1a924b6b53d393c5e256bd4e2a727c5e16ed35b; active Protect main ruleset, no environment returned.
-- **Production:** September 5–8 operator evidence: public health returns eight agents ready at revision f1a924b6b53d393c5e256bd4e2a727c5e16ed35b from the immutable Coolify container. Runtime exact proxy peers were configured; an external request resolved to the actual client IP and a forged X-Forwarded-For value did not replace it.
+- **Production:** September 5–9 evidence: public health returns eight agents ready at revision f1a924b6b53d393c5e256bd4e2a727c5e16ed35b from the immutable Coolify container. Runtime exact proxy peers were configured; an external request resolved to the actual client IP and a forged X-Forwarded-For value did not replace it. Cloudflare returns the exact HTTPS redirect and HSTS max-age 63072000.
 
 ### v2 standard compliance
 
@@ -31,7 +31,7 @@ Profile: **VPS web application**. Statuses reflect only evidence available on th
 | Quality CI | Complete | Quality 33940262401 succeeded for the deployed revision; verified via GitHub API September 6. |
 | Immutable release | Complete | CI source and operator production evidence identify the full revision and immutable GHCR digest; manual deployment is proven. |
 | Deployment access | Partial | The legacy host account/launcher were removed. Private platform access exists; automated deployment credentials and external legacy credential revocation remain unverified. |
-| Network, TLS and client identity | Partial | Public HTTPS, exact trusted peers, canonical client IP and forged-header rejection passed through the dedicated Tunnel/Traefik path; final direct-origin readback remains operator-declared. |
+| Network, TLS and client identity | Partial | Public HTTPS, exact redirect, scoped HSTS, exact trusted peers, canonical client IP and forged-header rejection passed through the dedicated Tunnel/Traefik path; final direct-origin readback remains operator-declared. |
 | Abuse protection | Partial | The weighted in-process limiter now receives verified client identity on the tested path; edge/proxy rules and shared state across overlapping replicas remain unverified. |
 | Runtime safety | Partial | Non-root, capability drop, init and CPU/RAM limits observed; parser exception and remaining effective controls documented. |
 | Readiness and preflight | Partial | Image HEALTHCHECK and positive internal/public readiness are observed; candidate failure and critical-path preflight still need verification. |
@@ -70,7 +70,7 @@ September 6: private infrastructure runbook, public Coolify checklist and normal
 
 **Delivery · In progress · 70% · difficulty 3/5 · 2–4 h**
 
-Public health works through dedicated Tunnel/Traefik ingress. Runtime exact-peer configuration, real client-IP propagation and forged X-Forwarded-For rejection passed on September 8; outer endpoint limits and final direct-origin readback remain.
+Public health works through dedicated Tunnel/Traefik ingress. Runtime exact-peer configuration, real client-IP propagation and forged X-Forwarded-For rejection passed on September 8. Exact HTTPS redirect and scoped HSTS were externally observed September 9; outer endpoint limits and final direct-origin readback remain.
 
 #### Build once in CI and deploy a GHCR digest
 
@@ -115,14 +115,14 @@ Operator inspect confirms non-root, cap-drop ALL, init, 1 CPU and 512 MiB. Cooli
 
 Interaktywne laboratorium kółka i krzyżyka dla agentów klasycznych, RL i ONNX.
 
-Uzgodnienie z 9 września dodaje dedykowany ingress oraz udane testy real-IP/spoofingu. Zewnętrzne limity, pozostałe pola runtime, automatyczne CD i rollback pozostają niepełne. Procenty i godziny to estymacje, nie pomiary.
+Uzgodnienie z 9 września dodaje dedykowany ingress, udane testy real-IP/spoofingu oraz zewnętrznie potwierdzone przekierowanie HTTPS/HSTS. Zewnętrzne limity, pozostałe pola runtime, automatyczne CD i rollback pozostają niepełne. Procenty i godziny to estymacje, nie pomiary.
 
 ### Dowody audytu
 
 - **Repozytorium:** `SzczepanGrela/tic-tac-toe-ai` @ `f1a924b6b53d393c5e256bd4e2a727c5e16ed35b`
 - **Stan źródła:** Clean local worktree at the revision returned by the operator-supplied production health check; scope: delivery/configuration reconciliation.
 - **Testy i CI:** GitHub API September 6: Quality 33940262401 successful for f1a924b6b53d393c5e256bd4e2a727c5e16ed35b; active Protect main ruleset, no environment returned.
-- **Produkcja:** September 5–8 operator evidence: public health returns eight agents ready at revision f1a924b6b53d393c5e256bd4e2a727c5e16ed35b from the immutable Coolify container. Runtime exact proxy peers were configured; an external request resolved to the actual client IP and a forged X-Forwarded-For value did not replace it.
+- **Produkcja:** September 5–9 evidence: public health returns eight agents ready at revision f1a924b6b53d393c5e256bd4e2a727c5e16ed35b from the immutable Coolify container. Runtime exact proxy peers were configured; an external request resolved to the actual client IP and a forged X-Forwarded-For value did not replace it. Cloudflare returns the exact HTTPS redirect and HSTS max-age 63072000.
 
 ### Zgodność ze standardem v2
 
@@ -134,7 +134,7 @@ Profil: **Aplikacja webowa na VPS**. Statusy odzwierciedlają wyłącznie dowody
 | Quality CI | Gotowe | Quality 33940262401 przeszedł dla wdrożonej rewizji; potwierdzone API GitHub 6 września. |
 | Niezmienne wydanie | Gotowe | Źródło CI i wyniki produkcji od operatora wskazują pełną rewizję oraz digest GHCR; wdrożenie ręczne potwierdzone. |
 | Dostęp wdrożeniowy | Częściowe | Usunięto stare konto/launcher. Istnieje prywatny dostęp platformy; poświadczenia automatycznego CD i wycofanie starych uprawnień zewnętrznych wymagają weryfikacji. |
-| Sieć, TLS i tożsamość klienta | Częściowe | Publiczny HTTPS, dokładne zaufane proxy, właściwe IP klienta i odrzucenie fałszywego nagłówka przeszły przez dedykowaną ścieżkę Tunnel/Traefik; końcowy odczyt originu pozostaje deklaracją operatora. |
+| Sieć, TLS i tożsamość klienta | Częściowe | Publiczny HTTPS, dokładne przekierowanie, ograniczony HSTS, dokładne zaufane proxy, właściwe IP klienta i odrzucenie fałszywego nagłówka przeszły przez dedykowaną ścieżkę Tunnel/Traefik; końcowy odczyt originu pozostaje deklaracją operatora. |
 | Ochrona przed nadużyciami | Częściowe | Ważony limiter procesu otrzymuje zweryfikowane IP klienta na przetestowanej ścieżce; reguły edge/proxy i wspólny stan nakładających się replik pozostają niezweryfikowane. |
 | Bezpieczeństwo runtime | Częściowe | Potwierdzone non-root, cap-drop, init i CPU/RAM; zapisano wyjątek parsera i brakujące odczyty. |
 | Readiness i preflight | Częściowe | Potwierdzone HEALTHCHECK obrazu oraz wewnętrzny/publiczny readiness; awaria kandydata i preflight krytycznych ścieżek wymagają weryfikacji. |
@@ -173,7 +173,7 @@ September 6: private infrastructure runbook, public Coolify checklist and normal
 
 **Wdrożenie · W toku · 70% · trudność 3/5 · 2–4 h**
 
-Public health works through dedicated Tunnel/Traefik ingress. Runtime exact-peer configuration, real client-IP propagation and forged X-Forwarded-For rejection passed on September 8; outer endpoint limits and final direct-origin readback remain.
+Public health works through dedicated Tunnel/Traefik ingress. Runtime exact-peer configuration, real client-IP propagation and forged X-Forwarded-For rejection passed on September 8. Exact HTTPS redirect and scoped HSTS were externally observed September 9; outer endpoint limits and final direct-origin readback remain.
 
 #### Budować raz w CI i wdrażać digest GHCR
 

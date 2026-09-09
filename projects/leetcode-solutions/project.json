@@ -48,8 +48,8 @@
     "remainingDaysMax": 2,
     "hoursPerDay": 8,
     "hoursPerWeek": 30,
-    "earliest": "2026-12-03",
-    "latest": "2027-02-08",
+    "earliest": "2026-12-15",
+    "latest": "2027-02-18",
     "confidence": "high"
   },
   "estimation": {

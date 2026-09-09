@@ -12,6 +12,7 @@ The repository is the source of truth for the future interactive roadmap website
 - bilingual project reports;
 - normalized JSON data validated against JSON Schema;
 - a shared production and rate-limiting standard;
+- [Coolify deployment checklist and known parser limitations](docs/coolify-deployment-checklist.md);
 - a versioned compliance profile and evidence matrix for every project;
 - source-audited, Codex-assisted estimates in hours and eight-hour work days;
 - a responsive, Mini Metro-inspired Astro/React roadmap frontend;

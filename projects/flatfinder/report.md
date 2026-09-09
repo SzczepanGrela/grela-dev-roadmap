@@ -2,7 +2,7 @@
 
 Audit date / data audytu: **2026-08-25**<br>
 Estimated completion / szacowane ukończenie: **26%**<br>
-Forecast / prognoza: **2026-11-24–2027-01-21**, 119–192 h, low confidence / pewność: low
+Forecast / prognoza: **2026-12-04–2027-02-02**, 119–192 h, low confidence / pewność: low
 
 > This report is synchronized from `project.json` and the versioned delivery-control catalog. / Raport jest synchronizowany z `project.json` i wersjonowanym katalogiem kontroli wdrożeniowych.
 
@@ -82,7 +82,7 @@ No production container/deployment topology exists.
 
 **Delivery · Planned · 0% · difficulty 5/5 · 8–12 h**
 
-The stateful application requires schema-compatible promotion and exact release artifacts.
+The stateful application requires schema-compatible promotion and exact release artifacts. Target revised September 6: implement the delivery step through Coolify using the shared checklist, an immutable GHCR digest and Traefik/Tunnel; preserve data and custom routes. Production migration not verified in this update.
 
 #### Add job quotas, export limits and monitoring
 
@@ -101,6 +101,7 @@ Design assets exist, but no deployed public UI verifies the final identity.
 - Public anonymous scraping is forbidden; use authenticated jobs and per-portal concurrency.
 - Training and teacher VLM stay offline/private.
 - The project follows the v2 standard profile: vps-web.
+- Migration target updated September 6: prebuilt GHCR digest in Coolify, Traefik/Tunnel routing and the shared deployment checklist; preserve databases and custom routes. This target update is not a new source/production audit.
 
 ## Polski
 
@@ -178,7 +179,7 @@ No production container/deployment topology exists.
 
 **Wdrożenie · Planowane · 0% · trudność 5/5 · 8–12 h**
 
-The stateful application requires schema-compatible promotion and exact release artifacts.
+The stateful application requires schema-compatible promotion and exact release artifacts. Target revised September 6: implement the delivery step through Coolify using the shared checklist, an immutable GHCR digest and Traefik/Tunnel; preserve data and custom routes. Production migration not verified in this update.
 
 #### Dodać quota jobów, limity eksportu i monitoring
 
@@ -197,3 +198,4 @@ Design assets exist, but no deployed public UI verifies the final identity.
 - Publiczny anonimowy scraping jest zabroniony; używać uwierzytelnionych jobów i concurrency per portal.
 - Trening i teacher VLM pozostają offline/prywatne.
 - Projekt podlega profilowi standardu v2: vps-web.
+- Cel migracji uaktualniony 6 września: digest GHCR w Coolify, routing Traefik/Tunnel i wspólna checklista; zachować bazy i custom routes. Zmiana celu nie jest nowym audytem źródła/produkcji.

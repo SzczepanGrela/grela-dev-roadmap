@@ -52,13 +52,13 @@
     {
       "id": "deployment-access",
       "title": {"en": "Deployment access", "pl": "Dostęp wdrożeniowy"},
-      "description": {"en": "OIDC, least-privilege deployment identity and pinned SSH host identity.", "pl": "OIDC, minimalne uprawnienia tożsamości wdrożeniowej i przypięty host SSH."},
+      "description": {"en": "Authenticated private platform deployment path, scoped credentials and verified management identity; retire obsolete per-app Docker-group accounts after migration.", "pl": "Uwierzytelniona prywatna ścieżka wdrażania przez platformę, ograniczone poświadczenia i zweryfikowana tożsamość zarządzania; wycofanie zbędnych kont Docker po migracji."},
       "profiles": ["vps-web"]
     },
     {
       "id": "network-tls-client-ip",
       "title": {"en": "Network, TLS and client identity", "pl": "Sieć, TLS i tożsamość klienta"},
-      "description": {"en": "Isolated routing, valid TLS, an origin reachable publicly only from current Cloudflare networks, and a hop-by-hop trusted chain that normalizes CF-Connecting-IP in NPM and exposes the visitor IP to the application only through NPM.", "pl": "Izolowany routing, poprawny TLS, origin dostępny publicznie wyłącznie z aktualnych sieci Cloudflare oraz zaufany łańcuch hop-by-hop, w którym NPM normalizuje CF-Connecting-IP, a aplikacja otrzymuje IP odwiedzającego wyłącznie od NPM."},
+      "description": {"en": "Public TLS and isolated routing; for VPS, verified Tunnel connector/proxy trust and visitor IP with spoof resistance and closed public origin ports. Managed static hosting uses its platform boundary.", "pl": "Publiczny TLS i izolowany routing; dla VPS zweryfikowane zaufanie connector/proxy, IP klienta, odporność na spoofing i zamknięte porty originu. Hosting statyczny korzysta z granicy platformy."},
       "profiles": ["vps-web", "static-web"]
     },
     {
@@ -70,7 +70,7 @@
     {
       "id": "runtime-safety",
       "title": {"en": "Runtime safety", "pl": "Bezpieczeństwo runtime"},
-      "description": {"en": "Dedicated identity and network, no direct public port, secrets hygiene and CPU, RAM and PID limits.", "pl": "Dedykowana tożsamość i sieć, brak publicznego portu, higiena sekretów oraz limity CPU, RAM i PID."},
+      "description": {"en": "Non-root identity, dedicated network, no public app port/socket, secrets hygiene, CPU/RAM/PID/log limits and effective hardening verified by inspect; version-specific platform exceptions must be recorded.", "pl": "Non-root, dedykowana sieć, brak publicznego portu aplikacji/socketa, higiena sekretów, limity CPU/RAM/PID/logów i hardening sprawdzony przez inspect; wyjątki platformy wymagają zapisu."},
       "profiles": ["vps-web"]
     },
     {
@@ -82,7 +82,7 @@
     {
       "id": "atomic-promotion-rollback",
       "title": {"en": "Atomic promotion and rollback", "pl": "Atomowa promocja i rollback"},
-      "description": {"en": "Blue-green or managed-platform promotion with an external smoke test and automatic rollback.", "pl": "Blue-green lub promocja platformy z zewnętrznym smoke testem i automatycznym rollbackiem."},
+      "description": {"en": "Blue-green or verified managed promotion with external smoke and automatic recovery; a successful rolling update alone does not prove rollback.", "pl": "Blue-green lub sprawdzona promocja platformy z publicznym smoke i automatycznym odzyskiwaniem; udany rolling update sam nie dowodzi rollbacku."},
       "profiles": ["vps-web", "static-web"]
     },
     {

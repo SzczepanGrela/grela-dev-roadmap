@@ -1,8 +1,8 @@
 # Tic-Tac-Toe AI — status report / raport stanu
 
-Audit date / data audytu: **2026-08-25**<br>
-Estimated completion / szacowane ukończenie: **73%**<br>
-Forecast / prognoza: **2026-09-28–2026-10-21**, 17–28 h, high confidence / pewność: high
+Audit date / data audytu: **2026-09-09**<br>
+Estimated completion / szacowane ukończenie: **83%**<br>
+Forecast / prognoza: **2026-10-08–2026-11-02**, 17–30 h, medium confidence / pewność: medium
 
 > This report is synchronized from `project.json` and the versioned delivery-control catalog. / Raport jest synchronizowany z `project.json` i wersjonowanym katalogiem kontroli wdrożeniowych.
 
@@ -12,14 +12,14 @@ Forecast / prognoza: **2026-09-28–2026-10-21**, 17–28 h, high confidence / p
 
 Interactive Tic-Tac-Toe laboratory for classic, reinforcement-learning and ONNX agents.
 
-The project is feature-complete and now in hardening/maintenance.
+September 9 reconciliation adds the dedicated ingress bridge and successful real-IP/spoof checks. Outer rate policies, remaining runtime fields, automatic CD and rollback tests remain incomplete. Percentages and hours are planning estimates, not measurements.
 
 ### Audit evidence
 
-- **Repozytorium:** `SzczepanGrela/tic-tac-toe-ai` @ `69083b6c5e741646e352cccaab03cd6b21c65cb3`
-- **Source state:** clean main synchronized with origin after the production rollout
-- **Tests and CI:** Quality 32871780435 and Deploy 32871780001 succeeded for 69083b6; no ruleset or production environment exists.
-- **Production:** Public health returned status ok with all eight agents ready; the deployed frontend contains stale-response protection and NPM logs the verified visitor IP.
+- **Repozytorium:** `SzczepanGrela/tic-tac-toe-ai` @ `f1a924b6b53d393c5e256bd4e2a727c5e16ed35b`
+- **Source state:** Clean local worktree at the revision returned by the operator-supplied production health check; scope: delivery/configuration reconciliation.
+- **Tests and CI:** GitHub API September 6: Quality 33940262401 successful for f1a924b6b53d393c5e256bd4e2a727c5e16ed35b; active Protect main ruleset, no environment returned.
+- **Production:** September 5–8 operator evidence: public health returns eight agents ready at revision f1a924b6b53d393c5e256bd4e2a727c5e16ed35b from the immutable Coolify container. Runtime exact proxy peers were configured; an external request resolved to the actual client IP and a forged X-Forwarded-For value did not replace it.
 
 ### v2 standard compliance
 
@@ -27,16 +27,16 @@ Profile: **VPS web application**. Statuses reflect only evidence available on th
 
 | Control | Status | Evidence |
 | --- | --- | --- |
-| Repository governance | Partial | GitHub returned no active ruleset or environment; remaining elements were assessed from the repository. |
-| Quality CI | Complete | Quality 32871780435 passed Python 3.12/3.13 tests, eight Playwright scenarios, four training smoke jobs and the Docker build for 69083b6. |
-| Immutable release | Missing | The required complete implementation was not found in the audited tic tac toe ai source. |
-| Deployment access | Partial | tic tac toe ai has some mechanisms but does not yet satisfy the complete v2 control. |
-| Network, TLS and client identity | Partial | Cloudflare HTTPS, global NPM CF-Connecting-IP restoration and exact-NPM application trust are deployed; the visitor address was verified end-to-end without retaining it, while direct-origin rejection still needs an external test. |
-| Abuse protection | Partial | tic tac toe ai has some mechanisms but does not yet satisfy the complete v2 control. |
-| Runtime safety | Partial | tic tac toe ai has some mechanisms but does not yet satisfy the complete v2 control. |
-| Readiness and preflight | Partial | tic tac toe ai has some mechanisms but does not yet satisfy the complete v2 control. |
-| Atomic promotion and rollback | Missing | The required complete implementation was not found in the audited tic tac toe ai source. |
-| Coordination and retention | Partial | tic tac toe ai has some mechanisms but does not yet satisfy the complete v2 control. |
+| Repository governance | Partial | Active Protect main ruleset observed; environment absent and required-check enforcement not re-read. |
+| Quality CI | Complete | Quality 33940262401 succeeded for the deployed revision; verified via GitHub API September 6. |
+| Immutable release | Complete | CI source and operator production evidence identify the full revision and immutable GHCR digest; manual deployment is proven. |
+| Deployment access | Partial | The legacy host account/launcher were removed. Private platform access exists; automated deployment credentials and external legacy credential revocation remain unverified. |
+| Network, TLS and client identity | Partial | Public HTTPS, exact trusted peers, canonical client IP and forged-header rejection passed through the dedicated Tunnel/Traefik path; final direct-origin readback remains operator-declared. |
+| Abuse protection | Partial | The weighted in-process limiter now receives verified client identity on the tested path; edge/proxy rules and shared state across overlapping replicas remain unverified. |
+| Runtime safety | Partial | Non-root, capability drop, init and CPU/RAM limits observed; parser exception and remaining effective controls documented. |
+| Readiness and preflight | Partial | Image HEALTHCHECK and positive internal/public readiness are observed; candidate failure and critical-path preflight still need verification. |
+| Atomic promotion and rollback | Partial | Coolify deployment succeeded; no evidence of tested blue-green or automatic recovery after public smoke failure. |
+| Coordination and retention | Partial | Manual release succeeded; capacity serialization, automated CD and retention/recovery behavior are not yet accepted. |
 | Observability | Missing | The required complete implementation was not found in the audited tic tac toe ai source. |
 | Web identity | Complete | The audit verified full implementation of web-identity. |
 
@@ -52,37 +52,37 @@ Reset, scoreboard, weighted token bucket, Retry-After, stale-response protection
 
 **Quality · Done · 100% · difficulty 2/5 · 0–0 h**
 
-Quality 32871780435 passed backend tests on Python 3.12/3.13, eight Playwright tests, all training smoke jobs and the Docker build.
+Quality 33940262401 successful for deployed revision f1a924b6b53d393c5e256bd4e2a727c5e16ed35b (September 6 API verification).
 
 #### Enable ruleset and production environment
 
-**Quality · Planned · 0% · difficulty 2/5 · 1–2 h**
+**Quality · In progress · 60% · difficulty 2/5 · 1–2 h**
 
-GitHub returned no ruleset or environment.
+September 6 API confirms active Protect main ruleset; no GitHub Environment returned. Exact required-check enforcement still needs confirmation.
 
-#### Update limits and operations runbook
+#### Document the Coolify migration and known limitations
 
 **Documentation · Done · 100% · difficulty 2/5 · 0–0 h**
 
-The application runbook and portfolio standard document weighted games and the Cloudflare-to-NPM-to-application trust chain.
+September 6: private infrastructure runbook, public Coolify checklist and normalized project status reconciled with dated evidence; unverified controls are explicitly listed.
 
-#### Configure and test Cloudflare and NPM
+#### Verify Tunnel/Traefik identity and edge controls
 
-**Delivery · In progress · 70% · difficulty 3/5 · 1–2 h**
+**Delivery · In progress · 70% · difficulty 3/5 · 2–4 h**
 
-NPM now restores visitor IPs globally and the application trusts only NPM; the visitor address was verified end-to-end against the workstation without retaining it in the roadmap. TTT-specific Cloudflare/NPM limits and a non-Cloudflare direct-origin rejection test remain.
+Public health works through dedicated Tunnel/Traefik ingress. Runtime exact-peer configuration, real client-IP propagation and forged X-Forwarded-For rejection passed on September 8; outer endpoint limits and final direct-origin readback remain.
 
 #### Build once in CI and deploy a GHCR digest
 
-**Delivery · Planned · 0% · difficulty 4/5 · 4–7 h**
+**Delivery · Done · 100% · difficulty 4/5 · 0–0 h**
 
-The VPS still builds a short-SHA image from moving main and globally prunes images.
+Operator inspect and public health match the immutable GHCR release at f1a924b6b53d393c5e256bd4e2a727c5e16ed35b; manual Coolify deployment succeeded. Automatic CD is tracked separately.
 
-#### Implement Redis, stable gateway and blue-green
+#### Verify promotion/rollback and share limiter state
 
-**Delivery · Planned · 0% · difficulty 4/5 · 8–12 h**
+**Delivery · In progress · 25% · difficulty 4/5 · 6–10 h**
 
-The current preflight removes the checked candidate before recreating production; limiter state is process-local.
+Health and manual digest deployment observed. Limiter state is process-local; shared state during replica overlap, failed candidate handling, blue-green and automatic public-smoke rollback remain.
 
 #### Add 429, latency and deployment metrics
 
@@ -90,12 +90,24 @@ The current preflight removes the checked candidate before recreating production
 
 No central metrics or alerts cover rate rejections, AI saturation and rollback failures.
 
+#### Automate promotion of the CI-tested digest
+
+**Delivery · Planned · 0% · difficulty 3/5 · 3–5 h**
+
+Manual digest deployment is proven; CI-to-Coolify authentication, exact-digest submission, status polling, serialization and retention still need implementation and verification.
+
+#### Verify runtime settings and resolve parser exceptions
+
+**Delivery · In progress · 50% · difficulty 3/5 · 2–4 h**
+
+Operator inspect confirms non-root, cap-drop ALL, init, 1 CPU and 512 MiB. Coolify 4.3.14 security-opt parsing failed; further hardening was deferred. PID/log limits and final security/read-only/tmpfs settings need verification.
+
 ### Architecture decisions
 
-- Keep the current preflight-plus-rollback deploy before implementing blue-green.
 - Moves use a 30/min token bucket with burst 10; series consume tokens by requested game count.
-- UFW/DOCKER-USER admits origin HTTPS only from Cloudflare; NPM validates and normalizes CF-Connecting-IP, while the application trusts only NPM as the forwarding peer and rate-limits the resulting visitor IP.
 - The project follows the v2 standard profile: vps-web.
+- Use prebuilt GHCR digests with Coolify/Traefik/Tunnel. Manual production success does not establish automatic CD, trusted client IP or rollback.
+- Temporarily omit no-new-privileges from Custom Docker Options due to the reproduced 4.3.14 parser issue; verify effective settings and revisit via reviewed Compose or upgrade.
 
 ## Polski
 
@@ -103,14 +115,14 @@ No central metrics or alerts cover rate rejections, AI saturation and rollback f
 
 Interaktywne laboratorium kółka i krzyżyka dla agentów klasycznych, RL i ONNX.
 
-Projekt jest funkcjonalnie ukończony i znajduje się w fazie hardening/maintenance.
+Uzgodnienie z 9 września dodaje dedykowany ingress oraz udane testy real-IP/spoofingu. Zewnętrzne limity, pozostałe pola runtime, automatyczne CD i rollback pozostają niepełne. Procenty i godziny to estymacje, nie pomiary.
 
 ### Dowody audytu
 
-- **Repozytorium:** `SzczepanGrela/tic-tac-toe-ai` @ `69083b6c5e741646e352cccaab03cd6b21c65cb3`
-- **Stan źródła:** clean main synchronized with origin after the production rollout
-- **Testy i CI:** Quality 32871780435 and Deploy 32871780001 succeeded for 69083b6; no ruleset or production environment exists.
-- **Produkcja:** Public health returned status ok with all eight agents ready; the deployed frontend contains stale-response protection and NPM logs the verified visitor IP.
+- **Repozytorium:** `SzczepanGrela/tic-tac-toe-ai` @ `f1a924b6b53d393c5e256bd4e2a727c5e16ed35b`
+- **Stan źródła:** Clean local worktree at the revision returned by the operator-supplied production health check; scope: delivery/configuration reconciliation.
+- **Testy i CI:** GitHub API September 6: Quality 33940262401 successful for f1a924b6b53d393c5e256bd4e2a727c5e16ed35b; active Protect main ruleset, no environment returned.
+- **Produkcja:** September 5–8 operator evidence: public health returns eight agents ready at revision f1a924b6b53d393c5e256bd4e2a727c5e16ed35b from the immutable Coolify container. Runtime exact proxy peers were configured; an external request resolved to the actual client IP and a forged X-Forwarded-For value did not replace it.
 
 ### Zgodność ze standardem v2
 
@@ -118,16 +130,16 @@ Profil: **Aplikacja webowa na VPS**. Statusy odzwierciedlają wyłącznie dowody
 
 | Kontrola | Status | Dowód |
 | --- | --- | --- |
-| Zarządzanie repozytorium | Częściowe | GitHub nie zwrócił aktywnego rulesetu ani środowiska; pozostałe elementy oceniono z repozytorium. |
-| Quality CI | Gotowe | Quality 32871780435 przeszedł testy Python 3.12/3.13, osiem scenariuszy Playwright, cztery treningi smoke i build Dockera dla 69083b6. |
-| Niezmienne wydanie | Brak | W audytowanym źródle projektu tic tac toe ai nie znaleziono wymaganej kompletnej implementacji. |
-| Dostęp wdrożeniowy | Częściowe | Projekt tic tac toe ai ma część mechanizmów, ale nie spełnia jeszcze całej kontroli v2. |
-| Sieć, TLS i tożsamość klienta | Częściowe | HTTPS Cloudflare, globalne odtwarzanie CF-Connecting-IP w NPM i zaufanie aplikacji wyłącznie do NPM są wdrożone; adres odwiedzającego potwierdzono end-to-end bez zapisywania go, ale odrzucenie bezpośredniego ruchu do originu wymaga testu zewnętrznego. |
-| Ochrona przed nadużyciami | Częściowe | Projekt tic tac toe ai ma część mechanizmów, ale nie spełnia jeszcze całej kontroli v2. |
-| Bezpieczeństwo runtime | Częściowe | Projekt tic tac toe ai ma część mechanizmów, ale nie spełnia jeszcze całej kontroli v2. |
-| Readiness i preflight | Częściowe | Projekt tic tac toe ai ma część mechanizmów, ale nie spełnia jeszcze całej kontroli v2. |
-| Atomowa promocja i rollback | Brak | W audytowanym źródle projektu tic tac toe ai nie znaleziono wymaganej kompletnej implementacji. |
-| Koordynacja i retencja | Częściowe | Projekt tic tac toe ai ma część mechanizmów, ale nie spełnia jeszcze całej kontroli v2. |
+| Zarządzanie repozytorium | Częściowe | Potwierdzono aktywny Protect main; brak środowiska i ponownego odczytu szczegółów wymaganych kontroli. |
+| Quality CI | Gotowe | Quality 33940262401 przeszedł dla wdrożonej rewizji; potwierdzone API GitHub 6 września. |
+| Niezmienne wydanie | Gotowe | Źródło CI i wyniki produkcji od operatora wskazują pełną rewizję oraz digest GHCR; wdrożenie ręczne potwierdzone. |
+| Dostęp wdrożeniowy | Częściowe | Usunięto stare konto/launcher. Istnieje prywatny dostęp platformy; poświadczenia automatycznego CD i wycofanie starych uprawnień zewnętrznych wymagają weryfikacji. |
+| Sieć, TLS i tożsamość klienta | Częściowe | Publiczny HTTPS, dokładne zaufane proxy, właściwe IP klienta i odrzucenie fałszywego nagłówka przeszły przez dedykowaną ścieżkę Tunnel/Traefik; końcowy odczyt originu pozostaje deklaracją operatora. |
+| Ochrona przed nadużyciami | Częściowe | Ważony limiter procesu otrzymuje zweryfikowane IP klienta na przetestowanej ścieżce; reguły edge/proxy i wspólny stan nakładających się replik pozostają niezweryfikowane. |
+| Bezpieczeństwo runtime | Częściowe | Potwierdzone non-root, cap-drop, init i CPU/RAM; zapisano wyjątek parsera i brakujące odczyty. |
+| Readiness i preflight | Częściowe | Potwierdzone HEALTHCHECK obrazu oraz wewnętrzny/publiczny readiness; awaria kandydata i preflight krytycznych ścieżek wymagają weryfikacji. |
+| Atomowa promocja i rollback | Częściowe | Deployment Coolify przeszedł; brak dowodu przetestowanego blue-green lub automatycznego rollbacku po błędzie publicznego smoke. |
+| Koordynacja i retencja | Częściowe | Ręczne wydanie przeszło; serializacja pojemności, automatyczne CD i zachowanie retencji/odzyskiwania nie zostały jeszcze odebrane. |
 | Obserwowalność | Brak | W audytowanym źródle projektu tic tac toe ai nie znaleziono wymaganej kompletnej implementacji. |
 | Tożsamość webowa | Gotowe | Audyt potwierdził pełną realizację kontroli „web-identity”. |
 
@@ -143,37 +155,37 @@ Reset, scoreboard, weighted token bucket, Retry-After, stale-response protection
 
 **Jakość · Gotowe · 100% · trudność 2/5 · 0–0 h**
 
-Quality 32871780435 passed backend tests on Python 3.12/3.13, eight Playwright tests, all training smoke jobs and the Docker build.
+Quality 33940262401 successful for deployed revision f1a924b6b53d393c5e256bd4e2a727c5e16ed35b (September 6 API verification).
 
 #### Włączyć ruleset i środowisko production
 
-**Jakość · Planowane · 0% · trudność 2/5 · 1–2 h**
+**Jakość · W toku · 60% · trudność 2/5 · 1–2 h**
 
-GitHub returned no ruleset or environment.
+September 6 API confirms active Protect main ruleset; no GitHub Environment returned. Exact required-check enforcement still needs confirmation.
 
-#### Uaktualnić limity i runbook operacyjny
+#### Udokumentować migrację Coolify i znane ograniczenia
 
 **Dokumentacja · Gotowe · 100% · trudność 2/5 · 0–0 h**
 
-The application runbook and portfolio standard document weighted games and the Cloudflare-to-NPM-to-application trust chain.
+September 6: private infrastructure runbook, public Coolify checklist and normalized project status reconciled with dated evidence; unverified controls are explicitly listed.
 
-#### Skonfigurować i przetestować Cloudflare oraz NPM
+#### Zweryfikować tożsamość i ochronę przez Tunnel/Traefik
 
-**Wdrożenie · W toku · 70% · trudność 3/5 · 1–2 h**
+**Wdrożenie · W toku · 70% · trudność 3/5 · 2–4 h**
 
-NPM now restores visitor IPs globally and the application trusts only NPM; the visitor address was verified end-to-end against the workstation without retaining it in the roadmap. TTT-specific Cloudflare/NPM limits and a non-Cloudflare direct-origin rejection test remain.
+Public health works through dedicated Tunnel/Traefik ingress. Runtime exact-peer configuration, real client-IP propagation and forged X-Forwarded-For rejection passed on September 8; outer endpoint limits and final direct-origin readback remain.
 
 #### Budować raz w CI i wdrażać digest GHCR
 
-**Wdrożenie · Planowane · 0% · trudność 4/5 · 4–7 h**
+**Wdrożenie · Gotowe · 100% · trudność 4/5 · 0–0 h**
 
-The VPS still builds a short-SHA image from moving main and globally prunes images.
+Operator inspect and public health match the immutable GHCR release at f1a924b6b53d393c5e256bd4e2a727c5e16ed35b; manual Coolify deployment succeeded. Automatic CD is tracked separately.
 
-#### Wdrożyć Redis, stabilny gateway i blue-green
+#### Zweryfikować promocję/rollback i współdzielić stan limitera
 
-**Wdrożenie · Planowane · 0% · trudność 4/5 · 8–12 h**
+**Wdrożenie · W toku · 25% · trudność 4/5 · 6–10 h**
 
-The current preflight removes the checked candidate before recreating production; limiter state is process-local.
+Health and manual digest deployment observed. Limiter state is process-local; shared state during replica overlap, failed candidate handling, blue-green and automatic public-smoke rollback remain.
 
 #### Dodać metryki 429, opóźnień i wdrożeń
 
@@ -181,9 +193,21 @@ The current preflight removes the checked candidate before recreating production
 
 No central metrics or alerts cover rate rejections, AI saturation and rollback failures.
 
+#### Zautomatyzować promocję digestu sprawdzonego w CI
+
+**Wdrożenie · Planowane · 0% · trudność 3/5 · 3–5 h**
+
+Manual digest deployment is proven; CI-to-Coolify authentication, exact-digest submission, status polling, serialization and retention still need implementation and verification.
+
+#### Zweryfikować runtime i rozwiązać wyjątki parsera
+
+**Wdrożenie · W toku · 50% · trudność 3/5 · 2–4 h**
+
+Operator inspect confirms non-root, cap-drop ALL, init, 1 CPU and 512 MiB. Coolify 4.3.14 security-opt parsing failed; further hardening was deferred. PID/log limits and final security/read-only/tmpfs settings need verification.
+
 ### Decyzje architektoniczne
 
-- Zachować preflight z rollbackiem przed wdrożeniem blue-green.
 - Ruchy używają token bucket 30/min z burstem 10; serie zużywają tokeny według liczby gier.
-- UFW/DOCKER-USER dopuszcza HTTPS do originu wyłącznie z Cloudflare; NPM weryfikuje i normalizuje CF-Connecting-IP, a aplikacja ufa jako peerowi proxy tylko NPM i limituje wynikowe IP odwiedzającego.
 - Projekt podlega profilowi standardu v2: vps-web.
+- Używać digestów GHCR z Coolify/Traefik/Tunnel. Sukces ręcznego deployu nie oznacza automatycznego CD, zaufanego IP ani rollbacku.
+- Czasowo pominąć no-new-privileges w Custom Docker Options z powodu odtworzonego błędu 4.3.14; sprawdzić efektywne ustawienia i wrócić do rozwiązania przez Compose lub aktualizację.

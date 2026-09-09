@@ -2,30 +2,36 @@
 
 ## Purpose
 
-Every public service uses layered protection. The layers are complementary: Cloudflare absorbs edge abuse, Nginx Proxy Manager protects an individual origin, application policies understand identity and operation cost, concurrency controls protect scarce workers, Docker limits noisy neighbours, and Fail2ban handles persistent offenders.
+Every public service uses layered protection. The layers are complementary: Cloudflare absorbs edge abuse, Traefik is the target per-application proxy limiter, application policies understand identity and operation cost, concurrency controls protect scarce workers, Docker limits noisy neighbours, and Fail2ban protects SSH.
 
 There is no single low HTTP limit shared by every `grela.dev` application.
 
 ## Required layers
 
 1. **Cloudflare:** DDoS/WAF protection and rules per hostname. Expensive paths receive stricter rules. Static content is cached where safe.
-2. **Nginx Proxy Manager:** a per-application baseline, stricter location-specific limits, request-body limits, connection caps and timeouts. A rejected request returns `429` and a meaningful `Retry-After` where possible.
+2. **Traefik (target for migrated routes):** a per-application baseline, stricter location-specific limits, request-body limits, connection caps and timeouts. A rejected request returns `429` and a meaningful `Retry-After` where possible.
 3. **Application:** token bucket or sliding-window policies keyed by the best available identity. Anonymous traffic uses IP and optionally session; authenticated traffic uses user ID plus an IP safety floor; API clients use their API key or account.
 4. **Concurrency and quota:** AI, LLM, FFmpeg, export, scraping and background-job entrypoints have a concurrency cap. Paid or externally constrained operations also have daily/monthly quota and a circuit breaker.
 5. **Docker/system:** every service has CPU, memory and PID limits. One application must not exhaust the shared VPS.
-6. **Fail2ban:** protects SSH and repeated authentication failures. It can ban clients that persistently generate `401`, `403` or `429`, but a single rate-limit response never creates a ban.
+6. **Fail2ban:** SSH protection on this VPS. HTTP jails are disabled; a host-firewall ban cannot enforce a visitor-IP ban when the connection peer is a proxy/connector. HTTP enforcement belongs at the edge or application/proxy layer.
 
 ## Client identity and proxies
 
-- The required request path is `visitor → Cloudflare → VPS firewall → NPM → application`. Rate limits, logs and HTTP Fail2ban rules use the **visitor IP**, not a Cloudflare egress address and not the NPM container address.
-- The VPS permits public `80/443` traffic to the origin only from Cloudflare's current published IPv4 and IPv6 ranges. The allowlist has an explicit update procedure. Because Docker-published ports can bypass ordinary UFW paths on some hosts, verify the effective `DOCKER-USER`/nftables path from an external non-Cloudflare host; a direct request to the origin IP must fail.
-- NPM accepts `CF-Connecting-IP` as identity only when the TCP peer belongs to the current Cloudflare ranges. It uses Nginx real-IP configuration (`set_real_ip_from` for every Cloudflare range and `real_ip_header CF-Connecting-IP`) so `$remote_addr` becomes the visitor address. NPM's standard proxy include then sends `X-Real-IP: $remote_addr` and appends that address to `X-Forwarded-For`; applications must use trusted-proxy processing from the right-hand side instead of blindly selecting the first client-supplied entry.
-- The application trusts proxy headers only when the immediate TCP peer is its NPM address on the application's isolated Docker network. Trusting NPM authorizes that hop to assert the normalized visitor address; it does **not** mean that rate limiting uses NPM's address.
-- `FORWARDED_ALLOW_IPS`/framework equivalents contain the exact NPM container IP or the narrowest stable proxy subnet. They do not contain `*`, all Cloudflare ranges, or the entire set of unrelated Docker networks. Cloudflare addresses are validated at NPM/firewall, not repeated as trusted direct peers in the application.
-- Direct public access to NPM from non-Cloudflare sources and direct public access to application containers are forbidden. Prefer authenticated origin pulls in addition to the network allowlist when operationally practical.
-- Before enabling an HTTP Fail2ban jail, verify the IP recorded in NPM logs. Never risk banning a Cloudflare or NPM address shared by legitimate users.
-- `--forwarded-allow-ips "*"` and direct parsing of arbitrary `X-Forwarded-For` are not acceptable production defaults.
+Target path: visitor → Cloudflare → Tunnel connector → Traefik → application.
+Validate a narrow trust boundary at each hop. Public Cloudflare ranges are not
+the local connector's peer addresses. A header name alone never authenticates
+its contents. Configure explicit trusted peers and canonical visitor identity;
+do not trust all Docker networks, `*`, or arbitrary X-Forwarded-For entries.
+Test both legitimate forwarding and spoofed input, and verify public origin
+ports are closed. Earlier passing NPM/CIDR tests do not prove the new path.
 
+September 6 evidence: two migrated apps return public health, but complete
+identity/abuse controls remain unverified. Inventory source reads
+CF-Connecting-IP without peer validation and applies one fixed-window export
+limit of 30/minute, no queue. This does not implement the per-format target
+below. Tic-Tac-Toe has proxy-header support, but its effective trust settings
+after migration need readback. Record remaining work instead of marking the
+whole control complete. See [Coolify checklist](coolify-deployment-checklist.md).
 ## Algorithms
 
 - **Token bucket:** preferred general API policy because it permits a controlled burst.
@@ -55,7 +61,7 @@ POS Order System, AudioMaster, clean-commits-skill, LeetCode solutions and Spoti
 - Log limit decisions without credentials, tokens or request bodies.
 - Monitor `429` share, latency, concurrent work, queue size, CPU and memory.
 - Establish a normal-traffic baseline before tightening limits.
-- Test real-IP handling through Cloudflare → NPM → application and record the same visitor IP in NPM and application logs.
+- Test real-IP handling through Cloudflare → connector → Traefik → application, with canonical identity and spoofed-header rejection at the relevant hops.
 - From an external non-Cloudflare network, test that connecting directly to the origin IP on `80/443` fails; do not assume a UFW rule also covers Docker-published ports.
 - Test a normal burst, a sustained violation, recovery after the window and multi-user isolation.
-- Document exact production values in the owning repository; the figures above are safe starting estimates, not immutable constants.
+- Document exact production settings and access details in the private infrastructure repository; public app reports contain evidence summaries only; the figures above are safe starting estimates, not immutable constants.

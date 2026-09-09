@@ -2,7 +2,7 @@
 
 Audit date / data audytu: **2026-08-25**<br>
 Estimated completion / szacowane ukończenie: **56%**<br>
-Forecast / prognoza: **2026-12-01–2027-02-03**, 26–43 h, medium confidence / pewność: medium
+Forecast / prognoza: **2026-12-11–2027-02-15**, 26–43 h, medium confidence / pewność: medium
 
 > This report is synchronized from `project.json` and the versioned delivery-control catalog. / Raport jest synchronizowany z `project.json` i wersjonowanym katalogiem kontroli wdrożeniowych.
 
@@ -76,7 +76,7 @@ Ask AI has in-memory per-IP and daily limits plus Turnstile; other costly paths 
 
 **Delivery · Planned · 0% · difficulty 5/5 · 6–10 h**
 
-The workflow publishes images but deploys latest/short tags and globally prunes images without true blue-green.
+The workflow publishes images but deploys latest/short tags and globally prunes images without true blue-green. Target revised September 6: implement the delivery step through Coolify using the shared checklist, an immutable GHCR digest and Traefik/Tunnel; preserve data and custom routes. Production migration not verified in this update.
 
 #### Add backups, telemetry and Groq alerts
 
@@ -89,6 +89,7 @@ Central resource/deployment visibility and tested database backups were not veri
 - Search and Ask AI use separate policies and SLAs.
 - Ask AI keeps Turnstile, daily quota, global concurrency and a Groq circuit breaker.
 - The project follows the v2 standard profile: vps-web.
+- Migration target updated September 6: prebuilt GHCR digest in Coolify, Traefik/Tunnel routing and the shared deployment checklist; preserve databases and custom routes. This target update is not a new source/production audit.
 
 ## Polski
 
@@ -160,7 +161,7 @@ Ask AI has in-memory per-IP and daily limits plus Turnstile; other costly paths 
 
 **Wdrożenie · Planowane · 0% · trudność 5/5 · 6–10 h**
 
-The workflow publishes images but deploys latest/short tags and globally prunes images without true blue-green.
+The workflow publishes images but deploys latest/short tags and globally prunes images without true blue-green. Target revised September 6: implement the delivery step through Coolify using the shared checklist, an immutable GHCR digest and Traefik/Tunnel; preserve data and custom routes. Production migration not verified in this update.
 
 #### Dodać backupy, telemetry i alerty Groq
 
@@ -173,3 +174,4 @@ Central resource/deployment visibility and tested database backups were not veri
 - Search i Ask AI używają osobnych polityk i SLA.
 - Ask AI zachowuje Turnstile, quota, global concurrency i circuit breaker Groq.
 - Projekt podlega profilowi standardu v2: vps-web.
+- Cel migracji uaktualniony 6 września: digest GHCR w Coolify, routing Traefik/Tunnel i wspólna checklista; zachować bazy i custom routes. Zmiana celu nie jest nowym audytem źródła/produkcji.

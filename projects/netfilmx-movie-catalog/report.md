@@ -2,7 +2,7 @@
 
 Audit date / data audytu: **2026-08-25**<br>
 Estimated completion / szacowane ukończenie: **43%**<br>
-Forecast / prognoza: **2026-09-11–2026-09-24**, 46–75 h, low confidence / pewność: low
+Forecast / prognoza: **2026-09-24–2026-10-07**, 46–75 h, low confidence / pewność: low
 
 > This report is synchronized from `project.json` and the versioned delivery-control catalog. / Raport jest synchronizowany z `project.json` i wersjonowanym katalogiem kontroli wdrożeniowych.
 
@@ -76,7 +76,7 @@ No application rate-limit implementation was found; HLS requires bandwidth rathe
 
 **Delivery · Planned · 0% · difficulty 4/5 · 5–8 h**
 
-The VPS currently rebuilds a local image and globally prunes Docker images.
+The VPS currently rebuilds a local image and globally prunes Docker images. Target revised September 6: implement the delivery step through Coolify using the shared checklist, an immutable GHCR digest and Traefik/Tunnel; preserve data and custom routes. Production migration not verified in this update.
 
 #### Add readiness, stable gateway and blue-green
 
@@ -95,6 +95,7 @@ Central monitoring and actionable deployment/transcoding alerts were not verifie
 - Do not apply a low request limit to individual HLS segments.
 - Keep Hangfire and administrative surfaces private or strongly authorized.
 - The project follows the v2 standard profile: vps-web.
+- Migration target updated September 6: prebuilt GHCR digest in Coolify, Traefik/Tunnel routing and the shared deployment checklist; preserve databases and custom routes. This target update is not a new source/production audit.
 
 ## Polski
 
@@ -166,7 +167,7 @@ No application rate-limit implementation was found; HLS requires bandwidth rathe
 
 **Wdrożenie · Planowane · 0% · trudność 4/5 · 5–8 h**
 
-The VPS currently rebuilds a local image and globally prunes Docker images.
+The VPS currently rebuilds a local image and globally prunes Docker images. Target revised September 6: implement the delivery step through Coolify using the shared checklist, an immutable GHCR digest and Traefik/Tunnel; preserve data and custom routes. Production migration not verified in this update.
 
 #### Dodać readiness, stabilny gateway i blue-green
 
@@ -185,3 +186,4 @@ Central monitoring and actionable deployment/transcoding alerts were not verifie
 - Nie stosować niskiego limitu requestów do segmentów HLS.
 - Hangfire i powierzchnie administracyjne mają być prywatne lub silnie autoryzowane.
 - Projekt podlega profilowi standardu v2: vps-web.
+- Cel migracji uaktualniony 6 września: digest GHCR w Coolify, routing Traefik/Tunnel i wspólna checklista; zachować bazy i custom routes. Zmiana celu nie jest nowym audytem źródła/produkcji.

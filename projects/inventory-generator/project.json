@@ -33,43 +33,43 @@
   },
   "hosting": {
     "target": "vps",
-    "url": "https://inventory.grela.dev",
-    "deploymentState": "configured"
+    "url": "https://inventory-generator.grela.dev",
+    "deploymentState": "deployed"
   },
   "status": "active",
   "progress": {
     "implementation": 80,
-    "quality": 47,
-    "documentation": 75,
-    "delivery": 0,
-    "overall": 53
+    "quality": 53,
+    "documentation": 50,
+    "delivery": 43,
+    "overall": 61
   },
   "complexity": 3,
   "forecast": {
-    "remainingHoursMin": 22,
-    "remainingHoursMax": 38,
-    "remainingDaysMin": 2.75,
-    "remainingDaysMax": 4.75,
+    "remainingHoursMin": 20,
+    "remainingHoursMax": 36,
+    "remainingDaysMin": 2.5,
+    "remainingDaysMax": 4.5,
     "hoursPerDay": 8,
     "hoursPerWeek": 30,
-    "earliest": "2026-08-28",
-    "latest": "2026-09-02",
-    "confidence": "high"
+    "earliest": "2026-09-10",
+    "latest": "2026-09-14",
+    "confidence": "medium"
   },
   "estimation": {
-    "date": "2026-08-25",
+    "date": "2026-09-09",
     "mode": "codex-assisted-source-audited",
-    "sourceRevision": "bee8f313dace9e1271c1bee59f8ce4fe3a96346b",
-    "sourceState": "local worktree with one modified CSS file"
+    "sourceRevision": "f1c14ebb6dcbd5b5b04274558e661e573e1e42d9",
+    "sourceState": "Commit f1c14ebb was created from a clean main baseline; only the forwarded-header implementation and its integration tests changed, and local plus CI tests passed."
   },
   "focus": {
     "current": {
-      "en": "Review and preserve the local CSS fix, then harden export limits.",
-      "pl": "Zweryfikować lokalną poprawkę CSS i wzmocnić limity eksportu."
+      "en": "Complete edge/proxy limits and live acceptance of the new exact-proxy identity boundary.",
+      "pl": "Dokończyć limity edge/proxy i odbiór na żywo nowej granicy dokładnie wskazanych proxy."
     },
     "next": {
-      "en": "Enable DNS, preflight deployment and production verification.",
-      "pl": "Uruchomić DNS, preflight i weryfikację produkcyjną."
+      "en": "Automate tested-digest promotion through Coolify and exercise failure recovery.",
+      "pl": "Zautomatyzować promocję testowanego digestu przez Coolify i sprawdzić odzyskiwanie po awarii."
     }
   },
   "tasks": [
@@ -88,7 +88,7 @@
       "hoursMax": 4,
       "daysMin": 0.25,
       "daysMax": 0.5,
-      "evidence": "One local CSS change remains; export endpoints still need format-specific body, row and concurrency bounds."
+      "evidence": "The prior CSS correction was committed (83e32db). Source at f1c14ebb retains a 30/min export policy with hardened client partitioning; per-format body/row/concurrency safeguards remain work."
     },
     {
       "id": "quality-coverage",
@@ -98,14 +98,14 @@
       },
       "dimension": "quality",
       "status": "in-progress",
-      "completion": 70,
+      "completion": 80,
       "weight": 2,
       "difficulty": 3,
       "hoursMin": 3,
       "hoursMax": 5,
       "daysMin": 0.5,
       "daysMax": 0.75,
-      "evidence": "Unit and integration projects exist and CI is green; expensive export and browser cases remain."
+      "evidence": "Quality 34241221870 passed for f1c14ebb. Integration tests cover independent two-hop forwarded clients and spoof rejection from an unknown direct peer; browser/export edge cases remain."
     },
     {
       "id": "repository-governance",
@@ -122,24 +122,24 @@
       "hoursMax": 2,
       "daysMin": 0.25,
       "daysMax": 0.25,
-      "evidence": "GitHub returned no active ruleset or deployment environment."
+      "evidence": "September 6 GitHub API returned no rulesets or environments. Required pre-merge Quality and production environment remain to configure."
     },
     {
       "id": "operations-docs",
       "title": {
-        "en": "Complete operations documentation and favicon",
-        "pl": "Uzupełnić dokumentację operacyjną i favicon"
+        "en": "Document the Coolify migration and known limitations",
+        "pl": "Udokumentować migrację Coolify i znane ograniczenia"
       },
       "dimension": "documentation",
-      "status": "in-progress",
-      "completion": 75,
+      "status": "done",
+      "completion": 100,
       "weight": 1,
       "difficulty": 2,
-      "hoursMin": 2,
-      "hoursMax": 3,
-      "daysMin": 0.25,
-      "daysMax": 0.5,
-      "evidence": "README and MIT exist, but the public web identity and v2 operations runbook are incomplete."
+      "hoursMin": 0,
+      "hoursMax": 0,
+      "daysMin": 0,
+      "daysMax": 0,
+      "evidence": "September 9: private ingress evidence, the public Coolify checklist and normalized project status were reconciled; unverified runtime controls remain explicit."
     },
     {
       "id": "edge-and-limits",
@@ -148,15 +148,15 @@
         "pl": "Uruchomić DNS, TLS i trzy warstwy limitów"
       },
       "dimension": "delivery",
-      "status": "planned",
-      "completion": 0,
+      "status": "in-progress",
+      "completion": 60,
       "weight": 2,
       "difficulty": 3,
       "hoursMin": 3,
       "hoursMax": 5,
       "daysMin": 0.5,
       "daysMax": 0.75,
-      "evidence": "The target hostname does not resolve and Cloudflare/NPM controls cannot be verified."
+      "evidence": "Public HTTPS works through the Tunnel/Traefik path. Source now processes X-Forwarded-For only through exact known proxies with a bounded two-hop limit; CI spoof/isolation tests and operator-confirmed runtime deployment passed. Edge/proxy and cost-specific bounds remain."
     },
     {
       "id": "immutable-deploy",
@@ -165,15 +165,15 @@
         "pl": "Publikować i wdrażać obraz po digestcie"
       },
       "dimension": "delivery",
-      "status": "planned",
-      "completion": 0,
+      "status": "done",
+      "completion": 100,
       "weight": 2,
       "difficulty": 3,
-      "hoursMin": 4,
-      "hoursMax": 7,
-      "daysMin": 0.5,
-      "daysMax": 1,
-      "evidence": "The current server script rebuilds the image and performs global image pruning."
+      "hoursMin": 0,
+      "hoursMax": 0,
+      "daysMin": 0,
+      "daysMax": 0,
+      "evidence": "Quality produced immutable digest 0d112419 for f1c14ebb; the operator reported matching Coolify image, runtime variable, healthy state and public revision after manual deployment. Automatic CD is tracked separately."
     },
     {
       "id": "blue-green",
@@ -182,15 +182,15 @@
         "pl": "Wdrożyć readiness, blue-green i rollback"
       },
       "dimension": "delivery",
-      "status": "planned",
-      "completion": 0,
+      "status": "in-progress",
+      "completion": 30,
       "weight": 2,
       "difficulty": 4,
-      "hoursMin": 5,
-      "hoursMax": 8,
-      "daysMin": 0.75,
-      "daysMax": 1,
-      "evidence": "There is no retained inactive slot, stable router or external smoke rollback."
+      "hoursMin": 3,
+      "hoursMax": 5,
+      "daysMin": 0.5,
+      "daysMax": 0.75,
+      "evidence": "Image readiness and successful Coolify rolling deployment observed. Unhealthy-candidate behavior, shared limiter state during overlap, public-smoke rollback and data-safe recovery still require tests."
     },
     {
       "id": "service-observability",
@@ -208,19 +208,70 @@
       "daysMin": 0.25,
       "daysMax": 0.5,
       "evidence": "No cross-application metrics, deployment alerts or 429 visibility were verified."
+    },
+    {
+      "id": "coolify-cd",
+      "title": {
+        "en": "Automate promotion of the CI-tested digest",
+        "pl": "Zautomatyzować promocję digestu sprawdzonego w CI"
+      },
+      "dimension": "delivery",
+      "status": "planned",
+      "completion": 0,
+      "weight": 2,
+      "difficulty": 3,
+      "hoursMin": 3,
+      "hoursMax": 5,
+      "daysMin": 0.5,
+      "daysMax": 0.75,
+      "evidence": "Manual digest deployment is proven; CI-to-Coolify authentication, exact-digest submission, status polling, serialization and retention still need implementation and verification."
+    },
+    {
+      "id": "runtime-hardening",
+      "title": {
+        "en": "Verify runtime settings and resolve parser exceptions",
+        "pl": "Zweryfikować runtime i rozwiązać wyjątki parsera"
+      },
+      "dimension": "delivery",
+      "status": "in-progress",
+      "completion": 50,
+      "weight": 1,
+      "difficulty": 3,
+      "hoursMin": 2,
+      "hoursMax": 4,
+      "daysMin": 0.25,
+      "daysMax": 0.5,
+      "evidence": "Operator inspect confirms non-root, cap-drop ALL, init, 1 CPU and 512 MiB. Coolify 4.3.14 security-opt parsing failed; further hardening was deferred. PID/log limits and final security/read-only/tmpfs settings need verification."
+    },
+    {
+      "id": "web-identity",
+      "title": {
+        "en": "Verify favicon, metadata and accessible preview",
+        "pl": "Zweryfikować favicon, metadane i dostępny podgląd"
+      },
+      "dimension": "documentation",
+      "status": "planned",
+      "completion": 0,
+      "weight": 1,
+      "difficulty": 2,
+      "hoursMin": 1,
+      "hoursMax": 2,
+      "daysMin": 0.25,
+      "daysMax": 0.25,
+      "evidence": "A public health response does not verify the favicon, licensing, metadata, accessibility or screenshot; complete a browser/static-asset check."
     }
   ],
   "verification": {
-    "worktree": "local worktree with one modified CSS file",
-    "tests": "Latest GitHub CI/CD run succeeded at bee8f31; no ruleset or environment is configured.",
-    "ci": "Latest GitHub CI/CD run succeeded at bee8f31; no ruleset or environment is configured.",
-    "production": "inventory.grela.dev did not resolve in public DNS on 2026-08-25."
+    "worktree": "Commit f1c14ebb was made from a clean main baseline with only Program.cs and the forwarded-header integration tests changed.",
+    "tests": "Local Release tests passed: one unit and four integration tests. New cases cover two trusted proxy hops, independent client partitions and rejection of spoofed forwarding from an unknown peer.",
+    "ci": "GitHub Quality 34241221870 succeeded for f1c14ebb6dcbd5b5b04274558e661e573e1e42d9: restore/build/tests, image build and push, fixable HIGH/CRITICAL Trivy gate, SBOM/provenance and attestation passed.",
+    "production": "On September 9 the operator reported a successful Coolify redeploy of digest 0d112419 with runtime-only exact proxy configuration; selective image, environment, health and public revision checks all had the expected results. The command output was not pasted, so this is operator-declared runtime evidence, not a fresh host audit."
   },
   "media": {
     "screenshot": "assets/screenshots/inventory-generator.png",
     "fallback": "assets/placeholders/inventory-generator.svg",
     "captureEnabled": false,
-    "attribution": "Original application UI; no automated capture until DNS is active."
+    "attribution": "Original application UI; public health works, but screenshot capture has not been enabled or verified."
   },
   "decisions": [
     {
@@ -234,31 +285,41 @@
     {
       "en": "The project follows the v2 standard profile: vps-web.",
       "pl": "Projekt podlega profilowi standardu v2: vps-web."
+    },
+    {
+      "en": "Use prebuilt GHCR digests with Coolify/Traefik/Tunnel. Manual production success does not establish automatic CD, trusted client IP or rollback.",
+      "pl": "Używać digestów GHCR z Coolify/Traefik/Tunnel. Sukces ręcznego deployu nie oznacza automatycznego CD, zaufanego IP ani rollbacku."
+    },
+    {
+      "en": "Temporarily omit no-new-privileges from Custom Docker Options due to the reproduced 4.3.14 parser issue; verify effective settings and revisit via reviewed Compose or upgrade.",
+      "pl": "Czasowo pominąć no-new-privileges w Custom Docker Options z powodu odtworzonego błędu 4.3.14; sprawdzić efektywne ustawienia i wrócić do rozwiązania przez Compose lub aktualizację."
     }
   ],
   "audit": {
-    "date": "2026-08-25",
+    "date": "2026-09-09",
     "sources": [
-      "audited source tree and git status",
-      "GitHub repository, Actions, rulesets and environments API",
-      "public DNS and HTTPS checks where applicable"
+      "Operator-supplied September 5–9 VPS inspect, deployment, network, identity and public health outputs; no new full SSH audit",
+      "Local source edit and Release test for f1c14ebb on September 8",
+      "GitHub Quality run 34241221870 and published digest read on September 8–9",
+      "Versioned Coolify v4.3.14 parser inspected via GitHub API",
+      "Operator-declared successful post-deploy image/environment/health checks, September 9"
     ],
     "notes": {
-      "en": "Remote is stable; uncommitted user CSS must not be overwritten.",
-      "pl": "Origin jest stabilny; lokalnej zmiany CSS użytkownika nie wolno nadpisać."
+      "en": "September 9 reconciliation adds exact-proxy source hardening, CI evidence and the operator-confirmed immutable deployment. Live Inventory IP echo, outer rate policies, automatic CD and rollback tests remain incomplete. Percentages and hours are planning estimates, not measurements.",
+      "pl": "Uzgodnienie z 9 września dodaje zabezpieczenie dokładnie wskazanych proxy, dowód CI i potwierdzone przez operatora niezmienne wdrożenie. Test IP na żywo w Inventory, zewnętrzne limity, automatyczne CD i rollback pozostają niepełne. Procenty i godziny to estymacje, nie pomiary."
     }
   },
   "compliance": {
     "standardVersion": 2,
     "profile": "vps-web",
-    "assessmentDate": "2026-08-25",
+    "assessmentDate": "2026-09-09",
     "controls": [
       {
         "id": "governance",
         "status": "partial",
         "evidence": {
-          "en": "GitHub returned no active ruleset or environment; remaining elements were assessed from the repository.",
-          "pl": "GitHub nie zwrócił aktywnego rulesetu ani środowiska; pozostałe elementy oceniono z repozytorium."
+          "en": "September 6 GitHub API returned no rulesets or environments.",
+          "pl": "API GitHub 6 września nie zwróciło rulesetów ani środowisk."
         },
         "taskIds": [
           "repository-governance"
@@ -268,8 +329,8 @@
         "id": "quality-ci",
         "status": "partial",
         "evidence": {
-          "en": "Latest GitHub CI/CD run succeeded at bee8f31; no ruleset or environment is configured.",
-          "pl": "Quality CI istnieje, ale nie obejmuje całego bieżącego stanu lub części wymaganych kontroli v2."
+          "en": "Quality 34241221870 for f1c14ebb includes .NET build/tests, exact-proxy negative-boundary coverage and final-image scanning; browser/export edge cases remain.",
+          "pl": "Quality 34241221870 dla f1c14ebb obejmuje build/testy .NET, negatywne testy granicy proxy i skan obrazu; pozostają przypadki przeglądarki/eksportu."
         },
         "taskIds": [
           "quality-coverage"
@@ -277,32 +338,30 @@
       },
       {
         "id": "immutable-release",
-        "status": "missing",
+        "status": "complete",
         "evidence": {
-          "en": "The required complete implementation was not found in the audited inventory generator source.",
-          "pl": "W audytowanym źródle projektu inventory generator nie znaleziono wymaganej kompletnej implementacji."
+          "en": "CI source and operator production evidence identify the full revision and immutable GHCR digest; manual deployment is proven.",
+          "pl": "Źródło CI i wyniki produkcji od operatora wskazują pełną rewizję oraz digest GHCR; wdrożenie ręczne potwierdzone."
         },
-        "taskIds": [
-          "immutable-deploy"
-        ]
+        "taskIds": []
       },
       {
         "id": "deployment-access",
         "status": "partial",
         "evidence": {
-          "en": "inventory generator has some mechanisms but does not yet satisfy the complete v2 control.",
-          "pl": "Projekt inventory generator ma część mechanizmów, ale nie spełnia jeszcze całej kontroli v2."
+          "en": "The legacy host account/launcher were removed. Private platform access exists; automated deployment credentials and external legacy credential revocation remain unverified.",
+          "pl": "Usunięto stare konto/launcher. Istnieje prywatny dostęp platformy; poświadczenia automatycznego CD i wycofanie starych uprawnień zewnętrznych wymagają weryfikacji."
         },
         "taskIds": [
-          "immutable-deploy"
+          "coolify-cd"
         ]
       },
       {
         "id": "network-tls-client-ip",
-        "status": "missing",
+        "status": "partial",
         "evidence": {
-          "en": "inventory.grela.dev did not resolve in public DNS on 2026-08-25.",
-          "pl": "Docelowa domena lub kompletna konfiguracja routingu/TLS nie jest obecnie dostępna."
+          "en": "Public HTTPS works through dedicated Tunnel/Traefik ingress. Exact proxy trust and spoof rejection are source/CI tested and deployed per operator confirmation; live Inventory IP echo and final direct-origin readback remain.",
+          "pl": "Publiczny HTTPS działa przez dedykowany ingress Tunnel/Traefik. Dokładne zaufanie proxy i spoofing przetestowano w źródle/CI oraz wdrożono według operatora; pozostaje test IP Inventory na żywo i końcowy odczyt originu."
         },
         "taskIds": [
           "edge-and-limits"
@@ -312,8 +371,8 @@
         "id": "abuse-protection",
         "status": "partial",
         "evidence": {
-          "en": "inventory generator has some mechanisms but does not yet satisfy the complete v2 control.",
-          "pl": "Projekt inventory generator ma część mechanizmów, ale nie spełnia jeszcze całej kontroli v2."
+          "en": "The 30/min export limiter now keys on a client identity reconstructed only through exact known proxies with bounded depth; format/concurrency and outer proxy/edge limits remain.",
+          "pl": "Limiter eksportu 30/min używa teraz tożsamości odtworzonej tylko przez dokładnie znane proxy i ograniczoną głębokość; pozostają limity formatu/współbieżności oraz proxy/edge."
         },
         "taskIds": [
           "edge-and-limits"
@@ -323,19 +382,19 @@
         "id": "runtime-safety",
         "status": "partial",
         "evidence": {
-          "en": "inventory generator has some mechanisms but does not yet satisfy the complete v2 control.",
-          "pl": "Projekt inventory generator ma część mechanizmów, ale nie spełnia jeszcze całej kontroli v2."
+          "en": "Non-root, capability drop, init and CPU/RAM limits observed; parser exception and remaining effective controls documented.",
+          "pl": "Potwierdzone non-root, cap-drop, init i CPU/RAM; zapisano wyjątek parsera i brakujące odczyty."
         },
         "taskIds": [
-          "blue-green"
+          "runtime-hardening"
         ]
       },
       {
         "id": "readiness-preflight",
-        "status": "missing",
+        "status": "partial",
         "evidence": {
-          "en": "The required complete implementation was not found in the audited inventory generator source.",
-          "pl": "W audytowanym źródle projektu inventory generator nie znaleziono wymaganej kompletnej implementacji."
+          "en": "Image HEALTHCHECK and positive internal/public readiness are observed; candidate failure and critical-path preflight still need verification.",
+          "pl": "Potwierdzone HEALTHCHECK obrazu oraz wewnętrzny/publiczny readiness; awaria kandydata i preflight krytycznych ścieżek wymagają weryfikacji."
         },
         "taskIds": [
           "blue-green"
@@ -343,10 +402,10 @@
       },
       {
         "id": "atomic-promotion-rollback",
-        "status": "missing",
+        "status": "partial",
         "evidence": {
-          "en": "The required complete implementation was not found in the audited inventory generator source.",
-          "pl": "W audytowanym źródle projektu inventory generator nie znaleziono wymaganej kompletnej implementacji."
+          "en": "Coolify deployment succeeded; no evidence of tested blue-green or automatic recovery after public smoke failure.",
+          "pl": "Deployment Coolify przeszedł; brak dowodu przetestowanego blue-green lub automatycznego rollbacku po błędzie publicznego smoke."
         },
         "taskIds": [
           "blue-green"
@@ -356,11 +415,11 @@
         "id": "coordination-retention",
         "status": "partial",
         "evidence": {
-          "en": "inventory generator has some mechanisms but does not yet satisfy the complete v2 control.",
-          "pl": "Projekt inventory generator ma część mechanizmów, ale nie spełnia jeszcze całej kontroli v2."
+          "en": "Manual release succeeded; capacity serialization, automated CD and retention/recovery behavior are not yet accepted.",
+          "pl": "Ręczne wydanie przeszło; serializacja pojemności, automatyczne CD i zachowanie retencji/odzyskiwania nie zostały jeszcze odebrane."
         },
         "taskIds": [
-          "immutable-deploy"
+          "coolify-cd"
         ]
       },
       {
@@ -376,13 +435,13 @@
       },
       {
         "id": "web-identity",
-        "status": "missing",
+        "status": "unverified",
         "evidence": {
-          "en": "The required complete implementation was not found in the audited inventory generator source.",
-          "pl": "W audytowanym źródle projektu inventory generator nie znaleziono wymaganej kompletnej implementacji."
+          "en": "Not assessed during the deployment reconciliation; verify static assets and browser behavior.",
+          "pl": "Nie sprawdzano w uzgodnieniu deploymentu; potrzebna kontrola plików statycznych i przeglądarki."
         },
         "taskIds": [
-          "operations-docs"
+          "web-identity"
         ]
       }
     ]

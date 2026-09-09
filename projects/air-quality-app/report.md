@@ -2,7 +2,7 @@
 
 Audit date / data audytu: **2026-08-25**<br>
 Estimated completion / szacowane ukończenie: **45%**<br>
-Forecast / prognoza: **2026-09-21–2026-10-08**, 36–58 h, low confidence / pewność: low
+Forecast / prognoza: **2026-10-02–2026-10-20**, 36–58 h, low confidence / pewność: low
 
 > This report is synchronized from `project.json` and the versioned delivery-control catalog. / Raport jest synchronizowany z `project.json` i wersjonowanym katalogiem kontroli wdrożeniowych.
 
@@ -76,7 +76,7 @@ A global in-memory middleware exists locally; endpoint cost, real IP and externa
 
 **Delivery · Planned · 0% · difficulty 4/5 · 4–7 h**
 
-The current workflow builds test images while the VPS deploy uses moving source state.
+The current workflow builds test images while the VPS deploy uses moving source state. Target revised September 6: implement the delivery step through Coolify using the shared checklist, an immutable GHCR digest and Traefik/Tunnel; preserve data and custom routes. Production migration not verified in this update.
 
 #### Implement compatible migrations and blue-green
 
@@ -101,6 +101,7 @@ No favicon reference was found in the audited frontend.
 - Map tiles use a high cached limit; estimates use a lower CPU-aware limit.
 - Workers, training and PostgreSQL remain private.
 - The project follows the v2 standard profile: vps-web.
+- Migration target updated September 6: prebuilt GHCR digest in Coolify, Traefik/Tunnel routing and the shared deployment checklist; preserve databases and custom routes. This target update is not a new source/production audit.
 
 ## Polski
 
@@ -172,7 +173,7 @@ A global in-memory middleware exists locally; endpoint cost, real IP and externa
 
 **Wdrożenie · Planowane · 0% · trudność 4/5 · 4–7 h**
 
-The current workflow builds test images while the VPS deploy uses moving source state.
+The current workflow builds test images while the VPS deploy uses moving source state. Target revised September 6: implement the delivery step through Coolify using the shared checklist, an immutable GHCR digest and Traefik/Tunnel; preserve data and custom routes. Production migration not verified in this update.
 
 #### Wdrożyć kompatybilne migracje i blue-green
 
@@ -197,3 +198,4 @@ No favicon reference was found in the audited frontend.
 - Kafelki używają wysokiego limitu z cache; estymacje niższego limitu CPU.
 - Workery, trening i PostgreSQL pozostają prywatne.
 - Projekt podlega profilowi standardu v2: vps-web.
+- Cel migracji uaktualniony 6 września: digest GHCR w Coolify, routing Traefik/Tunnel i wspólna checklista; zachować bazy i custom routes. Zmiana celu nie jest nowym audytem źródła/produkcji.

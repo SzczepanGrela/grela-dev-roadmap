@@ -32,3 +32,7 @@ Zakresy opisują pozostały aktywny nakład inżynierski, a nie czas kalendarzow
 Wszystkie estymacje zakładają pracę wspomaganą Codexem i audyt kodu konkretnego projektu. Korzyść nie jest jednym rabatem procentowym: jest większa dla wąskich zmian w typowanym i przetestowanym kodzie, a mniejsza dla legacy, brudnych worktree, infrastruktury produkcyjnej, migracji, kwestii prawnych i ręcznych prób rollbacku.
 
 Jeden dzień roboczy oznacza osiem godzin skupionej pracy. Dni są wyliczane z godzin i zaokrąglane w górę do ćwierci dnia. Suma projektu jest sumą zadań, a prognoza kalendarzowa zakłada 30 godzin pracy tygodniowo, po sześć godzin w każdy dzień roboczy, oraz kolejność projektów zapisaną w danych. Prognoza nie jest zobowiązaniem terminowym.
+
+## Calendar reconciliation — 2026-09-06
+
+Calendar ranges were rebased from Monday 2026-09-07 using the existing project order and 6 focused hours each weekday (30/week). Only Tic-Tac-Toe and Inventory effort/status were reassessed in this delivery review; other projects retain their previous audited effort and audit dates. Calendar shifts are derived planning projections, not new code or production evidence. Remaining operator verification and automation work is included in the revised ranges.

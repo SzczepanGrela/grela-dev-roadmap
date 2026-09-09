@@ -51,8 +51,8 @@
     "remainingDaysMax": 14.5,
     "hoursPerDay": 8,
     "hoursPerWeek": 30,
-    "earliest": "2026-10-27",
-    "latest": "2026-12-08",
+    "earliest": "2026-11-06",
+    "latest": "2026-12-18",
     "confidence": "low"
   },
   "estimation": {
@@ -189,7 +189,7 @@
       "hoursMax": 14,
       "daysMin": 1,
       "daysMax": 1.75,
-      "evidence": "GHCR digests, OIDC deploy, stable routing and rollback do not exist."
+      "evidence": "GHCR digests, OIDC deploy, stable routing and rollback do not exist. Target revised September 6: implement the delivery step through Coolify using the shared checklist, an immutable GHCR digest and Traefik/Tunnel; preserve data and custom routes. Production migration not verified in this update."
     },
     {
       "id": "edge-observability",
@@ -250,6 +250,10 @@
     {
       "en": "The project follows the v2 standard profile: vps-web.",
       "pl": "Projekt podlega profilowi standardu v2: vps-web."
+    },
+    {
+      "en": "Migration target updated September 6: prebuilt GHCR digest in Coolify, Traefik/Tunnel routing and the shared deployment checklist; preserve databases and custom routes. This target update is not a new source/production audit.",
+      "pl": "Cel migracji uaktualniony 6 września: digest GHCR w Coolify, routing Traefik/Tunnel i wspólna checklista; zachować bazy i custom routes. Zmiana celu nie jest nowym audytem źródła/produkcji."
     }
   ],
   "audit": {

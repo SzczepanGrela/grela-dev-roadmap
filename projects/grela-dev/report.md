@@ -2,7 +2,7 @@
 
 Audit date / data audytu: **2026-08-25**<br>
 Estimated completion / szacowane ukończenie: **11%**<br>
-Forecast / prognoza: **2026-12-17–2027-03-03**, 49–83 h, low confidence / pewność: low
+Forecast / prognoza: **2026-12-29–2027-03-15**, 49–83 h, low confidence / pewność: low
 
 > This report is synchronized from `project.json` and the versioned delivery-control catalog. / Raport jest synchronizowany z `project.json` i wersjonowanym katalogiem kontroli wdrożeniowych.
 

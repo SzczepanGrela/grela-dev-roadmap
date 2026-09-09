@@ -54,8 +54,8 @@
     "remainingDaysMax": 11.25,
     "hoursPerDay": 8,
     "hoursPerWeek": 30,
-    "earliest": "2026-10-09",
-    "latest": "2026-11-11",
+    "earliest": "2026-10-21",
+    "latest": "2026-11-23",
     "confidence": "low"
   },
   "estimation": {
@@ -175,7 +175,7 @@
       "hoursMax": 8,
       "daysMin": 0.75,
       "daysMax": 1,
-      "evidence": "Application limits and forwarded-header handling exist, but distributed state and outer policies need verification."
+      "evidence": "Application limits and forwarded-header handling exist, but distributed state and outer policies need verification. Target revised September 6: implement the delivery step through Coolify using the shared checklist, an immutable GHCR digest and Traefik/Tunnel; preserve data and custom routes. Production migration not verified in this update."
     },
     {
       "id": "cicd-repair",
@@ -269,6 +269,10 @@
     {
       "en": "The project follows the v2 standard profile: vps-web.",
       "pl": "Projekt podlega profilowi standardu v2: vps-web."
+    },
+    {
+      "en": "Migration target updated September 6: prebuilt GHCR digest in Coolify, Traefik/Tunnel routing and the shared deployment checklist; preserve databases and custom routes. This target update is not a new source/production audit.",
+      "pl": "Cel migracji uaktualniony 6 września: digest GHCR w Coolify, routing Traefik/Tunnel i wspólna checklista; zachować bazy i custom routes. Zmiana celu nie jest nowym audytem źródła/produkcji."
     }
   ],
   "audit": {

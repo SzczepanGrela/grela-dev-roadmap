@@ -1,4 +1,4 @@
-# Plan wdrożenia poprawek i standardu DevOps w repozytoriach portfolio Szczepana Greli (Wersja 11)
+# Plan wdrożenia poprawek i standardu DevOps w repozytoriach portfolio Szczepana Greli (Wersja 12 — Coolify, 2026-09-06)
 
 > [!NOTE]
 > Ten dokument stanowi **zintegrowaną długoterminową mapę drogową (roadmapę)**. Będziemy realizować go krok po kroku (jedno repozytorium na raz). Łączy on prace programistyczne, dokumentacyjne oraz **znormalizowany standard produkcyjnego wdrożenia DevOps** dla wszystkich aplikacji internetowych i usługowych w domenie `grela.dev`.
@@ -10,134 +10,52 @@
 
 ## 🛠️ Znormalizowany Standard Architektury DevOps
 
-Wszystkie wdrażane aplikacje webowe będą realizowane według jednolitego, bezpiecznego wzorca architektonicznego Zero-Trust:
+Docelowy standard VPS używa Coolify, Traefika i Cloudflare Tunnel.
+Tic-Tac-Toe i Inventory są już ręcznie wdrożone po digestach; automatyczne CD,
+pełna weryfikacja sieci i rollbacku pozostają do wykonania. Szczegóły obsługi
+panelu i ograniczeń 4.3.14: [checklista Coolify](coolify-deployment-checklist.md).
+Poniższe wymagania nie stanowią deklaracji ukończenia wszystkich projektów.
 
 ```mermaid
-graph TD
-    User[Użytkownik Internetu] -->|HTTPS| CF[Cloudflare Orange Cloud<br/>SSL Edge / DDoS / IP Masking]
-    CF -->|HTTPS| NPM[Nginx Proxy Manager<br/>Reverse Proxy na VPS]
-    NPM -->|HTTP / izolowana sieć aplikacji| Gateway[Stabilny router aplikacji]
-    Gateway -->|aktywny slot| Blue[Kontener blue]
-    Gateway -.->|kandydat / następny slot| Green[Kontener green]
-    
-    subgraph CI/CD Pipeline via Tailscale
-        GHA[GitHub Actions Runner<br/>test + build + push dokładnego digestu] -->|Ephemeral Node + OIDC| TS[Tailscale Network<br/>Tailnet Private]
-        TS -->|Tailscale SSH<br/>Port SSH 2137 zablokowany publicznie| Launcher[deploy_launcher.sh<br/>/home/app-user/deploy_launcher.sh]
-        Launcher -->|pełny commit SHA + image digest| DeployScript[infra/deploy.sh<br/>preflight + blue-green + rollback]
-        DeployScript --> Green
-    end
+flowchart LR
+    Browser -->|HTTPS| CF[Cloudflare]
+    CF -->|Encrypted Tunnel| Connector[cloudflared]
+    Connector -->|Local HTTP| Proxy[Traefik]
+    Proxy -->|Internal HTTP| App[Application]
+    CI[CI tests and build] --> GHCR[Immutable digest]
+    GHCR -->|Manual now, automated promotion planned| Coolify
+    Coolify --> App
 ```
 
 ### Kluczowe zasady DevOps dla przyszłych agentów AI:
-1.  **Bezpieczeństwo sieciowe (Zero Trust & Tailscale OIDC):**
-    *   Niestandardowy port SSH (`2137`) na VPS pozostaje zamknięty dla publicznego internetu.
-    *   Wdrożenia CI/CD z GitHub Actions odbywają się wewnątrz prywatnej sieci Tailnet przy użyciu **Tailscale SSH** na port 2137.
-    *   **Uwierzytelnianie: GitHub OIDC Federation (BEZ oauth-secret!):**
-        *   Używamy akcji **`tailscale/github-action@v4`** (UWAGA: wersje `@v2` i `@v3` NIE obsługują parametru `audience` i wymagają `oauth-secret` — NIE UŻYWAĆ!).
-        *   Akcja przyjmuje dwa parametry: `oauth-client-id` (Client ID) oraz `audience` (Audience URL). Nie wymaga żadnego tajnego klucza (`oauth-secret`/`tskey-client-...`).
-        *   Job deployu MUSI mieć ustawione `permissions: { id-token: write, contents: read }`.
-    *   **Konfiguracja OIDC Credential w Tailscale Admin Console** (dla każdego nowego repozytorium):
-        1.  Wejdź w `Settings → Trust Credentials → Add OIDC Credential`.
-        2.  **Tags:** Wybierz istniejący tag `tag:ci-vps` (dla VPS) lub `tag:ci-rbpi` (dla Raspberry Pi).
-        3.  **Issuer:** wybierz w aktualnym formularzu dostawcę **GitHub Actions**. Konsola przypisze issuer `https://token.actions.githubusercontent.com`; nie wybieraj ręcznie „Custom issuer”, jeżeli preset GitHub Actions jest dostępny.
-        4.  **Subject:** `repo:SzczepanGrela@115424220/<REPO_NAME>@<REPOSITORY_ID>:ref:refs/heads/main` (aktualny format z niezmiennym owner ID i repository ID; nazwa, ID oraz gałąź muszą być zgodne).
-        5.  Zakres credentiala musi obejmować `auth_keys` i właściwy tag. Po zapisaniu Tailscale wygeneruje **Client ID** (np. `TcXhsYKQyJ11CNTRL-xxx`) oraz **Audience** (np. `api.tailscale.com/TcXhsYKQyJ11CNTRL-xxx`). Zapisz obie wartości. Client ID i Audience są identyfikatorami federacji, nie sekretami, ale dla spójności przechowujemy je w GitHub Actions Secrets.
-        6.  Aktualny przepływ należy porównać z oficjalną dokumentacją [Tailscale GitHub Action](https://tailscale.com/docs/integrations/github/github-action) i [Workload identity federation](https://tailscale.com/docs/features/workload-identity-federation). Niniejszą instrukcję zweryfikowano 2026-08-24.
-    *   **Reguły ACL w Tailscale:** Tag `tag:ci-vps` ma zezwolenie na ruch do `100.105.105.105` (VPS) na porcie `2137`. Tag `tag:ci-rbpi` ma zezwolenie na ruch do `100.104.104.104` (Raspberry Pi) na porcie `2137`.
-    *   **Niezmienne GitHub IDs używane w OIDC:** owner `SzczepanGrela` = `115424220`; repozytoria: `inventory-generator` = `808164658`, `pos-order-system` = `808641042`, `netfilmx-movie-catalog` = `825161832`, `air-quality-app` = `940601553`, `audio-master` = `1010455644`, `tic-tac-toe-ai` = `1013262916`, `SmakoszWebApp` = `1014036592`, `UrlShortenerSystem` = `1015668631`, `OlxScrapper` = `1026959784`, `clean-commits-skill` = `1241862529`, `movie-rag` = `1241944352`, `leetcode` = `1258649476`, `SpotifyAdBlocker` = `1266821047`, `grela-dev` = `1296412137`. Po zmianie nazwy repo ID pozostaje bez zmian.
-2.  **Struktura Repozytorium & Podział Skryptów Deployu (`/infra` Standard):**
-    *   **Katalog `/infra` w repozytorium:** Wszystkie pliki konfiguracyjne i skrypty serwerowe (`Dockerfile`, `deploy.sh`, skrypty pomocnicze) **muszą znajdować się w katalogu `/infra`** wewnątrz repozytorium Git każdego projektu.
-    *   **Podział na Launcher i Skrypt Główny:**
-        *   `deploy-launcher.sh` — minimalny skrypt znajdujący się w katalogu domowym użytkownika na serwerze (`/home/<app-user>/deploy-launcher.sh`), wywoływany zdalnie przez GitHub Actions. Przyjmuje **pełny commit SHA i dokładny image digest**, waliduje ich format, pobiera wskazany commit zamiast ruchomego `origin/main`, a następnie uruchamia odpowiadający mu `/home/<app-user>/app/infra/deploy.sh`. Launcher nie pobiera skryptów ani konfiguracji z `raw.githubusercontent.com/.../main`.
-        *   `infra/deploy.sh` — właściwy skrypt wdrożeniowy wewnątrz repozytorium w katalogu `/infra/`. Nie buduje ponownie obrazu na VPS: pobiera artefakt zbudowany i przetestowany w GitHub Actions po dokładnym digestcie, wykonuje preflight, przełączenie blue-green, weryfikację i ewentualny rollback. Odpowiada też za limity CPU/RAM oraz podłączenie usług do dedykowanej sieci.
-        *   Skrypt pojedynczej aplikacji **nie wykonuje globalnego `docker image prune -f` bez polityki retencji**. Na współdzielonym VPS mogłoby to usunąć obraz potrzebny innej aplikacji lub do rollbacku. Obrazy są jednoznacznie tagowane (commit SHA/release), a sprzątanie ogranicza się do artefaktów danej aplikacji starszych niż ustalona retencja i następuje dopiero po udanym health checku.
+1.  **Prywatny dostęp i uprawnienia:** panel Coolify i endpoint wdrożeniowy pozostają w zatwierdzonej sieci administracyjnej. Tailscale działa na hoście. Legacy transport to zwykły OpenSSH przez Tailnet, nie funkcja Tailscale SSH. Docelowy job CI przekazuje przetestowany digest do uwierzytelnionego interfejsu Coolify z minimalnym zakresem uprawnień; wdrożenie tej automatyzacji jest jeszcze zadaniem. Szczegółowe ACL, adresy i polityka SSH są w prywatnej dokumentacji infrastruktury. Jeżeli CI dołącza do Tailnet przez OIDC, sprawdzić ograniczenie repo/branch oraz przypięty SHA akcji; nie dodawać nowych legacy kont wdrożeniowych dla zasobów Coolify.
+2.  **Struktura źródeł i wdrożeń:** utrzymać wersjonowany produkcyjny Dockerfile (w istniejącej lokalizacji root lub infra, zgodnej z CI), HEALTHCHECK i konfigurację aplikacji. Coolify zarządza cyklem życia i siecią; własny deploy.sh/launcher nie jest obowiązkowy. Nie pobierać ruchomych skryptów jako root, nie budować ponownie na VPS i nie wykonywać globalnego prune w deployu aplikacji. Pełne sekrety i szczegóły hosta nie należą do publicznego README.
+
 3.  **Ochrona przed nadużyciami (Rate Limiting & DoS Protection):**
     *   **Każda publiczna aplikacja webowa** posiada zaimplementowany **Rate Limiting** zapobiegający przeciążeniom serwera, drenażowi zasobów i atakom typu DoS.
-    *   Ochrona działa wielowarstwowo: Cloudflare Rate Limiting na krawędzi, Nginx Proxy Manager `limit_req` na poziomie reverse proxy oraz wbudowane middleware Rate Limiting w aplikacji (.NET `Microsoft.AspNetCore.RateLimiting` / Express / FastAPI).
+    *   Ochrona działa wielowarstwowo: reguły Cloudflare na krawędzi oraz per-aplikacyjne i per-endpointowe limity Traefika na poziomie reverse proxy (do wdrożenia i przetestowania) oraz wbudowane middleware Rate Limiting w aplikacji (.NET `Microsoft.AspNetCore.RateLimiting` / Express / FastAPI).
     *   Szczególny nacisk położony jest na endpointy generujące pliki i zużywające CPU/RAM (np. `/api/export/docx`).
-4.  **Izolacja systemowa (Dedykowane konta Linux):**
-    *   Każdy projekt ma na serwerze VPS własnego użytkownika technicznego (np. `inventory-generator`, `movie-rag`, `smakosz`) należącego do grupy `docker`.
-    *   Aplikacje są odizolowane w swoich katalogach domowych `/home/<app-user>/app/`.
-    *   **Ważne:** członkostwo w grupie `docker` daje w praktyce uprawnienia równoważne rootowi. Osobne konto porządkuje własność i klucze, ale samo nie jest twardą granicą bezpieczeństwa. Docelowy hardening to rootless Docker albo bardzo wąskie polecenia przez `sudo`/kontrolowany launcher bez bezpośredniego dostępu do socketa Dockera.
-5.  **Routing, SSL i Advanced Proxy Rules (Cloudflare + Nginx Proxy Manager):**
-    *   **Cloudflare (Orange Cloud / Proxied):** Obsługuje certyfikaty SSL na krawędzi, chroni przed DDoS i ukrywa rzeczywiste IP serwera (Origin IP).
-    *   **Jednoznaczny łańcuch prawdziwego IP klienta:** Ruch przebiega `użytkownik → Cloudflare → firewall VPS → NPM → aplikacja`. Publiczne porty `80/443` originu przyjmują ruch wyłącznie z aktualnych zakresów IPv4/IPv6 Cloudflare. Należy zweryfikować reguły `DOCKER-USER`/nftables, ponieważ samo UFW może nie obejmować portów publikowanych przez Dockera. Bezpośrednie połączenie z origin IP z hosta spoza Cloudflare ma się nie udać.
-    *   **Normalizacja IP w NPM:** NPM ufa `CF-Connecting-IP` tylko wtedy, gdy bezpośrednim peerem jest adres z aktualnej listy Cloudflare (`set_real_ip_from`, `real_ip_header CF-Connecting-IP`). Moduł real-IP ustawia `$remote_addr` na adres odwiedzającego. Standardowy include proxy przekazuje następnie `X-Real-IP: $remote_addr` oraz dopisuje ten adres po prawej stronie `X-Forwarded-For`; aplikacja przetwarza łańcuch wyłącznie od zaufanego NPM i nie wybiera bezwarunkowo pierwszego elementu dostarczonego przez klienta.
-    *   **Zaufanie aplikacji:** Framework aplikacji przyjmuje nagłówki proxy tylko od dokładnego adresu NPM w izolowanej sieci aplikacji. Ostatecznym `client_ip` używanym przez rate limiting i logi pozostaje IP faktycznego użytkownika. Cloudflare CIDR-y nie są wpisywane do `FORWARDED_ALLOW_IPS` aplikacji, bo Cloudflare nie łączy się z nią bezpośrednio; są weryfikowane warstwę wcześniej przez firewall i NPM. Zabronione jest `--forwarded-allow-ips "*"`.
-    *   **Certyfikat SSL w NPM:** Używamy gotowego certyfikatu **`grela.dev wildcard (CF Origin)`** z włączonymi opcjami `Force SSL`, `HTTP/2 Support` oraz `HSTS Enabled`.
-    *   **Jednolity Standard Przekierowań w NPM (Isolated App Networks + Container Name Forwarding):**
-        *   **Dedykowana Sieć Dockerowa:** Każda aplikacja tworzy własną, wyizolowaną sieć Dockerową z myślnikami (np. `inventory-network`, `movierag-network`, `smakosz-network`).
-        *   **Dołączenie Kontenera NPM:** Podczas wdrożenia kontener `nginx-proxy-manager` jest dynamicznie podłączany do dedykowanej sieci danej aplikacji (`docker network connect <app-network> nginx-proxy-manager`). Zapewnia to pełną izolację między różnymi aplikacjami na serwerze, jednocześnie umożliwiając NPM bezpieczny forwarding.
-        *   **Forward Hostname w NPM:** W NPM wpisujemy zawsze **nazwę kontenera Docker** (np. `inventory-generator:8080`, `movierag-frontend:80`, `movierag-api:8000`), eliminuje to kolizje portów na hoście.
-        *   *Wielokontenerowe aplikacje (np. `movie-rag`, `smakosz-web-app`):* Użycie **Custom Locations** w NPM do rozdzielania ruchu po nazwach kontenerów (np. `/` -> `movierag-frontend:80`, `/api/*` -> `movierag-api:8000`).
-        *   *Zaawansowane reguły proxy (Advanced / Directives):* Dla endpointów LLM / RAG / SSE wyłączamy buforowanie (`proxy_buffering off;`, `chunked_transfer_encoding off;`) i zwiększamy timeout (`proxy_read_timeout 300s;`).
-6.  **Zarządzanie sekretami i higiena Dockera:**
-    *   **Standaryzowane Sekrety Repozytorium w GitHub Actions (bez hardcoded defaults w kodzie):**
-        *   `TS_CLIENT_ID` — Client ID z OIDC Credential w Tailscale Admin Console (np. `TcXhsYKQyJ11CNTRL-xxx`).
-        *   `TS_AUDIENCE` — Audience URL z OIDC Credential (np. `api.tailscale.com/TcXhsYKQyJ11CNTRL-xxx`).
-        *   `SSH_PRIVATE_KEY` — Zawartość dedykowanego klucza prywatnego SSH (ed25519) odpowiadającego plikowi `authorized_keys` na VPS.
-        *   `SSH_HOST` — IP w sieci Tailnet (`100.105.105.105`) lub nazwa węzła Tailscale.
-        *   `SSH_PORT` — Niestandardowy port SSH (`2137`).
-        *   `SSH_USER` — Dedykowany użytkownik aplikacji na VPS (np. `inventory-generator`).
-        *   `SSH_KNOWN_HOSTS` — wcześniej zweryfikowany wpis host key dla docelowej nazwy/IP i portu; nie pobieramy go bez weryfikacji w tym samym jobie, który ma mu zaufać.
-    *   **UWAGA: NIE używamy `TS_OAUTH_SECRET` / `oauth-secret` / `tskey-client-...`** — dzięki OIDC Federation w `@v4` ten klucz nie jest potrzebny.
-    *   **Zmienne środowiskowe na serwerze:** Plik `/home/<app-user>/app/.env` (prawa dostępu `600`, poza systemem kontroli wersji Git).
-    *   **Retencja obrazów:** Zachowujemy co najmniej ostatni sprawdzony obraz rollbacku. Czyszczenie jest per aplikacja, po udanym wdrożeniu i według czasu/etykiety; nie uruchamiamy bezwarunkowego globalnego prune z każdego deployu.
+4.  **Izolacja i runtime:** każda aplikacja działa jako non-root we własnej sieci zarządzanej przez Coolify, bez publikacji portu procesu na hoście i bez Docker socketa. Osobne konto w grupie docker jest root-equivalent, nie stanowi twardej izolacji i nie jest tworzone dla nowych zasobów Coolify. Po migracji usuwać stare konta/skrypty tylko po kontroli danych i zakresu; wolumeny baz pozostają chronione. Limity CPU/RAM/PID i logów dobierać do aplikacji. Stosować cap-drop ALL, init i docelowo no-new-privileges/read-only/tmpfs; ograniczenia parsera 4.3.14 oraz przyjęty wyjątek opisuje checklista.
+5.  **Routing, TLS i klient:** publiczny HTTPS kończy się na Cloudflare, a zaszyfrowany tunel prowadzi do konektora. W przyjętym wariancie dalsze odcinki do Traefika i kontenera używają lokalnego HTTP. Ustawienia domeny, portu, redirectu i strip prefixes muszą odpowiadać tej ścieżce. Nie zakładać TLS do kontenera na podstawie prefiksu https w UI. Zweryfikować dokładny zaufany łańcuch connector → Traefik → aplikacja; nigdy nie ufać dowolnemu X-Forwarded-For ani CF-Connecting-IP bez granicy zaufania. Adresy Cloudflare nie są bezpośrednimi peerami aplikacji. Origin ma docelowo być niedostępny publicznie, co wymaga osobnego testu IPv4/IPv6 i publikacji Dockera. Dla wielu usług zachować semantykę tras API, kolejność matchów, websockets/SSE, body limits i timeouty. Stare NPM Custom Locations są materiałem do migracji, nie konfiguracją nowego proxy. Admin i domeny assetów/R2 wymagają osobnego zakresu.
+6.  **Sekrety i retencja:** runtime secrets przechowywać w Coolify lub chronionych plikach hosta; CI credentials w odpowiednim GitHub Environment. Nie przenosić danych produkcyjnych do publicznych repo. Klucz SSH dotyczy tylko zatwierdzonej ścieżki zarządzania, z przypiętym zweryfikowanym host key. Po migracji wycofać zbędne klucze i OIDC grants; usunięcie konta na VPS samo ich nie usuwa. Zachować co najmniej ostatni sprawdzony digest i stosować retencję per aplikacja.
+
 7.  **Niezmienny release, preflight i blue-green (obowiązkowy standard):**
     *   **Jeden build, jeden artefakt:** obraz powstaje raz w GitHub Actions po przejściu Quality, jest wysyłany do GHCR z tagiem pełnego commit SHA, a deploy używa postaci `ghcr.io/...@sha256:...`. Produkcja nie wdraża `latest`, skróconego SHA ani obrazu zbudowanego ponownie na VPS.
     *   **Manifest wydania:** wielokontenerowa aplikacja publikuje niezmienny manifest zawierający pełny `CONFIG_SHA` oraz digest każdego obrazu. Przy buildach selektywnych manifest przenosi digests niezmienionych komponentów; prostszym i bezpieczniejszym początkiem jest atomowe zbudowanie wszystkich kontenerów aplikacyjnych.
-    *   **Spójność commitu:** workflow, obrazy, Compose, konfiguracja i `deploy.sh` muszą pochodzić z tego samego SHA. Launcher nigdy nie zastępuje SHA przekazanego przez job aktualnym stanem `main`.
-    *   **Preflight przed zmianą ruchu:** nieaktywny slot (`blue` albo `green`) startuje równolegle pod unikalną nazwą z limitami zasobów i bez produkcyjnego aliasu. Skrypt czeka na Docker healthcheck, odpytuje `/health/ready` i wykonuje bezpośredni smoke test krytycznych ścieżek. Nie usuwa ani nie restartuje działającego slotu. Nie wolno sprawdzić kandydata, usunąć go, a następnie uruchomić w produkcji nowego, niesprawdzonego kontenera z tego samego obrazu.
-    *   **Promocja blue-green:** po udanym preflight stabilny router aplikacji przełącza upstream z aktywnego slotu na kandydata atomowym reloadem. NPM wskazuje stabilny router/gateway, a nie slot. Następnie wykonywany jest smoke test przez publiczny HTTPS; przy błędzie routing wraca do poprzedniego slotu. Stary slot jest zatrzymywany dopiero po okresie drain/grace i pozostaje dostępny jako ostatni release rollbacku zgodnie z retencją.
+    *   **Spójność commitu:** workflow i obrazy muszą odpowiadać testowanemu SHA; release zapisuje również wersję konfiguracji/Compose i ustawień Coolify. Job nigdy nie zastępuje SHA aktualnym main.
+    *   **Preflight przed zmianą ruchu:** nieaktywny slot (`blue` albo `green`) startuje równolegle pod unikalną nazwą z limitami zasobów i bez produkcyjnego aliasu. Platforma/orchestrator czeka na Docker healthcheck, odpytuje `/health/ready` i wykonuje bezpośredni smoke test krytycznych ścieżek. Nie usuwa ani nie restartuje działającego slotu. Nie wolno sprawdzić kandydata, usunąć go, a następnie uruchomić w produkcji nowego, niesprawdzonego kontenera z tego samego obrazu.
+    *   **Promocja blue-green:** po udanym preflight stabilny router aplikacji przełącza upstream z aktywnego slotu na kandydata atomowym reloadem. Traefik wybiera gotowy backend w sieci aplikacji; nie dokładamy osobnego gatewaya tylko po to, by powielić tę funkcję. Rolling update platformy jest etapem przejściowym i wymaga testu zachowania przy awarii; nie nazywamy go automatycznie blue-green. Następnie wykonywany jest smoke test przez publiczny HTTPS; przy błędzie routing wraca do poprzedniego slotu. Stary slot jest zatrzymywany dopiero po okresie drain/grace i pozostaje dostępny jako ostatni release rollbacku zgodnie z retencją.
     *   **Zakres blue-green:** dublujemy stateless frontend/API. PostgreSQL, kolejki i monitoring pozostają współdzielone. Worker/orchestrator uruchamiający zadania cykliczne działa jako singleton albo używa leader election/distributed lock; dwa sloty nie mogą podwójnie wykonać tego samego zadania.
     *   **Hosting statyczny:** dla GitHub Pages/Cloudflare Pages odpowiednikiem jest preview deployment z testami, a następnie atomowa promocja i rollback zapewniane przez platformę. Nie dokładamy własnych kontenerów ani routera blue-green tam, gdzie hosting już gwarantuje niezmienne wydania.
     *   **Migracje bazy:** migracje nie uruchamiają się automatycznie przy starcie każdej repliki. Są osobnym, kontrolowanym krokiem po backupie. Stosujemy expand/contract: najpierw zmiana kompatybilna ze starą i nową wersją, później deploy kodu, a destrukcyjne usunięcia dopiero w osobnym wydaniu. Rollback aplikacji nie może wymagać cofania nieodwracalnej migracji.
     *   **Healthcheck w obrazie (obowiązkowy):** każde repozytorium hostowane jako własny kontener webowy posiada produkcyjny `Dockerfile` z instrukcją `HEALTHCHECK`. Kontrola działa wewnątrz kontenera, odpytuje jego wewnętrzny port i endpoint readiness oraz korzysta z narzędzia rzeczywiście obecnego w finalnym obrazie (`curl`, `wget` albo dedykowany probe). Nie polegamy wyłącznie na domyślnym sprawdzaniu procesu ani automatycznym wykrywaniu platformy; konfiguracja healthchecku w Coolify może uzupełniać obraz, ale nie zastępuje przenośnej kontroli zapisanej w Dockerfile. Dla obrazów zewnętrznych, których Dockerfile nie kontrolujemy, równoważny healthcheck musi być jawnie zdefiniowany w Compose/platformie i udokumentowany.
     *   **Semantyka endpointów zdrowia:** `/health/live` potwierdza tylko życie procesu; do promocji obowiązkowy jest `/health/ready` sprawdzający wymagane zależności. Prosta aplikacja bez zależności może używać jednego lekkiego endpointu readiness, np. `/api/health`. Po przełączeniu wymagany jest zewnętrzny smoke test przez pełną publiczną ścieżkę ruchu.
-    *   **Blokady i współbieżność:** GitHub `concurrency` serializuje wdrożenia danego środowiska z `cancel-in-progress: false`. Serwer dodatkowo używa prawdziwego `flock`: per aplikacja oraz wspólnej, wcześniej przygotowanej blokady VPS na okres największego zużycia RAM. Zapisanie PID do zwykłego pliku nie jest blokadą.
+    *   **Blokady i współbieżność:** GitHub `concurrency` serializuje wdrożenia danego środowiska z `cancel-in-progress: false`. Platforma musi zapewnić serializację per aplikacja i kontrolę pojemności całego VPS podczas nakładania kandydatów. Zweryfikować mechanizm kolejki/blokady Coolify; dla własnych skryptów używać rzeczywistego flock. Plik z PID nie jest blokadą; samo zainstalowanie Coolify nie dowodzi spełnienia wymagania.
     *   **Budżet zasobów:** oba sloty mają jawne limity CPU, RAM i PID. Podwójne zużycie dotyczy tylko dublowanych usług w trakcie wdrożenia i okresu rollback/drain, nie bazy i pozostałych usług stanowych. Deploy nie rozpoczyna kandydata, jeżeli serwer nie ma ustalonego zapasu pamięci.
     *   **Bezpieczne sprzątanie:** brak globalnego `docker image prune -f`, brak bezwarunkowego restartu NPM i brak aktualizacji współdzielonej infrastruktury przy deployu pojedynczej aplikacji. Obrazy baz danych i monitoringu są przypięte do kontrolowanych wersji/digestów i aktualizowane osobnym procesem. Czyszczenie jest per aplikacja, po sukcesie, z zachowaniem co najmniej ostatniego działającego release'u.
     *   **Kontrola wydania:** `main` ma ruleset blokujący force-push i usunięcie oraz wymagający zielonego Quality przed scaleniem. Dla jednoosobowych repozytoriów nie wymagamy zatwierdzenia przez inną osobę: docelowy przepływ to PR bez obowiązkowego review, zielone wymagane kontrole i merge. Jeżeli projekt tymczasowo zachowuje bezpośrednie pushe na `main`, minimalny etap przejściowy blokuje force-push i usunięcie, a Quality pozostaje kontrolą po pushu; nie opisujemy tego wariantu jako pełnej ochrony przed wadliwym commitem. Deploy korzysta z GitHub Environment `production`; sekrety produkcyjne są przypisane do środowiska, uprawnienia workflow są minimalne, a klucz hosta SSH jest przypięty w `SSH_KNOWN_HOSTS`.
     *   **Kryterium akceptacji:** celowe uszkodzenie readiness kandydata nie przerywa ruchu do starej wersji; błąd publicznego smoke testu automatycznie cofa routing; ponowienie tego samego manifestu wdraża dokładnie te same digests; równoległy deploy innego repozytorium respektuje blokadę pojemności VPS.
-8.  **Referencyjny szkielet `.github/workflows/deploy.yml`:**
-    ```yaml
-    deploy:
-      name: Deploy to VPS
-      needs: [test-and-build, build-docker-image]
-      if: github.ref == 'refs/heads/main' && github.event_name == 'push'
-      runs-on: ubuntu-latest
-      concurrency:
-        group: production-${{ github.repository }}
-        cancel-in-progress: false
-      environment: production
-      permissions:
-        contents: read
-        id-token: write
-      steps:
-        - name: Connect to Tailscale
-          uses: tailscale/github-action@v4
-          with:
-            oauth-client-id: ${{ secrets.TS_CLIENT_ID }}
-            audience: ${{ secrets.TS_AUDIENCE }}
-            tags: tag:ci-vps
-            ping: ${{ secrets.SSH_HOST }}
-        - name: Setup SSH key
-          run: |
-            mkdir -p ~/.ssh
-            echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/deploy_key
-            chmod 600 ~/.ssh/deploy_key
-            printf '%s\n' "${{ secrets.SSH_KNOWN_HOSTS }}" > ~/.ssh/known_hosts
-        - name: Deploy and verify
-          env:
-            RELEASE_SHA: ${{ github.sha }}
-            IMAGE_REF: ghcr.io/SzczepanGrela/REPOSITORY@${{ needs.build-docker-image.outputs.digest }}
-          run: |
-            ssh -i ~/.ssh/deploy_key -p ${{ secrets.SSH_PORT }} \
-              ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} \
-              bash /home/${{ secrets.SSH_USER }}/deploy-launcher.sh "$RELEASE_SHA" "$IMAGE_REF"
-    ```
-
-    Job `build-docker-image` musi wystawiać digest obrazu jako output. Dla wielu obrazów przekazujemy podpisany lub jednoznacznie identyfikowany manifest release'u zamiast rosnącej listy parametrów SSH.
+8.  **Kontrakt automatyzacji CI → Coolify (zadanie):** Quality → pojedynczy build → GHCR digest/attestacja → uwierzytelnione żądanie promocji dokładnie tego digestu → oczekiwanie na status kandydata → publiczny smoke z rewizją → rollback przy błędzie. Serializować deploymenty środowiska, nie anulować aktywnej promocji i zachować manifest wielokontenerowy. Implementację klienta API/webhooka i jego uprawnienia dobrać po odczycie wersji Coolify oraz prywatnej polityki dostępu. Dotychczasowe ręczne wpisanie digestu nie spełnia tej automatyzacji. Nie kopiować starego joba SSH z launcherem użytkownika do aplikacji migrowanej do Coolify.
 
 9.  **Centralna obserwowalność VPS (jeden stack dla wszystkich aplikacji):**
     *   Na jednym VPS utrzymujemy **jedną niezależną instancję Grafany, Prometheusa i Node Exportera na środowisko**, a nie ich kopię w każdym projekcie. Opcjonalne usługi, takie jak Grafana Image Renderer, cAdvisor, Loki/Alloy lub Alertmanager, również należą do centralnego stacku. Osobne instancje tworzymy dopiero dla innego środowiska, hosta, wymogu izolacji albo skali uzasadniającej federację.
@@ -171,14 +89,14 @@ Aby zapobiec przepełnieniu kontekstu (tzw. context bloating) i utrzymać wysok�
 
 ## Proposed Changes (Chronologiczna kolejność prac)
 
-### 1. `Projekt-ST1-Generator-Spisu` -> `inventory-generator` ✅ **[UKOŃCZONE]**
+### 1. `Projekt-ST1-Generator-Spisu` -> `inventory-generator` — wdrożenie działa, dalsze zadania w raporcie
 *   **Proponowana nazwa:** `inventory-generator`
-*   **Subdomena:** `inventory.grela.dev` (lub `spis.grela.dev`)
-*   **Port kontenera:** `127.0.0.1:8080`
-*   **Konto Linux na VPS:** `inventory-app`
-*   **Technologia:** C# (WinForms) + biblioteka Word
+*   **Subdomena:** `inventory-generator.grela.dev` (wdrożone; dowody w raporcie projektu)
+*   **Port kontenera:** `8080`, wewnątrz sieci; bez mapowania publicznego
+*   **Zarządzanie wdrożeniem:** zasób Coolify; nie tworzyć nowego konta aplikacyjnego w grupie docker.
+*   **Technologia:** C# / ASP.NET Core (.NET 8), JavaScript, OpenXML; generator DOCX/CSV/HTML
 *   **Zadania Dev:** Zmiana nazwy na `inventory-generator`, licencja MIT, README.md (EN). Poprawa układu tabeli w plikach MS Word (szerokość kolumn, czcionki, obramowania), aby była czytelna i schludna.
-*   **Zadania DevOps:** Stworzenie Dockerfile, `deploy.sh`, workflow `.github/workflows/deploy.yml` (Tailscale SSH), konfiguracja NPM & Cloudflare. Upewnienie się, że aplikacja ma favicon i wielowarstwowy rate limiting; wdrożenie obowiązkowego preflightu, blue-green i automatycznego rollbacku zgodnie ze standardem powyżej.
+*   **Zadania DevOps:** Wdrożenie ręczne GHCR/Coolify z healthcheckiem wykonane; pozostały automatyczna promocja digestu, klient-IP, limity i testy rollbacku. Upewnienie się, że aplikacja ma favicon i wielowarstwowy rate limiting; wdrożenie obowiązkowego preflightu, blue-green i automatycznego rollbacku zgodnie ze standardem powyżej.
 
 ### 2. `Punkt_Skladania_Zamowien` (Maj 2024)
 *   **Proponowana nazwa:** `pos-order-system`
@@ -190,8 +108,8 @@ Aby zapobiec przepełnieniu kontekstu (tzw. context bloating) i utrzymać wysok�
 ### 3. `ST2-NetFilmx` (Lipiec 2024)
 *   **Proponowana nazwa:** `netfilmx-movie-catalog`
 *   **Subdomena:** `netfilmx.grela.dev`
-*   **Port kontenera:** `127.0.0.1:8082`
-*   **Konto Linux na VPS:** `netfilmx-app`
+*   **Port kontenera:** ustalić z Dockerfile i procesu przy migracji; bez domyślnego mapowania na hosta.
+*   **Docelowe zarządzanie wdrożeniem:** zasób Coolify; nie tworzyć nowego konta aplikacyjnego w grupie docker.
 *   **Technologia:** C# (ASP.NET Core MVC)
 *   **Zadania Dev:** Zmiana nazwy na `netfilmx-movie-catalog`, licencja MIT, README.md (EN). Odświeżenie panelu admina (Admin UI) i dodanie estetycznego interfejsu dla zwykłych użytkowników (User UI).
 *   **Zadania DevOps:** Wdrożenie kontenerowe ASP.NET Core MVC pod subdomenę `netfilmx.grela.dev`. Upewnienie się, że aplikacja ma favicon i wielowarstwowy rate limiting; wdrożenie obowiązkowego preflightu, blue-green i automatycznego rollbacku zgodnie ze standardem powyżej.
@@ -199,8 +117,8 @@ Aby zapobiec przepełnieniu kontekstu (tzw. context bloating) i utrzymać wysok�
 ### 4. `AirQualityApp` (Luty 2025)
 *   **Proponowana nazwa:** `air-quality-app`
 *   **Subdomena:** `air.grela.dev`
-*   **Port kontenera:** `127.0.0.1:8083`
-*   **Konto Linux na VPS:** `airquality-app`
+*   **Port kontenera:** ustalić z Dockerfile i procesu przy migracji; bez domyślnego mapowania na hosta.
+*   **Docelowe zarządzanie wdrożeniem:** zasób Coolify; nie tworzyć nowego konta aplikacyjnego w grupie docker.
 *   **Technologia:** Python
 *   **Zadania Dev:** Zmiana nazwy na `air-quality-app`, licencja MIT, README.md (EN). Implementacja brakujących funkcjonalności (zapisywanie historii pomiarów, wykresy jakości powietrza w matplotlib/plotly).
 *   **Zadania DevOps:** Konteneryzacja aplikacji Python i wdrożenie pod `air.grela.dev`. Upewnienie się, że aplikacja ma favicon i wielowarstwowy rate limiting; wdrożenie obowiązkowego preflightu, blue-green i automatycznego rollbacku zgodnie ze standardem powyżej.
@@ -213,25 +131,25 @@ Aby zapobiec przepełnieniu kontekstu (tzw. context bloating) i utrzymać wysok�
 ### 6. `kolkokrzyzyk` (Lipiec 2025)
 *   **Proponowana nazwa:** `tic-tac-toe-ai`
 *   **Subdomena:** `tictactoe.grela.dev`
-*   **Port kontenera:** `127.0.0.1:8084`
-*   **Konto Linux na VPS:** `tictactoe-app`
+*   **Port kontenera:** `8080`, wewnątrz sieci; potwierdzone w obrazie
+*   **Zarządzanie wdrożeniem:** zasób Coolify; nie tworzyć nowego konta aplikacyjnego w grupie docker.
 *   **Technologia:** Python
 *   **Zadania Dev:** Zmiana nazwy na `tic-tac-toe-ai`, licencja MIT, README.md (EN). **Współautorstwo:** Dodanie sekcji atrybucji współautorów.
-*   **Zadania DevOps:** Wdrożenie wersji webowej gry pod `tictactoe.grela.dev`. Utrzymać token bucket ruchów (30/min z burstem 10), naliczać seriom koszt według liczby gier i zachować limit dwóch równoległych operacji AI. Zweryfikować Cloudflare/NPM i prawdziwe IP klienta, następnie przejść na Redis, niezmienne obrazy GHCR, readiness, stabilny gateway, blue-green i automatyczny rollback zgodnie ze standardem powyżej.
+*   **Zadania DevOps:** Wdrożenie wersji webowej gry pod `tictactoe.grela.dev`. Utrzymać token bucket ruchów (30/min z burstem 10), naliczać seriom koszt według liczby gier i zachować limit dwóch równoległych operacji AI. GHCR digest i ręczne wdrożenie Coolify z readiness są potwierdzone. Zweryfikować prawdziwe IP przez Tunnel/Traefik, dokończyć limity, automatyczne CD, Redis przy nakładaniu replik i testy blue-green/rollbacku.
 
 ### 7. `SmakoszWebApp` (Lipiec 2025)
 *   **Proponowana nazwa:** `smakosz-web-app`
 *   **Domena:** obecnie planowane `smakosz.grela.dev`; wybrać docelową domenę i przeprowadzić kontrolowaną migrację bez wymyślania adresu przed decyzją właściciela.
-*   **Konto Linux na VPS:** `smakosz-app`
+*   **Docelowe zarządzanie wdrożeniem:** zasób Coolify; nie tworzyć nowego konta aplikacyjnego w grupie docker.
 *   **Technologia:** C# (.NET 10) + Blazor WASM (PWA) + PyTorch/ONNX + Docker
 *   **Zadania Dev:** Zmiana nazwy na `smakosz-web-app`, licencja MIT, stworzenie obszernego README.md (EN) na podstawie Twojej pracy inżynierskiej (`2026.IN.w67131.pdf`). **Naprawa e-maili:** usunąć zależność od wygasłego klucza Brevo API i przejść na SMTP Brevo przez wydzieloną abstrakcję nadawcy (np. MailKit), sekrety środowiskowe, kolejkę/retry z idempotencją oraz testy potwierdzenia konta, resetu hasła i ponownego wysłania wiadomości. Zweryfikować domenę nadawcy, SPF, DKIM i DMARC; usunąć/wycofać stare dane API i nie logować poświadczeń SMTP.
-*   **Zadania DevOps:** Naprawić CI/CD zgodnie z obowiązkowym standardem: wdrażać manifest pełnego SHA i dokładne digests zamiast `latest`; nie pobierać Compose/skryptów z ruchomego `main`; połączyć zduplikowany workflow force z parametrem ręcznym; wdrożyć preflight i blue-green dla klienta/API, singleton lub bezpieczny drain dla Hangfire orchestratora oraz osobny krok migracji EF w modelu expand/contract; używać readiness zamiast samego liveness; dodać automatyczny rollback i publiczny smoke test; zastąpić pozorną blokadę prawdziwym `flock`; usunąć globalny `docker image prune -f`, restart NPM przy każdym deployu i strefowe `purge_everything`; przypiąć obrazy infrastruktury i dodać limity zasobów. **Centralna obserwowalność:** wydzielić działające `smakosz-prometheus`, `smakosz-grafana`, `smakosz-grafana-renderer` i `smakosz-node-exporter` z Compose oraz sieci Smakosza do niezależnego stacku i `observability-network`, zachowując wolumeny, dashboardy, alerty SMTP i ciągłość monitorowania Smakosza; następnie dodać scrape targets, labels, dashboardy i alerty pozostałych aplikacji. Node Exporter pozostaje pojedynczy dla całego hosta, a opcjonalny centralny cAdvisor zapewnia metryki kontenerów. Migrację wykonać równoległym kandydatem, z backupem i rollbackiem, zanim usługi zostaną usunięte ze Smakosza. **Migracja domeny:** po wyborze adresu skonfigurować Cloudflare, NPM/TLS, CORS, callbacki, cookie domain, linki w wiadomościach i konfigurację PWA; utrzymać stary adres przez okres przejściowy z przekierowaniem, wykonać zewnętrzne testy HTTPS i dopiero potem wycofać starą domenę. **Refaktoryzacja sieci aplikacji:** zmienić `smakosz_network` na `smakosz-network` i ponownie przepiąć NPM; monitoring korzysta z odrębnej `observability-network`. Upewnić się, że aplikacja ma favicon i wielowarstwowy rate limiting.
+*   **Zadania DevOps:** Naprawić CI/CD zgodnie z obowiązkowym standardem: wdrażać manifest pełnego SHA i dokładne digests zamiast `latest`; nie pobierać Compose/skryptów z ruchomego `main`; połączyć zduplikowany workflow force z parametrem ręcznym; wdrożyć preflight i blue-green dla klienta/API, singleton lub bezpieczny drain dla Hangfire orchestratora oraz osobny krok migracji EF w modelu expand/contract; używać readiness zamiast samego liveness; dodać automatyczny rollback i publiczny smoke test; zastąpić pozorną blokadę prawdziwym `flock`; usunąć globalny `docker image prune -f` i restarty wspólnego proxy; utrzymać już potwierdzone ograniczenie purge do hosta frontendu, a docelowo rozważyć dokładne URL-e lub brak purge; przypiąć obrazy infrastruktury i dodać limity zasobów. **Centralna obserwowalność:** wydzielić działające `smakosz-prometheus`, `smakosz-grafana`, `smakosz-grafana-renderer` i `smakosz-node-exporter` z Compose oraz sieci Smakosza do niezależnego stacku i `observability-network`, zachowując wolumeny, dashboardy, alerty SMTP i ciągłość monitorowania Smakosza; następnie dodać scrape targets, labels, dashboardy i alerty pozostałych aplikacji. Node Exporter pozostaje pojedynczy dla całego hosta, a opcjonalny centralny cAdvisor zapewnia metryki kontenerów. Migrację wykonać równoległym kandydatem, z backupem i rollbackiem, zanim usługi zostaną usunięte ze Smakosza. **Migracja domeny:** po wyborze adresu skonfigurować Cloudflare Tunnel, Traefik/TLS, CORS, callbacki, cookie domain, linki w wiadomościach i konfigurację PWA; utrzymać stary adres przez okres przejściowy z przekierowaniem, wykonać zewnętrzne testy HTTPS i dopiero potem wycofać starą domenę. **Refaktoryzacja sieci aplikacji:** wybrać sieć aplikacji w Coolify i potwierdzić dostęp Traefika; monitoring korzysta z odrębnej `observability-network`. Upewnić się, że aplikacja ma favicon i wielowarstwowy rate limiting.
 
 ### 8. `UrlShortenerSystem` (Lipiec 2025)
 *   **Proponowana nazwa:** `url-shortener-system`
 *   **Subdomena:** `s.grela.dev` (lub `shortener.grela.dev`)
-*   **Port kontenera:** `127.0.0.1:8085`
-*   **Konto Linux na VPS:** `shortener-app`
+*   **Port kontenera:** ustalić z Dockerfile i procesu przy migracji; bez domyślnego mapowania na hosta.
+*   **Docelowe zarządzanie wdrożeniem:** zasób Coolify; nie tworzyć nowego konta aplikacyjnego w grupie docker.
 *   **Technologia:** C# (.NET) + HTML/JS/CSS (nowe UI)
 *   **Zadania Dev:** Zmiana nazwy na `url-shortener-system`, licencja MIT, README.md (EN). Stworzenie prostego, responsywnego UI w HTML/JS do skracania linków.
 *   **Zadania DevOps:** Wdrożenie produkcyjne API + UI pod subdomenę `s.grela.dev`. Upewnienie się, że aplikacja ma favicon i wielowarstwowy rate limiting; wdrożenie obowiązkowego preflightu, blue-green i automatycznego rollbacku zgodnie ze standardem powyżej.
@@ -239,8 +157,8 @@ Aby zapobiec przepełnieniu kontekstu (tzw. context bloating) i utrzymać wysok�
 ### 9. `OlxScrapper` (Lipiec 2025)
 *   **Proponowana nazwa:** `flat-finder`
 *   **Subdomena:** `flatfinder.grela.dev`
-*   **Port kontenera:** `127.0.0.1:8086`
-*   **Konto Linux na VPS:** `flatfinder-app`
+*   **Port kontenera:** ustalić z Dockerfile i procesu przy migracji; bez domyślnego mapowania na hosta.
+*   **Docelowe zarządzanie wdrożeniem:** zasób Coolify; nie tworzyć nowego konta aplikacyjnego w grupie docker.
 *   **Technologia:** Python + HTML
 *   **Zadania Dev:** Zmiana nazwy na `flat-finder`, licencja MIT, README.md (EN). Uporządkowanie skryptów ML i scrapera, dokończenie skryptu treningowego i zintegrowanie go z aplikacją.
 *   **Zadania DevOps:** Wdrożenie produkcyjne dashboardu wyszukiwarki mieszkań pod `flatfinder.grela.dev`. Upewnienie się, że aplikacja ma favicon i wielowarstwowy rate limiting; wdrożenie obowiązkowego preflightu, blue-green i automatycznego rollbacku zgodnie ze standardem powyżej.
@@ -252,10 +170,10 @@ Aby zapobiec przepełnieniu kontekstu (tzw. context bloating) i utrzymać wysok�
 ### 11. `movie-rag` (Maj 2026)
 *   **Nazwa:** Bez zmian (`movie-rag`)
 *   **Subdomena:** `movierag.grela.dev`
-*   **Port kontenera:** `127.0.0.1:8087`
-*   **Konto Linux na VPS:** `movierag-app`
+*   **Port kontenera:** ustalić z Dockerfile i procesu przy migracji; bez domyślnego mapowania na hosta.
+*   **Docelowe zarządzanie wdrożeniem:** zasób Coolify; nie tworzyć nowego konta aplikacyjnego w grupie docker.
 *   **Zadania Dev:** Dodanie daty do README.md, licencja MIT, schemat przepływu RAG.
-*   **Zadania DevOps:** Konteneryzacja pipeline'u RAG i wdrożenie pod `movierag.grela.dev`. **Refaktoryzacja sieci:** Zmiana nazwy starej sieci `movierag_network` na znormalizowaną `movierag-network` (użycie myślników/pauz) i ponowne przepięcie kontenera NPM. Upewnienie się, że aplikacja ma favicon i wielowarstwowy rate limiting; wdrożenie obowiązkowego preflightu, blue-green i automatycznego rollbacku zgodnie ze standardem powyżej.
+*   **Zadania DevOps:** Konteneryzacja pipeline'u RAG i wdrożenie pod `movierag.grela.dev`. **Refaktoryzacja sieci:** Migracja do dedykowanej sieci Coolify z dostępem Traefika, zachowaniem bazy pgvector, tras /api/explain i zachowania streamingu. Upewnienie się, że aplikacja ma favicon i wielowarstwowy rate limiting; wdrożenie obowiązkowego preflightu, blue-green i automatycznego rollbacku zgodnie ze standardem powyżej.
 
 ### 12. `leetcode` (Czerwiec 2026)
 *   **Proponowana nazwa:** `leetcode-solutions`
@@ -278,9 +196,9 @@ Aby zapobiec przepełnieniu kontekstu (tzw. context bloating) i utrzymać wysok�
 
 ### Automated Steps
 - Walidacja zmian statusów i nazw repozytoriów poprzez `gh repo view`.
-- Automatyczny build kontenerów Docker i wdrożenie przez GitHub Actions via Tailscale SSH.
+- Build/test/scan w CI, promocja dokładnego digestu przez Coolify; automatyczne CD pozostaje zadaniem do potwierdzenia.
 
 ### Manual Verification
 - Testy dostępności usług w przeglądarce pod subdomenami `x.grela.dev` po HTTPS.
-- Weryfikacja Cloudflare Orange Cloud (ukrywanie Origin IP) oraz działanie Nginx Proxy Manager.
+- Weryfikacja Tunnel/Traefik, HTTPS, właściwego backendu, real-IP i zamknięcia bezpośredniego originu.
 - Ostateczny przegląd spójności strony portfolio `grela.dev` oraz profilu GitHub.

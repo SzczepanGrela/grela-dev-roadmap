@@ -1,8 +1,8 @@
 # Inventory Generator — status report / raport stanu
 
-Audit date / data audytu: **2026-08-25**<br>
-Estimated completion / szacowane ukończenie: **53%**<br>
-Forecast / prognoza: **2026-08-28–2026-09-02**, 22–38 h, high confidence / pewność: high
+Audit date / data audytu: **2026-09-09**<br>
+Estimated completion / szacowane ukończenie: **61%**<br>
+Forecast / prognoza: **2026-09-10–2026-09-14**, 20–36 h, medium confidence / pewność: medium
 
 > This report is synchronized from `project.json` and the versioned delivery-control catalog. / Raport jest synchronizowany z `project.json` i wersjonowanym katalogiem kontroli wdrożeniowych.
 
@@ -12,14 +12,14 @@ Forecast / prognoza: **2026-08-28–2026-09-02**, 22–38 h, high confidence / p
 
 Local-first inventory editor and server-side DOCX, CSV and HTML generator.
 
-Remote is stable; uncommitted user CSS must not be overwritten.
+September 9 reconciliation adds exact-proxy source hardening, CI evidence and the operator-confirmed immutable deployment. Live Inventory IP echo, outer rate policies, automatic CD and rollback tests remain incomplete. Percentages and hours are planning estimates, not measurements.
 
 ### Audit evidence
 
-- **Repozytorium:** `SzczepanGrela/inventory-generator` @ `bee8f313dace9e1271c1bee59f8ce4fe3a96346b`
-- **Source state:** local worktree with one modified CSS file
-- **Tests and CI:** Latest GitHub CI/CD run succeeded at bee8f31; no ruleset or environment is configured.
-- **Production:** inventory.grela.dev did not resolve in public DNS on 2026-08-25.
+- **Repozytorium:** `SzczepanGrela/inventory-generator` @ `f1c14ebb6dcbd5b5b04274558e661e573e1e42d9`
+- **Source state:** Commit f1c14ebb was created from a clean main baseline; only the forwarded-header implementation and its integration tests changed, and local plus CI tests passed.
+- **Tests and CI:** GitHub Quality 34241221870 succeeded for f1c14ebb6dcbd5b5b04274558e661e573e1e42d9: restore/build/tests, image build and push, fixable HIGH/CRITICAL Trivy gate, SBOM/provenance and attestation passed.
+- **Production:** On September 9 the operator reported a successful Coolify redeploy of digest 0d112419 with runtime-only exact proxy configuration; selective image, environment, health and public revision checks all had the expected results. The command output was not pasted, so this is operator-declared runtime evidence, not a fresh host audit.
 
 ### v2 standard compliance
 
@@ -27,18 +27,18 @@ Profile: **VPS web application**. Statuses reflect only evidence available on th
 
 | Control | Status | Evidence |
 | --- | --- | --- |
-| Repository governance | Partial | GitHub returned no active ruleset or environment; remaining elements were assessed from the repository. |
-| Quality CI | Partial | Latest GitHub CI/CD run succeeded at bee8f31; no ruleset or environment is configured. |
-| Immutable release | Missing | The required complete implementation was not found in the audited inventory generator source. |
-| Deployment access | Partial | inventory generator has some mechanisms but does not yet satisfy the complete v2 control. |
-| Network, TLS and client identity | Missing | inventory.grela.dev did not resolve in public DNS on 2026-08-25. |
-| Abuse protection | Partial | inventory generator has some mechanisms but does not yet satisfy the complete v2 control. |
-| Runtime safety | Partial | inventory generator has some mechanisms but does not yet satisfy the complete v2 control. |
-| Readiness and preflight | Missing | The required complete implementation was not found in the audited inventory generator source. |
-| Atomic promotion and rollback | Missing | The required complete implementation was not found in the audited inventory generator source. |
-| Coordination and retention | Partial | inventory generator has some mechanisms but does not yet satisfy the complete v2 control. |
+| Repository governance | Partial | September 6 GitHub API returned no rulesets or environments. |
+| Quality CI | Partial | Quality 34241221870 for f1c14ebb includes .NET build/tests, exact-proxy negative-boundary coverage and final-image scanning; browser/export edge cases remain. |
+| Immutable release | Complete | CI source and operator production evidence identify the full revision and immutable GHCR digest; manual deployment is proven. |
+| Deployment access | Partial | The legacy host account/launcher were removed. Private platform access exists; automated deployment credentials and external legacy credential revocation remain unverified. |
+| Network, TLS and client identity | Partial | Public HTTPS works through dedicated Tunnel/Traefik ingress. Exact proxy trust and spoof rejection are source/CI tested and deployed per operator confirmation; live Inventory IP echo and final direct-origin readback remain. |
+| Abuse protection | Partial | The 30/min export limiter now keys on a client identity reconstructed only through exact known proxies with bounded depth; format/concurrency and outer proxy/edge limits remain. |
+| Runtime safety | Partial | Non-root, capability drop, init and CPU/RAM limits observed; parser exception and remaining effective controls documented. |
+| Readiness and preflight | Partial | Image HEALTHCHECK and positive internal/public readiness are observed; candidate failure and critical-path preflight still need verification. |
+| Atomic promotion and rollback | Partial | Coolify deployment succeeded; no evidence of tested blue-green or automatic recovery after public smoke failure. |
+| Coordination and retention | Partial | Manual release succeeded; capacity serialization, automated CD and retention/recovery behavior are not yet accepted. |
 | Observability | Missing | The required complete implementation was not found in the audited inventory generator source. |
-| Web identity | Missing | The required complete implementation was not found in the audited inventory generator source. |
+| Web identity | Unverified | Not assessed during the deployment reconciliation; verify static assets and browser behavior. |
 
 ### Remaining and active tasks
 
@@ -46,43 +46,43 @@ Profile: **VPS web application**. Statuses reflect only evidence available on th
 
 **Implementation · In progress · 80% · difficulty 3/5 · 2–4 h**
 
-One local CSS change remains; export endpoints still need format-specific body, row and concurrency bounds.
+The prior CSS correction was committed (83e32db). Source at f1c14ebb retains a 30/min export policy with hardened client partitioning; per-format body/row/concurrency safeguards remain work.
 
 #### Expand export and browser coverage
 
-**Quality · In progress · 70% · difficulty 3/5 · 3–5 h**
+**Quality · In progress · 80% · difficulty 3/5 · 3–5 h**
 
-Unit and integration projects exist and CI is green; expensive export and browser cases remain.
+Quality 34241221870 passed for f1c14ebb. Integration tests cover independent two-hop forwarded clients and spoof rejection from an unknown direct peer; browser/export edge cases remain.
 
 #### Enable ruleset and required Quality checks
 
 **Quality · Planned · 0% · difficulty 2/5 · 1–2 h**
 
-GitHub returned no active ruleset or deployment environment.
+September 6 GitHub API returned no rulesets or environments. Required pre-merge Quality and production environment remain to configure.
 
-#### Complete operations documentation and favicon
+#### Document the Coolify migration and known limitations
 
-**Documentation · In progress · 75% · difficulty 2/5 · 2–3 h**
+**Documentation · Done · 100% · difficulty 2/5 · 0–0 h**
 
-README and MIT exist, but the public web identity and v2 operations runbook are incomplete.
+September 9: private ingress evidence, the public Coolify checklist and normalized project status were reconciled; unverified runtime controls remain explicit.
 
 #### Enable DNS, TLS and three-layer limits
 
-**Delivery · Planned · 0% · difficulty 3/5 · 3–5 h**
+**Delivery · In progress · 60% · difficulty 3/5 · 3–5 h**
 
-The target hostname does not resolve and Cloudflare/NPM controls cannot be verified.
+Public HTTPS works through the Tunnel/Traefik path. Source now processes X-Forwarded-For only through exact known proxies with a bounded two-hop limit; CI spoof/isolation tests and operator-confirmed runtime deployment passed. Edge/proxy and cost-specific bounds remain.
 
 #### Publish and deploy an image by digest
 
-**Delivery · Planned · 0% · difficulty 3/5 · 4–7 h**
+**Delivery · Done · 100% · difficulty 3/5 · 0–0 h**
 
-The current server script rebuilds the image and performs global image pruning.
+Quality produced immutable digest 0d112419 for f1c14ebb; the operator reported matching Coolify image, runtime variable, healthy state and public revision after manual deployment. Automatic CD is tracked separately.
 
 #### Implement readiness, blue-green and rollback
 
-**Delivery · Planned · 0% · difficulty 4/5 · 5–8 h**
+**Delivery · In progress · 30% · difficulty 4/5 · 3–5 h**
 
-There is no retained inactive slot, stable router or external smoke rollback.
+Image readiness and successful Coolify rolling deployment observed. Unhealthy-candidate behavior, shared limiter state during overlap, public-smoke rollback and data-safe recovery still require tests.
 
 #### Connect the service to central monitoring
 
@@ -90,11 +90,31 @@ There is no retained inactive slot, stable router or external smoke rollback.
 
 No cross-application metrics, deployment alerts or 429 visibility were verified.
 
+#### Automate promotion of the CI-tested digest
+
+**Delivery · Planned · 0% · difficulty 3/5 · 3–5 h**
+
+Manual digest deployment is proven; CI-to-Coolify authentication, exact-digest submission, status polling, serialization and retention still need implementation and verification.
+
+#### Verify runtime settings and resolve parser exceptions
+
+**Delivery · In progress · 50% · difficulty 3/5 · 2–4 h**
+
+Operator inspect confirms non-root, cap-drop ALL, init, 1 CPU and 512 MiB. Coolify 4.3.14 security-opt parsing failed; further hardening was deferred. PID/log limits and final security/read-only/tmpfs settings need verification.
+
+#### Verify favicon, metadata and accessible preview
+
+**Documentation · Planned · 0% · difficulty 2/5 · 1–2 h**
+
+A public health response does not verify the favicon, licensing, metadata, accessibility or screenshot; complete a browser/static-asset check.
+
 ### Architecture decisions
 
 - Keep the local-first stateless architecture.
 - Use per-format export limits plus body, row and concurrency caps.
 - The project follows the v2 standard profile: vps-web.
+- Use prebuilt GHCR digests with Coolify/Traefik/Tunnel. Manual production success does not establish automatic CD, trusted client IP or rollback.
+- Temporarily omit no-new-privileges from Custom Docker Options due to the reproduced 4.3.14 parser issue; verify effective settings and revisit via reviewed Compose or upgrade.
 
 ## Polski
 
@@ -102,14 +122,14 @@ No cross-application metrics, deployment alerts or 429 visibility were verified.
 
 Lokalny edytor inwentarza z serwerowym generowaniem DOCX, CSV i HTML.
 
-Origin jest stabilny; lokalnej zmiany CSS użytkownika nie wolno nadpisać.
+Uzgodnienie z 9 września dodaje zabezpieczenie dokładnie wskazanych proxy, dowód CI i potwierdzone przez operatora niezmienne wdrożenie. Test IP na żywo w Inventory, zewnętrzne limity, automatyczne CD i rollback pozostają niepełne. Procenty i godziny to estymacje, nie pomiary.
 
 ### Dowody audytu
 
-- **Repozytorium:** `SzczepanGrela/inventory-generator` @ `bee8f313dace9e1271c1bee59f8ce4fe3a96346b`
-- **Stan źródła:** local worktree with one modified CSS file
-- **Testy i CI:** Latest GitHub CI/CD run succeeded at bee8f31; no ruleset or environment is configured.
-- **Produkcja:** inventory.grela.dev did not resolve in public DNS on 2026-08-25.
+- **Repozytorium:** `SzczepanGrela/inventory-generator` @ `f1c14ebb6dcbd5b5b04274558e661e573e1e42d9`
+- **Stan źródła:** Commit f1c14ebb was created from a clean main baseline; only the forwarded-header implementation and its integration tests changed, and local plus CI tests passed.
+- **Testy i CI:** GitHub Quality 34241221870 succeeded for f1c14ebb6dcbd5b5b04274558e661e573e1e42d9: restore/build/tests, image build and push, fixable HIGH/CRITICAL Trivy gate, SBOM/provenance and attestation passed.
+- **Produkcja:** On September 9 the operator reported a successful Coolify redeploy of digest 0d112419 with runtime-only exact proxy configuration; selective image, environment, health and public revision checks all had the expected results. The command output was not pasted, so this is operator-declared runtime evidence, not a fresh host audit.
 
 ### Zgodność ze standardem v2
 
@@ -117,18 +137,18 @@ Profil: **Aplikacja webowa na VPS**. Statusy odzwierciedlają wyłącznie dowody
 
 | Kontrola | Status | Dowód |
 | --- | --- | --- |
-| Zarządzanie repozytorium | Częściowe | GitHub nie zwrócił aktywnego rulesetu ani środowiska; pozostałe elementy oceniono z repozytorium. |
-| Quality CI | Częściowe | Quality CI istnieje, ale nie obejmuje całego bieżącego stanu lub części wymaganych kontroli v2. |
-| Niezmienne wydanie | Brak | W audytowanym źródle projektu inventory generator nie znaleziono wymaganej kompletnej implementacji. |
-| Dostęp wdrożeniowy | Częściowe | Projekt inventory generator ma część mechanizmów, ale nie spełnia jeszcze całej kontroli v2. |
-| Sieć, TLS i tożsamość klienta | Brak | Docelowa domena lub kompletna konfiguracja routingu/TLS nie jest obecnie dostępna. |
-| Ochrona przed nadużyciami | Częściowe | Projekt inventory generator ma część mechanizmów, ale nie spełnia jeszcze całej kontroli v2. |
-| Bezpieczeństwo runtime | Częściowe | Projekt inventory generator ma część mechanizmów, ale nie spełnia jeszcze całej kontroli v2. |
-| Readiness i preflight | Brak | W audytowanym źródle projektu inventory generator nie znaleziono wymaganej kompletnej implementacji. |
-| Atomowa promocja i rollback | Brak | W audytowanym źródle projektu inventory generator nie znaleziono wymaganej kompletnej implementacji. |
-| Koordynacja i retencja | Częściowe | Projekt inventory generator ma część mechanizmów, ale nie spełnia jeszcze całej kontroli v2. |
+| Zarządzanie repozytorium | Częściowe | API GitHub 6 września nie zwróciło rulesetów ani środowisk. |
+| Quality CI | Częściowe | Quality 34241221870 dla f1c14ebb obejmuje build/testy .NET, negatywne testy granicy proxy i skan obrazu; pozostają przypadki przeglądarki/eksportu. |
+| Niezmienne wydanie | Gotowe | Źródło CI i wyniki produkcji od operatora wskazują pełną rewizję oraz digest GHCR; wdrożenie ręczne potwierdzone. |
+| Dostęp wdrożeniowy | Częściowe | Usunięto stare konto/launcher. Istnieje prywatny dostęp platformy; poświadczenia automatycznego CD i wycofanie starych uprawnień zewnętrznych wymagają weryfikacji. |
+| Sieć, TLS i tożsamość klienta | Częściowe | Publiczny HTTPS działa przez dedykowany ingress Tunnel/Traefik. Dokładne zaufanie proxy i spoofing przetestowano w źródle/CI oraz wdrożono według operatora; pozostaje test IP Inventory na żywo i końcowy odczyt originu. |
+| Ochrona przed nadużyciami | Częściowe | Limiter eksportu 30/min używa teraz tożsamości odtworzonej tylko przez dokładnie znane proxy i ograniczoną głębokość; pozostają limity formatu/współbieżności oraz proxy/edge. |
+| Bezpieczeństwo runtime | Częściowe | Potwierdzone non-root, cap-drop, init i CPU/RAM; zapisano wyjątek parsera i brakujące odczyty. |
+| Readiness i preflight | Częściowe | Potwierdzone HEALTHCHECK obrazu oraz wewnętrzny/publiczny readiness; awaria kandydata i preflight krytycznych ścieżek wymagają weryfikacji. |
+| Atomowa promocja i rollback | Częściowe | Deployment Coolify przeszedł; brak dowodu przetestowanego blue-green lub automatycznego rollbacku po błędzie publicznego smoke. |
+| Koordynacja i retencja | Częściowe | Ręczne wydanie przeszło; serializacja pojemności, automatyczne CD i zachowanie retencji/odzyskiwania nie zostały jeszcze odebrane. |
 | Obserwowalność | Brak | W audytowanym źródle projektu inventory generator nie znaleziono wymaganej kompletnej implementacji. |
-| Tożsamość webowa | Brak | W audytowanym źródle projektu inventory generator nie znaleziono wymaganej kompletnej implementacji. |
+| Tożsamość webowa | Niezweryfikowane | Nie sprawdzano w uzgodnieniu deploymentu; potrzebna kontrola plików statycznych i przeglądarki. |
 
 ### Zadania pozostałe i bieżące
 
@@ -136,43 +156,43 @@ Profil: **Aplikacja webowa na VPS**. Statusy odzwierciedlają wyłącznie dowody
 
 **Implementacja · W toku · 80% · trudność 3/5 · 2–4 h**
 
-One local CSS change remains; export endpoints still need format-specific body, row and concurrency bounds.
+The prior CSS correction was committed (83e32db). Source at f1c14ebb retains a 30/min export policy with hardened client partitioning; per-format body/row/concurrency safeguards remain work.
 
 #### Rozbudować testy eksportu i przeglądarki
 
-**Jakość · W toku · 70% · trudność 3/5 · 3–5 h**
+**Jakość · W toku · 80% · trudność 3/5 · 3–5 h**
 
-Unit and integration projects exist and CI is green; expensive export and browser cases remain.
+Quality 34241221870 passed for f1c14ebb. Integration tests cover independent two-hop forwarded clients and spoof rejection from an unknown direct peer; browser/export edge cases remain.
 
 #### Włączyć ruleset i wymagane Quality
 
 **Jakość · Planowane · 0% · trudność 2/5 · 1–2 h**
 
-GitHub returned no active ruleset or deployment environment.
+September 6 GitHub API returned no rulesets or environments. Required pre-merge Quality and production environment remain to configure.
 
-#### Uzupełnić dokumentację operacyjną i favicon
+#### Udokumentować migrację Coolify i znane ograniczenia
 
-**Dokumentacja · W toku · 75% · trudność 2/5 · 2–3 h**
+**Dokumentacja · Gotowe · 100% · trudność 2/5 · 0–0 h**
 
-README and MIT exist, but the public web identity and v2 operations runbook are incomplete.
+September 9: private ingress evidence, the public Coolify checklist and normalized project status were reconciled; unverified runtime controls remain explicit.
 
 #### Uruchomić DNS, TLS i trzy warstwy limitów
 
-**Wdrożenie · Planowane · 0% · trudność 3/5 · 3–5 h**
+**Wdrożenie · W toku · 60% · trudność 3/5 · 3–5 h**
 
-The target hostname does not resolve and Cloudflare/NPM controls cannot be verified.
+Public HTTPS works through the Tunnel/Traefik path. Source now processes X-Forwarded-For only through exact known proxies with a bounded two-hop limit; CI spoof/isolation tests and operator-confirmed runtime deployment passed. Edge/proxy and cost-specific bounds remain.
 
 #### Publikować i wdrażać obraz po digestcie
 
-**Wdrożenie · Planowane · 0% · trudność 3/5 · 4–7 h**
+**Wdrożenie · Gotowe · 100% · trudność 3/5 · 0–0 h**
 
-The current server script rebuilds the image and performs global image pruning.
+Quality produced immutable digest 0d112419 for f1c14ebb; the operator reported matching Coolify image, runtime variable, healthy state and public revision after manual deployment. Automatic CD is tracked separately.
 
 #### Wdrożyć readiness, blue-green i rollback
 
-**Wdrożenie · Planowane · 0% · trudność 4/5 · 5–8 h**
+**Wdrożenie · W toku · 30% · trudność 4/5 · 3–5 h**
 
-There is no retained inactive slot, stable router or external smoke rollback.
+Image readiness and successful Coolify rolling deployment observed. Unhealthy-candidate behavior, shared limiter state during overlap, public-smoke rollback and data-safe recovery still require tests.
 
 #### Podłączyć usługę do centralnego monitoringu
 
@@ -180,8 +200,28 @@ There is no retained inactive slot, stable router or external smoke rollback.
 
 No cross-application metrics, deployment alerts or 429 visibility were verified.
 
+#### Zautomatyzować promocję digestu sprawdzonego w CI
+
+**Wdrożenie · Planowane · 0% · trudność 3/5 · 3–5 h**
+
+Manual digest deployment is proven; CI-to-Coolify authentication, exact-digest submission, status polling, serialization and retention still need implementation and verification.
+
+#### Zweryfikować runtime i rozwiązać wyjątki parsera
+
+**Wdrożenie · W toku · 50% · trudność 3/5 · 2–4 h**
+
+Operator inspect confirms non-root, cap-drop ALL, init, 1 CPU and 512 MiB. Coolify 4.3.14 security-opt parsing failed; further hardening was deferred. PID/log limits and final security/read-only/tmpfs settings need verification.
+
+#### Zweryfikować favicon, metadane i dostępny podgląd
+
+**Dokumentacja · Planowane · 0% · trudność 2/5 · 1–2 h**
+
+A public health response does not verify the favicon, licensing, metadata, accessibility or screenshot; complete a browser/static-asset check.
+
 ### Decyzje architektoniczne
 
 - Zachować bezstanową architekturę local-first.
 - Stosować limity per format oraz limity body, rekordów i współbieżności.
 - Projekt podlega profilowi standardu v2: vps-web.
+- Używać digestów GHCR z Coolify/Traefik/Tunnel. Sukces ręcznego deployu nie oznacza automatycznego CD, zaufanego IP ani rollbacku.
+- Czasowo pominąć no-new-privileges w Custom Docker Options z powodu odtworzonego błędu 4.3.14; sprawdzić efektywne ustawienia i wrócić do rozwiązania przez Compose lub aktualizację.

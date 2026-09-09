@@ -54,8 +54,8 @@
     "remainingDaysMax": 7.25,
     "hoursPerDay": 8,
     "hoursPerWeek": 30,
-    "earliest": "2026-09-21",
-    "latest": "2026-10-08",
+    "earliest": "2026-10-02",
+    "latest": "2026-10-20",
     "confidence": "low"
   },
   "estimation": {
@@ -175,7 +175,7 @@
       "hoursMax": 7,
       "daysMin": 0.5,
       "daysMax": 1,
-      "evidence": "The current workflow builds test images while the VPS deploy uses moving source state."
+      "evidence": "The current workflow builds test images while the VPS deploy uses moving source state. Target revised September 6: implement the delivery step through Coolify using the shared checklist, an immutable GHCR digest and Traefik/Tunnel; preserve data and custom routes. Production migration not verified in this update."
     },
     {
       "id": "blue-green",
@@ -253,6 +253,10 @@
     {
       "en": "The project follows the v2 standard profile: vps-web.",
       "pl": "Projekt podlega profilowi standardu v2: vps-web."
+    },
+    {
+      "en": "Migration target updated September 6: prebuilt GHCR digest in Coolify, Traefik/Tunnel routing and the shared deployment checklist; preserve databases and custom routes. This target update is not a new source/production audit.",
+      "pl": "Cel migracji uaktualniony 6 września: digest GHCR w Coolify, routing Traefik/Tunnel i wspólna checklista; zachować bazy i custom routes. Zmiana celu nie jest nowym audytem źródła/produkcji."
     }
   ],
   "audit": {

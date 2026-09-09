@@ -2,7 +2,7 @@
 
 Audit date / data audytu: **2026-08-25**<br>
 Estimated completion / szacowane ukończenie: **25%**<br>
-Forecast / prognoza: **2026-10-27–2026-12-08**, 70–115 h, low confidence / pewność: low
+Forecast / prognoza: **2026-11-06–2026-12-18**, 70–115 h, low confidence / pewność: low
 
 > This report is synchronized from `project.json` and the versioned delivery-control catalog. / Raport jest synchronizowany z `project.json` i wersjonowanym katalogiem kontroli wdrożeniowych.
 
@@ -82,7 +82,7 @@ No frontend, production container topology or deployment workflow is present.
 
 **Delivery · Planned · 0% · difficulty 5/5 · 8–14 h**
 
-GHCR digests, OIDC deploy, stable routing and rollback do not exist.
+GHCR digests, OIDC deploy, stable routing and rollback do not exist. Target revised September 6: implement the delivery step through Coolify using the shared checklist, an immutable GHCR digest and Traefik/Tunnel; preserve data and custom routes. Production migration not verified in this update.
 
 #### Configure domain, limits and monitoring
 
@@ -101,6 +101,7 @@ No web frontend or favicon exists.
 - Redirect traffic must not share the low creation limit.
 - Use trusted proxy middleware, SSRF/private-address validation and a bounded analytics worker.
 - The project follows the v2 standard profile: vps-web.
+- Migration target updated September 6: prebuilt GHCR digest in Coolify, Traefik/Tunnel routing and the shared deployment checklist; preserve databases and custom routes. This target update is not a new source/production audit.
 
 ## Polski
 
@@ -178,7 +179,7 @@ No frontend, production container topology or deployment workflow is present.
 
 **Wdrożenie · Planowane · 0% · trudność 5/5 · 8–14 h**
 
-GHCR digests, OIDC deploy, stable routing and rollback do not exist.
+GHCR digests, OIDC deploy, stable routing and rollback do not exist. Target revised September 6: implement the delivery step through Coolify using the shared checklist, an immutable GHCR digest and Traefik/Tunnel; preserve data and custom routes. Production migration not verified in this update.
 
 #### Skonfigurować domenę, limity i monitoring
 
@@ -197,3 +198,4 @@ No web frontend or favicon exists.
 - Ruch przekierowań nie może dzielić niskiego limitu tworzenia.
 - Użyć trusted proxy, ochrony SSRF/private IP i ograniczonego workera analityki.
 - Projekt podlega profilowi standardu v2: vps-web.
+- Cel migracji uaktualniony 6 września: digest GHCR w Coolify, routing Traefik/Tunnel i wspólna checklista; zachować bazy i custom routes. Zmiana celu nie jest nowym audytem źródła/produkcji.

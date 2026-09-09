@@ -2,7 +2,7 @@
 
 Audit date / data audytu: **2026-08-25**<br>
 Estimated completion / szacowane ukończenie: **40%**<br>
-Forecast / prognoza: **2026-10-09–2026-11-11**, 54–90 h, low confidence / pewność: low
+Forecast / prognoza: **2026-10-21–2026-11-23**, 54–90 h, low confidence / pewność: low
 
 > This report is synchronized from `project.json` and the versioned delivery-control catalog. / Raport jest synchronizowany z `project.json` i wersjonowanym katalogiem kontroli wdrożeniowych.
 
@@ -76,7 +76,7 @@ Mail delivery is blocked by an expired API key and should move behind an SMTP se
 
 **Delivery · In progress · 50% · difficulty 4/5 · 5–8 h**
 
-Application limits and forwarded-header handling exist, but distributed state and outer policies need verification.
+Application limits and forwarded-header handling exist, but distributed state and outer policies need verification. Target revised September 6: implement the delivery step through Coolify using the shared checklist, an immutable GHCR digest and Traefik/Tunnel; preserve data and custom routes. Production migration not verified in this update.
 
 #### Implement digests, readiness and safe blue-green
 
@@ -105,6 +105,7 @@ Prometheus, Grafana, renderer and Node Exporter are still coupled to the Smakosz
 - Use Brevo SMTP behind an email-sender abstraction and keep all relay credentials in environment secrets.
 - Run one independent observability stack per VPS environment and preserve Smakosz dashboards, alerts and history during the staged migration.
 - The project follows the v2 standard profile: vps-web.
+- Migration target updated September 6: prebuilt GHCR digest in Coolify, Traefik/Tunnel routing and the shared deployment checklist; preserve databases and custom routes. This target update is not a new source/production audit.
 
 ## Polski
 
@@ -176,7 +177,7 @@ Mail delivery is blocked by an expired API key and should move behind an SMTP se
 
 **Wdrożenie · W toku · 50% · trudność 4/5 · 5–8 h**
 
-Application limits and forwarded-header handling exist, but distributed state and outer policies need verification.
+Application limits and forwarded-header handling exist, but distributed state and outer policies need verification. Target revised September 6: implement the delivery step through Coolify using the shared checklist, an immutable GHCR digest and Traefik/Tunnel; preserve data and custom routes. Production migration not verified in this update.
 
 #### Wdrożyć digests, readiness i bezpieczne blue-green
 
@@ -205,3 +206,4 @@ Prometheus, Grafana, renderer and Node Exporter are still coupled to the Smakosz
 - Użyć SMTP Brevo za abstrakcją nadawcy i trzymać wszystkie dane relayu w sekretach środowiska.
 - Utrzymywać jeden niezależny stack obserwowalności na środowisko VPS oraz zachować dashboardy, alerty i historię Smakosza podczas migracji etapowej.
 - Projekt podlega profilowi standardu v2: vps-web.
+- Cel migracji uaktualniony 6 września: digest GHCR w Coolify, routing Traefik/Tunnel i wspólna checklista; zachować bazy i custom routes. Zmiana celu nie jest nowym audytem źródła/produkcji.

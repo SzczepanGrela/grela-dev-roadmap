@@ -29,9 +29,9 @@ September 8–10 evidence: both migrated apps use exact trusted proxy peers and
 the tested public path preserves client identity. An operator-supplied
 Cloudflare screenshot also shows an active shared edge rule for exact
 `/api/move`, exact `/api/matches` and the `/api/export/` prefix: more than 20
-matching requests in 10 seconds causes a 10-second block. The screenshot did
-not show the counting characteristics, zone/ruleset scope or behavioral test,
-so the edge layer remains partial. Inventory still has one application
+matching requests per IP in 10 seconds causes a 10-second block. The
+screenshots did not show the zone/ruleset scope or a behavioral test, so the
+edge layer remains partial. Inventory still has one application
 fixed-window export limit of 30/minute and no queue; this does not implement the
 per-format target below. Record remaining work instead of marking the whole
 control complete. See [Coolify checklist](coolify-deployment-checklist.md).

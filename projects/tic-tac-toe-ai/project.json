@@ -157,7 +157,7 @@
       "hoursMax": 4,
       "daysMin": 0.25,
       "daysMax": 0.5,
-      "evidence": "Public health works through dedicated Tunnel/Traefik ingress. Runtime exact-peer configuration, real client-IP propagation and forged X-Forwarded-For rejection passed on September 8. Exact HTTPS redirect and scoped HSTS were externally observed September 9. An operator screenshot on September 10 showed an active first-position Cloudflare rule: over 20 matching requests in 10 seconds blocks move/match/export paths for 10 seconds; counting characteristics, effective scope, load behavior and final direct-origin readback remain."
+      "evidence": "Public health works through dedicated Tunnel/Traefik ingress. Runtime exact-peer configuration, real client-IP propagation and forged X-Forwarded-For rejection passed on September 8. Exact HTTPS redirect and scoped HSTS were externally observed September 9. Operator screenshots on September 10 showed active first-position Cloudflare rule grela-expensive-public-api: over 20 matching requests per IP in 10 seconds blocks move/match/export paths for 10 seconds; effective scope, load behavior and final direct-origin readback remain."
     },
     {
       "id": "immutable-deploy",
@@ -249,7 +249,7 @@
     "worktree": "Clean local worktree at the revision returned by the operator-supplied production health check; scope: delivery/configuration reconciliation.",
     "tests": "Successful Quality run verified through GitHub API; earlier backend/browser/training evidence remains historical. No new application tests were run for this documentation update.",
     "ci": "GitHub API September 6: Quality 33940262401 successful for f1a924b6b53d393c5e256bd4e2a727c5e16ed35b; active Protect main ruleset, no environment returned.",
-    "production": "September 5–10 evidence: public health returns eight agents ready at revision f1a924b6b53d393c5e256bd4e2a727c5e16ed35b from the immutable Coolify container. Runtime exact proxy peers were configured; an external request resolved to the actual client IP and a forged X-Forwarded-For value did not replace it. Cloudflare returns the exact HTTPS redirect and HSTS max-age 63072000. An operator screenshot shows an active 20 requests/10 seconds edge rule with a 10-second block for selected move/match/export paths; its counting characteristics and behavior are not yet verified."
+    "production": "September 5–10 evidence: public health returns eight agents ready at revision f1a924b6b53d393c5e256bd4e2a727c5e16ed35b from the immutable Coolify container. Runtime exact proxy peers were configured; an external request resolved to the actual client IP and a forged X-Forwarded-For value did not replace it. Cloudflare returns the exact HTTPS redirect and HSTS max-age 63072000. Operator screenshots show active rule grela-expensive-public-api with a 20 requests per IP/10 seconds edge budget and a 10-second block for selected move/match/export paths; its effective scope and behavior are not yet verified."
   },
   "media": {
     "screenshot": "assets/screenshots/tic-tac-toe-ai.png",
@@ -286,8 +286,8 @@
       "Operator-supplied active Cloudflare rate-limit expression and dashboard action screenshot, September 10"
     ],
     "notes": {
-      "en": "September 10 reconciliation adds the operator-observed active Cloudflare edge rule. Its counting characteristics, effective scope and behavioral acceptance remain unknown; proxy limits, remaining runtime fields, automatic CD and rollback tests remain incomplete. Percentages and hours are planning estimates, not measurements.",
-      "pl": "Uzgodnienie z 10 września dodaje aktywną regułę Cloudflare edge potwierdzoną przez operatora. Charakterystyki licznika, efektywny zakres i test zachowania pozostają nieznane; limity proxy, pozostałe pola runtime, automatyczne CD i rollback są niepełne. Procenty i godziny to estymacje, nie pomiary."
+      "en": "September 10 reconciliation adds the operator-observed active per-IP Cloudflare edge rule. Its effective scope and behavioral acceptance remain unknown; proxy limits, remaining runtime fields, automatic CD and rollback tests remain incomplete. Percentages and hours are planning estimates, not measurements.",
+      "pl": "Uzgodnienie z 10 września dodaje aktywną regułę Cloudflare edge per IP potwierdzoną przez operatora. Efektywny zakres i test zachowania pozostają nieznane; limity proxy, pozostałe pola runtime, automatyczne CD i rollback są niepełne. Procenty i godziny to estymacje, nie pomiary."
     }
   },
   "compliance": {
@@ -350,8 +350,8 @@
         "id": "abuse-protection",
         "status": "partial",
         "evidence": {
-          "en": "The weighted in-process limiter receives verified client identity. An active Cloudflare edge rule for move/match/export paths is shown with a 20/10-second threshold and 10-second block; its counting key, effective scope and behavior, proxy limits and shared state across overlapping replicas remain unverified.",
-          "pl": "Ważony limiter procesu otrzymuje zweryfikowane IP klienta. Pokazano aktywną regułę Cloudflare dla ścieżek ruchu/meczu/eksportu z progiem 20/10 s i blokadą 10 s; klucz licznika, efektywny zakres i zachowanie, limity proxy oraz wspólny stan nakładających się replik pozostają niezweryfikowane."
+          "en": "The weighted in-process limiter receives verified client identity. Active Cloudflare rule grela-expensive-public-api has a 20 requests per IP/10-second threshold and 10-second block for move/match/export paths; its effective scope and behavior, proxy limits and shared state across overlapping replicas remain unverified.",
+          "pl": "Ważony limiter procesu otrzymuje zweryfikowane IP klienta. Aktywna reguła Cloudflare grela-expensive-public-api ma próg 20 żądań per IP/10 s i blokadę 10 s dla ścieżek ruchu/meczu/eksportu; efektywny zakres i zachowanie, limity proxy oraz wspólny stan nakładających się replik pozostają niezweryfikowane."
         },
         "taskIds": [
           "edge-verification",

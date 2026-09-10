@@ -156,7 +156,7 @@
       "hoursMax": 5,
       "daysMin": 0.5,
       "daysMax": 0.75,
-      "evidence": "Public HTTPS works through the Tunnel/Traefik path. Exact HTTPS redirect, scoped HSTS and working Cloudflare asset cache were externally observed September 9. Exact-proxy source/CI tests and operator-confirmed runtime deployment passed. Operator screenshots on September 10 showed active first-position Cloudflare rule grela-expensive-public-api in the operator-declared grela.dev zone: over 20 matching requests per IP in 10 seconds blocks export paths for 10 seconds; load behavior, proxy and cost-specific bounds remain."
+      "evidence": "Public HTTPS works through the Tunnel/Traefik path. Exact HTTPS redirect, scoped HSTS and working Cloudflare asset cache were externally observed September 9. Exact-proxy source/CI tests and operator-confirmed runtime deployment passed. Screenshots showed active first-position Cloudflare rule grela-expensive-public-api with a 20/IP/10-second threshold and 10-second block; the operator then scoped it to exact POST host/path pairs in grela.dev. The Free-plan one-rule quota makes the combined edge budget intentional; load behavior, proxy and cost-specific bounds remain."
     },
     {
       "id": "immutable-deploy",
@@ -265,7 +265,7 @@
     "worktree": "Commit f1c14ebb was made from a clean main baseline with only Program.cs and the forwarded-header integration tests changed.",
     "tests": "Local Release tests passed: one unit and four integration tests. New cases cover two trusted proxy hops, independent client partitions and rejection of spoofed forwarding from an unknown peer.",
     "ci": "GitHub Quality 34241221870 succeeded for f1c14ebb6dcbd5b5b04274558e661e573e1e42d9: restore/build/tests, image build and push, fixable HIGH/CRITICAL Trivy gate, SBOM/provenance and attestation passed.",
-    "production": "On September 9 the operator reported a successful Coolify redeploy of digest 0d112419 with runtime-only exact proxy configuration; selective image, environment, health and public revision checks all had the expected results. External checks independently observed the exact HTTPS redirect, HSTS max-age 63072000 and a Cloudflare MISS-to-HIT transition for the stylesheet. On September 10 operator screenshots showed active rule grela-expensive-public-api with a 20 requests per IP/10 seconds edge budget and a 10-second block covering `/api/export/`; the operator declares its zone as grela.dev, while behavioral acceptance is not yet verified. The runtime command output was not pasted, so those container settings remain operator-declared rather than a fresh host audit."
+    "production": "On September 9 the operator reported a successful Coolify redeploy of digest 0d112419 with runtime-only exact proxy configuration; selective image, environment, health and public revision checks all had the expected results. External checks independently observed the exact HTTPS redirect, HSTS max-age 63072000 and a Cloudflare MISS-to-HIT transition for the stylesheet. On September 10 screenshots showed active rule grela-expensive-public-api with a 20 requests per IP/10 seconds edge budget and 10-second block. The operator reports its current exact-host/POST expression in grela.dev and a Free-plan quota of one custom rate-limit rule; behavioral acceptance is not yet verified. The runtime command output was not pasted, so those container settings remain operator-declared rather than a fresh host audit."
   },
   "media": {
     "screenshot": "assets/screenshots/inventory-generator.png",
@@ -307,8 +307,8 @@
       "Operator-supplied active Cloudflare rate-limit expression and dashboard action screenshot, September 10"
     ],
     "notes": {
-      "en": "September 10 reconciliation adds the operator-observed active per-IP Cloudflare export edge rule in the operator-declared grela.dev zone. Behavioral acceptance remains unknown; per-format/concurrency safeguards, proxy limits, automatic CD and rollback remain incomplete. Percentages and hours are planning estimates, not measurements.",
-      "pl": "Uzgodnienie z 10 września dodaje aktywną regułę Cloudflare edge per IP dla eksportu w zadeklarowanej przez operatora strefie grela.dev. Test zachowania pozostaje nieznany; limity per format/współbieżności, proxy, automatyczne CD i rollback są niepełne. Procenty i godziny to estymacje, nie pomiary."
+      "en": "September 10 reconciliation adds the active per-IP Cloudflare export edge rule and the operator-declared exact-host/POST update. The Free plan permits one shared rule. Behavioral acceptance remains unknown; per-format/concurrency safeguards, proxy limits, automatic CD and rollback remain incomplete. Percentages and hours are planning estimates, not measurements.",
+      "pl": "Uzgodnienie z 10 września dodaje aktywną regułę Cloudflare edge per IP dla eksportu oraz zadeklarowaną aktualizację exact-host/POST. Darmowy plan pozwala na jedną wspólną regułę. Test zachowania pozostaje nieznany; limity per format/współbieżności, proxy, automatyczne CD i rollback są niepełne. Procenty i godziny to estymacje, nie pomiary."
     }
   },
   "compliance": {
@@ -373,8 +373,8 @@
         "id": "abuse-protection",
         "status": "partial",
         "evidence": {
-          "en": "The 30/min application export limiter uses identity reconstructed only through exact known proxies. Active Cloudflare rule grela-expensive-public-api in the operator-declared grela.dev zone gives `/api/export/` a 20 requests per IP/10-second threshold and 10-second block; behavior plus format/concurrency and proxy limits remain unverified.",
-          "pl": "Aplikacyjny limiter eksportu 30/min używa tożsamości odtworzonej tylko przez dokładnie znane proxy. Aktywna reguła Cloudflare grela-expensive-public-api w zadeklarowanej strefie grela.dev daje `/api/export/` próg 20 żądań per IP/10 s i blokadę 10 s; zachowanie oraz limity formatu/współbieżności i proxy pozostają niezweryfikowane."
+          "en": "The 30/min application export limiter uses identity reconstructed only through exact known proxies. Active Cloudflare rule grela-expensive-public-api gives the exact Inventory POST export route a 20 requests per IP/10-second threshold and 10-second block under the operator-declared current expression. The Free-plan one-rule quota makes the shared edge budget intentional; behavior plus format/concurrency and proxy limits remain unverified.",
+          "pl": "Aplikacyjny limiter eksportu 30/min używa tożsamości odtworzonej tylko przez dokładnie znane proxy. Aktywna reguła Cloudflare grela-expensive-public-api daje dokładnej trasie POST eksportu Inventory próg 20 żądań per IP/10 s i blokadę 10 s według zadeklarowanego bieżącego wyrażenia. Limit jednej reguły w darmowym planie uzasadnia wspólny budżet edge; zachowanie oraz limity formatu/współbieżności i proxy pozostają niezweryfikowane."
         },
         "taskIds": [
           "edge-and-limits"

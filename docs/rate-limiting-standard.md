@@ -27,12 +27,13 @@ ports are closed. Earlier passing NPM/CIDR tests do not prove the new path.
 
 September 8–10 evidence: both migrated apps use exact trusted proxy peers and
 the tested public path preserves client identity. An operator-supplied
-Cloudflare screenshot also shows an active shared edge rule for exact
-`/api/move`, exact `/api/matches` and the `/api/export/` prefix: more than 20
-matching requests per IP in 10 seconds causes a 10-second block. The
-operator subsequently declared the rule's zone to be `grela.dev`; no
-behavioral test was supplied, so the edge layer remains partial. Inventory
-still has one application
+Cloudflare screenshots also show one active shared edge rule with a threshold
+of 20 matching requests per IP in 10 seconds and a 10-second block. The
+operator subsequently declared the current expression to use exact hostnames,
+POST method and the move/match/export paths in the `grela.dev` zone. The Free
+plan exposes one custom rate-limit rule, so operation-specific differences
+remain application responsibilities. No behavioral test was supplied, so the
+edge layer remains partial. Inventory still has one application
 fixed-window export limit of 30/minute and no queue; this does not implement the
 per-format target below. Record remaining work instead of marking the whole
 control complete. See [Coolify checklist](coolify-deployment-checklist.md).

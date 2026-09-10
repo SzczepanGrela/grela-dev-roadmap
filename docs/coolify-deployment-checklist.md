@@ -1,6 +1,6 @@
 # Checklista wdrożenia przez Coolify
 
-Wersja odniesienia: 4.3.14; aktualizacja 2026-09-09. To wymagania i wskazówki,
+Wersja odniesienia: 4.3.14; aktualizacja 2026-09-10. To wymagania i wskazówki,
 nie deklaracja, że każdy projekt już je spełnia. Konkretne dane VPS, UUID,
 adresy zarządzania i sekrety pozostają w prywatnej dokumentacji infrastruktury.
 Wyniki obu migracji pochodzą z dostarczonych przez operatora logów/inspect;
@@ -47,6 +47,12 @@ nie stanowią ponownego audytu całego serwera.
   sieci; `ports` tworzy mapowanie na hosta i nie jest do tego potrzebne.
 - [ ] Plik Compose może uruchamiać i łączyć gotowy obraz; sekcja `build` nie jest
   obowiązkowa. Użycie Compose nie oznacza automatycznie budowania obrazu.
+- [ ] Dla usługi Compose wybierać `Use the stack network only`, jeśli nie musi
+  ona komunikować się przez współdzieloną sieć destination. Ta opcja wyłącza
+  dodatkowe podłączenie do predefined network, ale nie usuwa sieci zdefiniowanej
+  jawnie w Compose. Dedykowana zewnętrzna sieć connector–proxy może więc istnieć
+  równolegle z izolowaną siecią stosu. Nie włączać wspólnej sieci platformy
+  wyłącznie dlatego, że zasoby są w tym samym projekcie lub destination.
 - [ ] Zweryfikować DNS dla trasy; nie zakładać, że stary A/CNAME został
   zastąpiony. Nie tworzyć prywatnych CIDR/Hostname routes zamiast trasy publicznej.
 - [ ] Dla aplikacji pod `/` wyłączyć strip prefixes. Dla custom locations
@@ -101,6 +107,18 @@ nie stanowią ponownego audytu całego serwera.
   `TRUSTED_PROXY_IPS` dla jawnie skonfigurowanego ASP.NET. Oddzielne rekordy
   Production/Preview w panelu są zakresami środowisk, nie dwiema kopiami w
   pojedynczym kontenerze.
+- [ ] Zewnętrzny connector/proxy także wymaga limitów CPU, RAM i PID dobranych
+  do pomiarów oraz healthchecka sprawdzającego gotowość, nie tylko uruchomienie
+  binarki. Jeśli obraz udostępnia natywny probe, użyć go zamiast doinstalowywać
+  `curl` do minimalistycznego obrazu.
+- [ ] Dla cloudflared przypiąć port metryk do loopback kontenera i sprawdzać
+  `/ready` przez `cloudflared tunnel --metrics <loopback:port> ready`. Ten probe
+  potwierdza przynajmniej jedno połączenie z Cloudflare Edge, ale nie trasę do
+  aplikacji; po zmianie nadal wykonać publiczne smoke testy wszystkich originów
+  i przejrzeć logi błędów połączenia.
+- [ ] Ostrzeżenia transportu, np. o buforze UDP QUIC, oceniać na podstawie
+  aktywnych połączeń i pomiarów. Nie zmieniać globalnych sysctl tylko po to, aby
+  ukryć komunikat w logu.
 
 ## Znany błąd parsera — Coolify 4.3.14
 
@@ -131,11 +149,14 @@ SYS_ADMIN jako obejścia i nie hot-patchować efemerycznego kontenera.
 - [ ] Po migracji usuwać tylko zweryfikowane legacy elementy danej aplikacji;
   potwierdzić dane/wolumeny i wycofać nieużywane zewnętrzne uprawnienia.
 
-Stan na podstawie dowodów z 5–9 września: TTT i Inventory mają działające
+Stan na podstawie dowodów z 5–10 września: TTT i Inventory mają działające
 ręczne wdrożenia po digestach i pozytywne healthchecki. TTT przeszedł test
 real-IP i spoofingu; Inventory ma testy dokładnych proxy/niezaufanego peera,
 zielone CI i operator-potwierdzony runtime. Dla obu zewnętrznie potwierdzono
 redirect do HTTPS i dokładnie ograniczony HSTS; cache zasobu Inventory zwrócił
 MISS, a następnie HIT. Automatyczne CD, pełne limity
-proxy/edge, wspólny stan limitera i testy rollbacku pozostają zadaniami. Dla
-każdego brakującego odczytu zapisujemy „niezweryfikowane”.
+proxy/edge, wspólny stan limitera i testy rollbacku pozostają zadaniami.
+Wspólny connector ma potwierdzony limit zasobów, natywny readiness, cztery
+połączenia edge i pozytywne publiczne smoke testy; nie zastępuje to testu
+niezdrowego kandydata aplikacji. Dla każdego brakującego odczytu zapisujemy
+„niezweryfikowane”.

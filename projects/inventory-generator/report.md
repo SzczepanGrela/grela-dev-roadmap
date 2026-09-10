@@ -12,14 +12,14 @@ Forecast / prognoza: **2026-09-10–2026-09-14**, 20–36 h, medium confidence /
 
 Local-first inventory editor and server-side DOCX, CSV and HTML generator.
 
-September 10 reconciliation adds the active per-IP Cloudflare export edge rule and the operator-declared exact-host/POST update. The Free plan permits one shared rule. Behavioral acceptance remains unknown; per-format/concurrency safeguards, proxy limits, automatic CD and rollback remain incomplete. Percentages and hours are planning estimates, not measurements.
+September 10 reconciliation adds the active per-IP Cloudflare export edge rule, the operator-declared exact-host/POST update, and observed shared-connector resource/readiness acceptance. The Free plan permits one shared rule. Behavioral acceptance remains unknown; per-format/concurrency safeguards, proxy limits, automatic CD and rollback remain incomplete. Percentages and hours are planning estimates, not measurements.
 
 ### Audit evidence
 
 - **Repozytorium:** `SzczepanGrela/inventory-generator` @ `f1c14ebb6dcbd5b5b04274558e661e573e1e42d9`
 - **Source state:** Commit f1c14ebb was created from a clean main baseline; only the forwarded-header implementation and its integration tests changed, and local plus CI tests passed.
 - **Tests and CI:** GitHub Quality 34241221870 succeeded for f1c14ebb6dcbd5b5b04274558e661e573e1e42d9: restore/build/tests, image build and push, fixable HIGH/CRITICAL Trivy gate, SBOM/provenance and attestation passed.
-- **Production:** On September 9 the operator reported a successful Coolify redeploy of digest 0d112419 with runtime-only exact proxy configuration; selective image, environment, health and public revision checks all had the expected results. External checks independently observed the exact HTTPS redirect, HSTS max-age 63072000 and a Cloudflare MISS-to-HIT transition for the stylesheet. On September 10 screenshots showed active rule grela-expensive-public-api with a 20 requests per IP/10 seconds edge budget and 10-second block. The operator reports its current exact-host/POST expression in grela.dev and a Free-plan quota of one custom rate-limit rule; behavioral acceptance is not yet verified. The runtime command output was not pasted, so those container settings remain operator-declared rather than a fresh host audit.
+- **Production:** On September 9 the operator reported a successful Coolify redeploy of digest 0d112419 with runtime-only exact proxy configuration; selective image, environment, health and public revision checks all had the expected results. External checks independently observed the exact HTTPS redirect, HSTS max-age 63072000 and a Cloudflare MISS-to-HIT transition for the stylesheet. On September 10 screenshots showed active rule grela-expensive-public-api with a 20 requests per IP/10 seconds edge budget and 10-second block. The operator reports its current exact-host/POST expression in grela.dev and a Free-plan quota of one custom rate-limit rule; behavioral acceptance is not yet verified. The runtime command output was not pasted, so those application container settings remain operator-declared rather than a fresh host audit. The shared cloudflared connector has observed CPU/RAM/PID limits, native edge-readiness health, four registered connections and a successful post-restart public origin check.
 
 ### v2 standard compliance
 
@@ -64,7 +64,7 @@ September 6 GitHub API returned no rulesets or environments. Required pre-merge 
 
 **Documentation · Done · 100% · difficulty 2/5 · 0–0 h**
 
-September 9: private ingress evidence, the public Coolify checklist and normalized project status were reconciled; unverified runtime controls remain explicit.
+September 10: private connector/runtime evidence, the public Coolify checklist and normalized project status were reconciled; unverified controls remain explicit.
 
 #### Enable DNS, TLS and three-layer limits
 
@@ -122,14 +122,14 @@ A public health response does not verify the favicon, licensing, metadata, acces
 
 Lokalny edytor inwentarza z serwerowym generowaniem DOCX, CSV i HTML.
 
-Uzgodnienie z 10 września dodaje aktywną regułę Cloudflare edge per IP dla eksportu oraz zadeklarowaną aktualizację exact-host/POST. Darmowy plan pozwala na jedną wspólną regułę. Test zachowania pozostaje nieznany; limity per format/współbieżności, proxy, automatyczne CD i rollback są niepełne. Procenty i godziny to estymacje, nie pomiary.
+Uzgodnienie z 10 września dodaje aktywną regułę Cloudflare edge per IP dla eksportu, zadeklarowaną aktualizację exact-host/POST oraz potwierdzony odbiór zasobów/readiness wspólnego connectora. Darmowy plan pozwala na jedną wspólną regułę. Test zachowania pozostaje nieznany; limity per format/współbieżności, proxy, automatyczne CD i rollback są niepełne. Procenty i godziny to estymacje, nie pomiary.
 
 ### Dowody audytu
 
 - **Repozytorium:** `SzczepanGrela/inventory-generator` @ `f1c14ebb6dcbd5b5b04274558e661e573e1e42d9`
 - **Stan źródła:** Commit f1c14ebb was created from a clean main baseline; only the forwarded-header implementation and its integration tests changed, and local plus CI tests passed.
 - **Testy i CI:** GitHub Quality 34241221870 succeeded for f1c14ebb6dcbd5b5b04274558e661e573e1e42d9: restore/build/tests, image build and push, fixable HIGH/CRITICAL Trivy gate, SBOM/provenance and attestation passed.
-- **Produkcja:** On September 9 the operator reported a successful Coolify redeploy of digest 0d112419 with runtime-only exact proxy configuration; selective image, environment, health and public revision checks all had the expected results. External checks independently observed the exact HTTPS redirect, HSTS max-age 63072000 and a Cloudflare MISS-to-HIT transition for the stylesheet. On September 10 screenshots showed active rule grela-expensive-public-api with a 20 requests per IP/10 seconds edge budget and 10-second block. The operator reports its current exact-host/POST expression in grela.dev and a Free-plan quota of one custom rate-limit rule; behavioral acceptance is not yet verified. The runtime command output was not pasted, so those container settings remain operator-declared rather than a fresh host audit.
+- **Produkcja:** On September 9 the operator reported a successful Coolify redeploy of digest 0d112419 with runtime-only exact proxy configuration; selective image, environment, health and public revision checks all had the expected results. External checks independently observed the exact HTTPS redirect, HSTS max-age 63072000 and a Cloudflare MISS-to-HIT transition for the stylesheet. On September 10 screenshots showed active rule grela-expensive-public-api with a 20 requests per IP/10 seconds edge budget and 10-second block. The operator reports its current exact-host/POST expression in grela.dev and a Free-plan quota of one custom rate-limit rule; behavioral acceptance is not yet verified. The runtime command output was not pasted, so those application container settings remain operator-declared rather than a fresh host audit. The shared cloudflared connector has observed CPU/RAM/PID limits, native edge-readiness health, four registered connections and a successful post-restart public origin check.
 
 ### Zgodność ze standardem v2
 
@@ -174,7 +174,7 @@ September 6 GitHub API returned no rulesets or environments. Required pre-merge 
 
 **Dokumentacja · Gotowe · 100% · trudność 2/5 · 0–0 h**
 
-September 9: private ingress evidence, the public Coolify checklist and normalized project status were reconciled; unverified runtime controls remain explicit.
+September 10: private connector/runtime evidence, the public Coolify checklist and normalized project status were reconciled; unverified controls remain explicit.
 
 #### Uruchomić DNS, TLS i trzy warstwy limitów
 

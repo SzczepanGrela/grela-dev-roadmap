@@ -12,14 +12,14 @@ Forecast / prognoza: **2026-10-08–2026-11-02**, 17–30 h, medium confidence /
 
 Interactive Tic-Tac-Toe laboratory for classic, reinforcement-learning and ONNX agents.
 
-September 10 reconciliation adds the active per-IP Cloudflare edge rule and the operator-declared exact-host/POST update. The Free plan permits one shared rule. Behavioral acceptance remains unknown; proxy limits, remaining runtime fields, automatic CD and rollback tests remain incomplete. Percentages and hours are planning estimates, not measurements.
+September 10 reconciliation adds the active per-IP Cloudflare edge rule, the operator-declared exact-host/POST update, and observed shared-connector resource/readiness acceptance. The Free plan permits one shared rule. Behavioral acceptance remains unknown; proxy limits, remaining application runtime fields, automatic CD and rollback tests remain incomplete. Percentages and hours are planning estimates, not measurements.
 
 ### Audit evidence
 
 - **Repozytorium:** `SzczepanGrela/tic-tac-toe-ai` @ `f1a924b6b53d393c5e256bd4e2a727c5e16ed35b`
 - **Source state:** Clean local worktree at the revision returned by the operator-supplied production health check; scope: delivery/configuration reconciliation.
 - **Tests and CI:** GitHub API September 6: Quality 33940262401 successful for f1a924b6b53d393c5e256bd4e2a727c5e16ed35b; active Protect main ruleset, no environment returned.
-- **Production:** September 5–10 evidence: public health returns eight agents ready at revision f1a924b6b53d393c5e256bd4e2a727c5e16ed35b from the immutable Coolify container. Runtime exact proxy peers were configured; an external request resolved to the actual client IP and a forged X-Forwarded-For value did not replace it. Cloudflare returns the exact HTTPS redirect and HSTS max-age 63072000. Screenshots show active rule grela-expensive-public-api with a 20 requests per IP/10 seconds edge budget and 10-second block. The operator reports its current exact-host/POST expression in grela.dev and a Free-plan quota of one custom rate-limit rule; behavioral acceptance is not yet verified.
+- **Production:** September 5–10 evidence: public health returns eight agents ready at revision f1a924b6b53d393c5e256bd4e2a727c5e16ed35b from the immutable Coolify container. Runtime exact proxy peers were configured; an external request resolved to the actual client IP and a forged X-Forwarded-For value did not replace it. Cloudflare returns the exact HTTPS redirect and HSTS max-age 63072000. Screenshots show active rule grela-expensive-public-api with a 20 requests per IP/10 seconds edge budget and 10-second block. The operator reports its current exact-host/POST expression in grela.dev and a Free-plan quota of one custom rate-limit rule; behavioral acceptance is not yet verified. The shared cloudflared connector has observed CPU/RAM/PID limits, native edge-readiness health, four registered connections and a successful post-restart public origin check.
 
 ### v2 standard compliance
 
@@ -64,7 +64,7 @@ September 6 API confirms active Protect main ruleset; no GitHub Environment retu
 
 **Documentation · Done · 100% · difficulty 2/5 · 0–0 h**
 
-September 6: private infrastructure runbook, public Coolify checklist and normalized project status reconciled with dated evidence; unverified controls are explicitly listed.
+September 10: private connector/runtime evidence, the public Coolify checklist and normalized project status were reconciled; unverified controls remain explicit.
 
 #### Verify Tunnel/Traefik identity and edge controls
 
@@ -115,14 +115,14 @@ Operator inspect confirms non-root, cap-drop ALL, init, 1 CPU and 512 MiB. Cooli
 
 Interaktywne laboratorium kółka i krzyżyka dla agentów klasycznych, RL i ONNX.
 
-Uzgodnienie z 10 września dodaje aktywną regułę Cloudflare edge per IP oraz zadeklarowaną aktualizację exact-host/POST. Darmowy plan pozwala na jedną wspólną regułę. Test zachowania pozostaje nieznany; limity proxy, pozostałe pola runtime, automatyczne CD i rollback są niepełne. Procenty i godziny to estymacje, nie pomiary.
+Uzgodnienie z 10 września dodaje aktywną regułę Cloudflare edge per IP, zadeklarowaną aktualizację exact-host/POST oraz potwierdzony odbiór zasobów/readiness wspólnego connectora. Darmowy plan pozwala na jedną wspólną regułę. Test zachowania pozostaje nieznany; limity proxy, pozostałe pola runtime aplikacji, automatyczne CD i rollback są niepełne. Procenty i godziny to estymacje, nie pomiary.
 
 ### Dowody audytu
 
 - **Repozytorium:** `SzczepanGrela/tic-tac-toe-ai` @ `f1a924b6b53d393c5e256bd4e2a727c5e16ed35b`
 - **Stan źródła:** Clean local worktree at the revision returned by the operator-supplied production health check; scope: delivery/configuration reconciliation.
 - **Testy i CI:** GitHub API September 6: Quality 33940262401 successful for f1a924b6b53d393c5e256bd4e2a727c5e16ed35b; active Protect main ruleset, no environment returned.
-- **Produkcja:** September 5–10 evidence: public health returns eight agents ready at revision f1a924b6b53d393c5e256bd4e2a727c5e16ed35b from the immutable Coolify container. Runtime exact proxy peers were configured; an external request resolved to the actual client IP and a forged X-Forwarded-For value did not replace it. Cloudflare returns the exact HTTPS redirect and HSTS max-age 63072000. Screenshots show active rule grela-expensive-public-api with a 20 requests per IP/10 seconds edge budget and 10-second block. The operator reports its current exact-host/POST expression in grela.dev and a Free-plan quota of one custom rate-limit rule; behavioral acceptance is not yet verified.
+- **Produkcja:** September 5–10 evidence: public health returns eight agents ready at revision f1a924b6b53d393c5e256bd4e2a727c5e16ed35b from the immutable Coolify container. Runtime exact proxy peers were configured; an external request resolved to the actual client IP and a forged X-Forwarded-For value did not replace it. Cloudflare returns the exact HTTPS redirect and HSTS max-age 63072000. Screenshots show active rule grela-expensive-public-api with a 20 requests per IP/10 seconds edge budget and 10-second block. The operator reports its current exact-host/POST expression in grela.dev and a Free-plan quota of one custom rate-limit rule; behavioral acceptance is not yet verified. The shared cloudflared connector has observed CPU/RAM/PID limits, native edge-readiness health, four registered connections and a successful post-restart public origin check.
 
 ### Zgodność ze standardem v2
 
@@ -167,7 +167,7 @@ September 6 API confirms active Protect main ruleset; no GitHub Environment retu
 
 **Dokumentacja · Gotowe · 100% · trudność 2/5 · 0–0 h**
 
-September 6: private infrastructure runbook, public Coolify checklist and normalized project status reconciled with dated evidence; unverified controls are explicitly listed.
+September 10: private connector/runtime evidence, the public Coolify checklist and normalized project status were reconciled; unverified controls remain explicit.
 
 #### Zweryfikować tożsamość i ochronę przez Tunnel/Traefik
 

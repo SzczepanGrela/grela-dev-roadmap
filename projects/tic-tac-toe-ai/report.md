@@ -12,14 +12,14 @@ Forecast / prognoza: **2026-10-08–2026-11-02**, 17–30 h, medium confidence /
 
 Interactive Tic-Tac-Toe laboratory for classic, reinforcement-learning and ONNX agents.
 
-September 10 reconciliation adds the operator-observed active per-IP Cloudflare edge rule. Its effective scope and behavioral acceptance remain unknown; proxy limits, remaining runtime fields, automatic CD and rollback tests remain incomplete. Percentages and hours are planning estimates, not measurements.
+September 10 reconciliation adds the operator-observed active per-IP Cloudflare edge rule in the operator-declared grela.dev zone. Behavioral acceptance remains unknown; proxy limits, remaining runtime fields, automatic CD and rollback tests remain incomplete. Percentages and hours are planning estimates, not measurements.
 
 ### Audit evidence
 
 - **Repozytorium:** `SzczepanGrela/tic-tac-toe-ai` @ `f1a924b6b53d393c5e256bd4e2a727c5e16ed35b`
 - **Source state:** Clean local worktree at the revision returned by the operator-supplied production health check; scope: delivery/configuration reconciliation.
 - **Tests and CI:** GitHub API September 6: Quality 33940262401 successful for f1a924b6b53d393c5e256bd4e2a727c5e16ed35b; active Protect main ruleset, no environment returned.
-- **Production:** September 5–10 evidence: public health returns eight agents ready at revision f1a924b6b53d393c5e256bd4e2a727c5e16ed35b from the immutable Coolify container. Runtime exact proxy peers were configured; an external request resolved to the actual client IP and a forged X-Forwarded-For value did not replace it. Cloudflare returns the exact HTTPS redirect and HSTS max-age 63072000. Operator screenshots show active rule grela-expensive-public-api with a 20 requests per IP/10 seconds edge budget and a 10-second block for selected move/match/export paths; its effective scope and behavior are not yet verified.
+- **Production:** September 5–10 evidence: public health returns eight agents ready at revision f1a924b6b53d393c5e256bd4e2a727c5e16ed35b from the immutable Coolify container. Runtime exact proxy peers were configured; an external request resolved to the actual client IP and a forged X-Forwarded-For value did not replace it. Cloudflare returns the exact HTTPS redirect and HSTS max-age 63072000. Operator screenshots show active rule grela-expensive-public-api with a 20 requests per IP/10 seconds edge budget and a 10-second block for selected move/match/export paths; the operator declares its zone as grela.dev, while behavioral acceptance is not yet verified.
 
 ### v2 standard compliance
 
@@ -32,7 +32,7 @@ Profile: **VPS web application**. Statuses reflect only evidence available on th
 | Immutable release | Complete | CI source and operator production evidence identify the full revision and immutable GHCR digest; manual deployment is proven. |
 | Deployment access | Partial | The legacy host account/launcher were removed. Private platform access exists; automated deployment credentials and external legacy credential revocation remain unverified. |
 | Network, TLS and client identity | Partial | Public HTTPS, exact redirect, scoped HSTS, exact trusted peers, canonical client IP and forged-header rejection passed through the dedicated Tunnel/Traefik path; final direct-origin readback remains operator-declared. |
-| Abuse protection | Partial | The weighted in-process limiter receives verified client identity. Active Cloudflare rule grela-expensive-public-api has a 20 requests per IP/10-second threshold and 10-second block for move/match/export paths; its effective scope and behavior, proxy limits and shared state across overlapping replicas remain unverified. |
+| Abuse protection | Partial | The weighted in-process limiter receives verified client identity. Active Cloudflare rule grela-expensive-public-api in the operator-declared grela.dev zone has a 20 requests per IP/10-second threshold and 10-second block for move/match/export paths; behavior, proxy limits and shared state across overlapping replicas remain unverified. |
 | Runtime safety | Partial | Non-root, capability drop, init and CPU/RAM limits observed; parser exception and remaining effective controls documented. |
 | Readiness and preflight | Partial | Image HEALTHCHECK and positive internal/public readiness are observed; candidate failure and critical-path preflight still need verification. |
 | Atomic promotion and rollback | Partial | Coolify deployment succeeded; no evidence of tested blue-green or automatic recovery after public smoke failure. |
@@ -70,7 +70,7 @@ September 6: private infrastructure runbook, public Coolify checklist and normal
 
 **Delivery · In progress · 80% · difficulty 3/5 · 2–4 h**
 
-Public health works through dedicated Tunnel/Traefik ingress. Runtime exact-peer configuration, real client-IP propagation and forged X-Forwarded-For rejection passed on September 8. Exact HTTPS redirect and scoped HSTS were externally observed September 9. Operator screenshots on September 10 showed active first-position Cloudflare rule grela-expensive-public-api: over 20 matching requests per IP in 10 seconds blocks move/match/export paths for 10 seconds; effective scope, load behavior and final direct-origin readback remain.
+Public health works through dedicated Tunnel/Traefik ingress. Runtime exact-peer configuration, real client-IP propagation and forged X-Forwarded-For rejection passed on September 8. Exact HTTPS redirect and scoped HSTS were externally observed September 9. Operator screenshots on September 10 showed active first-position Cloudflare rule grela-expensive-public-api in the operator-declared grela.dev zone: over 20 matching requests per IP in 10 seconds blocks move/match/export paths for 10 seconds; load behavior and final direct-origin readback remain.
 
 #### Build once in CI and deploy a GHCR digest
 
@@ -115,14 +115,14 @@ Operator inspect confirms non-root, cap-drop ALL, init, 1 CPU and 512 MiB. Cooli
 
 Interaktywne laboratorium kółka i krzyżyka dla agentów klasycznych, RL i ONNX.
 
-Uzgodnienie z 10 września dodaje aktywną regułę Cloudflare edge per IP potwierdzoną przez operatora. Efektywny zakres i test zachowania pozostają nieznane; limity proxy, pozostałe pola runtime, automatyczne CD i rollback są niepełne. Procenty i godziny to estymacje, nie pomiary.
+Uzgodnienie z 10 września dodaje aktywną regułę Cloudflare edge per IP w zadeklarowanej przez operatora strefie grela.dev. Test zachowania pozostaje nieznany; limity proxy, pozostałe pola runtime, automatyczne CD i rollback są niepełne. Procenty i godziny to estymacje, nie pomiary.
 
 ### Dowody audytu
 
 - **Repozytorium:** `SzczepanGrela/tic-tac-toe-ai` @ `f1a924b6b53d393c5e256bd4e2a727c5e16ed35b`
 - **Stan źródła:** Clean local worktree at the revision returned by the operator-supplied production health check; scope: delivery/configuration reconciliation.
 - **Testy i CI:** GitHub API September 6: Quality 33940262401 successful for f1a924b6b53d393c5e256bd4e2a727c5e16ed35b; active Protect main ruleset, no environment returned.
-- **Produkcja:** September 5–10 evidence: public health returns eight agents ready at revision f1a924b6b53d393c5e256bd4e2a727c5e16ed35b from the immutable Coolify container. Runtime exact proxy peers were configured; an external request resolved to the actual client IP and a forged X-Forwarded-For value did not replace it. Cloudflare returns the exact HTTPS redirect and HSTS max-age 63072000. Operator screenshots show active rule grela-expensive-public-api with a 20 requests per IP/10 seconds edge budget and a 10-second block for selected move/match/export paths; its effective scope and behavior are not yet verified.
+- **Produkcja:** September 5–10 evidence: public health returns eight agents ready at revision f1a924b6b53d393c5e256bd4e2a727c5e16ed35b from the immutable Coolify container. Runtime exact proxy peers were configured; an external request resolved to the actual client IP and a forged X-Forwarded-For value did not replace it. Cloudflare returns the exact HTTPS redirect and HSTS max-age 63072000. Operator screenshots show active rule grela-expensive-public-api with a 20 requests per IP/10 seconds edge budget and a 10-second block for selected move/match/export paths; the operator declares its zone as grela.dev, while behavioral acceptance is not yet verified.
 
 ### Zgodność ze standardem v2
 
@@ -135,7 +135,7 @@ Profil: **Aplikacja webowa na VPS**. Statusy odzwierciedlają wyłącznie dowody
 | Niezmienne wydanie | Gotowe | Źródło CI i wyniki produkcji od operatora wskazują pełną rewizję oraz digest GHCR; wdrożenie ręczne potwierdzone. |
 | Dostęp wdrożeniowy | Częściowe | Usunięto stare konto/launcher. Istnieje prywatny dostęp platformy; poświadczenia automatycznego CD i wycofanie starych uprawnień zewnętrznych wymagają weryfikacji. |
 | Sieć, TLS i tożsamość klienta | Częściowe | Publiczny HTTPS, dokładne przekierowanie, ograniczony HSTS, dokładne zaufane proxy, właściwe IP klienta i odrzucenie fałszywego nagłówka przeszły przez dedykowaną ścieżkę Tunnel/Traefik; końcowy odczyt originu pozostaje deklaracją operatora. |
-| Ochrona przed nadużyciami | Częściowe | Ważony limiter procesu otrzymuje zweryfikowane IP klienta. Aktywna reguła Cloudflare grela-expensive-public-api ma próg 20 żądań per IP/10 s i blokadę 10 s dla ścieżek ruchu/meczu/eksportu; efektywny zakres i zachowanie, limity proxy oraz wspólny stan nakładających się replik pozostają niezweryfikowane. |
+| Ochrona przed nadużyciami | Częściowe | Ważony limiter procesu otrzymuje zweryfikowane IP klienta. Aktywna reguła Cloudflare grela-expensive-public-api w zadeklarowanej strefie grela.dev ma próg 20 żądań per IP/10 s i blokadę 10 s dla ścieżek ruchu/meczu/eksportu; zachowanie, limity proxy oraz wspólny stan nakładających się replik pozostają niezweryfikowane. |
 | Bezpieczeństwo runtime | Częściowe | Potwierdzone non-root, cap-drop, init i CPU/RAM; zapisano wyjątek parsera i brakujące odczyty. |
 | Readiness i preflight | Częściowe | Potwierdzone HEALTHCHECK obrazu oraz wewnętrzny/publiczny readiness; awaria kandydata i preflight krytycznych ścieżek wymagają weryfikacji. |
 | Atomowa promocja i rollback | Częściowe | Deployment Coolify przeszedł; brak dowodu przetestowanego blue-green lub automatycznego rollbacku po błędzie publicznego smoke. |
@@ -173,7 +173,7 @@ September 6: private infrastructure runbook, public Coolify checklist and normal
 
 **Wdrożenie · W toku · 80% · trudność 3/5 · 2–4 h**
 
-Public health works through dedicated Tunnel/Traefik ingress. Runtime exact-peer configuration, real client-IP propagation and forged X-Forwarded-For rejection passed on September 8. Exact HTTPS redirect and scoped HSTS were externally observed September 9. Operator screenshots on September 10 showed active first-position Cloudflare rule grela-expensive-public-api: over 20 matching requests per IP in 10 seconds blocks move/match/export paths for 10 seconds; effective scope, load behavior and final direct-origin readback remain.
+Public health works through dedicated Tunnel/Traefik ingress. Runtime exact-peer configuration, real client-IP propagation and forged X-Forwarded-For rejection passed on September 8. Exact HTTPS redirect and scoped HSTS were externally observed September 9. Operator screenshots on September 10 showed active first-position Cloudflare rule grela-expensive-public-api in the operator-declared grela.dev zone: over 20 matching requests per IP in 10 seconds blocks move/match/export paths for 10 seconds; load behavior and final direct-origin readback remain.
 
 #### Budować raz w CI i wdrażać digest GHCR
 

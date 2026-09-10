@@ -30,8 +30,9 @@ the tested public path preserves client identity. An operator-supplied
 Cloudflare screenshot also shows an active shared edge rule for exact
 `/api/move`, exact `/api/matches` and the `/api/export/` prefix: more than 20
 matching requests per IP in 10 seconds causes a 10-second block. The
-screenshots did not show the zone/ruleset scope or a behavioral test, so the
-edge layer remains partial. Inventory still has one application
+operator subsequently declared the rule's zone to be `grela.dev`; no
+behavioral test was supplied, so the edge layer remains partial. Inventory
+still has one application
 fixed-window export limit of 30/minute and no queue; this does not implement the
 per-format target below. Record remaining work instead of marking the whole
 control complete. See [Coolify checklist](coolify-deployment-checklist.md).

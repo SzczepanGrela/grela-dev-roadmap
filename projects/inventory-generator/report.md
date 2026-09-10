@@ -1,6 +1,6 @@
 # Inventory Generator — status report / raport stanu
 
-Audit date / data audytu: **2026-09-09**<br>
+Audit date / data audytu: **2026-09-10**<br>
 Estimated completion / szacowane ukończenie: **61%**<br>
 Forecast / prognoza: **2026-09-10–2026-09-14**, 20–36 h, medium confidence / pewność: medium
 
@@ -12,14 +12,14 @@ Forecast / prognoza: **2026-09-10–2026-09-14**, 20–36 h, medium confidence /
 
 Local-first inventory editor and server-side DOCX, CSV and HTML generator.
 
-September 9 reconciliation adds exact-proxy source hardening, CI evidence, the operator-confirmed immutable deployment and externally verified redirect/HSTS/cache behavior. Live Inventory IP echo, outer rate policies, automatic CD and rollback tests remain incomplete. Percentages and hours are planning estimates, not measurements.
+September 10 reconciliation adds the operator-observed active Cloudflare export edge rule. Its counting characteristics, effective scope and behavioral acceptance remain unknown; per-format/concurrency safeguards, proxy limits, automatic CD and rollback remain incomplete. Percentages and hours are planning estimates, not measurements.
 
 ### Audit evidence
 
 - **Repozytorium:** `SzczepanGrela/inventory-generator` @ `f1c14ebb6dcbd5b5b04274558e661e573e1e42d9`
 - **Source state:** Commit f1c14ebb was created from a clean main baseline; only the forwarded-header implementation and its integration tests changed, and local plus CI tests passed.
 - **Tests and CI:** GitHub Quality 34241221870 succeeded for f1c14ebb6dcbd5b5b04274558e661e573e1e42d9: restore/build/tests, image build and push, fixable HIGH/CRITICAL Trivy gate, SBOM/provenance and attestation passed.
-- **Production:** On September 9 the operator reported a successful Coolify redeploy of digest 0d112419 with runtime-only exact proxy configuration; selective image, environment, health and public revision checks all had the expected results. External checks independently observed the exact HTTPS redirect, HSTS max-age 63072000 and a Cloudflare MISS-to-HIT transition for the stylesheet. The runtime command output was not pasted, so those container settings remain operator-declared rather than a fresh host audit.
+- **Production:** On September 9 the operator reported a successful Coolify redeploy of digest 0d112419 with runtime-only exact proxy configuration; selective image, environment, health and public revision checks all had the expected results. External checks independently observed the exact HTTPS redirect, HSTS max-age 63072000 and a Cloudflare MISS-to-HIT transition for the stylesheet. On September 10 an operator screenshot showed an active 20 requests/10 seconds edge rule with a 10-second block covering `/api/export/`; its counting characteristics and behavior are not yet verified. The runtime command output was not pasted, so those container settings remain operator-declared rather than a fresh host audit.
 
 ### v2 standard compliance
 
@@ -32,7 +32,7 @@ Profile: **VPS web application**. Statuses reflect only evidence available on th
 | Immutable release | Complete | CI source and operator production evidence identify the full revision and immutable GHCR digest; manual deployment is proven. |
 | Deployment access | Partial | The legacy host account/launcher were removed. Private platform access exists; automated deployment credentials and external legacy credential revocation remain unverified. |
 | Network, TLS and client identity | Partial | Public HTTPS, exact redirect and scoped HSTS were externally observed through dedicated Tunnel/Traefik ingress. Exact proxy trust and spoof rejection are source/CI tested and deployed per operator confirmation; live Inventory IP echo and final direct-origin readback remain. |
-| Abuse protection | Partial | The 30/min export limiter now keys on a client identity reconstructed only through exact known proxies with bounded depth; format/concurrency and outer proxy/edge limits remain. |
+| Abuse protection | Partial | The 30/min application export limiter uses identity reconstructed only through exact known proxies. An active Cloudflare `/api/export/` edge rule is shown with a 20/10-second threshold and 10-second block; its counting key, effective scope and behavior, plus format/concurrency and proxy limits, remain unverified. |
 | Runtime safety | Partial | Non-root, capability drop, init and CPU/RAM limits observed; parser exception and remaining effective controls documented. |
 | Readiness and preflight | Partial | Image HEALTHCHECK and positive internal/public readiness are observed; candidate failure and critical-path preflight still need verification. |
 | Atomic promotion and rollback | Partial | Coolify deployment succeeded; no evidence of tested blue-green or automatic recovery after public smoke failure. |
@@ -68,9 +68,9 @@ September 9: private ingress evidence, the public Coolify checklist and normaliz
 
 #### Enable DNS, TLS and three-layer limits
 
-**Delivery · In progress · 60% · difficulty 3/5 · 3–5 h**
+**Delivery · In progress · 70% · difficulty 3/5 · 3–5 h**
 
-Public HTTPS works through the Tunnel/Traefik path. Exact HTTPS redirect, scoped HSTS and working Cloudflare asset cache were externally observed September 9. Source processes X-Forwarded-For only through exact known proxies with a bounded two-hop limit; CI spoof/isolation tests and operator-confirmed runtime deployment passed. Edge/proxy and cost-specific bounds remain.
+Public HTTPS works through the Tunnel/Traefik path. Exact HTTPS redirect, scoped HSTS and working Cloudflare asset cache were externally observed September 9. Exact-proxy source/CI tests and operator-confirmed runtime deployment passed. An operator screenshot on September 10 showed an active first-position Cloudflare rule: over 20 matching requests in 10 seconds blocks export paths for 10 seconds; counting characteristics, effective scope, load behavior, proxy and cost-specific bounds remain.
 
 #### Publish and deploy an image by digest
 
@@ -122,14 +122,14 @@ A public health response does not verify the favicon, licensing, metadata, acces
 
 Lokalny edytor inwentarza z serwerowym generowaniem DOCX, CSV i HTML.
 
-Uzgodnienie z 9 września dodaje zabezpieczenie dokładnie wskazanych proxy, dowód CI, potwierdzone przez operatora niezmienne wdrożenie oraz zewnętrznie sprawdzone przekierowanie/HSTS/cache. Test IP na żywo w Inventory, zewnętrzne limity, automatyczne CD i rollback pozostają niepełne. Procenty i godziny to estymacje, nie pomiary.
+Uzgodnienie z 10 września dodaje aktywną regułę Cloudflare edge dla eksportu potwierdzoną przez operatora. Charakterystyki licznika, efektywny zakres i test zachowania pozostają nieznane; limity per format/współbieżności, proxy, automatyczne CD i rollback są niepełne. Procenty i godziny to estymacje, nie pomiary.
 
 ### Dowody audytu
 
 - **Repozytorium:** `SzczepanGrela/inventory-generator` @ `f1c14ebb6dcbd5b5b04274558e661e573e1e42d9`
 - **Stan źródła:** Commit f1c14ebb was created from a clean main baseline; only the forwarded-header implementation and its integration tests changed, and local plus CI tests passed.
 - **Testy i CI:** GitHub Quality 34241221870 succeeded for f1c14ebb6dcbd5b5b04274558e661e573e1e42d9: restore/build/tests, image build and push, fixable HIGH/CRITICAL Trivy gate, SBOM/provenance and attestation passed.
-- **Produkcja:** On September 9 the operator reported a successful Coolify redeploy of digest 0d112419 with runtime-only exact proxy configuration; selective image, environment, health and public revision checks all had the expected results. External checks independently observed the exact HTTPS redirect, HSTS max-age 63072000 and a Cloudflare MISS-to-HIT transition for the stylesheet. The runtime command output was not pasted, so those container settings remain operator-declared rather than a fresh host audit.
+- **Produkcja:** On September 9 the operator reported a successful Coolify redeploy of digest 0d112419 with runtime-only exact proxy configuration; selective image, environment, health and public revision checks all had the expected results. External checks independently observed the exact HTTPS redirect, HSTS max-age 63072000 and a Cloudflare MISS-to-HIT transition for the stylesheet. On September 10 an operator screenshot showed an active 20 requests/10 seconds edge rule with a 10-second block covering `/api/export/`; its counting characteristics and behavior are not yet verified. The runtime command output was not pasted, so those container settings remain operator-declared rather than a fresh host audit.
 
 ### Zgodność ze standardem v2
 
@@ -142,7 +142,7 @@ Profil: **Aplikacja webowa na VPS**. Statusy odzwierciedlają wyłącznie dowody
 | Niezmienne wydanie | Gotowe | Źródło CI i wyniki produkcji od operatora wskazują pełną rewizję oraz digest GHCR; wdrożenie ręczne potwierdzone. |
 | Dostęp wdrożeniowy | Częściowe | Usunięto stare konto/launcher. Istnieje prywatny dostęp platformy; poświadczenia automatycznego CD i wycofanie starych uprawnień zewnętrznych wymagają weryfikacji. |
 | Sieć, TLS i tożsamość klienta | Częściowe | Publiczny HTTPS, dokładne przekierowanie i ograniczony HSTS potwierdzono zewnętrznie przez dedykowany ingress Tunnel/Traefik. Dokładne zaufanie proxy i spoofing przetestowano w źródle/CI oraz wdrożono według operatora; pozostaje test IP Inventory na żywo i końcowy odczyt originu. |
-| Ochrona przed nadużyciami | Częściowe | Limiter eksportu 30/min używa teraz tożsamości odtworzonej tylko przez dokładnie znane proxy i ograniczoną głębokość; pozostają limity formatu/współbieżności oraz proxy/edge. |
+| Ochrona przed nadużyciami | Częściowe | Aplikacyjny limiter eksportu 30/min używa tożsamości odtworzonej tylko przez dokładnie znane proxy. Pokazano aktywną regułę Cloudflare `/api/export/` z progiem 20/10 s i blokadą 10 s; klucz licznika, efektywny zakres i zachowanie oraz limity formatu/współbieżności i proxy pozostają niezweryfikowane. |
 | Bezpieczeństwo runtime | Częściowe | Potwierdzone non-root, cap-drop, init i CPU/RAM; zapisano wyjątek parsera i brakujące odczyty. |
 | Readiness i preflight | Częściowe | Potwierdzone HEALTHCHECK obrazu oraz wewnętrzny/publiczny readiness; awaria kandydata i preflight krytycznych ścieżek wymagają weryfikacji. |
 | Atomowa promocja i rollback | Częściowe | Deployment Coolify przeszedł; brak dowodu przetestowanego blue-green lub automatycznego rollbacku po błędzie publicznego smoke. |
@@ -178,9 +178,9 @@ September 9: private ingress evidence, the public Coolify checklist and normaliz
 
 #### Uruchomić DNS, TLS i trzy warstwy limitów
 
-**Wdrożenie · W toku · 60% · trudność 3/5 · 3–5 h**
+**Wdrożenie · W toku · 70% · trudność 3/5 · 3–5 h**
 
-Public HTTPS works through the Tunnel/Traefik path. Exact HTTPS redirect, scoped HSTS and working Cloudflare asset cache were externally observed September 9. Source processes X-Forwarded-For only through exact known proxies with a bounded two-hop limit; CI spoof/isolation tests and operator-confirmed runtime deployment passed. Edge/proxy and cost-specific bounds remain.
+Public HTTPS works through the Tunnel/Traefik path. Exact HTTPS redirect, scoped HSTS and working Cloudflare asset cache were externally observed September 9. Exact-proxy source/CI tests and operator-confirmed runtime deployment passed. An operator screenshot on September 10 showed an active first-position Cloudflare rule: over 20 matching requests in 10 seconds blocks export paths for 10 seconds; counting characteristics, effective scope, load behavior, proxy and cost-specific bounds remain.
 
 #### Publikować i wdrażać obraz po digestcie
 

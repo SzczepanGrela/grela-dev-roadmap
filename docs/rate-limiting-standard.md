@@ -25,13 +25,16 @@ do not trust all Docker networks, `*`, or arbitrary X-Forwarded-For entries.
 Test both legitimate forwarding and spoofed input, and verify public origin
 ports are closed. Earlier passing NPM/CIDR tests do not prove the new path.
 
-September 6 evidence: two migrated apps return public health, but complete
-identity/abuse controls remain unverified. Inventory source reads
-CF-Connecting-IP without peer validation and applies one fixed-window export
-limit of 30/minute, no queue. This does not implement the per-format target
-below. Tic-Tac-Toe has proxy-header support, but its effective trust settings
-after migration need readback. Record remaining work instead of marking the
-whole control complete. See [Coolify checklist](coolify-deployment-checklist.md).
+September 8–10 evidence: both migrated apps use exact trusted proxy peers and
+the tested public path preserves client identity. An operator-supplied
+Cloudflare screenshot also shows an active shared edge rule for exact
+`/api/move`, exact `/api/matches` and the `/api/export/` prefix: more than 20
+matching requests in 10 seconds causes a 10-second block. The screenshot did
+not show the counting characteristics, zone/ruleset scope or behavioral test,
+so the edge layer remains partial. Inventory still has one application
+fixed-window export limit of 30/minute and no queue; this does not implement the
+per-format target below. Record remaining work instead of marking the whole
+control complete. See [Coolify checklist](coolify-deployment-checklist.md).
 ## Algorithms
 
 - **Token bucket:** preferred general API policy because it permits a controlled burst.

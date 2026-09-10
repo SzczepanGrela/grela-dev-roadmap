@@ -41,7 +41,7 @@
     "implementation": 80,
     "quality": 53,
     "documentation": 50,
-    "delivery": 43,
+    "delivery": 45,
     "overall": 61
   },
   "complexity": 3,
@@ -64,8 +64,8 @@
   },
   "focus": {
     "current": {
-      "en": "Complete edge/proxy limits and live acceptance of the new exact-proxy identity boundary.",
-      "pl": "Dokończyć limity edge/proxy i odbiór na żywo nowej granicy dokładnie wskazanych proxy."
+      "en": "Validate the active export edge rule and complete cost-specific safeguards.",
+      "pl": "Zweryfikować aktywną regułę edge eksportu i dokończyć zabezpieczenia zależne od kosztu."
     },
     "next": {
       "en": "Automate tested-digest promotion through Coolify and exercise failure recovery.",
@@ -149,14 +149,14 @@
       },
       "dimension": "delivery",
       "status": "in-progress",
-      "completion": 60,
+      "completion": 70,
       "weight": 2,
       "difficulty": 3,
       "hoursMin": 3,
       "hoursMax": 5,
       "daysMin": 0.5,
       "daysMax": 0.75,
-      "evidence": "Public HTTPS works through the Tunnel/Traefik path. Exact HTTPS redirect, scoped HSTS and working Cloudflare asset cache were externally observed September 9. Source processes X-Forwarded-For only through exact known proxies with a bounded two-hop limit; CI spoof/isolation tests and operator-confirmed runtime deployment passed. Edge/proxy and cost-specific bounds remain."
+      "evidence": "Public HTTPS works through the Tunnel/Traefik path. Exact HTTPS redirect, scoped HSTS and working Cloudflare asset cache were externally observed September 9. Exact-proxy source/CI tests and operator-confirmed runtime deployment passed. An operator screenshot on September 10 showed an active first-position Cloudflare rule: over 20 matching requests in 10 seconds blocks export paths for 10 seconds; counting characteristics, effective scope, load behavior, proxy and cost-specific bounds remain."
     },
     {
       "id": "immutable-deploy",
@@ -265,7 +265,7 @@
     "worktree": "Commit f1c14ebb was made from a clean main baseline with only Program.cs and the forwarded-header integration tests changed.",
     "tests": "Local Release tests passed: one unit and four integration tests. New cases cover two trusted proxy hops, independent client partitions and rejection of spoofed forwarding from an unknown peer.",
     "ci": "GitHub Quality 34241221870 succeeded for f1c14ebb6dcbd5b5b04274558e661e573e1e42d9: restore/build/tests, image build and push, fixable HIGH/CRITICAL Trivy gate, SBOM/provenance and attestation passed.",
-    "production": "On September 9 the operator reported a successful Coolify redeploy of digest 0d112419 with runtime-only exact proxy configuration; selective image, environment, health and public revision checks all had the expected results. External checks independently observed the exact HTTPS redirect, HSTS max-age 63072000 and a Cloudflare MISS-to-HIT transition for the stylesheet. The runtime command output was not pasted, so those container settings remain operator-declared rather than a fresh host audit."
+    "production": "On September 9 the operator reported a successful Coolify redeploy of digest 0d112419 with runtime-only exact proxy configuration; selective image, environment, health and public revision checks all had the expected results. External checks independently observed the exact HTTPS redirect, HSTS max-age 63072000 and a Cloudflare MISS-to-HIT transition for the stylesheet. On September 10 an operator screenshot showed an active 20 requests/10 seconds edge rule with a 10-second block covering `/api/export/`; its counting characteristics and behavior are not yet verified. The runtime command output was not pasted, so those container settings remain operator-declared rather than a fresh host audit."
   },
   "media": {
     "screenshot": "assets/screenshots/inventory-generator.png",
@@ -296,24 +296,25 @@
     }
   ],
   "audit": {
-    "date": "2026-09-09",
+    "date": "2026-09-10",
     "sources": [
       "Operator-supplied September 5–9 VPS inspect, deployment, network, identity and public health outputs; no new full SSH audit",
       "Local source edit and Release test for f1c14ebb on September 8",
       "GitHub Quality run 34241221870 and published digest read on September 8–9",
       "Versioned Coolify v4.3.14 parser inspected via GitHub API",
       "Operator-declared successful post-deploy image/environment/health checks, September 9",
-      "External HTTP redirect, HSTS and static-asset cache checks, September 9"
+      "External HTTP redirect, HSTS and static-asset cache checks, September 9",
+      "Operator-supplied active Cloudflare rate-limit expression and dashboard action screenshot, September 10"
     ],
     "notes": {
-      "en": "September 9 reconciliation adds exact-proxy source hardening, CI evidence, the operator-confirmed immutable deployment and externally verified redirect/HSTS/cache behavior. Live Inventory IP echo, outer rate policies, automatic CD and rollback tests remain incomplete. Percentages and hours are planning estimates, not measurements.",
-      "pl": "Uzgodnienie z 9 września dodaje zabezpieczenie dokładnie wskazanych proxy, dowód CI, potwierdzone przez operatora niezmienne wdrożenie oraz zewnętrznie sprawdzone przekierowanie/HSTS/cache. Test IP na żywo w Inventory, zewnętrzne limity, automatyczne CD i rollback pozostają niepełne. Procenty i godziny to estymacje, nie pomiary."
+      "en": "September 10 reconciliation adds the operator-observed active Cloudflare export edge rule. Its counting characteristics, effective scope and behavioral acceptance remain unknown; per-format/concurrency safeguards, proxy limits, automatic CD and rollback remain incomplete. Percentages and hours are planning estimates, not measurements.",
+      "pl": "Uzgodnienie z 10 września dodaje aktywną regułę Cloudflare edge dla eksportu potwierdzoną przez operatora. Charakterystyki licznika, efektywny zakres i test zachowania pozostają nieznane; limity per format/współbieżności, proxy, automatyczne CD i rollback są niepełne. Procenty i godziny to estymacje, nie pomiary."
     }
   },
   "compliance": {
     "standardVersion": 2,
     "profile": "vps-web",
-    "assessmentDate": "2026-09-09",
+    "assessmentDate": "2026-09-10",
     "controls": [
       {
         "id": "governance",
@@ -372,8 +373,8 @@
         "id": "abuse-protection",
         "status": "partial",
         "evidence": {
-          "en": "The 30/min export limiter now keys on a client identity reconstructed only through exact known proxies with bounded depth; format/concurrency and outer proxy/edge limits remain.",
-          "pl": "Limiter eksportu 30/min używa teraz tożsamości odtworzonej tylko przez dokładnie znane proxy i ograniczoną głębokość; pozostają limity formatu/współbieżności oraz proxy/edge."
+          "en": "The 30/min application export limiter uses identity reconstructed only through exact known proxies. An active Cloudflare `/api/export/` edge rule is shown with a 20/10-second threshold and 10-second block; its counting key, effective scope and behavior, plus format/concurrency and proxy limits, remain unverified.",
+          "pl": "Aplikacyjny limiter eksportu 30/min używa tożsamości odtworzonej tylko przez dokładnie znane proxy. Pokazano aktywną regułę Cloudflare `/api/export/` z progiem 20/10 s i blokadą 10 s; klucz licznika, efektywny zakres i zachowanie oraz limity formatu/współbieżności i proxy pozostają niezweryfikowane."
         },
         "taskIds": [
           "edge-and-limits"

@@ -60,7 +60,7 @@
   },
   "estimation": {
     "date": "2026-08-25",
-    "mode": "codex-assisted-source-audited",
+    "mode": "source-audited",
     "sourceRevision": "d6275111902d4fc445685770664d97a9ad4fa2f5",
     "sourceState": "local worktree with 20 changed paths"
   },

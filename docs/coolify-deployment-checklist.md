@@ -228,3 +228,10 @@ Przy regułach edge opartych na dokładnych ścieżkach każda nowa kosztowna op
 wymaga przeglądu reguły; dotyczy to także `/api/matches/stream`. Konfiguracja
 limitu nie zastępuje testu 429 i odzyskania dostępu. Kopia oznaczona Success,
 czytelny katalog dumpu i działający timer są odrębnymi dowodami od restore.
+
+Odbiór strumieni wymaga klienta czytającego kolejne zdarzenia przed końcem
+serii; sam HTTP 200 ani test transportu ASGI nie wystarczą. Po rozpoczęciu
+strumienia błąd może być zdarzeniem NDJSON bez końcowego `complete`. Oddzielnie
+sprawdzić zwolnienie kolejki i zatrzymanie pracy po rozłączeniu przez publiczne
+proxy. [Przykład TTT](https://github.com/SzczepanGrela/tic-tac-toe-ai/blob/main/docs/delivery-verification.md)
+opisuje testy i ograniczenia; stare źródła wdrażania SSH usunięto w PR #36.

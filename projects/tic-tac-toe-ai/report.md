@@ -19,7 +19,7 @@ September 28 reconciliation closes accepted delivery work while retaining shared
 - **Repozytorium:** `SzczepanGrela/tic-tac-toe-ai` @ `3188ef1ab518fff289d7f2aacd3976d3a2b28818`
 - **Source state:** Scoped reconciliation of the September 25 feature release, public PR history and dated September 16–27 operator/edge evidence. No fresh whole-host audit; dependency maintenance is tracked separately.
 - **Tests and CI:** Feature Quality and protected deployment run 36082090397 succeeded for 3188ef1. Main protection and production approval were accepted September 17. Dependency PRs #25/#4 are separately validated before promotion.
-- **Production:** September 16–18: managed health, rejected candidate, public-smoke rollback, serialized releases and overlap capacity accepted. September 21: persistent Jev ledger, off-host backup and isolated paused restore/reconciliation accepted. September 25: responsive UI and NDJSON series released with Jev disabled. September 27: stream edge coverage and one-client block/recovery, TLS minimum 1.2 and latest scheduled backup metadata confirmed. Full VPS recovery, broader rate-limit behavior and current runtime readback remain separate.
+- **Production:** September 16–18: managed health, rejected candidate, public-smoke rollback, serialized releases and overlap capacity accepted. September 21: persistent Jev ledger, off-host backup and isolated paused restore/reconciliation accepted. September 25: responsive UI and NDJSON series released with Jev disabled. September 27: stream edge coverage and one-client block/recovery, TLS minimum 1.2 and latest scheduled backup metadata confirmed. Full VPS recovery, broader rate-limit behavior and current runtime readback remain separate. September 28 bounded public stream timing and shared endpoint-budget recovery passed before the source cleanup release; independent-client and proxy-disconnect acceptance remain open.
 
 ### v2 standard compliance
 
@@ -32,7 +32,7 @@ Profile: **VPS web application**. Statuses reflect only evidence available on th
 | Immutable release | Complete | CI qualifies and attests one image; protected deployment promotes its digest and verifies public revision. |
 | Deployment access | Complete | Private Coolify API, production-scoped credentials and mapped OIDC identity accepted; old TTT repository secrets and host account retired. Token scope is the Coolify team. |
 | Network, TLS and client identity | Complete | Dated identity/spoof/HTTPS checks and independent IPv4/IPv6 origin rejection passed; TLS minimum 1.2 verified September 27. This is not TLS inside the Docker network. |
-| Abuse protection | Partial | September 27 edge rule includes stream requests and one-client block/recovery passed. Independent clients, cross-app/app budgets and shared replica counters remain open. |
+| Abuse protection | Partial | Edge one-client acceptance passed September 27. September 28 public application-budget rejection/recovery and stream timing passed, with local identity/queue/disconnect regression tests. Independent public clients, cross-app counters and rolling shared state remain open. |
 | Runtime safety | Partial | Non-root, capability drop, init and CPU/RAM limits observed; parser exception and remaining effective controls documented. |
 | Readiness and preflight | Complete | Image probe, managed candidate-health gate and rejected-candidate test accepted; stable preflight and full post-promotion smoke are separate. Optional provider failure does not fail local readiness. |
 | Atomic promotion and rollback | Complete | Managed rolling and automatic restoration of the previous attested digest after forced public revision failure passed September 16–17. No claim of blue-green slots. |
@@ -52,7 +52,7 @@ September 18–25: configurable 3×3/5×5/9×9 play, MCTS 5×5, redesigned respo
 
 **Quality · Done · 100% · difficulty 2/5 · 0–0 h**
 
-Feature release 3188ef1 passed in run 36082090397. Dependency PRs #25/#4 were updated, checked and merged September 27–28; runs 36360057813 and 36360447941 passed. Main run 36367310173 passed Python 3.12/3.13, training, browser, image/scan and release verification before production approval.
+Feature release 3188ef1 passed in run 36082090397. Dependency PRs #25/#4 were updated, checked and merged September 27–28; runs 36360057813 and 36360447941 passed. Main run 36367310173 passed Python 3.12/3.13, training, browser, image/scan and release verification before production approval. PR #36 passed full Quality run 36374994035; 226 backend tests passed locally against the production runtime lock.
 
 #### Enable ruleset and production environment
 
@@ -64,13 +64,13 @@ September 17 acceptance: main requires Quality, production permits only main and
 
 **Documentation · Done · 100% · difficulty 2/5 · 0–0 h**
 
-September 28 reconciliation updates the public plan, reusable Coolify checklist and normalized record from dated private evidence. Private topology and credentials remain outside this repository.
+September 28 reconciliation updates the public plan, reusable Coolify checklist and normalized record from dated private evidence. Private topology and credentials remain outside this repository. PR #36 removed unused SSH deployment source/tests and stale fallback/canary instructions; the delivery-verification guide distinguishes local tests from public acceptance.
 
 #### Verify Tunnel/Traefik identity and edge controls
 
 **Delivery · In progress · 85% · difficulty 3/5 · 2–4 h**
 
-September 8–9 identity/spoof/redirect/HSTS checks; September 15–16 independent IPv4/IPv6 origin rejection. September 27 active edge rule includes /api/matches/stream, one external client passed 200/429/recovery, and minimum TLS 1.2 was verified. Independent clients, shared budgets and delivery timing/cancellation remain open.
+September 27 edge coverage and single-client block/recovery passed. September 28 public MCTS games arrived at 1.59/3.34/4.42 seconds; weighted batch/stream application rejection and recovery passed. PR #36 adds local independent-client/proxy-trust, queue and real-HTTP disconnect coverage. Independent public clients, cross-app counters, proxy-chain worker cancellation and overlap remain open.
 
 #### Build once in CI and deploy a GHCR digest
 
@@ -128,7 +128,7 @@ Uzgodnienie z 28 września zamyka odebrane prace wdrożeniowe, zachowując limit
 - **Repozytorium:** `SzczepanGrela/tic-tac-toe-ai` @ `3188ef1ab518fff289d7f2aacd3976d3a2b28818`
 - **Stan źródła:** Scoped reconciliation of the September 25 feature release, public PR history and dated September 16–27 operator/edge evidence. No fresh whole-host audit; dependency maintenance is tracked separately.
 - **Testy i CI:** Feature Quality and protected deployment run 36082090397 succeeded for 3188ef1. Main protection and production approval were accepted September 17. Dependency PRs #25/#4 are separately validated before promotion.
-- **Produkcja:** September 16–18: managed health, rejected candidate, public-smoke rollback, serialized releases and overlap capacity accepted. September 21: persistent Jev ledger, off-host backup and isolated paused restore/reconciliation accepted. September 25: responsive UI and NDJSON series released with Jev disabled. September 27: stream edge coverage and one-client block/recovery, TLS minimum 1.2 and latest scheduled backup metadata confirmed. Full VPS recovery, broader rate-limit behavior and current runtime readback remain separate.
+- **Produkcja:** September 16–18: managed health, rejected candidate, public-smoke rollback, serialized releases and overlap capacity accepted. September 21: persistent Jev ledger, off-host backup and isolated paused restore/reconciliation accepted. September 25: responsive UI and NDJSON series released with Jev disabled. September 27: stream edge coverage and one-client block/recovery, TLS minimum 1.2 and latest scheduled backup metadata confirmed. Full VPS recovery, broader rate-limit behavior and current runtime readback remain separate. September 28 bounded public stream timing and shared endpoint-budget recovery passed before the source cleanup release; independent-client and proxy-disconnect acceptance remain open.
 
 ### Zgodność ze standardem v2
 
@@ -141,7 +141,7 @@ Profil: **Aplikacja webowa na VPS**. Statusy odzwierciedlają wyłącznie dowody
 | Niezmienne wydanie | Gotowe | CI kwalifikuje i atestuje jeden obraz; chroniony deploy promuje jego digest i sprawdza publiczną rewizję. |
 | Dostęp wdrożeniowy | Gotowe | Odebrane prywatne API Coolify, sekrety production i tożsamość OIDC; stare sekrety repo oraz konto hosta TTT wycofane. Token ma zakres zespołu Coolify. |
 | Sieć, TLS i tożsamość klienta | Gotowe | Datowane testy IP/spoof/HTTPS i niezależnego odrzucenia originu IPv4/IPv6 przeszły; minimum TLS 1.2 sprawdzono 27 września. Nie oznacza to TLS wewnątrz sieci Docker. |
-| Ochrona przed nadużyciami | Częściowe | Reguła edge obejmuje stream; 27 września przeszedł test blokady i odzyskania jednego klienta. Pozostają różni klienci, budżety między aplikacjami i liczniki replik. |
+| Ochrona przed nadużyciami | Częściowe | Odbiór edge dla jednego klienta przeszedł 27 września. 28 września przeszły publiczne testy limitu aplikacji, odzyskania i czasu zdarzeń; dodano lokalne testy tożsamości/kolejki/rozłączeń. Pozostają niezależni publiczni klienci, liczniki między aplikacjami i stan przy rolling update. |
 | Bezpieczeństwo runtime | Częściowe | Potwierdzone non-root, cap-drop, init i CPU/RAM; zapisano wyjątek parsera i brakujące odczyty. |
 | Readiness i preflight | Gotowe | Probe obrazu, bramka zdrowia kandydata i test odrzucenia odebrane; stabilny preflight oddzielono od pełnego smoke po promocji. Awaria opcjonalnego dostawcy nie wyłącza gotowości lokalnej gry. |
 | Atomowa promocja i rollback | Gotowe | Zarządzany rolling i przywrócenie poprzedniego atestowanego digestu po wymuszonym błędzie publicznej rewizji przeszły 16–17 września. Nie deklarujemy slotów blue-green. |
@@ -161,7 +161,7 @@ September 18–25: configurable 3×3/5×5/9×9 play, MCTS 5×5, redesigned respo
 
 **Jakość · Gotowe · 100% · trudność 2/5 · 0–0 h**
 
-Feature release 3188ef1 passed in run 36082090397. Dependency PRs #25/#4 were updated, checked and merged September 27–28; runs 36360057813 and 36360447941 passed. Main run 36367310173 passed Python 3.12/3.13, training, browser, image/scan and release verification before production approval.
+Feature release 3188ef1 passed in run 36082090397. Dependency PRs #25/#4 were updated, checked and merged September 27–28; runs 36360057813 and 36360447941 passed. Main run 36367310173 passed Python 3.12/3.13, training, browser, image/scan and release verification before production approval. PR #36 passed full Quality run 36374994035; 226 backend tests passed locally against the production runtime lock.
 
 #### Włączyć ruleset i środowisko production
 
@@ -173,13 +173,13 @@ September 17 acceptance: main requires Quality, production permits only main and
 
 **Dokumentacja · Gotowe · 100% · trudność 2/5 · 0–0 h**
 
-September 28 reconciliation updates the public plan, reusable Coolify checklist and normalized record from dated private evidence. Private topology and credentials remain outside this repository.
+September 28 reconciliation updates the public plan, reusable Coolify checklist and normalized record from dated private evidence. Private topology and credentials remain outside this repository. PR #36 removed unused SSH deployment source/tests and stale fallback/canary instructions; the delivery-verification guide distinguishes local tests from public acceptance.
 
 #### Zweryfikować tożsamość i ochronę przez Tunnel/Traefik
 
 **Wdrożenie · W toku · 85% · trudność 3/5 · 2–4 h**
 
-September 8–9 identity/spoof/redirect/HSTS checks; September 15–16 independent IPv4/IPv6 origin rejection. September 27 active edge rule includes /api/matches/stream, one external client passed 200/429/recovery, and minimum TLS 1.2 was verified. Independent clients, shared budgets and delivery timing/cancellation remain open.
+September 27 edge coverage and single-client block/recovery passed. September 28 public MCTS games arrived at 1.59/3.34/4.42 seconds; weighted batch/stream application rejection and recovery passed. PR #36 adds local independent-client/proxy-trust, queue and real-HTTP disconnect coverage. Independent public clients, cross-app counters, proxy-chain worker cancellation and overlap remain open.
 
 #### Budować raz w CI i wdrażać digest GHCR
 

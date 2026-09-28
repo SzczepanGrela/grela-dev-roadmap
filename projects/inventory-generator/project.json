@@ -58,7 +58,7 @@
   },
   "estimation": {
     "date": "2026-09-09",
-    "mode": "codex-assisted-source-audited",
+    "mode": "source-audited",
     "sourceRevision": "f1c14ebb6dcbd5b5b04274558e661e573e1e42d9",
     "sourceState": "Commit f1c14ebb was created from a clean main baseline; only the forwarded-header implementation and its integration tests changed, and local plus CI tests passed."
   },

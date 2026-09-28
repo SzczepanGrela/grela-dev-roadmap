@@ -61,7 +61,7 @@
   },
   "estimation": {
     "date": "2026-08-25",
-    "mode": "codex-assisted-source-audited",
+    "mode": "source-audited",
     "sourceRevision": "8f525098c70afddaa0a0aba847fb3881956649cf",
     "sourceState": "clean public main shallow clone"
   },

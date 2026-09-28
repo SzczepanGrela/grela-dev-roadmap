@@ -1,19 +1,37 @@
-# Plan wdrożenia poprawek i standardu DevOps w repozytoriach portfolio Szczepana Greli (Wersja 13 — Coolify, 2026-09-10)
+# Plan portfolio i standardu wdrożeń grela.dev (wersja 15, przegląd 2026-09-28)
 
 > [!NOTE]
-> Ten dokument stanowi **zintegrowaną długoterminową mapę drogową (roadmapę)**. Będziemy realizować go krok po kroku (jedno repozytorium na raz). Łączy on prace programistyczne, dokumentacyjne oraz **znormalizowany standard produkcyjnego wdrożenia DevOps** dla wszystkich aplikacji internetowych i usługowych w domenie `grela.dev`.
+> Ten dokument jest długoterminową mapą prac portfolio i publicznym opisem standardu wdrożeń. Kolejność projektów niżej jest katalogiem, nie kolejką zmian na VPS. Stan pojedynczego projektu ma datę w jego `projects/<slug>/report.md`; starszego raportu nie należy traktować jako bieżącego odczytu produkcji.
 
 > [!IMPORTANT]
-> Kanoniczna wersja dokumentu znajduje się w publicznym repozytorium `grela-dev-roadmap`. Szczegółowe raporty i dane maszynowe projektów znajdują się w `projects/<slug>/`. Zaakceptowany standard rate limitingu opisuje [`rate-limiting-standard.md`](rate-limiting-standard.md), a maszynowo czytelne profile i kontrole v2 znajdują się w [`delivery-controls.json`](../standards/delivery-controls.json). Wartości są dobierane indywidualnie do kosztu endpointów.
+> Publiczny plan portfolio jest tutaj. **Bieżąca checklista wykonawcza infrastruktury, jej statusy, zależności i zagnieżdżone kroki** są w prywatnym `grela-dev-infrastructure/docs/current-priorities.md`; ten dokument nie powiela prywatnych adresów ani poświadczeń. Szczegółowe raporty projektów są w `projects/<slug>/`. Zaakceptowany standard limitowania ruchu opisuje [`rate-limiting-standard.md`](rate-limiting-standard.md), a profile i kontrole v2 znajdują się w [`delivery-controls.json`](../standards/delivery-controls.json).
+
+## Stan wdrożeń i najbliższa kolejka
+
+Przegląd 2026-09-28 łączy datowane dowody z 11–27 września oraz historię publicznych PR-ów. Nie jest nowym audytem całego VPS. Prywatna checklista zachowuje dokładne ID, zależności, adresy i dowody operatora; poniżej znajdują się pakiety prac.
+
+| Pakiet | Co jest zrobione | Co pozostało | Zależność |
+| --- | --- | --- | --- |
+| Baza Coolify (`C01–C06`, `C08`) | Prywatny panel, Tunnel/Traefik i dwie aplikacje po digestach; TTT ma chronioną automatyczną promocję. | Świeży odczyt pozostałych ustawień platformy i osobny kontrakt Inventory. | Zachować zaakceptowaną architekturę. |
+| Przejście starych tras (`N01.1`, `N02`) | NPM pozostaje zatrzymany; synchronizator i stare reguły CIDR wycofano. Testy originu IPv4/IPv6 przeszły 15–16 września. | Sprawdzić trwałość wycofania po najbliższym naturalnym restarcie; nie restartować tylko dla testu. | Dalsza przerwa domen legacy jest zaakceptowana. |
+| Wydanie TTT (`D01`, `D02.2`, `D03.1`) | Bramka zdrowia, odrzucenie wadliwego kandydata, failed-smoke rollback, serializacja i pomiar overlap przeszły 16–17 września. Kolejne wydania korzystają z tego procesu. | Wspólny stan limitera, dłuższe operacje podczas overlap i pozostałe testy limitów. Inventory ma odrębny, otwarty odbiór. | Nie powtarzać zakończonych testów jako stałego środowiska canary. |
+| Funkcje TTT (`G01–G07`, `J01`) | Plansze 3×3/5×5/9×9, MCTS 5×5, odnowiony responsywny interfejs i przyrostowe serie. Jev ma trwały licznik wydatków, backup i próbę restore; ocena do 9×9 K=8 jest zapisana. | K=9 po październikowym resecie UTC i osobna decyzja o publicznym włączeniu Jev. Rozszerzanie wytrenowanych modeli pozostaje odroczone. | Jev publicznie wyłączony; nie wykonywać płatnych testów przy zwykłym CI. |
+| Edge (`D04`, `P06.1a`) | Reguła obejmuje `/api/matches/stream`; pojedynczy klient przeszedł 200/429/recovery. Minimum TLS 1.2 potwierdzone dla obu stref 27 września. | Niezależni klienci, budżety aplikacji/overlap, opóźnienie i anulowanie streamu; origin TLS/ACME i przypięcie proxy osobno. | Wynik jednego klienta nie zamyka całego D04. |
+| Dane i kopie (`B01/B02/B04`, `P02`) | Zaplanowane kopie Jev/Smakosza przeszły 27 września; sprawdzono metadane Jev lokalnie/R2 i katalogi dumpów Smakosza/Coolify. UI Coolify pokazuje 7 udanych kopii S3 i 2 lokalne. | Pełna mapa danych, aktualne punkty odzyskiwania dostawcy, dokładny czas wykonania Coolify przy kolejnym odczycie, alerty oraz decyzja o nakładających się retencjach Smakosza. | Czytelny katalog nie dowodzi restore; pełny drill Coolify i pakiet kluczy pozostają odroczone. |
+| Migracje (`M01 → M02 → M03`) | Rozpoznano współdzielone dane dwóch kontenerów NetFilmx; zachowano starsze dowody kopii i tras. | Ustalić writerów i docelową wersję NetFilmx, odświeżyć kopię i migrować; potem MovieRAG i Smakosz. | Każda aplikacja wymaga własnego aktualnego backupu, kontraktu i rollbacku. |
+| Domknięcie (`N03`, `O01/O02`, `D05.3`) | Tymczasowe zasoby testowe TTT wycofano; działający monitoring pozostaje przy Smakoszu. | Usunąć zweryfikowane resztki źródłowych skryptów TTT, zachować dane przy końcowym usunięciu NPM, wydzielić monitoring i przetestować alerty. | Bez globalnego prune i utraty historii. |
+
+Pakiet → podzadanie → test odbioru. Jeden zakończony podtest nie zamyka całego pakietu. Publiczne dowody implementacji: [wydanie przez Coolify #9](https://github.com/SzczepanGrela/tic-tac-toe-ai/pull/9), [kontrola zdrowia #15](https://github.com/SzczepanGrela/tic-tac-toe-ai/pull/15), [rollback #17](https://github.com/SzczepanGrela/tic-tac-toe-ai/pull/17), [porządkowanie zasobów testowych #20](https://github.com/SzczepanGrela/tic-tac-toe-ai/pull/20), [MCTS/Jev #24](https://github.com/SzczepanGrela/tic-tac-toe-ai/pull/24), [raport oceny #33](https://github.com/SzczepanGrela/tic-tac-toe-ai/pull/33), [interfejs #34](https://github.com/SzczepanGrela/tic-tac-toe-ai/pull/34) i [przyrostowe serie #35](https://github.com/SzczepanGrela/tic-tac-toe-ai/pull/35). PR dowodzi zmiany źródła; wyniki hosta i testów zewnętrznych zachowują własne daty w prywatnej dokumentacji.
 
 ---
 
 ## 🛠️ Znormalizowany Standard Architektury DevOps
 
-Docelowy standard VPS używa Coolify, Traefika i Cloudflare Tunnel.
-Tic-Tac-Toe i Inventory są już ręcznie wdrożone po digestach; automatyczne CD,
-pełna weryfikacja sieci i rollbacku pozostają do wykonania. Szczegóły obsługi
-panelu i ograniczeń 4.3.14: [checklista Coolify](coolify-deployment-checklist.md).
+Przyjęta platforma używa Coolify, Traefika i Cloudflare Tunnel.
+TTT ma zaakceptowaną automatyczną promocję przetestowanego digestu, z ręczną
+bramką środowiska `production`, zarządzanym rolling update i rollbackiem.
+Inventory nadal wymaga własnej akceptacji wydania. Historyczne ograniczenia
+wersji 4.3.14 i procedura dla kolejnych projektów: [checklista Coolify](coolify-deployment-checklist.md).
 Poniższe wymagania nie stanowią deklaracji ukończenia wszystkich projektów.
 
 ```mermaid
@@ -23,12 +41,12 @@ flowchart LR
     Connector -->|Local HTTP| Proxy[Traefik]
     Proxy -->|Internal HTTP| App[Application]
     CI[CI tests and build] --> GHCR[Immutable digest]
-    GHCR -->|Manual now, automated promotion planned| Coolify
+    GHCR -->|TTT protected digest promotion| Coolify
     Coolify --> App
 ```
 
-### Kluczowe zasady DevOps dla przyszłych agentów AI:
-1.  **Prywatny dostęp i uprawnienia:** panel Coolify i endpoint wdrożeniowy pozostają w zatwierdzonej sieci administracyjnej. Tailscale działa na hoście. Legacy transport to zwykły OpenSSH przez Tailnet, nie funkcja Tailscale SSH. Docelowy job CI przekazuje przetestowany digest do uwierzytelnionego interfejsu Coolify z minimalnym zakresem uprawnień; wdrożenie tej automatyzacji jest jeszcze zadaniem. Szczegółowe ACL, adresy i polityka SSH są w prywatnej dokumentacji infrastruktury. Jeżeli CI dołącza do Tailnet przez OIDC, sprawdzić ograniczenie repo/branch oraz przypięty SHA akcji; nie dodawać nowych legacy kont wdrożeniowych dla zasobów Coolify.
+### Kluczowe zasady wdrożeń:
+1.  **Prywatny dostęp i uprawnienia:** panel Coolify i endpoint wdrożeniowy pozostają w zatwierdzonej sieci administracyjnej. Tailscale działa na hoście. Legacy transport to zwykły OpenSSH przez Tailnet, nie funkcja Tailscale SSH. TTT przekazuje przetestowany digest do prywatnego API przez chronione środowisko GitHub; automatyczne wywołanie po Quality jest zaakceptowane, a job produkcyjny wymaga zatwierdzenia. Token wdrożeniowy Coolify ma zakres zespołu, nie pojedynczej aplikacji; dalsze ograniczenie wymaga osobnego projektu. Szczegółowe ACL, adresy i polityka SSH są w prywatnej dokumentacji infrastruktury. Dla kolejnych repozytoriów sprawdzić ograniczenie OIDC do repo i chronionego środowiska lub do jawnie wybranego branch ref oraz przypięty SHA akcji; nie dodawać legacy kont wdrożeniowych dla zasobów Coolify.
 2.  **Struktura źródeł i wdrożeń:** utrzymać wersjonowany produkcyjny Dockerfile (w istniejącej lokalizacji root lub infra, zgodnej z CI), HEALTHCHECK i konfigurację aplikacji. Coolify zarządza cyklem życia i siecią; własny deploy.sh/launcher nie jest obowiązkowy. Nie pobierać ruchomych skryptów jako root, nie budować ponownie na VPS i nie wykonywać globalnego prune w deployu aplikacji. Pełne sekrety i szczegóły hosta nie należą do publicznego README.
 
 3.  **Ochrona przed nadużyciami (Rate Limiting & DoS Protection):**
@@ -39,12 +57,13 @@ flowchart LR
 5.  **Routing, TLS i klient:** publiczny HTTPS kończy się na Cloudflare, a zaszyfrowany tunel prowadzi do konektora. W przyjętym wariancie dalsze odcinki do Traefika i kontenera używają lokalnego HTTP. Ustawienia domeny, portu, redirectu i strip prefixes muszą odpowiadać tej ścieżce. Nie zakładać TLS do kontenera na podstawie prefiksu https w UI. Zweryfikować dokładny zaufany łańcuch connector → Traefik → aplikacja; nigdy nie ufać dowolnemu X-Forwarded-For ani CF-Connecting-IP bez granicy zaufania. Adresy Cloudflare nie są bezpośrednimi peerami aplikacji. Origin ma docelowo być niedostępny publicznie, co wymaga osobnego testu IPv4/IPv6 i publikacji Dockera. Dla wielu usług zachować semantykę tras API, kolejność matchów, websockets/SSE, body limits i timeouty. Stare NPM Custom Locations są materiałem do migracji, nie konfiguracją nowego proxy. Admin i domeny assetów/R2 wymagają osobnego zakresu.
 6.  **Sekrety i retencja:** runtime secrets przechowywać w Coolify lub chronionych plikach hosta; CI credentials w odpowiednim GitHub Environment. Nie przenosić danych produkcyjnych do publicznych repo. Klucz SSH dotyczy tylko zatwierdzonej ścieżki zarządzania, z przypiętym zweryfikowanym host key. Po migracji wycofać zbędne klucze i OIDC grants; usunięcie konta na VPS samo ich nie usuwa. Zachować co najmniej ostatni sprawdzony digest i stosować retencję per aplikacja.
 
-7.  **Niezmienny release, preflight i blue-green (obowiązkowy standard):**
+7.  **Niezmienny release, sprawdzona promocja i rollback:**
     *   **Jeden build, jeden artefakt:** obraz powstaje raz w GitHub Actions po przejściu Quality, jest wysyłany do GHCR z tagiem pełnego commit SHA, a deploy używa postaci `ghcr.io/...@sha256:...`. Produkcja nie wdraża `latest`, skróconego SHA ani obrazu zbudowanego ponownie na VPS.
     *   **Manifest wydania:** wielokontenerowa aplikacja publikuje niezmienny manifest zawierający pełny `CONFIG_SHA` oraz digest każdego obrazu. Przy buildach selektywnych manifest przenosi digests niezmienionych komponentów; prostszym i bezpieczniejszym początkiem jest atomowe zbudowanie wszystkich kontenerów aplikacyjnych.
     *   **Spójność commitu:** workflow i obrazy muszą odpowiadać testowanemu SHA; release zapisuje również wersję konfiguracji/Compose i ustawień Coolify. Job nigdy nie zastępuje SHA aktualnym main.
-    *   **Preflight przed zmianą ruchu:** nieaktywny slot (`blue` albo `green`) startuje równolegle pod unikalną nazwą z limitami zasobów i bez produkcyjnego aliasu. Platforma/orchestrator czeka na Docker healthcheck, odpytuje `/health/ready` i wykonuje bezpośredni smoke test krytycznych ścieżek. Nie usuwa ani nie restartuje działającego slotu. Nie wolno sprawdzić kandydata, usunąć go, a następnie uruchomić w produkcji nowego, niesprawdzonego kontenera z tego samego obrazu.
-    *   **Promocja blue-green:** po udanym preflight stabilny router aplikacji przełącza upstream z aktywnego slotu na kandydata atomowym reloadem. Traefik wybiera gotowy backend w sieci aplikacji; nie dokładamy osobnego gatewaya tylko po to, by powielić tę funkcję. Rolling update platformy jest etapem przejściowym i wymaga testu zachowania przy awarii; nie nazywamy go automatycznie blue-green. Następnie wykonywany jest smoke test przez publiczny HTTPS; przy błędzie routing wraca do poprzedniego slotu. Stary slot jest zatrzymywany dopiero po okresie drain/grace i pozostaje dostępny jako ostatni release rollbacku zgodnie z retencją.
+    *   **Preflight przed zmianą ruchu:** w wariancie blue-green nieaktywny slot (`blue` albo `green`) startuje równolegle pod unikalną nazwą z limitami zasobów i bez produkcyjnego aliasu. Platforma/orchestrator czeka na Docker healthcheck, odpytuje `/health/ready` i wykonuje bezpośredni smoke test krytycznych ścieżek. Nie usuwa ani nie restartuje działającego slotu. Nie wolno sprawdzić kandydata, usunąć go, a następnie uruchomić w produkcji nowego, niesprawdzonego kontenera z tego samego obrazu.
+    *   **Promocja blue-green:** po udanym preflight stabilny router aplikacji przełącza upstream z aktywnego slotu na kandydata atomowym reloadem. Po publicznym smoke stary slot przechodzi drain/grace; przy błędzie routing wraca do niego. Traefik wybiera gotowy backend w sieci aplikacji; nie dokładamy osobnego gatewaya tylko po to, by powielić tę funkcję.
+    *   **Zarządzany rolling update:** zaakceptowaną alternatywą stosowaną przez TTT jest rolling update Coolify z bramką zdrowia. Stary kontener jest usuwany po osiągnięciu zdrowia przez kandydata. Jeżeli późniejszy publiczny smoke nie przejdzie, rollback ponownie wdraża zachowany poprzedni digest. Nie wymaga to stałych slotów blue/green ani stale uruchomionego canary; rollback obrazu zachowuje bieżące trwałe dane.
     *   **Zakres blue-green:** dublujemy stateless frontend/API. PostgreSQL, kolejki i monitoring pozostają współdzielone. Worker/orchestrator uruchamiający zadania cykliczne działa jako singleton albo używa leader election/distributed lock; dwa sloty nie mogą podwójnie wykonać tego samego zadania.
     *   **Hosting statyczny:** dla GitHub Pages/Cloudflare Pages odpowiednikiem jest preview deployment z testami, a następnie atomowa promocja i rollback zapewniane przez platformę. Nie dokładamy własnych kontenerów ani routera blue-green tam, gdzie hosting już gwarantuje niezmienne wydania.
     *   **Migracje bazy:** migracje nie uruchamiają się automatycznie przy starcie każdej repliki. Są osobnym, kontrolowanym krokiem po backupie. Stosujemy expand/contract: najpierw zmiana kompatybilna ze starą i nową wersją, później deploy kodu, a destrukcyjne usunięcia dopiero w osobnym wydaniu. Rollback aplikacji nie może wymagać cofania nieodwracalnej migracji.
@@ -53,9 +72,9 @@ flowchart LR
     *   **Blokady i współbieżność:** GitHub `concurrency` serializuje wdrożenia danego środowiska z `cancel-in-progress: false`. Platforma musi zapewnić serializację per aplikacja i kontrolę pojemności całego VPS podczas nakładania kandydatów. Zweryfikować mechanizm kolejki/blokady Coolify; dla własnych skryptów używać rzeczywistego flock. Plik z PID nie jest blokadą; samo zainstalowanie Coolify nie dowodzi spełnienia wymagania.
     *   **Budżet zasobów:** oba sloty mają jawne limity CPU, RAM i PID. Podwójne zużycie dotyczy tylko dublowanych usług w trakcie wdrożenia i okresu rollback/drain, nie bazy i pozostałych usług stanowych. Deploy nie rozpoczyna kandydata, jeżeli serwer nie ma ustalonego zapasu pamięci.
     *   **Bezpieczne sprzątanie:** brak globalnego `docker image prune -f`, brak bezwarunkowego restartu NPM i brak aktualizacji współdzielonej infrastruktury przy deployu pojedynczej aplikacji. Obrazy baz danych i monitoringu są przypięte do kontrolowanych wersji/digestów i aktualizowane osobnym procesem. Czyszczenie jest per aplikacja, po sukcesie, z zachowaniem co najmniej ostatniego działającego release'u.
-    *   **Kontrola wydania:** `main` ma ruleset blokujący force-push i usunięcie oraz wymagający zielonego Quality przed scaleniem. Dla jednoosobowych repozytoriów nie wymagamy zatwierdzenia przez inną osobę: docelowy przepływ to PR bez obowiązkowego review, zielone wymagane kontrole i merge. Jeżeli projekt tymczasowo zachowuje bezpośrednie pushe na `main`, minimalny etap przejściowy blokuje force-push i usunięcie, a Quality pozostaje kontrolą po pushu; nie opisujemy tego wariantu jako pełnej ochrony przed wadliwym commitem. Deploy korzysta z GitHub Environment `production`; sekrety produkcyjne są przypisane do środowiska, uprawnienia workflow są minimalne, a klucz hosta SSH jest przypięty w `SSH_KNOWN_HOSTS`.
-    *   **Kryterium akceptacji:** celowe uszkodzenie readiness kandydata nie przerywa ruchu do starej wersji; błąd publicznego smoke testu automatycznie cofa routing; ponowienie tego samego manifestu wdraża dokładnie te same digests; równoległy deploy innego repozytorium respektuje blokadę pojemności VPS.
-8.  **Kontrakt automatyzacji CI → Coolify (zadanie):** Quality → pojedynczy build → GHCR digest/attestacja → uwierzytelnione żądanie promocji dokładnie tego digestu → oczekiwanie na status kandydata → publiczny smoke z rewizją → rollback przy błędzie. Serializować deploymenty środowiska, nie anulować aktywnej promocji i zachować manifest wielokontenerowy. Implementację klienta API/webhooka i jego uprawnienia dobrać po odczycie wersji Coolify oraz prywatnej polityki dostępu. Dotychczasowe ręczne wpisanie digestu nie spełnia tej automatyzacji. Nie kopiować starego joba SSH z launcherem użytkownika do aplikacji migrowanej do Coolify.
+    *   **Kontrola wydania — cel:** `main` ma ruleset blokujący force-push i usunięcie oraz wymagający zielonego Quality przed scaleniem. Dla jednoosobowych repozytoriów nie wymagamy zatwierdzenia przez inną osobę: docelowy przepływ to PR bez obowiązkowego review, zielone wymagane kontrole i merge. Jeżeli projekt tymczasowo zachowuje bezpośrednie pushe na `main`, minimalny etap przejściowy blokuje force-push i usunięcie, a Quality pozostaje kontrolą po pushu; nie opisujemy tego wariantu jako pełnej ochrony przed wadliwym commitem. TTT używa GitHub Environment `production` z ograniczeniem do `main` i zatwierdzeniem operatora, lecz środowisko dopuszcza jego własne zatwierdzenie i obejście przez administratora. Odczyt z 17 września potwierdził ruleset TTT wymagający PR i zielonego Quality. Brak klasycznej branch protection nie oznacza braku rulesetu. Zatwierdzenie środowiska przez właściciela jest świadomą bramką operatora, nie niezależnym review drugiej osoby. Sekrety produkcyjne są w środowisku; stary klucz SSH nie jest częścią obecnego wdrożenia Coolify.
+    *   **Kryterium akceptacji:** celowe uszkodzenie readiness kandydata nie przerywa ruchu do starej wersji; błąd publicznego smoke testu uruchamia rollback właściwy dla wybranej strategii; ponowienie tego samego manifestu wdraża dokładnie te same digests; równoległy deploy innego repozytorium respektuje blokadę pojemności VPS.
+8.  **Kontrakt automatyzacji CI → Coolify:** Quality → pojedynczy build → GHCR digest/atestacja → chroniona promocja dokładnie tego digestu → oczekiwanie na zdrowie → publiczny smoke z rewizją → rollback przy błędzie. TTT ma zaakceptowane automatyczne wywołanie po Quality i ręczne zatwierdzenie joba produkcyjnego. Testy niezdrowego kandydata i rollbacku po błędzie publicznego smoke przeszły 16–17 września. Przed zmianą sprawdzać stabilny kontrakt dotychczasowej wersji, a po promocji pełny kontrakt nowej. Inventory i aplikacje stanowe wymagają osobnego odbioru. Serializować deploymenty, nie anulować aktywnej promocji i zachować manifest wielokontenerowy. Nie kopiować starego joba SSH z launcherem do aplikacji Coolify.
 
 9.  **Centralna obserwowalność VPS (jeden stack dla wszystkich aplikacji):**
     *   Na jednym VPS utrzymujemy **jedną niezależną instancję Grafany, Prometheusa i Node Exportera na środowisko**, a nie ich kopię w każdym projekcie. Opcjonalne usługi, takie jak Grafana Image Renderer, cAdvisor, Loki/Alloy lub Alertmanager, również należą do centralnego stacku. Osobne instancje tworzymy dopiero dla innego środowiska, hosta, wymogu izolacji albo skali uzasadniającej federację.
@@ -69,25 +88,24 @@ flowchart LR
 
 ---
 
-## 🤝 Zasady Współpracy i Kontroli Użytkownika
+## Zasady kontroli zmian
 
 > [!IMPORTANT]
-> **Pełna kontrola użytkownika (Brak samodzielnych decyzji AI):**
-> *   Każda zmiana w kodzie (np. logika tabel w Wordzie, interfejs NetFilmx, scrapery) będzie przedyskutowana z Tobą **przed jej zaimplementowaniem**. Agent AI nie będzie samodzielnie podejmował decyzji o architekturze ani dokonywał zmian bez Twojej wiedzy.
-> *   Wszelkie commity i wypchnięcie zmian na GitHub (`git commit` / `git push`) oraz zmiany nazw repozytoriów będą wykonywane **dopiero po Twojej wyraźnej akceptacji** konkretnego pliku/kodu lub jako polecenie uruchomione przez Ciebie w terminalu.
-> *   Działamy ściśle w trybie **Pair Programming** — AI proponuje rozwiązania i pisze kod do wglądu, a Ty pełnisz rolę zatwierdzającego (Driver/Navigator).
+> **Operator zatwierdza zmiany produkcyjne i decyzje architektoniczne.** Przed ich wykonaniem otrzymuje konkretną propozycję, kopię/rollback oraz test odbioru. Commity, push i zmiany nazw repozytoriów następują po jego wyraźnej akceptacji konkretnego wyniku lub poleceniu wykonania tych działań.
 
 ---
 
-## 🗂️ Organizacja pracy (Rozdzielenie czatów)
+## Przekazanie pracy między sesjami
 
-Aby zapobiec przepełnieniu kontekstu (tzw. context bloating) i utrzymać wysoką wydajność:
-1.  **Ten czat** służy jako **Koordynator Główny** — tu śledzimy postępy na roadmapie, zarządzamy listą zadań i podejmujemy decyzje strategiczne.
-2.  **Dla każdego konkretnego kroku** zalecamy **otwieranie osobnego, świeżego czatu**. Przyszły agent AI odczytuje kanoniczny plik `/home/szcze/projects/grela-dev-roadmap/docs/implementation-plan.md` i raport danego projektu z `projects/<slug>/report.md`, a następnie dostosowuje się do standardu DevOps.
+Wybierz jeden pakiet z tabeli na początku, a następnie odczytaj jego wiersze i
+podzadania w prywatnej checkliście infrastruktury oraz raport projektu z
+`projects/<slug>/report.md`. Zapisuj wynik przy tym samym ID wraz z datą i
+źródłem. Nie twórz nowej listy zadań w opisie pojedynczego wydania; odsyłaj do
+pakietu nadrzędnego. Szczegóły VPS i dane dostępu pozostają prywatne.
 
 ---
 
-## Proposed Changes (Chronologiczna kolejność prac)
+## Katalog projektów portfolio (kolejność katalogu, nie kolejka VPS)
 
 ### 1. `Projekt-ST1-Generator-Spisu` -> `inventory-generator` — wdrożenie działa, dalsze zadania w raporcie
 *   **Proponowana nazwa:** `inventory-generator`
@@ -96,7 +114,7 @@ Aby zapobiec przepełnieniu kontekstu (tzw. context bloating) i utrzymać wysok�
 *   **Zarządzanie wdrożeniem:** zasób Coolify; nie tworzyć nowego konta aplikacyjnego w grupie docker.
 *   **Technologia:** C# / ASP.NET Core (.NET 8), JavaScript, OpenXML; generator DOCX/CSV/HTML
 *   **Zadania Dev:** Zmiana nazwy na `inventory-generator`, licencja MIT, README.md (EN). Poprawa układu tabeli w plikach MS Word (szerokość kolumn, czcionki, obramowania), aby była czytelna i schludna.
-*   **Zadania DevOps:** Wdrożenie ręczne GHCR/Coolify z healthcheckiem wykonane; pozostały automatyczna promocja digestu, klient-IP, limity i testy rollbacku. Upewnienie się, że aplikacja ma favicon i wielowarstwowy rate limiting; wdrożenie obowiązkowego preflightu, blue-green i automatycznego rollbacku zgodnie ze standardem powyżej.
+*   **Stan DevOps (11–15 września):** ręczne wdrożenie digestu, wewnętrzny healthcheck, prywatny ingress, bezpośrednia kontrola limitów RAM/CPU/logów i source/CI testy zaufanych proxy są potwierdzone. Pozostają: live echo IP Inventory, test zachowania limitów i wspólnego stanu podczas overlap, brakujący PID/no-new-privileges, własny kontrakt wydania przez API, niezdrowy kandydat i rollback. Favicon/metadane sprawdzić w przeglądarce. Przygotować automatyczną promocję dopiero po tych testach.
 
 ### 2. `Punkt_Skladania_Zamowien` (Maj 2024)
 *   **Proponowana nazwa:** `pos-order-system`
@@ -112,7 +130,7 @@ Aby zapobiec przepełnieniu kontekstu (tzw. context bloating) i utrzymać wysok�
 *   **Docelowe zarządzanie wdrożeniem:** zasób Coolify; nie tworzyć nowego konta aplikacyjnego w grupie docker.
 *   **Technologia:** C# (ASP.NET Core MVC)
 *   **Zadania Dev:** Zmiana nazwy na `netfilmx-movie-catalog`, licencja MIT, README.md (EN). Odświeżenie panelu admina (Admin UI) i dodanie estetycznego interfejsu dla zwykłych użytkowników (User UI).
-*   **Zadania DevOps:** Wdrożenie kontenerowe ASP.NET Core MVC pod subdomenę `netfilmx.grela.dev`. Upewnienie się, że aplikacja ma favicon i wielowarstwowy rate limiting; wdrożenie obowiązkowego preflightu, blue-green i automatycznego rollbacku zgodnie ze standardem powyżej.
+*   **Stan i następny pakiet (M01):** dwa stare kontenery są uruchomione, oba montują ten sam zapisywalny katalog z SQLite. Operator 12 września utworzył chronioną lokalną kopię bazy, obrazu i inspect; kopia SQLite przeszła `quick_check`, ale nie test importu. Publiczny host zwracał błąd po zatrzymaniu NPM i nie miał nowej trasy w Traefiku. Przed migracją wybrać aktualną wersję SQLite lub osobno przejrzaną pracę PostgreSQL, ustalić rzeczywistych writerów i odświeżyć kopię. Następnie wdrożyć digest z testami tras, odczytu/zapisu i rollbacku; dopiero wtedy usunąć duplikat. Favicon i limity są osobnymi testami.
 
 ### 4. `AirQualityApp` (Luty 2025)
 *   **Proponowana nazwa:** `air-quality-app`
@@ -121,7 +139,7 @@ Aby zapobiec przepełnieniu kontekstu (tzw. context bloating) i utrzymać wysok�
 *   **Docelowe zarządzanie wdrożeniem:** zasób Coolify; nie tworzyć nowego konta aplikacyjnego w grupie docker.
 *   **Technologia:** Python
 *   **Zadania Dev:** Zmiana nazwy na `air-quality-app`, licencja MIT, README.md (EN). Implementacja brakujących funkcjonalności (zapisywanie historii pomiarów, wykresy jakości powietrza w matplotlib/plotly).
-*   **Zadania DevOps:** Konteneryzacja aplikacji Python i wdrożenie pod `air.grela.dev`. Upewnienie się, że aplikacja ma favicon i wielowarstwowy rate limiting; wdrożenie obowiązkowego preflightu, blue-green i automatycznego rollbacku zgodnie ze standardem powyżej.
+*   **Zadania DevOps:** Konteneryzacja aplikacji Python i wdrożenie pod `air.grela.dev`. Upewnienie się, że aplikacja ma favicon i wielowarstwowy rate limiting; wdrożenie obowiązkowego preflightu, sprawdzonej promocji i automatycznego rollbacku zgodnie ze standardem powyżej.
 
 ### 5. `AudioMaster` (Czerwiec 2025)
 *   **Proponowana nazwa:** `audio-master`
@@ -135,15 +153,15 @@ Aby zapobiec przepełnieniu kontekstu (tzw. context bloating) i utrzymać wysok�
 *   **Zarządzanie wdrożeniem:** zasób Coolify; nie tworzyć nowego konta aplikacyjnego w grupie docker.
 *   **Technologia:** Python
 *   **Zadania Dev:** Zmiana nazwy na `tic-tac-toe-ai`, licencja MIT, README.md (EN). **Współautorstwo:** Dodanie sekcji atrybucji współautorów.
-*   **Zadania DevOps:** Wdrożenie wersji webowej gry pod `tictactoe.grela.dev`. Utrzymać token bucket ruchów (30/min z burstem 10), naliczać seriom koszt według liczby gier i zachować limit dwóch równoległych operacji AI. GHCR digest i ręczne wdrożenie Coolify z readiness są potwierdzone. Zweryfikować prawdziwe IP przez Tunnel/Traefik, dokończyć limity, automatyczne CD, Redis przy nakładaniu replik i testy blue-green/rollbacku.
+*   **Stan TTT (przegląd 28 września):** wdrożenia przez chronione GitHub Environment, OIDC i prywatne API Coolify promują przetestowany/atestowany digest. Zarządzany healthcheck, wadliwy kandydat, publiczny rollback, serializacja i overlap są zaakceptowane. Plansze 3×3/5×5/9×9, MCTS 5×5 i przyrostowe serie NDJSON działają; to strumień odpowiedzi HTTP, bez WebSocket. Jev pozostaje wyłączony, mimo ukończonej implementacji i backupu licznika. Pozostają K=9, decyzja aktywacji, współdzielone limity, szersze testy edge/streamingu, monitoring, wyjątki runtime i osobne porządki starych skryptów.
 
 ### 7. `SmakoszWebApp` (Lipiec 2025)
 *   **Proponowana nazwa:** `smakosz-web-app`
-*   **Domena:** obecnie planowane `smakosz.grela.dev`; wybrać docelową domenę i przeprowadzić kontrolowaną migrację bez wymyślania adresu przed decyzją właściciela.
+*   **Domena:** obecny publiczny adres `smakosz.xyz`; ewentualny `smakosz.grela.dev` pozostaje osobną decyzją i migracją, bez wymyślania nowego adresu przed decyzją właściciela.
 *   **Docelowe zarządzanie wdrożeniem:** zasób Coolify; nie tworzyć nowego konta aplikacyjnego w grupie docker.
 *   **Technologia:** C# (.NET 10) + Blazor WASM (PWA) + PyTorch/ONNX + Docker
 *   **Zadania Dev:** Zmiana nazwy na `smakosz-web-app`, licencja MIT, stworzenie obszernego README.md (EN) na podstawie Twojej pracy inżynierskiej (`2026.IN.w67131.pdf`). **Naprawa e-maili:** usunąć zależność od wygasłego klucza Brevo API i przejść na SMTP Brevo przez wydzieloną abstrakcję nadawcy (np. MailKit), sekrety środowiskowe, kolejkę/retry z idempotencją oraz testy potwierdzenia konta, resetu hasła i ponownego wysłania wiadomości. Zweryfikować domenę nadawcy, SPF, DKIM i DMARC; usunąć/wycofać stare dane API i nie logować poświadczeń SMTP.
-*   **Zadania DevOps:** Naprawić CI/CD zgodnie z obowiązkowym standardem: wdrażać manifest pełnego SHA i dokładne digests zamiast `latest`; nie pobierać Compose/skryptów z ruchomego `main`; połączyć zduplikowany workflow force z parametrem ręcznym; wdrożyć preflight i blue-green dla klienta/API, singleton lub bezpieczny drain dla Hangfire orchestratora oraz osobny krok migracji EF w modelu expand/contract; używać readiness zamiast samego liveness; dodać automatyczny rollback i publiczny smoke test; zastąpić pozorną blokadę prawdziwym `flock`; usunąć globalny `docker image prune -f` i restarty wspólnego proxy; utrzymać już potwierdzone ograniczenie purge do hosta frontendu, a docelowo rozważyć dokładne URL-e lub brak purge; przypiąć obrazy infrastruktury i dodać limity zasobów. **Centralna obserwowalność:** wydzielić działające `smakosz-prometheus`, `smakosz-grafana`, `smakosz-grafana-renderer` i `smakosz-node-exporter` z Compose oraz sieci Smakosza do niezależnego stacku i `observability-network`, zachowując wolumeny, dashboardy, alerty SMTP i ciągłość monitorowania Smakosza; następnie dodać scrape targets, labels, dashboardy i alerty pozostałych aplikacji. Node Exporter pozostaje pojedynczy dla całego hosta, a opcjonalny centralny cAdvisor zapewnia metryki kontenerów. Migrację wykonać równoległym kandydatem, z backupem i rollbackiem, zanim usługi zostaną usunięte ze Smakosza. **Migracja domeny:** po wyborze adresu skonfigurować Cloudflare Tunnel, Traefik/TLS, CORS, callbacki, cookie domain, linki w wiadomościach i konfigurację PWA; utrzymać stary adres przez okres przejściowy z przekierowaniem, wykonać zewnętrzne testy HTTPS i dopiero potem wycofać starą domenę. **Refaktoryzacja sieci aplikacji:** wybrać sieć aplikacji w Coolify i potwierdzić dostęp Traefika; monitoring korzysta z odrębnej `observability-network`. Upewnić się, że aplikacja ma favicon i wielowarstwowy rate limiting.
+*   **Stan i pakiety M03/O01–O02:** harmonogram i wykonanie lokalnego backupu przeszły 27 września; katalogi bieżących kopii daily/weekly są czytelne, bez nowej próby restore. Starsze odczyty potwierdzały działające kontenery i niedostępną trasę przez zatrzymane NPM; pomyślny handshake TLS 27 września nie potwierdza dostępności HTTP. Przed migracją odświeżyć kopię DB oraz ustalić pozostałe dane/model/konfigurację; testować `/api` i `/api/`, auth, wspólne limity, websockety, assety/PWA oraz rollback. **Wydanie stanowe:** naprawić CI/CD zgodnie ze standardem: manifest pełnego SHA i dokładne digests zamiast `latest`, bez pobierania Compose/skryptów z ruchomego `main`; połączyć zdublowany workflow force; preflight/rolling albo sprawdzony blue-green dla klienta/API, singleton/drain orchestratora, osobne kompatybilne migracje EF, publiczny smoke i rollback, rzeczywista blokada, bez globalnego prune i restartu proxy. **Centralna obserwowalność:** wydzielić Prometheus/Grafanę/renderera/Node Exporter do niezależnego stacku z zachowaniem danych, dashboardów i alertów, a następnie objąć pozostałe aplikacje. **Zmiana domeny:** dopiero po decyzji właściciela zmienić Tunnel/Traefik, CORS/callbacki/cookies, linki e-mail i PWA, zachować stary adres przejściowo i przetestować oba. Favicon i wielowarstwowe limity pozostają osobnymi odbiorami.
 
 ### 8. `UrlShortenerSystem` (Lipiec 2025)
 *   **Proponowana nazwa:** `url-shortener-system`
@@ -152,7 +170,7 @@ Aby zapobiec przepełnieniu kontekstu (tzw. context bloating) i utrzymać wysok�
 *   **Docelowe zarządzanie wdrożeniem:** zasób Coolify; nie tworzyć nowego konta aplikacyjnego w grupie docker.
 *   **Technologia:** C# (.NET) + HTML/JS/CSS (nowe UI)
 *   **Zadania Dev:** Zmiana nazwy na `url-shortener-system`, licencja MIT, README.md (EN). Stworzenie prostego, responsywnego UI w HTML/JS do skracania linków.
-*   **Zadania DevOps:** Wdrożenie produkcyjne API + UI pod subdomenę `s.grela.dev`. Upewnienie się, że aplikacja ma favicon i wielowarstwowy rate limiting; wdrożenie obowiązkowego preflightu, blue-green i automatycznego rollbacku zgodnie ze standardem powyżej.
+*   **Zadania DevOps:** Wdrożenie produkcyjne API + UI pod subdomenę `s.grela.dev`. Upewnienie się, że aplikacja ma favicon i wielowarstwowy rate limiting; wdrożenie obowiązkowego preflightu, sprawdzonej promocji i automatycznego rollbacku zgodnie ze standardem powyżej.
 
 ### 9. `OlxScrapper` (Lipiec 2025)
 *   **Proponowana nazwa:** `flat-finder`
@@ -161,7 +179,7 @@ Aby zapobiec przepełnieniu kontekstu (tzw. context bloating) i utrzymać wysok�
 *   **Docelowe zarządzanie wdrożeniem:** zasób Coolify; nie tworzyć nowego konta aplikacyjnego w grupie docker.
 *   **Technologia:** Python + HTML
 *   **Zadania Dev:** Zmiana nazwy na `flat-finder`, licencja MIT, README.md (EN). Uporządkowanie skryptów ML i scrapera, dokończenie skryptu treningowego i zintegrowanie go z aplikacją.
-*   **Zadania DevOps:** Wdrożenie produkcyjne dashboardu wyszukiwarki mieszkań pod `flatfinder.grela.dev`. Upewnienie się, że aplikacja ma favicon i wielowarstwowy rate limiting; wdrożenie obowiązkowego preflightu, blue-green i automatycznego rollbacku zgodnie ze standardem powyżej.
+*   **Zadania DevOps:** Wdrożenie produkcyjne dashboardu wyszukiwarki mieszkań pod `flatfinder.grela.dev`. Upewnienie się, że aplikacja ma favicon i wielowarstwowy rate limiting; wdrożenie obowiązkowego preflightu, sprawdzonej promocji i automatycznego rollbacku zgodnie ze standardem powyżej.
 
 ### 10. `clean-commits-skill` (Maj 2026)
 *   **Nazwa:** Bez zmian (`clean-commits-skill`)
@@ -173,7 +191,7 @@ Aby zapobiec przepełnieniu kontekstu (tzw. context bloating) i utrzymać wysok�
 *   **Port kontenera:** ustalić z Dockerfile i procesu przy migracji; bez domyślnego mapowania na hosta.
 *   **Docelowe zarządzanie wdrożeniem:** zasób Coolify; nie tworzyć nowego konta aplikacyjnego w grupie docker.
 *   **Zadania Dev:** Dodanie daty do README.md, licencja MIT, schemat przepływu RAG.
-*   **Zadania DevOps:** Konteneryzacja pipeline'u RAG i wdrożenie pod `movierag.grela.dev`. **Refaktoryzacja sieci:** Migracja do dedykowanej sieci Coolify z dostępem Traefika, zachowaniem bazy pgvector, tras /api/explain i zachowania streamingu. Upewnienie się, że aplikacja ma favicon i wielowarstwowy rate limiting; wdrożenie obowiązkowego preflightu, blue-green i automatycznego rollbacku zgodnie ze standardem powyżej.
+*   **Stan i następny pakiet (M02):** stare kontenery i baza pgvector pozostawały uruchomione 12 września, ale publiczny host zwracał błąd przy zatrzymanym NPM; nowej trasy w Traefiku nie potwierdzono. Przed migracją skopiować bazę/wektory i ustalić stan zewnętrzny, potem zachować dokładne oraz prefiksowe `/api/explain`, priorytet frontend/API, streaming/SSE, anulowanie, timeouty i websockety. Sprawdzić prawdziwe zapytania, favicon, limity i rollback przed wycofaniem starej wersji.
 
 ### 12. `leetcode` (Czerwiec 2026)
 *   **Proponowana nazwa:** `leetcode-solutions`
@@ -195,8 +213,11 @@ Aby zapobiec przepełnieniu kontekstu (tzw. context bloating) i utrzymać wysok�
 ## Verification Plan
 
 ### Automated Steps
-- Walidacja zmian statusów i nazw repozytoriów poprzez `gh repo view`.
-- Build/test/scan w CI, promocja dokładnego digestu przez Coolify; automatyczne CD pozostaje zadaniem do potwierdzenia.
+- Walidacja JSON, zgodności raportów i kompilacji strony roadmapy.
+- TTT: CI testuje kod i finalny obraz; zatwierdzony proces promuje dokładny digest.
+  Niezdrowy kandydat i failed-smoke rollback mają datowaną akceptację 16–17 września.
+- Inventory i kolejne aplikacje: własny kontrakt obrazu/zdrowia/smoke oraz odbiór
+  promocji i odzyskiwania; nie dziedziczą wyników TTT.
 
 ### Manual Verification
 - Testy dostępności usług w przeglądarce pod subdomenami `x.grela.dev` po HTTPS.

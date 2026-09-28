@@ -82,7 +82,7 @@
       "required": ["date", "mode", "sourceRevision", "sourceState"],
       "properties": {
         "date": {"type": "string", "format": "date"},
-        "mode": {"const": "codex-assisted-source-audited"},
+        "mode": {"const": "source-audited"},
         "sourceRevision": {"type": "string", "pattern": "^[0-9a-f]{40}$"},
         "sourceState": {"type": "string", "minLength": 1}
       }

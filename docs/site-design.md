@@ -51,4 +51,4 @@ The repository therefore uses Playwright in GitHub Actions. A weekly/manual work
 - No claim that forecast dates are commitments.
 - No automatic modification of human-authored task status from GitHub activity alone.
 
-Effort ranges shown in task cards use the source revision recorded in each project, assume Codex-assisted work and convert hours to eight-hour work days as defined in `estimation-methodology.md`.
+Effort ranges shown in task cards use the source revision recorded in each project, include implementation and verification and convert hours to eight-hour work days as defined in `estimation-methodology.md`.

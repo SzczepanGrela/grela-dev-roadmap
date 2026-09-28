@@ -4,9 +4,9 @@
 
 Task ranges describe the remaining active engineering effort, not elapsed calendar time. They include implementation, review, tests, local verification and the task-specific documentation needed to finish safely. Waiting for DNS propagation, external approvals or unattended CI does not count as active effort.
 
-## Codex-assisted baseline
+## Source-audited baseline
 
-All estimates use the `codex-assisted-source-audited` mode. Codex is assumed to help inspect the repository, implement bounded changes, update tests and documentation, and diagnose failures. The reduction is assessed per task rather than applied as one percentage:
+All estimates use the `source-audited` mode. Estimates account for repository inspection, bounded implementation, tests, documentation and diagnosis. Uncertainty is assessed per task rather than applying one global productivity factor:
 
 - established tests, typed code and narrow changes receive a larger productivity benefit;
 - unfamiliar legacy code, dirty worktrees and weak test coverage retain a wider uncertainty range;
@@ -29,7 +29,7 @@ Each `project.json` records the exact source revision and worktree/source state 
 
 Zakresy opisują pozostały aktywny nakład inżynierski, a nie czas kalendarzowy. Obejmują implementację, review, testy, lokalną weryfikację i dokumentację potrzebną do bezpiecznego zakończenia zadania. Oczekiwanie na propagację DNS, zewnętrzną akceptację lub samoczynnie działające CI nie jest liczone jako aktywna praca.
 
-Wszystkie estymacje zakładają pracę wspomaganą Codexem i audyt kodu konkretnego projektu. Korzyść nie jest jednym rabatem procentowym: jest większa dla wąskich zmian w typowanym i przetestowanym kodzie, a mniejsza dla legacy, brudnych worktree, infrastruktury produkcyjnej, migracji, kwestii prawnych i ręcznych prób rollbacku.
+Wszystkie estymacje zakładają audyt kodu, implementację i weryfikację konkretnego projektu. Korzyść nie jest jednym rabatem procentowym: jest większa dla wąskich zmian w typowanym i przetestowanym kodzie, a mniejsza dla legacy, brudnych worktree, infrastruktury produkcyjnej, migracji, kwestii prawnych i ręcznych prób rollbacku.
 
 Jeden dzień roboczy oznacza osiem godzin skupionej pracy. Dni są wyliczane z godzin i zaokrąglane w górę do ćwierci dnia. Suma projektu jest sumą zadań, a prognoza kalendarzowa zakłada 30 godzin pracy tygodniowo, po sześć godzin w każdy dzień roboczy, oraz kolejność projektów zapisaną w danych. Prognoza nie jest zobowiązaniem terminowym.
 

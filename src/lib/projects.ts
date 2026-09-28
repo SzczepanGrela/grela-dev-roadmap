@@ -81,7 +81,7 @@ export interface RoadmapProject {
   };
   estimation: {
     date: string;
-    mode: "codex-assisted-source-audited";
+    mode: "source-audited";
     sourceRevision: string;
     sourceState: string;
   };

@@ -59,7 +59,7 @@
   },
   "estimation": {
     "date": "2026-08-25",
-    "mode": "codex-assisted-source-audited",
+    "mode": "source-audited",
     "sourceRevision": "28885c20643b6cf68fbd55d2b9dc0df90383c77f",
     "sourceState": "clean public main shallow clone with failing CI"
   },

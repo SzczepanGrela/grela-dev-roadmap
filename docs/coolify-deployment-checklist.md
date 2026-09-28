@@ -1,10 +1,26 @@
 # Checklista wdrożenia przez Coolify
 
-Wersja odniesienia: 4.3.14; aktualizacja 2026-09-10. To wymagania i wskazówki,
+Wersja odniesienia: 4.3.14; przegląd 2026-09-28. To wymagania i wskazówki,
 nie deklaracja, że każdy projekt już je spełnia. Konkretne dane VPS, UUID,
 adresy zarządzania i sekrety pozostają w prywatnej dokumentacji infrastruktury.
-Wyniki obu migracji pochodzą z dostarczonych przez operatora logów/inspect;
-nie stanowią ponownego audytu całego serwera.
+Wyniki pochodzą z dostarczonych przez operatora logów/inspect i selektywnych
+odczytów API/GitHub i testów z 11–27 września; nie stanowią ponownego audytu całego
+serwera. Dla statusów, zależności i podzadań użyć prywatnej checklisty
+`grela-dev-infrastructure/docs/current-priorities.md`; publiczny
+[plan portfolio](implementation-plan.md#stan-wdrożeń-i-najbliższa-kolejka)
+pokazuje jedynie pakiety prac.
+Pola `[ ]` poniżej są wielokrotnego użytku kontrolami odbioru nowego zasobu,
+nie listą wszystkich braków w obu obecnych aplikacjach.
+
+| Przykład | Potwierdzone | Nadal do odbioru |
+| --- | --- | --- |
+| Tic-Tac-Toe | Chroniona automatyczna promocja digestu, bramka zdrowia Coolify, odrzucenie niezdrowego kandydata, failed-smoke rollback, serializacja i pomiar overlap; później trwały licznik Jev, kopia i izolowana próba restore. | Szersze limity i stan współdzielony, monitoring, wyjątki runtime oraz K=9 i decyzja publicznej aktywacji Jev. |
+| Inventory | Ręczny digest, zdrowy obraz, ograniczony runtime, trasa i testy zaufania proxy w źródle/CI. | Własny kontrakt wydania, live IP echo, niezdrowy kandydat/rollback, overlap/limity i automatyczna promocja. |
+
+Potwierdzona konfiguracja nie zastępuje testu zachowania: pierwszy celowo
+niezdrowy canary osiągnął w Coolify `finished`, gdy kontrola zdrowia platformy
+była wyłączona. Po włączeniu zarządzanej kontroli TTT poprawiony test przeszedł
+16 września. To zakończona lekcja dla kolejnych aplikacji; stałe canary nie jest wymagane.
 
 ## Obraz i dostęp
 
@@ -16,9 +32,10 @@ nie stanowią ponownego audytu całego serwera.
 - [ ] Udokumentować, czy deploy jest ręczny czy automatyczny. `HEAD` w historii
   ręcznego zasobu Docker Image nie potwierdza commitu. Porównać pełną rewizję
   z endpointu/etykiety OCI z wydaniem CI.
-- [ ] Docelowa automatyzacja przekazuje konkretny przetestowany digest przez
-  uwierzytelniony prywatny interfejs Coolify. Sam webhook ponawiający deploy
-  starego digestu nie wdraża nowego commitu. Zasady dostępu wymagają wdrożenia.
+- [ ] Automatyzacja przekazuje konkretny przetestowany digest przez
+  uwierzytelniony prywatny interfejs Coolify. TTT ma działający klient i
+  zaakceptowane automatyczne wywołanie po Quality z zatwierdzeniem joba produkcyjnego. Inventory i kolejne aplikacje potrzebują własnego kontraktu.
+  Sam webhook ponawiający stary digest nie wdraża nowego commitu.
 
 ## Sieć i domena
 
@@ -87,8 +104,9 @@ nie stanowią ponownego audytu całego serwera.
   Zachować generowane nazwy kontenerów dla rolling updates; rozpoznawać zasób
   po etykietach i panelu, nie po stałym sufiksie nazwy.
 - [ ] Jawne limity CPU/RAM/PID, rotacja logów i zapas na kandydata.
-  Potwierdzone 1 CPU/512 MiB dla dwóch małych aplikacji są przykładem;
-  inne obciążenia wymagają pomiaru i indywidualnego budżetu.
+  Odczyt 11 września potwierdza u obu małych aplikacji 1 CPU, 512 MiB hard,
+  128 MiB reservation, 512 MiB łącznego memory/swap i lokalne logi 10m/3;
+  `PidsLimit` pozostał pusty. Inne obciążenia wymagają pomiaru i osobnego budżetu.
 - [ ] Minimalne działające Custom Docker options w naszych wdrożeniach:
   `--cap-drop=ALL --init`. Pozostałe zabezpieczenia sprawdzić oddzielnie.
 - [ ] Hooki pre/post-deployment puste, jeśli aplikacja ich nie potrzebuje;
@@ -96,12 +114,23 @@ nie stanowią ponownego audytu całego serwera.
   Wolumeny, migracje i GPU konfigurować tylko według potrzeb aplikacji.
 - [ ] Każdy własny produkcyjny Dockerfile zawiera HEALTHCHECK i działający probe.
   W Coolify sprawdzić efektywną kontrolę; może nadpisać tę z obrazu.
-- [ ] Dla tych dwóch aplikacji: HTTP GET, localhost, 8080, `/api/health`,
-  kod 200. Odpowiedź jest JSON-em; nie wymagać literalnego `OK`. Timingi
-  dobrać do startu aplikacji, a nie przepisywać domyślne 80 i `/`.
-- [ ] Źródło TTT: urllib, interval 30s, timeout 5s, start 10s, retries 3;
-  Inventory: curl, interval/timeout/start 5s, retries 10. To parametry obrazów
-  potwierdzone w kodzie 6 września, nie odczyt efektywnych nadpisań UI.
+- [ ] Dla tych dwóch aplikacji: kontrola na localhost:8080, `/api/health`,
+  kod 200 i odpowiedni status aplikacji. Odpowiedź jest JSON-em; nie wymagać
+  literalnego `OK`. Timingi dobrać do startu aplikacji, nie przepisywać
+  domyślnych 80 i `/`.
+- [ ] Finalny obraz TTT używa `HEALTHCHECK CMD ["python","-m","web.healthcheck"]`
+  z interval 30s, timeout 5s, start 10s i retries 3; moduł sprawdza także
+  rewizję i gotowość agentów. Inventory używa własnego `curl`-probe z 5s
+  interval/timeout/start i 10 retries. To kontrola **wewnątrz obrazu**;
+  historyczny odczyt 15 września poprzedza włączenie zarządzanej kontroli TTT.
+  Sam status Docker `healthy` nie dowodzi bramki promocji Coolify.
+- [ ] Dla TTT zaakceptowano Coolify CMD `python -m web.healthcheck`, interval 5s,
+  timeout 5s, retries 10 i start period 10s. Docker uruchamia probe wewnątrz
+  kontenera, Coolify czeka na zdrowie przed usunięciem starej wersji. Dla nowej
+  aplikacji dobrać własną komendę i przetestować wadliwego kandydata oraz rollback.
+- [ ] Przed wdrożeniem sprawdzać stabilny kontrakt aktualnej wersji; po promocji
+  pełny kontrakt wydania docelowego. Nie blokować wdrożenia przez wymaganie
+  nowego endpointu od starej produkcji. Przy rollbacku używać kompatybilnego probe.
 - [ ] Zmienne zaufanych proxy są runtime-only, bez buildtime. Nazwa jest
   zależna od frameworka, np. `FORWARDED_ALLOW_IPS` dla Uvicorn albo własna
   `TRUSTED_PROXY_IPS` dla jawnie skonfigurowanego ASP.NET. Oddzielne rekordy
@@ -137,6 +166,38 @@ równoważne no-new-privileges. Docelowo użyć sprawdzonej poprawki/platformy l
 jawnych pól Compose, po testach kompatybilności. Nie wpisywać privileged ani
 SYS_ADMIN jako obejścia i nie hot-patchować efemerycznego kontenera.
 
+Odczyt 11 września wykazał również `PidsLimit=null`, `SecurityOpt=null` i
+zapisywalny rootfs obu aplikacji; nie oznaczać tych zabezpieczeń jako aktywnych.
+Traefik ma read-only rootfs, lecz zapisuje do mountu `/traefik`; jego odrębny
+wyjątek procesu i uprawnień hosta jest opisany tylko w prywatnym runbooku.
+
+## Dane, współbieżność i rollback
+
+- [ ] Ustalić trwałe dane aplikacji: volumes, bind mounts, zapisywalny layer,
+  zewnętrzne DB/obiekty, uploady, writerów i spójność kopii. Brak mountów nie
+  dowodzi bezstanowości.
+- [ ] Przed migracją stanowej aplikacji potwierdzić świeży backup jej danych,
+  działający stary obraz i sposób przywrócenia; `Success` ani czytelny katalog
+  dumpu nie są testem restore.
+- [ ] Przy overlap stary/nowy kod musi być zgodny ze schematem, zadania
+  singletonem albo pod blokadą, a liczniki limitera współdzielone tam, gdzie
+  wymaga tego polityka. Przetestować rzeczywistą współbieżność i pojemność VPS.
+- [ ] Kontrola originu i backup providerowy są odrębnymi bramkami przed zmianą
+  sieci/proxy; zachować zatwierdzone wyjątki administracyjne.
+
+## Dostęp i kontrola wydania
+
+- [ ] Używać sekretów w środowisku GitHub `production`, a nie jawnych
+  zmiennych repozytorium; adresy/UUID/URL bez wartości sekretnej mogą być
+  zmiennymi środowiska. Weryfikować zakres tokenu: Coolify dopuszcza token
+  na poziomie zespołu, nie wiąże go automatycznie z jednym zasobem.
+- [ ] Sprawdzić zatwierdzającego, dozwolone gałęzie, wymagane kontrole
+  `main`, zasady self-review/admin bypass i `concurrency: cancel-in-progress:
+  false`. Chronione środowisko nie zastępuje ochrony gałęzi.
+- [ ] Po niezdrowym kandydacie i failed-smoke rollbacku uruchomić tylko
+  testowany/atestowany digest; stare workflow, canary i klucze usuwać osobno,
+  po sprawdzeniu wszystkich konsumentów.
+
 ## Odbiór i stan faktyczny
 
 - [ ] Sprawdzić inspect: image/revision, USER, Healthcheck i health, PortBindings,
@@ -149,14 +210,21 @@ SYS_ADMIN jako obejścia i nie hot-patchować efemerycznego kontenera.
 - [ ] Po migracji usuwać tylko zweryfikowane legacy elementy danej aplikacji;
   potwierdzić dane/wolumeny i wycofać nieużywane zewnętrzne uprawnienia.
 
-Stan na podstawie dowodów z 5–10 września: TTT i Inventory mają działające
-ręczne wdrożenia po digestach i pozytywne healthchecki. TTT przeszedł test
-real-IP i spoofingu; Inventory ma testy dokładnych proxy/niezaufanego peera,
-zielone CI i operator-potwierdzony runtime. Dla obu zewnętrznie potwierdzono
-redirect do HTTPS i dokładnie ograniczony HSTS; cache zasobu Inventory zwrócił
-MISS, a następnie HIT. Automatyczne CD, pełne limity
-proxy/edge, wspólny stan limitera i testy rollbacku pozostają zadaniami.
-Wspólny connector ma potwierdzony limit zasobów, natywny readiness, cztery
-połączenia edge i pozytywne publiczne smoke testy; nie zastępuje to testu
-niezdrowego kandydata aplikacji. Dla każdego brakującego odczytu zapisujemy
-„niezweryfikowane”.
+Przegląd 28 września: TTT ma zaakceptowany proces chronionych wydań i recovery
+(dowody 16–18 września oraz późniejsze udane wydania). Inventory ma odrębne
+braki odbioru. Odczyty runtime z 11 września potwierdziły limity CPU/RAM/logów,
+lecz nie PID/no-new-privileges/read-only/tmpfs aplikacji; nie są nowym odczytem.
+TLS minimum 1.2 i ograniczone testy edge/streamu potwierdzono 27 września.
+Pozostają testy wielu klientów, stanu replik, czasu dostarczania i anulowania.
+
+Opcjonalny Jev wymaga trwałego licznika wydatków także podczas rolling update.
+Backup SQLite wykonywać spójnie, odtwarzać w stanie wstrzymanym i uzgodnić
+wydatki z dostawcą. Cofnięcie obrazu zachowuje aktualny licznik. Sekret dostawcy
+jest wyłącznie runtime; nie dodawać go automatycznie do preview ani testów CI.
+Jev pozostaje publicznie wyłączony. Awaria opcjonalnego dostawcy nie wyłącza
+gotowości lokalnej gry. Odbiór tego licznika nie dowodzi pełnego restore VPS.
+
+Przy regułach edge opartych na dokładnych ścieżkach każda nowa kosztowna operacja
+wymaga przeglądu reguły; dotyczy to także `/api/matches/stream`. Konfiguracja
+limitu nie zastępuje testu 429 i odzyskania dostępu. Kopia oznaczona Success,
+czytelny katalog dumpu i działający timer są odrębnymi dowodami od restore.

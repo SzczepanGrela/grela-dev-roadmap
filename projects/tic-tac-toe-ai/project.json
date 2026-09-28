@@ -7,8 +7,8 @@
     "pl": "Tic-Tac-Toe AI"
   },
   "summary": {
-    "en": "Interactive Tic-Tac-Toe laboratory for classic, reinforcement-learning and ONNX agents.",
-    "pl": "Interaktywne laboratorium kółka i krzyżyka dla agentów klasycznych, RL i ONNX."
+    "en": "Browser game with 3×3, 5×5 and 9×9 boards, local and agent play, and streamed series. MCTS supports 5×5; the optional Jev provider remains disabled pending its final evaluation and activation decision. Training modules remain in the repository.",
+    "pl": "Gra przeglądarkowa z planszami 3×3, 5×5 i 9×9, grą lokalną i agentami oraz przyrostowymi seriami. MCTS obsługuje 5×5; opcjonalny Jev pozostaje wyłączony do zakończenia oceny i decyzji o aktywacji. Moduły treningowe pozostają w repozytorium."
   },
   "repository": {
     "owner": "SzczepanGrela",
@@ -39,18 +39,18 @@
   },
   "status": "maintenance",
   "progress": {
-    "implementation": 100,
-    "quality": 87,
+    "implementation": 95,
+    "quality": 100,
     "documentation": 100,
-    "delivery": 44,
-    "overall": 83
+    "delivery": 74,
+    "overall": 92
   },
   "complexity": 3,
   "forecast": {
-    "remainingHoursMin": 17,
-    "remainingHoursMax": 30,
-    "remainingDaysMin": 2.25,
-    "remainingDaysMax": 3.75,
+    "remainingHoursMin": 12,
+    "remainingHoursMax": 23,
+    "remainingDaysMin": 1.5,
+    "remainingDaysMax": 3.0,
     "hoursPerDay": 8,
     "hoursPerWeek": 30,
     "earliest": "2026-10-08",
@@ -58,19 +58,19 @@
     "confidence": "medium"
   },
   "estimation": {
-    "date": "2026-09-09",
-    "mode": "codex-assisted-source-audited",
-    "sourceRevision": "f1a924b6b53d393c5e256bd4e2a727c5e16ed35b",
-    "sourceState": "Clean local worktree at the revision returned by the operator-supplied production health check; scope: delivery/configuration reconciliation."
+    "date": "2026-09-28",
+    "mode": "source-audited",
+    "sourceRevision": "3188ef1ab518fff289d7f2aacd3976d3a2b28818",
+    "sourceState": "Scoped reconciliation of the September 25 feature release, public PR history and dated September 16–27 operator/edge evidence. No fresh whole-host audit; dependency maintenance is tracked separately."
   },
   "focus": {
     "current": {
-      "en": "Validate the active edge rule and complete proxy/runtime checks.",
-      "pl": "Zweryfikować aktywną regułę edge i dokończyć kontrole proxy/runtime."
+      "en": "Finish scoped rate-limit, streaming and runtime checks; dependency maintenance PRs are merged.",
+      "pl": "Dokończyć ograniczone testy limitów, streamingu oraz runtime; PR-y zależności są scalone."
     },
     "next": {
-      "en": "Automate tested-digest promotion through Coolify and exercise failure recovery.",
-      "pl": "Zautomatyzować promocję testowanego digestu przez Coolify i sprawdzić odzyskiwanie po awarii."
+      "en": "After the October UTC allowance reset, finish Jev K=9 evaluation and decide public activation; preserve the accepted release process.",
+      "pl": "Po październikowym resecie budżetu UTC zakończyć ocenę Jev K=9 i zdecydować o publicznej aktywacji; zachować zaakceptowany proces wydań."
     }
   },
   "tasks": [
@@ -87,9 +87,9 @@
       "difficulty": 2,
       "hoursMin": 0,
       "hoursMax": 0,
-      "daysMin": 0,
-      "daysMax": 0,
-      "evidence": "Reset, scoreboard, weighted token bucket, Retry-After, stale-response protection and trusted-proxy changes were deployed at 69083b6."
+      "daysMin": 0.0,
+      "daysMax": 0.0,
+      "evidence": "September 18–25: configurable 3×3/5×5/9×9 play, MCTS 5×5, redesigned responsive game sheet and incremental NDJSON series released in PRs #21–24 and #34–35. Optional provider activation is separate."
     },
     {
       "id": "quality-maintenance",
@@ -104,9 +104,9 @@
       "difficulty": 2,
       "hoursMin": 0,
       "hoursMax": 0,
-      "daysMin": 0,
-      "daysMax": 0,
-      "evidence": "Quality 33940262401 successful for deployed revision f1a924b6b53d393c5e256bd4e2a727c5e16ed35b (September 6 API verification)."
+      "daysMin": 0.0,
+      "daysMax": 0.0,
+      "evidence": "Feature release 3188ef1 passed in run 36082090397. Dependency PRs #25/#4 were updated, checked and merged September 27–28; runs 36360057813 and 36360447941 passed. Main run 36367310173 passed Python 3.12/3.13, training, browser, image/scan and release verification before production approval."
     },
     {
       "id": "repository-governance",
@@ -115,15 +115,15 @@
         "pl": "Włączyć ruleset i środowisko production"
       },
       "dimension": "quality",
-      "status": "in-progress",
-      "completion": 60,
+      "status": "done",
+      "completion": 100,
       "weight": 1,
       "difficulty": 2,
-      "hoursMin": 1,
-      "hoursMax": 2,
-      "daysMin": 0.25,
-      "daysMax": 0.25,
-      "evidence": "September 6 API confirms active Protect main ruleset; no GitHub Environment returned. Exact required-check enforcement still needs confirmation."
+      "hoursMin": 0,
+      "hoursMax": 0,
+      "daysMin": 0.0,
+      "daysMax": 0.0,
+      "evidence": "September 17 acceptance: main requires Quality, production permits only main and requires operator approval. Sole-owner self-approval is allowed; this is not an independent second-person review."
     },
     {
       "id": "operations-docs",
@@ -138,9 +138,9 @@
       "difficulty": 2,
       "hoursMin": 0,
       "hoursMax": 0,
-      "daysMin": 0,
-      "daysMax": 0,
-      "evidence": "September 10: private connector/runtime evidence, the public Coolify checklist and normalized project status were reconciled; unverified controls remain explicit."
+      "daysMin": 0.0,
+      "daysMax": 0.0,
+      "evidence": "September 28 reconciliation updates the public plan, reusable Coolify checklist and normalized record from dated private evidence. Private topology and credentials remain outside this repository."
     },
     {
       "id": "edge-verification",
@@ -150,14 +150,14 @@
       },
       "dimension": "delivery",
       "status": "in-progress",
-      "completion": 80,
+      "completion": 85,
       "weight": 2,
       "difficulty": 3,
       "hoursMin": 2,
       "hoursMax": 4,
       "daysMin": 0.25,
       "daysMax": 0.5,
-      "evidence": "Public health works through dedicated Tunnel/Traefik ingress. Runtime exact-peer configuration, real client-IP propagation and forged X-Forwarded-For rejection passed on September 8. Exact HTTPS redirect and scoped HSTS were externally observed September 9. Screenshots showed active first-position Cloudflare rule grela-expensive-public-api with a 20/IP/10-second threshold and 10-second block; the operator then scoped it to exact POST host/path pairs in grela.dev. The Free-plan one-rule quota makes the combined edge budget intentional; load behavior and final direct-origin readback remain."
+      "evidence": "September 8–9 identity/spoof/redirect/HSTS checks; September 15–16 independent IPv4/IPv6 origin rejection. September 27 active edge rule includes /api/matches/stream, one external client passed 200/429/recovery, and minimum TLS 1.2 was verified. Independent clients, shared budgets and delivery timing/cancellation remain open."
     },
     {
       "id": "immutable-deploy",
@@ -172,9 +172,9 @@
       "difficulty": 4,
       "hoursMin": 0,
       "hoursMax": 0,
-      "daysMin": 0,
-      "daysMax": 0,
-      "evidence": "Operator inspect and public health match the immutable GHCR release at f1a924b6b53d393c5e256bd4e2a727c5e16ed35b; manual Coolify deployment succeeded. Automatic CD is tracked separately."
+      "daysMin": 0.0,
+      "daysMax": 0.0,
+      "evidence": "Accepted CI build/scan/attestation → protected production → Coolify exact-digest promotion. Feature release 3188ef1 passed in run 36082090397; later dependency releases keep the same contract."
     },
     {
       "id": "blue-green-redis",
@@ -184,14 +184,14 @@
       },
       "dimension": "delivery",
       "status": "in-progress",
-      "completion": 25,
+      "completion": 65,
       "weight": 3,
       "difficulty": 4,
-      "hoursMin": 6,
-      "hoursMax": 10,
-      "daysMin": 0.75,
-      "daysMax": 1.25,
-      "evidence": "Health and manual digest deployment observed. Limiter state is process-local; shared state during replica overlap, failed candidate handling, blue-green and automatic public-smoke rollback remain."
+      "hoursMin": 3,
+      "hoursMax": 6,
+      "daysMin": 0.5,
+      "daysMax": 0.75,
+      "evidence": "September 16–17 managed health, rejected candidate, automatic recovery after failed public smoke, release serialization and measured two-container capacity passed. This is accepted managed rolling, not a claim of blue-green slots. Shared rate-limit state and long-running overlap/drain remain open; Redis is not yet installed."
     },
     {
       "id": "service-observability",
@@ -217,15 +217,15 @@
         "pl": "Zautomatyzować promocję digestu sprawdzonego w CI"
       },
       "dimension": "delivery",
-      "status": "planned",
-      "completion": 0,
+      "status": "done",
+      "completion": 100,
       "weight": 2,
       "difficulty": 3,
-      "hoursMin": 3,
-      "hoursMax": 5,
-      "daysMin": 0.5,
-      "daysMax": 0.75,
-      "evidence": "Manual digest deployment is proven; CI-to-Coolify authentication, exact-digest submission, status polling, serialization and retention still need implementation and verification."
+      "hoursMin": 0,
+      "hoursMax": 0,
+      "daysMin": 0.0,
+      "daysMax": 0.0,
+      "evidence": "September 17 accepted protected automatic digest promotion through private Coolify API, OIDC environment mapping and reusable-workflow secret forwarding. Later feature releases passed; no SSH launcher is used for deployment."
     },
     {
       "id": "runtime-hardening",
@@ -242,14 +242,31 @@
       "hoursMax": 4,
       "daysMin": 0.25,
       "daysMax": 0.5,
-      "evidence": "Operator inspect confirms non-root, cap-drop ALL, init, 1 CPU and 512 MiB. Coolify 4.3.14 security-opt parsing failed; further hardening was deferred. PID/log limits and final security/read-only/tmpfs settings need verification."
+      "evidence": "September 11 operator readback confirms non-root, cap-drop ALL, init, CPU/RAM limits and local log rotation. PID/no-new-privileges/read-only/tmpfs exceptions remain; this dated evidence is not a new full runtime audit."
+    },
+    {
+      "id": "jev-evaluation-activation",
+      "title": {
+        "en": "Finish Jev evaluation and decide activation",
+        "pl": "Zakończyć ocenę Jev i zdecydować o aktywacji"
+      },
+      "dimension": "implementation",
+      "status": "blocked",
+      "completion": 85,
+      "weight": 1,
+      "difficulty": 3,
+      "hoursMin": 2,
+      "hoursMax": 4,
+      "daysMin": 0.25,
+      "daysMax": 0.5,
+      "evidence": "Adapter, durable spending ledger, backups and isolated restore accepted; all variants through 9×9 K=8 evaluated. K=9 waits for the October UTC evaluation allowance. Public activation is a separate decision; Jev remains disabled. No extra paid evaluation is part of dependency maintenance."
     }
   ],
   "verification": {
-    "worktree": "Clean local worktree at the revision returned by the operator-supplied production health check; scope: delivery/configuration reconciliation.",
-    "tests": "Successful Quality run verified through GitHub API; earlier backend/browser/training evidence remains historical. No new application tests were run for this documentation update.",
-    "ci": "GitHub API September 6: Quality 33940262401 successful for f1a924b6b53d393c5e256bd4e2a727c5e16ed35b; active Protect main ruleset, no environment returned.",
-    "production": "September 5–10 evidence: public health returns eight agents ready at revision f1a924b6b53d393c5e256bd4e2a727c5e16ed35b from the immutable Coolify container. Runtime exact proxy peers were configured; an external request resolved to the actual client IP and a forged X-Forwarded-For value did not replace it. Cloudflare returns the exact HTTPS redirect and HSTS max-age 63072000. Screenshots show active rule grela-expensive-public-api with a 20 requests per IP/10 seconds edge budget and 10-second block. The operator reports its current exact-host/POST expression in grela.dev and a Free-plan quota of one custom rate-limit rule; behavioral acceptance is not yet verified. The shared cloudflared connector has observed CPU/RAM/PID limits, native edge-readiness health, four registered connections and a successful post-restart public origin check."
+    "worktree": "Scoped reconciliation of the September 25 feature release, public PR history and dated September 16–27 operator/edge evidence. No fresh whole-host audit; dependency maintenance is tracked separately.",
+    "tests": "Existing dated CI/production evidence reconciled. This documentation change is validated by roadmap data/report checks, schema, site build and browser tests; it does not rerun VPS failure injection.",
+    "ci": "Feature Quality and protected deployment run 36082090397 succeeded for 3188ef1. Main protection and production approval were accepted September 17. Dependency PRs #25/#4 are separately validated before promotion.",
+    "production": "September 16–18: managed health, rejected candidate, public-smoke rollback, serialized releases and overlap capacity accepted. September 21: persistent Jev ledger, off-host backup and isolated paused restore/reconciliation accepted. September 25: responsive UI and NDJSON series released with Jev disabled. September 27: stream edge coverage and one-client block/recovery, TLS minimum 1.2 and latest scheduled backup metadata confirmed. Full VPS recovery, broader rate-limit behavior and current runtime readback remain separate."
   },
   "media": {
     "screenshot": "assets/screenshots/tic-tac-toe-ai.png",
@@ -267,8 +284,8 @@
       "pl": "Projekt podlega profilowi standardu v2: vps-web."
     },
     {
-      "en": "Use prebuilt GHCR digests with Coolify/Traefik/Tunnel. Manual production success does not establish automatic CD, trusted client IP or rollback.",
-      "pl": "Używać digestów GHCR z Coolify/Traefik/Tunnel. Sukces ręcznego deployu nie oznacza automatycznego CD, zaufanego IP ani rollbacku."
+      "en": "Use one tested GHCR digest and protected Coolify managed rolling promotion with public smoke and rollback. Preserve the current Jev ledger when rolling back image bytes.",
+      "pl": "Używać jednego testowanego digestu GHCR i chronionej promocji rolling Coolify z publicznym smoke i rollbackiem. Cofnięcie obrazu zachowuje aktualny licznik Jev."
     },
     {
       "en": "Temporarily omit no-new-privileges from Custom Docker Options due to the reproduced 4.3.14 parser issue; verify effective settings and revisit via reviewed Compose or upgrade.",
@@ -276,43 +293,40 @@
     }
   ],
   "audit": {
-    "date": "2026-09-10",
+    "date": "2026-09-28",
     "sources": [
-      "Operator-supplied September 5–8 VPS inspect, deployment, network, real-IP, spoof and public health outputs; no new full SSH audit",
-      "Local source read on September 6 and GitHub Quality/rulesets/environments API",
-      "Versioned Coolify v4.3.14 parser inspected via GitHub API",
-      "External real-IP and forged X-Forwarded-For checks, September 8",
-      "External HTTP redirect and HSTS response checks, September 9",
-      "Operator-supplied active Cloudflare rate-limit expression and dashboard action screenshot, September 10",
-      "Operator-supplied cloudflared resource, native readiness, edge-connection and public origin checks, September 10"
+      "Public Tic-Tac-Toe PRs #9, #15–24 and #26–35; protected release run 36082090397",
+      "Dated private operator acceptance: managed health/rollback/serialization September 16–18; ledger/backup/restore September 21",
+      "Recorded provider evaluation through 9×9 K=8 and deferred K=9; no new paid calls in this review",
+      "Scoped Cloudflare API and independent stream/TLS acceptance September 26–27",
+      "Operator-supplied scheduled-backup metadata/catalog outputs and Coolify execution screenshot September 27",
+      "GitHub PRs #25/#4 merged September 27–28; their branch checks and main quality/release-verification run 36367310173 passed"
     ],
     "notes": {
-      "en": "September 10 reconciliation adds the active per-IP Cloudflare edge rule, the operator-declared exact-host/POST update, and observed shared-connector resource/readiness acceptance. The Free plan permits one shared rule. Behavioral acceptance remains unknown; proxy limits, remaining application runtime fields, automatic CD and rollback tests remain incomplete. Percentages and hours are planning estimates, not measurements.",
-      "pl": "Uzgodnienie z 10 września dodaje aktywną regułę Cloudflare edge per IP, zadeklarowaną aktualizację exact-host/POST oraz potwierdzony odbiór zasobów/readiness wspólnego connectora. Darmowy plan pozwala na jedną wspólną regułę. Test zachowania pozostaje nieznany; limity proxy, pozostałe pola runtime aplikacji, automatyczne CD i rollback są niepełne. Procenty i godziny to estymacje, nie pomiary."
+      "en": "September 28 reconciliation closes accepted delivery work while retaining shared-state limits, monitoring, hardening exceptions and the final Jev gate. Evidence dates are preserved; no whole-server audit is implied. Hours and percentages are planning estimates, and other projects retain their earlier audit dates.",
+      "pl": "Uzgodnienie z 28 września zamyka odebrane prace wdrożeniowe, zachowując limity współdzielonego stanu, monitoring, wyjątki hardeningu i końcową bramkę Jev. Daty dowodów pozostają jawne; nie wykonano nowego audytu całego serwera. Godziny i procenty są estymacjami, a inne projekty zachowują wcześniejsze daty audytu."
     }
   },
   "compliance": {
     "standardVersion": 2,
     "profile": "vps-web",
-    "assessmentDate": "2026-09-10",
+    "assessmentDate": "2026-09-28",
     "controls": [
       {
         "id": "governance",
-        "status": "partial",
+        "status": "complete",
         "evidence": {
-          "en": "Active Protect main ruleset observed; environment absent and required-check enforcement not re-read.",
-          "pl": "Potwierdzono aktywny Protect main; brak środowiska i ponownego odczytu szczegółów wymaganych kontroli."
+          "en": "Protected main and operator-approved production accepted September 17; license and public docs maintained. Self-approval is allowed.",
+          "pl": "Chroniony main i zatwierdzane przez operatora production odebrane 17 września; licencja i dokumentacja utrzymywane. Self-approval dozwolone."
         },
-        "taskIds": [
-          "repository-governance"
-        ]
+        "taskIds": []
       },
       {
         "id": "quality-ci",
         "status": "complete",
         "evidence": {
-          "en": "Quality 33940262401 succeeded for the deployed revision; verified via GitHub API September 6.",
-          "pl": "Quality 33940262401 przeszedł dla wdrożonej rewizji; potwierdzone API GitHub 6 września."
+          "en": "Feature CI passed; dependency updates use a separate fresh PR gate.",
+          "pl": "CI wydania funkcjonalnego przeszło; zależności podlegają osobnej bieżącej walidacji PR."
         },
         "taskIds": []
       },
@@ -320,39 +334,35 @@
         "id": "immutable-release",
         "status": "complete",
         "evidence": {
-          "en": "CI source and operator production evidence identify the full revision and immutable GHCR digest; manual deployment is proven.",
-          "pl": "Źródło CI i wyniki produkcji od operatora wskazują pełną rewizję oraz digest GHCR; wdrożenie ręczne potwierdzone."
+          "en": "CI qualifies and attests one image; protected deployment promotes its digest and verifies public revision.",
+          "pl": "CI kwalifikuje i atestuje jeden obraz; chroniony deploy promuje jego digest i sprawdza publiczną rewizję."
         },
         "taskIds": []
       },
       {
         "id": "deployment-access",
-        "status": "partial",
+        "status": "complete",
         "evidence": {
-          "en": "The legacy host account/launcher were removed. Private platform access exists; automated deployment credentials and external legacy credential revocation remain unverified.",
-          "pl": "Usunięto stare konto/launcher. Istnieje prywatny dostęp platformy; poświadczenia automatycznego CD i wycofanie starych uprawnień zewnętrznych wymagają weryfikacji."
+          "en": "Private Coolify API, production-scoped credentials and mapped OIDC identity accepted; old TTT repository secrets and host account retired. Token scope is the Coolify team.",
+          "pl": "Odebrane prywatne API Coolify, sekrety production i tożsamość OIDC; stare sekrety repo oraz konto hosta TTT wycofane. Token ma zakres zespołu Coolify."
         },
-        "taskIds": [
-          "coolify-cd"
-        ]
+        "taskIds": []
       },
       {
         "id": "network-tls-client-ip",
-        "status": "partial",
+        "status": "complete",
         "evidence": {
-          "en": "Public HTTPS, exact redirect, scoped HSTS, exact trusted peers, canonical client IP and forged-header rejection passed through the dedicated Tunnel/Traefik path; final direct-origin readback remains operator-declared.",
-          "pl": "Publiczny HTTPS, dokładne przekierowanie, ograniczony HSTS, dokładne zaufane proxy, właściwe IP klienta i odrzucenie fałszywego nagłówka przeszły przez dedykowaną ścieżkę Tunnel/Traefik; końcowy odczyt originu pozostaje deklaracją operatora."
+          "en": "Dated identity/spoof/HTTPS checks and independent IPv4/IPv6 origin rejection passed; TLS minimum 1.2 verified September 27. This is not TLS inside the Docker network.",
+          "pl": "Datowane testy IP/spoof/HTTPS i niezależnego odrzucenia originu IPv4/IPv6 przeszły; minimum TLS 1.2 sprawdzono 27 września. Nie oznacza to TLS wewnątrz sieci Docker."
         },
-        "taskIds": [
-          "edge-verification"
-        ]
+        "taskIds": []
       },
       {
         "id": "abuse-protection",
         "status": "partial",
         "evidence": {
-          "en": "The weighted in-process limiter receives verified client identity. Active Cloudflare rule grela-expensive-public-api has a 20 requests per IP/10-second threshold and 10-second block; its operator-declared current expression scopes exact POST operations on both hosts. The Free-plan one-rule quota makes the shared edge budget intentional; behavior, proxy limits and shared state across overlapping replicas remain unverified.",
-          "pl": "Ważony limiter procesu otrzymuje zweryfikowane IP klienta. Aktywna reguła Cloudflare grela-expensive-public-api ma próg 20 żądań per IP/10 s i blokadę 10 s; zadeklarowane bieżące wyrażenie ogranicza ją do dokładnych operacji POST na obu hostach. Limit jednej reguły w darmowym planie uzasadnia wspólny budżet edge; zachowanie, limity proxy i wspólny stan replik pozostają niezweryfikowane."
+          "en": "September 27 edge rule includes stream requests and one-client block/recovery passed. Independent clients, cross-app/app budgets and shared replica counters remain open.",
+          "pl": "Reguła edge obejmuje stream; 27 września przeszedł test blokady i odzyskania jednego klienta. Pozostają różni klienci, budżety między aplikacjami i liczniki replik."
         },
         "taskIds": [
           "edge-verification",
@@ -372,36 +382,30 @@
       },
       {
         "id": "readiness-preflight",
-        "status": "partial",
+        "status": "complete",
         "evidence": {
-          "en": "Image HEALTHCHECK and positive internal/public readiness are observed; candidate failure and critical-path preflight still need verification.",
-          "pl": "Potwierdzone HEALTHCHECK obrazu oraz wewnętrzny/publiczny readiness; awaria kandydata i preflight krytycznych ścieżek wymagają weryfikacji."
+          "en": "Image probe, managed candidate-health gate and rejected-candidate test accepted; stable preflight and full post-promotion smoke are separate. Optional provider failure does not fail local readiness.",
+          "pl": "Probe obrazu, bramka zdrowia kandydata i test odrzucenia odebrane; stabilny preflight oddzielono od pełnego smoke po promocji. Awaria opcjonalnego dostawcy nie wyłącza gotowości lokalnej gry."
         },
-        "taskIds": [
-          "blue-green-redis"
-        ]
+        "taskIds": []
       },
       {
         "id": "atomic-promotion-rollback",
-        "status": "partial",
+        "status": "complete",
         "evidence": {
-          "en": "Coolify deployment succeeded; no evidence of tested blue-green or automatic recovery after public smoke failure.",
-          "pl": "Deployment Coolify przeszedł; brak dowodu przetestowanego blue-green lub automatycznego rollbacku po błędzie publicznego smoke."
+          "en": "Managed rolling and automatic restoration of the previous attested digest after forced public revision failure passed September 16–17. No claim of blue-green slots.",
+          "pl": "Zarządzany rolling i przywrócenie poprzedniego atestowanego digestu po wymuszonym błędzie publicznej rewizji przeszły 16–17 września. Nie deklarujemy slotów blue-green."
         },
-        "taskIds": [
-          "blue-green-redis"
-        ]
+        "taskIds": []
       },
       {
         "id": "coordination-retention",
-        "status": "partial",
+        "status": "complete",
         "evidence": {
-          "en": "Manual release succeeded; capacity serialization, automated CD and retention/recovery behavior are not yet accepted.",
-          "pl": "Ręczne wydanie przeszło; serializacja pojemności, automatyczne CD i zachowanie retencji/odzyskiwania nie zostały jeszcze odebrane."
+          "en": "Per-production serialization and two-container capacity acceptance passed September 17; app-scoped retention preserves rollback. Broader shared limiter state remains a separate task.",
+          "pl": "Serializacja production i odbiór pojemności dla dwóch kontenerów przeszły 17 września; retencja aplikacji zachowuje rollback. Wspólny stan limitera pozostaje osobnym zadaniem."
         },
-        "taskIds": [
-          "coolify-cd"
-        ]
+        "taskIds": []
       },
       {
         "id": "observability",

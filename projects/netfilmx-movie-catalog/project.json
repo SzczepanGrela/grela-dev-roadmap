@@ -59,7 +59,7 @@
   },
   "estimation": {
     "date": "2026-08-25",
-    "mode": "codex-assisted-source-audited",
+    "mode": "source-audited",
     "sourceRevision": "d1f1da4534b31f52815d4db82ed64b6f37ecf99f",
     "sourceState": "local worktree with 70 changed paths and unpublished commits"
   },

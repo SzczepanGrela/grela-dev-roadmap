@@ -56,7 +56,7 @@
   },
   "estimation": {
     "date": "2026-08-25",
-    "mode": "codex-assisted-source-audited",
+    "mode": "source-audited",
     "sourceRevision": "2b3e09330e50e6c291e5696a97ec8430d1ef2935",
     "sourceState": "clean local design worktree; fsmonitor IPC warning during audit"
   },

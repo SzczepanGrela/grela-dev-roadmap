@@ -207,6 +207,11 @@ wyjątek procesu i uprawnień hosta jest opisany tylko w prywatnym runbooku.
   normalny ruch użytkownika. Zbadać real-IP, izolację użytkowników i limity.
 - [ ] Oddzielnie przetestować niezdrowego kandydata i rollback po błędzie smoke.
   Sukces rolling update nie jest dowodem blue-green ani automatycznego rollbacku.
+- [ ] Dla dłuższych operacji uruchomić próbę na podstawie zdarzenia startu
+  kandydata, zachować logi starego kontenera przed usunięciem i potwierdzić,
+  że konkretna operacja trwała przy SIGTERM oraz dostarczyła kompletny wynik.
+  Zakończenie testu przed wymianą ani ponowienie workflow pomijającego ten sam
+  digest nie potwierdza wygaszania pracy. Wspólne liczniki sprawdzić osobno.
 - [ ] Po migracji usuwać tylko zweryfikowane legacy elementy danej aplikacji;
   potwierdzić dane/wolumeny i wycofać nieużywane zewnętrzne uprawnienia.
 
@@ -219,8 +224,10 @@ TLS minimum 1.2 i ograniczone testy edge/streamu potwierdzono 27 września.
 dwóch publicznych klientów aplikacji i zatrzymanie obliczeń po rozłączeniu
 przez publiczne proxy. Późniejszy test potwierdził wspólną blokadę TTT/Inventory
 oraz recovery. Drugi klient pozostał dostępny, lecz trafił do innego centrum
-Cloudflare (CDG/WAW). Pozostają izolacja różnych IP w jednym centrum oraz
-wspólny stan i wygaszanie pracy podczas rolling update.
+Cloudflare (CDG/WAW). Osobny test rolling update potwierdził, że stary kontener
+TTT dokończył gry 9–10 po SIGTERM, a klient dostał 10 gier i jedno `complete`
+bez błędów. Pozostają izolacja różnych IP w jednym centrum oraz wspólny stan
+limitera podczas rolling update; wynik TTT nie zastępuje odbioru innych aplikacji.
 
 Opcjonalny Jev wymaga trwałego licznika wydatków także podczas rolling update.
 Backup SQLite wykonywać spójnie, odtwarzać w stanie wstrzymanym i uzgodnić

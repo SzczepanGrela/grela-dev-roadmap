@@ -228,6 +228,12 @@ Cloudflare (CDG/WAW). Osobny test rolling update potwierdził, że stary kontene
 TTT dokończył gry 9–10 po SIGTERM, a klient dostał 10 gier i jedno `complete`
 bez błędów. Pozostają izolacja różnych IP w jednym centrum oraz wspólny stan
 limitera podczas rolling update; wynik TTT nie zastępuje odbioru innych aplikacji.
+Lokalny test dwóch procesów potwierdził poprawną grę przy zmianie instancji,
+lecz każdy proces miał własny budżet serii, a wymiana procesu odnawiała budżet.
+To dowód ograniczenia obecnej implementacji, nie odbiór globalnego limitu
+ani publicznego routingu. Stan gry przesyłany przez klienta, aktywna odpowiedź
+HTTP i liczniki żądań wymagają osobnych testów. Wybór współdzielonego magazynu
+i zachowania przy jego awarii pozostaje częścią otwartego zadania.
 
 Opcjonalny Jev wymaga trwałego licznika wydatków także podczas rolling update.
 Backup SQLite wykonywać spójnie, odtwarzać w stanie wstrzymanym i uzgodnić

@@ -33,7 +33,13 @@ operator subsequently declared the current expression to use exact hostnames,
 POST method and the move/match/export paths in the `grela.dev` zone. The Free
 plan exposes one custom rate-limit rule, so operation-specific differences
 remain application responsibilities. No behavioral test was supplied, so the
-edge layer remains partial. Inventory still has one application
+edge layer remained partial in that dated observation. September 27–28
+follow-up evidence confirms active stream-path coverage, edge block/recovery,
+shared TTT/Inventory counting and public application-client isolation. The
+paired edge sources reached different Cloudflare locations, so same-location
+distinct-IP isolation remains open. See the current
+[Coolify checklist](coolify-deployment-checklist.md) for the acceptance scope.
+Inventory still has one application
 fixed-window export limit of 30/minute and no queue; this does not implement the
 per-format target below. Record remaining work instead of marking the whole
 control complete. See [Coolify checklist](coolify-deployment-checklist.md).
@@ -44,6 +50,16 @@ control complete. See [Coolify checklist](coolify-deployment-checklist.md).
 - **Concurrency semaphore/queue:** mandatory for scarce CPU/GPU/external operations; it supplements rather than replaces a time-based limit.
 - **Quota:** required where aggregate daily/monthly cost matters.
 - In-memory state is acceptable only for one process and one production instance. Multiple workers and blue-green/multi-instance deployments use Redis or another shared atomic store.
+
+September 28 local TTT characterization confirmed that a game can continue
+across independent processes while series buckets remain independent: two
+processes accepted 60 game-cost units and replacing one allowed another 30,
+within a window where a single bucket could admit only about 30.4. This used
+loopback HTTP, not public ingress. It confirms the need for the shared-state
+target rather than completing it. Local work-slot protection, global user
+allowances and the durable paid-provider ledger have distinct purposes; do
+not automatically combine them into one counter or move all queues to a
+shared service. Select the store and failure policy before implementation.
 
 ## Per-project profiles
 

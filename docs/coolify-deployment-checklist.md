@@ -217,8 +217,10 @@ lecz nie PID/no-new-privileges/read-only/tmpfs aplikacji; nie są nowym odczytem
 TLS minimum 1.2 i ograniczone testy edge/streamu potwierdzono 27 września.
 28 września potwierdzono przyrostowe dostarczanie gier, rozdzielenie budżetów
 dwóch publicznych klientów aplikacji i zatrzymanie obliczeń po rozłączeniu
-przez publiczne proxy. Pozostają testy wielu klientów/liczników między
-aplikacjami na edge oraz wspólnego stanu i wygaszania pracy podczas rolling update.
+przez publiczne proxy. Późniejszy test potwierdził wspólną blokadę TTT/Inventory
+oraz recovery. Drugi klient pozostał dostępny, lecz trafił do innego centrum
+Cloudflare (CDG/WAW). Pozostają izolacja różnych IP w jednym centrum oraz
+wspólny stan i wygaszanie pracy podczas rolling update.
 
 Opcjonalny Jev wymaga trwałego licznika wydatków także podczas rolling update.
 Backup SQLite wykonywać spójnie, odtwarzać w stanie wstrzymanym i uzgodnić
@@ -241,3 +243,8 @@ opisuje testy i ograniczenia. PR #39 dodał losowy `X-Stream-ID` oraz osobne
 logi zamknięcia strumienia i rzeczywistego zakończenia obliczeń. Do potwierdzenia
 anulowania wymagany jest ten drugi zapis; logi nie powinny zawierać IP,
 nagłówków ani treści gry. Stare źródła wdrażania SSH usunięto w PR #36.
+
+Przy odbiorze limitów edge zapisać lokalizację z CF-Ray i porównać wyniki
+w tym samym oknie blokady. Różne IP w różnych centrach nie dowodzą izolacji
+samych IP w jednym centrum. Łączna reguła dla kilku hostów może współdzielić
+ich budżet; testować ten skutek osobno od limiterów aplikacji.

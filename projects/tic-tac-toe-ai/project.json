@@ -65,8 +65,8 @@
   },
   "focus": {
     "current": {
-      "en": "Finish independent-client, proxy-disconnect and rolling shared-budget acceptance; SSH source cleanup and scoped stream/limit checks passed.",
-      "pl": "Dokończyć odbiór niezależnych klientów, rozłączenia przez proxy i budżetów podczas wymiany kontenerów; stare źródła SSH usunięte, ograniczone testy strumienia/limitów przeszły."
+      "en": "Finish edge cross-client/cross-app, proxy-disconnect and rolling shared-budget acceptance; public application-client isolation and SSH source cleanup passed.",
+      "pl": "Dokończyć testy edge między klientami/aplikacjami, rozłączenia przez proxy i budżetów przy wymianie kontenerów; izolacja publicznych klientów aplikacji i porządki źródeł SSH przeszły."
     },
     "next": {
       "en": "After the October UTC allowance reset, finish Jev K=9 evaluation and decide public activation; preserve the accepted release process.",
@@ -157,7 +157,7 @@
       "hoursMax": 4,
       "daysMin": 0.25,
       "daysMax": 0.5,
-      "evidence": "September 27 edge coverage and single-client block/recovery passed. September 28 public MCTS games arrived at 1.59/3.34/4.42 seconds; weighted batch/stream application rejection and recovery passed. PR #36 adds local independent-client/proxy-trust, queue and real-HTTP disconnect coverage. Independent public clients, cross-app counters, proxy-chain worker cancellation and overlap remain open."
+      "evidence": "September 27 edge coverage and single-client block/recovery passed. September 28 public MCTS games arrived at 1.59/3.34/4.42 seconds; weighted batch/stream application rejection and recovery passed. PR #36 adds local independent-client/proxy-trust, queue and real-HTTP disconnect coverage. The paired public test recorded 45 application 429s from one source while all ten ten-game requests from another succeeded. Edge cross-client/cross-app counters, proxy-chain worker cancellation and overlap remain open."
     },
     {
       "id": "immutable-deploy",
@@ -301,7 +301,8 @@
       "Scoped Cloudflare API and independent stream/TLS acceptance September 26–27",
       "Operator-supplied scheduled-backup metadata/catalog outputs and Coolify execution screenshot September 27",
       "GitHub PRs #25/#4 merged September 27–28; their branch checks and main quality/release-verification run 36367310173 passed",
-      "TTT PR #36 and Quality 36374994035; bounded public stream and application-budget probes September 28, with no paid provider requests"
+      "TTT PR #36 and Quality 36374994035; bounded public stream and application-budget probes September 28, with no paid provider requests",
+      "September 28 paired public application-client test: 63 operator-source requests (18 HTTP 200, 45 HTTP 429), while ten requests from an independent observer all returned ten games; no configuration changes"
     ],
     "notes": {
       "en": "September 28 reconciliation closes accepted delivery work while retaining shared-state limits, monitoring, hardening exceptions and the final Jev gate. Evidence dates are preserved; no whole-server audit is implied. Hours and percentages are planning estimates, and other projects retain their earlier audit dates.",
@@ -362,8 +363,8 @@
         "id": "abuse-protection",
         "status": "partial",
         "evidence": {
-          "en": "Edge one-client acceptance passed September 27. September 28 public application-budget rejection/recovery and stream timing passed, with local identity/queue/disconnect regression tests. Independent public clients, cross-app counters and rolling shared state remain open.",
-          "pl": "Odbiór edge dla jednego klienta przeszedł 27 września. 28 września przeszły publiczne testy limitu aplikacji, odzyskania i czasu zdarzeń; dodano lokalne testy tożsamości/kolejki/rozłączeń. Pozostają niezależni publiczni klienci, liczniki między aplikacjami i stan przy rolling update."
+          "en": "Edge one-client acceptance passed September 27. September 28 application rejection/recovery, public stream timing and paired public application-client isolation passed; local identity/queue/disconnect tests also passed. Edge cross-client/cross-app counters and rolling shared state remain open.",
+          "pl": "Odbiór edge dla jednego klienta przeszedł 27 września. 28 września przeszły testy odrzucenia/odnowienia budżetu aplikacji, czasu zdarzeń i izolacji dwóch publicznych klientów oraz lokalne testy tożsamości/kolejki/rozłączeń. Pozostają liczniki edge między klientami/aplikacjami i wspólny stan przy rolling update."
         },
         "taskIds": [
           "edge-verification",

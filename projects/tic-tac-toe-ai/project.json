@@ -65,8 +65,8 @@
   },
   "focus": {
     "current": {
-      "en": "Finish edge cross-client/cross-app, proxy-disconnect and rolling shared-budget acceptance; public application-client isolation and SSH source cleanup passed.",
-      "pl": "Dokończyć testy edge między klientami/aplikacjami, rozłączenia przez proxy i budżetów przy wymianie kontenerów; izolacja publicznych klientów aplikacji i porządki źródeł SSH przeszły."
+      "en": "Finish edge cross-client/cross-app and rolling drain/shared-budget acceptance; public client isolation, stream cancellation and SSH source cleanup passed.",
+      "pl": "Dokończyć testy edge między klientami/aplikacjami oraz wygaszania pracy i wspólnych budżetów podczas rolling update; izolacja klientów, anulowanie publicznej serii i porządki SSH przeszły."
     },
     "next": {
       "en": "After the October UTC allowance reset, finish Jev K=9 evaluation and decide public activation; preserve the accepted release process.",
@@ -106,7 +106,7 @@
       "hoursMax": 0,
       "daysMin": 0.0,
       "daysMax": 0.0,
-      "evidence": "Feature release 3188ef1 passed in run 36082090397. Dependency PRs #25/#4 were updated, checked and merged September 27–28; runs 36360057813 and 36360447941 passed. Main run 36367310173 passed Python 3.12/3.13, training, browser, image/scan and release verification before production approval. PR #36 passed full Quality run 36374994035; 226 backend tests passed locally against the production runtime lock."
+      "evidence": "Feature release 3188ef1 passed in run 36082090397. Dependency PRs #25/#4 were updated, checked and merged September 27–28; runs 36360057813 and 36360447941 passed. Main run 36367310173 passed Python 3.12/3.13, training, browser, image/scan and release verification before production approval. PR #36 passed full Quality run 36374994035; 226 backend tests passed locally against the production runtime lock. PR #39 passed full Quality 36443465139 and main release 36444253457; 228 backend tests passed locally, including 13 delivery cases."
     },
     {
       "id": "repository-governance",
@@ -157,7 +157,7 @@
       "hoursMax": 4,
       "daysMin": 0.25,
       "daysMax": 0.5,
-      "evidence": "September 27 edge coverage and single-client block/recovery passed. September 28 public MCTS games arrived at 1.59/3.34/4.42 seconds; weighted batch/stream application rejection and recovery passed. PR #36 adds local independent-client/proxy-trust, queue and real-HTTP disconnect coverage. The paired public test recorded 45 application 429s from one source while all ten ten-game requests from another succeeded. Edge cross-client/cross-app counters, proxy-chain worker cancellation and overlap remain open."
+      "evidence": "September 27 edge coverage and single-client block/recovery passed. September 28 public MCTS games arrived at 1.59/3.34/4.42 seconds; weighted batch/stream application rejection and recovery passed. PR #36 adds local independent-client/proxy-trust, queue and real-HTTP disconnect coverage. The paired public test recorded 45 application 429s from one source while all ten ten-game requests from another succeeded. PR #39 adds stream/work correlation. The September 28 public disconnect after game 1 stopped game 2; no games 3–10 started, confirmed by the operator's server logs. Edge cross-client/cross-app counters and rolling drain/shared state remain open."
     },
     {
       "id": "immutable-deploy",
@@ -265,8 +265,8 @@
   "verification": {
     "worktree": "Scoped reconciliation of the September 25 feature release, public PR history and dated September 16–27 operator/edge evidence. No fresh whole-host audit; dependency maintenance is tracked separately.",
     "tests": "Existing dated CI/production evidence reconciled. This documentation change is validated by roadmap data/report checks, schema, site build and browser tests; it does not rerun VPS failure injection.",
-    "ci": "Feature Quality and protected deployment run 36082090397 succeeded for 3188ef1. Main protection and production approval were accepted September 17. Dependency PRs #25/#4 are separately validated before promotion.",
-    "production": "September 16–18: managed health, rejected candidate, public-smoke rollback, serialized releases and overlap capacity accepted. September 21: persistent Jev ledger, off-host backup and isolated paused restore/reconciliation accepted. September 25: responsive UI and NDJSON series released with Jev disabled. September 27: stream edge coverage and one-client block/recovery, TLS minimum 1.2 and latest scheduled backup metadata confirmed. Full VPS recovery, broader rate-limit behavior and current runtime readback remain separate. September 28 bounded public stream timing and shared endpoint-budget recovery passed before the source cleanup release; independent-client and proxy-disconnect acceptance remain open."
+    "ci": "Feature Quality and protected deployment run 36082090397 succeeded for 3188ef1. Main protection and production approval were accepted September 17. Dependency PRs #25/#4 are separately validated before promotion. PR #39 passed complete Quality 36443465139 and protected main release 36444253457.",
+    "production": "September 16–18: managed health, rejected candidate, public-smoke rollback, serialized releases and overlap capacity accepted. September 21: persistent Jev ledger, off-host backup and isolated paused restore/reconciliation accepted. September 25: responsive UI and NDJSON series released with Jev disabled. September 27: stream edge coverage and one-client block/recovery, TLS minimum 1.2 and latest scheduled backup metadata confirmed. Full VPS recovery, broader rate-limit behavior and current runtime readback remain separate. September 28 public stream timing, shared endpoint-budget recovery and paired public application-client isolation passed. Revision 15a57d7 from PR #39 passed protected release 36444253457; correlated public/server logs confirmed cooperative cancellation after the first game. Edge multi-client/cross-app counting and rolling drain/shared budgets remain open."
   },
   "media": {
     "screenshot": "assets/screenshots/tic-tac-toe-ai.png",
@@ -302,7 +302,8 @@
       "Operator-supplied scheduled-backup metadata/catalog outputs and Coolify execution screenshot September 27",
       "GitHub PRs #25/#4 merged September 27–28; their branch checks and main quality/release-verification run 36367310173 passed",
       "TTT PR #36 and Quality 36374994035; bounded public stream and application-budget probes September 28, with no paid provider requests",
-      "September 28 paired public application-client test: 63 operator-source requests (18 HTTP 200, 45 HTTP 429), while ten requests from an independent observer all returned ten games; no configuration changes"
+      "September 28 paired public application-client test: 63 operator-source requests (18 HTTP 200, 45 HTTP 429), while ten requests from an independent observer all returned ten games; no configuration changes",
+      "TTT PR #39, Quality 36443465139, protected release 36444253457 and September 28 paired public-client/server logs: two-game completion control and cancelled ten-game MCTS series"
     ],
     "notes": {
       "en": "September 28 reconciliation closes accepted delivery work while retaining shared-state limits, monitoring, hardening exceptions and the final Jev gate. Evidence dates are preserved; no whole-server audit is implied. Hours and percentages are planning estimates, and other projects retain their earlier audit dates.",
@@ -363,8 +364,8 @@
         "id": "abuse-protection",
         "status": "partial",
         "evidence": {
-          "en": "Edge one-client acceptance passed September 27. September 28 application rejection/recovery, public stream timing and paired public application-client isolation passed; local identity/queue/disconnect tests also passed. Edge cross-client/cross-app counters and rolling shared state remain open.",
-          "pl": "Odbiór edge dla jednego klienta przeszedł 27 września. 28 września przeszły testy odrzucenia/odnowienia budżetu aplikacji, czasu zdarzeń i izolacji dwóch publicznych klientów oraz lokalne testy tożsamości/kolejki/rozłączeń. Pozostają liczniki edge między klientami/aplikacjami i wspólny stan przy rolling update."
+          "en": "Edge one-client acceptance passed September 27. September 28 application rejection/recovery, public stream timing and paired public application-client isolation passed; local identity/queue/disconnect tests also passed. Public disconnect was correlated with actual worker cancellation in the operator's logs after PR #39. Edge cross-client/cross-app counters and rolling shared state remain open.",
+          "pl": "Odbiór edge dla jednego klienta przeszedł 27 września. 28 września przeszły testy odrzucenia/odnowienia budżetu aplikacji, czasu zdarzeń i izolacji dwóch publicznych klientów oraz lokalne testy tożsamości/kolejki/rozłączeń. Po PR #39 logi operatora potwierdziły również zatrzymanie obliczeń po rozłączeniu publicznego strumienia. Pozostają liczniki edge między klientami/aplikacjami i wspólny stan przy rolling update."
         },
         "taskIds": [
           "edge-verification",

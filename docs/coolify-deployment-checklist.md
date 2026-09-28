@@ -215,7 +215,10 @@ Przegląd 28 września: TTT ma zaakceptowany proces chronionych wydań i recover
 braki odbioru. Odczyty runtime z 11 września potwierdziły limity CPU/RAM/logów,
 lecz nie PID/no-new-privileges/read-only/tmpfs aplikacji; nie są nowym odczytem.
 TLS minimum 1.2 i ograniczone testy edge/streamu potwierdzono 27 września.
-Pozostają testy wielu klientów, stanu replik, czasu dostarczania i anulowania.
+28 września potwierdzono przyrostowe dostarczanie gier, rozdzielenie budżetów
+dwóch publicznych klientów aplikacji i zatrzymanie obliczeń po rozłączeniu
+przez publiczne proxy. Pozostają testy wielu klientów/liczników między
+aplikacjami na edge oraz wspólnego stanu i wygaszania pracy podczas rolling update.
 
 Opcjonalny Jev wymaga trwałego licznika wydatków także podczas rolling update.
 Backup SQLite wykonywać spójnie, odtwarzać w stanie wstrzymanym i uzgodnić
@@ -234,4 +237,7 @@ serii; sam HTTP 200 ani test transportu ASGI nie wystarczą. Po rozpoczęciu
 strumienia błąd może być zdarzeniem NDJSON bez końcowego `complete`. Oddzielnie
 sprawdzić zwolnienie kolejki i zatrzymanie pracy po rozłączeniu przez publiczne
 proxy. [Przykład TTT](https://github.com/SzczepanGrela/tic-tac-toe-ai/blob/main/docs/delivery-verification.md)
-opisuje testy i ograniczenia; stare źródła wdrażania SSH usunięto w PR #36.
+opisuje testy i ograniczenia. PR #39 dodał losowy `X-Stream-ID` oraz osobne
+logi zamknięcia strumienia i rzeczywistego zakończenia obliczeń. Do potwierdzenia
+anulowania wymagany jest ten drugi zapis; logi nie powinny zawierać IP,
+nagłówków ani treści gry. Stare źródła wdrażania SSH usunięto w PR #36.

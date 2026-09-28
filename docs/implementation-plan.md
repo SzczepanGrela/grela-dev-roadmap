@@ -8,7 +8,7 @@
 
 ## Stan wdrożeń i najbliższa kolejka
 
-Przegląd 2026-09-28 łączy datowane dowody z 11–27 września oraz historię publicznych PR-ów. Nie jest nowym audytem całego VPS. Prywatna checklista zachowuje dokładne ID, zależności, adresy i dowody operatora; poniżej znajdują się pakiety prac.
+Przegląd 2026-09-28 łączy datowane dowody z 11–28 września oraz historię publicznych PR-ów. Nie jest nowym audytem całego VPS. Prywatna checklista zachowuje dokładne ID, zależności, adresy i dowody operatora; poniżej znajdują się pakiety prac.
 
 | Pakiet | Co jest zrobione | Co pozostało | Zależność |
 | --- | --- | --- | --- |
@@ -19,9 +19,11 @@ Przegląd 2026-09-28 łączy datowane dowody z 11–27 września oraz historię 
 | Edge (`D04`, `P06.1a`) | Reguła obejmuje `/api/matches/stream`; pojedynczy klient przeszedł 200/429/recovery. Minimum TLS 1.2 potwierdzone dla obu stref 27 września. | Niezależni klienci, budżety aplikacji/overlap, opóźnienie i anulowanie streamu; origin TLS/ACME i przypięcie proxy osobno. | Wynik jednego klienta nie zamyka całego D04. |
 | Dane i kopie (`B01/B02/B04`, `P02`) | Zaplanowane kopie Jev/Smakosza przeszły 27 września; sprawdzono metadane Jev lokalnie/R2 i katalogi dumpów Smakosza/Coolify. UI Coolify pokazuje 7 udanych kopii S3 i 2 lokalne. | Pełna mapa danych, aktualne punkty odzyskiwania dostawcy, dokładny czas wykonania Coolify przy kolejnym odczycie, alerty oraz decyzja o nakładających się retencjach Smakosza. | Czytelny katalog nie dowodzi restore; pełny drill Coolify i pakiet kluczy pozostają odroczone. |
 | Migracje (`M01 → M02 → M03`) | Rozpoznano współdzielone dane dwóch kontenerów NetFilmx; zachowano starsze dowody kopii i tras. | Ustalić writerów i docelową wersję NetFilmx, odświeżyć kopię i migrować; potem MovieRAG i Smakosz. | Każda aplikacja wymaga własnego aktualnego backupu, kontraktu i rollbacku. |
-| Domknięcie (`N03`, `O01/O02`, `D05.3`) | Tymczasowe zasoby testowe TTT wycofano; działający monitoring pozostaje przy Smakoszu. | Usunąć zweryfikowane resztki źródłowych skryptów TTT, zachować dane przy końcowym usunięciu NPM, wydzielić monitoring i przetestować alerty. | Bez globalnego prune i utraty historii. |
+| Domknięcie (`N03`, `O01/O02`, `D05.3`) | Tymczasowe zasoby testowe TTT wycofano; PR #36 usunął stare skrypty SSH, ich testy i instrukcje fallback (D05.3). Monitoring pozostaje przy Smakoszu. | Zachować dane przy końcowym usunięciu NPM, wydzielić monitoring i przetestować alerty. | Bez globalnego prune i utraty historii. |
 
 Pakiet → podzadanie → test odbioru. Jeden zakończony podtest nie zamyka całego pakietu. Publiczne dowody implementacji: [wydanie przez Coolify #9](https://github.com/SzczepanGrela/tic-tac-toe-ai/pull/9), [kontrola zdrowia #15](https://github.com/SzczepanGrela/tic-tac-toe-ai/pull/15), [rollback #17](https://github.com/SzczepanGrela/tic-tac-toe-ai/pull/17), [porządkowanie zasobów testowych #20](https://github.com/SzczepanGrela/tic-tac-toe-ai/pull/20), [MCTS/Jev #24](https://github.com/SzczepanGrela/tic-tac-toe-ai/pull/24), [raport oceny #33](https://github.com/SzczepanGrela/tic-tac-toe-ai/pull/33), [interfejs #34](https://github.com/SzczepanGrela/tic-tac-toe-ai/pull/34) i [przyrostowe serie #35](https://github.com/SzczepanGrela/tic-tac-toe-ai/pull/35). PR dowodzi zmiany źródła; wyniki hosta i testów zewnętrznych zachowują własne daty w prywatnej dokumentacji.
+
+Uzupełnienie 28 września: [PR #36 TTT](https://github.com/SzczepanGrela/tic-tac-toe-ai/pull/36) dodaje testy współdzielonego budżetu endpointów, tożsamości klientów, kolejki i rzeczywistego HTTP. Publiczny strumień przekazywał gry po 1,59/3,34/4,42 s, a limit aplikacji zwrócił 429 i odzyskał dostęp po Retry-After. D04 nadal obejmuje niezależne publiczne IP, korelację rozłączenia z pracą na VPS, liczniki między aplikacjami i overlap. Nie zmieniono limitów ani nie dodano Redisa.
 
 ---
 

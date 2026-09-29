@@ -1,6 +1,6 @@
 # Checklista wdrożenia przez Coolify
 
-Wersja odniesienia: 4.3.14; przegląd 2026-09-28. To wymagania i wskazówki,
+Wersja odniesienia: 4.3.14; przegląd 2026-09-29. To wymagania i wskazówki,
 nie deklaracja, że każdy projekt już je spełnia. Konkretne dane VPS, UUID,
 adresy zarządzania i sekrety pozostają w prywatnej dokumentacji infrastruktury.
 Wyniki pochodzą z dostarczonych przez operatora logów/inspect i selektywnych
@@ -14,7 +14,7 @@ nie listą wszystkich braków w obu obecnych aplikacjach.
 
 | Przykład | Potwierdzone | Nadal do odbioru |
 | --- | --- | --- |
-| Tic-Tac-Toe | Chroniona automatyczna promocja digestu, bramka zdrowia Coolify, odrzucenie niezdrowego kandydata, failed-smoke rollback, serializacja i pomiar overlap; później trwały licznik Jev, kopia i izolowana próba restore. | Szersze limity i stan współdzielony, monitoring, wyjątki runtime oraz K=9 i decyzja publicznej aktywacji Jev. |
+| Tic-Tac-Toe | Chroniona automatyczna promocja digestu, bramka zdrowia Coolify, odrzucenie niezdrowego kandydata, failed-smoke rollback, serializacja i pomiar overlap; później trwały licznik Jev, kopia i izolowana próba restore. | Izolacja edge w jednym centrum, monitoring, wyjątki runtime oraz K=9 i decyzja aktywacji Jev. Lokalne liczniki podczas krótkiego rolling overlap są zaakceptowanym wyjątkiem. |
 | Inventory | Ręczny digest, zdrowy obraz, ograniczony runtime, trasa i testy zaufania proxy w źródle/CI. | Własny kontrakt wydania, live IP echo, niezdrowy kandydat/rollback, overlap/limity i automatyczna promocja. |
 
 Potwierdzona konfiguracja nie zastępuje testu zachowania: pierwszy celowo
@@ -226,14 +226,14 @@ przez publiczne proxy. Późniejszy test potwierdził wspólną blokadę TTT/Inv
 oraz recovery. Drugi klient pozostał dostępny, lecz trafił do innego centrum
 Cloudflare (CDG/WAW). Osobny test rolling update potwierdził, że stary kontener
 TTT dokończył gry 9–10 po SIGTERM, a klient dostał 10 gier i jedno `complete`
-bez błędów. Pozostają izolacja różnych IP w jednym centrum oraz wspólny stan
-limitera podczas rolling update; wynik TTT nie zastępuje odbioru innych aplikacji.
+bez błędów. Pozostają izolacja różnych IP w jednym centrum oraz wymagania kolejnych aplikacji; TTT ma zaakceptowany wyjątek
+lokalnych liczników przy krótkim rolling overlap; wynik TTT nie zastępuje odbioru innych aplikacji.
 Lokalny test dwóch procesów potwierdził poprawną grę przy zmianie instancji,
 lecz każdy proces miał własny budżet serii, a wymiana procesu odnawiała budżet.
 To dowód ograniczenia obecnej implementacji, nie odbiór globalnego limitu
 ani publicznego routingu. Stan gry przesyłany przez klienta, aktywna odpowiedź
-HTTP i liczniki żądań wymagają osobnych testów. Wybór współdzielonego magazynu
-i zachowania przy jego awarii pozostaje częścią otwartego zadania.
+HTTP i liczniki żądań wymagają osobnych testów. Wybór współdzielonego magazynu i zachowania przy jego awarii będzie wymagany,
+gdy pojawią się przesłanki do ponownego rozpatrzenia wyjątku TTT.
 
 Opcjonalny Jev wymaga trwałego licznika wydatków także podczas rolling update.
 Backup SQLite wykonywać spójnie, odtwarzać w stanie wstrzymanym i uzgodnić
@@ -261,3 +261,22 @@ Przy odbiorze limitów edge zapisać lokalizację z CF-Ray i porównać wyniki
 w tym samym oknie blokady. Różne IP w różnych centrach nie dowodzą izolacji
 samych IP w jednym centrum. Łączna reguła dla kilku hostów może współdzielić
 ich budżet; testować ten skutek osobno od limiterów aplikacji.
+
+## Domknięcie dokumentacji — 29 września
+
+Prywatna dokumentacja ma jeden indeks bieżącego stanu, karty projektów oraz
+jeden backlog. Nowy odczyt runtime i metadanych backupów ma własną datę;
+wcześniejsze katalogi/restore i testy routingu zachowują daty źródłowe. Brak
+świeżego dostępu API dostawcy zapisujemy jako lukę odczytu, nie dowód awarii.
+
+TTT ma zaakceptowany wyjątek: jeden proces w normalnej pracy i krótkie
+nakładanie kontenerów podczas rolling update mogą mieć osobne liczniki.
+Nie wdrożono wspólnego magazynu; restart odnawia dostępny budżet, więc nie jest
+to gwarantowane „2× przez minutę”. Wrócić do decyzji przed stałymi replikami,
+wieloma workerami, ścisłymi kwotami lub przy przeciążeniu. Trwały licznik
+kosztów Jev pozostaje osobnym wymogiem. Test drain potwierdził konkretną serię,
+nie każdą dowolnie długą odpowiedź.
+
+Zmiana wyłącznie dokumentacji nie wymaga wdrożenia aplikacji: wykonać właściwe
+checki i anulować ewentualny oczekujący deploy bez zatwierdzania production.
+Rewizja działającego obrazu może wtedy poprzedzać commit dokumentacji.

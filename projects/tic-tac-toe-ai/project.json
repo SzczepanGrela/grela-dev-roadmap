@@ -42,15 +42,15 @@
     "implementation": 95,
     "quality": 100,
     "documentation": 100,
-    "delivery": 74,
-    "overall": 92
+    "delivery": 84,
+    "overall": 94
   },
   "complexity": 3,
   "forecast": {
-    "remainingHoursMin": 12,
-    "remainingHoursMax": 23,
-    "remainingDaysMin": 1.5,
-    "remainingDaysMax": 3.0,
+    "remainingHoursMin": 9,
+    "remainingHoursMax": 17,
+    "remainingDaysMin": 1.25,
+    "remainingDaysMax": 2.25,
     "hoursPerDay": 8,
     "hoursPerWeek": 30,
     "earliest": "2026-10-08",
@@ -58,15 +58,15 @@
     "confidence": "medium"
   },
   "estimation": {
-    "date": "2026-09-28",
+    "date": "2026-09-29",
     "mode": "source-audited",
-    "sourceRevision": "3188ef1ab518fff289d7f2aacd3976d3a2b28818",
-    "sourceState": "Scoped reconciliation of the September 25 feature release, public PR history and dated September 16–27 operator/edge evidence. No fresh whole-host audit; dependency maintenance is tracked separately."
+    "sourceRevision": "c031f55bfc42de1699dfac951353514d791f6605",
+    "sourceState": "Scoped September 29 release/operating-decision reconciliation and operator-supplied VPS runtime/backup metadata. Historical tests retain their dates. Scoped provider configuration readback passed; only Pages metadata needs access review; no full-host audit."
   },
   "focus": {
     "current": {
-      "en": "Implement coordinated rate budgets with a defined store failure policy, then verify rolling overlap; local tests confirmed game continuity and independent budgets. Same-location edge client isolation remains open.",
-      "pl": "Wdrożyć wspólne budżety żądań z określonym zachowaniem przy awarii magazynu, następnie sprawdzić overlap; lokalny test potwierdził ciągłość gry i niezależne liczniki. Izolacja klientów edge w jednym centrum pozostaje otwarta."
+      "en": "Use the documented TTT delivery example for the next application; keep same-location edge isolation, hardening and observability as explicit follow-ups.",
+      "pl": "Wykorzystać udokumentowany wzorzec wdrożenia TTT przy kolejnej aplikacji; zachować osobne zadania izolacji edge w jednym centrum, hardeningu i monitoringu."
     },
     "next": {
       "en": "After the October UTC allowance reset, finish Jev K=9 evaluation and decide public activation; preserve the accepted release process.",
@@ -106,7 +106,7 @@
       "hoursMax": 0,
       "daysMin": 0.0,
       "daysMax": 0.0,
-      "evidence": "Feature release 3188ef1 passed in run 36082090397. Dependency PRs #25/#4 were updated, checked and merged September 27–28; runs 36360057813 and 36360447941 passed. Main run 36367310173 passed Python 3.12/3.13, training, browser, image/scan and release verification before production approval. PR #36 passed full Quality run 36374994035; 226 backend tests passed locally against the production runtime lock. PR #39 passed full Quality 36443465139 and main release 36444253457; 228 backend tests passed locally, including 13 delivery cases."
+      "evidence": "Feature release 3188ef1 passed in run 36082090397. Dependency PRs #25/#4 were updated, checked and merged September 27–28; runs 36360057813 and 36360447941 passed. Main run 36367310173 passed Python 3.12/3.13, training, browser, image/scan and release verification before production approval. PR #36 passed full Quality run 36374994035; 226 backend tests passed locally against the production runtime lock. PR #39 passed full Quality 36443465139 and main release 36444253457; 228 backend tests passed locally, including 13 delivery cases. September 29 PRs #37/#38 updated the Tailscale action, Typesafe SDK 0.7.1 and ONNX minimum; the runtime lock was reconciled. Final main Quality/protected release 36508939688 passed for c031f55, with 228 local backend tests and installed-lock checks. Intermediate release 36508345010 was deliberately cancelled to avoid an extra rollout."
     },
     {
       "id": "repository-governance",
@@ -140,7 +140,7 @@
       "hoursMax": 0,
       "daysMin": 0.0,
       "daysMax": 0.0,
-      "evidence": "September 28 reconciliation updates the public plan, reusable Coolify checklist and normalized record from dated private evidence. Private topology and credentials remain outside this repository. PR #36 removed unused SSH deployment source/tests and stale fallback/canary instructions; the delivery-verification guide distinguishes local tests from public acceptance."
+      "evidence": "September 29 closes the operational-reference reorganization: all portfolio projects have private evidence-based cards, current configuration and historical audits are separate, YAML/schema/link validation is automated, and the next-app guide records lessons and accepted exceptions. Selected VPS runtime and backup metadata were reread; unavailable Pages metadata and wider unverified controls remain explicit. This is not a full-host reaudit."
     },
     {
       "id": "edge-verification",
@@ -157,7 +157,7 @@
       "hoursMax": 4,
       "daysMin": 0.25,
       "daysMax": 0.5,
-      "evidence": "September 27 edge coverage and single-client block/recovery passed. September 28 public MCTS games arrived at 1.59/3.34/4.42 seconds; weighted batch/stream application rejection and recovery passed. PR #36 adds local independent-client/proxy-trust, queue and real-HTTP disconnect coverage. The paired public test recorded 45 application 429s from one source while all ten ten-game requests from another succeeded. PR #39 adds stream/work correlation. The September 28 public disconnect after game 1 stopped game 2; no games 3–10 started, confirmed by the operator's server logs. A TTT-only edge burst also blocked Inventory export, followed by recovery. Three VPS block cycles coincided with 35 unblocked validation responses from the observer, but the sources reached different Cloudflare locations. A synchronized same-image rolling test then delivered all ten MCTS games and complete, with games 9–10 finishing after old-container SIGTERM. Same-location distinct-IP isolation and rolling shared counters remain open."
+      "evidence": "September 27 edge coverage and single-client block/recovery passed. September 28 public MCTS games arrived at 1.59/3.34/4.42 seconds; weighted batch/stream application rejection and recovery passed. PR #36 adds local independent-client/proxy-trust, queue and real-HTTP disconnect coverage. The paired public test recorded 45 application 429s from one source while all ten ten-game requests from another succeeded. PR #39 adds stream/work correlation. The September 28 public disconnect after game 1 stopped game 2; no games 3–10 started, confirmed by the operator's server logs. A TTT-only edge burst also blocked Inventory export, followed by recovery. Three VPS block cycles coincided with 35 unblocked validation responses from the observer, but the sources reached different Cloudflare locations. A synchronized same-image rolling test then delivered all ten MCTS games and complete, with games 9–10 finishing after old-container SIGTERM. Same-location distinct-IP isolation remains open. Rolling request-budget consistency has the September 29 accepted exception, separately from durable Jev accounting."
     },
     {
       "id": "immutable-deploy",
@@ -179,19 +179,19 @@
     {
       "id": "blue-green-redis",
       "title": {
-        "en": "Verify promotion/rollback and share limiter state",
-        "pl": "Zweryfikować promocję/rollback i współdzielić stan limitera"
+        "en": "Accept managed rolling and its request-budget boundary",
+        "pl": "Odebrać rolling update i określić granice limitów"
       },
       "dimension": "delivery",
-      "status": "in-progress",
-      "completion": 65,
+      "status": "done",
+      "completion": 100,
       "weight": 3,
       "difficulty": 4,
-      "hoursMin": 3,
-      "hoursMax": 6,
-      "daysMin": 0.5,
-      "daysMax": 0.75,
-      "evidence": "September 16–17 managed health, rejected candidate, automatic recovery after failed public smoke, release serialization and measured two-container capacity passed. This is accepted managed rolling, not a claim of blue-green slots. September 28 synchronized public MCTS acceptance proved that the old container completed games 9–10 after SIGTERM and delivered all ten games plus complete before exiting. Shared rate-limit state remains open; Redis is not yet installed. This does not certify every long-running or stateful workload. A later local HTTP experiment on two independent processes confirmed game continuation across replicas, separate 30-game series allowances and another full allowance after replacement. This characterizes the current limitation; it is not public shared-counter acceptance. The shared store and its failure policy still need selection."
+      "hoursMin": 0,
+      "hoursMax": 0,
+      "daysMin": 0.0,
+      "daysMax": 0.0,
+      "evidence": "September 16–17: candidate health, failed-smoke rollback, serialization and overlap capacity passed. September 28: public ten-game MCTS series completed across old-container SIGTERM; a separate local test established independent buckets and reset on replacement. September 29 operator decision: accept process-local request buckets for one normal process and brief managed-rolling overlap. No shared counter installed. Revisit before permanent replicas, multiple workers, strict quotas or measured overload; Jev paid accounting remains durable and separate. Stable task ID is retained for traceability; this is managed rolling, not blue-green slots or Redis delivery."
     },
     {
       "id": "service-observability",
@@ -242,7 +242,7 @@
       "hoursMax": 4,
       "daysMin": 0.25,
       "daysMax": 0.5,
-      "evidence": "September 11 operator readback confirms non-root, cap-drop ALL, init, CPU/RAM limits and local log rotation. PID/no-new-privileges/read-only/tmpfs exceptions remain; this dated evidence is not a new full runtime audit."
+      "evidence": "September 11 operator readback confirms non-root, cap-drop ALL, init, CPU/RAM limits and local log rotation. PID/no-new-privileges/read-only/tmpfs exceptions remain; this dated evidence is not a new full runtime audit. September 29 selected operator readback reconfirms one CPU/512 MiB, writable rootfs and null PID/security-option fields; earlier cap-drop/init/process evidence retains its date."
     },
     {
       "id": "jev-evaluation-activation",
@@ -263,10 +263,10 @@
     }
   ],
   "verification": {
-    "worktree": "Scoped reconciliation of the September 25 feature release, public PR history and dated September 16–27 operator/edge evidence. No fresh whole-host audit; dependency maintenance is tracked separately.",
+    "worktree": "Scoped September 29 release/operating-decision reconciliation and operator-supplied VPS runtime/backup metadata. Historical tests retain their dates. Scoped provider configuration readback passed; only Pages metadata needs access review; no full-host audit.",
     "tests": "Existing dated CI/production evidence reconciled. This documentation change is validated by roadmap data/report checks, schema, site build and browser tests; it does not rerun VPS failure injection. September 28 local Python 3.12 HTTP characterization confirmed alternating-instance game continuity, weighted series-budget duplication and reset after replacement; all test processes and the temporary container were removed. No production change or paid call.",
-    "ci": "Feature Quality and protected deployment run 36082090397 succeeded for 3188ef1. Main protection and production approval were accepted September 17. Dependency PRs #25/#4 are separately validated before promotion. PR #39 passed complete Quality 36443465139 and protected main release 36444253457.",
-    "production": "September 16–18: managed health, rejected candidate, public-smoke rollback, serialized releases and overlap capacity accepted. September 21: persistent Jev ledger, off-host backup and isolated paused restore/reconciliation accepted. September 25: responsive UI and NDJSON series released with Jev disabled. September 27: stream edge coverage and one-client block/recovery, TLS minimum 1.2 and latest scheduled backup metadata confirmed. Full VPS recovery, broader rate-limit behavior and current runtime readback remain separate. September 28 public stream timing, shared endpoint-budget recovery and paired public application-client isolation passed. Revision 15a57d7 from PR #39 passed protected release 36444253457; correlated public/server logs confirmed cooperative cancellation after the first game. A subsequent TTT-only edge burst also blocked Inventory export and recovered; paired sources reached different Cloudflare locations. A synchronized rolling test then completed all ten MCTS games, including games 9–10 after old-container SIGTERM, and delivered complete without error. Same-location distinct-IP isolation and rolling shared budgets remain open."
+    "ci": "Feature Quality and protected deployment run 36082090397 succeeded for 3188ef1. Main protection and production approval were accepted September 17. Dependency PRs #25/#4 are separately validated before promotion. PR #39 passed complete Quality 36443465139 and protected main release 36444253457. Final September 29 main run 36508939688 succeeded for c031f55 after PRs #37/#38; the earlier intermediate deployment was intentionally cancelled.",
+    "production": "September 16–18: managed health, rejected candidate, public-smoke rollback, serialized releases and overlap capacity accepted. September 21: persistent Jev ledger, off-host backup and isolated paused restore/reconciliation accepted. September 25: responsive UI and NDJSON series released with Jev disabled. September 27: stream edge coverage and one-client block/recovery, TLS minimum 1.2 and latest scheduled backup metadata confirmed. Full VPS recovery, broader rate-limit behavior and current runtime readback remain separate. September 28 public stream timing, shared endpoint-budget recovery and paired public application-client isolation passed. Revision 15a57d7 from PR #39 passed protected release 36444253457; correlated public/server logs confirmed cooperative cancellation after the first game. A subsequent TTT-only edge burst also blocked Inventory export and recovered; paired sources reached different Cloudflare locations. A synchronized rolling test then completed all ten MCTS games, including games 9–10 after old-container SIGTERM, and delivered complete without error. Same-location distinct-IP isolation remains open. September 29 operator decision: accept process-local request buckets for one normal process and brief managed-rolling overlap. No shared counter installed. Revisit before permanent replicas, multiple workers, strict quotas or measured overload; Jev paid accounting remains durable and separate. September 29 operator readback confirms the healthy new digest, current application bind and selected runtime fields; backup freshness is recorded separately from older restore drills."
   },
   "media": {
     "screenshot": "assets/screenshots/tic-tac-toe-ai.png",
@@ -290,10 +290,14 @@
     {
       "en": "Temporarily omit no-new-privileges from Custom Docker Options due to the reproduced 4.3.14 parser issue; verify effective settings and revisit via reviewed Compose or upgrade.",
       "pl": "Czasowo pominąć no-new-privileges w Custom Docker Options z powodu odtworzonego błędu 4.3.14; sprawdzić efektywne ustawienia i wrócić do rozwiązania przez Compose lub aktualizację."
+    },
+    {
+      "en": "September 29 operator decision: accept process-local request buckets for one normal process and brief managed-rolling overlap. No shared counter installed. Revisit before permanent replicas, multiple workers, strict quotas or measured overload; Jev paid accounting remains durable and separate.",
+      "pl": "Decyzja operatora z 29 września: akceptujemy lokalne liczniki żądań dla jednego procesu i krótkiego overlap podczas rolling update. Nie wdrożono wspólnego licznika. Wrócić do decyzji przed stałymi replikami, wieloma workerami, ścisłymi kwotami lub przy przeciążeniu; trwały budżet płatnego Jev pozostaje osobny."
     }
   ],
   "audit": {
-    "date": "2026-09-28",
+    "date": "2026-09-29",
     "sources": [
       "Public Tic-Tac-Toe PRs #9, #15–24 and #26–35; protected release run 36082090397",
       "Dated private operator acceptance: managed health/rollback/serialization September 16–18; ledger/backup/restore September 21",
@@ -306,17 +310,19 @@
       "TTT PR #39, Quality 36443465139, protected release 36444253457 and September 28 paired public-client/server logs: two-game completion control and cancelled ten-game MCTS series",
       "September 28 read-only Cloudflare rule v3 readback and shared TTT/Inventory block/recovery; operator CDG burst/recovery paired with 35 WAW validation responses, preserving the same-location isolation gap",
       "September 28 operator-triggered same-image Coolify rolling acceptance: one public ten-game MCTS stream spanned old-container SIGTERM; all games and complete arrived, with no error frame. An earlier observer finished before redeployment and is explicitly inconclusive for drain.",
-      "September 28 isolated local HTTP experiment at the released source revision: two processes accepted a total series cost of 60; replacing one allowed another 30 while the remaining process stayed limited. A single shared bucket ceiling was approximately 30.4 in the measured interval. This is not public ingress evidence."
+      "September 28 isolated local HTTP experiment at the released source revision: two processes accepted a total series cost of 60; replacing one allowed another 30 while the remaining process stayed limited. A single shared bucket ceiling was approximately 30.4 in the measured interval. This is not public ingress evidence.",
+      "Operator-approved September 29 documentation plan and scoped process-local TTT limiter decision",
+      "TTT PRs #37/#38; successful main Quality/protected release 36508939688 at c031f55; selected operator runtime and backup metadata September 29"
     ],
     "notes": {
-      "en": "September 28 reconciliation closes accepted delivery work while retaining shared-state limits, monitoring, hardening exceptions and the final Jev gate. Evidence dates are preserved; no whole-server audit is implied. Hours and percentages are planning estimates, and other projects retain their earlier audit dates.",
-      "pl": "Uzgodnienie z 28 września zamyka odebrane prace wdrożeniowe, zachowując limity współdzielonego stanu, monitoring, wyjątki hardeningu i końcową bramkę Jev. Daty dowodów pozostają jawne; nie wykonano nowego audytu całego serwera. Godziny i procenty są estymacjami, a inne projekty zachowują wcześniejsze daty audytu."
+      "en": "September 29 closes the documentation and scoped rolling-budget decision. TTT is a reusable delivery example with named exceptions; same-location edge isolation, hardening, monitoring and final Jev activation remain separate. Dates and scope are preserved; no full-server audit is implied. Other project audits retain their own dates.",
+      "pl": "29 września domknięto porządkowanie dokumentacji i decyzję o limitach podczas rolling update. TTT jest wzorcem wdrożenia z jawnymi wyjątkami; izolacja edge w jednym centrum, hardening, monitoring i końcowa aktywacja Jev pozostają osobno. Zachowano daty i zakres dowodów; nie wykonano pełnego audytu serwera. Pozostałe projekty zachowują własne daty audytu."
     }
   },
   "compliance": {
     "standardVersion": 2,
     "profile": "vps-web",
-    "assessmentDate": "2026-09-28",
+    "assessmentDate": "2026-09-29",
     "controls": [
       {
         "id": "governance",
@@ -367,12 +373,11 @@
         "id": "abuse-protection",
         "status": "partial",
         "evidence": {
-          "en": "Edge one-client acceptance passed September 27. September 28 application rejection/recovery, public stream timing and paired public application-client isolation passed; local identity/queue/disconnect tests also passed. Public disconnect was correlated with actual worker cancellation in the operator's logs after PR #39. Shared TTT/Inventory edge block and recovery passed; the paired observer remained usable from a different Cloudflare location. A synchronized rolling test also delivered all ten MCTS games, with games 9–10 finishing after old-container SIGTERM. Same-location distinct-IP isolation and rolling shared state remain open. Local two-process characterization later confirmed budget duplication/reset while game continuation worked; the existing shared-state target remains unmet.",
-          "pl": "Odbiór edge dla jednego klienta przeszedł 27 września. 28 września przeszły testy odrzucenia/odnowienia budżetu aplikacji, czasu zdarzeń i izolacji dwóch publicznych klientów oraz lokalne testy tożsamości/kolejki/rozłączeń. Po PR #39 logi operatora potwierdziły również zatrzymanie obliczeń po rozłączeniu publicznego strumienia. Wspólna blokada edge TTT/Inventory i powrót dostępu przeszły; drugi klient pozostał dostępny przez inne centrum Cloudflare. Zsynchronizowany test rolling update dostarczył też wszystkie 10 gier MCTS, w tym gry 9–10 zakończone po SIGTERM starego kontenera. Pozostają izolacja różnych IP w jednym centrum i wspólny stan przy rolling update. Późniejszy lokalny test dwóch procesów potwierdził powielenie/reset budżetu przy poprawnej kontynuacji gry; docelowy wspólny stan pozostaje niewdrożony."
+          "en": "Dated public checks cover application isolation, weighted exhaustion/recovery, incremental delivery, cooperative cancellation and shared TTT/Inventory edge block/recovery. Same-location distinct-IP edge isolation is still unverified. September 29 operator decision: accept process-local request buckets for one normal process and brief managed-rolling overlap. No shared counter installed. Revisit before permanent replicas, multiple workers, strict quotas or measured overload; Jev paid accounting remains durable and separate.",
+          "pl": "Datowane testy publiczne obejmują izolację klientów aplikacji, ważone limity i odnowienie, przyrostowe wyniki, zatrzymanie obliczeń i wspólną blokadę/odnowienie edge TTT/Inventory. Izolacja różnych IP w jednym centrum edge pozostaje niepotwierdzona. Decyzja operatora z 29 września: akceptujemy lokalne liczniki żądań dla jednego procesu i krótkiego overlap podczas rolling update. Nie wdrożono wspólnego licznika. Wrócić do decyzji przed stałymi replikami, wieloma workerami, ścisłymi kwotami lub przy przeciążeniu; trwały budżet płatnego Jev pozostaje osobny."
         },
         "taskIds": [
-          "edge-verification",
-          "blue-green-redis"
+          "edge-verification"
         ]
       },
       {
@@ -408,8 +413,8 @@
         "id": "coordination-retention",
         "status": "complete",
         "evidence": {
-          "en": "Per-production serialization and two-container capacity acceptance passed September 17; app-scoped retention preserves rollback. Broader shared limiter state remains a separate task.",
-          "pl": "Serializacja production i odbiór pojemności dla dwóch kontenerów przeszły 17 września; retencja aplikacji zachowuje rollback. Wspólny stan limitera pozostaje osobnym zadaniem."
+          "en": "Per-production serialization and two-container capacity acceptance passed September 17; app-scoped retention preserves rollback. September 29 operator decision: accept process-local request buckets for one normal process and brief managed-rolling overlap. No shared counter installed. Revisit before permanent replicas, multiple workers, strict quotas or measured overload; Jev paid accounting remains durable and separate.",
+          "pl": "Serializacja production i odbiór pojemności dla dwóch kontenerów przeszły 17 września; retencja aplikacji zachowuje rollback. Decyzja operatora z 29 września: akceptujemy lokalne liczniki żądań dla jednego procesu i krótkiego overlap podczas rolling update. Nie wdrożono wspólnego licznika. Wrócić do decyzji przed stałymi replikami, wieloma workerami, ścisłymi kwotami lub przy przeciążeniu; trwały budżet płatnego Jev pozostaje osobny."
         },
         "taskIds": []
       },

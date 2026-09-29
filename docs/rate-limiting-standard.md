@@ -49,17 +49,21 @@ control complete. See [Coolify checklist](coolify-deployment-checklist.md).
 - **Sliding window:** preferred where an exact recent request count matters.
 - **Concurrency semaphore/queue:** mandatory for scarce CPU/GPU/external operations; it supplements rather than replaces a time-based limit.
 - **Quota:** required where aggregate daily/monthly cost matters.
-- In-memory state is acceptable only for one process and one production instance. Multiple workers and blue-green/multi-instance deployments use Redis or another shared atomic store.
+- In-memory state normally applies to one process/instance. Persistent multi-instance or multi-worker service and strict quotas require a reviewed shared atomic store and failure policy. A scoped operator exception must state the extra allowance, boundaries and reconsideration triggers; TTT has such an exception for temporary managed-rolling overlap.
 
 September 28 local TTT characterization confirmed that a game can continue
 across independent processes while series buckets remain independent: two
 processes accepted 60 game-cost units and replacing one allowed another 30,
 within a window where a single bucket could admit only about 30.4. This used
-loopback HTTP, not public ingress. It confirms the need for the shared-state
-target rather than completing it. Local work-slot protection, global user
+loopback HTTP, not public ingress. It characterizes the limitation; it does not prove global limits. The operator
+accepted this limitation on September 29 for one normal TTT process and brief
+managed-rolling overlap; no shared store was installed. Local work-slot protection, global user
 allowances and the durable paid-provider ledger have distinct purposes; do
 not automatically combine them into one counter or move all queues to a
-shared service. Select the store and failure policy before implementation.
+shared service. Revisit before permanent replicas, multiple workers, strict per-client quotas or
+measured overload. Fresh processes start with fresh allowance; “twice for one
+minute” is not a guaranteed ceiling. For shared-store implementation, select
+the atomicity and outage policy before changing the deployment.
 
 ## Per-project profiles
 
@@ -68,7 +72,7 @@ shared service. Select the store and failure policy before implementation.
 | Inventory Generator | Reads approximately 120/min/IP; CSV/HTML export approximately 10/min/IP; DOCX approximately 5/min/IP with burst 2; 2–4 concurrent exports; cap request body and row count. |
 | NetFilmx | Login approximately 5/15 min per IP+login; registration approximately 3/hour/IP; search 30–60/min; admin upload 2–5/hour/user; one FFmpeg transcode on the current VPS. HLS segments use CDN, connection and bandwidth controls instead of a small request limit. |
 | Air Quality | Cached metadata high limit; stations/history 60–120/min; search 30–60/min; estimation 20–30/min; map tiles 300–600/min with edge cache. Workers/training remain private. |
-| Tic-Tac-Toe AI | Move token bucket refills at 30/min/IP with burst 10; match requests consume a separate 30-game/min/IP budget according to requested games; two concurrent AI operations. Move state to Redis before multiple workers or true blue-green traffic. |
+| Tic-Tac-Toe AI | Move token bucket refills at 30/min/IP with burst 10; match requests consume a separate 30-game/min/IP budget according to requested games; two concurrent AI operations. Temporary managed-rolling overlap has the September 29 process-local exception; revisit before permanent replicas/multiple workers or strict quotas. Jev cost accounting remains durable and separate. |
 | Smakosz | Separate login/register/reset/resend/refresh policies; authenticated write/upload/review limits per user; upload size and daily quota; search 30/min and suggest 60/min with burst; cache/concurrency for recommendations. Internal workers and Hangfire stay private. |
 | URL Shortener | Redirects receive a high adaptive edge limit; link creation 5–10/min/IP plus daily quota; management per authenticated user. Add SSRF/private-address protection, anti-phishing controls and a bounded analytics queue. |
 | Flatfinder | Scraping is authenticated/private and job-based, with one global job per portal and a low daily quota; export 1–3/min/user; listing reads moderate. Training and teacher VLM are never public endpoints. Respect portal backoff and terms. |

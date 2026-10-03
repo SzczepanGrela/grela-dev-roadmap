@@ -48,6 +48,9 @@ Portfolio jest statyczne: bez backendu, kontenera Coolify czy limitera aplikacji
 zachować obecny design i istniejące rekordy poczty. Pages metadata pozostaje
 niezweryfikowane po błędzie autoryzacji. Daty/hours to estymaty pozostałego
 wysiłku, a procenty są ważonym stanem zadań, nie certyfikatem bezpieczeństwa.
+Aktualizacja roadmapy ma osobny [przegląd zależności](2026-10-03-dependency-review.md):
+devalue poprawiono, lecz niespatchowany upstream cache nadal blokuje jej CI.
+Propozycja ograniczonego wyjątku wymaga decyzji operatora; bramka pozostaje aktywna.
 
 ## 🛠️ Znormalizowany Standard Architektury DevOps
 

@@ -1,4 +1,4 @@
-# Plan portfolio i standardu wdrożeń grela.dev (wersja 18, przegląd 2026-09-28)
+# Plan portfolio i standardu wdrożeń grela.dev (wersja 19, przegląd 2026-10-03)
 
 > [!NOTE]
 > Ten dokument jest długoterminową mapą prac portfolio i publicznym opisem standardu wdrożeń. Kolejność projektów niżej jest katalogiem, nie kolejką zmian na VPS. Stan pojedynczego projektu ma datę w jego `projects/<slug>/report.md`; starszego raportu nie należy traktować jako bieżącego odczytu produkcji.
@@ -8,17 +8,17 @@
 
 ## Stan wdrożeń i najbliższa kolejka
 
-Przegląd 2026-09-28 łączy datowane dowody z 11–28 września oraz historię publicznych PR-ów. Nie jest nowym audytem całego VPS. Prywatna checklista zachowuje dokładne ID, zależności, adresy i dowody operatora; poniżej znajdują się pakiety prac.
+Przegląd 2026-10-03 dodaje źródła/CI Inventory, przygotowany draft NetFilmx i podział sesji. Dowody VPS/backupów z 29 września i testy TTT zachowują własne daty. Nie jest nowym audytem całego VPS. Prywatna checklista zachowuje dokładne ID, zależności, adresy i dowody operatora; poniżej znajdują się pakiety prac.
 
 | Pakiet | Co jest zrobione | Co pozostało | Zależność |
 | --- | --- | --- | --- |
-| Baza Coolify (`C01–C06`, `C08`) | Prywatny panel, Tunnel/Traefik i dwie aplikacje po digestach; TTT ma chronioną automatyczną promocję. | Świeży odczyt pozostałych ustawień platformy i osobny kontrakt Inventory. | Zachować zaakceptowaną architekturę. |
+| Baza Coolify (`C01–C06`, `C08`) | Prywatny panel, Tunnel/Traefik; TTT i Inventory mają chronioną promocję testowanego digestu. Inventory ma własny kontrakt/atestację i zielony deploy 37091518872 na .NET 10. | Odbiór aplikacyjnych poprawek i live failure/rollback/capacity Inventory oraz pozostałe ustawienia platformy. | Zachować architekturę i daty rzeczywistych odczytów. |
 | Przejście starych tras (`N01.1`, `N02`) | NPM pozostaje zatrzymany; synchronizator i stare reguły CIDR wycofano. Testy originu IPv4/IPv6 przeszły 15–16 września. | Sprawdzić trwałość wycofania po najbliższym naturalnym restarcie; nie restartować tylko dla testu. | Dalsza przerwa domen legacy jest zaakceptowana. |
 | Wydanie TTT (`D01`, `D02.2`, `D03.1`) | Bramka zdrowia, odrzucenie wadliwego kandydata, failed-smoke rollback, serializacja i pomiar overlap przeszły 16–17 września. Kolejne wydania korzystają z tego procesu. 28 września publiczna seria MCTS dokończyła gry 9–10 po SIGTERM starego kontenera i dostarczyła komplet wyników. | Lokalny test potwierdził niezależne budżety i reset po wymianie. 29 września zaakceptowano ten wyjątek dla jednego procesu i krótkiego rolling overlap; wrócić do niego przed stałymi replikami lub ścisłymi kwotami. Inventory ma odrębny odbiór. | Nie powtarzać zakończonych testów jako stałego środowiska canary. |
-| Funkcje TTT (`G01–G07`, `J01`) | Plansze 3×3/5×5/9×9, MCTS 5×5, odnowiony responsywny interfejs i przyrostowe serie. Jev ma trwały licznik wydatków, backup i próbę restore; ocena do 9×9 K=8 jest zapisana. | K=9 po październikowym resecie UTC i osobna decyzja o publicznym włączeniu Jev. Rozszerzanie wytrenowanych modeli pozostaje odroczone. | Jev publicznie wyłączony; nie wykonywać płatnych testów przy zwykłym CI. |
+| Funkcje TTT (`G01–G07`, `J01`) | Plansze 3×3/5×5/9×9, MCTS 5×5, odnowiony responsywny interfejs, przyrostowe serie NDJSON. Jev ma trwały licznik, backup/restore, ukończone próbki do K=9 i eksperymentalne publiczne włączenie 29 września. | Rozszerzanie wytrenowanych modeli pozostaje odroczone; monitoring i wyjątki platformy są osobne. | Zachować licznik/budżet; zwykłe CI nie wykonuje płatnych testów. |
 | Edge i limity aplikacji (`D04`, `P06.1a`) | Reguła obejmuje `/api/matches/stream`; pojedynczy klient przeszedł edge 200/429/recovery. 28 września przeszły izolacja dwóch publicznych klientów aplikacji, jej budżet/recovery, przyrostowe dostarczanie streamu i anulowanie pracy potwierdzone logami VPS. Wspólna blokada TTT/Inventory i recovery również przeszły; równoległe źródła CDG/WAW zachowały niezależność. Minimum TLS 1.2 potwierdzone dla obu stref 27 września. | Różne IP w jednym centrum Cloudflare; origin TLS/ACME i przypięcie proxy osobno. TTT ma jawny wyjątek lokalnych budżetów podczas krótkiego overlap. | Odbiór limitera aplikacji nie zamyka całego D04. |
 | Dane i kopie (`B01/B02/B04`, `P02`) | Zaplanowane kopie Jev/Smakosza przeszły 27 września; sprawdzono metadane Jev lokalnie/R2 i katalogi dumpów Smakosza/Coolify. UI Coolify pokazuje 7 udanych kopii S3 i 2 lokalne. | Pełna mapa danych, aktualne punkty odzyskiwania dostawcy, dokładny czas wykonania Coolify przy kolejnym odczycie, alerty oraz decyzja o nakładających się retencjach Smakosza. | Czytelny katalog nie dowodzi restore; pełny drill Coolify i pakiet kluczy pozostają odroczone. |
-| Migracje (`M01 → M02 → M03`) | Rozpoznano współdzielone dane dwóch kontenerów NetFilmx; zachowano starsze dowody kopii i tras. | Ustalić writerów i docelową wersję NetFilmx, odświeżyć kopię i migrować; potem MovieRAG i Smakosz. | Każda aplikacja wymaga własnego aktualnego backupu, kontraktu i rollbacku. |
+| Migracje (`M01 → M02 → M03`) | NetFilmx draft #1 a39d3ad: źródło zachowane, testy PostgreSQL/SQLite, durable upload, auth/CSRF/JWT, HTTP/zależności; 229 .NET + 3 DOM testy, zielone CI bez deployu. Wybrano nowy katalog R2/PG i nowe konta/pustą historię. | Trwałe Data Protection, jawne migracje/readiness, .NET 10, zastąpienie legacy deploy przed scaleniem, media/worker/recovery/cutover; potem MovieRAG/Smakosz. | Osobny Codex wykonuje NetFilmx, koordynator integruje status/platformę; stare dane/media pozostają. |
 | Domknięcie (`N03`, `O01/O02`, `D05.3`) | Tymczasowe zasoby testowe TTT wycofano; PR #36 usunął stare skrypty SSH, ich testy i instrukcje fallback (D05.3). Monitoring pozostaje przy Smakoszu. | Zachować dane przy końcowym usunięciu NPM, wydzielić monitoring i przetestować alerty. | Bez globalnego prune i utraty historii. |
 
 Pakiet → podzadanie → test odbioru. Jeden zakończony podtest nie zamyka całego pakietu. Publiczne dowody implementacji: [wydanie przez Coolify #9](https://github.com/SzczepanGrela/tic-tac-toe-ai/pull/9), [kontrola zdrowia #15](https://github.com/SzczepanGrela/tic-tac-toe-ai/pull/15), [rollback #17](https://github.com/SzczepanGrela/tic-tac-toe-ai/pull/17), [porządkowanie zasobów testowych #20](https://github.com/SzczepanGrela/tic-tac-toe-ai/pull/20), [MCTS/Jev #24](https://github.com/SzczepanGrela/tic-tac-toe-ai/pull/24), [raport oceny #33](https://github.com/SzczepanGrela/tic-tac-toe-ai/pull/33), [interfejs #34](https://github.com/SzczepanGrela/tic-tac-toe-ai/pull/34) i [przyrostowe serie #35](https://github.com/SzczepanGrela/tic-tac-toe-ai/pull/35). PR dowodzi zmiany źródła; wyniki hosta i testów zewnętrznych zachowują własne daty w prywatnej dokumentacji.
@@ -26,6 +26,28 @@ Pakiet → podzadanie → test odbioru. Jeden zakończony podtest nie zamyka ca�
 Uzupełnienie 28 września: [PR #36 TTT](https://github.com/SzczepanGrela/tic-tac-toe-ai/pull/36) dodaje testy współdzielonego budżetu endpointów, tożsamości klientów, kolejki i rzeczywistego HTTP. Publiczny strumień przekazywał gry po 1,59/3,34/4,42 s, a limit aplikacji zwrócił 429 i odzyskał dostęp po Retry-After. Późniejszy test dwóch publicznych źródeł potwierdził izolację limitera aplikacji: pierwsze otrzymało 45 odpowiedzi 429, a drugie w tym samym oknie 10/10 odpowiedzi 200 po 10 gier. Po [PR #39](https://github.com/SzczepanGrela/tic-tac-toe-ai/pull/39) skorelowano zamknięcie publicznego strumienia po grze 1 z zatrzymaniem obliczeń gry 2; gry 3–10 nie ruszyły. Późniejsza seria żądań do TTT spowodowała wspólną blokadę eksportu Inventory; oba endpointy odzyskały dostęp. Trzy blokady klienta CDG zbiegły się z 35 odpowiedziami walidacji dla klienta WAW. Ponieważ różniły się IP i centrum Cloudflare, D04 nadal obejmuje izolację różnych IP w jednym centrum. Operator 29 września zaakceptował lokalne liczniki TTT podczas krótkiego overlap; nie wdrożono wspólnych liczników. Osobna, zsynchronizowana próba rolling update potwierdziła zakończenie gier 9–10 po SIGTERM starego kontenera; klient otrzymał wszystkie 10 gier, jedno `complete` i żadnego błędu. Pierwsza próba skończyła się przed wymianą i nie stanowi dowodu drain. Nie zmieniono limitów ani nie dodano Redisa.
 
 ---
+
+## Przydział sesji — 3 października
+
+| Sesja | Zadanie teraz | Warunek przejścia dalej |
+| --- | --- | --- |
+| Codex koordynator | Review aplikacji, prywatna dokumentacja, publiczna roadmapa i wspólne ustawienia. | Weryfikacja konkretnego SHA/PR/testów; zapis tylko odebranych wyników. |
+| Gemini Inventory | Poprawki HTML/null/import-cache; regresje browser i kosztów; udokumentowany odbiór wydania. | Review poprawek przez koordynatora; niesprawdzone platformowe wyjątki zostają jawne. |
+| Osobny Codex NetFilmx | Przygotowany draft → stateful backend/delivery/media/recovery. | Jawne migracje/keyring i bezpieczny deploy przed produkcją; UI później. |
+| Gemini portfolio, następnie | Portfolio.html → Vite/React, lokalny build, responsive/browser, Pages preview/production z jednym artefaktem. | Po przeglądzie poprawek Inventory; operator konfiguruje Pages/sekrety/domenę po przygotowaniu kandydata. |
+
+Sesje kodują równolegle, lecz mają osobne checkouty i jeden owner na repo.
+Nie dzielą automatycznie pamięci: każda prowadzi `docs/work-status.md` i raport
+SHA/PR/testy/artefakt/stan produkcji/blokery/następny krok. Koordynator jest
+jedynym edytorem statusu publicznego i prywatnej dokumentacji. Wspólne zmiany i
+próby VPS odbywają się w jednym uzgodnionym oknie, bez globalnego prune.
+
+Instrukcje i prompty dla sesji są w prywatnych handoffach; nie publikujemy ich
+operacyjnych ścieżek ani topologii. Cloudflare pozostaje read-only dla agentów.
+Portfolio jest statyczne: bez backendu, kontenera Coolify czy limitera aplikacji;
+zachować obecny design i istniejące rekordy poczty. Pages metadata pozostaje
+niezweryfikowane po błędzie autoryzacji. Daty/hours to estymaty pozostałego
+wysiłku, a procenty są ważonym stanem zadań, nie certyfikatem bezpieczeństwa.
 
 ## 🛠️ Znormalizowany Standard Architektury DevOps
 
@@ -114,9 +136,9 @@ pakietu nadrzędnego. Szczegóły VPS i dane dostępu pozostają prywatne.
 *   **Subdomena:** `inventory-generator.grela.dev` (wdrożone; dowody w raporcie projektu)
 *   **Port kontenera:** `8080`, wewnątrz sieci; bez mapowania publicznego
 *   **Zarządzanie wdrożeniem:** zasób Coolify; nie tworzyć nowego konta aplikacyjnego w grupie docker.
-*   **Technologia:** C# / ASP.NET Core (.NET 8), JavaScript, OpenXML; generator DOCX/CSV/HTML
+*   **Technologia:** C# / ASP.NET Core (.NET 10 LTS), JavaScript, OpenXML; generator DOCX/CSV/HTML
 *   **Zadania Dev:** Zmiana nazwy na `inventory-generator`, licencja MIT, README.md (EN). Poprawa układu tabeli w plikach MS Word (szerokość kolumn, czcionki, obramowania), aby była czytelna i schludna.
-*   **Stan DevOps (11–15 września):** ręczne wdrożenie digestu, wewnętrzny healthcheck, prywatny ingress, bezpośrednia kontrola limitów RAM/CPU/logów i source/CI testy zaufanych proxy są potwierdzone. Pozostają: live echo IP Inventory, test zachowania limitów i wspólnego stanu podczas overlap, brakujący PID/no-new-privileges, własny kontrakt wydania przez API, niezdrowy kandydat i rollback. Favicon/metadane sprawdzić w przeglądarce. Przygotować automatyczną promocję dopiero po tych testach.
+*   **Stan DevOps (3 października):** .NET 10 i własny exact-digest CI/CD przez Coolify z chronioną produkcją oraz aktywnym rulesetem main/Quality gate. Publiczna rewizja 005dc25 potwierdzona. Lokalne próby odtworzyły 500 dla null i HTML injection komunikatów; Gemini poprawia walidację/import/cache oraz dodaje testy browser/kosztów. Live failed-candidate, rollback, rzeczywiste ustawienia i rolling capacity pozostają osobnymi odbiorami. Wyjątek liczników procesu jest warunkowy, bez odebranego pomiaru.
 
 ### 2. `Punkt_Skladania_Zamowien` (Maj 2024)
 *   **Proponowana nazwa:** `pos-order-system`
@@ -132,7 +154,7 @@ pakietu nadrzędnego. Szczegóły VPS i dane dostępu pozostają prywatne.
 *   **Docelowe zarządzanie wdrożeniem:** zasób Coolify; nie tworzyć nowego konta aplikacyjnego w grupie docker.
 *   **Technologia:** C# (ASP.NET Core MVC)
 *   **Zadania Dev:** Zmiana nazwy na `netfilmx-movie-catalog`, licencja MIT, README.md (EN). Odświeżenie panelu admina (Admin UI) i dodanie estetycznego interfejsu dla zwykłych użytkowników (User UI).
-*   **Stan i następny pakiet (M01):** dwa stare kontenery są uruchomione, oba montują ten sam zapisywalny katalog z SQLite. Operator 12 września utworzył chronioną lokalną kopię bazy, obrazu i inspect; kopia SQLite przeszła `quick_check`, ale nie test importu. Publiczny host zwracał błąd po zatrzymaniu NPM i nie miał nowej trasy w Traefiku. Przed migracją wybrać aktualną wersję SQLite lub osobno przejrzaną pracę PostgreSQL, ustalić rzeczywistych writerów i odświeżyć kopię. Następnie wdrożyć digest z testami tras, odczytu/zapisu i rollbacku; dopiero wtedy usunąć duplikat. Favicon i limity są osobnymi testami.
+*   **Stan i następny pakiet (M01, 3 października):** przygotowano czysty draft #1 a39d3ad z testami/security/PG/durable uploads, bez wdrożenia. Osobny Codex przejmuje trwały keyring Data Protection, jawne migracje/readiness, .NET 10 i chronione digest CI→Coolify. Nie scalać przy starym triggerze main-push SSH. Następnie dokończyć browser derivatives/licencje/seek/import istniejących mediów R2 oraz worker/restart/rolling/restore. Nowe konta i pusta historia są wybrane; zachować SQLite/originals. UI Ania Kubów po odbiorze backendu/wydania.
 
 ### 4. `AirQualityApp` (Luty 2025)
 *   **Proponowana nazwa:** `air-quality-app`
@@ -155,7 +177,7 @@ pakietu nadrzędnego. Szczegóły VPS i dane dostępu pozostają prywatne.
 *   **Zarządzanie wdrożeniem:** zasób Coolify; nie tworzyć nowego konta aplikacyjnego w grupie docker.
 *   **Technologia:** Python
 *   **Zadania Dev:** Zmiana nazwy na `tic-tac-toe-ai`, licencja MIT, README.md (EN). **Współautorstwo:** Dodanie sekcji atrybucji współautorów.
-*   **Stan TTT (przegląd 29 września):** wdrożenia przez chronione GitHub Environment, OIDC i prywatne API Coolify promują przetestowany/atestowany digest. Zarządzany healthcheck, wadliwy kandydat, publiczny rollback, serializacja i overlap są zaakceptowane. Plansze 3×3/5×5/9×9, MCTS 5×5 i przyrostowe serie NDJSON działają; to strumień odpowiedzi HTTP, bez WebSocket. Jev pozostaje wyłączony, mimo ukończonej implementacji i backupu licznika. Pozostają K=9, decyzja aktywacji, izolacja edge w jednym centrum, monitoring i wyjątki runtime. Lokalne limity podczas krótkiego overlap zostały zaakceptowane; publiczny streaming i przerwanie obliczeń mają datowane dowody. Stare skrypty wdrożeniowe SSH usunięto w PR #36.
+*   **Stan TTT (przegląd 29 września):** wdrożenia przez chronione GitHub Environment, OIDC i prywatne API Coolify promują przetestowany/atestowany digest. Zarządzany healthcheck, wadliwy kandydat, publiczny rollback, serializacja i overlap są zaakceptowane. Plansze 3×3/5×5/9×9, MCTS 5×5 i przyrostowe serie NDJSON działają; to strumień odpowiedzi HTTP, bez WebSocket. Jev włączono eksperymentalnie 29 września po K=9 oraz testach publicznych i zachowaniu licznika. Pozostają izolacja edge w jednym centrum, monitoring i wyjątki runtime. Lokalne limity podczas krótkiego overlap zostały zaakceptowane; publiczny streaming i przerwanie obliczeń mają datowane dowody. Stare skrypty wdrożeniowe SSH usunięto w PR #36.
 
 ### 7. `SmakoszWebApp` (Lipiec 2025)
 *   **Proponowana nazwa:** `smakosz-web-app`

@@ -1,8 +1,8 @@
 # Inventory Generator — status report / raport stanu
 
-Audit date / data audytu: **2026-09-10**<br>
-Estimated completion / szacowane ukończenie: **61%**<br>
-Forecast / prognoza: **2026-09-10–2026-09-14**, 20–36 h, medium confidence / pewność: medium
+Audit date / data audytu: **2026-10-03**<br>
+Estimated completion / szacowane ukończenie: **77%**<br>
+Forecast / prognoza: **2026-10-05–2026-10-18**, 19–38 h, low confidence / pewność: low
 
 > This report is synchronized from `project.json` and the versioned delivery-control catalog. / Raport jest synchronizowany z `project.json` i wersjonowanym katalogiem kontroli wdrożeniowych.
 
@@ -12,14 +12,14 @@ Forecast / prognoza: **2026-09-10–2026-09-14**, 20–36 h, medium confidence /
 
 Local-first inventory editor and server-side DOCX, CSV and HTML generator.
 
-September 10 reconciliation adds the active per-IP Cloudflare export edge rule, the operator-declared exact-host/POST update, and observed shared-connector resource/readiness acceptance. The Free plan permits one shared rule. Behavioral acceptance remains unknown; per-format/concurrency safeguards, proxy limits, automatic CD and rollback remain incomplete. Percentages and hours are planning estimates, not measurements.
+Gemini implemented substantial .NET 10, export and protected CD work. Coordinator review reproduced HTML-message injection, null-payload 500s and import/cache gaps; live rollback/capacity and browser evidence remain. Progress is weighted task bookkeeping, not a security/production certification. Gemini corrects these before taking the portfolio; estimates are remaining work, not guaranteed release dates.
 
 ### Audit evidence
 
-- **Repozytorium:** `SzczepanGrela/inventory-generator` @ `f1c14ebb6dcbd5b5b04274558e661e573e1e42d9`
-- **Source state:** Commit f1c14ebb was created from a clean main baseline; only the forwarded-header implementation and its integration tests changed, and local plus CI tests passed.
-- **Tests and CI:** GitHub Quality 34241221870 succeeded for f1c14ebb6dcbd5b5b04274558e661e573e1e42d9: restore/build/tests, image build and push, fixable HIGH/CRITICAL Trivy gate, SBOM/provenance and attestation passed.
-- **Production:** On September 9 the operator reported a successful Coolify redeploy of digest 0d112419 with runtime-only exact proxy configuration; selective image, environment, health and public revision checks all had the expected results. External checks independently observed the exact HTTPS redirect, HSTS max-age 63072000 and a Cloudflare MISS-to-HIT transition for the stylesheet. On September 10 screenshots showed active rule grela-expensive-public-api with a 20 requests per IP/10 seconds edge budget and 10-second block. The operator reports its current exact-host/POST expression in grela.dev and a Free-plan quota of one custom rate-limit rule; behavioral acceptance is not yet verified. The runtime command output was not pasted, so those application container settings remain operator-declared rather than a fresh host audit. The shared cloudflared connector has observed CPU/RAM/PID limits, native edge-readiness health, four registered connections and a successful post-restart public origin check.
+- **Repozytorium:** `SzczepanGrela/inventory-generator` @ `005dc2534c44e311e1f24690794e60e7d452cb27`
+- **Source state:** Clean source at 005dc25 reviewed October 3. CI rebuilt and deployed that revision; isolated local probes found defects outside existing green test coverage.
+- **Tests and CI:** https://github.com/SzczepanGrela/inventory-generator/actions/runs/37091518872 succeeded: rebuilt .NET 10 tests, exact-image export smoke, fixable HIGH/CRITICAL Trivy, SBOM/provenance, attestation and protected production. This scanner scope is not absence of all vulnerabilities.
+- **Production:** October 3 public health returned status ok and source revision 005dc2534c44e311e1f24690794e60e7d452cb27; root 200 with CSP/nosniff/framing/referrer/permissions/HSTS. Live failure rollback/capacity remains unaccepted; no fresh Docker runtime audit.
 
 ### v2 standard compliance
 
@@ -27,86 +27,86 @@ Profile: **VPS web application**. Statuses reflect only evidence available on th
 
 | Control | Status | Evidence |
 | --- | --- | --- |
-| Repository governance | Partial | September 6 GitHub API returned no rulesets or environments. |
-| Quality CI | Partial | Quality 34241221870 for f1c14ebb includes .NET build/tests, exact-proxy negative-boundary coverage and final-image scanning; browser/export edge cases remain. |
-| Immutable release | Complete | CI source and operator production evidence identify the full revision and immutable GHCR digest; manual deployment is proven. |
-| Deployment access | Partial | The legacy host account/launcher were removed. Private platform access exists; automated deployment credentials and external legacy credential revocation remain unverified. |
-| Network, TLS and client identity | Partial | Public HTTPS, exact redirect and scoped HSTS were externally observed through dedicated Tunnel/Traefik ingress. Exact proxy trust and spoof rejection are source/CI tested and deployed per operator confirmation; live Inventory IP echo and final direct-origin readback remain. |
-| Abuse protection | Partial | The 30/min application export limiter uses identity reconstructed only through exact known proxies. Active Cloudflare rule grela-expensive-public-api gives the exact Inventory POST export route a 20 requests per IP/10-second threshold and 10-second block under the operator-declared current expression. The Free-plan one-rule quota makes the shared edge budget intentional; behavior plus format/concurrency and proxy limits remain unverified. |
-| Runtime safety | Partial | Non-root, capability drop, init and CPU/RAM limits observed; parser exception and remaining effective controls documented. |
-| Readiness and preflight | Partial | Image HEALTHCHECK and positive internal/public readiness are observed; candidate failure and critical-path preflight still need verification. |
-| Atomic promotion and rollback | Partial | Coolify deployment succeeded; no evidence of tested blue-green or automatic recovery after public smoke failure. |
-| Coordination and retention | Partial | Manual release succeeded; capacity serialization, automated CD and retention/recovery behavior are not yet accepted. |
-| Observability | Missing | The required complete implementation was not found in the audited inventory generator source. |
-| Web identity | Unverified | Not assessed during the deployment reconciliation; verify static assets and browser behavior. |
+| Repository governance | Partial | Main ruleset and protected production are active; public documentation still contains stale runtime/limit claims. |
+| Quality CI | Partial | Green rebuilt .NET/Python/image/security gates; reproduced validation/HTML issues and real browser/cost coverage remain. |
+| Immutable release | Complete | Run 37091518872 tests and attests one digest, then verifies its source revision for protected CD. |
+| Deployment access | Partial | Inventory private Coolify/Tailscale production authentication succeeded; credential scope review remains separate. |
+| Network, TLS and client identity | Partial | Public TLS/headers and exact-proxy regressions exist; retain older network evidence and pending live client/edge checks. |
+| Abuse protection | Partial | Weighted buckets and body/cell/concurrency caps exist; null payload failures and safe maximum workload/rolling aggregate need qualification. |
+| Runtime safety | Partial | Current source contract/image smoke plus older host snapshot; no new effective hardening readback. |
+| Readiness and preflight | Partial | Docker health/revision and all-format exact-image probes exist; representative boundary exports and malformed-input readiness still need tests. |
+| Atomic promotion and rollback | Partial | Managed promotion and rollback implementation tested with fake clients; production rejection/failure recovery not demonstrated. |
+| Coordination and retention | Partial | Serialized release and scoped retention code exists; measured old/new capacity remains open. |
+| Observability | Missing | No accepted central export/429/deploy alert delivery; bounded application hooks remain. |
+| Web identity | Partial | Metadata/favicon/header changes implemented; browser/licensing/accessibility acceptance remains. |
 
 ### Remaining and active tasks
 
 #### Finish UI and export safeguards
 
-**Implementation · In progress · 80% · difficulty 3/5 · 2–4 h**
+**Implementation · In progress · 80% · difficulty 3/5 · 3–6 h**
 
-The prior CSS correction was committed (83e32db). Source at f1c14ebb retains a 30/min export policy with hardened client partitioning; per-format body/row/concurrency safeguards remain work.
+October 3 source: all formats, body/cell/row limits and weighted buckets implemented. Isolated local HTTP requests with null attributes/products return 500; imported error text reaches an HTML toast sink. Fix schema/null handling and untrusted text before acceptance.
 
 #### Expand export and browser coverage
 
-**Quality · In progress · 80% · difficulty 3/5 · 3–5 h**
+**Quality · In progress · 80% · difficulty 3/5 · 4–8 h**
 
-Quality 34241221870 passed for f1c14ebb. Integration tests cover independent two-hop forwarded clients and spoof rejection from an unknown direct peer; browser/export edge cases remain.
+Quality 37091518872 rebuilt .NET 10 and exact-image smoke. Coordinator ran 17 Python tests and existing .NET binaries (46 unit + 12 integration), without a local rebuild. Real browser/cache/import, streamed-body and workload boundary regressions remain.
 
 #### Enable ruleset and required Quality checks
 
-**Quality · Planned · 0% · difficulty 2/5 · 1–2 h**
+**Quality · Done · 100% · difficulty 2/5 · 0–0 h**
 
-September 6 GitHub API returned no rulesets or environments. Required pre-merge Quality and production environment remain to configure.
+October 3 coordinator installed/read back active ruleset 24407679: main requires PR, strict GitHub Actions Quality gate, thread resolution, no force-push/deletion/bypass. Existing production environment requires owner approval, main only; self-review allowed.
 
 #### Document the Coolify migration and known limitations
 
-**Documentation · Done · 100% · difficulty 2/5 · 0–0 h**
+**Documentation · In progress · 80% · difficulty 2/5 · 1–2 h**
 
-September 10: private connector/runtime evidence, the public Coolify checklist and normalized project status were reconciled; unverified controls remain explicit.
+Coolify contract, smoke and release documentation exist. Update stale .NET 8 README architecture, weighted DOCX cost-unit description, browser guarantees and acceptance evidence; implementation is not full operational acceptance.
 
 #### Enable DNS, TLS and three-layer limits
 
-**Delivery · In progress · 70% · difficulty 3/5 · 3–5 h**
+**Delivery · In progress · 80% · difficulty 3/5 · 2–4 h**
 
-Public HTTPS works through the Tunnel/Traefik path. Exact HTTPS redirect, scoped HSTS and working Cloudflare asset cache were externally observed September 9. Exact-proxy source/CI tests and operator-confirmed runtime deployment passed. Screenshots showed active first-position Cloudflare rule grela-expensive-public-api with a 20/IP/10-second threshold and 10-second block; the operator then scoped it to exact POST host/path pairs in grela.dev. The Free-plan one-rule quota makes the combined edge budget intentional; load behavior, proxy and cost-specific bounds remain.
+Weighted shared export bucket 10 cost units/minute; DOCX costs two plus its own bucket; per-process export semaphore 3. Existing exact-proxy tests and shared edge evidence retained. Safe aggregate workload and public isolation/recovery remain; temporary counter overlap is conditional on capacity evidence.
 
 #### Publish and deploy an image by digest
 
 **Delivery · Done · 100% · difficulty 3/5 · 0–0 h**
 
-Quality produced immutable digest 0d112419 for f1c14ebb; the operator reported matching Coolify image, runtime variable, healthy state and public revision after manual deployment. Automatic CD is tracked separately.
+Quality 37091518872 qualifies/attests one .NET 10 image and protected CD verifies digest plus source revision. Public health independently returned 005dc25 on October 3. This does not refresh older host inspect fields.
 
 #### Implement readiness, blue-green and rollback
 
-**Delivery · In progress · 30% · difficulty 4/5 · 3–5 h**
+**Delivery · In progress · 50% · difficulty 4/5 · 3–6 h**
 
-Image readiness and successful Coolify rolling deployment observed. Unhealthy-candidate behavior, shared limiter state during overlap, public-smoke rollback and data-safe recovery still require tests.
+App-specific managed rolling, readiness, saved-release rollback code and fake-client regressions implemented. Live unhealthy-candidate rejection, failed-public-smoke rollback and safe overlap capacity are still unproven; coordinate bounded production exercises.
 
 #### Connect the service to central monitoring
 
 **Delivery · Planned · 0% · difficulty 3/5 · 2–4 h**
 
-No cross-application metrics, deployment alerts or 429 visibility were verified.
+Source logs generation errors; accepted export latency/overload visibility, central integration and delivered alerts were not demonstrated. Add bounded app hooks; platform integration remains separately owned.
 
 #### Automate promotion of the CI-tested digest
 
-**Delivery · Planned · 0% · difficulty 3/5 · 3–5 h**
+**Delivery · In progress · 90% · difficulty 3/5 · 1–2 h**
 
-Manual digest deployment is proven; CI-to-Coolify authentication, exact-digest submission, status polling, serialization and retention still need implementation and verification.
+Exact-digest attestation/revision verification, private API, protected production, app contract, bounded polling, serialization and scoped retention implemented. Production job in 37091518872 succeeded. Remaining failure/capacity acceptance and credential scope review are tracked separately.
 
 #### Verify runtime settings and resolve parser exceptions
 
 **Delivery · In progress · 50% · difficulty 3/5 · 2–4 h**
 
-Operator inspect confirms non-root, cap-drop ALL, init, 1 CPU and 512 MiB. Coolify 4.3.14 security-opt parsing failed; further hardening was deferred. PID/log limits and final security/read-only/tmpfs settings need verification.
+Keep dated September 29 runtime evidence and parser exceptions. October 3 source contract/image smoke use non-root, 1 CPU/512 MiB, cap-drop ALL/init; no fresh effective host inspect establishes PID/security/read-only/tmpfs settings.
 
 #### Verify favicon, metadata and accessible preview
 
-**Documentation · Planned · 0% · difficulty 2/5 · 1–2 h**
+**Documentation · In progress · 60% · difficulty 2/5 · 1–2 h**
 
-A public health response does not verify the favicon, licensing, metadata, accessibility or screenshot; complete a browser/static-asset check.
+Metadata/favicon/ARIA/browser-header changes exist and public root headers pass. Responsive PL/EN, keyboard/focus, licensing and representative browser preview still need evidence; no blanket WCAG claim.
 
 ### Architecture decisions
 
@@ -115,6 +115,7 @@ A public health response does not verify the favicon, licensing, metadata, acces
 - The project follows the v2 standard profile: vps-web.
 - Use prebuilt GHCR digests with Coolify/Traefik/Tunnel. Manual production success does not establish automatic CD, trusted client IP or rollback.
 - Temporarily omit no-new-privileges from Custom Docker Options due to the reproduced 4.3.14 parser issue; verify effective settings and revisit via reviewed Compose or upgrade.
+- Keep process-local counters for normal single-process operation only if measured brief rolling overlap is safe; no shared counter is installed or planned for that conditional scope.
 
 ## Polski
 
@@ -122,14 +123,14 @@ A public health response does not verify the favicon, licensing, metadata, acces
 
 Lokalny edytor inwentarza z serwerowym generowaniem DOCX, CSV i HTML.
 
-Uzgodnienie z 10 września dodaje aktywną regułę Cloudflare edge per IP dla eksportu, zadeklarowaną aktualizację exact-host/POST oraz potwierdzony odbiór zasobów/readiness wspólnego connectora. Darmowy plan pozwala na jedną wspólną regułę. Test zachowania pozostaje nieznany; limity per format/współbieżności, proxy, automatyczne CD i rollback są niepełne. Procenty i godziny to estymacje, nie pomiary.
+Gemini wykonał istotne prace .NET 10, eksportu i chronionego CD. Przegląd odtworzył HTML injection komunikatów, 500 dla null oraz luki importu/cache; pozostają dowody przeglądarkowe i produkcyjne rollback/capacity. Procent to ważona ewidencja zadań, nie certyfikat bezpieczeństwa/produkcji. Gemini poprawia te rzeczy przed portfolio; estymaty nie gwarantują dat wydania.
 
 ### Dowody audytu
 
-- **Repozytorium:** `SzczepanGrela/inventory-generator` @ `f1c14ebb6dcbd5b5b04274558e661e573e1e42d9`
-- **Stan źródła:** Commit f1c14ebb was created from a clean main baseline; only the forwarded-header implementation and its integration tests changed, and local plus CI tests passed.
-- **Testy i CI:** GitHub Quality 34241221870 succeeded for f1c14ebb6dcbd5b5b04274558e661e573e1e42d9: restore/build/tests, image build and push, fixable HIGH/CRITICAL Trivy gate, SBOM/provenance and attestation passed.
-- **Produkcja:** On September 9 the operator reported a successful Coolify redeploy of digest 0d112419 with runtime-only exact proxy configuration; selective image, environment, health and public revision checks all had the expected results. External checks independently observed the exact HTTPS redirect, HSTS max-age 63072000 and a Cloudflare MISS-to-HIT transition for the stylesheet. On September 10 screenshots showed active rule grela-expensive-public-api with a 20 requests per IP/10 seconds edge budget and 10-second block. The operator reports its current exact-host/POST expression in grela.dev and a Free-plan quota of one custom rate-limit rule; behavioral acceptance is not yet verified. The runtime command output was not pasted, so those application container settings remain operator-declared rather than a fresh host audit. The shared cloudflared connector has observed CPU/RAM/PID limits, native edge-readiness health, four registered connections and a successful post-restart public origin check.
+- **Repozytorium:** `SzczepanGrela/inventory-generator` @ `005dc2534c44e311e1f24690794e60e7d452cb27`
+- **Stan źródła:** Clean source at 005dc25 reviewed October 3. CI rebuilt and deployed that revision; isolated local probes found defects outside existing green test coverage.
+- **Testy i CI:** https://github.com/SzczepanGrela/inventory-generator/actions/runs/37091518872 succeeded: rebuilt .NET 10 tests, exact-image export smoke, fixable HIGH/CRITICAL Trivy, SBOM/provenance, attestation and protected production. This scanner scope is not absence of all vulnerabilities.
+- **Produkcja:** October 3 public health returned status ok and source revision 005dc2534c44e311e1f24690794e60e7d452cb27; root 200 with CSP/nosniff/framing/referrer/permissions/HSTS. Live failure rollback/capacity remains unaccepted; no fresh Docker runtime audit.
 
 ### Zgodność ze standardem v2
 
@@ -137,86 +138,86 @@ Profil: **Aplikacja webowa na VPS**. Statusy odzwierciedlają wyłącznie dowody
 
 | Kontrola | Status | Dowód |
 | --- | --- | --- |
-| Zarządzanie repozytorium | Częściowe | API GitHub 6 września nie zwróciło rulesetów ani środowisk. |
-| Quality CI | Częściowe | Quality 34241221870 dla f1c14ebb obejmuje build/testy .NET, negatywne testy granicy proxy i skan obrazu; pozostają przypadki przeglądarki/eksportu. |
-| Niezmienne wydanie | Gotowe | Źródło CI i wyniki produkcji od operatora wskazują pełną rewizję oraz digest GHCR; wdrożenie ręczne potwierdzone. |
-| Dostęp wdrożeniowy | Częściowe | Usunięto stare konto/launcher. Istnieje prywatny dostęp platformy; poświadczenia automatycznego CD i wycofanie starych uprawnień zewnętrznych wymagają weryfikacji. |
-| Sieć, TLS i tożsamość klienta | Częściowe | Publiczny HTTPS, dokładne przekierowanie i ograniczony HSTS potwierdzono zewnętrznie przez dedykowany ingress Tunnel/Traefik. Dokładne zaufanie proxy i spoofing przetestowano w źródle/CI oraz wdrożono według operatora; pozostaje test IP Inventory na żywo i końcowy odczyt originu. |
-| Ochrona przed nadużyciami | Częściowe | Aplikacyjny limiter eksportu 30/min używa tożsamości odtworzonej tylko przez dokładnie znane proxy. Aktywna reguła Cloudflare grela-expensive-public-api daje dokładnej trasie POST eksportu Inventory próg 20 żądań per IP/10 s i blokadę 10 s według zadeklarowanego bieżącego wyrażenia. Limit jednej reguły w darmowym planie uzasadnia wspólny budżet edge; zachowanie oraz limity formatu/współbieżności i proxy pozostają niezweryfikowane. |
-| Bezpieczeństwo runtime | Częściowe | Potwierdzone non-root, cap-drop, init i CPU/RAM; zapisano wyjątek parsera i brakujące odczyty. |
-| Readiness i preflight | Częściowe | Potwierdzone HEALTHCHECK obrazu oraz wewnętrzny/publiczny readiness; awaria kandydata i preflight krytycznych ścieżek wymagają weryfikacji. |
-| Atomowa promocja i rollback | Częściowe | Deployment Coolify przeszedł; brak dowodu przetestowanego blue-green lub automatycznego rollbacku po błędzie publicznego smoke. |
-| Koordynacja i retencja | Częściowe | Ręczne wydanie przeszło; serializacja pojemności, automatyczne CD i zachowanie retencji/odzyskiwania nie zostały jeszcze odebrane. |
-| Obserwowalność | Brak | W audytowanym źródle projektu inventory generator nie znaleziono wymaganej kompletnej implementacji. |
-| Tożsamość webowa | Niezweryfikowane | Nie sprawdzano w uzgodnieniu deploymentu; potrzebna kontrola plików statycznych i przeglądarki. |
+| Zarządzanie repozytorium | Częściowe | Ochrona main i produkcji działa; dokumentacja ma nadal nieaktualne deklaracje runtime/limitów. |
+| Quality CI | Częściowe | Zielone bramki .NET/Python/obrazu/security; pozostają błędy walidacji/HTML i rzeczywiste testy przeglądarki/kosztów. |
+| Niezmienne wydanie | Gotowe | Run 37091518872 testuje i poświadcza jeden digest, następnie weryfikuje rewizję dla chronionego CD. |
+| Dostęp wdrożeniowy | Częściowe | Uwierzytelnienie produkcji przez prywatne Coolify/Tailscale przeszło; przegląd zakresu uprawnień pozostaje osobny. |
+| Sieć, TLS i tożsamość klienta | Częściowe | Publiczny TLS/nagłówki i regresje exact-proxy działają; starsze dowody sieci oraz brakujące testy klientów/edge zachowują swój zakres. |
+| Ochrona przed nadużyciami | Częściowe | Ważone buckety i limity body/komórek/współbieżności istnieją; null oraz maksymalny koszt i suma rolling wymagają kwalifikacji. |
+| Bezpieczeństwo runtime | Częściowe | Bieżący kontrakt/smoke obrazu i starszy snapshot hosta; brak nowego odczytu efektywnego hardeningu. |
+| Readiness i preflight | Częściowe | Health/revision Dockera i smoke formatów istnieją; reprezentatywne granice eksportów i błędne dane wymagają testów. |
+| Atomowa promocja i rollback | Częściowe | Promocję i rollback przetestowano na fake clients; produkcyjna odmowa i recovery awarii nie zostały dowiedzione. |
+| Koordynacja i retencja | Częściowe | Kod serializacji wydań i retencji istnieje; pomiary capacity starej/nowej instancji pozostają otwarte. |
+| Obserwowalność | Brak | Brak odebranego centralnego monitoringu eksportów/429 i alertów; pozostają ograniczone hooki aplikacji. |
+| Tożsamość webowa | Częściowe | Metadane/favicon/nagłówki wdrożone w kodzie; pozostaje odbiór przeglądarki/licencji/dostępności. |
 
 ### Zadania pozostałe i bieżące
 
 #### Dokończyć UI i zabezpieczenia eksportu
 
-**Implementacja · W toku · 80% · trudność 3/5 · 2–4 h**
+**Implementacja · W toku · 80% · trudność 3/5 · 3–6 h**
 
-The prior CSS correction was committed (83e32db). Source at f1c14ebb retains a 30/min export policy with hardened client partitioning; per-format body/row/concurrency safeguards remain work.
+October 3 source: all formats, body/cell/row limits and weighted buckets implemented. Isolated local HTTP requests with null attributes/products return 500; imported error text reaches an HTML toast sink. Fix schema/null handling and untrusted text before acceptance.
 
 #### Rozbudować testy eksportu i przeglądarki
 
-**Jakość · W toku · 80% · trudność 3/5 · 3–5 h**
+**Jakość · W toku · 80% · trudność 3/5 · 4–8 h**
 
-Quality 34241221870 passed for f1c14ebb. Integration tests cover independent two-hop forwarded clients and spoof rejection from an unknown direct peer; browser/export edge cases remain.
+Quality 37091518872 rebuilt .NET 10 and exact-image smoke. Coordinator ran 17 Python tests and existing .NET binaries (46 unit + 12 integration), without a local rebuild. Real browser/cache/import, streamed-body and workload boundary regressions remain.
 
 #### Włączyć ruleset i wymagane Quality
 
-**Jakość · Planowane · 0% · trudność 2/5 · 1–2 h**
+**Jakość · Gotowe · 100% · trudność 2/5 · 0–0 h**
 
-September 6 GitHub API returned no rulesets or environments. Required pre-merge Quality and production environment remain to configure.
+October 3 coordinator installed/read back active ruleset 24407679: main requires PR, strict GitHub Actions Quality gate, thread resolution, no force-push/deletion/bypass. Existing production environment requires owner approval, main only; self-review allowed.
 
 #### Udokumentować migrację Coolify i znane ograniczenia
 
-**Dokumentacja · Gotowe · 100% · trudność 2/5 · 0–0 h**
+**Dokumentacja · W toku · 80% · trudność 2/5 · 1–2 h**
 
-September 10: private connector/runtime evidence, the public Coolify checklist and normalized project status were reconciled; unverified controls remain explicit.
+Coolify contract, smoke and release documentation exist. Update stale .NET 8 README architecture, weighted DOCX cost-unit description, browser guarantees and acceptance evidence; implementation is not full operational acceptance.
 
 #### Uruchomić DNS, TLS i trzy warstwy limitów
 
-**Wdrożenie · W toku · 70% · trudność 3/5 · 3–5 h**
+**Wdrożenie · W toku · 80% · trudność 3/5 · 2–4 h**
 
-Public HTTPS works through the Tunnel/Traefik path. Exact HTTPS redirect, scoped HSTS and working Cloudflare asset cache were externally observed September 9. Exact-proxy source/CI tests and operator-confirmed runtime deployment passed. Screenshots showed active first-position Cloudflare rule grela-expensive-public-api with a 20/IP/10-second threshold and 10-second block; the operator then scoped it to exact POST host/path pairs in grela.dev. The Free-plan one-rule quota makes the combined edge budget intentional; load behavior, proxy and cost-specific bounds remain.
+Weighted shared export bucket 10 cost units/minute; DOCX costs two plus its own bucket; per-process export semaphore 3. Existing exact-proxy tests and shared edge evidence retained. Safe aggregate workload and public isolation/recovery remain; temporary counter overlap is conditional on capacity evidence.
 
 #### Publikować i wdrażać obraz po digestcie
 
 **Wdrożenie · Gotowe · 100% · trudność 3/5 · 0–0 h**
 
-Quality produced immutable digest 0d112419 for f1c14ebb; the operator reported matching Coolify image, runtime variable, healthy state and public revision after manual deployment. Automatic CD is tracked separately.
+Quality 37091518872 qualifies/attests one .NET 10 image and protected CD verifies digest plus source revision. Public health independently returned 005dc25 on October 3. This does not refresh older host inspect fields.
 
 #### Wdrożyć readiness, blue-green i rollback
 
-**Wdrożenie · W toku · 30% · trudność 4/5 · 3–5 h**
+**Wdrożenie · W toku · 50% · trudność 4/5 · 3–6 h**
 
-Image readiness and successful Coolify rolling deployment observed. Unhealthy-candidate behavior, shared limiter state during overlap, public-smoke rollback and data-safe recovery still require tests.
+App-specific managed rolling, readiness, saved-release rollback code and fake-client regressions implemented. Live unhealthy-candidate rejection, failed-public-smoke rollback and safe overlap capacity are still unproven; coordinate bounded production exercises.
 
 #### Podłączyć usługę do centralnego monitoringu
 
 **Wdrożenie · Planowane · 0% · trudność 3/5 · 2–4 h**
 
-No cross-application metrics, deployment alerts or 429 visibility were verified.
+Source logs generation errors; accepted export latency/overload visibility, central integration and delivered alerts were not demonstrated. Add bounded app hooks; platform integration remains separately owned.
 
 #### Zautomatyzować promocję digestu sprawdzonego w CI
 
-**Wdrożenie · Planowane · 0% · trudność 3/5 · 3–5 h**
+**Wdrożenie · W toku · 90% · trudność 3/5 · 1–2 h**
 
-Manual digest deployment is proven; CI-to-Coolify authentication, exact-digest submission, status polling, serialization and retention still need implementation and verification.
+Exact-digest attestation/revision verification, private API, protected production, app contract, bounded polling, serialization and scoped retention implemented. Production job in 37091518872 succeeded. Remaining failure/capacity acceptance and credential scope review are tracked separately.
 
 #### Zweryfikować runtime i rozwiązać wyjątki parsera
 
 **Wdrożenie · W toku · 50% · trudność 3/5 · 2–4 h**
 
-Operator inspect confirms non-root, cap-drop ALL, init, 1 CPU and 512 MiB. Coolify 4.3.14 security-opt parsing failed; further hardening was deferred. PID/log limits and final security/read-only/tmpfs settings need verification.
+Keep dated September 29 runtime evidence and parser exceptions. October 3 source contract/image smoke use non-root, 1 CPU/512 MiB, cap-drop ALL/init; no fresh effective host inspect establishes PID/security/read-only/tmpfs settings.
 
 #### Zweryfikować favicon, metadane i dostępny podgląd
 
-**Dokumentacja · Planowane · 0% · trudność 2/5 · 1–2 h**
+**Dokumentacja · W toku · 60% · trudność 2/5 · 1–2 h**
 
-A public health response does not verify the favicon, licensing, metadata, accessibility or screenshot; complete a browser/static-asset check.
+Metadata/favicon/ARIA/browser-header changes exist and public root headers pass. Responsive PL/EN, keyboard/focus, licensing and representative browser preview still need evidence; no blanket WCAG claim.
 
 ### Decyzje architektoniczne
 
@@ -225,3 +226,4 @@ A public health response does not verify the favicon, licensing, metadata, acces
 - Projekt podlega profilowi standardu v2: vps-web.
 - Używać digestów GHCR z Coolify/Traefik/Tunnel. Sukces ręcznego deployu nie oznacza automatycznego CD, zaufanego IP ani rollbacku.
 - Czasowo pominąć no-new-privileges w Custom Docker Options z powodu odtworzonego błędu 4.3.14; sprawdzić efektywne ustawienia i wrócić do rozwiązania przez Compose lub aktualizację.
+- Zachować liczniki procesu tylko pod warunkiem pomiarów bezpiecznego krótkiego overlapu; współdzielony licznik nie jest wdrożony ani planowany w tym warunkowym zakresie.

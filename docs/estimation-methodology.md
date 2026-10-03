@@ -36,3 +36,20 @@ Jeden dzień roboczy oznacza osiem godzin skupionej pracy. Dni są wyliczane z g
 ## Calendar reconciliation — 2026-09-06
 
 Calendar ranges were rebased from Monday 2026-09-07 using the existing project order and 6 focused hours each weekday (30/week). Only Tic-Tac-Toe and Inventory effort/status were reassessed in this delivery review; other projects retain their previous audited effort and audit dates. Calendar shifts are derived planning projections, not new code or production evidence. Remaining operator verification and automation work is included in the revised ranges.
+
+## Session allocation override — 2026-10-03
+
+Inventory, NetFilmx and grela-dev effort/status were re-audited against their
+named revisions. Their calendar ranges now reflect independent worker lanes:
+Inventory corrections first, a parallel dedicated Codex NetFilmx session and
+Gemini portfolio after Inventory corrective review. This overrides catalog order
+for these three forecasts only; other project forecasts retain their older
+dates. Per-lane 30-hour weeks remain an estimate, not guaranteed agent throughput.
+Live acceptance, operator availability and content/license decisions widen ranges.
+Weighted percentages measure task progress, not production/security acceptance.
+
+3 października ponownie oszacowano Inventory, NetFilmx i grela-dev względem
+wskazanych rewizji. Ich daty uwzględniają osobne sesje i zależność portfolio od
+review Inventory; nie oznaczają sekwencyjnej kolejki całego katalogu ani nowego
+audytu pozostałych projektów. Dostępność operatora, odbiór produkcji i decyzje
+treści/licencji nadal są niepewne. Procenty nie są certyfikatem odbioru.

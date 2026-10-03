@@ -44,30 +44,30 @@
   },
   "complexity": 4,
   "forecast": {
-    "remainingHoursMin": 49,
-    "remainingHoursMax": 83,
-    "remainingDaysMin": 6.25,
-    "remainingDaysMax": 10.5,
+    "remainingHoursMin": 33,
+    "remainingHoursMax": 58,
+    "remainingDaysMin": 4.25,
+    "remainingDaysMax": 7.25,
     "hoursPerDay": 8,
     "hoursPerWeek": 30,
-    "earliest": "2026-12-29",
-    "latest": "2027-03-15",
+    "earliest": "2026-10-08",
+    "latest": "2026-10-23",
     "confidence": "low"
   },
   "estimation": {
-    "date": "2026-08-25",
+    "date": "2026-10-03",
     "mode": "source-audited",
     "sourceRevision": "2b3e09330e50e6c291e5696a97ec8430d1ef2935",
-    "sourceState": "clean local design worktree; fsmonitor IPC warning during audit"
+    "sourceState": "Clean source reviewed October 3; integrated Portfolio.html selected over auxiliary prototypes. No production application implementation performed by coordinator."
   },
   "focus": {
     "current": {
-      "en": "Turn the prototypes into a buildable Cloudflare Pages static site.",
-      "pl": "Przekształcić prototypy w budowalną statyczną stronę Cloudflare Pages."
+      "en": "Gemini next, after Inventory corrective review: port the existing Portfolio.html design into Vite/React.",
+      "pl": "Gemini następnie, po przeglądzie poprawek Inventory: przenieść obecny Portfolio.html do Vite/React."
     },
     "next": {
-      "en": "Connect project data, domain, preview and atomic publishing.",
-      "pl": "Podłączyć dane projektów, domenę, preview i atomową publikację."
+      "en": "Local compiled assets, browser/accessibility tests, qualified Pages artifact preview and protected production.",
+      "pl": "Lokalne skompilowane assety, browser/accessibility i kwalifikowany artefakt Pages z chronioną produkcją."
     }
   },
   "tasks": [
@@ -82,11 +82,11 @@
       "completion": 20,
       "weight": 4,
       "difficulty": 4,
-      "hoursMin": 24,
-      "hoursMax": 40,
-      "daysMin": 3,
-      "daysMax": 5,
-      "evidence": "The repository contains HTML/JSX design explorations but no buildable application."
+      "hoursMin": 14,
+      "hoursMax": 24,
+      "daysMin": 1.75,
+      "daysMax": 3.0,
+      "evidence": "October 3 clean source contains integrated Portfolio.html and reference explorations. Port existing PL/EN/themes/filters/hash details to Vite/React with local locked dependencies; remove runtime Babel/CDN development React/debug UI. Preserve design; no backend/Coolify."
     },
     {
       "id": "portfolio-quality",
@@ -99,11 +99,11 @@
       "completion": 0,
       "weight": 2,
       "difficulty": 3,
-      "hoursMin": 8,
-      "hoursMax": 12,
-      "daysMin": 1,
-      "daysMax": 1.5,
-      "evidence": "No package definition, tests or workflow runs exist."
+      "hoursMin": 6,
+      "hoursMax": 10,
+      "daysMin": 0.75,
+      "daysMax": 1.25,
+      "evidence": "No package/build/tests at reviewed source. Add reproducible build and real browser checks for keyboard/mobile/reduced-motion/language/themes/filter/deep-link/unknown-route behavior before release."
     },
     {
       "id": "repository-governance",
@@ -120,7 +120,7 @@
       "hoursMax": 3,
       "daysMin": 0.25,
       "daysMax": 0.5,
-      "evidence": "GitHub returned no Actions runs, ruleset or environment."
+      "evidence": "Add PR Quality, protected main and protected production for trusted artifact promotion; coordinator reviews governance settings. Current source has no production workflow."
     },
     {
       "id": "portfolio-docs",
@@ -133,11 +133,11 @@
       "completion": 20,
       "weight": 2,
       "difficulty": 3,
-      "hoursMin": 4,
-      "hoursMax": 8,
-      "daysMin": 0.5,
-      "daysMax": 1,
-      "evidence": "The design workspace lacks repository documentation and a recognized license."
+      "hoursMin": 2,
+      "hoursMax": 4,
+      "daysMin": 0.25,
+      "daysMax": 0.5,
+      "evidence": "No maintained production README/license/content process in reviewed source. Verify asset/third-party licenses and operator biography/CV links; document build/deploy/rollback without invented content."
     },
     {
       "id": "cloudflare-pages",
@@ -150,11 +150,11 @@
       "completion": 0,
       "weight": 3,
       "difficulty": 4,
-      "hoursMin": 6,
-      "hoursMax": 10,
-      "daysMin": 0.75,
-      "daysMax": 1.25,
-      "evidence": "Managed static hosting, immutable build output and atomic promotion are not configured."
+      "hoursMin": 4,
+      "hoursMax": 7,
+      "daysMin": 0.5,
+      "daysMax": 1.0,
+      "evidence": "Prepare Pages Direct Upload CI: one tested artifact with source SHA/checksum to preview and protected production. October 3 project-metadata read failed authentication, so current Pages project state is unknown, not absent."
     },
     {
       "id": "domain-tls",
@@ -171,7 +171,7 @@
       "hoursMax": 4,
       "daysMin": 0.25,
       "daysMax": 0.5,
-      "evidence": "The public domain currently returns Cloudflare 525."
+      "evidence": "Historical August 25 HTTP 525 remains dated history. October 3 selected DNS readback does not establish a working Pages site. Coordinate domain binding/TLS/rollback and preserve existing mail records; no VPS ingress change."
     },
     {
       "id": "static-observability",
@@ -188,7 +188,7 @@
       "hoursMax": 2,
       "daysMin": 0.25,
       "daysMax": 0.25,
-      "evidence": "No availability check or deployment failure alert was verified."
+      "evidence": "Prepare public availability and deployment failure visibility; prove agreed notification rather than claim monitored production from a successful build."
     },
     {
       "id": "web-identity",
@@ -205,14 +205,14 @@
       "hoursMax": 4,
       "daysMin": 0.25,
       "daysMax": 0.5,
-      "evidence": "No final static application or favicon exists."
+      "evidence": "No accepted final favicon/metadata/canonical/social preview. Keep existing design, verify fonts/credits/content, safe unknown route and public project references."
     }
   ],
   "verification": {
-    "worktree": "clean local design worktree; fsmonitor IPC warning during audit",
-    "tests": "No buildable project, GitHub Actions run, ruleset or environment was found.",
-    "ci": "No buildable project, GitHub Actions run, ruleset or environment was found.",
-    "production": "grela.dev resolved through Cloudflare but returned HTTP 525 on 2026-08-25."
+    "worktree": "Clean 2b3e093 reviewed October 3; integrated Portfolio.html is the selected base.",
+    "tests": "No reproducible package/build/tests yet; existing design behavior is not browser/accessibility acceptance.",
+    "ci": "No implementation or deploy pipeline was introduced in this coordination task. Qualified static artifact Quality/preview/production is the assigned next work.",
+    "production": "Pages project metadata remains unknown after October 3 authentication failure. No new portfolio deployment accepted; August 25 HTTP 525 is historical evidence."
   },
   "media": {
     "screenshot": "assets/screenshots/grela-dev.png",
@@ -232,31 +232,35 @@
     {
       "en": "The project follows the v2 standard profile: static-web.",
       "pl": "Projekt podlega profilowi standardu v2: static-web."
+    },
+    {
+      "en": "Gemini after Inventory review; start from Portfolio.html, preserve design and use Vite/React static output. Coordinator owns status/platform changes; Pages CI has minimal account Pages permissions, not DNS/R2/Tunnel permissions.",
+      "pl": "Gemini po przeglądzie Inventory; Portfolio.html, zachowanie designu i static Vite/React. Koordynator prowadzi status/platformę; CI Pages ma minimalne uprawnienia Pages konta, bez DNS/R2/Tunnel."
     }
   ],
   "audit": {
-    "date": "2026-08-25",
+    "date": "2026-10-03",
     "sources": [
-      "audited source tree and git status",
-      "GitHub repository, Actions, rulesets and environments API",
-      "public DNS and HTTPS checks where applicable"
+      "Local clean source 2b3e093 and Portfolio.html/reference files, October 3",
+      "Read-only selected Cloudflare DNS and failed Pages metadata query, October 3",
+      "Operator approved Gemini portfolio assignment after Inventory corrections, October 3"
     ],
     "notes": {
-      "en": "The design direction is substantial, but production engineering has not started.",
-      "pl": "Kierunek designu jest rozbudowany, lecz engineering produkcyjny jeszcze się nie rozpoczął."
+      "en": "Next bounded Gemini task is static portfolio engineering, preserving the current design. Use Vite/React, compile JSX, locked local assets and real responsive/browser tests. Read-only Cloudflare access cannot currently enumerate Pages; operator configuration follows a concrete candidate. No backend, application limiter or Coolify deployment is planned. Forecast dates depend on Inventory review and operator availability.",
+      "pl": "Następne ograniczone zadanie Gemini to engineering statycznego portfolio z zachowaniem designu. Vite/React, kompilacja JSX, lokalne assety/lock i rzeczywiste testy responsive/browser. Odczyt Pages jest obecnie niedostępny; operator konfiguruje po przygotowaniu kandydata. Nie planujemy backendu, limitera aplikacyjnego ani Coolify. Daty zależą od przeglądu Inventory i dostępności operatora."
     }
   },
   "compliance": {
     "standardVersion": 2,
     "profile": "static-web",
-    "assessmentDate": "2026-08-25",
+    "assessmentDate": "2026-10-03",
     "controls": [
       {
         "id": "governance",
         "status": "missing",
         "evidence": {
-          "en": "GitHub returned no active ruleset or environment; remaining elements were assessed from the repository.",
-          "pl": "GitHub nie zwrócił aktywnego rulesetu ani środowiska; pozostałe elementy oceniono z repozytorium."
+          "en": "Production build/main/environment governance remains to implement; previous GitHub observations retain their dates.",
+          "pl": "Build/main/environment wymagają implementacji; stare obserwacje GitHuba zachowują datę."
         },
         "taskIds": [
           "repository-governance"
@@ -266,8 +270,8 @@
         "id": "quality-ci",
         "status": "missing",
         "evidence": {
-          "en": "No buildable project, GitHub Actions run, ruleset or environment was found.",
-          "pl": "GitHub nie zwrócił żadnego wykonanego workflow Quality dla tego repozytorium."
+          "en": "Reviewed source has no build package/tests/workflow; add qualified static and browser checks.",
+          "pl": "Źródło nie ma package/build/testów/workflow; dodać bramki static/browser."
         },
         "taskIds": [
           "portfolio-quality"
@@ -295,10 +299,10 @@
       },
       {
         "id": "network-tls-client-ip",
-        "status": "partial",
+        "status": "unverified",
         "evidence": {
-          "en": "grela.dev resolved through Cloudflare but returned HTTP 525 on 2026-08-25.",
-          "pl": "Część publicznego HTTPS lub routingu działa, ale pełny zaufany łańcuch sieciowy nie został potwierdzony."
+          "en": "No newly accepted Pages/domain TLS state; failed metadata access does not prove absence.",
+          "pl": "Brak nowego odbioru Pages/domeny TLS; błąd dostępu do metadanych nie dowodzi braku projektu."
         },
         "taskIds": [
           "domain-tls"
@@ -308,8 +312,8 @@
         "id": "abuse-protection",
         "status": "partial",
         "evidence": {
-          "en": "grela dev has some mechanisms but does not yet satisfy the complete v2 control.",
-          "pl": "Projekt grela dev ma część mechanizmów, ale nie spełnia jeszcze całej kontroli v2."
+          "en": "Static-only scope; assess managed platform/cache/asset costs. No dynamic app limiter is planned.",
+          "pl": "Zakres static-only; ocenić koszty platformy/cache/assetów. Limiter dynamicznej aplikacji nie jest planowany."
         },
         "taskIds": [
           "cloudflare-pages"

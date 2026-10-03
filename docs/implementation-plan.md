@@ -1,4 +1,4 @@
-# Plan portfolio i standardu wdrożeń grela.dev (wersja 19, przegląd 2026-10-03)
+# Plan portfolio i standardu wdrożeń grela.dev (wersja 20, przegląd 2026-10-03)
 
 > [!NOTE]
 > Ten dokument jest długoterminową mapą prac portfolio i publicznym opisem standardu wdrożeń. Kolejność projektów niżej jest katalogiem, nie kolejką zmian na VPS. Stan pojedynczego projektu ma datę w jego `projects/<slug>/report.md`; starszego raportu nie należy traktować jako bieżącego odczytu produkcji.
@@ -29,10 +29,16 @@ Uzupełnienie 28 września: [PR #36 TTT](https://github.com/SzczepanGrela/tic-ta
 
 ## Przydział sesji — 3 października
 
+Późniejszy przegląd raportu Gemini: main `1410c48`, produkcja `9a2dee6`.
+80 testów .NET, 17 Python i sześć scenariuszy browser przechodzi; nadal istnieją
+ryzyko nadpisania cache, niezakwalifikowana kolejka/ośmiu slotów, treść danych
+w logach i błędne instrukcje runbooka. Zapisujemy postęp w [raporcie Inventory](../projects/inventory-generator/report.md),
+ale nie 100%. Wdrożenie nowego limitu wymaga najpierw poprawionego kandydata.
+
 | Sesja | Zadanie teraz | Warunek przejścia dalej |
 | --- | --- | --- |
 | Codex koordynator | Review aplikacji, prywatna dokumentacja, publiczna roadmapa i wspólne ustawienia. | Weryfikacja konkretnego SHA/PR/testów; zapis tylko odebranych wyników. |
-| Gemini Inventory | Poprawki HTML/null/import-cache; regresje browser i kosztów; udokumentowany odbiór wydania. | Review poprawek przez koordynatora; niesprawdzone platformowe wyjątki zostają jawne. |
+| Gemini Inventory | Uznane HTML/null; trzy korekty: ochrona cache, admission/pomiary, logi/runbook/brakujące regresje. Pełny closeout nieodebrany. | Review poprawek przez koordynatora; niesprawdzone platformowe wyjątki zostają jawne. |
 | Osobny Codex NetFilmx | Przygotowany draft → stateful backend/delivery/media/recovery. | Jawne migracje/keyring i bezpieczny deploy przed produkcją; UI później. |
 | Gemini portfolio, następnie | Portfolio.html → Vite/React, lokalny build, responsive/browser, Pages preview/production z jednym artefaktem. | Po przeglądzie poprawek Inventory; operator konfiguruje Pages/sekrety/domenę po przygotowaniu kandydata. |
 

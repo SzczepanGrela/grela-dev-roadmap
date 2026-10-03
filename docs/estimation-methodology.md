@@ -53,3 +53,12 @@ wskazanych rewizji. Ich daty uwzględniają osobne sesje i zależność portfoli
 review Inventory; nie oznaczają sekwencyjnej kolejki całego katalogu ani nowego
 audytu pozostałych projektów. Dostępność operatora, odbiór produkcji i decyzje
 treści/licencji nadal są niepewne. Procenty nie są certyfikatem odbioru.
+
+### Inventory corrective follow-up — October 3
+
+Main 1410c48 replaces the earlier 005dc25 source checkpoint for Inventory.
+Accepted HTML/null fixes and test additions reduce some work; reproduced cache
+overwrite, unqualified admission and incorrect runbook add corrective work.
+Task totals are now 21–40 hours, low confidence, October 5–20 planning range.
+Other project estimates and dates are unchanged. Portfolio still follows reviewed
+Inventory corrections; no deployment/failure window is promised by these dates.

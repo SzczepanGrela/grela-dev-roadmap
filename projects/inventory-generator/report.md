@@ -1,8 +1,8 @@
 # Inventory Generator — status report / raport stanu
 
 Audit date / data audytu: **2026-10-03**<br>
-Estimated completion / szacowane ukończenie: **77%**<br>
-Forecast / prognoza: **2026-10-05–2026-10-18**, 19–38 h, low confidence / pewność: low
+Estimated completion / szacowane ukończenie: **80%**<br>
+Forecast / prognoza: **2026-10-05–2026-10-20**, 21–40 h, low confidence / pewność: low
 
 > This report is synchronized from `project.json` and the versioned delivery-control catalog. / Raport jest synchronizowany z `project.json` i wersjonowanym katalogiem kontroli wdrożeniowych.
 
@@ -12,14 +12,14 @@ Forecast / prognoza: **2026-10-05–2026-10-18**, 19–38 h, low confidence / pe
 
 Local-first inventory editor and server-side DOCX, CSV and HTML generator.
 
-Gemini implemented substantial .NET 10, export and protected CD work. Coordinator review reproduced HTML-message injection, null-payload 500s and import/cache gaps; live rollback/capacity and browser evidence remain. Progress is weighted task bookkeeping, not a security/production certification. Gemini corrects these before taking the portfolio; estimates are remaining work, not guaranteed release dates.
+HTML/null fixes and dependency updates accepted; full closeout declined. Cache recovery overwrites rejected projects; eight-slot waiting is not bounded or qualified by a post-run working-set measurement. Payload-bearing logs, runbook errors and missing browser scenarios remain. Main and production are distinct; Gemini prepares three corrective PRs before portfolio. Percentages are task bookkeeping, not security certification.
 
 ### Audit evidence
 
-- **Repozytorium:** `SzczepanGrela/inventory-generator` @ `005dc2534c44e311e1f24690794e60e7d452cb27`
-- **Source state:** Clean source at 005dc25 reviewed October 3. CI rebuilt and deployed that revision; isolated local probes found defects outside existing green test coverage.
-- **Tests and CI:** https://github.com/SzczepanGrela/inventory-generator/actions/runs/37091518872 succeeded: rebuilt .NET 10 tests, exact-image export smoke, fixable HIGH/CRITICAL Trivy, SBOM/provenance, attestation and protected production. This scanner scope is not absence of all vulnerabilities.
-- **Production:** October 3 public health returned status ok and source revision 005dc2534c44e311e1f24690794e60e7d452cb27; root 200 with CSP/nosniff/framing/referrer/permissions/HSTS. Live failure rollback/capacity remains unaccepted; no fresh Docker runtime audit.
+- **Repozytorium:** `SzczepanGrela/inventory-generator` @ `1410c48fd7a6184da990e50361da6725962007eb`
+- **Source state:** October 3 follow-up: clean main 1410c48 after #20/#17/#18/#21/#22; independent local rebuild/tests. Public health remains 9a2dee6. Main and deployment differ; closeout not accepted.
+- **Tests and CI:** https://github.com/SzczepanGrela/inventory-generator/actions/runs/37144043491 passes: 58 unit + 22 integration, 17 Python, six browser scenarios, exact-image smoke and fixable HIGH/CRITICAL Trivy. Deploy skipped for PR. Coverage is narrower than worker report; scan does not establish absence of all vulnerabilities.
+- **Production:** October 3 public health 200 / 9a2dee631f4aff76dc2024d3036287ad93216452 with security headers. Main 1410c48 is ahead; #21 waiting and #22 pending at readback. No new production approval, failure/load exercise or Docker inspect by coordinator.
 
 ### v2 standard compliance
 
@@ -27,32 +27,32 @@ Profile: **VPS web application**. Statuses reflect only evidence available on th
 
 | Control | Status | Evidence |
 | --- | --- | --- |
-| Repository governance | Partial | Main ruleset and protected production are active; public documentation still contains stale runtime/limit claims. |
-| Quality CI | Partial | Green rebuilt .NET/Python/image/security gates; reproduced validation/HTML issues and real browser/cost coverage remain. |
+| Repository governance | Partial | Main protection remains active; runbook commands and production/completion claims require correction. |
+| Quality CI | Partial | 80 .NET / 17 Python / six CI browser scenarios pass. Actual import/download, mobile, focus/HTTP429 coverage and capped HTTP workload remain. |
 | Immutable release | Complete | Run 37091518872 tests and attests one digest, then verifies its source revision for protected CD. |
 | Deployment access | Partial | Inventory private Coolify/Tailscale production authentication succeeded; credential scope review remains separate. |
 | Network, TLS and client identity | Partial | Public TLS/headers and exact-proxy regressions exist; retain older network evidence and pending live client/edge checks. |
-| Abuse protection | Partial | Weighted buckets and body/cell/concurrency caps exist; null payload failures and safe maximum workload/rolling aggregate need qualification. |
+| Abuse protection | Partial | Null/text fixes accepted; eight-slot main candidate has unbounded waiter count. Post-run process memory cannot qualify container peak or rolling capacity. |
 | Runtime safety | Partial | Current source contract/image smoke plus older host snapshot; no new effective hardening readback. |
-| Readiness and preflight | Partial | Docker health/revision and all-format exact-image probes exist; representative boundary exports and malformed-input readiness still need tests. |
+| Readiness and preflight | Partial | Tiny exact-image smoke and independent local real-Kestrel null/body checks pass. Boundary workload under production caps remains unqualified. |
 | Atomic promotion and rollback | Partial | Managed promotion and rollback implementation tested with fake clients; production rejection/failure recovery not demonstrated. |
 | Coordination and retention | Partial | Serialized release and scoped retention code exists; measured old/new capacity remains open. |
-| Observability | Missing | No accepted central export/429/deploy alert delivery; bounded application hooks remain. |
+| Observability | Partial | Duration/outcome hooks exist, but raw validation strings log submitted names. No accepted central integration or alert delivery. |
 | Web identity | Partial | Metadata/favicon/header changes implemented; browser/licensing/accessibility acceptance remains. |
 
 ### Remaining and active tasks
 
 #### Finish UI and export safeguards
 
-**Implementation · In progress · 80% · difficulty 3/5 · 3–6 h**
+**Implementation · In progress · 85% · difficulty 3/5 · 4–7 h**
 
-October 3 source: all formats, body/cell/row limits and weighted buckets implemented. Isolated local HTTP requests with null attributes/products return 500; imported error text reaches an HTML toast sink. Fix schema/null handling and untrusted text before acceptance.
+PR #20 fixes HTML message sinks and null entries; independent local Kestrel returns 400 for all three null-attribute exports and 413 for real chunked oversized input. Rejected cached projects can still be overwritten, schema coerces invalid types and validation logs contain column names. PR #22 adds unqualified eight-slot waiting; preserve conservative admission until reviewed.
 
 #### Expand export and browser coverage
 
-**Quality · In progress · 80% · difficulty 3/5 · 4–8 h**
+**Quality · In progress · 85% · difficulty 3/5 · 4–8 h**
 
-Quality 37091518872 rebuilt .NET 10 and exact-image smoke. Coordinator ran 17 Python tests and existing .NET binaries (46 unit + 12 integration), without a local rebuild. Real browser/cache/import, streamed-body and workload boundary regressions remain.
+PR #22 Quality 37144043491: 58 unit + 22 integration, 17 Python and six browser scenarios pass. Independent source rebuild and all .NET/Python tests pass. Browser scenarios do not cover actual import/export, mobile, focus trap, network/HTTP429 button behavior. Add Kestrel regression to CI and capped HTTP workload evidence; direct generator benchmark is insufficient.
 
 #### Enable ruleset and required Quality checks
 
@@ -62,21 +62,21 @@ October 3 coordinator installed/read back active ruleset 24407679: main requires
 
 #### Document the Coolify migration and known limitations
 
-**Documentation · In progress · 80% · difficulty 2/5 · 1–2 h**
+**Documentation · In progress · 80% · difficulty 2/5 · 2–3 h**
 
-Coolify contract, smoke and release documentation exist. Update stale .NET 8 README architecture, weighted DOCX cost-unit description, browser guarantees and acceptance evidence; implementation is not full operational acceptance.
+README updated to .NET 10/cost units and operator runbook added. Correct nonexistent workflow input target_digest, positional smoke arguments, container/neighbor resolution and stale slot/scan claims; validate examples offline. Work-status overstates deployed/accepted coverage and absence of vulnerabilities/OOM.
 
 #### Enable DNS, TLS and three-layer limits
 
 **Delivery · In progress · 80% · difficulty 3/5 · 2–4 h**
 
-Weighted shared export bucket 10 cost units/minute; DOCX costs two plus its own bucket; per-process export semaphore 3. Existing exact-proxy tests and shared edge evidence retained. Safe aggregate workload and public isolation/recovery remain; temporary counter overlap is conditional on capacity evidence.
+Public 9a2dee6 retains three export slots without waiting. Main 1410c48 raises to eight plus a five-second wait with no queue-count bound, after binding/validation. Shared weighted per-client buckets retained. Restore conservative admission or qualify bounded queue and capped HTTP behavior before promotion. Process-local overlap remains conditional.
 
 #### Publish and deploy an image by digest
 
 **Delivery · Done · 100% · difficulty 3/5 · 0–0 h**
 
-Quality 37091518872 qualifies/attests one .NET 10 image and protected CD verifies digest plus source revision. Public health independently returned 005dc25 on October 3. This does not refresh older host inspect fields.
+Existing protected exact-digest pipeline retained. PR #22 image smoke/scan passed but deployment skipped; main #21 run 37136097843 waiting and #22 run 37144206035 pending at October 3 readback. Public revision 9a2dee6. A merged PR does not prove its production deployment.
 
 #### Implement readiness, blue-green and rollback
 
@@ -86,9 +86,9 @@ App-specific managed rolling, readiness, saved-release rollback code and fake-cl
 
 #### Connect the service to central monitoring
 
-**Delivery · Planned · 0% · difficulty 3/5 · 2–4 h**
+**Delivery · In progress · 20% · difficulty 3/5 · 2–4 h**
 
-Source logs generation errors; accepted export latency/overload visibility, central integration and delivered alerts were not demonstrated. Add bounded app hooks; platform integration remains separately owned.
+Export duration/dimensions/output-size and rejection logs added. Validation log strings embed submitted column names, reproduced locally with synthetic data. Replace with bounded reason codes; central integration and delivered alerts remain unaccepted.
 
 #### Automate promotion of the CI-tested digest
 
@@ -123,14 +123,14 @@ Metadata/favicon/ARIA/browser-header changes exist and public root headers pass.
 
 Lokalny edytor inwentarza z serwerowym generowaniem DOCX, CSV i HTML.
 
-Gemini wykonał istotne prace .NET 10, eksportu i chronionego CD. Przegląd odtworzył HTML injection komunikatów, 500 dla null oraz luki importu/cache; pozostają dowody przeglądarkowe i produkcyjne rollback/capacity. Procent to ważona ewidencja zadań, nie certyfikat bezpieczeństwa/produkcji. Gemini poprawia te rzeczy przed portfolio; estymaty nie gwarantują dat wydania.
+Poprawki HTML/null i zależności uznane; pełny odbiór odrzucony. Recovery cache nadpisuje odrzucony projekt; ośmiu slotów i oczekiwania nie kwalifikuje odczyt pamięci po pracy. Pozostają dane wejściowe w logach, błędy runbooka i brakujące scenariusze przeglądarki. Main różni się od produkcji; Gemini przygotuje trzy korekty przed portfolio. Procenty są ewidencją zadań, nie certyfikatem bezpieczeństwa.
 
 ### Dowody audytu
 
-- **Repozytorium:** `SzczepanGrela/inventory-generator` @ `005dc2534c44e311e1f24690794e60e7d452cb27`
-- **Stan źródła:** Clean source at 005dc25 reviewed October 3. CI rebuilt and deployed that revision; isolated local probes found defects outside existing green test coverage.
-- **Testy i CI:** https://github.com/SzczepanGrela/inventory-generator/actions/runs/37091518872 succeeded: rebuilt .NET 10 tests, exact-image export smoke, fixable HIGH/CRITICAL Trivy, SBOM/provenance, attestation and protected production. This scanner scope is not absence of all vulnerabilities.
-- **Produkcja:** October 3 public health returned status ok and source revision 005dc2534c44e311e1f24690794e60e7d452cb27; root 200 with CSP/nosniff/framing/referrer/permissions/HSTS. Live failure rollback/capacity remains unaccepted; no fresh Docker runtime audit.
+- **Repozytorium:** `SzczepanGrela/inventory-generator` @ `1410c48fd7a6184da990e50361da6725962007eb`
+- **Stan źródła:** October 3 follow-up: clean main 1410c48 after #20/#17/#18/#21/#22; independent local rebuild/tests. Public health remains 9a2dee6. Main and deployment differ; closeout not accepted.
+- **Testy i CI:** https://github.com/SzczepanGrela/inventory-generator/actions/runs/37144043491 passes: 58 unit + 22 integration, 17 Python, six browser scenarios, exact-image smoke and fixable HIGH/CRITICAL Trivy. Deploy skipped for PR. Coverage is narrower than worker report; scan does not establish absence of all vulnerabilities.
+- **Produkcja:** October 3 public health 200 / 9a2dee631f4aff76dc2024d3036287ad93216452 with security headers. Main 1410c48 is ahead; #21 waiting and #22 pending at readback. No new production approval, failure/load exercise or Docker inspect by coordinator.
 
 ### Zgodność ze standardem v2
 
@@ -138,32 +138,32 @@ Profil: **Aplikacja webowa na VPS**. Statusy odzwierciedlają wyłącznie dowody
 
 | Kontrola | Status | Dowód |
 | --- | --- | --- |
-| Zarządzanie repozytorium | Częściowe | Ochrona main i produkcji działa; dokumentacja ma nadal nieaktualne deklaracje runtime/limitów. |
-| Quality CI | Częściowe | Zielone bramki .NET/Python/obrazu/security; pozostają błędy walidacji/HTML i rzeczywiste testy przeglądarki/kosztów. |
+| Zarządzanie repozytorium | Częściowe | Ochrona main działa; polecenia runbooka i deklaracje produkcji/ukończenia wymagają korekty. |
+| Quality CI | Częściowe | 80 .NET / 17 Python / sześć scenariuszy CI przechodzi. Pozostają import/download, mobile, focus/HTTP429 i pomiar HTTP pod limitami. |
 | Niezmienne wydanie | Gotowe | Run 37091518872 testuje i poświadcza jeden digest, następnie weryfikuje rewizję dla chronionego CD. |
 | Dostęp wdrożeniowy | Częściowe | Uwierzytelnienie produkcji przez prywatne Coolify/Tailscale przeszło; przegląd zakresu uprawnień pozostaje osobny. |
 | Sieć, TLS i tożsamość klienta | Częściowe | Publiczny TLS/nagłówki i regresje exact-proxy działają; starsze dowody sieci oraz brakujące testy klientów/edge zachowują swój zakres. |
-| Ochrona przed nadużyciami | Częściowe | Ważone buckety i limity body/komórek/współbieżności istnieją; null oraz maksymalny koszt i suma rolling wymagają kwalifikacji. |
+| Ochrona przed nadużyciami | Częściowe | Poprawki null/tekstu uznane; kandydat z ośmioma slotami nie ogranicza liczby oczekujących. Odczyt po pracy nie kwalifikuje szczytu kontenera ani rolling. |
 | Bezpieczeństwo runtime | Częściowe | Bieżący kontrakt/smoke obrazu i starszy snapshot hosta; brak nowego odczytu efektywnego hardeningu. |
-| Readiness i preflight | Częściowe | Health/revision Dockera i smoke formatów istnieją; reprezentatywne granice eksportów i błędne dane wymagają testów. |
+| Readiness i preflight | Częściowe | Mały smoke obrazu i lokalny real-Kestrel null/body przechodzą. Graniczne obciążenie pod limitami produkcji pozostaje nieodebrane. |
 | Atomowa promocja i rollback | Częściowe | Promocję i rollback przetestowano na fake clients; produkcyjna odmowa i recovery awarii nie zostały dowiedzione. |
 | Koordynacja i retencja | Częściowe | Kod serializacji wydań i retencji istnieje; pomiary capacity starej/nowej instancji pozostają otwarte. |
-| Obserwowalność | Brak | Brak odebranego centralnego monitoringu eksportów/429 i alertów; pozostają ograniczone hooki aplikacji. |
+| Obserwowalność | Częściowe | Hooki czasu/wyniku istnieją, ale walidacja loguje przesłane nazwy. Brak odebranej integracji centralnej i dostarczania alertów. |
 | Tożsamość webowa | Częściowe | Metadane/favicon/nagłówki wdrożone w kodzie; pozostaje odbiór przeglądarki/licencji/dostępności. |
 
 ### Zadania pozostałe i bieżące
 
 #### Dokończyć UI i zabezpieczenia eksportu
 
-**Implementacja · W toku · 80% · trudność 3/5 · 3–6 h**
+**Implementacja · W toku · 85% · trudność 3/5 · 4–7 h**
 
-October 3 source: all formats, body/cell/row limits and weighted buckets implemented. Isolated local HTTP requests with null attributes/products return 500; imported error text reaches an HTML toast sink. Fix schema/null handling and untrusted text before acceptance.
+PR #20 fixes HTML message sinks and null entries; independent local Kestrel returns 400 for all three null-attribute exports and 413 for real chunked oversized input. Rejected cached projects can still be overwritten, schema coerces invalid types and validation logs contain column names. PR #22 adds unqualified eight-slot waiting; preserve conservative admission until reviewed.
 
 #### Rozbudować testy eksportu i przeglądarki
 
-**Jakość · W toku · 80% · trudność 3/5 · 4–8 h**
+**Jakość · W toku · 85% · trudność 3/5 · 4–8 h**
 
-Quality 37091518872 rebuilt .NET 10 and exact-image smoke. Coordinator ran 17 Python tests and existing .NET binaries (46 unit + 12 integration), without a local rebuild. Real browser/cache/import, streamed-body and workload boundary regressions remain.
+PR #22 Quality 37144043491: 58 unit + 22 integration, 17 Python and six browser scenarios pass. Independent source rebuild and all .NET/Python tests pass. Browser scenarios do not cover actual import/export, mobile, focus trap, network/HTTP429 button behavior. Add Kestrel regression to CI and capped HTTP workload evidence; direct generator benchmark is insufficient.
 
 #### Włączyć ruleset i wymagane Quality
 
@@ -173,21 +173,21 @@ October 3 coordinator installed/read back active ruleset 24407679: main requires
 
 #### Udokumentować migrację Coolify i znane ograniczenia
 
-**Dokumentacja · W toku · 80% · trudność 2/5 · 1–2 h**
+**Dokumentacja · W toku · 80% · trudność 2/5 · 2–3 h**
 
-Coolify contract, smoke and release documentation exist. Update stale .NET 8 README architecture, weighted DOCX cost-unit description, browser guarantees and acceptance evidence; implementation is not full operational acceptance.
+README updated to .NET 10/cost units and operator runbook added. Correct nonexistent workflow input target_digest, positional smoke arguments, container/neighbor resolution and stale slot/scan claims; validate examples offline. Work-status overstates deployed/accepted coverage and absence of vulnerabilities/OOM.
 
 #### Uruchomić DNS, TLS i trzy warstwy limitów
 
 **Wdrożenie · W toku · 80% · trudność 3/5 · 2–4 h**
 
-Weighted shared export bucket 10 cost units/minute; DOCX costs two plus its own bucket; per-process export semaphore 3. Existing exact-proxy tests and shared edge evidence retained. Safe aggregate workload and public isolation/recovery remain; temporary counter overlap is conditional on capacity evidence.
+Public 9a2dee6 retains three export slots without waiting. Main 1410c48 raises to eight plus a five-second wait with no queue-count bound, after binding/validation. Shared weighted per-client buckets retained. Restore conservative admission or qualify bounded queue and capped HTTP behavior before promotion. Process-local overlap remains conditional.
 
 #### Publikować i wdrażać obraz po digestcie
 
 **Wdrożenie · Gotowe · 100% · trudność 3/5 · 0–0 h**
 
-Quality 37091518872 qualifies/attests one .NET 10 image and protected CD verifies digest plus source revision. Public health independently returned 005dc25 on October 3. This does not refresh older host inspect fields.
+Existing protected exact-digest pipeline retained. PR #22 image smoke/scan passed but deployment skipped; main #21 run 37136097843 waiting and #22 run 37144206035 pending at October 3 readback. Public revision 9a2dee6. A merged PR does not prove its production deployment.
 
 #### Wdrożyć readiness, blue-green i rollback
 
@@ -197,9 +197,9 @@ App-specific managed rolling, readiness, saved-release rollback code and fake-cl
 
 #### Podłączyć usługę do centralnego monitoringu
 
-**Wdrożenie · Planowane · 0% · trudność 3/5 · 2–4 h**
+**Wdrożenie · W toku · 20% · trudność 3/5 · 2–4 h**
 
-Source logs generation errors; accepted export latency/overload visibility, central integration and delivered alerts were not demonstrated. Add bounded app hooks; platform integration remains separately owned.
+Export duration/dimensions/output-size and rejection logs added. Validation log strings embed submitted column names, reproduced locally with synthetic data. Replace with bounded reason codes; central integration and delivered alerts remain unaccepted.
 
 #### Zautomatyzować promocję digestu sprawdzonego w CI
 

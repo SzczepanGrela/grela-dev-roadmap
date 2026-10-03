@@ -1,0 +1,10 @@
+{
+  "advisory": "https://github.com/advisories/GHSA-ch52-4w7c-c8xp",
+  "package": "http-cache-semantics",
+  "version": "4.2.0",
+  "approvedOn": "2026-10-03",
+  "expiresAt": "2026-10-17T00:00:00Z",
+  "configSha256": "a43bf9398afaedd895562220e78a9986867ff6c3f5f1882b042858c6d5213399",
+  "sourceSha256": "6e91e057182664b4b1936a21b39f6ac7279bd8a8a8a2918e2dd6caf322466529",
+  "review": "docs/2026-10-03-dependency-review.md"
+}

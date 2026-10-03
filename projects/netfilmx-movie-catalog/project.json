@@ -25,6 +25,7 @@
     "technologies": [
       "C#",
       "ASP.NET Core 8",
+      "PostgreSQL",
       "FFmpeg",
       "Hangfire",
       "Cloudflare R2",
@@ -39,38 +40,38 @@
   },
   "status": "active",
   "progress": {
-    "implementation": 65,
-    "quality": 41,
-    "documentation": 60,
-    "delivery": 0,
-    "overall": 43
+    "implementation": 80,
+    "quality": 60,
+    "documentation": 80,
+    "delivery": 17,
+    "overall": 60
   },
   "complexity": 5,
   "forecast": {
-    "remainingHoursMin": 46,
-    "remainingHoursMax": 75,
-    "remainingDaysMin": 5.75,
-    "remainingDaysMax": 9.5,
+    "remainingHoursMin": 43,
+    "remainingHoursMax": 77,
+    "remainingDaysMin": 5.5,
+    "remainingDaysMax": 9.75,
     "hoursPerDay": 8,
     "hoursPerWeek": 30,
-    "earliest": "2026-09-24",
-    "latest": "2026-10-07",
+    "earliest": "2026-10-05",
+    "latest": "2026-10-25",
     "confidence": "low"
   },
   "estimation": {
-    "date": "2026-08-25",
+    "date": "2026-10-03",
     "mode": "source-audited",
-    "sourceRevision": "d1f1da4534b31f52815d4db82ed64b6f37ecf99f",
-    "sourceState": "local worktree with 70 changed paths and unpublished commits"
+    "sourceRevision": "a39d3ad6e527bcf08430d311db2c0cf0528820c3",
+    "sourceState": "Clean reconciled preparation branch codex/netfilmx-preparation, draft PR #1 at a39d3ad. Original unpublished/dirty source is preserved separately; preparation is not the production version."
   },
   "focus": {
     "current": {
-      "en": "Reconcile 12 local commits and the large uncommitted feature set without data loss.",
-      "pl": "Uporządkować 12 lokalnych commitów i duży niezacommitowany zakres bez utraty pracy."
+      "en": "Dedicated Codex worker: persistent Data Protection keyring, explicit migrations/readiness and .NET 10.",
+      "pl": "Osobna sesja Codexa: trwały keyring Data Protection, jawne migracje/readiness i .NET 10."
     },
     "next": {
-      "en": "Fix the vulnerable dependency and production hardening before release.",
-      "pl": "Naprawić podatną zależność i zabezpieczenia przed wydaniem."
+      "en": "Replace legacy deployment before merge; qualify retained media, fresh PostgreSQL import and worker/recovery/rolling behavior. UI follows backend acceptance.",
+      "pl": "Zastąpić legacy deploy przed scaleniem; zweryfikować media, import PostgreSQL i worker/recovery/rolling. UI po odbiorze backendu."
     }
   },
   "tasks": [
@@ -82,14 +83,14 @@
       },
       "dimension": "implementation",
       "status": "in-progress",
-      "completion": 65,
+      "completion": 80,
       "weight": 3,
       "difficulty": 5,
       "hoursMin": 12,
-      "hoursMax": 20,
+      "hoursMax": 22,
       "daysMin": 1.5,
-      "daysMax": 2.5,
-      "evidence": "Seventy changed paths include storage, FFmpeg, jobs and UI work that is not represented by public CI."
+      "daysMax": 2.75,
+      "evidence": "Candidate reconciles source, PostgreSQL/SQLite tests, retained-media bootstrap, private staging/durable upload intents and bounded worker, strict sessions/CSRF/JWT and explicit DTOs. Seven existing media entries selected; two browser derivatives, persistent Data Protection, explicit migration/readiness and i18n remain."
     },
     {
       "id": "quality-security",
@@ -99,14 +100,14 @@
       },
       "dimension": "quality",
       "status": "in-progress",
-      "completion": 55,
+      "completion": 80,
       "weight": 3,
       "difficulty": 4,
-      "hoursMin": 10,
-      "hoursMax": 16,
-      "daysMin": 1.25,
-      "daysMax": 2,
-      "evidence": "The public workflow is green, but local changes and deferred security work remain."
+      "hoursMin": 6,
+      "hoursMax": 12,
+      "daysMin": 0.75,
+      "daysMax": 1.5,
+      "evidence": "At a39d3ad: 229 .NET tests passed with 0 skipped plus 3 DOM tests; locked NuGet/npm audits clean at Oct 2 and CI green. .NET 10/native container qualification, remaining warnings and actual worker/restore/browser acceptance still required."
     },
     {
       "id": "repository-governance",
@@ -123,7 +124,7 @@
       "hoursMax": 3,
       "daysMin": 0.25,
       "daysMax": 0.5,
-      "evidence": "GitHub returned no active ruleset or environment."
+      "evidence": "Production-ready main protection and approval gates are not established by this candidate. Retain draft #1 until legacy main-push SSH deploy is safely replaced; do not trigger it by merging."
     },
     {
       "id": "architecture-docs",
@@ -133,14 +134,14 @@
       },
       "dimension": "documentation",
       "status": "in-progress",
-      "completion": 60,
+      "completion": 80,
       "weight": 1,
       "difficulty": 3,
-      "hoursMin": 3,
-      "hoursMax": 5,
-      "daysMin": 0.5,
-      "daysMax": 0.75,
-      "evidence": "Documentation does not yet describe the complete dirty implementation or v2 delivery model."
+      "hoursMin": 2,
+      "hoursMax": 4,
+      "daysMin": 0.25,
+      "daysMax": 0.5,
+      "evidence": "Candidate README/docs and reviewed source/data/security decisions now exist. App worker maintains a public-safe checkpoint; coordinator integrates roadmap/platform facts. Final runtime/keyring/migration/recovery docs await implementation."
     },
     {
       "id": "route-protection",
@@ -149,15 +150,15 @@
         "pl": "Dodać limity logowania, uploadu i transkodowania"
       },
       "dimension": "delivery",
-      "status": "planned",
-      "completion": 0,
+      "status": "in-progress",
+      "completion": 60,
       "weight": 2,
       "difficulty": 4,
-      "hoursMin": 5,
-      "hoursMax": 8,
-      "daysMin": 0.75,
-      "daysMax": 1,
-      "evidence": "No application rate-limit implementation was found; HLS requires bandwidth rather than low request limits."
+      "hoursMin": 4,
+      "hoursMax": 7,
+      "daysMin": 0.5,
+      "daysMax": 1.0,
+      "evidence": "Candidate exact trusted proxy handling; login/register/refresh/write rate limits; bounded password/admin concurrency, body limits and image decoding. Limits are process-local. Public client/edge behavior and aggregate upload/transcoding costs remain unaccepted; uploads default off."
     },
     {
       "id": "immutable-deploy",
@@ -170,11 +171,11 @@
       "completion": 0,
       "weight": 2,
       "difficulty": 4,
-      "hoursMin": 5,
-      "hoursMax": 8,
+      "hoursMin": 6,
+      "hoursMax": 10,
       "daysMin": 0.75,
-      "daysMax": 1,
-      "evidence": "The VPS currently rebuilds a local image and globally prunes Docker images. Target revised September 6: implement the delivery step through Coolify using the shared checklist, an immutable GHCR digest and Traefik/Tunnel; preserve data and custom routes. Production migration not verified in this update."
+      "daysMax": 1.25,
+      "evidence": "Legacy main-push SSH rebuild/deploy remains in candidate workflow; deploy job skipped on draft CI. Implement protected tested-digest GHCR/Coolify promotion and scoped rollback before merge. No production migration occurred."
     },
     {
       "id": "blue-green",
@@ -187,11 +188,11 @@
       "completion": 0,
       "weight": 2,
       "difficulty": 5,
-      "hoursMin": 6,
-      "hoursMax": 10,
-      "daysMin": 0.75,
-      "daysMax": 1.25,
-      "evidence": "Health checks exist, but there is no candidate promotion, drain or public rollback smoke test."
+      "hoursMin": 8,
+      "hoursMax": 14,
+      "daysMin": 1.0,
+      "daysMax": 1.75,
+      "evidence": "Explicit migrations, persistent shared keyring and singleton worker compatibility must precede rolling acceptance. Rehearse fresh PostgreSQL/keyring restoration and measured image/storage/queue restart behavior; no stateful production promotion accepted."
     },
     {
       "id": "service-observability",
@@ -208,14 +209,14 @@
       "hoursMax": 5,
       "daysMin": 0.5,
       "daysMax": 0.75,
-      "evidence": "Central monitoring and actionable deployment/transcoding alerts were not verified."
+      "evidence": "Useful worker lifecycle logs exist in preparation but delivered deploy/transcoding/backup alerts and central monitoring are not accepted."
     }
   ],
   "verification": {
-    "worktree": "local worktree with 70 changed paths and unpublished commits",
-    "tests": "Latest public CI/CD runs succeeded, but they do not cover the large local worktree; no ruleset or environment exists.",
-    "ci": "Latest public CI/CD runs succeeded, but they do not cover the large local worktree; no ruleset or environment exists.",
-    "production": "netfilmx.grela.dev returned HTTPS 200 through Cloudflare on 2026-08-25."
+    "worktree": "Clean candidate a39d3ad on codex/netfilmx-preparation; draft https://github.com/SzczepanGrela/netfilmx-movie-catalog/pull/1. Original source retained; no force-push or source loss.",
+    "tests": "229 .NET tests passed, no skips, plus 3 DOM tests. Fresh PostgreSQL/old SQLite, session/CSRF/JWT, queue/storage mocks, catalogue/bootstrap/proxy/limits/image boundaries are covered locally; live mounts/worker/resources/media remain.",
+    "ci": "CI/CD 37042739347 and Dependency audit 37042739346 green for a39d3ad; Deploy VPS skipped. Locked NuGet/npm audits were clean October 2; no claim of all future or container advisories absent.",
+    "production": "No NetFilmx deployment/data import/cutover occurred in this preparation. The August 25 public HTTP 200 is historical, not a current release or route acceptance."
   },
   "media": {
     "screenshot": "assets/screenshots/netfilmx-movie-catalog.png",
@@ -239,31 +240,41 @@
     {
       "en": "Migration target updated September 6: prebuilt GHCR digest in Coolify, Traefik/Tunnel routing and the shared deployment checklist; preserve databases and custom routes. This target update is not a new source/production audit.",
       "pl": "Cel migracji uaktualniony 6 września: digest GHCR w Coolify, routing Traefik/Tunnel i wspólna checklista; zachować bazy i custom routes. Zmiana celu nie jest nowym audytem źródła/produkcji."
+    },
+    {
+      "en": "Fresh PostgreSQL catalogue from existing licensed R2 media, new accounts and empty history; retain legacy database/original objects and exclude old YouTube/demo links.",
+      "pl": "Nowy katalog PostgreSQL z istniejących legalnych mediów R2, nowe konta i pusta historia; zachować starą bazę/originals i wykluczyć YouTube/demo."
+    },
+    {
+      "en": "Dedicated Codex implementation session; no merge while the legacy main-push deployment remains. Data Protection persistence, explicit migrations and .NET 10 precede production.",
+      "pl": "Osobna sesja wykonawcza Codexa; nie scalać przy aktywnym legacy deploy main-push. Trwałe Data Protection, jawne migracje i .NET 10 przed produkcją."
     }
   ],
   "audit": {
-    "date": "2026-08-25",
+    "date": "2026-10-03",
     "sources": [
-      "audited source tree and git status",
-      "GitHub repository, Actions, rulesets and environments API",
-      "public DNS and HTTPS checks where applicable"
+      "Prepared source/PR #1 a39d3ad, October 2–3",
+      "CI/CD 37042739347 and Dependency audit 37042739346",
+      "Local 229 .NET tests, 3 DOM tests and dependency-lock audits",
+      "Operator selected new accounts/empty history and fresh catalogue from seven retained R2 media entries",
+      "Coordinator/worker allocation approved October 3"
     ],
     "notes": {
-      "en": "Security-sensitive findings are public at advisory level without exploit instructions.",
-      "pl": "Znaleziska bezpieczeństwa są publiczne na poziomie advisory, bez instrukcji wykorzystania."
+      "en": "Prepared code now covers database bootstrap, media retention, durable uploads, sessions/CSRF/JWT and HTTP/dependency controls. It remains a draft, with production unchanged. A dedicated Codex session owns remaining stateful delivery; coordinator owns platform/roadmap review. Fresh accounts and empty history are selected; originals and legacy database retained. UI modernization follows backend/release acceptance; effort/date ranges include uncertain live acceptance.",
+      "pl": "Kod przygotowania obejmuje bootstrap bazy, zachowanie mediów, trwałe uploady, sesje/CSRF/JWT oraz HTTP/zależności. Pozostaje draftem, bez zmiany produkcji. Osobny Codex prowadzi stateful delivery, koordynator platformę/roadmapę. Wybrano nowe konta i pustą historię; oryginały i stara baza zostają. UI następuje po odbiorze backendu/wydania; daty obejmują niepewny odbiór produkcji."
     }
   },
   "compliance": {
     "standardVersion": 2,
     "profile": "vps-web",
-    "assessmentDate": "2026-08-25",
+    "assessmentDate": "2026-10-03",
     "controls": [
       {
         "id": "governance",
         "status": "partial",
         "evidence": {
-          "en": "GitHub returned no active ruleset or environment; remaining elements were assessed from the repository.",
-          "pl": "GitHub nie zwrócił aktywnego rulesetu ani środowiska; pozostałe elementy oceniono z repozytorium."
+          "en": "Draft CI exists; production main/environment protection and legacy deploy replacement remain.",
+          "pl": "CI draftu istnieje; ochrona main/production oraz zastąpienie legacy deploy pozostają."
         },
         "taskIds": [
           "repository-governance"
@@ -273,8 +284,8 @@
         "id": "quality-ci",
         "status": "partial",
         "evidence": {
-          "en": "Latest public CI/CD runs succeeded, but they do not cover the large local worktree; no ruleset or environment exists.",
-          "pl": "Quality CI istnieje, ale nie obejmuje całego bieżącego stanu lub części wymaganych kontroli v2."
+          "en": "Candidate 229 .NET and 3 DOM tests, clean locked dependency audit and green draft CI; runtime/recovery/browser gaps remain.",
+          "pl": "Kandydat: 229 .NET, 3 DOM, czysty audyt locków i zielone CI; pozostają runtime/recovery/browser."
         },
         "taskIds": [
           "quality-security"
@@ -284,8 +295,8 @@
         "id": "immutable-release",
         "status": "missing",
         "evidence": {
-          "en": "The required complete implementation was not found in the audited netfilmx movie catalog source.",
-          "pl": "W audytowanym źródle projektu netfilmx movie catalog nie znaleziono wymaganej kompletnej implementacji."
+          "en": "No qualified GHCR digest-to-Coolify path; old deployment must be replaced before merge.",
+          "pl": "Brak kwalifikowanej ścieżki GHCR digest→Coolify; stary deploy trzeba zastąpić przed scaleniem."
         },
         "taskIds": [
           "immutable-deploy"
@@ -295,8 +306,8 @@
         "id": "deployment-access",
         "status": "partial",
         "evidence": {
-          "en": "netfilmx movie catalog has some mechanisms but does not yet satisfy the complete v2 control.",
-          "pl": "Projekt netfilmx movie catalog ma część mechanizmów, ale nie spełnia jeszcze całej kontroli v2."
+          "en": "Legacy deployment retained; reviewed protected private platform credentials/path remain to implement.",
+          "pl": "Legacy deploy pozostaje; chroniona prywatna ścieżka platformy i uprawnienia wymagają wdrożenia."
         },
         "taskIds": [
           "immutable-deploy"
@@ -306,8 +317,8 @@
         "id": "network-tls-client-ip",
         "status": "partial",
         "evidence": {
-          "en": "netfilmx.grela.dev returned HTTPS 200 through Cloudflare on 2026-08-25.",
-          "pl": "Część publicznego HTTPS lub routingu działa, ale pełny zaufany łańcuch sieciowy nie został potwierdzony."
+          "en": "Exact proxy source/tests added to candidate; older public routing evidence does not prove new production identity.",
+          "pl": "Exact-proxy dodano w kodzie/testach; stare dowody routingu nie potwierdzają tożsamości nowej produkcji."
         },
         "taskIds": [
           "route-protection"
@@ -315,10 +326,10 @@
       },
       {
         "id": "abuse-protection",
-        "status": "missing",
+        "status": "partial",
         "evidence": {
-          "en": "The required complete implementation was not found in the audited netfilmx movie catalog source.",
-          "pl": "W audytowanym źródle projektu netfilmx movie catalog nie znaleziono wymaganej kompletnej implementacji."
+          "en": "Candidate auth/write/body/concurrency/image bounds implemented; public/aggregate/rolling acceptance remains.",
+          "pl": "Limity auth/write/body/współbieżności/obrazów zaimplementowano; odbiór publiczny/aggregate/rolling pozostaje."
         },
         "taskIds": [
           "route-protection"
@@ -328,8 +339,8 @@
         "id": "runtime-safety",
         "status": "partial",
         "evidence": {
-          "en": "netfilmx movie catalog has some mechanisms but does not yet satisfy the complete v2 control.",
-          "pl": "Projekt netfilmx movie catalog ma część mechanizmów, ale nie spełnia jeszcze całej kontroli v2."
+          "en": "Private staging and bounded worker are candidate controls; actual mounts, resources/keyring and image safety not accepted.",
+          "pl": "Private staging i bounded worker są w kandydacie; mounty/resources/keyring i bezpieczeństwo obrazu nieodebrane."
         },
         "taskIds": [
           "blue-green"
@@ -339,8 +350,8 @@
         "id": "readiness-preflight",
         "status": "partial",
         "evidence": {
-          "en": "netfilmx movie catalog has some mechanisms but does not yet satisfy the complete v2 control.",
-          "pl": "Projekt netfilmx movie catalog ma część mechanizmów, ale nie spełnia jeszcze całej kontroli v2."
+          "en": "Database regressions pass; explicit migrations/readiness and old/new compatibility still required.",
+          "pl": "Regresje bazy przechodzą; jawne migracje/readiness i zgodność old/new pozostają."
         },
         "taskIds": [
           "blue-green"
@@ -350,8 +361,8 @@
         "id": "atomic-promotion-rollback",
         "status": "missing",
         "evidence": {
-          "en": "The required complete implementation was not found in the audited netfilmx movie catalog source.",
-          "pl": "W audytowanym źródle projektu netfilmx movie catalog nie znaleziono wymaganej kompletnej implementacji."
+          "en": "No managed stateful promotion and tested release/data recovery yet.",
+          "pl": "Brak zarządzanej promocji stateful i przetestowanego recovery wydania/danych."
         },
         "taskIds": [
           "blue-green"
@@ -361,19 +372,20 @@
         "id": "coordination-retention",
         "status": "partial",
         "evidence": {
-          "en": "netfilmx movie catalog has some mechanisms but does not yet satisfy the complete v2 control.",
-          "pl": "Projekt netfilmx movie catalog ma część mechanizmów, ale nie spełnia jeszcze całej kontroli v2."
+          "en": "Source/media preserved and bounded singleton code exists; deployment serialization/capacity/scoped retention remain.",
+          "pl": "Źródło/media zachowane, bounded singleton jest w kodzie; serializacja/capacity/retencja deployu pozostają."
         },
         "taskIds": [
-          "immutable-deploy"
+          "immutable-deploy",
+          "blue-green"
         ]
       },
       {
         "id": "observability",
         "status": "missing",
         "evidence": {
-          "en": "The required complete implementation was not found in the audited netfilmx movie catalog source.",
-          "pl": "W audytowanym źródle projektu netfilmx movie catalog nie znaleziono wymaganej kompletnej implementacji."
+          "en": "No accepted central or delivered worker/release/backup alerts.",
+          "pl": "Brak odebranych centralnych/dostarczonych alertów workera/wydania/backupów."
         },
         "taskIds": [
           "service-observability"
@@ -381,10 +393,10 @@
       },
       {
         "id": "web-identity",
-        "status": "missing",
+        "status": "partial",
         "evidence": {
-          "en": "The required complete implementation was not found in the audited netfilmx movie catalog source.",
-          "pl": "W audytowanym źródle projektu netfilmx movie catalog nie znaleziono wymaganej kompletnej implementacji."
+          "en": "Candidate browser/vendor changes and DOM tests exist; public identity/accessibility/media-license acceptance remains.",
+          "pl": "Zmiany browser/vendor i testy DOM istnieją; publiczny odbiór identity/dostępności/licencji pozostaje."
         },
         "taskIds": [
           "architecture-docs"

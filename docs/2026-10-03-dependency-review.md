@@ -25,15 +25,37 @@ Therefore the advisory's cross-user shared-session-cache path was **not found
 in the reviewed production architecture**. This is a scoped reachability
 assessment, not a claim that the installed package has been fixed.
 
-## Proposed narrow exception — not activated
+## Approved narrow exception
 
-An operator decision is pending. If accepted, a temporary exception would cover
-only this advisory and its derived Astro audit entry, require unchanged static
-deployment/no sensitive remote-image cache, and expire for review on 2026-10-17.
-Every other HIGH/CRITICAL finding and an invalid/failed audit must still fail CI.
-Any SSR, auth, server adapter or remote cache change would invalidate the scope.
-Remove the exception when an upstream fix is available and requalify the lock.
+On **2026-10-03**, after the risk and scope were explained, the operator explicitly
+approved this exception. The approval covers only HIGH
+**GHSA-ch52-4w7c-c8xp** in **http-cache-semantics 4.2.0** and Astro's derived
+entry for that exact dependency. It expires at **2026-10-17 00:00 UTC**; it does
+not silently extend itself. This acceptance does not fix the upstream package.
 
-At this checkpoint the existing audit command remains unchanged and PR #13 is
-blocked by that finding. Neither the exception nor a production merge/deploy
-was performed. Local build/browser success does not mean all CI gates are green.
+The [checked-in policy](../security/npm-audit-exception.json) and
+[audit gate](../scripts/audit-dependencies.mjs) enforce the reviewed boundary:
+
+- `npm audit --json --audit-level=high` still runs against the registry. Only
+  the exact advisory and derived entry may be excepted; additional advisories,
+  any other HIGH/CRITICAL finding and escalation to CRITICAL fail the gate.
+- Audit errors, timeouts, invalid JSON, incomplete/inconsistent reports and
+  unexpected exit status fail closed.
+- Configuration and all `src/` files must match the reviewed SHA-256 fingerprints.
+  A source/configuration edit, including an adapter, endpoint or remote image
+  cache, invalidates the exception until a fresh source review is recorded.
+- The lock must contain one cache package at version 4.2.0, consumed only by Astro.
+  A changed installation path, version or consumer invalidates this scope.
+- Once the audit no longer contains HIGH/CRITICAL findings, it passes normally
+  without relying on this exception, even after expiry. Remove the policy and
+  exception code after an upstream fix and dependency requalification.
+
+Run `npm run test:audit` for the rejection/expiry/scope regressions and
+`npm run audit:dependencies` for the live gate. Plain `npm audit` intentionally
+continues to report the known package; do not replace this with a blanket
+severity reduction, omitted dependency group or `audit fix --force`.
+
+Local verification passed the live audit gate and 14 security-gate regression
+cases; source build and existing desktop/mobile/detail browser acceptance remain
+separate checks. PR #13's resulting GitHub run is authoritative for its exact
+commit. No merge or production deployment is authorized by this risk decision.

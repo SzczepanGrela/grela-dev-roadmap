@@ -49,8 +49,10 @@ zachować obecny design i istniejące rekordy poczty. Pages metadata pozostaje
 niezweryfikowane po błędzie autoryzacji. Daty/hours to estymaty pozostałego
 wysiłku, a procenty są ważonym stanem zadań, nie certyfikatem bezpieczeństwa.
 Aktualizacja roadmapy ma osobny [przegląd zależności](2026-10-03-dependency-review.md):
-devalue poprawiono, lecz niespatchowany upstream cache nadal blokuje jej CI.
-Propozycja ograniczonego wyjątku wymaga decyzji operatora; bramka pozostaje aktywna.
+devalue poprawiono, a operator 3 października zaakceptował wyjątek wyłącznie dla
+GHSA-ch52-4w7c-c8xp i jego łańcucha Astro. Bramka nadal blokuje pozostałe podatności
+HIGH/CRITICAL, błędy audytu oraz zmianę sprawdzonego kodu/konfiguracji. Wyjątek
+wygasa 17 października o 00:00 UTC; CI konkretnego commitu pozostaje osobnym dowodem.
 
 ## 🛠️ Znormalizowany Standard Architektury DevOps
 

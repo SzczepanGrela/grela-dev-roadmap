@@ -262,11 +262,10 @@
     }
   ],
   "verification": {
-    "worktree": "Clean reviewed main 005dc25; open Dependabot #17/#18 are current maintenance, not superseded work.",
-    "tests": "17 Python release tests and existing .NET 10 assemblies: 46 unit + 12 integration passed. Local null payload 500s and HTML sink reproduced; no production exploit/load probe.",
+    "worktree": "Clean reviewed main 1410c48 after merged #20/#17/#18/#21/#22; independent review clone preserves the worker checkout. Public revision was 9a2dee6 at October 3 readback.",
+    "tests": "Independent .NET 10 Release rebuild: zero warnings/errors; 80 .NET and 17 Python tests pass. Isolated JS reproduces invalid-type coercion and rejected cache overwrite. Real local Kestrel returns null 400 for all formats and chunked >2 MiB 413; synthetic column name appears in validation logs. Not a production load test or a new dependency audit.",
     "ci": "https://github.com/SzczepanGrela/inventory-generator/actions/runs/37144043491 passes: 58 unit + 22 integration, 17 Python, six browser scenarios, exact-image smoke and fixable HIGH/CRITICAL Trivy. Deploy skipped for PR. Coverage is narrower than worker report; scan does not establish absence of all vulnerabilities.",
-    "production": "October 3 public health 200 / 9a2dee631f4aff76dc2024d3036287ad93216452 with security headers. Main 1410c48 is ahead; #21 waiting and #22 pending at readback. No new production approval, failure/load exercise or Docker inspect by coordinator.",
-    "local": "Independent .NET 10 Release rebuild: zero warnings/errors; 80 .NET and 17 Python tests pass. Isolated JS reproduces invalid-type coercion and rejected cache overwrite. Real local Kestrel returns null 400 for all formats and chunked >2 MiB 413; synthetic column name appears in validation logs. Not a production load test or a new dependency audit."
+    "production": "October 3 public health 200 / 9a2dee631f4aff76dc2024d3036287ad93216452 with security headers. Main 1410c48 is ahead; #21 waiting and #22 pending at readback. No new production approval, failure/load exercise or Docker inspect by coordinator."
   },
   "media": {
     "screenshot": "assets/screenshots/inventory-generator.png",

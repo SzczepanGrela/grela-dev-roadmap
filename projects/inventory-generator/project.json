@@ -57,15 +57,15 @@
     "confidence": "low"
   },
   "estimation": {
-    "date": "2026-10-04",
+    "date": "2026-10-05",
     "mode": "source-audited",
     "sourceRevision": "16ed383d2affb96a7a538ec935a7b3b7dd337257",
-    "sourceState": "October 4 follow-up: clean main 16ed383d after #23–25, identical source tree to green PR #25 CI. Conservative admission/log/test corrections accepted; browser recovery and operator prerequisites still defective. Public health remains 9a2dee6; main workflow pending at readback."
+    "sourceState": "Reviewed open PR #26 a5f6eba and #27 52967d8, both based on main 16ed383d; each has green CI and neither contains the other. Prior recovery startup/edit defects fixed in #26, but failed storage replacement and manual rollback/runbook remain blocked. Public health still 9a2dee6. Progress stays 84% pending acceptance."
   },
   "focus": {
     "current": {
-      "en": "Gemini: protect the complete cache-recovery lifecycle and correct operator selectors/rollback prerequisites in two reviewable PRs.",
-      "pl": "Gemini: ochronić cały cykl odzyskiwania cache i poprawić selektory oraz warunki rollbacku w dwóch PR-ach do przeglądu."
+      "en": "Gemini: update existing #26/#27 for durable recovery on failed writes and executable serialized manual rollback; keep both open for review.",
+      "pl": "Gemini: uzupełnić istniejące #26/#27 o trwałe recovery przy błędach zapisu i wykonywalny serializowany rollback; oba PR-y pozostają do review."
     },
     "next": {
       "en": "Review app corrections before portfolio; keep capped HTTP capacity and coordinated release/recovery acceptance as separate gates.",
@@ -88,7 +88,7 @@
       "hoursMax": 7,
       "daysMin": 0.5,
       "daysMax": 1.0,
-      "evidence": "Reviewed 16ed383d retains null/text safeguards and restores three-slot/no-wait admission. Strict supplied-type validation and reason-code logs corrected. Independent Chromium still reproduces cache overwrite after temporary recovery dismissal/add (5001 rows to one), and startup default persistence before validation when the preference cookie is absent. No actual user loss asserted."
+      "evidence": "Main 16ed383d retains null/text safeguards, three-slot/no-wait admission and reason-code logs. Open #26 a5f6eba fixes temporary-edit/startup cache overwrites. Independent Chromium still reproduces partial attributes/products replacement, cleared recovery and success toast after injected storage failure during reset or valid import. No actual user loss asserted."
     },
     {
       "id": "quality-coverage",
@@ -105,7 +105,7 @@
       "hoursMax": 6,
       "daysMin": 0.5,
       "daysMax": 0.75,
-      "evidence": "PR #25 Quality 37176477678 passes 58 unit + 26 integration, 17 Python and 12 browser scenarios on the same source tree as main 16ed383d. Real Kestrel streamed-body 413, file import/download, mobile, settings focus, mocked HTTP429 recovery and network errors now covered. Independent Python rerun passes; isolated Chromium exposes missing recovery-lifecycle/fresh-context regressions. Capped HTTP workload evidence remains open."
+      "evidence": "Open #26 Quality 37259777133: 84 .NET / 17 Python / 12 browser scenarios; open #27 Quality 37260202674: 84 .NET / 20 Python / 12 browser scenarios. Each CI green, but #27 lacks #26 subcases. Independent 20 Python tests pass; Chromium confirms old defects fixed with cookie absent/false/true, and exposes failed-write reset/import regressions. Combined acceptance and capped HTTP workload remain."
     },
     {
       "id": "repository-governance",
@@ -139,7 +139,7 @@
       "hoursMax": 3,
       "daysMin": 0.25,
       "daysMax": 0.5,
-      "evidence": "Several CLI/scan/OOM details corrected. Remaining runbook defects: numeric applicationId mistaken for UUID, direct rollback shortcut without exclusion of unresolved deployments, inaccurate timeout/soak guarantee and unbounded monitoring requests. Refresh work-status and validate examples offline; main changes are not automatically deployed."
+      "evidence": "Open #27 explains numeric Coolify ID and adds status guards, but its documented old-revision rollback produces deploy=false in an offline workflow check. Direct helper path lacks exclusion of competing promoters; overlap filter is malformed. Correct unknown-state exception order, timing budgets and task/CI attribution. Do not call candidate work deployed or fully accepted."
     },
     {
       "id": "edge-and-limits",
@@ -156,7 +156,7 @@
       "hoursMax": 4,
       "daysMin": 0.25,
       "daysMax": 0.5,
-      "evidence": "Main 16ed383d restores three export slots without waiting; shared weighted per-client buckets retained. Corrected benchmark labels describe post-run working set/live heap, not peak. HTTP/cgroup/rolling capacity and independent live client acceptance remain unqualified; process-local overlap remains conditional."
+      "evidence": "Main 16ed383d retains three export slots without waiting and shared weighted per-client buckets. Candidate changes do not expand admission. Benchmark labels describe post-run working set/live heap, not peak. HTTP/cgroup/rolling capacity and independent live client acceptance remain unqualified; process-local overlap remains conditional."
     },
     {
       "id": "immutable-deploy",
@@ -173,7 +173,7 @@
       "hoursMax": 0,
       "daysMin": 0,
       "daysMax": 0,
-      "evidence": "Existing protected exact-digest pipeline retained. PR #25 container/Quality passed against the same source tree as main; deploy skipped. Main run 37176616872 pending at October 4 readback, public revision 9a2dee6. Source-tree equivalence does not qualify a main image or prove deployment."
+      "evidence": "Protected exact-digest pipeline retained. Separate PR #26/#27 Container and Quality gates pass; deployment skipped for each. Both remain open, based on main 16ed383d. Public health 9a2dee6 on October 5. No reviewed combined image or new deployment is claimed."
     },
     {
       "id": "blue-green",
@@ -190,7 +190,7 @@
       "hoursMax": 6,
       "daysMin": 0.5,
       "daysMax": 0.75,
-      "evidence": "App-specific managed rolling, readiness, saved-release rollback code and fake-client regressions implemented. Live unhealthy-candidate rejection, failed-public-smoke rollback and safe overlap capacity are still unproven; coordinate bounded production exercises."
+      "evidence": "Managed rolling/readiness/rollback implementation exists. #27 guards active/unknown statuses, but the documented manual dispatch is skipped when old expected_revision differs from main, and direct helper history reads do not serialize competing promoters. Fix/test instructions offline; live rejection/recovery/overlap capacity remain separate coordinated gates."
     },
     {
       "id": "service-observability",
@@ -258,14 +258,14 @@
       "hoursMax": 2,
       "daysMin": 0.25,
       "daysMax": 0.25,
-      "evidence": "Metadata/favicon/header work retained. CI now exercises 375x667 layout, settings-modal keyboard/focus and PL/EN switching. Recovery still has hardcoded/stale messages; recovery accessibility, licensing and representative browser preview remain to review. No blanket WCAG claim."
+      "evidence": "Metadata/favicon/header work retained; existing CI covers mobile/settings focus and language switching. #26 adds a persistent recovery banner, but recovery dialog/buttons and new accessible label remain partly Polish in English mode. Recovery failure UX and representative preview/licensing acceptance remain; no blanket WCAG claim."
     }
   ],
   "verification": {
-    "worktree": "Clean reviewed main 16ed383d after merged #23–25; separate coordinator clone preserves worker checkout. Source tree 84d6668bf7b330608a2be101d360980d685232aa matches PR #25 head c44d29e4e66ffddf0b5b8cc062c5a94496729d38.",
-    "tests": "Independent 17 Python tests pass. Chromium with actual reviewed browser assets, synthetic data and intercepted local responses reproduces temporary-recovery edits overwriting 5001 rows with one and missing-cookie startup replacing invalid attributes before recovery. No external writes, production load exercise or new local 84-test .NET rerun.",
-    "ci": "https://github.com/SzczepanGrela/inventory-generator/actions/runs/37176477678: 84 .NET, 17 Python, 12 browser scenarios and container/Quality gates pass; PR deployment skipped. PR and main source trees match, not their release identities. Main workflow 37176616872 pending at readback. Scan scope does not establish absence of all vulnerabilities.",
-    "production": "October 4 public health returned 9a2dee631f4aff76dc2024d3036287ad93216452. No new coordinator deployment approval, cancellation, Docker inspect, header audit or live failure/load exercise. Older runtime/header observations retain their dates."
+    "worktree": "Separate clean review worktrees: #26 a5f6eba92d0016dc053bf8df8cfa31da5a5d585a and #27 52967d875e928fd843b3d5645ae365ce74679a77, each based on main 16ed383d. Worker checkout untouched. Both PRs open; #27 does not contain #26.",
+    "tests": "Independent 20 Python tests in #27 pass. Isolated Chromium on #26 preserves raw cache across add/language/reload with cookie absent/false/true and malformed startup. Injected products-write failure during reset/import still partly replaces storage, clears recovery and shows success. Exact workflow block with fake gh skips documented rollback; fake shell arguments expose invalid overlap filter. No production writes or independent full .NET rerun.",
+    "ci": "#26 https://github.com/SzczepanGrela/inventory-generator/actions/runs/37259777133: 84 .NET / 17 Python / 12 browser; #27 https://github.com/SzczepanGrela/inventory-generator/actions/runs/37260202674: 84 .NET / 20 Python / 12 browser. Container/Quality green and deploy skipped in both. Separate heads, no combined candidate acceptance; scan scope remains limited.",
+    "production": "October 5 public health returned 9a2dee631f4aff76dc2024d3036287ad93216452. Coordinator made no app merge, deployment approval, cancellation, live load/failure exercise, Docker inspect or fresh header audit. Older host observations retain their dates."
   },
   "media": {
     "screenshot": "assets/screenshots/inventory-generator.png",
@@ -300,30 +300,30 @@
     }
   ],
   "audit": {
-    "date": "2026-10-04",
+    "date": "2026-10-05",
     "sources": [
-      "Clean main 16ed383d and merged PRs #23/#24/#25, October 4 source review",
-      "PR #25 Quality 37176477678 test/job logs; PR c44d29 and main verified identical source tree",
-      "Independent 17 Python tests and intercepted Chromium recovery/startup reproductions",
-      "Coolify v4.3.14 bootstrap/helpers/docker.php numeric applicationId lookup; release helper/runbook source comparison",
-      "Public health and main workflow readback October 4; earlier ruleset/runtime/conditional overlap evidence retained"
+      "Open PR #26 a5f6eba and #27 52967d8 source diffs; both based on main 16ed383d",
+      "Quality 37259777133 and 37260202674, exact-head checks and test logs",
+      "Independent 20 Python tests; synthetic intercepted Chromium prior/failure-path checks",
+      "Offline exact workflow freshness block, runbook overlap shell arguments and exception ordering",
+      "Public health October 5; earlier governance/runtime/conditional capacity evidence retained"
     ],
     "notes": {
-      "en": "Three-slot/no-wait admission, payload-free validation logs and expanded regressions accepted. Full closeout declined: two independently reproduced cache overwrite paths and operator selector/rollback prerequisites remain. Gemini prepares two follow-up PRs for review, then portfolio; separate capacity/live recovery/platform gates stay open. Percentages are task bookkeeping, not security certification.",
-      "pl": "Przywrócenie 3 slotów bez oczekiwania, logi walidacji bez danych wejściowych i rozszerzone regresje uznane. Pełny odbiór wstrzymany: odtworzono dwie ścieżki nadpisania cache; pozostają selektory i warunki rollbacku w runbooku. Gemini przygotuje dwa PR-y do review, potem portfolio; capacity, recovery produkcji i platforma pozostają osobnymi bramkami. Procenty to ewidencja zadań, nie certyfikat bezpieczeństwa."
+      "en": "Previous cache startup/edit reproductions fixed in #26. Full acceptance still declined: failed storage replacement loses recovery and reports success; #27 manual rollback invocation is skipped by freshness, with additional exclusion/selector/status errors. Update existing PRs, leave them open for review; portfolio next after accepted app fixes. Progress remains 84%, a bookkeeping estimate rather than certification.",
+      "pl": "Poprzednie reprodukcje startupu/edycji cache są naprawione w #26. Odbiór nadal wstrzymany: nieudany zapis wyłącza recovery i pokazuje sukces; polecenie rollbacku #27 jest pomijane przez freshness, pozostają błędy wykluczenia/selektora/statusów. Aktualizować te same PR-y i zostawić do review; portfolio po odbiorze poprawek. 84% pozostaje szacunkiem ewidencyjnym, nie certyfikatem."
     }
   },
   "compliance": {
     "standardVersion": 2,
     "profile": "vps-web",
-    "assessmentDate": "2026-10-04",
+    "assessmentDate": "2026-10-05",
     "controls": [
       {
         "id": "governance",
         "status": "partial",
         "evidence": {
-          "en": "Main protection remains active; runbook commands and production/completion claims require correction.",
-          "pl": "Ochrona main działa; polecenia runbooka i deklaracje produkcji/ukończenia wymagają korekty."
+          "en": "Main protection retained; both reviewed PRs remain open. Runbook/task-status attribution still requires correction.",
+          "pl": "Ochrona main zachowana; oba sprawdzone PR-y pozostają otwarte. Runbook i przypisanie statusów zadań wymagają korekty."
         },
         "taskIds": [
           "operations-docs"
@@ -333,8 +333,8 @@
         "id": "quality-ci",
         "status": "partial",
         "evidence": {
-          "en": "84 .NET / 17 Python / 12 browser scenarios pass on the reviewed source tree. Recovery lifecycle/fresh-context regressions and capped HTTP workload remain.",
-          "pl": "84 .NET / 17 Python / 12 scenariuszy przeglądarki przechodzi na sprawdzonym drzewie źródeł. Pozostają regresje całego recovery/świeżych kontekstów i pomiary HTTP pod limitami."
+          "en": "Separate PR CI suites pass, with 17/20 Python tests respectively. Failed-write browser regression and integrated candidate/capped HTTP evidence remain.",
+          "pl": "Osobne CI PR-ów przechodzą, odpowiednio z 17/20 testami Python. Pozostają regresje błędów zapisu oraz odbiór połączonego kandydata/HTTP pod limitami."
         },
         "taskIds": [
           "quality-coverage",
@@ -410,8 +410,8 @@
         "id": "atomic-promotion-rollback",
         "status": "partial",
         "evidence": {
-          "en": "Managed promotion and rollback implementation tested with fake clients; production rejection/failure recovery not demonstrated.",
-          "pl": "Promocję i rollback przetestowano na fake clients; produkcyjna odmowa i recovery awarii nie zostały dowiedzione."
+          "en": "Status guards added in #27, but documented manual rollback is skipped and snapshot checks do not exclude competing promoters. Offline correction before live recovery acceptance.",
+          "pl": "Dodano guardy statusów w #27, lecz opisany rollback jest pomijany, a odczyt historii nie wyklucza innych promoterów. Korekta offline przed odbiorem recovery produkcji."
         },
         "taskIds": [
           "blue-green"
@@ -443,8 +443,8 @@
         "id": "web-identity",
         "status": "partial",
         "evidence": {
-          "en": "Mobile/settings focus and language switching covered in CI; recovery interaction/messages, licensing and preview acceptance remain.",
-          "pl": "CI obejmuje mobile/focus ustawień i zmianę języka; pozostaje odbiór recovery/komunikatów, licencji i podglądu."
+          "en": "Recovery banner added in #26 and previous edit/startup paths pass. Failed persistence feedback and recovery PL/EN labels still need correction.",
+          "pl": "Dodano baner recovery w #26, a wcześniejsze ścieżki edycji/startupu przechodzą. Komunikaty po błędach zapisu i etykiety PL/EN recovery wymagają korekty."
         },
         "taskIds": [
           "web-identity"

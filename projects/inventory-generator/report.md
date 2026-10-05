@@ -1,6 +1,6 @@
 # Inventory Generator — status report / raport stanu
 
-Audit date / data audytu: **2026-10-04**<br>
+Audit date / data audytu: **2026-10-05**<br>
 Estimated completion / szacowane ukończenie: **84%**<br>
 Forecast / prognoza: **2026-10-05–2026-10-20**, 20–38 h, low confidence / pewność: low
 
@@ -12,14 +12,14 @@ Forecast / prognoza: **2026-10-05–2026-10-20**, 20–38 h, low confidence / pe
 
 Local-first inventory editor and server-side DOCX, CSV and HTML generator.
 
-Three-slot/no-wait admission, payload-free validation logs and expanded regressions accepted. Full closeout declined: two independently reproduced cache overwrite paths and operator selector/rollback prerequisites remain. Gemini prepares two follow-up PRs for review, then portfolio; separate capacity/live recovery/platform gates stay open. Percentages are task bookkeeping, not security certification.
+Previous cache startup/edit reproductions fixed in #26. Full acceptance still declined: failed storage replacement loses recovery and reports success; #27 manual rollback invocation is skipped by freshness, with additional exclusion/selector/status errors. Update existing PRs, leave them open for review; portfolio next after accepted app fixes. Progress remains 84%, a bookkeeping estimate rather than certification.
 
 ### Audit evidence
 
 - **Repozytorium:** `SzczepanGrela/inventory-generator` @ `16ed383d2affb96a7a538ec935a7b3b7dd337257`
-- **Source state:** October 4 follow-up: clean main 16ed383d after #23–25, identical source tree to green PR #25 CI. Conservative admission/log/test corrections accepted; browser recovery and operator prerequisites still defective. Public health remains 9a2dee6; main workflow pending at readback.
-- **Tests and CI:** https://github.com/SzczepanGrela/inventory-generator/actions/runs/37176477678: 84 .NET, 17 Python, 12 browser scenarios and container/Quality gates pass; PR deployment skipped. PR and main source trees match, not their release identities. Main workflow 37176616872 pending at readback. Scan scope does not establish absence of all vulnerabilities.
-- **Production:** October 4 public health returned 9a2dee631f4aff76dc2024d3036287ad93216452. No new coordinator deployment approval, cancellation, Docker inspect, header audit or live failure/load exercise. Older runtime/header observations retain their dates.
+- **Source state:** Reviewed open PR #26 a5f6eba and #27 52967d8, both based on main 16ed383d; each has green CI and neither contains the other. Prior recovery startup/edit defects fixed in #26, but failed storage replacement and manual rollback/runbook remain blocked. Public health still 9a2dee6. Progress stays 84% pending acceptance.
+- **Tests and CI:** #26 https://github.com/SzczepanGrela/inventory-generator/actions/runs/37259777133: 84 .NET / 17 Python / 12 browser; #27 https://github.com/SzczepanGrela/inventory-generator/actions/runs/37260202674: 84 .NET / 20 Python / 12 browser. Container/Quality green and deploy skipped in both. Separate heads, no combined candidate acceptance; scan scope remains limited.
+- **Production:** October 5 public health returned 9a2dee631f4aff76dc2024d3036287ad93216452. Coordinator made no app merge, deployment approval, cancellation, live load/failure exercise, Docker inspect or fresh header audit. Older host observations retain their dates.
 
 ### v2 standard compliance
 
@@ -27,18 +27,18 @@ Profile: **VPS web application**. Statuses reflect only evidence available on th
 
 | Control | Status | Evidence |
 | --- | --- | --- |
-| Repository governance | Partial | Main protection remains active; runbook commands and production/completion claims require correction. |
-| Quality CI | Partial | 84 .NET / 17 Python / 12 browser scenarios pass on the reviewed source tree. Recovery lifecycle/fresh-context regressions and capped HTTP workload remain. |
+| Repository governance | Partial | Main protection retained; both reviewed PRs remain open. Runbook/task-status attribution still requires correction. |
+| Quality CI | Partial | Separate PR CI suites pass, with 17/20 Python tests respectively. Failed-write browser regression and integrated candidate/capped HTTP evidence remain. |
 | Immutable release | Complete | Run 37091518872 tests and attests one digest, then verifies its source revision for protected CD. |
 | Deployment access | Partial | Inventory private Coolify/Tailscale production authentication succeeded; credential scope review remains separate. |
 | Network, TLS and client identity | Partial | Public TLS/headers and exact-proxy regressions exist; retain older network evidence and pending live client/edge checks. |
 | Abuse protection | Partial | Three-slot/no-wait admission restored, body/null/text protections retained. Actual peak/capped HTTP and rolling capacity remain unqualified. |
 | Runtime safety | Partial | Current source contract/image smoke plus older host snapshot; no new effective hardening readback. |
 | Readiness and preflight | Partial | Exact-image smoke and real-Kestrel streamed-body 413 pass in PR CI. Boundary workload under production caps remains unqualified. |
-| Atomic promotion and rollback | Partial | Managed promotion and rollback implementation tested with fake clients; production rejection/failure recovery not demonstrated. |
+| Atomic promotion and rollback | Partial | Status guards added in #27, but documented manual rollback is skipped and snapshot checks do not exclude competing promoters. Offline correction before live recovery acceptance. |
 | Coordination and retention | Partial | Serialized release and scoped retention code exists; measured old/new capacity remains open. |
 | Observability | Partial | Bounded validation reason-code logs and no-submitted-name regressions accepted; central integration, retention and alert delivery still open. |
-| Web identity | Partial | Mobile/settings focus and language switching covered in CI; recovery interaction/messages, licensing and preview acceptance remain. |
+| Web identity | Partial | Recovery banner added in #26 and previous edit/startup paths pass. Failed persistence feedback and recovery PL/EN labels still need correction. |
 
 ### Remaining and active tasks
 
@@ -46,13 +46,13 @@ Profile: **VPS web application**. Statuses reflect only evidence available on th
 
 **Implementation · In progress · 90% · difficulty 3/5 · 4–7 h**
 
-Reviewed 16ed383d retains null/text safeguards and restores three-slot/no-wait admission. Strict supplied-type validation and reason-code logs corrected. Independent Chromium still reproduces cache overwrite after temporary recovery dismissal/add (5001 rows to one), and startup default persistence before validation when the preference cookie is absent. No actual user loss asserted.
+Main 16ed383d retains null/text safeguards, three-slot/no-wait admission and reason-code logs. Open #26 a5f6eba fixes temporary-edit/startup cache overwrites. Independent Chromium still reproduces partial attributes/products replacement, cleared recovery and success toast after injected storage failure during reset or valid import. No actual user loss asserted.
 
 #### Expand export and browser coverage
 
 **Quality · In progress · 90% · difficulty 3/5 · 3–6 h**
 
-PR #25 Quality 37176477678 passes 58 unit + 26 integration, 17 Python and 12 browser scenarios on the same source tree as main 16ed383d. Real Kestrel streamed-body 413, file import/download, mobile, settings focus, mocked HTTP429 recovery and network errors now covered. Independent Python rerun passes; isolated Chromium exposes missing recovery-lifecycle/fresh-context regressions. Capped HTTP workload evidence remains open.
+Open #26 Quality 37259777133: 84 .NET / 17 Python / 12 browser scenarios; open #27 Quality 37260202674: 84 .NET / 20 Python / 12 browser scenarios. Each CI green, but #27 lacks #26 subcases. Independent 20 Python tests pass; Chromium confirms old defects fixed with cookie absent/false/true, and exposes failed-write reset/import regressions. Combined acceptance and capped HTTP workload remain.
 
 #### Enable ruleset and required Quality checks
 
@@ -64,25 +64,25 @@ October 3 coordinator installed/read back active ruleset 24407679: main requires
 
 **Documentation · In progress · 80% · difficulty 2/5 · 2–3 h**
 
-Several CLI/scan/OOM details corrected. Remaining runbook defects: numeric applicationId mistaken for UUID, direct rollback shortcut without exclusion of unresolved deployments, inaccurate timeout/soak guarantee and unbounded monitoring requests. Refresh work-status and validate examples offline; main changes are not automatically deployed.
+Open #27 explains numeric Coolify ID and adds status guards, but its documented old-revision rollback produces deploy=false in an offline workflow check. Direct helper path lacks exclusion of competing promoters; overlap filter is malformed. Correct unknown-state exception order, timing budgets and task/CI attribution. Do not call candidate work deployed or fully accepted.
 
 #### Enable DNS, TLS and three-layer limits
 
 **Delivery · In progress · 85% · difficulty 3/5 · 2–4 h**
 
-Main 16ed383d restores three export slots without waiting; shared weighted per-client buckets retained. Corrected benchmark labels describe post-run working set/live heap, not peak. HTTP/cgroup/rolling capacity and independent live client acceptance remain unqualified; process-local overlap remains conditional.
+Main 16ed383d retains three export slots without waiting and shared weighted per-client buckets. Candidate changes do not expand admission. Benchmark labels describe post-run working set/live heap, not peak. HTTP/cgroup/rolling capacity and independent live client acceptance remain unqualified; process-local overlap remains conditional.
 
 #### Publish and deploy an image by digest
 
 **Delivery · Done · 100% · difficulty 3/5 · 0–0 h**
 
-Existing protected exact-digest pipeline retained. PR #25 container/Quality passed against the same source tree as main; deploy skipped. Main run 37176616872 pending at October 4 readback, public revision 9a2dee6. Source-tree equivalence does not qualify a main image or prove deployment.
+Protected exact-digest pipeline retained. Separate PR #26/#27 Container and Quality gates pass; deployment skipped for each. Both remain open, based on main 16ed383d. Public health 9a2dee6 on October 5. No reviewed combined image or new deployment is claimed.
 
 #### Implement readiness, blue-green and rollback
 
 **Delivery · In progress · 50% · difficulty 4/5 · 3–6 h**
 
-App-specific managed rolling, readiness, saved-release rollback code and fake-client regressions implemented. Live unhealthy-candidate rejection, failed-public-smoke rollback and safe overlap capacity are still unproven; coordinate bounded production exercises.
+Managed rolling/readiness/rollback implementation exists. #27 guards active/unknown statuses, but the documented manual dispatch is skipped when old expected_revision differs from main, and direct helper history reads do not serialize competing promoters. Fix/test instructions offline; live rejection/recovery/overlap capacity remain separate coordinated gates.
 
 #### Connect the service to central monitoring
 
@@ -106,7 +106,7 @@ Keep dated September 29 runtime evidence and parser exceptions. October 3 source
 
 **Documentation · In progress · 70% · difficulty 2/5 · 1–2 h**
 
-Metadata/favicon/header work retained. CI now exercises 375x667 layout, settings-modal keyboard/focus and PL/EN switching. Recovery still has hardcoded/stale messages; recovery accessibility, licensing and representative browser preview remain to review. No blanket WCAG claim.
+Metadata/favicon/header work retained; existing CI covers mobile/settings focus and language switching. #26 adds a persistent recovery banner, but recovery dialog/buttons and new accessible label remain partly Polish in English mode. Recovery failure UX and representative preview/licensing acceptance remain; no blanket WCAG claim.
 
 ### Architecture decisions
 
@@ -123,14 +123,14 @@ Metadata/favicon/header work retained. CI now exercises 375x667 layout, settings
 
 Lokalny edytor inwentarza z serwerowym generowaniem DOCX, CSV i HTML.
 
-Przywrócenie 3 slotów bez oczekiwania, logi walidacji bez danych wejściowych i rozszerzone regresje uznane. Pełny odbiór wstrzymany: odtworzono dwie ścieżki nadpisania cache; pozostają selektory i warunki rollbacku w runbooku. Gemini przygotuje dwa PR-y do review, potem portfolio; capacity, recovery produkcji i platforma pozostają osobnymi bramkami. Procenty to ewidencja zadań, nie certyfikat bezpieczeństwa.
+Poprzednie reprodukcje startupu/edycji cache są naprawione w #26. Odbiór nadal wstrzymany: nieudany zapis wyłącza recovery i pokazuje sukces; polecenie rollbacku #27 jest pomijane przez freshness, pozostają błędy wykluczenia/selektora/statusów. Aktualizować te same PR-y i zostawić do review; portfolio po odbiorze poprawek. 84% pozostaje szacunkiem ewidencyjnym, nie certyfikatem.
 
 ### Dowody audytu
 
 - **Repozytorium:** `SzczepanGrela/inventory-generator` @ `16ed383d2affb96a7a538ec935a7b3b7dd337257`
-- **Stan źródła:** October 4 follow-up: clean main 16ed383d after #23–25, identical source tree to green PR #25 CI. Conservative admission/log/test corrections accepted; browser recovery and operator prerequisites still defective. Public health remains 9a2dee6; main workflow pending at readback.
-- **Testy i CI:** https://github.com/SzczepanGrela/inventory-generator/actions/runs/37176477678: 84 .NET, 17 Python, 12 browser scenarios and container/Quality gates pass; PR deployment skipped. PR and main source trees match, not their release identities. Main workflow 37176616872 pending at readback. Scan scope does not establish absence of all vulnerabilities.
-- **Produkcja:** October 4 public health returned 9a2dee631f4aff76dc2024d3036287ad93216452. No new coordinator deployment approval, cancellation, Docker inspect, header audit or live failure/load exercise. Older runtime/header observations retain their dates.
+- **Stan źródła:** Reviewed open PR #26 a5f6eba and #27 52967d8, both based on main 16ed383d; each has green CI and neither contains the other. Prior recovery startup/edit defects fixed in #26, but failed storage replacement and manual rollback/runbook remain blocked. Public health still 9a2dee6. Progress stays 84% pending acceptance.
+- **Testy i CI:** #26 https://github.com/SzczepanGrela/inventory-generator/actions/runs/37259777133: 84 .NET / 17 Python / 12 browser; #27 https://github.com/SzczepanGrela/inventory-generator/actions/runs/37260202674: 84 .NET / 20 Python / 12 browser. Container/Quality green and deploy skipped in both. Separate heads, no combined candidate acceptance; scan scope remains limited.
+- **Produkcja:** October 5 public health returned 9a2dee631f4aff76dc2024d3036287ad93216452. Coordinator made no app merge, deployment approval, cancellation, live load/failure exercise, Docker inspect or fresh header audit. Older host observations retain their dates.
 
 ### Zgodność ze standardem v2
 
@@ -138,18 +138,18 @@ Profil: **Aplikacja webowa na VPS**. Statusy odzwierciedlają wyłącznie dowody
 
 | Kontrola | Status | Dowód |
 | --- | --- | --- |
-| Zarządzanie repozytorium | Częściowe | Ochrona main działa; polecenia runbooka i deklaracje produkcji/ukończenia wymagają korekty. |
-| Quality CI | Częściowe | 84 .NET / 17 Python / 12 scenariuszy przeglądarki przechodzi na sprawdzonym drzewie źródeł. Pozostają regresje całego recovery/świeżych kontekstów i pomiary HTTP pod limitami. |
+| Zarządzanie repozytorium | Częściowe | Ochrona main zachowana; oba sprawdzone PR-y pozostają otwarte. Runbook i przypisanie statusów zadań wymagają korekty. |
+| Quality CI | Częściowe | Osobne CI PR-ów przechodzą, odpowiednio z 17/20 testami Python. Pozostają regresje błędów zapisu oraz odbiór połączonego kandydata/HTTP pod limitami. |
 | Niezmienne wydanie | Gotowe | Run 37091518872 testuje i poświadcza jeden digest, następnie weryfikuje rewizję dla chronionego CD. |
 | Dostęp wdrożeniowy | Częściowe | Uwierzytelnienie produkcji przez prywatne Coolify/Tailscale przeszło; przegląd zakresu uprawnień pozostaje osobny. |
 | Sieć, TLS i tożsamość klienta | Częściowe | Publiczny TLS/nagłówki i regresje exact-proxy działają; starsze dowody sieci oraz brakujące testy klientów/edge zachowują swój zakres. |
 | Ochrona przed nadużyciami | Częściowe | Przywrócono 3 sloty bez oczekiwania, zachowano ochronę body/null/tekstu. Rzeczywisty szczyt pamięci, HTTP pod limitami i capacity rolling pozostają nieodebrane. |
 | Bezpieczeństwo runtime | Częściowe | Bieżący kontrakt/smoke obrazu i starszy snapshot hosta; brak nowego odczytu efektywnego hardeningu. |
 | Readiness i preflight | Częściowe | Smoke obrazu i real-Kestrel ze strumieniowym body 413 przechodzą w CI PR. Graniczne obciążenie pod limitami produkcji pozostaje nieodebrane. |
-| Atomowa promocja i rollback | Częściowe | Promocję i rollback przetestowano na fake clients; produkcyjna odmowa i recovery awarii nie zostały dowiedzione. |
+| Atomowa promocja i rollback | Częściowe | Dodano guardy statusów w #27, lecz opisany rollback jest pomijany, a odczyt historii nie wyklucza innych promoterów. Korekta offline przed odbiorem recovery produkcji. |
 | Koordynacja i retencja | Częściowe | Kod serializacji wydań i retencji istnieje; pomiary capacity starej/nowej instancji pozostają otwarte. |
 | Obserwowalność | Częściowe | Uznano ograniczone logi reason-code i regresje braku przesłanych nazw; integracja centralna, retencja i dostarczanie alertów pozostają otwarte. |
-| Tożsamość webowa | Częściowe | CI obejmuje mobile/focus ustawień i zmianę języka; pozostaje odbiór recovery/komunikatów, licencji i podglądu. |
+| Tożsamość webowa | Częściowe | Dodano baner recovery w #26, a wcześniejsze ścieżki edycji/startupu przechodzą. Komunikaty po błędach zapisu i etykiety PL/EN recovery wymagają korekty. |
 
 ### Zadania pozostałe i bieżące
 
@@ -157,13 +157,13 @@ Profil: **Aplikacja webowa na VPS**. Statusy odzwierciedlają wyłącznie dowody
 
 **Implementacja · W toku · 90% · trudność 3/5 · 4–7 h**
 
-Reviewed 16ed383d retains null/text safeguards and restores three-slot/no-wait admission. Strict supplied-type validation and reason-code logs corrected. Independent Chromium still reproduces cache overwrite after temporary recovery dismissal/add (5001 rows to one), and startup default persistence before validation when the preference cookie is absent. No actual user loss asserted.
+Main 16ed383d retains null/text safeguards, three-slot/no-wait admission and reason-code logs. Open #26 a5f6eba fixes temporary-edit/startup cache overwrites. Independent Chromium still reproduces partial attributes/products replacement, cleared recovery and success toast after injected storage failure during reset or valid import. No actual user loss asserted.
 
 #### Rozbudować testy eksportu i przeglądarki
 
 **Jakość · W toku · 90% · trudność 3/5 · 3–6 h**
 
-PR #25 Quality 37176477678 passes 58 unit + 26 integration, 17 Python and 12 browser scenarios on the same source tree as main 16ed383d. Real Kestrel streamed-body 413, file import/download, mobile, settings focus, mocked HTTP429 recovery and network errors now covered. Independent Python rerun passes; isolated Chromium exposes missing recovery-lifecycle/fresh-context regressions. Capped HTTP workload evidence remains open.
+Open #26 Quality 37259777133: 84 .NET / 17 Python / 12 browser scenarios; open #27 Quality 37260202674: 84 .NET / 20 Python / 12 browser scenarios. Each CI green, but #27 lacks #26 subcases. Independent 20 Python tests pass; Chromium confirms old defects fixed with cookie absent/false/true, and exposes failed-write reset/import regressions. Combined acceptance and capped HTTP workload remain.
 
 #### Włączyć ruleset i wymagane Quality
 
@@ -175,25 +175,25 @@ October 3 coordinator installed/read back active ruleset 24407679: main requires
 
 **Dokumentacja · W toku · 80% · trudność 2/5 · 2–3 h**
 
-Several CLI/scan/OOM details corrected. Remaining runbook defects: numeric applicationId mistaken for UUID, direct rollback shortcut without exclusion of unresolved deployments, inaccurate timeout/soak guarantee and unbounded monitoring requests. Refresh work-status and validate examples offline; main changes are not automatically deployed.
+Open #27 explains numeric Coolify ID and adds status guards, but its documented old-revision rollback produces deploy=false in an offline workflow check. Direct helper path lacks exclusion of competing promoters; overlap filter is malformed. Correct unknown-state exception order, timing budgets and task/CI attribution. Do not call candidate work deployed or fully accepted.
 
 #### Uruchomić DNS, TLS i trzy warstwy limitów
 
 **Wdrożenie · W toku · 85% · trudność 3/5 · 2–4 h**
 
-Main 16ed383d restores three export slots without waiting; shared weighted per-client buckets retained. Corrected benchmark labels describe post-run working set/live heap, not peak. HTTP/cgroup/rolling capacity and independent live client acceptance remain unqualified; process-local overlap remains conditional.
+Main 16ed383d retains three export slots without waiting and shared weighted per-client buckets. Candidate changes do not expand admission. Benchmark labels describe post-run working set/live heap, not peak. HTTP/cgroup/rolling capacity and independent live client acceptance remain unqualified; process-local overlap remains conditional.
 
 #### Publikować i wdrażać obraz po digestcie
 
 **Wdrożenie · Gotowe · 100% · trudność 3/5 · 0–0 h**
 
-Existing protected exact-digest pipeline retained. PR #25 container/Quality passed against the same source tree as main; deploy skipped. Main run 37176616872 pending at October 4 readback, public revision 9a2dee6. Source-tree equivalence does not qualify a main image or prove deployment.
+Protected exact-digest pipeline retained. Separate PR #26/#27 Container and Quality gates pass; deployment skipped for each. Both remain open, based on main 16ed383d. Public health 9a2dee6 on October 5. No reviewed combined image or new deployment is claimed.
 
 #### Wdrożyć readiness, blue-green i rollback
 
 **Wdrożenie · W toku · 50% · trudność 4/5 · 3–6 h**
 
-App-specific managed rolling, readiness, saved-release rollback code and fake-client regressions implemented. Live unhealthy-candidate rejection, failed-public-smoke rollback and safe overlap capacity are still unproven; coordinate bounded production exercises.
+Managed rolling/readiness/rollback implementation exists. #27 guards active/unknown statuses, but the documented manual dispatch is skipped when old expected_revision differs from main, and direct helper history reads do not serialize competing promoters. Fix/test instructions offline; live rejection/recovery/overlap capacity remain separate coordinated gates.
 
 #### Podłączyć usługę do centralnego monitoringu
 
@@ -217,7 +217,7 @@ Keep dated September 29 runtime evidence and parser exceptions. October 3 source
 
 **Dokumentacja · W toku · 70% · trudność 2/5 · 1–2 h**
 
-Metadata/favicon/header work retained. CI now exercises 375x667 layout, settings-modal keyboard/focus and PL/EN switching. Recovery still has hardcoded/stale messages; recovery accessibility, licensing and representative browser preview remain to review. No blanket WCAG claim.
+Metadata/favicon/header work retained; existing CI covers mobile/settings focus and language switching. #26 adds a persistent recovery banner, but recovery dialog/buttons and new accessible label remain partly Polish in English mode. Recovery failure UX and representative preview/licensing acceptance remain; no blanket WCAG claim.
 
 ### Decyzje architektoniczne
 

@@ -38,18 +38,18 @@
   },
   "status": "active",
   "progress": {
-    "implementation": 90,
-    "quality": 93,
-    "documentation": 75,
-    "delivery": 74,
-    "overall": 84
+    "implementation": 100,
+    "quality": 100,
+    "documentation": 80,
+    "delivery": 79,
+    "overall": 92
   },
   "complexity": 3,
   "forecast": {
-    "remainingHoursMin": 20,
-    "remainingHoursMax": 38,
-    "remainingDaysMin": 2.5,
-    "remainingDaysMax": 4.75,
+    "remainingHoursMin": 13,
+    "remainingHoursMax": 25,
+    "remainingDaysMin": 1.75,
+    "remainingDaysMax": 3.25,
     "hoursPerDay": 8,
     "hoursPerWeek": 30,
     "earliest": "2026-10-07",
@@ -59,17 +59,17 @@
   "estimation": {
     "date": "2026-10-07",
     "mode": "source-audited",
-    "sourceRevision": "16ed383d2affb96a7a538ec935a7b3b7dd337257",
-    "sourceState": "Reviewed open #26 fdeadde3b3ecbe5aafb3397a611e0e3e90b13c5e and #27 ca22156981d5467100f4f151201fcff6b8c9139d, independent branches from main 16ed383d. IC07-1/IC07-2 accepted: exact raw recovery export and actual-runbook regression pass. Separate green CI; public health 9a2dee6 on October 7. Progress remains 84% pending integration and remaining acceptance."
+    "sourceRevision": "697149654f7f84dfe8aabe3565838348ef3a8220",
+    "sourceState": "PRs #26/#27/#28 merged into 6971496. Combined final CI and protected normal release passed. Public revision and exact frontend match verified October 7. Remaining live recovery/rolling/client acceptance is separate from functional completion."
   },
   "focus": {
     "current": {
-      "en": "Coordinator: integrate reviewed #26/#27 and qualify the combined candidate. Gemini corrective assignment accepted; portfolio may start.",
-      "pl": "Koordynator: zintegrować przyjęte #26/#27 i zweryfikować wspólnego kandydata. Poprawki Gemini odebrane; można zacząć portfolio."
+      "en": "Integrated and deployed 6971496; finish scoped live recovery, rolling and independent-client acceptance.",
+      "pl": "6971496 zintegrowane i wdrożone; domknąć odbiór recovery, rolling i niezależnych klientów."
     },
     "next": {
-      "en": "Coordinate scoped release, effective runtime, capped HTTP capacity and recovery/rolling acceptance; keep production approval separate.",
-      "pl": "Uzgodnić odbiór wydania, efektywnego runtime, HTTP pod limitami i recovery/rolling; zatwierdzenie produkcji pozostaje osobne."
+      "en": "Agree a bounded operational window; retain platform hardening/monitoring as separate work.",
+      "pl": "Uzgodnić ograniczone okno testów; zachować hardening i monitoring platformy jako osobne prace."
     }
   },
   "tasks": [
@@ -80,15 +80,15 @@
         "pl": "Dokończyć UI i zabezpieczenia eksportu"
       },
       "dimension": "implementation",
-      "status": "in-progress",
-      "completion": 90,
+      "status": "done",
+      "completion": 100,
       "weight": 2,
       "difficulty": 3,
-      "hoursMin": 4,
-      "hoursMax": 7,
-      "daysMin": 0.5,
-      "daysMax": 1.0,
-      "evidence": "#26 fdeadde3 preserves exact authoritative raw strings in recovery downloads, including empty, malformed and structurally invalid JSON. Independent full-storage equality and complete 5001-row envelope checks pass, with no stale legacy fallback. Earlier failed-write/reset/import/migration/retry behavior remains accepted. IC07-1 closed in candidate; integration/capped acceptance remains."
+      "hoursMin": 0,
+      "hoursMax": 0,
+      "daysMin": 0,
+      "daysMax": 0,
+      "evidence": "Accepted recovery/legacy migration/raw backup fixes merged and deployed. Real HTTP 50k-cell/near-2MiB CSV, HTML and DOCX correctness and invalid-payload bounds pass on the CI image. No unlimited-load or complete OOM-safety claim."
     },
     {
       "id": "quality-coverage",
@@ -97,15 +97,15 @@
         "pl": "Rozbudować testy eksportu i przeglądarki"
       },
       "dimension": "quality",
-      "status": "in-progress",
-      "completion": 90,
+      "status": "done",
+      "completion": 100,
       "weight": 2,
       "difficulty": 3,
-      "hoursMin": 3,
-      "hoursMax": 6,
-      "daysMin": 0.5,
-      "daysMax": 0.75,
-      "evidence": "#26 Quality 37561455949: 84 .NET / 17 Python / browser suite incl. 7J; #27 Quality 37561775782: 84 .NET / 34 Python / baseline browser suite. Independent 34 Python and 12 intercepted browser scenarios pass. Reversing handlers in the actual runbook makes the intended regression fail. Combined/capped HTTP acceptance remains."
+      "hoursMin": 0,
+      "hoursMax": 0,
+      "daysMin": 0,
+      "daysMax": 0,
+      "evidence": "https://github.com/SzczepanGrela/inventory-generator/actions/runs/37574806859: 84 .NET (zero skips), 34 Python, 12 browser suites; Container, fixable HIGH/CRITICAL scan, attestation, Quality, release preflight and Production all pass. Accepted independent browser recovery/migration tests retained. Local CI-image HTTP qualification: 38 baseline + 59 repeat requests at 1 CPU/512 MiB, valid DOCX/CSV/HTML structures, expected 400/413/429, zero OOM. Worst cgroup peak 469.61 MiB, health up to 2.0571 s in a burst; bounded evidence only."
     },
     {
       "id": "repository-governance",
@@ -132,14 +132,14 @@
       },
       "dimension": "documentation",
       "status": "in-progress",
-      "completion": 80,
+      "completion": 90,
       "weight": 1,
       "difficulty": 2,
       "hoursMin": 2,
       "hoursMax": 3,
       "daysMin": 0.25,
       "daysMax": 0.5,
-      "evidence": "#27 ca22156 binds the final exception-order regression to actual runbook AST; independent mutation of the real example is detected. Timing, D02.3a scope, buffered DOCX, serialized manual rollback/freeze and selector/status corrections retained. IC07-2 closed in candidate; integration and live acceptance remain."
+      "evidence": "Corrected actual-runbook tests merged; coordinator integration/local-capacity/normal-release record updated. Final live fault/rolling/client evidence remains to be added."
     },
     {
       "id": "edge-and-limits",
@@ -156,7 +156,7 @@
       "hoursMax": 4,
       "daysMin": 0.25,
       "daysMax": 0.5,
-      "evidence": "Main 16ed383d retains three export slots without waiting and shared weighted per-client buckets. Candidate changes do not expand admission. Benchmark labels describe post-run working set/live heap, not peak. HTTP/cgroup/rolling capacity and independent live client acceptance remain unqualified; process-local overlap remains conditional."
+      "evidence": "Three slots, no waiting, weighted per-client budgets retained. Bounded local HTTP overload returns 429 Retry-After and recovers; no OOM, worst peak 469.61/512 MiB. Independent public client/spoof/rolling acceptance remains separate."
     },
     {
       "id": "immutable-deploy",
@@ -173,7 +173,7 @@
       "hoursMax": 0,
       "daysMin": 0,
       "daysMax": 0,
-      "evidence": "Protected exact-digest pipeline retained. Separate #26 fdeadde3 / #27 ca22156 Container and Quality gates pass; deploy skipped. Both remain open from main 16ed383d. Public health 9a2dee6 on October 7. Local merge-tree is conflict-free, but no combined qualified image or deployment is claimed."
+      "evidence": "Final 6971496 CI publishes/tests/attests digest sha256:7b9853fa84e67a53d332b0b2ec67c5e0690f97c2c8b8ab3f654d6689440a825e; run 37574806859 deploys it successfully via protected production. Public revision and frontend match. Stale unstarted October 3 deployment cancelled to unblock main queue."
     },
     {
       "id": "blue-green",
@@ -183,14 +183,14 @@
       },
       "dimension": "delivery",
       "status": "in-progress",
-      "completion": 50,
+      "completion": 65,
       "weight": 2,
       "difficulty": 4,
       "hoursMin": 3,
       "hoursMax": 6,
       "daysMin": 0.5,
       "daysMax": 0.75,
-      "evidence": "Managed rolling/readiness/rollback implementation retained. Actual-source freshness/image-label/selector/exception-order regressions pass in #27, including a runbook mutation check. Emergency direct route requires coordinated promotion freeze. Combined candidate, live recovery/overlap and capped capacity remain separate."
+      "evidence": "Normal protected deployment and public smoke pass at 6971496. Actual-source rollback/freshness regressions retained. Rejected unhealthy candidate, failed-smoke rollback and measured live overlap still require an agreed window."
     },
     {
       "id": "service-observability",
@@ -217,14 +217,14 @@
       },
       "dimension": "delivery",
       "status": "in-progress",
-      "completion": 90,
+      "completion": 95,
       "weight": 2,
       "difficulty": 3,
       "hoursMin": 1,
       "hoursMax": 2,
       "daysMin": 0.25,
       "daysMax": 0.25,
-      "evidence": "Exact-digest attestation/revision verification, private API, protected production, app contract, bounded polling, serialization and scoped retention implemented. Production job in 37091518872 succeeded. Remaining failure/capacity acceptance and credential scope review are tracked separately."
+      "evidence": "Final integrated main Quality -> attested digest -> protected Coolify production succeeded in run 37574806859. Private access/contract/serialization retained; live recovery tests and credential scope review are separate."
     },
     {
       "id": "runtime-hardening",
@@ -234,14 +234,14 @@
       },
       "dimension": "delivery",
       "status": "in-progress",
-      "completion": 50,
+      "completion": 65,
       "weight": 1,
       "difficulty": 3,
       "hoursMin": 2,
       "hoursMax": 4,
       "daysMin": 0.25,
       "daysMax": 0.5,
-      "evidence": "Keep dated September 29 runtime evidence and parser exceptions. October 3 source contract/image smoke use non-root, 1 CPU/512 MiB, cap-drop ALL/init; no fresh effective host inspect establishes PID/security/read-only/tmpfs settings."
+      "evidence": "Operator October 7 pre-release inspect confirms baseline non-root, 1 CPU/512 MiB, no extra swap, cap-drop ALL, init, isolated network and no mounts. New-container inspect pending. PID/security/read-only/tmpfs/logging were not reread; accepted parser exceptions stay open."
     },
     {
       "id": "web-identity",
@@ -258,14 +258,14 @@
       "hoursMax": 2,
       "daysMin": 0.25,
       "daysMax": 0.25,
-      "evidence": "Recovery PL/EN dialog/buttons/ARIA and no-false-success behavior retained. Raw malformed/empty authoritative recovery downloads now preserve exact source without storage mutation. Representative preview/licensing acceptance remains; no blanket WCAG claim."
+      "evidence": "Combined browser CI covers PL/EN/ARIA recovery, mobile viewport, keyboard modal focus and exports; public frontend matches 6971496. Representative preview/licensing acceptance remains separate; no blanket WCAG claim."
     }
   ],
   "verification": {
-    "worktree": "Clean isolated review worktrees at #26 fdeadde3b3ecbe5aafb3397a611e0e3e90b13c5e and #27 ca22156981d5467100f4f151201fcff6b8c9139d; worker checkout untouched. GitHub full heads verified because relayed suffixes differed. Both open from main 16ed383d; neither includes the other.",
-    "tests": "Independent 34 Python tests and 12 intercepted Chromium scenarios pass. Four full-original persistent-failure/reset/import/retry cases, migration/failure/retry, authoritative precedence and five raw-recovery cases (truncated Unicode/null/invalid/empty/5001 rows). Storage unchanged by download. Reversing actual runbook handlers fails the intended regression; original restored. No full independent .NET rerun or live exercise.",
-    "ci": "#26 https://github.com/SzczepanGrela/inventory-generator/actions/runs/37561455949: 84 .NET / 17 Python / browser suite incl. 7J; #27 https://github.com/SzczepanGrela/inventory-generator/actions/runs/37561775782: 84 .NET / 34 Python / baseline browser suite. Exact heads/statuses/logs checked; zero .NET skips, Container/Quality pass, deploy skipped. Separate branches, not combined qualification.",
-    "production": "October 7 public health returned 9a2dee631f4aff76dc2024d3036287ad93216452. No coordinator app merge, deployment approval, cancellation, live load/failure exercise, new Docker inspect or header audit. Older host facts retain their dates."
+    "worktree": "Clean isolated coordinator checkout at 6971496; worker checkout untouched. PRs #26/#27/#28 merged with required Quality gates; no protection bypass.",
+    "tests": "Accepted independent browser recovery/migration tests retained. Local CI-image HTTP qualification: 38 baseline + 59 repeat requests at 1 CPU/512 MiB, valid DOCX/CSV/HTML structures, expected 400/413/429, zero OOM. Worst cgroup peak 469.61 MiB, health up to 2.0571 s in a burst; bounded evidence only.",
+    "ci": "https://github.com/SzczepanGrela/inventory-generator/actions/runs/37574806859: 84 .NET (zero skips), 34 Python, 12 browser suites; Container, fixable HIGH/CRITICAL scan, attestation, Quality, release preflight and Production all pass.",
+    "production": "October 7 public health reports 697149654f7f84dfe8aabe3565838348ef3a8220. Independent full smoke and byte-identical app.js pass. Operator pre-release inspect confirms expected CPU/RAM/UID/cap-drop/init and no mounts on old baseline. New-container inspect and live fault/load tests remain pending."
   },
   "media": {
     "screenshot": "assets/screenshots/inventory-generator.png",
@@ -302,15 +302,14 @@
   "audit": {
     "date": "2026-10-07",
     "sources": [
-      "Open #26 fdeadde3b3ecbe5aafb3397a611e0e3e90b13c5e and #27 ca22156981d5467100f4f151201fcff6b8c9139d; main baseline 16ed383d",
-      "Quality 37561455949 and 37561775782 status and test logs",
-      "Independent 34 Python tests and 12 intercepted Chromium scenarios with synthetic data and full recovery/storage comparisons",
-      "Actual-runbook handler-order mutation detected; local merge-tree conflict-free, no combined image claimed",
-      "Fresh public health October 7; older host/governance evidence retains its date"
+      "Merged #26/#27/#28; final main 697149654f7f84dfe8aabe3565838348ef3a8220",
+      "Final CI and production https://github.com/SzczepanGrela/inventory-generator/actions/runs/37574806859",
+      "Local exact-image HTTP/cgroup samples: 38 + 59 requests",
+      "Operator selected pre-release Docker inspect October 7; independent post-release public smoke and app.js comparison"
     ],
     "notes": {
-      "en": "IC07-1 and IC07-2 accepted in reviewed open #26 fdeadde3 and #27 ca22156. Raw recovery preserves malformed/empty source, and the remaining exception-order test now checks the actual runbook. Gemini may start portfolio; coordinator owns integration and remaining capacity/runtime/live acceptance. Progress stays 84%, separate from production status.",
-      "pl": "IC07-1 i IC07-2 przyjęte w otwartych #26 fdeadde3 i #27 ca22156. Recovery zachowuje uszkodzone/puste źródło, a test wyjątków sprawdza rzeczywisty runbook. Gemini może zacząć portfolio; koordynator prowadzi integrację i pozostały odbiór capacity/runtime/produkcji. 84% pozostaje oddzielone od stanu wdrożenia."
+      "en": "Accepted corrections are merged and deployed at 6971496. Combined CI, bounded local capacity and public smoke pass. Remaining work is scoped live recovery/rolling/client acceptance, post-release inspect and separately tracked platform/metadata tasks; no 100% claim.",
+      "pl": "Przyjęte poprawki scalono i wdrożono jako 6971496. Wspólne CI, ograniczone testy lokalne i publiczny smoke przeszły. Pozostały odbiór recovery/rolling/klientów, inspect po wdrożeniu i osobne zadania platformy/metadanych; bez deklaracji 100%."
     }
   },
   "compliance": {
@@ -322,8 +321,8 @@
         "id": "governance",
         "status": "partial",
         "evidence": {
-          "en": "Main protection retained; both candidates remain open and source/CI/live/task attribution is corrected. No app merge or deployment approval.",
-          "pl": "Ochrona main zachowana; oba PR-y otwarte, poprawiono przypisanie kodu/CI/produkcji/zadań. Bez scalenia aplikacji i zatwierdzenia wdrożenia."
+          "en": "PR-only integration with strict required Quality; all three accepted PRs merged without bypass.",
+          "pl": "Scalenia przez PR z wymaganym Quality; bez obchodzenia ochrony."
         },
         "taskIds": [
           "operations-docs"
@@ -331,22 +330,19 @@
       },
       {
         "id": "quality-ci",
-        "status": "partial",
+        "status": "complete",
         "evidence": {
-          "en": "Separate CI passes with 17/34 Python tests. All 12 independent recovery/migration cases and actual-runbook mutation check pass; IC07-1/IC07-2 accepted. Combined/capped HTTP qualification pending.",
-          "pl": "Osobne CI przechodzą z 17/34 testami Python. Wszystkie 12 niezależnych przypadków recovery/migracji i mutacja runbooka przechodzą; IC07-1/IC07-2 przyjęte. Odbiór integracji/HTTP pod limitami pozostaje."
+          "en": "Combined CI plus bounded real HTTP/cgroup qualification pass on the final image; live operational acceptance is separate.",
+          "pl": "Wspólne CI i ograniczone testy HTTP/cgroup końcowego obrazu przeszły; odbiór operacyjny jest osobny."
         },
-        "taskIds": [
-          "quality-coverage",
-          "export-hardening"
-        ]
+        "taskIds": []
       },
       {
         "id": "immutable-release",
         "status": "complete",
         "evidence": {
-          "en": "Run 37091518872 tests and attests one digest, then verifies its source revision for protected CD.",
-          "pl": "Run 37091518872 testuje i poświadcza jeden digest, następnie weryfikuje rewizję dla chronionego CD."
+          "en": "Same tested/attested digest deployed by run 37574806859 at 6971496.",
+          "pl": "Ten sam przetestowany i poświadczony digest wdrożony przez run 37574806859, rewizja 6971496."
         },
         "taskIds": []
       },
@@ -376,8 +372,8 @@
         "id": "abuse-protection",
         "status": "partial",
         "evidence": {
-          "en": "Three-slot/no-wait admission restored, body/null/text protections retained. Actual peak/capped HTTP and rolling capacity remain unqualified.",
-          "pl": "Przywrócono 3 sloty bez oczekiwania, zachowano ochronę body/null/tekstu. Rzeczywisty szczyt pamięci, HTTP pod limitami i capacity rolling pozostają nieodebrane."
+          "en": "Local capped HTTP overload/recovery passes; worst memory peak 469.61 MiB, not eliminated OOM risk. Live identity/rolling remains.",
+          "pl": "Lokalne HTTP pod limitami i recovery przeszły; szczyt 469,61 MiB nie eliminuje ryzyka OOM. Pozostają testy tożsamości/rolling."
         },
         "taskIds": [
           "export-hardening",
@@ -388,8 +384,8 @@
         "id": "runtime-safety",
         "status": "partial",
         "evidence": {
-          "en": "Current source contract/image smoke plus older host snapshot; no new effective hardening readback.",
-          "pl": "Bieżący kontrakt/smoke obrazu i starszy snapshot hosta; brak nowego odczytu efektywnego hardeningu."
+          "en": "Pre-release baseline inspect confirms selected caps/user/network; final-image local tests pass. New-container inspect/parser exceptions remain.",
+          "pl": "Odczyt bazowy potwierdza wybrane limity/użytkownika/sieć; lokalne testy obrazu przeszły. Pozostają nowy inspect i wyjątki parsera."
         },
         "taskIds": [
           "runtime-hardening"
@@ -397,21 +393,19 @@
       },
       {
         "id": "readiness-preflight",
-        "status": "partial",
+        "status": "complete",
         "evidence": {
-          "en": "Exact-image smoke and real-Kestrel streamed-body 413 pass in PR CI. Boundary workload under production caps remains unqualified.",
-          "pl": "Smoke obrazu i real-Kestrel ze strumieniowym body 413 przechodzą w CI PR. Graniczne obciążenie pod limitami produkcji pozostaje nieodebrane."
+          "en": "Final image capped HTTP/readiness and protected release preflight/public smoke pass; health latency is not guaranteed under arbitrary load.",
+          "pl": "Końcowy obraz przeszedł ograniczone HTTP/readiness, preflight i publiczny smoke; bez gwarancji opóźnienia przy dowolnym obciążeniu."
         },
-        "taskIds": [
-          "quality-coverage"
-        ]
+        "taskIds": []
       },
       {
         "id": "atomic-promotion-rollback",
         "status": "partial",
         "evidence": {
-          "en": "Actual-source #27 manual-old/stale-push/image-label checks pass. Emergency route requires coordinated promotion freeze. Live recovery/capacity acceptance remains separate.",
-          "pl": "Sprawdzenia rzeczywistego kodu #27 dla manual-old/stale-push/etykiety przechodzą. Ścieżka awaryjna wymaga uzgodnionego zamrożenia promocji. Odbiór recovery/capacity produkcji pozostaje osobny."
+          "en": "Normal production release passed; actual-source rollback tests retained. Live rejected candidate/failed-smoke rollback pending agreed window.",
+          "pl": "Zwykłe wdrożenie przeszło; testy kodu rollbacku zachowane. Próby odrzucenia kandydata i failed-smoke czekają na okno."
         },
         "taskIds": [
           "blue-green"
@@ -443,8 +437,8 @@
         "id": "web-identity",
         "status": "partial",
         "evidence": {
-          "en": "PL/EN recovery and write-failure feedback retained. Exact raw malformed/empty recovery export accepted; representative preview/licensing acceptance remains.",
-          "pl": "Zachowano PL/EN recovery i komunikaty błędów zapisu. Przyjęto eksport dokładnego uszkodzonego/pustego źródła; odbiór podglądu/licencji pozostaje."
+          "en": "PL/EN, mobile and keyboard browser CI pass on merged code; public app.js matches. Preview/licensing remains.",
+          "pl": "CI PL/EN, mobile i klawiatury przechodzi na scalonym kodzie; publiczny app.js zgodny. Pozostają podgląd/licencje."
         },
         "taskIds": [
           "web-identity"

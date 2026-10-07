@@ -1,5 +1,9 @@
 # Roadmap dependency review — October 3
 
+Historical record: the exception described below was **retired on October 7**
+after compatible dependency updates and a clean registry audit. See the
+[follow-up](2026-10-07-dependency-followup.md) for current gate behavior.
+
 PR #13's first CI run [37130260934](https://github.com/SzczepanGrela/grela-dev-roadmap/actions/runs/37130260934)
 failed the existing high-severity npm audit gate. The lock contained devalue
 5.9.1 and http-cache-semantics 4.2.0 through Astro 7.2.8.
@@ -33,8 +37,8 @@ approved this exception. The approval covers only HIGH
 entry for that exact dependency. It expires at **2026-10-17 00:00 UTC**; it does
 not silently extend itself. This acceptance does not fix the upstream package.
 
-The [checked-in policy](../security/npm-audit-exception.json) and
-[audit gate](../scripts/audit-dependencies.mjs) enforce the reviewed boundary:
+The [then-current policy](https://github.com/SzczepanGrela/grela-dev-roadmap/blob/bac3853567840e0aafff6798b767982f76c6091b/security/npm-audit-exception.json) and
+[then-current audit gate](https://github.com/SzczepanGrela/grela-dev-roadmap/blob/bac3853567840e0aafff6798b767982f76c6091b/scripts/audit-dependencies.mjs) enforced the reviewed boundary:
 
 - `npm audit --json --audit-level=high` still runs against the registry. Only
   the exact advisory and derived entry may be excepted; additional advisories,

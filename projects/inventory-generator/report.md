@@ -1,8 +1,8 @@
 # Inventory Generator — status report / raport stanu
 
-Audit date / data audytu: **2026-10-05**<br>
+Audit date / data audytu: **2026-10-07**<br>
 Estimated completion / szacowane ukończenie: **84%**<br>
-Forecast / prognoza: **2026-10-05–2026-10-20**, 20–38 h, low confidence / pewność: low
+Forecast / prognoza: **2026-10-07–2026-10-20**, 20–38 h, low confidence / pewność: low
 
 > This report is synchronized from `project.json` and the versioned delivery-control catalog. / Raport jest synchronizowany z `project.json` i wersjonowanym katalogiem kontroli wdrożeniowych.
 
@@ -12,14 +12,14 @@ Forecast / prognoza: **2026-10-05–2026-10-20**, 20–38 h, low confidence / pe
 
 Local-first inventory editor and server-side DOCX, CSV and HTML generator.
 
-Most prior corrections accepted: single-write recovery, no false success, PL/EN, manual old-target deployment, exception order and overlap filters. Remaining #26 issue: failed compensation leaves a mixed project after reload. #27 needs narrow source-bound regression, timing and status corrections. Update same PRs; portfolio follows app acceptance. Progress stays 84%, not a certification.
+Single-key commit, legacy migration and persistent-write recovery now accepted in #26. Its malformed authoritative recovery download omits the raw source and needs a narrow export fix. #27 operational corrections accepted; one exception-order test still checks a copy. Update the same open PRs; portfolio follows review. Progress stays 84%, separate from production/capacity acceptance.
 
 ### Audit evidence
 
 - **Repozytorium:** `SzczepanGrela/inventory-generator` @ `16ed383d2affb96a7a538ec935a7b3b7dd337257`
-- **Source state:** Second review of open #26 bed0918 and #27 e69f0b3, independently based on main 16ed383d. Single-write recovery and manual rollback fixes accepted; failed compensation still loses original columns after reload. Narrow #27 timing/status/source-bound-test corrections remain. Green separate CI; public health still 9a2dee6. Progress remains 84% pending accepted integration.
-- **Tests and CI:** #26 https://github.com/SzczepanGrela/inventory-generator/actions/runs/37263576163: 84 .NET / 17 Python / browser suite incl. 7F-I; #27 https://github.com/SzczepanGrela/inventory-generator/actions/runs/37264055818: 84 .NET / 28 Python / baseline browser suite. Test logs verified; Container/Quality green, deploy skipped in both. Separate heads, no combined candidate acceptance; scan scope unchanged.
-- **Production:** October 5 public health returned 9a2dee631f4aff76dc2024d3036287ad93216452. Coordinator made no app merge, deployment approval, cancellation, live load/failure exercise, Docker inspect or fresh header audit. Older host observations retain their dates.
+- **Source state:** Reviewed open #26 b3d6fb3 and #27 29cf54a, independent branches from main 16ed383d. Single-key commits, legacy migration and persistent-write recovery accepted. Malformed authoritative recovery export loses raw source; one exception-order regression still tests a copy. Separate green CI; public health 9a2dee6 on October 7. Progress remains 84% pending accepted integration.
+- **Tests and CI:** #26 https://github.com/SzczepanGrela/inventory-generator/actions/runs/37551051298: 84 .NET / 17 Python / browser suite incl. 7F-I; #27 https://github.com/SzczepanGrela/inventory-generator/actions/runs/37551747325: 84 .NET / 34 Python / browser suite. Exact heads/statuses and logs checked; Container/Quality pass, deploy skipped. Separate branches, not combined qualification; scan scope unchanged.
+- **Production:** October 7 public health returned 9a2dee631f4aff76dc2024d3036287ad93216452. No coordinator app merge, deployment approval, cancellation, live load/failure exercise, new Docker inspect or header audit. Older host facts retain their dates.
 
 ### v2 standard compliance
 
@@ -27,8 +27,8 @@ Profile: **VPS web application**. Statuses reflect only evidence available on th
 
 | Control | Status | Evidence |
 | --- | --- | --- |
-| Repository governance | Partial | Main protection retained; both PRs open. Separate code/CI/live status clarified; canonical task naming needs a small correction. |
-| Quality CI | Partial | Separate suites pass with 17/28 Python tests. Independent checks find failed-compensation recovery gap. Bind copied tests to actual source; integrated/capped HTTP acceptance remains. |
+| Repository governance | Partial | Main protection retained; both candidates remain open and source/CI/live/task attribution is corrected. No app merge or deployment approval. |
+| Quality CI | Partial | Separate CI passes with 17/34 Python tests. Core persistence/migration fixes pass independently; malformed raw recovery export fails. One copied exception-order test remains; combined/capped HTTP qualification pending. |
 | Immutable release | Complete | Run 37091518872 tests and attests one digest, then verifies its source revision for protected CD. |
 | Deployment access | Partial | Inventory private Coolify/Tailscale production authentication succeeded; credential scope review remains separate. |
 | Network, TLS and client identity | Partial | Public TLS/headers and exact-proxy regressions exist; retain older network evidence and pending live client/edge checks. |
@@ -38,7 +38,7 @@ Profile: **VPS web application**. Statuses reflect only evidence available on th
 | Atomic promotion and rollback | Partial | Actual-source #27 manual-old/stale-push/image-label checks pass. Emergency route requires coordinated promotion freeze. Live recovery/capacity acceptance remains separate. |
 | Coordination and retention | Partial | Serialized release and scoped retention code exists; measured old/new capacity remains open. |
 | Observability | Partial | Bounded validation reason-code logs and no-submitted-name regressions accepted; central integration, retention and alert delivery still open. |
-| Web identity | Partial | PL/EN recovery dialog and ARIA labels corrected; no false success on failed writes. Remaining recovery durability and preview/licensing acceptance. |
+| Web identity | Partial | PL/EN recovery and write-failure feedback retained. Malformed authoritative recovery file omits source despite successful download indication. Fix export; preview/licensing acceptance remains. |
 
 ### Remaining and active tasks
 
@@ -46,13 +46,13 @@ Profile: **VPS web application**. Statuses reflect only evidence available on th
 
 **Implementation · In progress · 90% · difficulty 3/5 · 4–7 h**
 
-Main 16ed383d safeguards retained. #26 bed0918 passes reset/import single-write failure, complete original download after reload and retry. If compensation also fails, recovery downloads new columns with 5001 old rows; no false success now. Require durable whole-project commit before acceptance. Synthetic failure, no actual user loss observed.
+#26 b3d6fb3 replaces compensation with one authoritative versioned project write. Independent persistent-failure reset/import preserves full legacy and envelope originals after reload; retry and migration pass. Recovery export of malformed authoritative JSON omits the raw source and must be corrected. No real user data loss observed.
 
 #### Expand export and browser coverage
 
 **Quality · In progress · 90% · difficulty 3/5 · 3–6 h**
 
-#26 Quality 37263576163: 84 .NET / 17 Python / browser suite including 7F-I; #27 Quality 37264055818: 84 .NET / 28 Python / baseline browser suite. Separate green CI. Independent six browser fault cases and 28 Python tests; actual workflow/runbook checks pass. Replace copied snippet tests with actual-source regressions. Combined candidate/capped HTTP acceptance remain.
+#26 Quality 37551051298: 84 .NET / 17 Python / browser suite incl. 7F-I; #27 Quality 37551747325: 84 .NET / 34 Python / baseline browser suite. Independent 34 Python tests pass. Nine browser scenarios: seven core persistence/migration cases pass, two expose malformed raw recovery-export loss. Workflow/selector tests use actual source; exception-order test still copies logic. Combined/capped HTTP acceptance remains.
 
 #### Enable ruleset and required Quality checks
 
@@ -64,7 +64,7 @@ October 3 coordinator installed/read back active ruleset 24407679: main requires
 
 **Documentation · In progress · 80% · difficulty 2/5 · 2–3 h**
 
-#27 e69f0b3 fixes manual old-revision deployment, emergency promotion-freeze prerequisite, exception ordering and overlap selector. Correct remaining API timing prose (15s, three GET attempts, early success), canonical task attribution and unsupported atomic-storage claim. No live rollback acceptance implied.
+#27 29cf54a corrects 15s/three-GET-attempt timing, D02.3a scope, buffered DOCX and separate source/CI/live status. Prior serialized manual rollback, emergency freeze and selector fixes retained. Only copied exception-order regression remains in the reviewed procedure scope; no live acceptance implied.
 
 #### Enable DNS, TLS and three-layer limits
 
@@ -76,13 +76,13 @@ Main 16ed383d retains three export slots without waiting and shared weighted per
 
 **Delivery · Done · 100% · difficulty 3/5 · 0–0 h**
 
-Protected exact-digest pipeline retained. Separate PR #26/#27 Container and Quality gates pass; deployment skipped for each. Both remain open, based on main 16ed383d. Public health 9a2dee6 on October 5. No reviewed combined image or new deployment is claimed.
+Protected exact-digest pipeline retained. Separate #26 b3d6fb3 / #27 29cf54a Container and Quality gates pass; deploy skipped. Both remain open from main 16ed383d. Public health 9a2dee6 on October 7; no reviewed combined image or new deployment claimed.
 
 #### Implement readiness, blue-green and rollback
 
 **Delivery · In progress · 50% · difficulty 4/5 · 3–6 h**
 
-Managed rolling/readiness/rollback implementation retained. Actual #27 workflow permits manual old target, skips stale automatic push and rejects bad image labels; production protection/serialization retained. Emergency direct route now requires operational exclusion of other promoters. Independent offline checks pass; live recovery/overlap and capped capacity remain separate.
+Managed rolling/readiness/rollback implementation retained. Actual-source freshness/image-label/selector regressions pass in #27; emergency direct route requires coordinated promotion freeze. Runbook handlers are correct but their regression still tests a local copy. Combined candidate, live recovery/overlap and capped capacity remain separate.
 
 #### Connect the service to central monitoring
 
@@ -106,7 +106,7 @@ Keep dated September 29 runtime evidence and parser exceptions. October 3 source
 
 **Documentation · In progress · 70% · difficulty 2/5 · 1–2 h**
 
-Recovery banner, translated PL/EN dialog/buttons and ARIA labels now implemented; browser CI passes 7I. No false success after failed persistence; prior startup/edit paths accepted. Recovery after failed compensation and representative preview/licensing acceptance remain; no blanket WCAG claim.
+Recovery PL/EN dialog/buttons/ARIA and no-false-success on rejected writes retained. New malformed authoritative recovery download omits raw data despite showing download success; fix this narrow export path. Representative preview/licensing acceptance remains; no blanket WCAG claim.
 
 ### Architecture decisions
 
@@ -123,14 +123,14 @@ Recovery banner, translated PL/EN dialog/buttons and ARIA labels now implemented
 
 Lokalny edytor inwentarza z serwerowym generowaniem DOCX, CSV i HTML.
 
-Większość poprawek przyjęta: pojedynczy błąd zapisu, brak fałszywego sukcesu, PL/EN, ręczne wdrożenie starej wersji, kolejność wyjątków i filtry. Pozostaje #26: błąd zapisu przywracającego zostawia mieszany projekt po odświeżeniu. #27 wymaga wąskich korekt testów powiązanych ze źródłem, czasu i statusów. Te same PR-y; portfolio po odbiorze aplikacji. 84% pozostaje szacunkiem.
+Przyjęto pojedynczy zapis projektu, migrację legacy i odporność na trwałe błędy zapisu w #26. Pobrana kopia uszkodzonego nowego formatu pomija surowe dane; potrzebna wąska poprawka eksportu. Poprawki procedur #27 przyjęte; jeden test wyjątków nadal sprawdza kopię kodu. Te same otwarte PR-y; portfolio po odbiorze. 84% pozostaje oddzielone od wdrożenia i capacity.
 
 ### Dowody audytu
 
 - **Repozytorium:** `SzczepanGrela/inventory-generator` @ `16ed383d2affb96a7a538ec935a7b3b7dd337257`
-- **Stan źródła:** Second review of open #26 bed0918 and #27 e69f0b3, independently based on main 16ed383d. Single-write recovery and manual rollback fixes accepted; failed compensation still loses original columns after reload. Narrow #27 timing/status/source-bound-test corrections remain. Green separate CI; public health still 9a2dee6. Progress remains 84% pending accepted integration.
-- **Testy i CI:** #26 https://github.com/SzczepanGrela/inventory-generator/actions/runs/37263576163: 84 .NET / 17 Python / browser suite incl. 7F-I; #27 https://github.com/SzczepanGrela/inventory-generator/actions/runs/37264055818: 84 .NET / 28 Python / baseline browser suite. Test logs verified; Container/Quality green, deploy skipped in both. Separate heads, no combined candidate acceptance; scan scope unchanged.
-- **Produkcja:** October 5 public health returned 9a2dee631f4aff76dc2024d3036287ad93216452. Coordinator made no app merge, deployment approval, cancellation, live load/failure exercise, Docker inspect or fresh header audit. Older host observations retain their dates.
+- **Stan źródła:** Reviewed open #26 b3d6fb3 and #27 29cf54a, independent branches from main 16ed383d. Single-key commits, legacy migration and persistent-write recovery accepted. Malformed authoritative recovery export loses raw source; one exception-order regression still tests a copy. Separate green CI; public health 9a2dee6 on October 7. Progress remains 84% pending accepted integration.
+- **Testy i CI:** #26 https://github.com/SzczepanGrela/inventory-generator/actions/runs/37551051298: 84 .NET / 17 Python / browser suite incl. 7F-I; #27 https://github.com/SzczepanGrela/inventory-generator/actions/runs/37551747325: 84 .NET / 34 Python / browser suite. Exact heads/statuses and logs checked; Container/Quality pass, deploy skipped. Separate branches, not combined qualification; scan scope unchanged.
+- **Produkcja:** October 7 public health returned 9a2dee631f4aff76dc2024d3036287ad93216452. No coordinator app merge, deployment approval, cancellation, live load/failure exercise, new Docker inspect or header audit. Older host facts retain their dates.
 
 ### Zgodność ze standardem v2
 
@@ -138,8 +138,8 @@ Profil: **Aplikacja webowa na VPS**. Statusy odzwierciedlają wyłącznie dowody
 
 | Kontrola | Status | Dowód |
 | --- | --- | --- |
-| Zarządzanie repozytorium | Częściowe | Ochrona main zachowana; oba PR-y otwarte. Rozdzielono kod/CI/produkcję; nazwa zadania wymaga drobnej korekty. |
-| Quality CI | Częściowe | Osobne CI przechodzą z 17/28 testami Python. Niezależne sprawdzenia wykazały lukę przy błędzie zapisu przywracającego. Powiązać skopiowane testy z rzeczywistym źródłem; odbiór integracji/HTTP pod limitami pozostaje. |
+| Zarządzanie repozytorium | Częściowe | Ochrona main zachowana; oba PR-y otwarte, poprawiono przypisanie kodu/CI/produkcji/zadań. Bez scalenia aplikacji i zatwierdzenia wdrożenia. |
+| Quality CI | Częściowe | Osobne CI przechodzą z 17/34 testami Python. Główne poprawki zapisu/migracji przechodzą niezależnie; eksport uszkodzonych surowych danych zawodzi. Pozostaje jeden skopiowany test wyjątków i odbiór integracji/HTTP pod limitami. |
 | Niezmienne wydanie | Gotowe | Run 37091518872 testuje i poświadcza jeden digest, następnie weryfikuje rewizję dla chronionego CD. |
 | Dostęp wdrożeniowy | Częściowe | Uwierzytelnienie produkcji przez prywatne Coolify/Tailscale przeszło; przegląd zakresu uprawnień pozostaje osobny. |
 | Sieć, TLS i tożsamość klienta | Częściowe | Publiczny TLS/nagłówki i regresje exact-proxy działają; starsze dowody sieci oraz brakujące testy klientów/edge zachowują swój zakres. |
@@ -149,7 +149,7 @@ Profil: **Aplikacja webowa na VPS**. Statusy odzwierciedlają wyłącznie dowody
 | Atomowa promocja i rollback | Częściowe | Sprawdzenia rzeczywistego kodu #27 dla manual-old/stale-push/etykiety przechodzą. Ścieżka awaryjna wymaga uzgodnionego zamrożenia promocji. Odbiór recovery/capacity produkcji pozostaje osobny. |
 | Koordynacja i retencja | Częściowe | Kod serializacji wydań i retencji istnieje; pomiary capacity starej/nowej instancji pozostają otwarte. |
 | Obserwowalność | Częściowe | Uznano ograniczone logi reason-code i regresje braku przesłanych nazw; integracja centralna, retencja i dostarczanie alertów pozostają otwarte. |
-| Tożsamość webowa | Częściowe | Poprawiono PL/EN dialogu recovery i etykiet ARIA; brak fałszywego sukcesu po błędzie zapisu. Pozostaje trwałość odzyskiwania i odbiór podglądu/licencji. |
+| Tożsamość webowa | Częściowe | Zachowano PL/EN recovery i komunikaty błędów zapisu. Kopia uszkodzonego nowego formatu pomija źródło mimo komunikatu pobrania. Poprawić eksport; odbiór podglądu/licencji pozostaje. |
 
 ### Zadania pozostałe i bieżące
 
@@ -157,13 +157,13 @@ Profil: **Aplikacja webowa na VPS**. Statusy odzwierciedlają wyłącznie dowody
 
 **Implementacja · W toku · 90% · trudność 3/5 · 4–7 h**
 
-Main 16ed383d safeguards retained. #26 bed0918 passes reset/import single-write failure, complete original download after reload and retry. If compensation also fails, recovery downloads new columns with 5001 old rows; no false success now. Require durable whole-project commit before acceptance. Synthetic failure, no actual user loss observed.
+#26 b3d6fb3 replaces compensation with one authoritative versioned project write. Independent persistent-failure reset/import preserves full legacy and envelope originals after reload; retry and migration pass. Recovery export of malformed authoritative JSON omits the raw source and must be corrected. No real user data loss observed.
 
 #### Rozbudować testy eksportu i przeglądarki
 
 **Jakość · W toku · 90% · trudność 3/5 · 3–6 h**
 
-#26 Quality 37263576163: 84 .NET / 17 Python / browser suite including 7F-I; #27 Quality 37264055818: 84 .NET / 28 Python / baseline browser suite. Separate green CI. Independent six browser fault cases and 28 Python tests; actual workflow/runbook checks pass. Replace copied snippet tests with actual-source regressions. Combined candidate/capped HTTP acceptance remain.
+#26 Quality 37551051298: 84 .NET / 17 Python / browser suite incl. 7F-I; #27 Quality 37551747325: 84 .NET / 34 Python / baseline browser suite. Independent 34 Python tests pass. Nine browser scenarios: seven core persistence/migration cases pass, two expose malformed raw recovery-export loss. Workflow/selector tests use actual source; exception-order test still copies logic. Combined/capped HTTP acceptance remains.
 
 #### Włączyć ruleset i wymagane Quality
 
@@ -175,7 +175,7 @@ October 3 coordinator installed/read back active ruleset 24407679: main requires
 
 **Dokumentacja · W toku · 80% · trudność 2/5 · 2–3 h**
 
-#27 e69f0b3 fixes manual old-revision deployment, emergency promotion-freeze prerequisite, exception ordering and overlap selector. Correct remaining API timing prose (15s, three GET attempts, early success), canonical task attribution and unsupported atomic-storage claim. No live rollback acceptance implied.
+#27 29cf54a corrects 15s/three-GET-attempt timing, D02.3a scope, buffered DOCX and separate source/CI/live status. Prior serialized manual rollback, emergency freeze and selector fixes retained. Only copied exception-order regression remains in the reviewed procedure scope; no live acceptance implied.
 
 #### Uruchomić DNS, TLS i trzy warstwy limitów
 
@@ -187,13 +187,13 @@ Main 16ed383d retains three export slots without waiting and shared weighted per
 
 **Wdrożenie · Gotowe · 100% · trudność 3/5 · 0–0 h**
 
-Protected exact-digest pipeline retained. Separate PR #26/#27 Container and Quality gates pass; deployment skipped for each. Both remain open, based on main 16ed383d. Public health 9a2dee6 on October 5. No reviewed combined image or new deployment is claimed.
+Protected exact-digest pipeline retained. Separate #26 b3d6fb3 / #27 29cf54a Container and Quality gates pass; deploy skipped. Both remain open from main 16ed383d. Public health 9a2dee6 on October 7; no reviewed combined image or new deployment claimed.
 
 #### Wdrożyć readiness, blue-green i rollback
 
 **Wdrożenie · W toku · 50% · trudność 4/5 · 3–6 h**
 
-Managed rolling/readiness/rollback implementation retained. Actual #27 workflow permits manual old target, skips stale automatic push and rejects bad image labels; production protection/serialization retained. Emergency direct route now requires operational exclusion of other promoters. Independent offline checks pass; live recovery/overlap and capped capacity remain separate.
+Managed rolling/readiness/rollback implementation retained. Actual-source freshness/image-label/selector regressions pass in #27; emergency direct route requires coordinated promotion freeze. Runbook handlers are correct but their regression still tests a local copy. Combined candidate, live recovery/overlap and capped capacity remain separate.
 
 #### Podłączyć usługę do centralnego monitoringu
 
@@ -217,7 +217,7 @@ Keep dated September 29 runtime evidence and parser exceptions. October 3 source
 
 **Dokumentacja · W toku · 70% · trudność 2/5 · 1–2 h**
 
-Recovery banner, translated PL/EN dialog/buttons and ARIA labels now implemented; browser CI passes 7I. No false success after failed persistence; prior startup/edit paths accepted. Recovery after failed compensation and representative preview/licensing acceptance remain; no blanket WCAG claim.
+Recovery PL/EN dialog/buttons/ARIA and no-false-success on rejected writes retained. New malformed authoritative recovery download omits raw data despite showing download success; fix this narrow export path. Representative preview/licensing acceptance remains; no blanket WCAG claim.
 
 ### Decyzje architektoniczne
 

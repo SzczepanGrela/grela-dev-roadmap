@@ -60,16 +60,16 @@
     "date": "2026-10-07",
     "mode": "source-audited",
     "sourceRevision": "16ed383d2affb96a7a538ec935a7b3b7dd337257",
-    "sourceState": "Reviewed open #26 b3d6fb3 and #27 29cf54a, independent branches from main 16ed383d. Single-key commits, legacy migration and persistent-write recovery accepted. Malformed authoritative recovery export loses raw source; one exception-order regression still tests a copy. Separate green CI; public health 9a2dee6 on October 7. Progress remains 84% pending accepted integration."
+    "sourceState": "Reviewed open #26 fdeadde3b3ecbe5aafb3397a611e0e3e90b13c5e and #27 ca22156981d5467100f4f151201fcff6b8c9139d, independent branches from main 16ed383d. IC07-1/IC07-2 accepted: exact raw recovery export and actual-runbook regression pass. Separate green CI; public health 9a2dee6 on October 7. Progress remains 84% pending integration and remaining acceptance."
   },
   "focus": {
     "current": {
-      "en": "Gemini: fix raw malformed-project recovery export in #26 and bind the last #27 exception-order test to source; preserve accepted commit/migration behavior.",
-      "pl": "Gemini: poprawić eksport surowego uszkodzonego projektu w #26 i powiązać ostatni test kolejności wyjątków #27 ze źródłem; zachować przyjęty zapis i migrację."
+      "en": "Coordinator: integrate reviewed #26/#27 and qualify the combined candidate. Gemini corrective assignment accepted; portfolio may start.",
+      "pl": "Koordynator: zintegrować przyjęte #26/#27 i zweryfikować wspólnego kandydata. Poprawki Gemini odebrane; można zacząć portfolio."
     },
     "next": {
-      "en": "Review app corrections before portfolio; keep capped HTTP capacity and coordinated release/recovery acceptance as separate gates.",
-      "pl": "Przegląd poprawek aplikacji przed portfolio; pomiary HTTP pod limitami i uzgodniony odbiór wdrożenia/recovery pozostają osobnymi bramkami."
+      "en": "Coordinate scoped release, effective runtime, capped HTTP capacity and recovery/rolling acceptance; keep production approval separate.",
+      "pl": "Uzgodnić odbiór wydania, efektywnego runtime, HTTP pod limitami i recovery/rolling; zatwierdzenie produkcji pozostaje osobne."
     }
   },
   "tasks": [
@@ -88,7 +88,7 @@
       "hoursMax": 7,
       "daysMin": 0.5,
       "daysMax": 1.0,
-      "evidence": "#26 b3d6fb3 replaces compensation with one authoritative versioned project write. Independent persistent-failure reset/import preserves full legacy and envelope originals after reload; retry and migration pass. Recovery export of malformed authoritative JSON omits the raw source and must be corrected. No real user data loss observed."
+      "evidence": "#26 fdeadde3 preserves exact authoritative raw strings in recovery downloads, including empty, malformed and structurally invalid JSON. Independent full-storage equality and complete 5001-row envelope checks pass, with no stale legacy fallback. Earlier failed-write/reset/import/migration/retry behavior remains accepted. IC07-1 closed in candidate; integration/capped acceptance remains."
     },
     {
       "id": "quality-coverage",
@@ -105,7 +105,7 @@
       "hoursMax": 6,
       "daysMin": 0.5,
       "daysMax": 0.75,
-      "evidence": "#26 Quality 37551051298: 84 .NET / 17 Python / browser suite incl. 7F-I; #27 Quality 37551747325: 84 .NET / 34 Python / baseline browser suite. Independent 34 Python tests pass. Nine browser scenarios: seven core persistence/migration cases pass, two expose malformed raw recovery-export loss. Workflow/selector tests use actual source; exception-order test still copies logic. Combined/capped HTTP acceptance remains."
+      "evidence": "#26 Quality 37561455949: 84 .NET / 17 Python / browser suite incl. 7J; #27 Quality 37561775782: 84 .NET / 34 Python / baseline browser suite. Independent 34 Python and 12 intercepted browser scenarios pass. Reversing handlers in the actual runbook makes the intended regression fail. Combined/capped HTTP acceptance remains."
     },
     {
       "id": "repository-governance",
@@ -139,7 +139,7 @@
       "hoursMax": 3,
       "daysMin": 0.25,
       "daysMax": 0.5,
-      "evidence": "#27 29cf54a corrects 15s/three-GET-attempt timing, D02.3a scope, buffered DOCX and separate source/CI/live status. Prior serialized manual rollback, emergency freeze and selector fixes retained. Only copied exception-order regression remains in the reviewed procedure scope; no live acceptance implied."
+      "evidence": "#27 ca22156 binds the final exception-order regression to actual runbook AST; independent mutation of the real example is detected. Timing, D02.3a scope, buffered DOCX, serialized manual rollback/freeze and selector/status corrections retained. IC07-2 closed in candidate; integration and live acceptance remain."
     },
     {
       "id": "edge-and-limits",
@@ -173,7 +173,7 @@
       "hoursMax": 0,
       "daysMin": 0,
       "daysMax": 0,
-      "evidence": "Protected exact-digest pipeline retained. Separate #26 b3d6fb3 / #27 29cf54a Container and Quality gates pass; deploy skipped. Both remain open from main 16ed383d. Public health 9a2dee6 on October 7; no reviewed combined image or new deployment claimed."
+      "evidence": "Protected exact-digest pipeline retained. Separate #26 fdeadde3 / #27 ca22156 Container and Quality gates pass; deploy skipped. Both remain open from main 16ed383d. Public health 9a2dee6 on October 7. Local merge-tree is conflict-free, but no combined qualified image or deployment is claimed."
     },
     {
       "id": "blue-green",
@@ -190,7 +190,7 @@
       "hoursMax": 6,
       "daysMin": 0.5,
       "daysMax": 0.75,
-      "evidence": "Managed rolling/readiness/rollback implementation retained. Actual-source freshness/image-label/selector regressions pass in #27; emergency direct route requires coordinated promotion freeze. Runbook handlers are correct but their regression still tests a local copy. Combined candidate, live recovery/overlap and capped capacity remain separate."
+      "evidence": "Managed rolling/readiness/rollback implementation retained. Actual-source freshness/image-label/selector/exception-order regressions pass in #27, including a runbook mutation check. Emergency direct route requires coordinated promotion freeze. Combined candidate, live recovery/overlap and capped capacity remain separate."
     },
     {
       "id": "service-observability",
@@ -258,13 +258,13 @@
       "hoursMax": 2,
       "daysMin": 0.25,
       "daysMax": 0.25,
-      "evidence": "Recovery PL/EN dialog/buttons/ARIA and no-false-success on rejected writes retained. New malformed authoritative recovery download omits raw data despite showing download success; fix this narrow export path. Representative preview/licensing acceptance remains; no blanket WCAG claim."
+      "evidence": "Recovery PL/EN dialog/buttons/ARIA and no-false-success behavior retained. Raw malformed/empty authoritative recovery downloads now preserve exact source without storage mutation. Representative preview/licensing acceptance remains; no blanket WCAG claim."
     }
   ],
   "verification": {
-    "worktree": "Separate clean review worktrees at #26 b3d6fb390666107078e76947afa39136cd17966d and #27 29cf54a787b4b1f9e9ff11ca5cf0b433bb841b59; worker checkout untouched. Both open from main 16ed383d; neither includes the other.",
-    "tests": "Independent 34 Python tests pass. Intercepted Chromium with synthetic data: four legacy/envelope reset/import persistent-failure cases preserve full recovery after reload and retry; successful migration, failed migration/retry and authoritative precedence also pass. Truncated/null authoritative JSON triggers recovery without stale fallback but raw contents are missing from download. No actual user loss or full independent .NET rerun.",
-    "ci": "#26 https://github.com/SzczepanGrela/inventory-generator/actions/runs/37551051298: 84 .NET / 17 Python / browser suite incl. 7F-I; #27 https://github.com/SzczepanGrela/inventory-generator/actions/runs/37551747325: 84 .NET / 34 Python / browser suite. Exact heads/statuses and logs checked; Container/Quality pass, deploy skipped. Separate branches, not combined qualification; scan scope unchanged.",
+    "worktree": "Clean isolated review worktrees at #26 fdeadde3b3ecbe5aafb3397a611e0e3e90b13c5e and #27 ca22156981d5467100f4f151201fcff6b8c9139d; worker checkout untouched. GitHub full heads verified because relayed suffixes differed. Both open from main 16ed383d; neither includes the other.",
+    "tests": "Independent 34 Python tests and 12 intercepted Chromium scenarios pass. Four full-original persistent-failure/reset/import/retry cases, migration/failure/retry, authoritative precedence and five raw-recovery cases (truncated Unicode/null/invalid/empty/5001 rows). Storage unchanged by download. Reversing actual runbook handlers fails the intended regression; original restored. No full independent .NET rerun or live exercise.",
+    "ci": "#26 https://github.com/SzczepanGrela/inventory-generator/actions/runs/37561455949: 84 .NET / 17 Python / browser suite incl. 7J; #27 https://github.com/SzczepanGrela/inventory-generator/actions/runs/37561775782: 84 .NET / 34 Python / baseline browser suite. Exact heads/statuses/logs checked; zero .NET skips, Container/Quality pass, deploy skipped. Separate branches, not combined qualification.",
     "production": "October 7 public health returned 9a2dee631f4aff76dc2024d3036287ad93216452. No coordinator app merge, deployment approval, cancellation, live load/failure exercise, new Docker inspect or header audit. Older host facts retain their dates."
   },
   "media": {
@@ -302,15 +302,15 @@
   "audit": {
     "date": "2026-10-07",
     "sources": [
-      "Open #26 b3d6fb3 and #27 29cf54a source and exact CI heads, main baseline 16ed383d",
-      "Quality 37551051298 and 37551747325 status and test logs",
-      "Independent 34 Python tests; nine intercepted Chromium scenarios with synthetic data and full recovery comparisons",
-      "Single-key persistence/migration and raw-export review; runbook timing and actual-source test inspection",
-      "Fresh public health October 7; older host/governance evidence remains scoped"
+      "Open #26 fdeadde3b3ecbe5aafb3397a611e0e3e90b13c5e and #27 ca22156981d5467100f4f151201fcff6b8c9139d; main baseline 16ed383d",
+      "Quality 37561455949 and 37561775782 status and test logs",
+      "Independent 34 Python tests and 12 intercepted Chromium scenarios with synthetic data and full recovery/storage comparisons",
+      "Actual-runbook handler-order mutation detected; local merge-tree conflict-free, no combined image claimed",
+      "Fresh public health October 7; older host/governance evidence retains its date"
     ],
     "notes": {
-      "en": "Single-key commit, legacy migration and persistent-write recovery now accepted in #26. Its malformed authoritative recovery download omits the raw source and needs a narrow export fix. #27 operational corrections accepted; one exception-order test still checks a copy. Update the same open PRs; portfolio follows review. Progress stays 84%, separate from production/capacity acceptance.",
-      "pl": "Przyjęto pojedynczy zapis projektu, migrację legacy i odporność na trwałe błędy zapisu w #26. Pobrana kopia uszkodzonego nowego formatu pomija surowe dane; potrzebna wąska poprawka eksportu. Poprawki procedur #27 przyjęte; jeden test wyjątków nadal sprawdza kopię kodu. Te same otwarte PR-y; portfolio po odbiorze. 84% pozostaje oddzielone od wdrożenia i capacity."
+      "en": "IC07-1 and IC07-2 accepted in reviewed open #26 fdeadde3 and #27 ca22156. Raw recovery preserves malformed/empty source, and the remaining exception-order test now checks the actual runbook. Gemini may start portfolio; coordinator owns integration and remaining capacity/runtime/live acceptance. Progress stays 84%, separate from production status.",
+      "pl": "IC07-1 i IC07-2 przyjęte w otwartych #26 fdeadde3 i #27 ca22156. Recovery zachowuje uszkodzone/puste źródło, a test wyjątków sprawdza rzeczywisty runbook. Gemini może zacząć portfolio; koordynator prowadzi integrację i pozostały odbiór capacity/runtime/produkcji. 84% pozostaje oddzielone od stanu wdrożenia."
     }
   },
   "compliance": {
@@ -333,8 +333,8 @@
         "id": "quality-ci",
         "status": "partial",
         "evidence": {
-          "en": "Separate CI passes with 17/34 Python tests. Core persistence/migration fixes pass independently; malformed raw recovery export fails. One copied exception-order test remains; combined/capped HTTP qualification pending.",
-          "pl": "Osobne CI przechodzą z 17/34 testami Python. Główne poprawki zapisu/migracji przechodzą niezależnie; eksport uszkodzonych surowych danych zawodzi. Pozostaje jeden skopiowany test wyjątków i odbiór integracji/HTTP pod limitami."
+          "en": "Separate CI passes with 17/34 Python tests. All 12 independent recovery/migration cases and actual-runbook mutation check pass; IC07-1/IC07-2 accepted. Combined/capped HTTP qualification pending.",
+          "pl": "Osobne CI przechodzą z 17/34 testami Python. Wszystkie 12 niezależnych przypadków recovery/migracji i mutacja runbooka przechodzą; IC07-1/IC07-2 przyjęte. Odbiór integracji/HTTP pod limitami pozostaje."
         },
         "taskIds": [
           "quality-coverage",
@@ -443,8 +443,8 @@
         "id": "web-identity",
         "status": "partial",
         "evidence": {
-          "en": "PL/EN recovery and write-failure feedback retained. Malformed authoritative recovery file omits source despite successful download indication. Fix export; preview/licensing acceptance remains.",
-          "pl": "Zachowano PL/EN recovery i komunikaty błędów zapisu. Kopia uszkodzonego nowego formatu pomija źródło mimo komunikatu pobrania. Poprawić eksport; odbiór podglądu/licencji pozostaje."
+          "en": "PL/EN recovery and write-failure feedback retained. Exact raw malformed/empty recovery export accepted; representative preview/licensing acceptance remains.",
+          "pl": "Zachowano PL/EN recovery i komunikaty błędów zapisu. Przyjęto eksport dokładnego uszkodzonego/pustego źródła; odbiór podglądu/licencji pozostaje."
         },
         "taskIds": [
           "web-identity"

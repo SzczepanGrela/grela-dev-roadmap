@@ -1,6 +1,6 @@
 # grela.dev Portfolio — status report / raport stanu
 
-Audit date / data audytu: **2026-10-03**<br>
+Audit date / data audytu: **2026-10-07**<br>
 Estimated completion / szacowane ukończenie: **11%**<br>
 Forecast / prognoza: **2026-10-08–2026-10-23**, 33–58 h, low confidence / pewność: low
 
@@ -12,7 +12,7 @@ Forecast / prognoza: **2026-10-08–2026-10-23**, 33–58 h, low confidence / pe
 
 Personal portfolio currently represented by design explorations rather than a production-ready site.
 
-Next bounded Gemini task is static portfolio engineering, preserving the current design. Use Vite/React, compile JSX, locked local assets and real responsive/browser tests. Read-only Cloudflare access cannot currently enumerate Pages; operator configuration follows a concrete candidate. No backend, application limiter or Coolify deployment is planned. Forecast dates depend on Inventory review and operator availability.
+Next bounded Gemini task is static portfolio engineering, preserving the current design. Use Vite/React, compile JSX, locked local assets and real responsive/browser tests. Read-only Cloudflare access cannot currently enumerate Pages; operator configuration follows a concrete candidate. No backend, application limiter or Coolify deployment is planned. Inventory corrective review was accepted October 7; Gemini may begin. Portfolio source/Pages evidence remains dated October 3; no new implementation is claimed. Delivery timing depends on candidate and operator availability.
 
 ### Audit evidence
 
@@ -103,7 +103,7 @@ No accepted final favicon/metadata/canonical/social preview. Keep existing desig
 
 Portfolio osobiste istniejące obecnie jako eksploracje designu, nie gotowa strona produkcyjna.
 
-Następne ograniczone zadanie Gemini to engineering statycznego portfolio z zachowaniem designu. Vite/React, kompilacja JSX, lokalne assety/lock i rzeczywiste testy responsive/browser. Odczyt Pages jest obecnie niedostępny; operator konfiguruje po przygotowaniu kandydata. Nie planujemy backendu, limitera aplikacyjnego ani Coolify. Daty zależą od przeglądu Inventory i dostępności operatora.
+Następne ograniczone zadanie Gemini to engineering statycznego portfolio z zachowaniem designu. Vite/React, kompilacja JSX, lokalne assety/lock i rzeczywiste testy responsive/browser. Odczyt Pages jest obecnie niedostępny; operator konfiguruje po przygotowaniu kandydata. Nie planujemy backendu, limitera aplikacyjnego ani Coolify. Przegląd poprawek Inventory przyjęto 7 października; Gemini może zacząć. Dowody źródeł/Pages pozostają z 3 października; nie deklarujemy nowej implementacji. Termin wdrożenia zależy od kandydata i operatora.
 
 ### Dowody audytu
 

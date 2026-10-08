@@ -1,6 +1,6 @@
 # Inventory Generator — status report / raport stanu
 
-Audit date / data audytu: **2026-10-07**<br>
+Audit date / data audytu: **2026-10-08**<br>
 Estimated completion / szacowane ukończenie: **92%**<br>
 Forecast / prognoza: **2026-10-07–2026-10-20**, 13–25 h, low confidence / pewność: low
 
@@ -12,14 +12,14 @@ Forecast / prognoza: **2026-10-07–2026-10-20**, 13–25 h, low confidence / pe
 
 Local-first inventory editor and server-side DOCX, CSV and HTML generator.
 
-Accepted corrections are merged and deployed at 6971496. Combined CI, bounded local capacity and public smoke pass. Remaining work is scoped live recovery/rolling/client acceptance, post-release inspect and separately tracked platform/metadata tasks; no 100% claim.
+October 8 scoped follow-up accepts app-client isolation, retry/recovery, sampled header-bypass rejection and selected post-release inspect. Earlier October 7 CI/capacity evidence keeps its date. Unhealthy-candidate retention, failed-smoke rollback and rolling capacity remain open alongside separate platform/metadata tasks. Progress and effort estimates are unchanged; no 100% claim.
 
 ### Audit evidence
 
 - **Repozytorium:** `SzczepanGrela/inventory-generator` @ `697149654f7f84dfe8aabe3565838348ef3a8220`
-- **Source state:** PRs #26/#27/#28 merged into 6971496. Combined final CI and protected normal release passed. Public revision and exact frontend match verified October 7. Remaining live recovery/rolling/client acceptance is separate from functional completion.
+- **Source state:** PRs #26/#27/#28 merged into deployed 6971496; normal protected release passed. October 8 scoped follow-up accepts public app-client isolation, retry/recovery and sampled header-bypass rejection, plus selected post-release runtime inspect. Tooling-only #29 is merged at d62e2dc; ordinary promotion was cancelled before production steps. Live unhealthy-candidate, rollback and rolling-capacity acceptance remains separate. Effort estimates retain October 7.
 - **Tests and CI:** https://github.com/SzczepanGrela/inventory-generator/actions/runs/37574806859: 84 .NET (zero skips), 34 Python, 12 browser suites; Container, fixable HIGH/CRITICAL scan, attestation, Quality, release preflight and Production all pass.
-- **Production:** October 7 public health reports 697149654f7f84dfe8aabe3565838348ef3a8220. Independent full smoke and byte-identical app.js pass. Operator pre-release inspect confirms expected CPU/RAM/UID/cap-drop/init and no mounts on old baseline. New-container inspect and live fault/load tests remain pending.
+- **Production:** October 8 public health before/after header probes reports 697149654f7f84dfe8aabe3565838348ef3a8220. Selected new-container runtime inspect is recorded. Paired clients show application isolation, 429/Retry-After and recovery; sampled forged identity headers do not bypass public protection. Live unhealthy-candidate/rollback/rolling-capacity tests remain pending.
 
 ### v2 standard compliance
 
@@ -31,9 +31,9 @@ Profile: **VPS web application**. Statuses reflect only evidence available on th
 | Quality CI | Complete | Combined CI plus bounded real HTTP/cgroup qualification pass on the final image; live operational acceptance is separate. |
 | Immutable release | Complete | Same tested/attested digest deployed by run 37574806859 at 6971496. |
 | Deployment access | Partial | Inventory private Coolify/Tailscale production authentication succeeded; credential scope review remains separate. |
-| Network, TLS and client identity | Partial | Public TLS/headers and exact-proxy regressions exist; retain older network evidence and pending live client/edge checks. |
-| Abuse protection | Partial | Local capped HTTP overload/recovery passes; worst memory peak 469.61 MiB, not eliminated OOM risk. Live identity/rolling remains. |
-| Runtime safety | Partial | Pre-release baseline inspect confirms selected caps/user/network; final-image local tests pass. New-container inspect/parser exceptions remain. |
+| Network, TLS and client identity | Partial | October 8 paired public clients and sampled forwarded-header checks pass at the app/public-path level. Observer and VPS use different edge locations; same-colo edge isolation remains unproven. Earlier network/TLS evidence retains its date. |
+| Abuse protection | Partial | Local capped HTTP overload/recovery and public app-client/retry/header checks pass. Worst local peak 469.61 MiB does not eliminate OOM risk. Rolling capacity remains unqualified. |
+| Runtime safety | Partial | Selected new-container inspect confirms the deployed revision, caps, non-root user, capability removal, init and log rotation. Missing PID/security/read-only protections retain the parser exception; unqueried fields are not refreshed. |
 | Readiness and preflight | Complete | Final image capped HTTP/readiness and protected release preflight/public smoke pass; health latency is not guaranteed under arbitrary load. |
 | Atomic promotion and rollback | Partial | Normal production release passed; actual-source rollback tests retained. Live rejected candidate/failed-smoke rollback pending agreed window. |
 | Coordination and retention | Partial | Serialized release and scoped retention code exists; measured old/new capacity remains open. |
@@ -64,13 +64,13 @@ October 3 coordinator installed/read back active ruleset 24407679: main requires
 
 **Documentation · In progress · 90% · difficulty 2/5 · 2–3 h**
 
-Corrected actual-runbook tests merged; coordinator integration/local-capacity/normal-release record updated. Final live fault/rolling/client evidence remains to be added.
+Corrected runbook tests merged; integration, local-capacity and normal-release evidence recorded. October 8 adds selected new-container inspect, paired public clients, retry/recovery and sampled header-bypass results. Final live fault/rolling evidence remains.
 
 #### Enable DNS, TLS and three-layer limits
 
 **Delivery · In progress · 85% · difficulty 3/5 · 2–4 h**
 
-Three slots, no waiting, weighted per-client budgets retained. Bounded local HTTP overload returns 429 Retry-After and recovers; no OOM, worst peak 469.61/512 MiB. Independent public client/spoof/rolling acceptance remains separate.
+Three slots, no waiting, weighted per-client budgets retained. Local capped HTTP overload/recovery passed; worst peak 469.61/512 MiB without OOM. October 8 public paired run: VPS 13/30 exports passed, 17 application DOCX 429s with Retry-After, recovery 200; observer 12/12 passed, eight during the regular VPS series. Forged X-Forwarded-For remained application 429; forged CF-Connecting-IP received public-path 403, not an observed origin response. Same-colo edge isolation and rolling capacity remain open.
 
 #### Publish and deploy an image by digest
 
@@ -100,7 +100,7 @@ Final integrated main Quality -> attested digest -> protected Coolify production
 
 **Delivery · In progress · 65% · difficulty 3/5 · 2–4 h**
 
-Operator October 7 pre-release inspect confirms baseline non-root, 1 CPU/512 MiB, no extra swap, cap-drop ALL, init, isolated network and no mounts. New-container inspect pending. PID/security/read-only/tmpfs/logging were not reread; accepted parser exceptions stay open.
+Selected operator post-release inspect, recorded October 8, confirms 6971496, non-root, 1 CPU/512 MiB, no extra swap allowance, capability removal, init, isolated network, bounded local logging and exact trusted proxies. PID/security options remain absent and rootfs writable; parser exception remains. This sample does not refresh mounts/tmpfs or process flags.
 
 #### Verify favicon, metadata and accessible preview
 
@@ -123,14 +123,14 @@ Combined browser CI covers PL/EN/ARIA recovery, mobile viewport, keyboard modal 
 
 Lokalny edytor inwentarza z serwerowym generowaniem DOCX, CSV i HTML.
 
-Przyjęte poprawki scalono i wdrożono jako 6971496. Wspólne CI, ograniczone testy lokalne i publiczny smoke przeszły. Pozostały odbiór recovery/rolling/klientów, inspect po wdrożeniu i osobne zadania platformy/metadanych; bez deklaracji 100%.
+Wąski odbiór 8 października potwierdza rozdzielenie klientów aplikacji, retry/recovery, odrzucenie prób podrobienia nagłówków i wybrany inspect po wdrożeniu. CI i pomiary lokalne zachowują datę 7 października. Pozostają odrzucenie niezdrowego kandydata, failed-smoke rollback i pomiar rolling oraz osobne zadania platformy/metadanych. Procenty i szacunki pracy bez zmian; bez deklaracji 100%.
 
 ### Dowody audytu
 
 - **Repozytorium:** `SzczepanGrela/inventory-generator` @ `697149654f7f84dfe8aabe3565838348ef3a8220`
-- **Stan źródła:** PRs #26/#27/#28 merged into 6971496. Combined final CI and protected normal release passed. Public revision and exact frontend match verified October 7. Remaining live recovery/rolling/client acceptance is separate from functional completion.
+- **Stan źródła:** PRs #26/#27/#28 merged into deployed 6971496; normal protected release passed. October 8 scoped follow-up accepts public app-client isolation, retry/recovery and sampled header-bypass rejection, plus selected post-release runtime inspect. Tooling-only #29 is merged at d62e2dc; ordinary promotion was cancelled before production steps. Live unhealthy-candidate, rollback and rolling-capacity acceptance remains separate. Effort estimates retain October 7.
 - **Testy i CI:** https://github.com/SzczepanGrela/inventory-generator/actions/runs/37574806859: 84 .NET (zero skips), 34 Python, 12 browser suites; Container, fixable HIGH/CRITICAL scan, attestation, Quality, release preflight and Production all pass.
-- **Produkcja:** October 7 public health reports 697149654f7f84dfe8aabe3565838348ef3a8220. Independent full smoke and byte-identical app.js pass. Operator pre-release inspect confirms expected CPU/RAM/UID/cap-drop/init and no mounts on old baseline. New-container inspect and live fault/load tests remain pending.
+- **Produkcja:** October 8 public health before/after header probes reports 697149654f7f84dfe8aabe3565838348ef3a8220. Selected new-container runtime inspect is recorded. Paired clients show application isolation, 429/Retry-After and recovery; sampled forged identity headers do not bypass public protection. Live unhealthy-candidate/rollback/rolling-capacity tests remain pending.
 
 ### Zgodność ze standardem v2
 
@@ -142,9 +142,9 @@ Profil: **Aplikacja webowa na VPS**. Statusy odzwierciedlają wyłącznie dowody
 | Quality CI | Gotowe | Wspólne CI i ograniczone testy HTTP/cgroup końcowego obrazu przeszły; odbiór operacyjny jest osobny. |
 | Niezmienne wydanie | Gotowe | Ten sam przetestowany i poświadczony digest wdrożony przez run 37574806859, rewizja 6971496. |
 | Dostęp wdrożeniowy | Częściowe | Uwierzytelnienie produkcji przez prywatne Coolify/Tailscale przeszło; przegląd zakresu uprawnień pozostaje osobny. |
-| Sieć, TLS i tożsamość klienta | Częściowe | Publiczny TLS/nagłówki i regresje exact-proxy działają; starsze dowody sieci oraz brakujące testy klientów/edge zachowują swój zakres. |
-| Ochrona przed nadużyciami | Częściowe | Lokalne HTTP pod limitami i recovery przeszły; szczyt 469,61 MiB nie eliminuje ryzyka OOM. Pozostają testy tożsamości/rolling. |
-| Bezpieczeństwo runtime | Częściowe | Odczyt bazowy potwierdza wybrane limity/użytkownika/sieć; lokalne testy obrazu przeszły. Pozostają nowy inspect i wyjątki parsera. |
+| Sieć, TLS i tożsamość klienta | Częściowe | 8 października przeszły równoległe testy klientów i próby podrobienia nagłówków. Źródła trafiają do różnych lokalizacji edge; rozdzielenie IP w tej samej lokalizacji pozostaje niepotwierdzone. Starsze dowody sieci/TLS zachowują datę. |
+| Ochrona przed nadużyciami | Częściowe | Lokalne HTTP pod limitami oraz publiczne testy klientów/retry/nagłówków przeszły. Lokalny szczyt 469,61 MiB nie eliminuje ryzyka OOM. Pomiar obciążenia podczas rolling pozostaje otwarty. |
+| Bezpieczeństwo runtime | Częściowe | Wybrany inspect nowego kontenera potwierdza rewizję, limity, użytkownika non-root, cap-drop, init i rotację logów. Brakujące zabezpieczenia PID/security/read-only pozostają wyjątkiem parsera; nieodczytane pola zachowują starszą datę. |
 | Readiness i preflight | Gotowe | Końcowy obraz przeszedł ograniczone HTTP/readiness, preflight i publiczny smoke; bez gwarancji opóźnienia przy dowolnym obciążeniu. |
 | Atomowa promocja i rollback | Częściowe | Zwykłe wdrożenie przeszło; testy kodu rollbacku zachowane. Próby odrzucenia kandydata i failed-smoke czekają na okno. |
 | Koordynacja i retencja | Częściowe | Kod serializacji wydań i retencji istnieje; pomiary capacity starej/nowej instancji pozostają otwarte. |
@@ -175,13 +175,13 @@ October 3 coordinator installed/read back active ruleset 24407679: main requires
 
 **Dokumentacja · W toku · 90% · trudność 2/5 · 2–3 h**
 
-Corrected actual-runbook tests merged; coordinator integration/local-capacity/normal-release record updated. Final live fault/rolling/client evidence remains to be added.
+Corrected runbook tests merged; integration, local-capacity and normal-release evidence recorded. October 8 adds selected new-container inspect, paired public clients, retry/recovery and sampled header-bypass results. Final live fault/rolling evidence remains.
 
 #### Uruchomić DNS, TLS i trzy warstwy limitów
 
 **Wdrożenie · W toku · 85% · trudność 3/5 · 2–4 h**
 
-Three slots, no waiting, weighted per-client budgets retained. Bounded local HTTP overload returns 429 Retry-After and recovers; no OOM, worst peak 469.61/512 MiB. Independent public client/spoof/rolling acceptance remains separate.
+Three slots, no waiting, weighted per-client budgets retained. Local capped HTTP overload/recovery passed; worst peak 469.61/512 MiB without OOM. October 8 public paired run: VPS 13/30 exports passed, 17 application DOCX 429s with Retry-After, recovery 200; observer 12/12 passed, eight during the regular VPS series. Forged X-Forwarded-For remained application 429; forged CF-Connecting-IP received public-path 403, not an observed origin response. Same-colo edge isolation and rolling capacity remain open.
 
 #### Publikować i wdrażać obraz po digestcie
 
@@ -211,7 +211,7 @@ Final integrated main Quality -> attested digest -> protected Coolify production
 
 **Wdrożenie · W toku · 65% · trudność 3/5 · 2–4 h**
 
-Operator October 7 pre-release inspect confirms baseline non-root, 1 CPU/512 MiB, no extra swap, cap-drop ALL, init, isolated network and no mounts. New-container inspect pending. PID/security/read-only/tmpfs/logging were not reread; accepted parser exceptions stay open.
+Selected operator post-release inspect, recorded October 8, confirms 6971496, non-root, 1 CPU/512 MiB, no extra swap allowance, capability removal, init, isolated network, bounded local logging and exact trusted proxies. PID/security options remain absent and rootfs writable; parser exception remains. This sample does not refresh mounts/tmpfs or process flags.
 
 #### Zweryfikować favicon, metadane i dostępny podgląd
 

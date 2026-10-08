@@ -60,12 +60,12 @@
     "date": "2026-10-07",
     "mode": "source-audited",
     "sourceRevision": "697149654f7f84dfe8aabe3565838348ef3a8220",
-    "sourceState": "PRs #26/#27/#28 merged into 6971496. Combined final CI and protected normal release passed. Public revision and exact frontend match verified October 7. Remaining live recovery/rolling/client acceptance is separate from functional completion."
+    "sourceState": "PRs #26/#27/#28 merged into deployed 6971496; normal protected release passed. October 8 scoped follow-up accepts public app-client isolation, retry/recovery and sampled header-bypass rejection, plus selected post-release runtime inspect. Tooling-only #29 is merged at d62e2dc; ordinary promotion was cancelled before production steps. Live unhealthy-candidate, rollback and rolling-capacity acceptance remains separate. Effort estimates retain October 7."
   },
   "focus": {
     "current": {
-      "en": "Integrated and deployed 6971496; finish scoped live recovery, rolling and independent-client acceptance.",
-      "pl": "6971496 zintegrowane i wdrożone; domknąć odbiór recovery, rolling i niezależnych klientów."
+      "en": "6971496 deployed; public client checks accepted. Finish unhealthy-candidate, rollback and rolling-capacity acceptance.",
+      "pl": "6971496 wdrożone; testy klientów przyjęte. Pozostają odrzucenie niezdrowego kandydata, rollback i pomiar obciążenia podczas rolling update."
     },
     "next": {
       "en": "Agree a bounded operational window; retain platform hardening/monitoring as separate work.",
@@ -139,7 +139,7 @@
       "hoursMax": 3,
       "daysMin": 0.25,
       "daysMax": 0.5,
-      "evidence": "Corrected actual-runbook tests merged; coordinator integration/local-capacity/normal-release record updated. Final live fault/rolling/client evidence remains to be added."
+      "evidence": "Corrected runbook tests merged; integration, local-capacity and normal-release evidence recorded. October 8 adds selected new-container inspect, paired public clients, retry/recovery and sampled header-bypass results. Final live fault/rolling evidence remains."
     },
     {
       "id": "edge-and-limits",
@@ -156,7 +156,7 @@
       "hoursMax": 4,
       "daysMin": 0.25,
       "daysMax": 0.5,
-      "evidence": "Three slots, no waiting, weighted per-client budgets retained. Bounded local HTTP overload returns 429 Retry-After and recovers; no OOM, worst peak 469.61/512 MiB. Independent public client/spoof/rolling acceptance remains separate."
+      "evidence": "Three slots, no waiting, weighted per-client budgets retained. Local capped HTTP overload/recovery passed; worst peak 469.61/512 MiB without OOM. October 8 public paired run: VPS 13/30 exports passed, 17 application DOCX 429s with Retry-After, recovery 200; observer 12/12 passed, eight during the regular VPS series. Forged X-Forwarded-For remained application 429; forged CF-Connecting-IP received public-path 403, not an observed origin response. Same-colo edge isolation and rolling capacity remain open."
     },
     {
       "id": "immutable-deploy",
@@ -241,7 +241,7 @@
       "hoursMax": 4,
       "daysMin": 0.25,
       "daysMax": 0.5,
-      "evidence": "Operator October 7 pre-release inspect confirms baseline non-root, 1 CPU/512 MiB, no extra swap, cap-drop ALL, init, isolated network and no mounts. New-container inspect pending. PID/security/read-only/tmpfs/logging were not reread; accepted parser exceptions stay open."
+      "evidence": "Selected operator post-release inspect, recorded October 8, confirms 6971496, non-root, 1 CPU/512 MiB, no extra swap allowance, capability removal, init, isolated network, bounded local logging and exact trusted proxies. PID/security options remain absent and rootfs writable; parser exception remains. This sample does not refresh mounts/tmpfs or process flags."
     },
     {
       "id": "web-identity",
@@ -262,10 +262,10 @@
     }
   ],
   "verification": {
-    "worktree": "Clean isolated coordinator checkout at 6971496; worker checkout untouched. PRs #26/#27/#28 merged with required Quality gates; no protection bypass.",
+    "worktree": "Reviewed integration of #26/#27/#28 deployed 6971496 without protection bypass. Later tooling-only #29 merged at d62e2dc with 51 Python tests and green PR CI. Its ordinary promotion was cancelled before production steps; no live exercise was dispatched.",
     "tests": "Accepted independent browser recovery/migration tests retained. Local CI-image HTTP qualification: 38 baseline + 59 repeat requests at 1 CPU/512 MiB, valid DOCX/CSV/HTML structures, expected 400/413/429, zero OOM. Worst cgroup peak 469.61 MiB, health up to 2.0571 s in a burst; bounded evidence only.",
     "ci": "https://github.com/SzczepanGrela/inventory-generator/actions/runs/37574806859: 84 .NET (zero skips), 34 Python, 12 browser suites; Container, fixable HIGH/CRITICAL scan, attestation, Quality, release preflight and Production all pass.",
-    "production": "October 7 public health reports 697149654f7f84dfe8aabe3565838348ef3a8220. Independent full smoke and byte-identical app.js pass. Operator pre-release inspect confirms expected CPU/RAM/UID/cap-drop/init and no mounts on old baseline. New-container inspect and live fault/load tests remain pending."
+    "production": "October 8 public health before/after header probes reports 697149654f7f84dfe8aabe3565838348ef3a8220. Selected new-container runtime inspect is recorded. Paired clients show application isolation, 429/Retry-After and recovery; sampled forged identity headers do not bypass public protection. Live unhealthy-candidate/rollback/rolling-capacity tests remain pending."
   },
   "media": {
     "screenshot": "assets/screenshots/inventory-generator.png",
@@ -300,22 +300,25 @@
     }
   ],
   "audit": {
-    "date": "2026-10-07",
+    "date": "2026-10-08",
     "sources": [
       "Merged #26/#27/#28; final main 697149654f7f84dfe8aabe3565838348ef3a8220",
       "Final CI and production https://github.com/SzczepanGrela/inventory-generator/actions/runs/37574806859",
       "Local exact-image HTTP/cgroup samples: 38 + 59 requests",
-      "Operator selected pre-release Docker inspect October 7; independent post-release public smoke and app.js comparison"
+      "Operator selected pre-release Docker inspect October 7; independent post-release public smoke and app.js comparison",
+      "Selected operator post-release inspect recorded October 8; no full-host refresh",
+      "October 8 paired public DOCX run: VPS 06:44:18-06:47:03 UTC; observer 06:44:51-06:47:36 UTC; separate completed header/recovery check 07:31:11-07:31:26 UTC",
+      "Tooling PR https://github.com/SzczepanGrela/inventory-generator/pull/29; merged d62e2dc, ordinary promotion cancelled before production steps"
     ],
     "notes": {
-      "en": "Accepted corrections are merged and deployed at 6971496. Combined CI, bounded local capacity and public smoke pass. Remaining work is scoped live recovery/rolling/client acceptance, post-release inspect and separately tracked platform/metadata tasks; no 100% claim.",
-      "pl": "Przyjęte poprawki scalono i wdrożono jako 6971496. Wspólne CI, ograniczone testy lokalne i publiczny smoke przeszły. Pozostały odbiór recovery/rolling/klientów, inspect po wdrożeniu i osobne zadania platformy/metadanych; bez deklaracji 100%."
+      "en": "October 8 scoped follow-up accepts app-client isolation, retry/recovery, sampled header-bypass rejection and selected post-release inspect. Earlier October 7 CI/capacity evidence keeps its date. Unhealthy-candidate retention, failed-smoke rollback and rolling capacity remain open alongside separate platform/metadata tasks. Progress and effort estimates are unchanged; no 100% claim.",
+      "pl": "Wąski odbiór 8 października potwierdza rozdzielenie klientów aplikacji, retry/recovery, odrzucenie prób podrobienia nagłówków i wybrany inspect po wdrożeniu. CI i pomiary lokalne zachowują datę 7 października. Pozostają odrzucenie niezdrowego kandydata, failed-smoke rollback i pomiar rolling oraz osobne zadania platformy/metadanych. Procenty i szacunki pracy bez zmian; bez deklaracji 100%."
     }
   },
   "compliance": {
     "standardVersion": 2,
     "profile": "vps-web",
-    "assessmentDate": "2026-10-07",
+    "assessmentDate": "2026-10-08",
     "controls": [
       {
         "id": "governance",
@@ -361,8 +364,8 @@
         "id": "network-tls-client-ip",
         "status": "partial",
         "evidence": {
-          "en": "Public TLS/headers and exact-proxy regressions exist; retain older network evidence and pending live client/edge checks.",
-          "pl": "Publiczny TLS/nagłówki i regresje exact-proxy działają; starsze dowody sieci oraz brakujące testy klientów/edge zachowują swój zakres."
+          "en": "October 8 paired public clients and sampled forwarded-header checks pass at the app/public-path level. Observer and VPS use different edge locations; same-colo edge isolation remains unproven. Earlier network/TLS evidence retains its date.",
+          "pl": "8 października przeszły równoległe testy klientów i próby podrobienia nagłówków. Źródła trafiają do różnych lokalizacji edge; rozdzielenie IP w tej samej lokalizacji pozostaje niepotwierdzone. Starsze dowody sieci/TLS zachowują datę."
         },
         "taskIds": [
           "edge-and-limits"
@@ -372,8 +375,8 @@
         "id": "abuse-protection",
         "status": "partial",
         "evidence": {
-          "en": "Local capped HTTP overload/recovery passes; worst memory peak 469.61 MiB, not eliminated OOM risk. Live identity/rolling remains.",
-          "pl": "Lokalne HTTP pod limitami i recovery przeszły; szczyt 469,61 MiB nie eliminuje ryzyka OOM. Pozostają testy tożsamości/rolling."
+          "en": "Local capped HTTP overload/recovery and public app-client/retry/header checks pass. Worst local peak 469.61 MiB does not eliminate OOM risk. Rolling capacity remains unqualified.",
+          "pl": "Lokalne HTTP pod limitami oraz publiczne testy klientów/retry/nagłówków przeszły. Lokalny szczyt 469,61 MiB nie eliminuje ryzyka OOM. Pomiar obciążenia podczas rolling pozostaje otwarty."
         },
         "taskIds": [
           "export-hardening",
@@ -384,8 +387,8 @@
         "id": "runtime-safety",
         "status": "partial",
         "evidence": {
-          "en": "Pre-release baseline inspect confirms selected caps/user/network; final-image local tests pass. New-container inspect/parser exceptions remain.",
-          "pl": "Odczyt bazowy potwierdza wybrane limity/użytkownika/sieć; lokalne testy obrazu przeszły. Pozostają nowy inspect i wyjątki parsera."
+          "en": "Selected new-container inspect confirms the deployed revision, caps, non-root user, capability removal, init and log rotation. Missing PID/security/read-only protections retain the parser exception; unqueried fields are not refreshed.",
+          "pl": "Wybrany inspect nowego kontenera potwierdza rewizję, limity, użytkownika non-root, cap-drop, init i rotację logów. Brakujące zabezpieczenia PID/security/read-only pozostają wyjątkiem parsera; nieodczytane pola zachowują starszą datę."
         },
         "taskIds": [
           "runtime-hardening"

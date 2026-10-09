@@ -12,7 +12,7 @@ Forecast / prognoza: **2026-10-07–2026-10-20**, 13–25 h, low confidence / pe
 
 Local-first inventory editor and server-side DOCX, CSV and HTML generator.
 
-October 9 canary health gating and controlled production recovery remain accepted; one rollback runner warning remains unexplained. The later bounded rolling attempt returned eight HTTP 200 exports and 53 successful health probes per app, with sampled combined canary memory of 400.16 MiB. A host load guard stopped it before final validation. The old helper omitted the rejected sample, so the exact triggering load is unknown; local diagnostic logging is corrected. Seven output structures and final recovery were not validated by this attempt. Capacity acceptance, host recovery readback and cleanup remain open. Progress and effort estimates retain October 7; platform gaps stay separate.
+October 9 canary health gating and controlled production recovery remain accepted; one rollback runner warning remains unexplained. The later bounded rolling attempt returned eight HTTP 200 exports and 53 successful health probes per app, with sampled combined canary memory of 400.16 MiB. A host load guard stopped it before final validation. The old helper omitted the rejected sample, so the exact triggering load is unknown; local diagnostic logging is corrected. Seven output structures and final recovery were not validated by this attempt. Later 15:36:39 UTC readback confirms low host load and one healthy canary. The timing and cause of the earlier load spike remain unknown. Preserve the original log; capacity acceptance and cleanup remain open. Progress and effort estimates retain October 7; platform gaps stay separate.
 
 ### Audit evidence
 
@@ -64,7 +64,7 @@ October 3 coordinator installed/read back active ruleset 24407679: main requires
 
 **Documentation · In progress · 90% · difficulty 2/5 · 2–3 h**
 
-Corrected runbook tests merged; integration, local-capacity and normal-release evidence recorded. October 8 adds selected runtime inspect and public client/retry/header checks. October 9 accepts isolated unhealthy-candidate rejection/retention/restoration and controlled production recovery to exact 6971496. One runner health-read warning has unknown cause. Rolling-load and scoped cleanup remain. Later October 9 bounded canary load: eight HTTP 200 exports, host load guard stop before final validation, no completed acceptance. Recovery readback pending; thresholds unchanged.
+Corrected runbook tests merged; integration, local-capacity and normal-release evidence recorded. October 8 adds selected runtime inspect and public client/retry/header checks. October 9 accepts isolated unhealthy-candidate rejection/retention/restoration and controlled production recovery to exact 6971496. One runner health-read warning has unknown cause. Rolling-load and scoped cleanup remain. Later October 9 bounded canary load: eight HTTP 200 exports, host load guard stop before final validation, no completed acceptance. Later selected host readback confirms low load and one healthy canary. This does not accept the interrupted attempt; thresholds unchanged.
 
 #### Enable DNS, TLS and three-layer limits
 
@@ -82,7 +82,7 @@ Final 6971496 CI publishes/tests/attests digest sha256:7b9853fa84e67a53d332b0b2e
 
 **Delivery · In progress · 65% · difficulty 4/5 · 3–6 h**
 
-Normal protected deployment and public smoke pass at 6971496. Isolated health gate passed in run 37892036349. Controlled failed-smoke rollback https://github.com/SzczepanGrela/inventory-generator/actions/runs/37894951905 restored the exact prior image/revision, corroborated by Docker events and final export smoke. Successor health preceded old-container SIGTERM by 5.961 s on promotion and 6.001 s on rollback. One runner probe failure remains unexplained; zero downtime is not claimed. Rolling-load measurement and cleanup remain. Later October 9 bounded canary load: eight HTTP 200 exports, host load guard stop before final validation, no completed acceptance. Recovery readback pending; thresholds unchanged.
+Normal protected deployment and public smoke pass at 6971496. Isolated health gate passed in run 37892036349. Controlled failed-smoke rollback https://github.com/SzczepanGrela/inventory-generator/actions/runs/37894951905 restored the exact prior image/revision, corroborated by Docker events and final export smoke. Successor health preceded old-container SIGTERM by 5.961 s on promotion and 6.001 s on rollback. One runner probe failure remains unexplained; zero downtime is not claimed. Rolling-load measurement and cleanup remain. Later October 9 bounded canary load: eight HTTP 200 exports, host load guard stop before final validation, no completed acceptance. Later selected host readback confirms low load and one healthy canary. This does not accept the interrupted attempt; thresholds unchanged.
 
 #### Connect the service to central monitoring
 
@@ -123,7 +123,7 @@ Combined browser CI covers PL/EN/ARIA recovery, mobile viewport, keyboard modal 
 
 Lokalny edytor inwentarza z serwerowym generowaniem DOCX, CSV i HTML.
 
-Odbiór health gate canary i kontrolowanego odzyskiwania produkcji z 9 października pozostaje ważny; jedno ostrzeżenie runnera podczas rollbacku jest niewyjaśnione. Późniejsza ograniczona próba rolling dała osiem eksportów HTTP 200 i po 53 poprawne próby zdrowia aplikacji, przy 400,16 MiB łącznej próbkowanej pamięci canary. Próg obciążenia hosta przerwał próbę przed końcową walidacją. Stary skrypt nie zapisał odrzuconej próbki, więc dokładna wartość wyzwalająca zatrzymanie jest nieznana; lokalnie poprawiono diagnostykę. Nie ukończono sprawdzania struktury siedmiu odpowiedzi ani stanu końcowego. Pozostają odbiór capacity, odczyt stanu hosta po próbie i sprzątanie. Szacunki postępu i czasu zachowują datę 7 października; zadania platformy są osobne.
+Odbiór health gate canary i kontrolowanego odzyskiwania produkcji z 9 października pozostaje ważny; jedno ostrzeżenie runnera podczas rollbacku jest niewyjaśnione. Późniejsza ograniczona próba rolling dała osiem eksportów HTTP 200 i po 53 poprawne próby zdrowia aplikacji, przy 400,16 MiB łącznej próbkowanej pamięci canary. Próg obciążenia hosta przerwał próbę przed końcową walidacją. Stary skrypt nie zapisał odrzuconej próbki, więc dokładna wartość wyzwalająca zatrzymanie jest nieznana; lokalnie poprawiono diagnostykę. Nie ukończono sprawdzania struktury siedmiu odpowiedzi ani stanu końcowego. Późniejszy odczyt o 15:36:39 UTC potwierdza małe obciążenie hosta i jeden zdrowy kontener canary. Czas ustąpienia i przyczyna wcześniejszego skoku pozostają nieznane. Należy zachować oryginalny log; odbiór wydajności i sprzątanie pozostają otwarte. Szacunki postępu i czasu zachowują datę 7 października; zadania platformy są osobne.
 
 ### Dowody audytu
 
@@ -175,7 +175,7 @@ October 3 coordinator installed/read back active ruleset 24407679: main requires
 
 **Dokumentacja · W toku · 90% · trudność 2/5 · 2–3 h**
 
-Corrected runbook tests merged; integration, local-capacity and normal-release evidence recorded. October 8 adds selected runtime inspect and public client/retry/header checks. October 9 accepts isolated unhealthy-candidate rejection/retention/restoration and controlled production recovery to exact 6971496. One runner health-read warning has unknown cause. Rolling-load and scoped cleanup remain. Later October 9 bounded canary load: eight HTTP 200 exports, host load guard stop before final validation, no completed acceptance. Recovery readback pending; thresholds unchanged.
+Corrected runbook tests merged; integration, local-capacity and normal-release evidence recorded. October 8 adds selected runtime inspect and public client/retry/header checks. October 9 accepts isolated unhealthy-candidate rejection/retention/restoration and controlled production recovery to exact 6971496. One runner health-read warning has unknown cause. Rolling-load and scoped cleanup remain. Later October 9 bounded canary load: eight HTTP 200 exports, host load guard stop before final validation, no completed acceptance. Later selected host readback confirms low load and one healthy canary. This does not accept the interrupted attempt; thresholds unchanged.
 
 #### Uruchomić DNS, TLS i trzy warstwy limitów
 
@@ -193,7 +193,7 @@ Final 6971496 CI publishes/tests/attests digest sha256:7b9853fa84e67a53d332b0b2e
 
 **Wdrożenie · W toku · 65% · trudność 4/5 · 3–6 h**
 
-Normal protected deployment and public smoke pass at 6971496. Isolated health gate passed in run 37892036349. Controlled failed-smoke rollback https://github.com/SzczepanGrela/inventory-generator/actions/runs/37894951905 restored the exact prior image/revision, corroborated by Docker events and final export smoke. Successor health preceded old-container SIGTERM by 5.961 s on promotion and 6.001 s on rollback. One runner probe failure remains unexplained; zero downtime is not claimed. Rolling-load measurement and cleanup remain. Later October 9 bounded canary load: eight HTTP 200 exports, host load guard stop before final validation, no completed acceptance. Recovery readback pending; thresholds unchanged.
+Normal protected deployment and public smoke pass at 6971496. Isolated health gate passed in run 37892036349. Controlled failed-smoke rollback https://github.com/SzczepanGrela/inventory-generator/actions/runs/37894951905 restored the exact prior image/revision, corroborated by Docker events and final export smoke. Successor health preceded old-container SIGTERM by 5.961 s on promotion and 6.001 s on rollback. One runner probe failure remains unexplained; zero downtime is not claimed. Rolling-load measurement and cleanup remain. Later October 9 bounded canary load: eight HTTP 200 exports, host load guard stop before final validation, no completed acceptance. Later selected host readback confirms low load and one healthy canary. This does not accept the interrupted attempt; thresholds unchanged.
 
 #### Podłączyć usługę do centralnego monitoringu
 

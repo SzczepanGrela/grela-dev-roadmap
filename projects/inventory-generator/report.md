@@ -12,14 +12,14 @@ Forecast / prognoza: **2026-10-07–2026-10-20**, 13–25 h, low confidence / pe
 
 Local-first inventory editor and server-side DOCX, CSV and HTML generator.
 
-October 9 accepts isolated unhealthy-candidate rejection, healthy baseline retention and restoration. The canary had no public route or generated export load. All 157 sampled neighbouring health probes returned 200; Completed monitor review found four separated CPU peaks outside the exercise (maximum 88%), no observed >15-second high-CPU series and no load1 >3.5 samples. Production failed-smoke rollback, rolling-load capacity and temporary cleanup remain. Earlier client/runtime/CI evidence retains its dates; progress/effort estimates are unchanged and platform gaps stay separate.
+October 9 canary rejection/retention/restoration and controlled production failed-smoke recovery are accepted. Rollback operator samples: 122/122 HTTP 200 per app, minimum available RAM 4934 MiB, maximum CPU 88% with separated peaks outside the exercise. One independent runner probe warning remains unexplained; the supplied monitor summary is a log prefix, not a confirmed full window. No zero-downtime or rolling-load claim. Capacity and temporary cleanup remain. Earlier evidence and progress/effort estimates retain their dates; platform gaps stay separate.
 
 ### Audit evidence
 
 - **Repozytorium:** `SzczepanGrela/inventory-generator` @ `697149654f7f84dfe8aabe3565838348ef3a8220`
-- **Source state:** PRs #26/#27/#28 merged into deployed 6971496; normal protected release passed. October 8 accepts app-client isolation, retry/recovery, sampled header-bypass rejection and selected runtime inspect. Tooling-only #29 is merged at d62e2dc; its ordinary promotion was cancelled before production steps. October 9 isolated canary rejection, healthy baseline retention and restoration passed. Production failed-smoke rollback and rolling-load capacity remain separate. Progress and effort estimates retain October 7.
+- **Source state:** PRs #26/#27/#28 merged into deployed 6971496; normal protected release passed. October 8 accepts app-client isolation, retry/recovery, sampled header-bypass rejection and selected runtime inspect. Tooling-only #29 is merged at d62e2dc. October 9 isolated canary rejection/restoration and controlled production failed-smoke rollback passed; production returned to exact stable 6971496. One runner health-read warning remains unexplained. Rolling-load capacity and cleanup remain. Progress and effort estimates retain October 7.
 - **Tests and CI:** https://github.com/SzczepanGrela/inventory-generator/actions/runs/37574806859: 84 .NET (zero skips), 34 Python, 12 browser suites; Container, fixable HIGH/CRITICAL scan, attestation, Quality, release preflight and Production all pass.
-- **Production:** October 9 public health before/after the canary exercise remains at 697149654f7f84dfe8aabe3565838348ef3a8220. October 8 client/runtime evidence retains its date. On an isolated domainless canary, Docker evidence corroborates rejection of a deliberately unhealthy candidate, survival of the healthy baseline and healthy restoration. Production failed-smoke rollback and measured rolling-load capacity remain pending.
+- **Production:** October 9 controlled rollback promoted qualified d62e2dc, then restored exact 697149654f7f84dfe8aabe3565838348ef3a8220 after the deliberate post-smoke failure. Both retirements followed successor health; final exports passed. Supplied operator monitor: 122/122 HTTP 200 per app, Inventory max 0.109637 s, neighbour max 0.134085 s. One independent runner probe failed for unknown reason. This does not prove uninterrupted service or rolling-load capacity.
 
 ### v2 standard compliance
 
@@ -35,7 +35,7 @@ Profile: **VPS web application**. Statuses reflect only evidence available on th
 | Abuse protection | Partial | Local capped HTTP overload/recovery and public app-client/retry/header checks pass. Worst local peak 469.61 MiB does not eliminate OOM risk. Rolling capacity remains unqualified. |
 | Runtime safety | Partial | Selected new-container inspect confirms the deployed revision, caps, non-root user, capability removal, init and log rotation. Missing PID/security/read-only protections retain the parser exception; unqueried fields are not refreshed. |
 | Readiness and preflight | Complete | Final image capped HTTP/readiness and protected release preflight/public smoke pass; health latency is not guaranteed under arbitrary load. |
-| Atomic promotion and rollback | Partial | Normal production release and isolated canary health-gate rejection/retention/restoration passed. Live production failed-smoke rollback remains pending. |
+| Atomic promotion and rollback | Partial | Normal release, isolated canary health gate and controlled production failed-smoke recovery passed; exact prior image and final exports verified. One runner health probe failed for unknown reason, so uninterrupted availability is not established. Rolling-load and temporary cleanup remain separate. |
 | Coordination and retention | Partial | Serialized release and scoped retention code exists; measured old/new capacity remains open. |
 | Observability | Partial | Bounded validation reason-code logs and no-submitted-name regressions accepted; central integration, retention and alert delivery still open. |
 | Web identity | Partial | PL/EN, mobile and keyboard browser CI pass on merged code; public app.js matches. Preview/licensing remains. |
@@ -64,7 +64,7 @@ October 3 coordinator installed/read back active ruleset 24407679: main requires
 
 **Documentation · In progress · 90% · difficulty 2/5 · 2–3 h**
 
-Corrected runbook tests merged; integration, local-capacity and normal-release evidence recorded. October 8 adds selected new-container inspect, paired public clients, retry/recovery and sampled header-bypass results. Final live fault/rolling evidence remains. October 9 adds accepted isolated health-gate rejection/retention/restoration; production failed-smoke, rolling-load and cleanup evidence remain.
+Corrected runbook tests merged; integration, local-capacity and normal-release evidence recorded. October 8 adds selected runtime inspect and public client/retry/header checks. October 9 accepts isolated unhealthy-candidate rejection/retention/restoration and controlled production recovery to exact 6971496. One runner health-read warning has unknown cause. Rolling-load and scoped cleanup remain.
 
 #### Enable DNS, TLS and three-layer limits
 
@@ -82,7 +82,7 @@ Final 6971496 CI publishes/tests/attests digest sha256:7b9853fa84e67a53d332b0b2e
 
 **Delivery · In progress · 65% · difficulty 4/5 · 3–6 h**
 
-Normal protected deployment and public smoke pass at 6971496. October 9 run https://github.com/SzczepanGrela/inventory-generator/actions/runs/37892036349 and selected Docker events prove an unhealthy candidate was removed while the old container stayed healthy. The old container received SIGTERM 5.513 seconds after a healthy replacement qualified. Production failed-smoke rollback, measured rolling load and scoped cleanup remain.
+Normal protected deployment and public smoke pass at 6971496. Isolated health gate passed in run 37892036349. Controlled failed-smoke rollback https://github.com/SzczepanGrela/inventory-generator/actions/runs/37894951905 restored the exact prior image/revision, corroborated by Docker events and final export smoke. Successor health preceded old-container SIGTERM by 5.961 s on promotion and 6.001 s on rollback. One runner probe failure remains unexplained; zero downtime is not claimed. Rolling-load measurement and cleanup remain.
 
 #### Connect the service to central monitoring
 
@@ -123,14 +123,14 @@ Combined browser CI covers PL/EN/ARIA recovery, mobile viewport, keyboard modal 
 
 Lokalny edytor inwentarza z serwerowym generowaniem DOCX, CSV i HTML.
 
-9 października przyjęto odrzucenie niezdrowego kandydata w izolowanym canary, zachowanie zdrowej starej instancji i przywrócenie zdrowej konfiguracji. Canary nie miał publicznej trasy ani obciążenia eksportami. Wszystkie 157 prób zdrowia sąsiedniej aplikacji zwróciło 200; przegląd ukończonego monitora wykazał cztery oddzielne skoki CPU poza próbą (maksimum 88%), bez zaobserwowanej serii wysokiego CPU >15 sekund ani próbek load1 >3,5. Pozostają failed-smoke rollback produkcji, pomiar pod obciążeniem i sprzątanie zasobów tymczasowych. Starsze dowody zachowują daty, procenty i szacunki bez zmian, a zadania platformy pozostają osobne.
+9 października przyjęto odrzucenie niezdrowego canary z zachowaniem starej instancji oraz kontrolowany failed-smoke rollback produkcji. Odczyty operatora: 122/122 HTTP 200 dla każdej aplikacji, minimum 4934 MiB dostępnego RAM, maksimum CPU 88% z oddzielnymi skokami poza próbą. Pojedynczy błąd próby z runnera pozostaje niewyjaśniony; przekazane podsumowanie obejmuje fragment logu, nie potwierdzone pełne okno. Nie potwierdzono zerowego downtime ani wydajności pod obciążeniem rolling. Pozostają pomiar i sprzątanie; starsze dowody i szacunki zachowują daty, a zadania platformy pozostają osobne.
 
 ### Dowody audytu
 
 - **Repozytorium:** `SzczepanGrela/inventory-generator` @ `697149654f7f84dfe8aabe3565838348ef3a8220`
-- **Stan źródła:** PRs #26/#27/#28 merged into deployed 6971496; normal protected release passed. October 8 accepts app-client isolation, retry/recovery, sampled header-bypass rejection and selected runtime inspect. Tooling-only #29 is merged at d62e2dc; its ordinary promotion was cancelled before production steps. October 9 isolated canary rejection, healthy baseline retention and restoration passed. Production failed-smoke rollback and rolling-load capacity remain separate. Progress and effort estimates retain October 7.
+- **Stan źródła:** PRs #26/#27/#28 merged into deployed 6971496; normal protected release passed. October 8 accepts app-client isolation, retry/recovery, sampled header-bypass rejection and selected runtime inspect. Tooling-only #29 is merged at d62e2dc. October 9 isolated canary rejection/restoration and controlled production failed-smoke rollback passed; production returned to exact stable 6971496. One runner health-read warning remains unexplained. Rolling-load capacity and cleanup remain. Progress and effort estimates retain October 7.
 - **Testy i CI:** https://github.com/SzczepanGrela/inventory-generator/actions/runs/37574806859: 84 .NET (zero skips), 34 Python, 12 browser suites; Container, fixable HIGH/CRITICAL scan, attestation, Quality, release preflight and Production all pass.
-- **Produkcja:** October 9 public health before/after the canary exercise remains at 697149654f7f84dfe8aabe3565838348ef3a8220. October 8 client/runtime evidence retains its date. On an isolated domainless canary, Docker evidence corroborates rejection of a deliberately unhealthy candidate, survival of the healthy baseline and healthy restoration. Production failed-smoke rollback and measured rolling-load capacity remain pending.
+- **Produkcja:** October 9 controlled rollback promoted qualified d62e2dc, then restored exact 697149654f7f84dfe8aabe3565838348ef3a8220 after the deliberate post-smoke failure. Both retirements followed successor health; final exports passed. Supplied operator monitor: 122/122 HTTP 200 per app, Inventory max 0.109637 s, neighbour max 0.134085 s. One independent runner probe failed for unknown reason. This does not prove uninterrupted service or rolling-load capacity.
 
 ### Zgodność ze standardem v2
 
@@ -146,7 +146,7 @@ Profil: **Aplikacja webowa na VPS**. Statusy odzwierciedlają wyłącznie dowody
 | Ochrona przed nadużyciami | Częściowe | Lokalne HTTP pod limitami oraz publiczne testy klientów/retry/nagłówków przeszły. Lokalny szczyt 469,61 MiB nie eliminuje ryzyka OOM. Pomiar obciążenia podczas rolling pozostaje otwarty. |
 | Bezpieczeństwo runtime | Częściowe | Wybrany inspect nowego kontenera potwierdza rewizję, limity, użytkownika non-root, cap-drop, init i rotację logów. Brakujące zabezpieczenia PID/security/read-only pozostają wyjątkiem parsera; nieodczytane pola zachowują starszą datę. |
 | Readiness i preflight | Gotowe | Końcowy obraz przeszedł ograniczone HTTP/readiness, preflight i publiczny smoke; bez gwarancji opóźnienia przy dowolnym obciążeniu. |
-| Atomowa promocja i rollback | Częściowe | Zwykłe wdrożenie oraz odrzucenie niezdrowego canary z zachowaniem starej instancji i przywróceniem zdrowej przeszły. Failed-smoke rollback produkcji pozostaje otwarty. |
+| Atomowa promocja i rollback | Częściowe | Zwykłe wdrożenie, health gate canary i kontrolowany failed-smoke rollback produkcji przeszły; zgodny poprzedni obraz i końcowe eksporty potwierdzone. Przyczyna jednej nieudanej próby zdrowia z runnera jest nieznana; ciągłość dostępności nie została dowiedziona. Pomiar rolling pod obciążeniem i sprzątanie pozostają osobne. |
 | Koordynacja i retencja | Częściowe | Kod serializacji wydań i retencji istnieje; pomiary capacity starej/nowej instancji pozostają otwarte. |
 | Obserwowalność | Częściowe | Uznano ograniczone logi reason-code i regresje braku przesłanych nazw; integracja centralna, retencja i dostarczanie alertów pozostają otwarte. |
 | Tożsamość webowa | Częściowe | CI PL/EN, mobile i klawiatury przechodzi na scalonym kodzie; publiczny app.js zgodny. Pozostają podgląd/licencje. |
@@ -175,7 +175,7 @@ October 3 coordinator installed/read back active ruleset 24407679: main requires
 
 **Dokumentacja · W toku · 90% · trudność 2/5 · 2–3 h**
 
-Corrected runbook tests merged; integration, local-capacity and normal-release evidence recorded. October 8 adds selected new-container inspect, paired public clients, retry/recovery and sampled header-bypass results. Final live fault/rolling evidence remains. October 9 adds accepted isolated health-gate rejection/retention/restoration; production failed-smoke, rolling-load and cleanup evidence remain.
+Corrected runbook tests merged; integration, local-capacity and normal-release evidence recorded. October 8 adds selected runtime inspect and public client/retry/header checks. October 9 accepts isolated unhealthy-candidate rejection/retention/restoration and controlled production recovery to exact 6971496. One runner health-read warning has unknown cause. Rolling-load and scoped cleanup remain.
 
 #### Uruchomić DNS, TLS i trzy warstwy limitów
 
@@ -193,7 +193,7 @@ Final 6971496 CI publishes/tests/attests digest sha256:7b9853fa84e67a53d332b0b2e
 
 **Wdrożenie · W toku · 65% · trudność 4/5 · 3–6 h**
 
-Normal protected deployment and public smoke pass at 6971496. October 9 run https://github.com/SzczepanGrela/inventory-generator/actions/runs/37892036349 and selected Docker events prove an unhealthy candidate was removed while the old container stayed healthy. The old container received SIGTERM 5.513 seconds after a healthy replacement qualified. Production failed-smoke rollback, measured rolling load and scoped cleanup remain.
+Normal protected deployment and public smoke pass at 6971496. Isolated health gate passed in run 37892036349. Controlled failed-smoke rollback https://github.com/SzczepanGrela/inventory-generator/actions/runs/37894951905 restored the exact prior image/revision, corroborated by Docker events and final export smoke. Successor health preceded old-container SIGTERM by 5.961 s on promotion and 6.001 s on rollback. One runner probe failure remains unexplained; zero downtime is not claimed. Rolling-load measurement and cleanup remain.
 
 #### Podłączyć usługę do centralnego monitoringu
 

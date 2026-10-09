@@ -60,16 +60,16 @@
     "date": "2026-10-07",
     "mode": "source-audited",
     "sourceRevision": "697149654f7f84dfe8aabe3565838348ef3a8220",
-    "sourceState": "PRs #26/#27/#28 merged into deployed 6971496; normal protected release passed. October 8 scoped follow-up accepts public app-client isolation, retry/recovery and sampled header-bypass rejection, plus selected post-release runtime inspect. Tooling-only #29 is merged at d62e2dc; ordinary promotion was cancelled before production steps. Live unhealthy-candidate, rollback and rolling-capacity acceptance remains separate. Effort estimates retain October 7."
+    "sourceState": "PRs #26/#27/#28 merged into deployed 6971496; normal protected release passed. October 8 accepts app-client isolation, retry/recovery, sampled header-bypass rejection and selected runtime inspect. Tooling-only #29 is merged at d62e2dc; its ordinary promotion was cancelled before production steps. October 9 isolated canary rejection, healthy baseline retention and restoration passed. Production failed-smoke rollback and rolling-load capacity remain separate. Progress and effort estimates retain October 7."
   },
   "focus": {
     "current": {
-      "en": "6971496 deployed; public client checks accepted. Finish unhealthy-candidate, rollback and rolling-capacity acceptance.",
-      "pl": "6971496 wdrożone; testy klientów przyjęte. Pozostają odrzucenie niezdrowego kandydata, rollback i pomiar obciążenia podczas rolling update."
+      "en": "6971496 deployed; public client checks and isolated canary health gate accepted. Finish production rollback and rolling-load acceptance.",
+      "pl": "6971496 wdrożone; testy klientów i odrzucenia niezdrowego canary przyjęte. Pozostają rollback produkcji i pomiar obciążenia podczas rolling update."
     },
     "next": {
-      "en": "Agree a bounded operational window; retain platform hardening/monitoring as separate work.",
-      "pl": "Uzgodnić ograniczone okno testów; zachować hardening i monitoring platformy jako osobne prace."
+      "en": "Review CPU/load samples, coordinate the remaining exercises, then retire identified temporary resources and tooling.",
+      "pl": "Sprawdzić próbki CPU/load, skoordynować pozostałe testy, następnie usunąć zidentyfikowane zasoby i narzędzia tymczasowe."
     }
   },
   "tasks": [
@@ -139,7 +139,7 @@
       "hoursMax": 3,
       "daysMin": 0.25,
       "daysMax": 0.5,
-      "evidence": "Corrected runbook tests merged; integration, local-capacity and normal-release evidence recorded. October 8 adds selected new-container inspect, paired public clients, retry/recovery and sampled header-bypass results. Final live fault/rolling evidence remains."
+      "evidence": "Corrected runbook tests merged; integration, local-capacity and normal-release evidence recorded. October 8 adds selected new-container inspect, paired public clients, retry/recovery and sampled header-bypass results. Final live fault/rolling evidence remains. October 9 adds accepted isolated health-gate rejection/retention/restoration; production failed-smoke, rolling-load and cleanup evidence remain."
     },
     {
       "id": "edge-and-limits",
@@ -190,7 +190,7 @@
       "hoursMax": 6,
       "daysMin": 0.5,
       "daysMax": 0.75,
-      "evidence": "Normal protected deployment and public smoke pass at 6971496. Actual-source rollback/freshness regressions retained. Rejected unhealthy candidate, failed-smoke rollback and measured live overlap still require an agreed window."
+      "evidence": "Normal protected deployment and public smoke pass at 6971496. October 9 run https://github.com/SzczepanGrela/inventory-generator/actions/runs/37892036349 and selected Docker events prove an unhealthy candidate was removed while the old container stayed healthy. The old container received SIGTERM 5.513 seconds after a healthy replacement qualified. Production failed-smoke rollback, measured rolling load and scoped cleanup remain."
     },
     {
       "id": "service-observability",
@@ -262,10 +262,10 @@
     }
   ],
   "verification": {
-    "worktree": "Reviewed integration of #26/#27/#28 deployed 6971496 without protection bypass. Later tooling-only #29 merged at d62e2dc with 51 Python tests and green PR CI. Its ordinary promotion was cancelled before production steps; no live exercise was dispatched.",
+    "worktree": "Reviewed integration of #26/#27/#28 deployed 6971496 without protection bypass. Later tooling-only #29 merged at d62e2dc with 51 Python tests and green PR CI. Its ordinary promotion was cancelled before production steps; the isolated canary exercise later passed on October 9; production remained at 6971496.",
     "tests": "Accepted independent browser recovery/migration tests retained. Local CI-image HTTP qualification: 38 baseline + 59 repeat requests at 1 CPU/512 MiB, valid DOCX/CSV/HTML structures, expected 400/413/429, zero OOM. Worst cgroup peak 469.61 MiB, health up to 2.0571 s in a burst; bounded evidence only.",
     "ci": "https://github.com/SzczepanGrela/inventory-generator/actions/runs/37574806859: 84 .NET (zero skips), 34 Python, 12 browser suites; Container, fixable HIGH/CRITICAL scan, attestation, Quality, release preflight and Production all pass.",
-    "production": "October 8 public health before/after header probes reports 697149654f7f84dfe8aabe3565838348ef3a8220. Selected new-container runtime inspect is recorded. Paired clients show application isolation, 429/Retry-After and recovery; sampled forged identity headers do not bypass public protection. Live unhealthy-candidate/rollback/rolling-capacity tests remain pending."
+    "production": "October 9 public health before/after the canary exercise remains at 697149654f7f84dfe8aabe3565838348ef3a8220. October 8 client/runtime evidence retains its date. On an isolated domainless canary, Docker evidence corroborates rejection of a deliberately unhealthy candidate, survival of the healthy baseline and healthy restoration. Production failed-smoke rollback and measured rolling-load capacity remain pending."
   },
   "media": {
     "screenshot": "assets/screenshots/inventory-generator.png",
@@ -300,7 +300,7 @@
     }
   ],
   "audit": {
-    "date": "2026-10-08",
+    "date": "2026-10-09",
     "sources": [
       "Merged #26/#27/#28; final main 697149654f7f84dfe8aabe3565838348ef3a8220",
       "Final CI and production https://github.com/SzczepanGrela/inventory-generator/actions/runs/37574806859",
@@ -308,17 +308,18 @@
       "Operator selected pre-release Docker inspect October 7; independent post-release public smoke and app.js comparison",
       "Selected operator post-release inspect recorded October 8; no full-host refresh",
       "October 8 paired public DOCX run: VPS 06:44:18-06:47:03 UTC; observer 06:44:51-06:47:36 UTC; separate completed header/recovery check 07:31:11-07:31:26 UTC",
-      "Tooling PR https://github.com/SzczepanGrela/inventory-generator/pull/29; merged d62e2dc, ordinary promotion cancelled before production steps"
+      "Tooling PR https://github.com/SzczepanGrela/inventory-generator/pull/29; merged d62e2dc, ordinary promotion cancelled before production steps",
+      "October 9 isolated health-gate run https://github.com/SzczepanGrela/inventory-generator/actions/runs/37892036349; operator selected Docker lifecycle/health transitions and bounded host/neighbour monitoring"
     ],
     "notes": {
-      "en": "October 8 scoped follow-up accepts app-client isolation, retry/recovery, sampled header-bypass rejection and selected post-release inspect. Earlier October 7 CI/capacity evidence keeps its date. Unhealthy-candidate retention, failed-smoke rollback and rolling capacity remain open alongside separate platform/metadata tasks. Progress and effort estimates are unchanged; no 100% claim.",
-      "pl": "Wąski odbiór 8 października potwierdza rozdzielenie klientów aplikacji, retry/recovery, odrzucenie prób podrobienia nagłówków i wybrany inspect po wdrożeniu. CI i pomiary lokalne zachowują datę 7 października. Pozostają odrzucenie niezdrowego kandydata, failed-smoke rollback i pomiar rolling oraz osobne zadania platformy/metadanych. Procenty i szacunki pracy bez zmian; bez deklaracji 100%."
+      "en": "October 9 accepts isolated unhealthy-candidate rejection, healthy baseline retention and restoration. The canary had no public route or generated export load. All 157 sampled neighbouring health probes returned 200; CPU peak 88% still needs duration/load review before another exercise. Production failed-smoke rollback, rolling-load capacity and temporary cleanup remain. Earlier client/runtime/CI evidence retains its dates; progress/effort estimates are unchanged and platform gaps stay separate.",
+      "pl": "9 października przyjęto odrzucenie niezdrowego kandydata w izolowanym canary, zachowanie zdrowej starej instancji i przywrócenie zdrowej konfiguracji. Canary nie miał publicznej trasy ani obciążenia eksportami. Wszystkie 157 prób zdrowia sąsiedniej aplikacji zwróciło 200; szczyt CPU 88% wymaga sprawdzenia czasu trwania i load przed kolejną próbą. Pozostają failed-smoke rollback produkcji, pomiar pod obciążeniem i sprzątanie zasobów tymczasowych. Starsze dowody zachowują daty, procenty i szacunki bez zmian, a zadania platformy pozostają osobne."
     }
   },
   "compliance": {
     "standardVersion": 2,
     "profile": "vps-web",
-    "assessmentDate": "2026-10-08",
+    "assessmentDate": "2026-10-09",
     "controls": [
       {
         "id": "governance",
@@ -407,8 +408,8 @@
         "id": "atomic-promotion-rollback",
         "status": "partial",
         "evidence": {
-          "en": "Normal production release passed; actual-source rollback tests retained. Live rejected candidate/failed-smoke rollback pending agreed window.",
-          "pl": "Zwykłe wdrożenie przeszło; testy kodu rollbacku zachowane. Próby odrzucenia kandydata i failed-smoke czekają na okno."
+          "en": "Normal production release and isolated canary health-gate rejection/retention/restoration passed. Live production failed-smoke rollback remains pending.",
+          "pl": "Zwykłe wdrożenie oraz odrzucenie niezdrowego canary z zachowaniem starej instancji i przywróceniem zdrowej przeszły. Failed-smoke rollback produkcji pozostaje otwarty."
         },
         "taskIds": [
           "blue-green"

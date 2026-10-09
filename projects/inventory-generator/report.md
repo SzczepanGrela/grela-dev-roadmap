@@ -1,6 +1,6 @@
 # Inventory Generator — status report / raport stanu
 
-Audit date / data audytu: **2026-10-08**<br>
+Audit date / data audytu: **2026-10-09**<br>
 Estimated completion / szacowane ukończenie: **92%**<br>
 Forecast / prognoza: **2026-10-07–2026-10-20**, 13–25 h, low confidence / pewność: low
 
@@ -12,14 +12,14 @@ Forecast / prognoza: **2026-10-07–2026-10-20**, 13–25 h, low confidence / pe
 
 Local-first inventory editor and server-side DOCX, CSV and HTML generator.
 
-October 8 scoped follow-up accepts app-client isolation, retry/recovery, sampled header-bypass rejection and selected post-release inspect. Earlier October 7 CI/capacity evidence keeps its date. Unhealthy-candidate retention, failed-smoke rollback and rolling capacity remain open alongside separate platform/metadata tasks. Progress and effort estimates are unchanged; no 100% claim.
+October 9 accepts isolated unhealthy-candidate rejection, healthy baseline retention and restoration. The canary had no public route or generated export load. All 157 sampled neighbouring health probes returned 200; CPU peak 88% still needs duration/load review before another exercise. Production failed-smoke rollback, rolling-load capacity and temporary cleanup remain. Earlier client/runtime/CI evidence retains its dates; progress/effort estimates are unchanged and platform gaps stay separate.
 
 ### Audit evidence
 
 - **Repozytorium:** `SzczepanGrela/inventory-generator` @ `697149654f7f84dfe8aabe3565838348ef3a8220`
-- **Source state:** PRs #26/#27/#28 merged into deployed 6971496; normal protected release passed. October 8 scoped follow-up accepts public app-client isolation, retry/recovery and sampled header-bypass rejection, plus selected post-release runtime inspect. Tooling-only #29 is merged at d62e2dc; ordinary promotion was cancelled before production steps. Live unhealthy-candidate, rollback and rolling-capacity acceptance remains separate. Effort estimates retain October 7.
+- **Source state:** PRs #26/#27/#28 merged into deployed 6971496; normal protected release passed. October 8 accepts app-client isolation, retry/recovery, sampled header-bypass rejection and selected runtime inspect. Tooling-only #29 is merged at d62e2dc; its ordinary promotion was cancelled before production steps. October 9 isolated canary rejection, healthy baseline retention and restoration passed. Production failed-smoke rollback and rolling-load capacity remain separate. Progress and effort estimates retain October 7.
 - **Tests and CI:** https://github.com/SzczepanGrela/inventory-generator/actions/runs/37574806859: 84 .NET (zero skips), 34 Python, 12 browser suites; Container, fixable HIGH/CRITICAL scan, attestation, Quality, release preflight and Production all pass.
-- **Production:** October 8 public health before/after header probes reports 697149654f7f84dfe8aabe3565838348ef3a8220. Selected new-container runtime inspect is recorded. Paired clients show application isolation, 429/Retry-After and recovery; sampled forged identity headers do not bypass public protection. Live unhealthy-candidate/rollback/rolling-capacity tests remain pending.
+- **Production:** October 9 public health before/after the canary exercise remains at 697149654f7f84dfe8aabe3565838348ef3a8220. October 8 client/runtime evidence retains its date. On an isolated domainless canary, Docker evidence corroborates rejection of a deliberately unhealthy candidate, survival of the healthy baseline and healthy restoration. Production failed-smoke rollback and measured rolling-load capacity remain pending.
 
 ### v2 standard compliance
 
@@ -35,7 +35,7 @@ Profile: **VPS web application**. Statuses reflect only evidence available on th
 | Abuse protection | Partial | Local capped HTTP overload/recovery and public app-client/retry/header checks pass. Worst local peak 469.61 MiB does not eliminate OOM risk. Rolling capacity remains unqualified. |
 | Runtime safety | Partial | Selected new-container inspect confirms the deployed revision, caps, non-root user, capability removal, init and log rotation. Missing PID/security/read-only protections retain the parser exception; unqueried fields are not refreshed. |
 | Readiness and preflight | Complete | Final image capped HTTP/readiness and protected release preflight/public smoke pass; health latency is not guaranteed under arbitrary load. |
-| Atomic promotion and rollback | Partial | Normal production release passed; actual-source rollback tests retained. Live rejected candidate/failed-smoke rollback pending agreed window. |
+| Atomic promotion and rollback | Partial | Normal production release and isolated canary health-gate rejection/retention/restoration passed. Live production failed-smoke rollback remains pending. |
 | Coordination and retention | Partial | Serialized release and scoped retention code exists; measured old/new capacity remains open. |
 | Observability | Partial | Bounded validation reason-code logs and no-submitted-name regressions accepted; central integration, retention and alert delivery still open. |
 | Web identity | Partial | PL/EN, mobile and keyboard browser CI pass on merged code; public app.js matches. Preview/licensing remains. |
@@ -64,7 +64,7 @@ October 3 coordinator installed/read back active ruleset 24407679: main requires
 
 **Documentation · In progress · 90% · difficulty 2/5 · 2–3 h**
 
-Corrected runbook tests merged; integration, local-capacity and normal-release evidence recorded. October 8 adds selected new-container inspect, paired public clients, retry/recovery and sampled header-bypass results. Final live fault/rolling evidence remains.
+Corrected runbook tests merged; integration, local-capacity and normal-release evidence recorded. October 8 adds selected new-container inspect, paired public clients, retry/recovery and sampled header-bypass results. Final live fault/rolling evidence remains. October 9 adds accepted isolated health-gate rejection/retention/restoration; production failed-smoke, rolling-load and cleanup evidence remain.
 
 #### Enable DNS, TLS and three-layer limits
 
@@ -82,7 +82,7 @@ Final 6971496 CI publishes/tests/attests digest sha256:7b9853fa84e67a53d332b0b2e
 
 **Delivery · In progress · 65% · difficulty 4/5 · 3–6 h**
 
-Normal protected deployment and public smoke pass at 6971496. Actual-source rollback/freshness regressions retained. Rejected unhealthy candidate, failed-smoke rollback and measured live overlap still require an agreed window.
+Normal protected deployment and public smoke pass at 6971496. October 9 run https://github.com/SzczepanGrela/inventory-generator/actions/runs/37892036349 and selected Docker events prove an unhealthy candidate was removed while the old container stayed healthy. The old container received SIGTERM 5.513 seconds after a healthy replacement qualified. Production failed-smoke rollback, measured rolling load and scoped cleanup remain.
 
 #### Connect the service to central monitoring
 
@@ -123,14 +123,14 @@ Combined browser CI covers PL/EN/ARIA recovery, mobile viewport, keyboard modal 
 
 Lokalny edytor inwentarza z serwerowym generowaniem DOCX, CSV i HTML.
 
-Wąski odbiór 8 października potwierdza rozdzielenie klientów aplikacji, retry/recovery, odrzucenie prób podrobienia nagłówków i wybrany inspect po wdrożeniu. CI i pomiary lokalne zachowują datę 7 października. Pozostają odrzucenie niezdrowego kandydata, failed-smoke rollback i pomiar rolling oraz osobne zadania platformy/metadanych. Procenty i szacunki pracy bez zmian; bez deklaracji 100%.
+9 października przyjęto odrzucenie niezdrowego kandydata w izolowanym canary, zachowanie zdrowej starej instancji i przywrócenie zdrowej konfiguracji. Canary nie miał publicznej trasy ani obciążenia eksportami. Wszystkie 157 prób zdrowia sąsiedniej aplikacji zwróciło 200; szczyt CPU 88% wymaga sprawdzenia czasu trwania i load przed kolejną próbą. Pozostają failed-smoke rollback produkcji, pomiar pod obciążeniem i sprzątanie zasobów tymczasowych. Starsze dowody zachowują daty, procenty i szacunki bez zmian, a zadania platformy pozostają osobne.
 
 ### Dowody audytu
 
 - **Repozytorium:** `SzczepanGrela/inventory-generator` @ `697149654f7f84dfe8aabe3565838348ef3a8220`
-- **Stan źródła:** PRs #26/#27/#28 merged into deployed 6971496; normal protected release passed. October 8 scoped follow-up accepts public app-client isolation, retry/recovery and sampled header-bypass rejection, plus selected post-release runtime inspect. Tooling-only #29 is merged at d62e2dc; ordinary promotion was cancelled before production steps. Live unhealthy-candidate, rollback and rolling-capacity acceptance remains separate. Effort estimates retain October 7.
+- **Stan źródła:** PRs #26/#27/#28 merged into deployed 6971496; normal protected release passed. October 8 accepts app-client isolation, retry/recovery, sampled header-bypass rejection and selected runtime inspect. Tooling-only #29 is merged at d62e2dc; its ordinary promotion was cancelled before production steps. October 9 isolated canary rejection, healthy baseline retention and restoration passed. Production failed-smoke rollback and rolling-load capacity remain separate. Progress and effort estimates retain October 7.
 - **Testy i CI:** https://github.com/SzczepanGrela/inventory-generator/actions/runs/37574806859: 84 .NET (zero skips), 34 Python, 12 browser suites; Container, fixable HIGH/CRITICAL scan, attestation, Quality, release preflight and Production all pass.
-- **Produkcja:** October 8 public health before/after header probes reports 697149654f7f84dfe8aabe3565838348ef3a8220. Selected new-container runtime inspect is recorded. Paired clients show application isolation, 429/Retry-After and recovery; sampled forged identity headers do not bypass public protection. Live unhealthy-candidate/rollback/rolling-capacity tests remain pending.
+- **Produkcja:** October 9 public health before/after the canary exercise remains at 697149654f7f84dfe8aabe3565838348ef3a8220. October 8 client/runtime evidence retains its date. On an isolated domainless canary, Docker evidence corroborates rejection of a deliberately unhealthy candidate, survival of the healthy baseline and healthy restoration. Production failed-smoke rollback and measured rolling-load capacity remain pending.
 
 ### Zgodność ze standardem v2
 
@@ -146,7 +146,7 @@ Profil: **Aplikacja webowa na VPS**. Statusy odzwierciedlają wyłącznie dowody
 | Ochrona przed nadużyciami | Częściowe | Lokalne HTTP pod limitami oraz publiczne testy klientów/retry/nagłówków przeszły. Lokalny szczyt 469,61 MiB nie eliminuje ryzyka OOM. Pomiar obciążenia podczas rolling pozostaje otwarty. |
 | Bezpieczeństwo runtime | Częściowe | Wybrany inspect nowego kontenera potwierdza rewizję, limity, użytkownika non-root, cap-drop, init i rotację logów. Brakujące zabezpieczenia PID/security/read-only pozostają wyjątkiem parsera; nieodczytane pola zachowują starszą datę. |
 | Readiness i preflight | Gotowe | Końcowy obraz przeszedł ograniczone HTTP/readiness, preflight i publiczny smoke; bez gwarancji opóźnienia przy dowolnym obciążeniu. |
-| Atomowa promocja i rollback | Częściowe | Zwykłe wdrożenie przeszło; testy kodu rollbacku zachowane. Próby odrzucenia kandydata i failed-smoke czekają na okno. |
+| Atomowa promocja i rollback | Częściowe | Zwykłe wdrożenie oraz odrzucenie niezdrowego canary z zachowaniem starej instancji i przywróceniem zdrowej przeszły. Failed-smoke rollback produkcji pozostaje otwarty. |
 | Koordynacja i retencja | Częściowe | Kod serializacji wydań i retencji istnieje; pomiary capacity starej/nowej instancji pozostają otwarte. |
 | Obserwowalność | Częściowe | Uznano ograniczone logi reason-code i regresje braku przesłanych nazw; integracja centralna, retencja i dostarczanie alertów pozostają otwarte. |
 | Tożsamość webowa | Częściowe | CI PL/EN, mobile i klawiatury przechodzi na scalonym kodzie; publiczny app.js zgodny. Pozostają podgląd/licencje. |
@@ -175,7 +175,7 @@ October 3 coordinator installed/read back active ruleset 24407679: main requires
 
 **Dokumentacja · W toku · 90% · trudność 2/5 · 2–3 h**
 
-Corrected runbook tests merged; integration, local-capacity and normal-release evidence recorded. October 8 adds selected new-container inspect, paired public clients, retry/recovery and sampled header-bypass results. Final live fault/rolling evidence remains.
+Corrected runbook tests merged; integration, local-capacity and normal-release evidence recorded. October 8 adds selected new-container inspect, paired public clients, retry/recovery and sampled header-bypass results. Final live fault/rolling evidence remains. October 9 adds accepted isolated health-gate rejection/retention/restoration; production failed-smoke, rolling-load and cleanup evidence remain.
 
 #### Uruchomić DNS, TLS i trzy warstwy limitów
 
@@ -193,7 +193,7 @@ Final 6971496 CI publishes/tests/attests digest sha256:7b9853fa84e67a53d332b0b2e
 
 **Wdrożenie · W toku · 65% · trudność 4/5 · 3–6 h**
 
-Normal protected deployment and public smoke pass at 6971496. Actual-source rollback/freshness regressions retained. Rejected unhealthy candidate, failed-smoke rollback and measured live overlap still require an agreed window.
+Normal protected deployment and public smoke pass at 6971496. October 9 run https://github.com/SzczepanGrela/inventory-generator/actions/runs/37892036349 and selected Docker events prove an unhealthy candidate was removed while the old container stayed healthy. The old container received SIGTERM 5.513 seconds after a healthy replacement qualified. Production failed-smoke rollback, measured rolling load and scoped cleanup remain.
 
 #### Podłączyć usługę do centralnego monitoringu
 

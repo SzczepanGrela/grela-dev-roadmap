@@ -1,6 +1,6 @@
 # Inventory Generator — status report / raport stanu
 
-Audit date / data audytu: **2026-10-08**<br>
+Audit date / data audytu: **2026-10-09**<br>
 Estimated completion / szacowane ukończenie: **92%**<br>
 Forecast / prognoza: **2026-10-07–2026-10-20**, 13–25 h, low confidence / pewność: low
 
@@ -12,14 +12,14 @@ Forecast / prognoza: **2026-10-07–2026-10-20**, 13–25 h, low confidence / pe
 
 Local-first inventory editor and server-side DOCX, CSV and HTML generator.
 
-October 8 scoped follow-up accepts app-client isolation, retry/recovery, sampled header-bypass rejection and selected post-release inspect. Earlier October 7 CI/capacity evidence keeps its date. Unhealthy-candidate retention, failed-smoke rollback and rolling capacity remain open alongside separate platform/metadata tasks. Progress and effort estimates are unchanged; no 100% claim.
+The final October 9 bounded canary rolling run passed after two retained incomplete attempts. All eight CSV/HTML/DOCX structures, healthy replacement and normal baseline retirement were verified. Public Inventory and neighbour health: 51 successes each, maxima 0.174565/0.183307 s. Combined sampled canary memory 423.16 MiB; minimum available host RAM 4519.71 MiB; maximum load1 2.7041. CPU peaked at 93.79% but did not breach the sustained >85% for >15 s guard. Recorded cgroup OOM counters were zero. This accepts the measured brief rolling scope, not arbitrary sustained capacity, permanent replicas, active-request drain after SIGTERM or guaranteed zero downtime. The prior ambiguous attempt and rollback-runner warning are not retroactively explained. Scoped cleanup and final records remain; no further load test required. Progress and effort estimates retain October 7 and broader platform tasks stay separate.
 
 ### Audit evidence
 
 - **Repozytorium:** `SzczepanGrela/inventory-generator` @ `697149654f7f84dfe8aabe3565838348ef3a8220`
-- **Source state:** PRs #26/#27/#28 merged into deployed 6971496; normal protected release passed. October 8 scoped follow-up accepts public app-client isolation, retry/recovery and sampled header-bypass rejection, plus selected post-release runtime inspect. Tooling-only #29 is merged at d62e2dc; ordinary promotion was cancelled before production steps. Live unhealthy-candidate, rollback and rolling-capacity acceptance remains separate. Effort estimates retain October 7.
+- **Source state:** PRs #26/#27/#28 merged into deployed 6971496; normal protected release passed. October 8 public client/retry/header checks and selected runtime inspect passed. October 9 isolated health-gate rejection, controlled failed-smoke rollback and final bounded rolling workload passed. Temporary resource/tool cleanup and final records remain. Earlier stopped attempts and one unexplained rollback-runner warning retain their scope. Progress and effort estimates retain October 7; this is not full platform completion.
 - **Tests and CI:** https://github.com/SzczepanGrela/inventory-generator/actions/runs/37574806859: 84 .NET (zero skips), 34 Python, 12 browser suites; Container, fixable HIGH/CRITICAL scan, attestation, Quality, release preflight and Production all pass.
-- **Production:** October 8 public health before/after header probes reports 697149654f7f84dfe8aabe3565838348ef3a8220. Selected new-container runtime inspect is recorded. Paired clients show application isolation, 429/Retry-After and recovery; sampled forged identity headers do not bypass public protection. Live unhealthy-candidate/rollback/rolling-capacity tests remain pending.
+- **Production:** October 9 controlled rollback promoted qualified d62e2dc, then restored exact 697149654f7f84dfe8aabe3565838348ef3a8220 after the deliberate post-smoke failure. Both retirements followed successor health; final exports passed. Supplied operator monitor: 122/122 HTTP 200 per app, Inventory max 0.109637 s, neighbour max 0.134085 s. One independent runner probe failed for unknown reason. This does not prove uninterrupted service or rolling-load capacity. A separate final October 9 canary run accepts bounded rolling-load capacity with all eight structures, normal retirement and final public revisions verified. No new production promotion was part of that load run.
 
 ### v2 standard compliance
 
@@ -32,11 +32,11 @@ Profile: **VPS web application**. Statuses reflect only evidence available on th
 | Immutable release | Complete | Same tested/attested digest deployed by run 37574806859 at 6971496. |
 | Deployment access | Partial | Inventory private Coolify/Tailscale production authentication succeeded; credential scope review remains separate. |
 | Network, TLS and client identity | Partial | October 8 paired public clients and sampled forwarded-header checks pass at the app/public-path level. Observer and VPS use different edge locations; same-colo edge isolation remains unproven. Earlier network/TLS evidence retains its date. |
-| Abuse protection | Partial | Local capped HTTP overload/recovery and public app-client/retry/header checks pass. Worst local peak 469.61 MiB does not eliminate OOM risk. Rolling capacity remains unqualified. |
+| Abuse protection | Partial | Local capped HTTP overload/recovery, public app-client/retry/header checks and final bounded rolling load passed. Three slots/no queue and brief independent-counter overlap accepted at tested limits. Same-colo edge isolation remains open; sampled peaks do not eliminate future OOM risk. |
 | Runtime safety | Partial | Selected new-container inspect confirms the deployed revision, caps, non-root user, capability removal, init and log rotation. Missing PID/security/read-only protections retain the parser exception; unqueried fields are not refreshed. |
 | Readiness and preflight | Complete | Final image capped HTTP/readiness and protected release preflight/public smoke pass; health latency is not guaranteed under arbitrary load. |
-| Atomic promotion and rollback | Partial | Normal production release passed; actual-source rollback tests retained. Live rejected candidate/failed-smoke rollback pending agreed window. |
-| Coordination and retention | Partial | Serialized release and scoped retention code exists; measured old/new capacity remains open. |
+| Atomic promotion and rollback | Complete | Normal release, isolated unhealthy-candidate rejection, controlled failed-smoke recovery to the exact prior image and bounded rolling workload passed. One earlier runner probe warning remains unexplained; this certifies the tested release/recovery paths, not zero downtime. |
+| Coordination and retention | Partial | Serialized release and scoped retention code exists; the bounded old/new workload passed. Temporary app/resource and exercise-tool cleanup still needs completion and absence verification. |
 | Observability | Partial | Bounded validation reason-code logs and no-submitted-name regressions accepted; central integration, retention and alert delivery still open. |
 | Web identity | Partial | PL/EN, mobile and keyboard browser CI pass on merged code; public app.js matches. Preview/licensing remains. |
 
@@ -64,13 +64,13 @@ October 3 coordinator installed/read back active ruleset 24407679: main requires
 
 **Documentation · In progress · 90% · difficulty 2/5 · 2–3 h**
 
-Corrected runbook tests merged; integration, local-capacity and normal-release evidence recorded. October 8 adds selected new-container inspect, paired public clients, retry/recovery and sampled header-bypass results. Final live fault/rolling evidence remains.
+Corrected runbooks and release implementation merged. Normal protected release, selected runtime, public clients/headers, isolated health gate, controlled rollback and final bounded rolling workload are accepted. All eight structures and normal baseline retirement passed in the final October 9 attempt; resource/tool cleanup and final record reconciliation remain. Earlier incomplete attempts and runner warning retain their original scope.
 
 #### Enable DNS, TLS and three-layer limits
 
 **Delivery · In progress · 85% · difficulty 3/5 · 2–4 h**
 
-Three slots, no waiting, weighted per-client budgets retained. Local capped HTTP overload/recovery passed; worst peak 469.61/512 MiB without OOM. October 8 public paired run: VPS 13/30 exports passed, 17 application DOCX 429s with Retry-After, recovery 200; observer 12/12 passed, eight during the regular VPS series. Forged X-Forwarded-For remained application 429; forged CF-Connecting-IP received public-path 403, not an observed origin response. Same-colo edge isolation and rolling capacity remain open.
+Three slots, no waiting, weighted per-client budgets retained. Local capped HTTP overload/recovery passed; worst peak 469.61/512 MiB without OOM. October 8 public paired run: VPS 13/30 exports passed, 17 application DOCX 429s with Retry-After, recovery 200; observer 12/12 passed, eight during the regular VPS series. Forged X-Forwarded-For remained application 429; forged CF-Connecting-IP received public-path 403, not an observed origin response. October 9 final bounded rolling workload passed at three slots/no queue and intended per-instance limits; process-local overlap accepted for that scope. Same-colo edge isolation remains open.
 
 #### Publish and deploy an image by digest
 
@@ -82,7 +82,7 @@ Final 6971496 CI publishes/tests/attests digest sha256:7b9853fa84e67a53d332b0b2e
 
 **Delivery · In progress · 65% · difficulty 4/5 · 3–6 h**
 
-Normal protected deployment and public smoke pass at 6971496. Actual-source rollback/freshness regressions retained. Rejected unhealthy candidate, failed-smoke rollback and measured live overlap still require an agreed window.
+Normal protected release passed at 6971496. Isolated health gate run 37892036349 and controlled failed-smoke rollback run 37894951905 restored the exact prior image, with healthy-before-stop ordering and export smoke. Final October 9 bounded canary rolling run validated eight CSV/HTML/DOCX outputs, old SIGTERM/exit 0 and sole healthy replacement; 51 successful health probes per app, no guard rejection. All exercise gates passed; temporary resource/tool cleanup remains. One earlier runner warning remains unexplained; no zero-downtime claim.
 
 #### Connect the service to central monitoring
 
@@ -115,7 +115,7 @@ Combined browser CI covers PL/EN/ARIA recovery, mobile viewport, keyboard modal 
 - The project follows the v2 standard profile: vps-web.
 - Use prebuilt GHCR digests with Coolify/Traefik/Tunnel. Manual production success does not establish automatic CD, trusted client IP or rollback.
 - Temporarily omit no-new-privileges from Custom Docker Options due to the reproduced 4.3.14 parser issue; verify effective settings and revisit via reviewed Compose or upgrade.
-- Keep process-local counters for normal single-process operation only if measured brief rolling overlap is safe; no shared counter is installed or planned for that conditional scope.
+- Keep process-local counters for one ordinary process and brief two-instance rolling overlap at the October 9 tested limits: three slots without waiting, 1 CPU/512 MiB per container. The bounded measurement condition passed; permanent replicas or larger budgets need a new assessment. No shared counter installed.
 
 ## Polski
 
@@ -123,14 +123,14 @@ Combined browser CI covers PL/EN/ARIA recovery, mobile viewport, keyboard modal 
 
 Lokalny edytor inwentarza z serwerowym generowaniem DOCX, CSV i HTML.
 
-Wąski odbiór 8 października potwierdza rozdzielenie klientów aplikacji, retry/recovery, odrzucenie prób podrobienia nagłówków i wybrany inspect po wdrożeniu. CI i pomiary lokalne zachowują datę 7 października. Pozostają odrzucenie niezdrowego kandydata, failed-smoke rollback i pomiar rolling oraz osobne zadania platformy/metadanych. Procenty i szacunki pracy bez zmian; bez deklaracji 100%.
+Końcowa ograniczona próba rolling canary 9 października przeszła po dwóch zachowanych próbach niepełnych. Sprawdzono wszystkie osiem struktur CSV/HTML/DOCX, zdrową nową instancję i prawidłowe wyłączenie starej. Zdrowie publicznego Inventory i sąsiada: po 51 sukcesów, maksima 0,174565/0,183307 s. Łączna próbkowana pamięć canary 423,16 MiB; minimum dostępnego RAM hosta 4519,71 MiB; najwyższe load1 2,7041. CPU osiągnęło 93,79%, lecz nie przekroczyło warunku ponad 85% przez ponad 15 s. Zapisane liczniki OOM były zerowe. Odbiór dotyczy zmierzonego krótkiego rolling, nie dowolnego stałego obciążenia, stałych replik, dokańczania aktywnego żądania po SIGTERM ani gwarancji zerowego downtime. Nie wyjaśnia wstecz wcześniejszej niejednoznacznej próby i ostrzeżenia runnera rollbacku. Pozostają sprzątanie i końcowe wpisy; nie trzeba kolejnego testu obciążenia. Szacunki zachowują datę 7 października, szersze zadania platformy pozostają osobne.
 
 ### Dowody audytu
 
 - **Repozytorium:** `SzczepanGrela/inventory-generator` @ `697149654f7f84dfe8aabe3565838348ef3a8220`
-- **Stan źródła:** PRs #26/#27/#28 merged into deployed 6971496; normal protected release passed. October 8 scoped follow-up accepts public app-client isolation, retry/recovery and sampled header-bypass rejection, plus selected post-release runtime inspect. Tooling-only #29 is merged at d62e2dc; ordinary promotion was cancelled before production steps. Live unhealthy-candidate, rollback and rolling-capacity acceptance remains separate. Effort estimates retain October 7.
+- **Stan źródła:** PRs #26/#27/#28 merged into deployed 6971496; normal protected release passed. October 8 public client/retry/header checks and selected runtime inspect passed. October 9 isolated health-gate rejection, controlled failed-smoke rollback and final bounded rolling workload passed. Temporary resource/tool cleanup and final records remain. Earlier stopped attempts and one unexplained rollback-runner warning retain their scope. Progress and effort estimates retain October 7; this is not full platform completion.
 - **Testy i CI:** https://github.com/SzczepanGrela/inventory-generator/actions/runs/37574806859: 84 .NET (zero skips), 34 Python, 12 browser suites; Container, fixable HIGH/CRITICAL scan, attestation, Quality, release preflight and Production all pass.
-- **Produkcja:** October 8 public health before/after header probes reports 697149654f7f84dfe8aabe3565838348ef3a8220. Selected new-container runtime inspect is recorded. Paired clients show application isolation, 429/Retry-After and recovery; sampled forged identity headers do not bypass public protection. Live unhealthy-candidate/rollback/rolling-capacity tests remain pending.
+- **Produkcja:** October 9 controlled rollback promoted qualified d62e2dc, then restored exact 697149654f7f84dfe8aabe3565838348ef3a8220 after the deliberate post-smoke failure. Both retirements followed successor health; final exports passed. Supplied operator monitor: 122/122 HTTP 200 per app, Inventory max 0.109637 s, neighbour max 0.134085 s. One independent runner probe failed for unknown reason. This does not prove uninterrupted service or rolling-load capacity. A separate final October 9 canary run accepts bounded rolling-load capacity with all eight structures, normal retirement and final public revisions verified. No new production promotion was part of that load run.
 
 ### Zgodność ze standardem v2
 
@@ -143,11 +143,11 @@ Profil: **Aplikacja webowa na VPS**. Statusy odzwierciedlają wyłącznie dowody
 | Niezmienne wydanie | Gotowe | Ten sam przetestowany i poświadczony digest wdrożony przez run 37574806859, rewizja 6971496. |
 | Dostęp wdrożeniowy | Częściowe | Uwierzytelnienie produkcji przez prywatne Coolify/Tailscale przeszło; przegląd zakresu uprawnień pozostaje osobny. |
 | Sieć, TLS i tożsamość klienta | Częściowe | 8 października przeszły równoległe testy klientów i próby podrobienia nagłówków. Źródła trafiają do różnych lokalizacji edge; rozdzielenie IP w tej samej lokalizacji pozostaje niepotwierdzone. Starsze dowody sieci/TLS zachowują datę. |
-| Ochrona przed nadużyciami | Częściowe | Lokalne HTTP pod limitami oraz publiczne testy klientów/retry/nagłówków przeszły. Lokalny szczyt 469,61 MiB nie eliminuje ryzyka OOM. Pomiar obciążenia podczas rolling pozostaje otwarty. |
+| Ochrona przed nadużyciami | Częściowe | Lokalne HTTP pod limitami, publiczne testy klientów/retry/nagłówków i końcowy test rolling przeszły. Trzy sloty bez kolejki i krótki overlap niezależnych liczników przyjęte przy zmierzonych limitach. Izolacja edge w tej samej lokalizacji pozostaje otwarta; pomiary nie eliminują przyszłego ryzyka OOM. |
 | Bezpieczeństwo runtime | Częściowe | Wybrany inspect nowego kontenera potwierdza rewizję, limity, użytkownika non-root, cap-drop, init i rotację logów. Brakujące zabezpieczenia PID/security/read-only pozostają wyjątkiem parsera; nieodczytane pola zachowują starszą datę. |
 | Readiness i preflight | Gotowe | Końcowy obraz przeszedł ograniczone HTTP/readiness, preflight i publiczny smoke; bez gwarancji opóźnienia przy dowolnym obciążeniu. |
-| Atomowa promocja i rollback | Częściowe | Zwykłe wdrożenie przeszło; testy kodu rollbacku zachowane. Próby odrzucenia kandydata i failed-smoke czekają na okno. |
-| Koordynacja i retencja | Częściowe | Kod serializacji wydań i retencji istnieje; pomiary capacity starej/nowej instancji pozostają otwarte. |
+| Atomowa promocja i rollback | Gotowe | Zwykłe wdrożenie, odrzucenie niezdrowego kandydata, kontrolowany failed-smoke rollback do dokładnego obrazu i ograniczony test rolling przeszły. Jedno wcześniejsze ostrzeżenie runnera pozostaje niewyjaśnione; przyjęto przetestowane ścieżki dostawy i odzyskiwania, bez gwarancji zerowego downtime. |
+| Koordynacja i retencja | Częściowe | Kod serializacji wydań i retencji istnieje; ograniczony test starej i nowej instancji przeszedł. Pozostało usunięcie tymczasowych zasobów i narzędzi ćwiczeń oraz potwierdzenie ich braku. |
 | Obserwowalność | Częściowe | Uznano ograniczone logi reason-code i regresje braku przesłanych nazw; integracja centralna, retencja i dostarczanie alertów pozostają otwarte. |
 | Tożsamość webowa | Częściowe | CI PL/EN, mobile i klawiatury przechodzi na scalonym kodzie; publiczny app.js zgodny. Pozostają podgląd/licencje. |
 
@@ -175,13 +175,13 @@ October 3 coordinator installed/read back active ruleset 24407679: main requires
 
 **Dokumentacja · W toku · 90% · trudność 2/5 · 2–3 h**
 
-Corrected runbook tests merged; integration, local-capacity and normal-release evidence recorded. October 8 adds selected new-container inspect, paired public clients, retry/recovery and sampled header-bypass results. Final live fault/rolling evidence remains.
+Corrected runbooks and release implementation merged. Normal protected release, selected runtime, public clients/headers, isolated health gate, controlled rollback and final bounded rolling workload are accepted. All eight structures and normal baseline retirement passed in the final October 9 attempt; resource/tool cleanup and final record reconciliation remain. Earlier incomplete attempts and runner warning retain their original scope.
 
 #### Uruchomić DNS, TLS i trzy warstwy limitów
 
 **Wdrożenie · W toku · 85% · trudność 3/5 · 2–4 h**
 
-Three slots, no waiting, weighted per-client budgets retained. Local capped HTTP overload/recovery passed; worst peak 469.61/512 MiB without OOM. October 8 public paired run: VPS 13/30 exports passed, 17 application DOCX 429s with Retry-After, recovery 200; observer 12/12 passed, eight during the regular VPS series. Forged X-Forwarded-For remained application 429; forged CF-Connecting-IP received public-path 403, not an observed origin response. Same-colo edge isolation and rolling capacity remain open.
+Three slots, no waiting, weighted per-client budgets retained. Local capped HTTP overload/recovery passed; worst peak 469.61/512 MiB without OOM. October 8 public paired run: VPS 13/30 exports passed, 17 application DOCX 429s with Retry-After, recovery 200; observer 12/12 passed, eight during the regular VPS series. Forged X-Forwarded-For remained application 429; forged CF-Connecting-IP received public-path 403, not an observed origin response. October 9 final bounded rolling workload passed at three slots/no queue and intended per-instance limits; process-local overlap accepted for that scope. Same-colo edge isolation remains open.
 
 #### Publikować i wdrażać obraz po digestcie
 
@@ -193,7 +193,7 @@ Final 6971496 CI publishes/tests/attests digest sha256:7b9853fa84e67a53d332b0b2e
 
 **Wdrożenie · W toku · 65% · trudność 4/5 · 3–6 h**
 
-Normal protected deployment and public smoke pass at 6971496. Actual-source rollback/freshness regressions retained. Rejected unhealthy candidate, failed-smoke rollback and measured live overlap still require an agreed window.
+Normal protected release passed at 6971496. Isolated health gate run 37892036349 and controlled failed-smoke rollback run 37894951905 restored the exact prior image, with healthy-before-stop ordering and export smoke. Final October 9 bounded canary rolling run validated eight CSV/HTML/DOCX outputs, old SIGTERM/exit 0 and sole healthy replacement; 51 successful health probes per app, no guard rejection. All exercise gates passed; temporary resource/tool cleanup remains. One earlier runner warning remains unexplained; no zero-downtime claim.
 
 #### Podłączyć usługę do centralnego monitoringu
 
@@ -226,4 +226,4 @@ Combined browser CI covers PL/EN/ARIA recovery, mobile viewport, keyboard modal 
 - Projekt podlega profilowi standardu v2: vps-web.
 - Używać digestów GHCR z Coolify/Traefik/Tunnel. Sukces ręcznego deployu nie oznacza automatycznego CD, zaufanego IP ani rollbacku.
 - Czasowo pominąć no-new-privileges w Custom Docker Options z powodu odtworzonego błędu 4.3.14; sprawdzić efektywne ustawienia i wrócić do rozwiązania przez Compose lub aktualizację.
-- Zachować liczniki procesu tylko pod warunkiem pomiarów bezpiecznego krótkiego overlapu; współdzielony licznik nie jest wdrożony ani planowany w tym warunkowym zakresie.
+- Zachować liczniki procesu dla jednej zwykłej instancji i krótkiego rolling dwóch instancji przy limitach przetestowanych 9 października: trzy sloty bez czekania, 1 CPU/512 MiB na kontener. Warunek pomiarów spełniony; stałe repliki lub większe limity wymagają nowej oceny. Brak wspólnego licznika.

@@ -60,16 +60,16 @@
     "date": "2026-10-07",
     "mode": "source-audited",
     "sourceRevision": "697149654f7f84dfe8aabe3565838348ef3a8220",
-    "sourceState": "PRs #26/#27/#28 merged into deployed 6971496; normal protected release passed. October 8 accepts app-client isolation, retry/recovery, sampled header-bypass rejection and selected runtime inspect. Tooling-only #29 is merged at d62e2dc. October 9 isolated canary rejection/restoration and controlled production failed-smoke rollback passed; production returned to exact stable 6971496. One runner health-read warning remains unexplained. Rolling-load capacity and cleanup remain. Progress and effort estimates retain October 7."
+    "sourceState": "PRs #26/#27/#28 merged into deployed 6971496; normal protected release passed. October 8 accepts app-client isolation, retry/recovery, sampled header-bypass rejection and selected runtime inspect. Tooling-only #29 is merged at d62e2dc. October 9 isolated canary rejection/restoration and controlled production failed-smoke rollback passed; production returned to exact stable 6971496. One runner health-read warning remains unexplained. The later bounded canary rolling attempt returned eight HTTP 200 exports but stopped on the host load guard before final validation. Capacity acceptance and cleanup remain. Progress and effort estimates retain October 7."
   },
   "focus": {
     "current": {
-      "en": "6971496 restored; client checks, canary health gate and controlled failed-smoke recovery accepted. Rolling-load capacity remains.",
-      "pl": "Przywrócono 6971496; testy klientów, canary i kontrolowany failed-smoke rollback przyjęte. Pozostaje pomiar obciążenia podczas rolling update."
+      "en": "Client, canary health-gate and controlled recovery checks accepted. Bounded rolling exports returned HTTP 200, but the host guard stopped capacity acceptance.",
+      "pl": "Testy klientów, health gate canary i kontrolowane odzyskiwanie przyjęte. Eksporty podczas rolling zwróciły HTTP 200, ale próg obciążenia hosta zatrzymał odbiór capacity."
     },
     "next": {
-      "en": "Prepare bounded overlap load on the isolated canary with fresh host/neighbour monitoring, then retire identified temporary resources and tooling.",
-      "pl": "Przygotować ograniczony test eksportów podczas nakładania instancji canary, z nową obserwacją hosta i sąsiednich aplikacji, potem usunąć zasoby i narzędzia tymczasowe."
+      "en": "Review host recovery and the stopped attempt with corrected diagnostic logging before another load window; then finish acceptance and scoped cleanup.",
+      "pl": "Sprawdzić stan hosta po przerwanej próbie i poprawiony zapis diagnostyki przed kolejnym oknem testowym; potem dokończyć odbiór i sprzątanie."
     }
   },
   "tasks": [
@@ -139,7 +139,7 @@
       "hoursMax": 3,
       "daysMin": 0.25,
       "daysMax": 0.5,
-      "evidence": "Corrected runbook tests merged; integration, local-capacity and normal-release evidence recorded. October 8 adds selected runtime inspect and public client/retry/header checks. October 9 accepts isolated unhealthy-candidate rejection/retention/restoration and controlled production recovery to exact 6971496. One runner health-read warning has unknown cause. Rolling-load and scoped cleanup remain."
+      "evidence": "Corrected runbook tests merged; integration, local-capacity and normal-release evidence recorded. October 8 adds selected runtime inspect and public client/retry/header checks. October 9 accepts isolated unhealthy-candidate rejection/retention/restoration and controlled production recovery to exact 6971496. One runner health-read warning has unknown cause. Rolling-load and scoped cleanup remain. Later October 9 bounded canary load: eight HTTP 200 exports, host load guard stop before final validation, no completed acceptance. Recovery readback pending; thresholds unchanged."
     },
     {
       "id": "edge-and-limits",
@@ -190,7 +190,7 @@
       "hoursMax": 6,
       "daysMin": 0.5,
       "daysMax": 0.75,
-      "evidence": "Normal protected deployment and public smoke pass at 6971496. Isolated health gate passed in run 37892036349. Controlled failed-smoke rollback https://github.com/SzczepanGrela/inventory-generator/actions/runs/37894951905 restored the exact prior image/revision, corroborated by Docker events and final export smoke. Successor health preceded old-container SIGTERM by 5.961 s on promotion and 6.001 s on rollback. One runner probe failure remains unexplained; zero downtime is not claimed. Rolling-load measurement and cleanup remain."
+      "evidence": "Normal protected deployment and public smoke pass at 6971496. Isolated health gate passed in run 37892036349. Controlled failed-smoke rollback https://github.com/SzczepanGrela/inventory-generator/actions/runs/37894951905 restored the exact prior image/revision, corroborated by Docker events and final export smoke. Successor health preceded old-container SIGTERM by 5.961 s on promotion and 6.001 s on rollback. One runner probe failure remains unexplained; zero downtime is not claimed. Rolling-load measurement and cleanup remain. Later October 9 bounded canary load: eight HTTP 200 exports, host load guard stop before final validation, no completed acceptance. Recovery readback pending; thresholds unchanged."
     },
     {
       "id": "service-observability",
@@ -310,11 +310,12 @@
       "October 8 paired public DOCX run: VPS 06:44:18-06:47:03 UTC; observer 06:44:51-06:47:36 UTC; separate completed header/recovery check 07:31:11-07:31:26 UTC",
       "Tooling PR https://github.com/SzczepanGrela/inventory-generator/pull/29; merged d62e2dc, ordinary promotion cancelled before production steps",
       "October 9 isolated health-gate run https://github.com/SzczepanGrela/inventory-generator/actions/runs/37892036349; operator selected Docker lifecycle/health transitions and bounded host/neighbour monitoring",
-      "October 9 controlled failed-smoke recovery https://github.com/SzczepanGrela/inventory-generator/actions/runs/37894951905; exact-image restoration and operator lifecycle/public samples, with one unexplained runner probe warning"
+      "October 9 controlled failed-smoke recovery https://github.com/SzczepanGrela/inventory-generator/actions/runs/37894951905; exact-image restoration and operator lifecycle/public samples, with one unexplained runner probe warning",
+      "October 9 operator-pasted bounded canary rolling-workload summary: eight HTTP 200 exports, 53 successful public health probes per app, host load guard stop before completion; source review identified an omitted rejected sample"
     ],
     "notes": {
-      "en": "October 9 canary rejection/retention/restoration and controlled production failed-smoke recovery are accepted. Rollback operator samples: 122/122 HTTP 200 per app, minimum available RAM 4934 MiB, maximum CPU 88% with separated peaks outside the exercise. One independent runner probe warning remains unexplained; the supplied monitor summary is a log prefix, not a confirmed full window. No zero-downtime or rolling-load claim. Capacity and temporary cleanup remain. Earlier evidence and progress/effort estimates retain their dates; platform gaps stay separate.",
-      "pl": "9 października przyjęto odrzucenie niezdrowego canary z zachowaniem starej instancji oraz kontrolowany failed-smoke rollback produkcji. Odczyty operatora: 122/122 HTTP 200 dla każdej aplikacji, minimum 4934 MiB dostępnego RAM, maksimum CPU 88% z oddzielnymi skokami poza próbą. Pojedynczy błąd próby z runnera pozostaje niewyjaśniony; przekazane podsumowanie obejmuje fragment logu, nie potwierdzone pełne okno. Nie potwierdzono zerowego downtime ani wydajności pod obciążeniem rolling. Pozostają pomiar i sprzątanie; starsze dowody i szacunki zachowują daty, a zadania platformy pozostają osobne."
+      "en": "October 9 canary health gating and controlled production recovery remain accepted; one rollback runner warning remains unexplained. The later bounded rolling attempt returned eight HTTP 200 exports and 53 successful health probes per app, with sampled combined canary memory of 400.16 MiB. A host load guard stopped it before final validation. The old helper omitted the rejected sample, so the exact triggering load is unknown; local diagnostic logging is corrected. Seven output structures and final recovery were not validated by this attempt. Capacity acceptance, host recovery readback and cleanup remain open. Progress and effort estimates retain October 7; platform gaps stay separate.",
+      "pl": "Odbiór health gate canary i kontrolowanego odzyskiwania produkcji z 9 października pozostaje ważny; jedno ostrzeżenie runnera podczas rollbacku jest niewyjaśnione. Późniejsza ograniczona próba rolling dała osiem eksportów HTTP 200 i po 53 poprawne próby zdrowia aplikacji, przy 400,16 MiB łącznej próbkowanej pamięci canary. Próg obciążenia hosta przerwał próbę przed końcową walidacją. Stary skrypt nie zapisał odrzuconej próbki, więc dokładna wartość wyzwalająca zatrzymanie jest nieznana; lokalnie poprawiono diagnostykę. Nie ukończono sprawdzania struktury siedmiu odpowiedzi ani stanu końcowego. Pozostają odbiór capacity, odczyt stanu hosta po próbie i sprzątanie. Szacunki postępu i czasu zachowują datę 7 października; zadania platformy są osobne."
     }
   },
   "compliance": {
@@ -377,8 +378,8 @@
         "id": "abuse-protection",
         "status": "partial",
         "evidence": {
-          "en": "Local capped HTTP overload/recovery and public app-client/retry/header checks pass. Worst local peak 469.61 MiB does not eliminate OOM risk. Rolling capacity remains unqualified.",
-          "pl": "Lokalne HTTP pod limitami oraz publiczne testy klientów/retry/nagłówków przeszły. Lokalny szczyt 469,61 MiB nie eliminuje ryzyka OOM. Pomiar obciążenia podczas rolling pozostaje otwarty."
+          "en": "Local capped HTTP overload/recovery and public app-client/retry/header checks pass. Worst local peak 469.61 MiB does not eliminate OOM risk. Rolling capacity remains unqualified. The live bounded canary rolling attempt stopped at the host guard after eight HTTP 200 responses; it is partial evidence, not capacity acceptance.",
+          "pl": "Lokalne HTTP pod limitami oraz publiczne testy klientów/retry/nagłówków przeszły. Lokalny szczyt 469,61 MiB nie eliminuje ryzyka OOM. Pomiar obciążenia podczas rolling pozostaje otwarty. Ograniczoną próbę rolling canary zatrzymał próg hosta po ośmiu odpowiedziach HTTP 200; to dowód częściowy, bez odbioru capacity."
         },
         "taskIds": [
           "export-hardening",
@@ -420,8 +421,8 @@
         "id": "coordination-retention",
         "status": "partial",
         "evidence": {
-          "en": "Serialized release and scoped retention code exists; measured old/new capacity remains open.",
-          "pl": "Kod serializacji wydań i retencji istnieje; pomiary capacity starej/nowej instancji pozostają otwarte."
+          "en": "Serialized release and scoped retention code exists. Live old/new workload produced responses but hit the host guard before final validation; capacity acceptance and cleanup remain open.",
+          "pl": "Kod serializacji wydań i retencji istnieje. Test starej i nowej instancji zwrócił odpowiedzi, ale próg hosta zatrzymał końcową walidację; odbiór capacity i sprzątanie pozostają otwarte."
         },
         "taskIds": [
           "blue-green"

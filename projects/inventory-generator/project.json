@@ -68,8 +68,8 @@
       "pl": "6971496 wdrożone; testy klientów i odrzucenia niezdrowego canary przyjęte. Pozostają rollback produkcji i pomiar obciążenia podczas rolling update."
     },
     "next": {
-      "en": "Review CPU/load samples, coordinate the remaining exercises, then retire identified temporary resources and tooling.",
-      "pl": "Sprawdzić próbki CPU/load, skoordynować pozostałe testy, następnie usunąć zidentyfikowane zasoby i narzędzia tymczasowe."
+      "en": "Coordinate a fresh monitoring window for production rollback and rolling-load tests, then retire identified temporary resources and tooling.",
+      "pl": "Przygotować nową obserwację dla rollbacku produkcji i testu rolling pod obciążeniem, następnie usunąć zidentyfikowane zasoby i narzędzia tymczasowe."
     }
   },
   "tasks": [
@@ -312,8 +312,8 @@
       "October 9 isolated health-gate run https://github.com/SzczepanGrela/inventory-generator/actions/runs/37892036349; operator selected Docker lifecycle/health transitions and bounded host/neighbour monitoring"
     ],
     "notes": {
-      "en": "October 9 accepts isolated unhealthy-candidate rejection, healthy baseline retention and restoration. The canary had no public route or generated export load. All 157 sampled neighbouring health probes returned 200; CPU peak 88% still needs duration/load review before another exercise. Production failed-smoke rollback, rolling-load capacity and temporary cleanup remain. Earlier client/runtime/CI evidence retains its dates; progress/effort estimates are unchanged and platform gaps stay separate.",
-      "pl": "9 października przyjęto odrzucenie niezdrowego kandydata w izolowanym canary, zachowanie zdrowej starej instancji i przywrócenie zdrowej konfiguracji. Canary nie miał publicznej trasy ani obciążenia eksportami. Wszystkie 157 prób zdrowia sąsiedniej aplikacji zwróciło 200; szczyt CPU 88% wymaga sprawdzenia czasu trwania i load przed kolejną próbą. Pozostają failed-smoke rollback produkcji, pomiar pod obciążeniem i sprzątanie zasobów tymczasowych. Starsze dowody zachowują daty, procenty i szacunki bez zmian, a zadania platformy pozostają osobne."
+      "en": "October 9 accepts isolated unhealthy-candidate rejection, healthy baseline retention and restoration. The canary had no public route or generated export load. All 157 sampled neighbouring health probes returned 200; Completed monitor review found four separated CPU peaks outside the exercise (maximum 88%), no observed >15-second high-CPU series and no load1 >3.5 samples. Production failed-smoke rollback, rolling-load capacity and temporary cleanup remain. Earlier client/runtime/CI evidence retains its dates; progress/effort estimates are unchanged and platform gaps stay separate.",
+      "pl": "9 października przyjęto odrzucenie niezdrowego kandydata w izolowanym canary, zachowanie zdrowej starej instancji i przywrócenie zdrowej konfiguracji. Canary nie miał publicznej trasy ani obciążenia eksportami. Wszystkie 157 prób zdrowia sąsiedniej aplikacji zwróciło 200; przegląd ukończonego monitora wykazał cztery oddzielne skoki CPU poza próbą (maksimum 88%), bez zaobserwowanej serii wysokiego CPU >15 sekund ani próbek load1 >3,5. Pozostają failed-smoke rollback produkcji, pomiar pod obciążeniem i sprzątanie zasobów tymczasowych. Starsze dowody zachowują daty, procenty i szacunki bez zmian, a zadania platformy pozostają osobne."
     }
   },
   "compliance": {

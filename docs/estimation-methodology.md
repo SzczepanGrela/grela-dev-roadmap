@@ -62,3 +62,13 @@ overwrite, unqualified admission and incorrect runbook add corrective work.
 Task totals are now 21–40 hours, low confidence, October 5–20 planning range.
 Other project estimates and dates are unchanged. Portfolio still follows reviewed
 Inventory corrections; no deployment/failure window is promised by these dates.
+
+## Inventory closeout — October 11
+
+Inventory operations documentation and bounded rolling acceptance are complete,
+including scoped resource cleanup and merged source retirement. Only those two
+tasks are removed from remaining effort: 13–25 hours becomes 8–16 hours, and
+weighted overall progress becomes 94%. Remaining shared platform/presentation
+estimates retain their earlier scope; this is not 100% platform compliance.
+The low-confidence planning range is October 13–20, without a reserved operator
+window. Other project estimates and dates are unchanged.

@@ -1,6 +1,6 @@
 # NetFilmx Movie Catalog — status report / raport stanu
 
-Audit date / data audytu: **2026-10-04**<br>
+Audit date / data audytu: **2026-10-12**<br>
 Estimated completion / szacowane ukończenie: **70%**<br>
 Forecast / prognoza: **2026-10-05–2026-10-25**, 35–66 h, low confidence / pewność: low
 
@@ -12,13 +12,13 @@ Forecast / prognoza: **2026-10-05–2026-10-25**, 35–66 h, low confidence / pe
 
 ASP.NET Core VOD catalogue with HLS processing, R2 storage and administration.
 
-Substantial candidate progress: shared keyring, explicit migrations/readiness, singleton worker, .NET 10 and qualified image CI. Tests pass, but review found rollback can race a deployment with unresolved state. Corrective worker work, protected first-resource bootstrap, media rights/derivatives/import and actual restore/rolling/resource acceptance remain. No production or media changes; candidate is still draft. Estimates include uncertain live acceptance, not an execution deadline.
+R1 accepted and plan reviewed; candidate remains draft. Next: seven-media provenance/derivatives and real local PG/keyring/two-web recovery with uploads/worker off. Production protection, backup policy and licensed media acceptance remain; worker activation has additional later gates. No fresh VPS/R2 audit or app merge/deploy. Progress and October 4 effort estimates are retained, not newly measured or a promised date.
 
 ### Audit evidence
 
 - **Repozytorium:** `SzczepanGrela/netfilmx-movie-catalog` @ `cbf2ec16cac64d2dfe4d85b8b575f4eacdd69578`
 - **Source state:** Clean preparation branch codex/netfilmx-preparation, draft PR #1 at cbf2ec1. .NET 10/keyring/migration/image preparation reviewed; release error handling requires correction. Original source retained; candidate is not production.
-- **Tests and CI:** CI/CD 37150511344 and Dependency audit 37150511216 green at cbf2ec1; Publish tested digest and Deploy tested digest skipped. Image scanner gates fixable HIGH/CRITICAL findings, not every advisory. Three DOM tests cover validation helpers, not full browser acceptance.
+- **Tests and CI:** CI/CD 37262046514 and Dependency audit 37262046312 green for final 1afb625; completed October 5, inspected October 12. Exact image and Quality gate pass; Publish tested digest and Deploy tested digest skipped. Scanner gates fixable HIGH/CRITICAL, not every advisory. Refresh qualification with subsequent candidate changes.
 - **Production:** No production migration, data import or cutover in this preparation/review. No GHCR digest published by this PR run. Historic public HTTP 200 does not establish readiness of the new release.
 
 ### v2 standard compliance
@@ -27,15 +27,15 @@ Profile: **VPS web application**. Statuses reflect only evidence available on th
 
 | Control | Status | Evidence |
 | --- | --- | --- |
-| Repository governance | Partial | Main unprotected, no environments at October 4 readback; candidate gate code is not effective protection. |
-| Quality CI | Partial | 256 .NET / 26 Python / 3 DOM and image/audit CI green; release error handling and live acceptance remain. |
-| Immutable release | Partial | One qualified image and GHCR attestations/digest promotion prepared; PR publication skipped, release correction/bootstrap unaccepted. |
+| Repository governance | Partial | Main unprotected, zero rulesets/environments at October 12 readback; workflow gate code is not installed protection. |
+| Quality CI | Partial | 34 Python independently pass; October 5 final-head CI confirms 256 .NET/zero skips and qualified image. R1 accepted; live media/stateful/browser acceptance remains. |
+| Immutable release | Partial | R1 accepted; one qualified image and digest/attestation workflow prepared. PR publication skipped; effective protection, main digest and bootstrap unaccepted. |
 | Deployment access | Partial | Legacy SSH path retired in candidate; scoped private access and protected environment still need effective configuration. |
 | Network, TLS and client identity | Partial | Exact proxy source/tests added to candidate; older public routing evidence does not prove new production identity. |
 | Abuse protection | Partial | Candidate auth/write/body/concurrency/image bounds implemented; public/aggregate/rolling acceptance remains. |
 | Runtime safety | Partial | Isolated .NET 10 image smoke verifies non-root runtime/native tools/restart; actual mounts, aggregate resources and worker load remain. |
 | Readiness and preflight | Partial | Explicit bounded schema/queue migrations and readiness tested; real database bootstrap and schema-compatible rollback acceptance remain. |
-| Atomic promotion and rollback | Partial | Prepared releaser has two paths allowing rollback with unresolved deployment; fix before merge, then rehearse stateful recovery. |
+| Atomic promotion and rollback | Partial | R1 accepted October 12: confirmed terminal deployment required before rollback; unknown state stops mutations. Actual protected stateful rolling/rollback still needs acceptance. |
 | Coordination and retention | Partial | Serialized release and singleton code exist; actual resource/queue overlap, scoped retention and recovery require acceptance. |
 | Observability | Missing | No accepted central or delivered worker/release/backup alerts. |
 | Web identity | Partial | Candidate browser/vendor changes and DOM tests exist; public identity/accessibility/media-license acceptance remains. |
@@ -52,19 +52,19 @@ Candidate now includes shared persistent Data Protection, explicit bounded migra
 
 **Quality · In progress · 80% · difficulty 4/5 · 5–10 h**
 
-Exact-head CI cbf2ec1: 256 .NET passed, zero skipped, 26 Python and 3 DOM tests; locked audits and isolated image smoke pass. Coordinator reran Python/DOM and reproduced two release error paths that queue rollback before confirming the first deployment stopped. Remaining warnings and actual worker/restore/browser acceptance are open.
+R1 correction reviewed October 12 at final draft 1afb625: 34 Python tests independently rerun, including eight release-boundary regressions. October 5 exact-head CI confirms 256 .NET passed, zero skipped, browser checks and qualified image. Unknown deployment state prevents rollback mutations; warnings and actual worker/restore/browser acceptance remain.
 
 #### Require green CI on protected main
 
 **Quality · Planned · 0% · difficulty 2/5 · 2–3 h**
 
-October 4 read-only GitHub metadata: main unprotected, no environments. Quality gate and production-environment references exist in candidate code, but reviewer/main restrictions must be configured and verified before protected release. Automatic promotion stays disabled pending acceptance.
+October 12 read-only GitHub metadata: main unprotected, zero rulesets/environments, both deployment activation variables absent. Candidate code does not install reviewer/main restrictions. Configure and verify protection before merge/credentials; no governance settings changed in this review.
 
 #### Align architecture and operations documentation
 
 **Documentation · In progress · 90% · difficulty 3/5 · 1–3 h**
 
-Data Protection, migration/readiness, release-delivery and work-status docs now describe tested candidate scope and live blockers. Coordinator review/handoff records release error correction, distinct first-resource bootstrap and retained-data/media gates. Final effective configuration/restore/production evidence remains.
+First-release plan at 1afb625 covers protected bootstrap, media/credits, PG/keyring recovery, worker/resource and operator gates. Coordinator accepted R1 and preparation plan October 12, distinguishing catalogue-only qualification from later upload/worker activation. Effective configuration and executed media/restore/production evidence remain.
 
 #### Add login, upload and transcoding limits
 
@@ -76,9 +76,9 @@ Candidate exact trusted proxy handling, auth/write/body/concurrency/image bounds
 
 **Delivery · In progress · 60% · difficulty 4/5 · 4–8 h**
 
-Candidate replaces SSH rebuild/prune with one qualified image, GHCR publication/attestation and serialized Coolify digest promotion. Publication/deployment skipped in PR CI. Fix unresolved-deployment rollback paths; establish protected governance and bootstrap of the first healthy baseline. No new production release.
+One qualified image, GHCR attestation and serialized Coolify promotion are prepared. R1 is accepted: rollback requires confirmed terminal deployment state; unknown queue/status/cancellation stops mutations. Draft CI publish/deploy skipped. Effective protection, published main digest and separate first healthy bootstrap remain unaccepted.
 
-#### Add readiness, stable gateway and blue-green
+#### Qualify readiness, stateful rolling updates and rollback
 
 **Delivery · In progress · 35% · difficulty 5/5 · 6–12 h**
 
@@ -97,7 +97,7 @@ Worker lifecycle logs and release probes exist in preparation; useful delivered 
 - The project follows the v2 standard profile: vps-web.
 - Migration target updated September 6: prebuilt GHCR digest in Coolify, Traefik/Tunnel routing and the shared deployment checklist; preserve databases and custom routes. This target update is not a new source/production audit.
 - Fresh PostgreSQL catalogue from existing licensed R2 media, new accounts and empty history; retain legacy database/original objects and exclude old YouTube/demo links.
-- Dedicated Codex worker owns implementation. Keyring/migration/.NET 10 and replacement delivery code are prepared. Fix release error paths, establish protected governance and separately review initial bootstrap; automatic production promotion remains disabled until accepted.
+- Dedicated worker owns implementation. Coordinator accepted R1 and the first-release plan; execute media and local catalogue-only recovery next. Effective protection/bootstrap remain separate. Upload/worker activation requires its own queue/encoder/recovery evidence; no automatic production promotion yet.
 
 ## Polski
 
@@ -105,13 +105,13 @@ Worker lifecycle logs and release probes exist in preparation; useful delivered 
 
 Katalog VOD ASP.NET Core z HLS, magazynem R2 i panelem administracyjnym.
 
-Istotny postęp kandydata: wspólny keyring, jawne migracje/readiness, singleton worker, .NET 10 i kwalifikacja obrazu w CI. Testy przechodzą, lecz review wykazało ryzyko rollbacku przy nierozstrzygniętym stanie wdrożenia. Pozostają poprawka agenta, chroniony bootstrap, prawa/pochodne/import mediów i rzeczywisty odbiór restore/rolling/zasobów. Bez zmian produkcji/mediów; kandydat nadal jest draftem. Estymacja uwzględnia niepewny odbiór produkcji i nie jest terminem realizacji.
+R1 odebrane, plan przejrzany; kandydat pozostaje draftem. Dalej: pochodzenie/pochodne siedmiu mediów i rzeczywiste lokalne odtwarzanie PG/keyring/dwóch webów z uploads/worker off. Pozostają ochrona produkcji, polityka kopii i odbiór legalnych mediów; aktywacja workera ma dodatkowe późniejsze bramki. Bez nowego audytu VPS/R2, merge lub deploy aplikacji. Procenty i estymaty pracy z 4 października zachowano, nie są nowym pomiarem ani obiecanym terminem.
 
 ### Dowody audytu
 
 - **Repozytorium:** `SzczepanGrela/netfilmx-movie-catalog` @ `cbf2ec16cac64d2dfe4d85b8b575f4eacdd69578`
 - **Stan źródła:** Clean preparation branch codex/netfilmx-preparation, draft PR #1 at cbf2ec1. .NET 10/keyring/migration/image preparation reviewed; release error handling requires correction. Original source retained; candidate is not production.
-- **Testy i CI:** CI/CD 37150511344 and Dependency audit 37150511216 green at cbf2ec1; Publish tested digest and Deploy tested digest skipped. Image scanner gates fixable HIGH/CRITICAL findings, not every advisory. Three DOM tests cover validation helpers, not full browser acceptance.
+- **Testy i CI:** CI/CD 37262046514 and Dependency audit 37262046312 green for final 1afb625; completed October 5, inspected October 12. Exact image and Quality gate pass; Publish tested digest and Deploy tested digest skipped. Scanner gates fixable HIGH/CRITICAL, not every advisory. Refresh qualification with subsequent candidate changes.
 - **Produkcja:** No production migration, data import or cutover in this preparation/review. No GHCR digest published by this PR run. Historic public HTTP 200 does not establish readiness of the new release.
 
 ### Zgodność ze standardem v2
@@ -120,15 +120,15 @@ Profil: **Aplikacja webowa na VPS**. Statusy odzwierciedlają wyłącznie dowody
 
 | Kontrola | Status | Dowód |
 | --- | --- | --- |
-| Zarządzanie repozytorium | Częściowe | Main bez ochrony, brak environments w odczycie 4 października; kod bramek nie stanowi aktywnej ochrony. |
-| Quality CI | Częściowe | 256 .NET / 26 Python / 3 DOM oraz CI obrazu/audytu zielone; pozostaje obsługa błędów releasera i odbiór produkcji. |
-| Niezmienne wydanie | Częściowe | Jeden kwalifikowany obraz i attestation/promocja digestu przygotowane; publikacja PR pominięta, poprawka/bootstrap nieodebrane. |
+| Zarządzanie repozytorium | Częściowe | Main bez ochrony, zero rulesets/environments w odczycie 12 października; kod workflow nie stanowi aktywnej ochrony. |
+| Quality CI | Częściowe | 34 Python niezależnie przechodzi; CI końcowego SHA z 5 października potwierdza 256 .NET/zero skips i kwalifikację obrazu. R1 odebrane; odbiór mediów/stanu/przeglądarki pozostaje. |
+| Niezmienne wydanie | Częściowe | R1 odebrane; przygotowano kwalifikowany obraz oraz workflow digest/attestation. Publikacja PR pominięta; ochrona, digest main i bootstrap nieodebrane. |
 | Dostęp wdrożeniowy | Częściowe | Ścieżka SSH wycofana w kandydacie; prywatny dostęp i chronione środowisko wymagają konfiguracji. |
 | Sieć, TLS i tożsamość klienta | Częściowe | Exact-proxy dodano w kodzie/testach; stare dowody routingu nie potwierdzają tożsamości nowej produkcji. |
 | Ochrona przed nadużyciami | Częściowe | Limity auth/write/body/współbieżności/obrazów zaimplementowano; odbiór publiczny/aggregate/rolling pozostaje. |
 | Bezpieczeństwo runtime | Częściowe | Smoke obrazu .NET 10 potwierdza non-root/narzędzia/restart; rzeczywiste mounty, zasoby i obciążenie workera pozostają. |
 | Readiness i preflight | Częściowe | Jawne ograniczone migracje schematu/kolejki i readiness przetestowane; pozostaje bootstrap bazy i odbiór rollbacku zgodnego ze schematem. |
-| Atomowa promocja i rollback | Częściowe | Releaser ma dwie ścieżki rollbacku przy nierozstrzygniętym wdrożeniu; naprawić przed scaleniem, następnie przetestować stateful recovery. |
+| Atomowa promocja i rollback | Częściowe | R1 odebrane 12 października: rollback wymaga potwierdzonego zakończenia wdrożenia; nieznany stan zatrzymuje mutacje. Pozostaje rzeczywisty chroniony rolling/rollback ze stanem. |
 | Koordynacja i retencja | Częściowe | Serializacja wydania i singleton istnieją w kodzie; rzeczywisty overlap zasobów/kolejki, retencja i recovery wymagają odbioru. |
 | Obserwowalność | Brak | Brak odebranych centralnych/dostarczonych alertów workera/wydania/backupów. |
 | Tożsamość webowa | Częściowe | Zmiany browser/vendor i testy DOM istnieją; publiczny odbiór identity/dostępności/licencji pozostaje. |
@@ -145,19 +145,19 @@ Candidate now includes shared persistent Data Protection, explicit bounded migra
 
 **Jakość · W toku · 80% · trudność 4/5 · 5–10 h**
 
-Exact-head CI cbf2ec1: 256 .NET passed, zero skipped, 26 Python and 3 DOM tests; locked audits and isolated image smoke pass. Coordinator reran Python/DOM and reproduced two release error paths that queue rollback before confirming the first deployment stopped. Remaining warnings and actual worker/restore/browser acceptance are open.
+R1 correction reviewed October 12 at final draft 1afb625: 34 Python tests independently rerun, including eight release-boundary regressions. October 5 exact-head CI confirms 256 .NET passed, zero skipped, browser checks and qualified image. Unknown deployment state prevents rollback mutations; warnings and actual worker/restore/browser acceptance remain.
 
 #### Wymagać zielonego CI na chronionym main
 
 **Jakość · Planowane · 0% · trudność 2/5 · 2–3 h**
 
-October 4 read-only GitHub metadata: main unprotected, no environments. Quality gate and production-environment references exist in candidate code, but reviewer/main restrictions must be configured and verified before protected release. Automatic promotion stays disabled pending acceptance.
+October 12 read-only GitHub metadata: main unprotected, zero rulesets/environments, both deployment activation variables absent. Candidate code does not install reviewer/main restrictions. Configure and verify protection before merge/credentials; no governance settings changed in this review.
 
 #### Uzgodnić dokumentację architektury i operacji
 
 **Dokumentacja · W toku · 90% · trudność 3/5 · 1–3 h**
 
-Data Protection, migration/readiness, release-delivery and work-status docs now describe tested candidate scope and live blockers. Coordinator review/handoff records release error correction, distinct first-resource bootstrap and retained-data/media gates. Final effective configuration/restore/production evidence remains.
+First-release plan at 1afb625 covers protected bootstrap, media/credits, PG/keyring recovery, worker/resource and operator gates. Coordinator accepted R1 and preparation plan October 12, distinguishing catalogue-only qualification from later upload/worker activation. Effective configuration and executed media/restore/production evidence remain.
 
 #### Dodać limity logowania, uploadu i transkodowania
 
@@ -169,9 +169,9 @@ Candidate exact trusted proxy handling, auth/write/body/concurrency/image bounds
 
 **Wdrożenie · W toku · 60% · trudność 4/5 · 4–8 h**
 
-Candidate replaces SSH rebuild/prune with one qualified image, GHCR publication/attestation and serialized Coolify digest promotion. Publication/deployment skipped in PR CI. Fix unresolved-deployment rollback paths; establish protected governance and bootstrap of the first healthy baseline. No new production release.
+One qualified image, GHCR attestation and serialized Coolify promotion are prepared. R1 is accepted: rollback requires confirmed terminal deployment state; unknown queue/status/cancellation stops mutations. Draft CI publish/deploy skipped. Effective protection, published main digest and separate first healthy bootstrap remain unaccepted.
 
-#### Dodać readiness, stabilny gateway i blue-green
+#### Sprawdzić readiness, rolling update ze stanem i rollback
 
 **Wdrożenie · W toku · 35% · trudność 5/5 · 6–12 h**
 
@@ -190,4 +190,4 @@ Worker lifecycle logs and release probes exist in preparation; useful delivered 
 - Projekt podlega profilowi standardu v2: vps-web.
 - Cel migracji uaktualniony 6 września: digest GHCR w Coolify, routing Traefik/Tunnel i wspólna checklista; zachować bazy i custom routes. Zmiana celu nie jest nowym audytem źródła/produkcji.
 - Nowy katalog PostgreSQL z istniejących legalnych mediów R2, nowe konta i pusta historia; zachować starą bazę/originals i wykluczyć YouTube/demo.
-- Osobny Codex prowadzi implementację. Keyring/migracje/.NET 10 i nowe wdrażanie są przygotowane. Poprawić błędy releasera, ustanowić ochronę repozytorium i oddzielnie odebrać bootstrap; automatyczna promocja produkcji pozostaje wyłączona do odbioru.
+- Osobny agent prowadzi implementację. Koordynator odebrał R1 i plan pierwszego wydania; teraz media i lokalne odtwarzanie samego katalogu. Ochrona/bootstrap pozostają oddzielne. Aktywacja uploadów/workera wymaga dowodów kolejki/kodowania/odzyskiwania; bez automatycznej promocji produkcji.

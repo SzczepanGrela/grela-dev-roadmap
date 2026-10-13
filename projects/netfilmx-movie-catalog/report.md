@@ -1,6 +1,6 @@
 # NetFilmx Movie Catalog — status report / raport stanu
 
-Audit date / data audytu: **2026-10-12**<br>
+Audit date / data audytu: **2026-10-13**<br>
 Estimated completion / szacowane ukończenie: **70%**<br>
 Forecast / prognoza: **2026-10-05–2026-10-25**, 35–66 h, low confidence / pewność: low
 
@@ -12,14 +12,14 @@ Forecast / prognoza: **2026-10-05–2026-10-25**, 35–66 h, low confidence / pe
 
 ASP.NET Core VOD catalogue with HLS processing, R2 storage and administration.
 
-R1 accepted and plan reviewed; candidate remains draft. Next: seven-media provenance/derivatives and real local PG/keyring/two-web recovery with uploads/worker off. Production protection, backup policy and licensed media acceptance remain; worker activation has additional later gates. No fresh VPS/R2 audit or app merge/deploy. Progress and October 4 effort estimates are retained, not newly measured or a promised date.
+Source reconciliation and bounded local catalogue recovery accepted; candidate stays draft. Two MP4 proposals and seven-video/13-image local Chromium evidence are preparation, not rights/real-origin acceptance. Exact Gran Dillama licence version, artwork sources/notices, derivative choices and Firefox/Safari/mobile remain open. Production limits, backup policy, protection and legacy recovery/cutover stay separate. Uploads/worker remain off. Percentages and October 4 effort estimates retained, not remeasured or promised dates.
 
 ### Audit evidence
 
 - **Repozytorium:** `SzczepanGrela/netfilmx-movie-catalog` @ `cbf2ec16cac64d2dfe4d85b8b575f4eacdd69578`
 - **Source state:** Clean preparation branch codex/netfilmx-preparation, draft PR #1 at cbf2ec1. .NET 10/keyring/migration/image preparation reviewed; release error handling requires correction. Original source retained; candidate is not production.
-- **Tests and CI:** CI/CD 37262046514 and Dependency audit 37262046312 green for final 1afb625; completed October 5, inspected October 12. Exact image and Quality gate pass; Publish tested digest and Deploy tested digest skipped. Scanner gates fixable HIGH/CRITICAL, not every advisory. Refresh qualification with subsequent candidate changes.
-- **Production:** No production migration, data import or cutover in this preparation/review. No GHCR digest published by this PR run. Historic public HTTP 200 does not establish readiness of the new release.
+- **Tests and CI:** CI/CD 38383261814 and Dependency audit 38383261832 green for 35e32d7 October 13. Exact image/Quality pass; publish/deploy skipped. Local recovery used an earlier image at 986e9aa; runtime source is unchanged through reviewed head. Full local recovery is not a CI gate. Scanner gates fixable HIGH/CRITICAL, not every advisory.
+- **Production:** Worker reports no production/R2 mutation; coordinator performed no fresh VPS/provider audit or app merge/deploy. No production digest published by this PR run. Uploads/worker stay off. Protection readback retains October 12 date; local recovery does not establish new release readiness.
 
 ### v2 standard compliance
 
@@ -28,17 +28,17 @@ Profile: **VPS web application**. Statuses reflect only evidence available on th
 | Control | Status | Evidence |
 | --- | --- | --- |
 | Repository governance | Partial | Main unprotected, zero rulesets/environments at October 12 readback; workflow gate code is not installed protection. |
-| Quality CI | Partial | 34 Python independently pass; October 5 final-head CI confirms 256 .NET/zero skips and qualified image. R1 accepted; live media/stateful/browser acceptance remains. |
+| Quality CI | Partial | Final October 13 CI: 256 .NET/zero skips, 34 Python and qualified image; coordinator 34 Python pass. Local synthetic recovery accepted; real media/browser/live gates remain. |
 | Immutable release | Partial | R1 accepted; one qualified image and digest/attestation workflow prepared. PR publication skipped; effective protection, main digest and bootstrap unaccepted. |
 | Deployment access | Partial | Legacy SSH path retired in candidate; scoped private access and protected environment still need effective configuration. |
 | Network, TLS and client identity | Partial | Exact proxy source/tests added to candidate; older public routing evidence does not prove new production identity. |
 | Abuse protection | Partial | Candidate auth/write/body/concurrency/image bounds implemented; public/aggregate/rolling acceptance remains. |
-| Runtime safety | Partial | Isolated .NET 10 image smoke verifies non-root runtime/native tools/restart; actual mounts, aggregate resources and worker load remain. |
-| Readiness and preflight | Partial | Explicit bounded schema/queue migrations and readiness tested; real database bootstrap and schema-compatible rollback acceptance remain. |
+| Runtime safety | Partial | Local two-web/PG/keyring fixture verifies effective 1 CPU/512 MiB limits, no swap and non-root web; maximum web peak 441.76 MiB. Production/encoder headroom unaccepted. |
+| Readiness and preflight | Partial | Explicit migration, runtime-role grants and synthetic empty-catalogue import/refusal pass locally; real accepted manifest and production bootstrap/schema-compatible rollback remain. |
 | Atomic promotion and rollback | Partial | R1 accepted October 12: confirmed terminal deployment required before rollback; unknown state stops mutations. Actual protected stateful rolling/rollback still needs acceptance. |
-| Coordination and retention | Partial | Serialized release and singleton code exist; actual resource/queue overlap, scoped retention and recovery require acceptance. |
+| Coordination and retention | Partial | Preserved source reconciled; local PG/keyring recovery accepted with synthetic media. Real legacy recovery/retention and production rolling remain; upload/worker gates stay separate. |
 | Observability | Missing | No accepted central or delivered worker/release/backup alerts. |
-| Web identity | Partial | Candidate browser/vendor changes and DOM tests exist; public identity/accessibility/media-license acceptance remains. |
+| Web identity | Partial | Local Chromium decodes/seeks seven videos and 13 images. Complete rights/artwork attribution, remaining browsers and actual HTTPS-origin acceptance remain. |
 
 ### Remaining and active tasks
 
@@ -46,13 +46,13 @@ Profile: **VPS web application**. Statuses reflect only evidence available on th
 
 **Implementation · In progress · 85% · difficulty 5/5 · 10–18 h**
 
-Candidate now includes shared persistent Data Protection, explicit bounded migrations/readiness and singleton worker ownership. .NET 10 replaces .NET 8. Retained seven-media manifest still needs two browser derivatives, verified rights/credits/import and remaining i18n.
+October 13 source reconciliation accounts for all 77 expanded paths in the preserved dirty set: 51 identical, 25 further developed, one shared deletion; no missing feature found in that set. Search/i18n/catalogue/admin remain; obsolete startup migration, volatile queue and guessed object deletion intentionally retired. Two offline MP4 proposals exist, but rights/artwork notices, accepted playback keys and remaining i18n stay open.
 
 #### Remove warnings, skipped tests and vulnerabilities
 
 **Quality · In progress · 80% · difficulty 4/5 · 5–10 h**
 
-R1 correction reviewed October 12 at final draft 1afb625: 34 Python tests independently rerun, including eight release-boundary regressions. October 5 exact-head CI confirms 256 .NET passed, zero skipped, browser checks and qualified image. Unknown deployment state prevents rollback mutations; warnings and actual worker/restore/browser acceptance remain.
+Final 35e32d7 CI on October 13 confirms 256 .NET/zero skips, 34 Python and qualified image; coordinator independently reran 34 Python. R1 remains accepted. Worker local recovery on runtime source 986e9aa passes within synthetic catalogue scope. Local Chromium seven-video/13-image checks are not real-origin or complete browser/media acceptance; warnings and later worker gates remain.
 
 #### Require green CI on protected main
 
@@ -64,7 +64,7 @@ October 12 read-only GitHub metadata: main unprotected, zero rulesets/environmen
 
 **Documentation · In progress · 90% · difficulty 3/5 · 1–3 h**
 
-First-release plan at 1afb625 covers protected bootstrap, media/credits, PG/keyring recovery, worker/resource and operator gates. Coordinator accepted R1 and preparation plan October 12, distinguishing catalogue-only qualification from later upload/worker activation. Effective configuration and executed media/restore/production evidence remain.
+October 13 plan separates catalogue-first delivery from later upload/worker activation. Recovery harness/results, media proposals and complete preserved-source reconciliation reviewed. Effective production settings, backup policy, title/artwork rights and executed real-media/production acceptance remain.
 
 #### Add login, upload and transcoding limits
 
@@ -82,7 +82,7 @@ One qualified image, GHCR attestation and serialized Coolify promotion are prepa
 
 **Delivery · In progress · 35% · difficulty 5/5 · 6–12 h**
 
-Explicit migrations/readiness, shared keyring and one worker server are implemented and tested. Two hosted workers transfer ownership locally, but actual two-container rolling/resource/cancellation and mounted PostgreSQL/keyring/staging restore remain. Image rollback does not roll back schema or cross from PostgreSQL to legacy SQLite.
+Local persistent PostgreSQL/keyring restore and two actual web containers pass on source 986e9aa: cross-instance/recreated/restored sessions and antiforgery, wrong-key rejection and logout/refresh revocation. Synthetic media URLs; 13.487-second DB/key/count restore excludes web startup, not production RTO. Actual protected stateful rolling/rollback, production budgets/recovery and later worker/staging/encoder gates remain.
 
 #### Add transcoding and deployment metrics
 
@@ -97,7 +97,7 @@ Worker lifecycle logs and release probes exist in preparation; useful delivered 
 - The project follows the v2 standard profile: vps-web.
 - Migration target updated September 6: prebuilt GHCR digest in Coolify, Traefik/Tunnel routing and the shared deployment checklist; preserve databases and custom routes. This target update is not a new source/production audit.
 - Fresh PostgreSQL catalogue from existing licensed R2 media, new accounts and empty history; retain legacy database/original objects and exclude old YouTube/demo links.
-- Dedicated worker owns implementation. Coordinator accepted R1 and the first-release plan; execute media and local catalogue-only recovery next. Effective protection/bootstrap remain separate. Upload/worker activation requires its own queue/encoder/recovery evidence; no automatic production promotion yet.
+- Dedicated worker completes media/artwork rights, two offline derivative proposals and remaining browser/real-origin evidence. Coordinator accepted source reconciliation and local synthetic catalogue recovery; owns production protection, budgets and backup/cutover. Preserve legacy source/data; do not re-copy obsolete startup migrations or media deletion. Upload/worker activation and UI remain later.
 
 ## Polski
 
@@ -105,14 +105,14 @@ Worker lifecycle logs and release probes exist in preparation; useful delivered 
 
 Katalog VOD ASP.NET Core z HLS, magazynem R2 i panelem administracyjnym.
 
-R1 odebrane, plan przejrzany; kandydat pozostaje draftem. Dalej: pochodzenie/pochodne siedmiu mediów i rzeczywiste lokalne odtwarzanie PG/keyring/dwóch webów z uploads/worker off. Pozostają ochrona produkcji, polityka kopii i odbiór legalnych mediów; aktywacja workera ma dodatkowe późniejsze bramki. Bez nowego audytu VPS/R2, merge lub deploy aplikacji. Procenty i estymaty pracy z 4 października zachowano, nie są nowym pomiarem ani obiecanym terminem.
+Uzgodnienie źródeł i ograniczone lokalne odtworzenie katalogu odebrane; kandydat pozostaje draftem. Dwa MP4 i lokalny Chromium dla siedmiu filmów/13 grafik są przygotowaniem, nie odbiorem praw/rzeczywistego origin. Pozostają wersja licencji Gran Dillama, źródła/podpisy grafik, wybór pochodnych i Firefox/Safari/mobile. Osobno limity produkcji, kopie, ochrona oraz odzyskiwanie starego wdrożenia/cutover. Uploady/worker wyłączone. Procenty i estymaty z 4 października zachowano, bez nowego pomiaru czy obiecanego terminu.
 
 ### Dowody audytu
 
 - **Repozytorium:** `SzczepanGrela/netfilmx-movie-catalog` @ `cbf2ec16cac64d2dfe4d85b8b575f4eacdd69578`
 - **Stan źródła:** Clean preparation branch codex/netfilmx-preparation, draft PR #1 at cbf2ec1. .NET 10/keyring/migration/image preparation reviewed; release error handling requires correction. Original source retained; candidate is not production.
-- **Testy i CI:** CI/CD 37262046514 and Dependency audit 37262046312 green for final 1afb625; completed October 5, inspected October 12. Exact image and Quality gate pass; Publish tested digest and Deploy tested digest skipped. Scanner gates fixable HIGH/CRITICAL, not every advisory. Refresh qualification with subsequent candidate changes.
-- **Produkcja:** No production migration, data import or cutover in this preparation/review. No GHCR digest published by this PR run. Historic public HTTP 200 does not establish readiness of the new release.
+- **Testy i CI:** CI/CD 38383261814 and Dependency audit 38383261832 green for 35e32d7 October 13. Exact image/Quality pass; publish/deploy skipped. Local recovery used an earlier image at 986e9aa; runtime source is unchanged through reviewed head. Full local recovery is not a CI gate. Scanner gates fixable HIGH/CRITICAL, not every advisory.
+- **Produkcja:** Worker reports no production/R2 mutation; coordinator performed no fresh VPS/provider audit or app merge/deploy. No production digest published by this PR run. Uploads/worker stay off. Protection readback retains October 12 date; local recovery does not establish new release readiness.
 
 ### Zgodność ze standardem v2
 
@@ -121,17 +121,17 @@ Profil: **Aplikacja webowa na VPS**. Statusy odzwierciedlają wyłącznie dowody
 | Kontrola | Status | Dowód |
 | --- | --- | --- |
 | Zarządzanie repozytorium | Częściowe | Main bez ochrony, zero rulesets/environments w odczycie 12 października; kod workflow nie stanowi aktywnej ochrony. |
-| Quality CI | Częściowe | 34 Python niezależnie przechodzi; CI końcowego SHA z 5 października potwierdza 256 .NET/zero skips i kwalifikację obrazu. R1 odebrane; odbiór mediów/stanu/przeglądarki pozostaje. |
+| Quality CI | Częściowe | CI z 13 października: 256 .NET/zero skips, 34 Python i kwalifikacja obrazu; koordynator potwierdza 34 Python. Syntetyczne lokalne odtworzenie odebrane; pozostają rzeczywiste media/przeglądarki/produkcja. |
 | Niezmienne wydanie | Częściowe | R1 odebrane; przygotowano kwalifikowany obraz oraz workflow digest/attestation. Publikacja PR pominięta; ochrona, digest main i bootstrap nieodebrane. |
 | Dostęp wdrożeniowy | Częściowe | Ścieżka SSH wycofana w kandydacie; prywatny dostęp i chronione środowisko wymagają konfiguracji. |
 | Sieć, TLS i tożsamość klienta | Częściowe | Exact-proxy dodano w kodzie/testach; stare dowody routingu nie potwierdzają tożsamości nowej produkcji. |
 | Ochrona przed nadużyciami | Częściowe | Limity auth/write/body/współbieżności/obrazów zaimplementowano; odbiór publiczny/aggregate/rolling pozostaje. |
-| Bezpieczeństwo runtime | Częściowe | Smoke obrazu .NET 10 potwierdza non-root/narzędzia/restart; rzeczywiste mounty, zasoby i obciążenie workera pozostają. |
-| Readiness i preflight | Częściowe | Jawne ograniczone migracje schematu/kolejki i readiness przetestowane; pozostaje bootstrap bazy i odbiór rollbacku zgodnego ze schematem. |
+| Bezpieczeństwo runtime | Częściowe | Lokalny test dwóch webów/PG/keyring potwierdza 1 CPU/512 MiB, brak swapu i non-root web; maksymalny pik weba 441.76 MiB. Zapas produkcji/kodowania nieodebrany. |
+| Readiness i preflight | Częściowe | Jawna migracja, uprawnienia runtime i syntetyczny import/odmowa importu przechodzą lokalnie; pozostają rzeczywisty manifest i produkcyjny bootstrap/rollback zgodny ze schematem. |
 | Atomowa promocja i rollback | Częściowe | R1 odebrane 12 października: rollback wymaga potwierdzonego zakończenia wdrożenia; nieznany stan zatrzymuje mutacje. Pozostaje rzeczywisty chroniony rolling/rollback ze stanem. |
-| Koordynacja i retencja | Częściowe | Serializacja wydania i singleton istnieją w kodzie; rzeczywisty overlap zasobów/kolejki, retencja i recovery wymagają odbioru. |
+| Koordynacja i retencja | Częściowe | Zachowane źródła uzgodnione; lokalne odzyskiwanie PG/keyring odebrane z syntetycznymi mediami. Pozostają odzyskiwanie/retencja starego wdrożenia i rolling produkcji; upload/worker osobno. |
 | Obserwowalność | Brak | Brak odebranych centralnych/dostarczonych alertów workera/wydania/backupów. |
-| Tożsamość webowa | Częściowe | Zmiany browser/vendor i testy DOM istnieją; publiczny odbiór identity/dostępności/licencji pozostaje. |
+| Tożsamość webowa | Częściowe | Lokalny Chromium odtwarza/przewija siedem filmów i dekoduje 13 grafik. Pozostają pełne prawa/podpisy grafik, inne przeglądarki i rzeczywisty HTTPS mediów. |
 
 ### Zadania pozostałe i bieżące
 
@@ -139,13 +139,13 @@ Profil: **Aplikacja webowa na VPS**. Statusy odzwierciedlają wyłącznie dowody
 
 **Implementacja · W toku · 85% · trudność 5/5 · 10–18 h**
 
-Candidate now includes shared persistent Data Protection, explicit bounded migrations/readiness and singleton worker ownership. .NET 10 replaces .NET 8. Retained seven-media manifest still needs two browser derivatives, verified rights/credits/import and remaining i18n.
+October 13 source reconciliation accounts for all 77 expanded paths in the preserved dirty set: 51 identical, 25 further developed, one shared deletion; no missing feature found in that set. Search/i18n/catalogue/admin remain; obsolete startup migration, volatile queue and guessed object deletion intentionally retired. Two offline MP4 proposals exist, but rights/artwork notices, accepted playback keys and remaining i18n stay open.
 
 #### Usunąć warningi, skipped testy i podatności
 
 **Jakość · W toku · 80% · trudność 4/5 · 5–10 h**
 
-R1 correction reviewed October 12 at final draft 1afb625: 34 Python tests independently rerun, including eight release-boundary regressions. October 5 exact-head CI confirms 256 .NET passed, zero skipped, browser checks and qualified image. Unknown deployment state prevents rollback mutations; warnings and actual worker/restore/browser acceptance remain.
+Final 35e32d7 CI on October 13 confirms 256 .NET/zero skips, 34 Python and qualified image; coordinator independently reran 34 Python. R1 remains accepted. Worker local recovery on runtime source 986e9aa passes within synthetic catalogue scope. Local Chromium seven-video/13-image checks are not real-origin or complete browser/media acceptance; warnings and later worker gates remain.
 
 #### Wymagać zielonego CI na chronionym main
 
@@ -157,7 +157,7 @@ October 12 read-only GitHub metadata: main unprotected, zero rulesets/environmen
 
 **Dokumentacja · W toku · 90% · trudność 3/5 · 1–3 h**
 
-First-release plan at 1afb625 covers protected bootstrap, media/credits, PG/keyring recovery, worker/resource and operator gates. Coordinator accepted R1 and preparation plan October 12, distinguishing catalogue-only qualification from later upload/worker activation. Effective configuration and executed media/restore/production evidence remain.
+October 13 plan separates catalogue-first delivery from later upload/worker activation. Recovery harness/results, media proposals and complete preserved-source reconciliation reviewed. Effective production settings, backup policy, title/artwork rights and executed real-media/production acceptance remain.
 
 #### Dodać limity logowania, uploadu i transkodowania
 
@@ -175,7 +175,7 @@ One qualified image, GHCR attestation and serialized Coolify promotion are prepa
 
 **Wdrożenie · W toku · 35% · trudność 5/5 · 6–12 h**
 
-Explicit migrations/readiness, shared keyring and one worker server are implemented and tested. Two hosted workers transfer ownership locally, but actual two-container rolling/resource/cancellation and mounted PostgreSQL/keyring/staging restore remain. Image rollback does not roll back schema or cross from PostgreSQL to legacy SQLite.
+Local persistent PostgreSQL/keyring restore and two actual web containers pass on source 986e9aa: cross-instance/recreated/restored sessions and antiforgery, wrong-key rejection and logout/refresh revocation. Synthetic media URLs; 13.487-second DB/key/count restore excludes web startup, not production RTO. Actual protected stateful rolling/rollback, production budgets/recovery and later worker/staging/encoder gates remain.
 
 #### Dodać metryki transkodowania i wdrożeń
 
@@ -190,4 +190,4 @@ Worker lifecycle logs and release probes exist in preparation; useful delivered 
 - Projekt podlega profilowi standardu v2: vps-web.
 - Cel migracji uaktualniony 6 września: digest GHCR w Coolify, routing Traefik/Tunnel i wspólna checklista; zachować bazy i custom routes. Zmiana celu nie jest nowym audytem źródła/produkcji.
 - Nowy katalog PostgreSQL z istniejących legalnych mediów R2, nowe konta i pusta historia; zachować starą bazę/originals i wykluczyć YouTube/demo.
-- Osobny agent prowadzi implementację. Koordynator odebrał R1 i plan pierwszego wydania; teraz media i lokalne odtwarzanie samego katalogu. Ochrona/bootstrap pozostają oddzielne. Aktywacja uploadów/workera wymaga dowodów kolejki/kodowania/odzyskiwania; bez automatycznej promocji produkcji.
+- Osobny agent domyka prawa do mediów/grafik, dwie propozycje pochodnych i pozostałe przeglądarki/rzeczywisty origin. Koordynator odebrał uzgodnienie źródeł i lokalne syntetyczne odtworzenie katalogu; odpowiada za ochronę, limity i kopie/cutover. Zachować stare źródła/dane; nie kopiować ponownie migracji przy starcie ani usuwania mediów. Uploady/worker i UI później.

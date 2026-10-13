@@ -66,12 +66,12 @@
   },
   "focus": {
     "current": {
-      "en": "Draft #1 35e32d7 reviewed: preserved source reconciled and local synthetic PG/keyring/two-web recovery accepted; complete media acceptance.",
-      "pl": "Draft #1 35e32d7 przejrzany: zachowane źródła uzgodnione, lokalne syntetyczne odtworzenie PG/keyring/dwóch webów odebrane; domknąć media."
+      "en": "Draft #1 9601fd1 reviewed: credits, exact retained-media/artwork sources and local Chromium/Firefox preparation accepted; operator media acceptance next.",
+      "pl": "Draft #1 9601fd1 przejrzany: credits, źródła zachowanych mediów/grafik i przygotowanie Chromium/Firefox odebrane; teraz odbiór mediów przez operatora."
     },
     "next": {
-      "en": "Resolve artwork/title rights, approve two MP4 proposals and remaining browser/real-origin checks; then protected bootstrap, recovery policy and production acceptance. Uploads/worker and UI remain later.",
-      "pl": "Ustalić prawa do grafik/filmów, odebrać dwie propozycje MP4 i pozostałe przeglądarki/rzeczywisty origin; potem chroniony bootstrap, kopie i odbiór produkcji. Uploady/worker i UI później."
+      "en": "Approve existing MP4 tracks/quality and audible Safari/mobile playback; publish/read back accepted objects, then final manifest/image qualification. Production protection, recovery and cutover remain separate.",
+      "pl": "Odebrać ścieżki/jakość MP4 oraz odsłuch i Safari/mobile; opublikować i sprawdzić zaakceptowane obiekty, potem zakwalifikować manifest/obraz. Ochrona produkcji, odzyskiwanie i przełączenie osobno."
     }
   },
   "tasks": [
@@ -90,7 +90,7 @@
       "hoursMax": 18,
       "daysMin": 1.25,
       "daysMax": 2.25,
-      "evidence": "October 13 source reconciliation accounts for all 77 expanded paths in the preserved dirty set: 51 identical, 25 further developed, one shared deletion; no missing feature found in that set. Search/i18n/catalogue/admin remain; obsolete startup migration, volatile queue and guessed object deletion intentionally retired. Two offline MP4 proposals exist, but rights/artwork notices, accepted playback keys and remaining i18n stay open."
+      "evidence": "Preserved source reconciliation remains accepted: 77 paths, 51 identical, 25 further developed, one shared deletion. Credits now bind seven films/13 graphics to manifest URLs and configured origin; retained Gran BY3 evidence and artwork sources/notices reviewed. Two MP4 choices and accepted playback keys, remaining i18n and later worker gates stay open."
     },
     {
       "id": "quality-security",
@@ -107,7 +107,7 @@
       "hoursMax": 10,
       "daysMin": 0.75,
       "daysMax": 1.25,
-      "evidence": "Final 35e32d7 CI on October 13 confirms 256 .NET/zero skips, 34 Python and qualified image; coordinator independently reran 34 Python. R1 remains accepted. Worker local recovery on runtime source 986e9aa passes within synthetic catalogue scope. Local Chromium seven-video/13-image checks are not real-origin or complete browser/media acceptance; warnings and later worker gates remain."
+      "evidence": "Final 9601fd1 CI confirms 263 .NET/zero skips, 34 Python, three DOM tests and qualified image/Quality; publish/deploy skipped. R1 and earlier synthetic recovery at 986e9aa remain accepted. Seven films/13 graphics pass worker local Chromium/Firefox; audible sound, physical Safari/mobile and real HTTPS playback remain unaccepted."
     },
     {
       "id": "repository-governance",
@@ -141,7 +141,7 @@
       "hoursMax": 3,
       "daysMin": 0.25,
       "daysMax": 0.5,
-      "evidence": "October 13 plan separates catalogue-first delivery from later upload/worker activation. Recovery harness/results, media proposals and complete preserved-source reconciliation reviewed. Effective production settings, backup policy, title/artwork rights and executed real-media/production acceptance remain."
+      "evidence": "Catalogue-first plan and operator media packet reviewed. Credits/source evidence and local browser preparation complete within scope; operator track/quality/device decisions, scoped publication/readback, real-media import and production recovery/cutover remain. Uploads/worker stay disabled."
     },
     {
       "id": "route-protection",
@@ -213,9 +213,9 @@
     }
   ],
   "verification": {
-    "worktree": "Clean 35e32d78f38622571dd086a905ed67a0468f7ca0 candidate matches remote draft PR #1 at October 13 review. Both candidate and preserved dirty parent kept intact. All 77 expanded dirty-source paths accounted for; no bulk port remains.",
-    "tests": "Coordinator reran 34 Python tests October 13, all passed; Python 3.14 HTTPError cleanup warning remains. Final CI confirms 256 .NET/zero skips and three DOM tests. Worker local persistent PG/keyring/two-web recovery on 986e9aa accepted with synthetic media; local Chromium checks seven playback records/13 graphics. Coordinator inspected harness/results, did not rerun .NET or the full container rehearsal.",
-    "ci": "CI/CD 38383261814 and Dependency audit 38383261832 green for 35e32d7 October 13. Exact image/Quality pass; publish/deploy skipped. Local recovery used an earlier image at 986e9aa; runtime source is unchanged through reviewed head. Full local recovery is not a CI gate. Scanner gates fixable HIGH/CRITICAL, not every advisory.",
+    "worktree": "Clean 9601fd1c5fbde30114484f22cc470ba15581cc17 matches remote draft PR #1 at October 13 media review. Candidate and preserved dirty parent remain intact; earlier 77-path source reconciliation accepted, no bulk port remains.",
+    "tests": "Final CI confirms 263 .NET/zero skips, 34 Python and three DOM tests. Coordinator inspected new credits tests/code and worker local Chromium/Firefox seven-film/13-image evidence; independently checked retained Gran frame/media and both MP4 hashes. Decoded audio was muted, not a listening test. Earlier recovery at 986e9aa remains synthetic scope; no new full container rehearsal claimed.",
+    "ci": "CI/CD 38462374786 and Dependency audit 38462374948 green for 9601fd1 October 13; logs inspected. Exact image/Quality pass, publish/deploy skipped. Earlier local recovery used 986e9aa, before new credits/UI code; it is not final-image real-media acceptance or a CI recovery gate. Scanner gates fixable HIGH/CRITICAL, not every advisory.",
     "production": "Worker reports no production/R2 mutation; coordinator performed no fresh VPS/provider audit or app merge/deploy. No production digest published by this PR run. Uploads/worker stay off. Protection readback retains October 12 date; local recovery does not establish new release readiness."
   },
   "media": {
@@ -253,17 +253,17 @@
   "audit": {
     "date": "2026-10-13",
     "sources": [
-      "Draft PR #1 35e32d78f38622571dd086a905ed67a0468f7ca0; coordinator source/results review October 13",
-      "CI/CD https://github.com/SzczepanGrela/netfilmx-movie-catalog/actions/runs/38383261814 and Dependency audit 38383261832; final-head logs inspected",
-      "Coordinator independent offline run: 34 Python passed; CI 256 .NET/zero skips and three DOM tests",
-      "Worker local recovery results: runtime source 986e9aa947a58f18a405fbb59a3fec05df2bad30, synthetic media; runtime source unchanged through final head",
-      "Worker local Chromium and derivative evidence October 13; remaining title/artwork/browser/real-origin acceptance explicit",
-      "Read-only preserved-source comparison: 77 expanded paths, 51 identical/25 further developed/one shared deletion; no checkout overwritten",
-      "Repository protection evidence retains October 12 readback; no production/provider re-audit"
+      "Draft PR #1 9601fd1c5fbde30114484f22cc470ba15581cc17; coordinator media source/results review October 13",
+      "CI/CD https://github.com/SzczepanGrela/netfilmx-movie-catalog/actions/runs/38462374786 and Dependency audit 38462374948; head-bound logs inspected",
+      "CI 263 .NET/zero skips, 34 Python and three DOM tests; qualified image/Quality pass, publish/deploy skipped",
+      "Earlier worker local recovery at 986e9aa947a58f18a405fbb59a3fec05df2bad30 with synthetic media; credits/UI changed later",
+      "Retained Gran Dillama BY3 card at 144.5 seconds; 13 artwork identities; worker local Chromium/Firefox and MP4 proposal evidence",
+      "Earlier preserved-source reconciliation: 77 paths, 51 identical/25 further developed/one shared deletion; no checkout overwritten",
+      "Protection evidence retains October 12 readback; no new production/provider audit"
     ],
     "notes": {
-      "en": "Source reconciliation and bounded local catalogue recovery accepted; candidate stays draft. Two MP4 proposals and seven-video/13-image local Chromium evidence are preparation, not rights/real-origin acceptance. Exact Gran Dillama licence version, artwork sources/notices, derivative choices and Firefox/Safari/mobile remain open. Production limits, backup policy, protection and legacy recovery/cutover stay separate. Uploads/worker remain off. Percentages and October 4 effort estimates retained, not remeasured or promised dates.",
-      "pl": "Uzgodnienie źródeł i ograniczone lokalne odtworzenie katalogu odebrane; kandydat pozostaje draftem. Dwa MP4 i lokalny Chromium dla siedmiu filmów/13 grafik są przygotowaniem, nie odbiorem praw/rzeczywistego origin. Pozostają wersja licencji Gran Dillama, źródła/podpisy grafik, wybór pochodnych i Firefox/Safari/mobile. Osobno limity produkcji, kopie, ochrona oraz odzyskiwanie starego wdrożenia/cutover. Uploady/worker wyłączone. Procenty i estymaty z 4 października zachowano, bez nowego pomiaru czy obiecanego terminu."
+      "en": "Credits, retained Gran BY3/artwork source evidence and local Chromium/Firefox preparation accepted. Operator rights/track/quality choices, audible Safari/mobile and publication/actual HTTPS acceptance remain; two manifest keys inactive. Earlier source reconciliation/synthetic recovery accepted separately. Production limits, backups, protection and legacy recovery/cutover remain open; uploads/worker off. Percentages and October 4 estimates retained without remeasurement or promised dates.",
+      "pl": "Credits, dowody Gran BY3/pochodzenia grafik i lokalne przygotowanie Chromium/Firefox odebrane. Pozostają decyzje operatora o prawach/ścieżkach/jakości, odsłuch i Safari/mobile oraz publikacja/rzeczywisty HTTPS; dwa klucze manifestu nieaktywne. Wcześniejsze uzgodnienie źródeł/syntetyczne odtworzenie odebrane osobno. Limity produkcji, kopie, ochrona i odzyskiwanie starego wdrożenia/przełączenie otwarte; uploady/worker wyłączone. Procenty i estymaty z 4 października bez nowego pomiaru czy obiecanego terminu."
     }
   },
   "compliance": {
@@ -286,8 +286,8 @@
         "id": "quality-ci",
         "status": "partial",
         "evidence": {
-          "en": "Final October 13 CI: 256 .NET/zero skips, 34 Python and qualified image; coordinator 34 Python pass. Local synthetic recovery accepted; real media/browser/live gates remain.",
-          "pl": "CI z 13 października: 256 .NET/zero skips, 34 Python i kwalifikacja obrazu; koordynator potwierdza 34 Python. Syntetyczne lokalne odtworzenie odebrane; pozostają rzeczywiste media/przeglądarki/produkcja."
+          "en": "October 13 9601fd1 CI: 263 .NET/zero skips, 34 Python and qualified image/Quality pass. Local synthetic recovery and media/browser preparation accepted within their separate scope; manual/live gates remain.",
+          "pl": "CI 9601fd1 z 13 października: 263 .NET/zero pominięć, 34 Python i kwalifikacja obrazu/Quality. Syntetyczne odtworzenie i przygotowanie mediów/przeglądarek odebrane w osobnych zakresach; odbiór ręczny/produkcji pozostaje."
         },
         "taskIds": [
           "quality-security"
@@ -397,8 +397,8 @@
         "id": "web-identity",
         "status": "partial",
         "evidence": {
-          "en": "Local Chromium decodes/seeks seven videos and 13 images. Complete rights/artwork attribution, remaining browsers and actual HTTPS-origin acceptance remain.",
-          "pl": "Lokalny Chromium odtwarza/przewija siedem filmów i dekoduje 13 grafik. Pozostają pełne prawa/podpisy grafik, inne przeglądarki i rzeczywisty HTTPS mediów."
+          "en": "Seven films/13 graphics pass local Chromium/Firefox; visible manifest-bound credits and sources reviewed. Operator media acceptance, audible Safari/mobile and actual HTTPS remain pending.",
+          "pl": "Siedem filmów/13 grafik przechodzi lokalny Chromium/Firefox; sprawdzono widoczne credits powiązane z manifestem oraz źródła. Odbiór operatora, odsłuch/Safari/mobile i rzeczywisty HTTPS nadal otwarte."
         },
         "taskIds": [
           "architecture-docs"

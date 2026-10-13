@@ -66,12 +66,12 @@
   },
   "focus": {
     "current": {
-      "en": "R1 accepted at 51e1ea1; prepare seven-media provenance/derivatives and real local catalogue recovery in draft #1.",
-      "pl": "R1 odebrane w 51e1ea1; przygotować pochodzenie/pochodne siedmiu mediów i rzeczywiste lokalne odtwarzanie katalogu w drafcie #1."
+      "en": "Draft #1 35e32d7 reviewed: preserved source reconciled and local synthetic PG/keyring/two-web recovery accepted; complete media acceptance.",
+      "pl": "Draft #1 35e32d7 przejrzany: zachowane źródła uzgodnione, lokalne syntetyczne odtworzenie PG/keyring/dwóch webów odebrane; domknąć media."
     },
     "next": {
-      "en": "Qualify PG/keyring and two web containers with uploads/worker off; configure protected bootstrap separately. Upload activation and UI remain later.",
-      "pl": "Sprawdzić PG/keyring i dwa kontenery web z uploads/worker off; oddzielnie skonfigurować chroniony bootstrap. Aktywacja uploadów i UI później."
+      "en": "Resolve artwork/title rights, approve two MP4 proposals and remaining browser/real-origin checks; then protected bootstrap, recovery policy and production acceptance. Uploads/worker and UI remain later.",
+      "pl": "Ustalić prawa do grafik/filmów, odebrać dwie propozycje MP4 i pozostałe przeglądarki/rzeczywisty origin; potem chroniony bootstrap, kopie i odbiór produkcji. Uploady/worker i UI później."
     }
   },
   "tasks": [
@@ -90,7 +90,7 @@
       "hoursMax": 18,
       "daysMin": 1.25,
       "daysMax": 2.25,
-      "evidence": "Candidate now includes shared persistent Data Protection, explicit bounded migrations/readiness and singleton worker ownership. .NET 10 replaces .NET 8. Retained seven-media manifest still needs two browser derivatives, verified rights/credits/import and remaining i18n."
+      "evidence": "October 13 source reconciliation accounts for all 77 expanded paths in the preserved dirty set: 51 identical, 25 further developed, one shared deletion; no missing feature found in that set. Search/i18n/catalogue/admin remain; obsolete startup migration, volatile queue and guessed object deletion intentionally retired. Two offline MP4 proposals exist, but rights/artwork notices, accepted playback keys and remaining i18n stay open."
     },
     {
       "id": "quality-security",
@@ -107,7 +107,7 @@
       "hoursMax": 10,
       "daysMin": 0.75,
       "daysMax": 1.25,
-      "evidence": "R1 correction reviewed October 12 at final draft 1afb625: 34 Python tests independently rerun, including eight release-boundary regressions. October 5 exact-head CI confirms 256 .NET passed, zero skipped, browser checks and qualified image. Unknown deployment state prevents rollback mutations; warnings and actual worker/restore/browser acceptance remain."
+      "evidence": "Final 35e32d7 CI on October 13 confirms 256 .NET/zero skips, 34 Python and qualified image; coordinator independently reran 34 Python. R1 remains accepted. Worker local recovery on runtime source 986e9aa passes within synthetic catalogue scope. Local Chromium seven-video/13-image checks are not real-origin or complete browser/media acceptance; warnings and later worker gates remain."
     },
     {
       "id": "repository-governance",
@@ -141,7 +141,7 @@
       "hoursMax": 3,
       "daysMin": 0.25,
       "daysMax": 0.5,
-      "evidence": "First-release plan at 1afb625 covers protected bootstrap, media/credits, PG/keyring recovery, worker/resource and operator gates. Coordinator accepted R1 and preparation plan October 12, distinguishing catalogue-only qualification from later upload/worker activation. Effective configuration and executed media/restore/production evidence remain."
+      "evidence": "October 13 plan separates catalogue-first delivery from later upload/worker activation. Recovery harness/results, media proposals and complete preserved-source reconciliation reviewed. Effective production settings, backup policy, title/artwork rights and executed real-media/production acceptance remain."
     },
     {
       "id": "route-protection",
@@ -192,7 +192,7 @@
       "hoursMax": 12,
       "daysMin": 0.75,
       "daysMax": 1.5,
-      "evidence": "Explicit migrations/readiness, shared keyring and one worker server are implemented and tested. Two hosted workers transfer ownership locally, but actual two-container rolling/resource/cancellation and mounted PostgreSQL/keyring/staging restore remain. Image rollback does not roll back schema or cross from PostgreSQL to legacy SQLite."
+      "evidence": "Local persistent PostgreSQL/keyring restore and two actual web containers pass on source 986e9aa: cross-instance/recreated/restored sessions and antiforgery, wrong-key rejection and logout/refresh revocation. Synthetic media URLs; 13.487-second DB/key/count restore excludes web startup, not production RTO. Actual protected stateful rolling/rollback, production budgets/recovery and later worker/staging/encoder gates remain."
     },
     {
       "id": "service-observability",
@@ -213,10 +213,10 @@
     }
   ],
   "verification": {
-    "worktree": "Clean 1afb625d96e8aa8727129c65942f792d1e13edb5 candidate on codex/netfilmx-preparation matches remote draft PR #1 at October 12 review. R1 correction 51e1ea1 accepted; no app edits during coordinator review.",
-    "tests": "Coordinator reran 34 Python tests October 12, all passed. October 5 CI log confirms 256 .NET passed, zero skipped; .NET was not independently rerun. New eight release-boundary tests cover unresolved state and mutation ordering. Actual media/PG-keyring restore/two-container acceptance remains.",
-    "ci": "CI/CD 37262046514 and Dependency audit 37262046312 green for final 1afb625; completed October 5, inspected October 12. Exact image and Quality gate pass; Publish tested digest and Deploy tested digest skipped. Scanner gates fixable HIGH/CRITICAL, not every advisory. Refresh qualification with subsequent candidate changes.",
-    "production": "No production migration, data import or cutover in this preparation/review. No GHCR digest published by this PR run. Historic public HTTP 200 does not establish readiness of the new release."
+    "worktree": "Clean 35e32d78f38622571dd086a905ed67a0468f7ca0 candidate matches remote draft PR #1 at October 13 review. Both candidate and preserved dirty parent kept intact. All 77 expanded dirty-source paths accounted for; no bulk port remains.",
+    "tests": "Coordinator reran 34 Python tests October 13, all passed; Python 3.14 HTTPError cleanup warning remains. Final CI confirms 256 .NET/zero skips and three DOM tests. Worker local persistent PG/keyring/two-web recovery on 986e9aa accepted with synthetic media; local Chromium checks seven playback records/13 graphics. Coordinator inspected harness/results, did not rerun .NET or the full container rehearsal.",
+    "ci": "CI/CD 38383261814 and Dependency audit 38383261832 green for 35e32d7 October 13. Exact image/Quality pass; publish/deploy skipped. Local recovery used an earlier image at 986e9aa; runtime source is unchanged through reviewed head. Full local recovery is not a CI gate. Scanner gates fixable HIGH/CRITICAL, not every advisory.",
+    "production": "Worker reports no production/R2 mutation; coordinator performed no fresh VPS/provider audit or app merge/deploy. No production digest published by this PR run. Uploads/worker stay off. Protection readback retains October 12 date; local recovery does not establish new release readiness."
   },
   "media": {
     "screenshot": "assets/screenshots/netfilmx-movie-catalog.png",
@@ -246,28 +246,30 @@
       "pl": "Nowy katalog PostgreSQL z istniejących legalnych mediów R2, nowe konta i pusta historia; zachować starą bazę/originals i wykluczyć YouTube/demo."
     },
     {
-      "en": "Dedicated worker owns implementation. Coordinator accepted R1 and the first-release plan; execute media and local catalogue-only recovery next. Effective protection/bootstrap remain separate. Upload/worker activation requires its own queue/encoder/recovery evidence; no automatic production promotion yet.",
-      "pl": "Osobny agent prowadzi implementację. Koordynator odebrał R1 i plan pierwszego wydania; teraz media i lokalne odtwarzanie samego katalogu. Ochrona/bootstrap pozostają oddzielne. Aktywacja uploadów/workera wymaga dowodów kolejki/kodowania/odzyskiwania; bez automatycznej promocji produkcji."
+      "en": "Dedicated worker completes media/artwork rights, two offline derivative proposals and remaining browser/real-origin evidence. Coordinator accepted source reconciliation and local synthetic catalogue recovery; owns production protection, budgets and backup/cutover. Preserve legacy source/data; do not re-copy obsolete startup migrations or media deletion. Upload/worker activation and UI remain later.",
+      "pl": "Osobny agent domyka prawa do mediów/grafik, dwie propozycje pochodnych i pozostałe przeglądarki/rzeczywisty origin. Koordynator odebrał uzgodnienie źródeł i lokalne syntetyczne odtworzenie katalogu; odpowiada za ochronę, limity i kopie/cutover. Zachować stare źródła/dane; nie kopiować ponownie migracji przy starcie ani usuwania mediów. Uploady/worker i UI później."
     }
   ],
   "audit": {
-    "date": "2026-10-12",
+    "date": "2026-10-13",
     "sources": [
-      "Draft PR #1 1afb625d96e8aa8727129c65942f792d1e13edb5 and R1 correction 51e1ea1d3c56fcd7903981f81fef0dc2279bdd79, coordinator source review October 12",
-      "CI/CD https://github.com/SzczepanGrela/netfilmx-movie-catalog/actions/runs/37262046514 and Dependency audit 37262046312; October 5 results inspected October 12",
-      "Coordinator offline rerun: 34 Python tests passed October 12; .NET 256/0 skips verified in CI log",
-      "Read-only GitHub October 12: main unprotected, zero rulesets/environments; two activation flags absent",
-      "First-release plan at 1afb625; retained operator decision: fresh catalogue/new accounts/empty history"
+      "Draft PR #1 35e32d78f38622571dd086a905ed67a0468f7ca0; coordinator source/results review October 13",
+      "CI/CD https://github.com/SzczepanGrela/netfilmx-movie-catalog/actions/runs/38383261814 and Dependency audit 38383261832; final-head logs inspected",
+      "Coordinator independent offline run: 34 Python passed; CI 256 .NET/zero skips and three DOM tests",
+      "Worker local recovery results: runtime source 986e9aa947a58f18a405fbb59a3fec05df2bad30, synthetic media; runtime source unchanged through final head",
+      "Worker local Chromium and derivative evidence October 13; remaining title/artwork/browser/real-origin acceptance explicit",
+      "Read-only preserved-source comparison: 77 expanded paths, 51 identical/25 further developed/one shared deletion; no checkout overwritten",
+      "Repository protection evidence retains October 12 readback; no production/provider re-audit"
     ],
     "notes": {
-      "en": "R1 accepted and plan reviewed; candidate remains draft. Next: seven-media provenance/derivatives and real local PG/keyring/two-web recovery with uploads/worker off. Production protection, backup policy and licensed media acceptance remain; worker activation has additional later gates. No fresh VPS/R2 audit or app merge/deploy. Progress and October 4 effort estimates are retained, not newly measured or a promised date.",
-      "pl": "R1 odebrane, plan przejrzany; kandydat pozostaje draftem. Dalej: pochodzenie/pochodne siedmiu mediów i rzeczywiste lokalne odtwarzanie PG/keyring/dwóch webów z uploads/worker off. Pozostają ochrona produkcji, polityka kopii i odbiór legalnych mediów; aktywacja workera ma dodatkowe późniejsze bramki. Bez nowego audytu VPS/R2, merge lub deploy aplikacji. Procenty i estymaty pracy z 4 października zachowano, nie są nowym pomiarem ani obiecanym terminem."
+      "en": "Source reconciliation and bounded local catalogue recovery accepted; candidate stays draft. Two MP4 proposals and seven-video/13-image local Chromium evidence are preparation, not rights/real-origin acceptance. Exact Gran Dillama licence version, artwork sources/notices, derivative choices and Firefox/Safari/mobile remain open. Production limits, backup policy, protection and legacy recovery/cutover stay separate. Uploads/worker remain off. Percentages and October 4 effort estimates retained, not remeasured or promised dates.",
+      "pl": "Uzgodnienie źródeł i ograniczone lokalne odtworzenie katalogu odebrane; kandydat pozostaje draftem. Dwa MP4 i lokalny Chromium dla siedmiu filmów/13 grafik są przygotowaniem, nie odbiorem praw/rzeczywistego origin. Pozostają wersja licencji Gran Dillama, źródła/podpisy grafik, wybór pochodnych i Firefox/Safari/mobile. Osobno limity produkcji, kopie, ochrona oraz odzyskiwanie starego wdrożenia/cutover. Uploady/worker wyłączone. Procenty i estymaty z 4 października zachowano, bez nowego pomiaru czy obiecanego terminu."
     }
   },
   "compliance": {
     "standardVersion": 2,
     "profile": "vps-web",
-    "assessmentDate": "2026-10-12",
+    "assessmentDate": "2026-10-13",
     "controls": [
       {
         "id": "governance",
@@ -284,8 +286,8 @@
         "id": "quality-ci",
         "status": "partial",
         "evidence": {
-          "en": "34 Python independently pass; October 5 final-head CI confirms 256 .NET/zero skips and qualified image. R1 accepted; live media/stateful/browser acceptance remains.",
-          "pl": "34 Python niezależnie przechodzi; CI końcowego SHA z 5 października potwierdza 256 .NET/zero skips i kwalifikację obrazu. R1 odebrane; odbiór mediów/stanu/przeglądarki pozostaje."
+          "en": "Final October 13 CI: 256 .NET/zero skips, 34 Python and qualified image; coordinator 34 Python pass. Local synthetic recovery accepted; real media/browser/live gates remain.",
+          "pl": "CI z 13 października: 256 .NET/zero skips, 34 Python i kwalifikacja obrazu; koordynator potwierdza 34 Python. Syntetyczne lokalne odtworzenie odebrane; pozostają rzeczywiste media/przeglądarki/produkcja."
         },
         "taskIds": [
           "quality-security"
@@ -339,8 +341,8 @@
         "id": "runtime-safety",
         "status": "partial",
         "evidence": {
-          "en": "Isolated .NET 10 image smoke verifies non-root runtime/native tools/restart; actual mounts, aggregate resources and worker load remain.",
-          "pl": "Smoke obrazu .NET 10 potwierdza non-root/narzędzia/restart; rzeczywiste mounty, zasoby i obciążenie workera pozostają."
+          "en": "Local two-web/PG/keyring fixture verifies effective 1 CPU/512 MiB limits, no swap and non-root web; maximum web peak 441.76 MiB. Production/encoder headroom unaccepted.",
+          "pl": "Lokalny test dwóch webów/PG/keyring potwierdza 1 CPU/512 MiB, brak swapu i non-root web; maksymalny pik weba 441.76 MiB. Zapas produkcji/kodowania nieodebrany."
         },
         "taskIds": [
           "blue-green"
@@ -350,8 +352,8 @@
         "id": "readiness-preflight",
         "status": "partial",
         "evidence": {
-          "en": "Explicit bounded schema/queue migrations and readiness tested; real database bootstrap and schema-compatible rollback acceptance remain.",
-          "pl": "Jawne ograniczone migracje schematu/kolejki i readiness przetestowane; pozostaje bootstrap bazy i odbiór rollbacku zgodnego ze schematem."
+          "en": "Explicit migration, runtime-role grants and synthetic empty-catalogue import/refusal pass locally; real accepted manifest and production bootstrap/schema-compatible rollback remain.",
+          "pl": "Jawna migracja, uprawnienia runtime i syntetyczny import/odmowa importu przechodzą lokalnie; pozostają rzeczywisty manifest i produkcyjny bootstrap/rollback zgodny ze schematem."
         },
         "taskIds": [
           "blue-green"
@@ -372,8 +374,8 @@
         "id": "coordination-retention",
         "status": "partial",
         "evidence": {
-          "en": "Serialized release and singleton code exist; actual resource/queue overlap, scoped retention and recovery require acceptance.",
-          "pl": "Serializacja wydania i singleton istnieją w kodzie; rzeczywisty overlap zasobów/kolejki, retencja i recovery wymagają odbioru."
+          "en": "Preserved source reconciled; local PG/keyring recovery accepted with synthetic media. Real legacy recovery/retention and production rolling remain; upload/worker gates stay separate.",
+          "pl": "Zachowane źródła uzgodnione; lokalne odzyskiwanie PG/keyring odebrane z syntetycznymi mediami. Pozostają odzyskiwanie/retencja starego wdrożenia i rolling produkcji; upload/worker osobno."
         },
         "taskIds": [
           "immutable-deploy",
@@ -395,8 +397,8 @@
         "id": "web-identity",
         "status": "partial",
         "evidence": {
-          "en": "Candidate browser/vendor changes and DOM tests exist; public identity/accessibility/media-license acceptance remains.",
-          "pl": "Zmiany browser/vendor i testy DOM istnieją; publiczny odbiór identity/dostępności/licencji pozostaje."
+          "en": "Local Chromium decodes/seeks seven videos and 13 images. Complete rights/artwork attribution, remaining browsers and actual HTTPS-origin acceptance remain.",
+          "pl": "Lokalny Chromium odtwarza/przewija siedem filmów i dekoduje 13 grafik. Pozostają pełne prawa/podpisy grafik, inne przeglądarki i rzeczywisty HTTPS mediów."
         },
         "taskIds": [
           "architecture-docs"

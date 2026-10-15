@@ -1,6 +1,6 @@
 # NetFilmx Movie Catalog — status report / raport stanu
 
-Audit date / data audytu: **2026-10-13**<br>
+Audit date / data audytu: **2026-10-15**<br>
 Estimated completion / szacowane ukończenie: **70%**<br>
 Forecast / prognoza: **2026-10-05–2026-10-25**, 35–66 h, low confidence / pewność: low
 
@@ -12,13 +12,13 @@ Forecast / prognoza: **2026-10-05–2026-10-25**, 35–66 h, low confidence / pe
 
 ASP.NET Core VOD catalogue with HLS processing, R2 storage and administration.
 
-Credits, retained Gran BY3/artwork source evidence and local Chromium/Firefox preparation accepted. Operator rights/track/quality choices, audible Safari/mobile and publication/actual HTTPS acceptance remain; two manifest keys inactive. Earlier source reconciliation/synthetic recovery accepted separately. Production limits, backups, protection and legacy recovery/cutover remain open; uploads/worker off. Percentages and October 4 estimates retained without remeasurement or promised dates.
+Bounded subtitle implementation accepted. Operator quality/stereo/caption checks, audible Safari/mobile and twelve-object publication/actual HTTPS remain; twelve manifest keys inactive. Final-image real-media import/restart remains, earlier synthetic recovery is separate. Production budgets/backups/protection/legacy recovery/cutover open; uploads/worker off. Percentages and October 4 estimates retained without remeasurement or promised dates.
 
 ### Audit evidence
 
 - **Repozytorium:** `SzczepanGrela/netfilmx-movie-catalog` @ `cbf2ec16cac64d2dfe4d85b8b575f4eacdd69578`
 - **Source state:** Clean preparation branch codex/netfilmx-preparation, draft PR #1 at cbf2ec1. .NET 10/keyring/migration/image preparation reviewed; release error handling requires correction. Original source retained; candidate is not production.
-- **Tests and CI:** CI/CD 38462374786 and Dependency audit 38462374948 green for 9601fd1 October 13; logs inspected. Exact image/Quality pass, publish/deploy skipped. Earlier local recovery used 986e9aa, before new credits/UI code; it is not final-image real-media acceptance or a CI recovery gate. Scanner gates fixable HIGH/CRITICAL, not every advisory.
+- **Tests and CI:** CI/CD 38704058532 and Dependency audit 38704058491 green for f4aca03 October 15; logs inspected. Image/Quality pass, publish/deploy skipped. Runtime patched to .NET 10.0.13, SDK 10.0.401 unchanged. Scanner gates fixable HIGH/CRITICAL, not every advisory. Earlier recovery remains source 986e9aa, not this final image.
 - **Production:** Worker reports no production/R2 mutation; coordinator performed no fresh VPS/provider audit or app merge/deploy. No production digest published by this PR run. Uploads/worker stay off. Protection readback retains October 12 date; local recovery does not establish new release readiness.
 
 ### v2 standard compliance
@@ -28,7 +28,7 @@ Profile: **VPS web application**. Statuses reflect only evidence available on th
 | Control | Status | Evidence |
 | --- | --- | --- |
 | Repository governance | Partial | Main unprotected, zero rulesets/environments at October 12 readback; workflow gate code is not installed protection. |
-| Quality CI | Partial | October 13 9601fd1 CI: 263 .NET/zero skips, 34 Python and qualified image/Quality pass. Local synthetic recovery and media/browser preparation accepted within their separate scope; manual/live gates remain. |
+| Quality CI | Partial | October 15 f4aca03 CI: 294 .NET/zero skips, 34 Python, qualified image/Quality and audits green. Coordinator passed 56 focused tests. Manual media, native devices and live gates remain. |
 | Immutable release | Partial | R1 accepted; one qualified image and digest/attestation workflow prepared. PR publication skipped; effective protection, main digest and bootstrap unaccepted. |
 | Deployment access | Partial | Legacy SSH path retired in candidate; scoped private access and protected environment still need effective configuration. |
 | Network, TLS and client identity | Partial | Exact proxy source/tests added to candidate; older public routing evidence does not prove new production identity. |
@@ -38,7 +38,7 @@ Profile: **VPS web application**. Statuses reflect only evidence available on th
 | Atomic promotion and rollback | Partial | R1 accepted October 12: confirmed terminal deployment required before rollback; unknown state stops mutations. Actual protected stateful rolling/rollback still needs acceptance. |
 | Coordination and retention | Partial | Preserved source reconciled; local PG/keyring recovery accepted with synthetic media. Real legacy recovery/retention and production rolling remain; upload/worker gates stay separate. |
 | Observability | Missing | No accepted central or delivered worker/release/backup alerts. |
-| Web identity | Partial | Seven films/13 graphics pass local Chromium/Firefox; visible manifest-bound credits and sources reviewed. Operator media acceptance, audible Safari/mobile and actual HTTPS remain pending. |
+| Web identity | Partial | Earlier seven-film/13-image evidence retained. New actual-player synthetic MP4/HLS caption selection/Off, seeking/keyboard and missing-track recovery pass in worker Chromium/Firefox. Real sidecars/manual audio/native devices and published HTTPS/CORS remain. |
 
 ### Remaining and active tasks
 
@@ -46,13 +46,13 @@ Profile: **VPS web application**. Statuses reflect only evidence available on th
 
 **Implementation · In progress · 85% · difficulty 5/5 · 10–18 h**
 
-Preserved source reconciliation remains accepted: 77 paths, 51 identical, 25 further developed, one shared deletion. Credits now bind seven films/13 graphics to manifest URLs and configured origin; retained Gran BY3 evidence and artwork sources/notices reviewed. Two MP4 choices and accepted playback keys, remaining i18n and later worker gates stay open.
+Source reconciliation and credits/source evidence remain accepted. At f4aca03 ten Sintel WebVTTs, persistent subtitle relations, PG/SQLite migrations/import, actual player language/Off and source-retaining upload failure/retry handling are implemented and reviewed. Two MP4s unchanged. Twelve shipping keys remain null; manual media and later worker gates, remaining i18n stay open.
 
 #### Remove warnings, skipped tests and vulnerabilities
 
 **Quality · In progress · 80% · difficulty 4/5 · 5–10 h**
 
-Final 9601fd1 CI confirms 263 .NET/zero skips, 34 Python, three DOM tests and qualified image/Quality; publish/deploy skipped. R1 and earlier synthetic recovery at 986e9aa remain accepted. Seven films/13 graphics pass worker local Chromium/Firefox; audible sound, physical Safari/mobile and real HTTPS playback remain unaccepted.
+Final f4aca03 CI: 294 .NET/zero skips, 34 Python, image/Quality and dependency audit green; publish/deploy skipped. Runtime image patched to .NET 10.0.13. Coordinator independently passed 56 focused tests and checked media identities. Worker actual-player Chromium/Firefox tests cover local synthetic MP4/HLS and missing VTT; audible/native-device/real HTTPS and actual Sintel timing remain unaccepted.
 
 #### Require green CI on protected main
 
@@ -64,7 +64,7 @@ October 12 read-only GitHub metadata: main unprotected, zero rulesets/environmen
 
 **Documentation · In progress · 90% · difficulty 3/5 · 1–3 h**
 
-Catalogue-first plan and operator media packet reviewed. Credits/source evidence and local browser preparation complete within scope; operator track/quality/device decisions, scoped publication/readback, real-media import and production recovery/cutover remain. Uploads/worker stay disabled.
+Subtitle contract and twelve-object publication proposal reviewed. Keep previous rights/source/credits and synthetic recovery acceptance; operator media/device checks, publication/readback, final-image real-media import/restart and production recovery/cutover remain. Uploads/worker stay disabled.
 
 #### Add login, upload and transcoding limits
 
@@ -97,7 +97,7 @@ Worker lifecycle logs and release probes exist in preparation; useful delivered 
 - The project follows the v2 standard profile: vps-web.
 - Migration target updated September 6: prebuilt GHCR digest in Coolify, Traefik/Tunnel routing and the shared deployment checklist; preserve databases and custom routes. This target update is not a new source/production audit.
 - Fresh PostgreSQL catalogue from existing licensed R2 media, new accounts and empty history; retain legacy database/original objects and exclude old YouTube/demo links.
-- Dedicated worker completes media/artwork rights, two offline derivative proposals and remaining browser/real-origin evidence. Coordinator accepted source reconciliation and local synthetic catalogue recovery; owns production protection, budgets and backup/cutover. Preserve legacy source/data; do not re-copy obsolete startup migrations or media deletion. Upload/worker activation and UI remain later.
+- Subtitle implementation reviewed; retain all ten Sintel languages as WebVTT without reconverting unchanged MP4s. Operator media acceptance and twelve-object publication/readback precede manifest activation and final-image qualification. Coordinator owns protection, budgets, backup/cutover. Preserve originals and parent; uploads/worker and UI modernization remain later.
 
 ## Polski
 
@@ -105,13 +105,13 @@ Worker lifecycle logs and release probes exist in preparation; useful delivered 
 
 Katalog VOD ASP.NET Core z HLS, magazynem R2 i panelem administracyjnym.
 
-Credits, dowody Gran BY3/pochodzenia grafik i lokalne przygotowanie Chromium/Firefox odebrane. Pozostają decyzje operatora o prawach/ścieżkach/jakości, odsłuch i Safari/mobile oraz publikacja/rzeczywisty HTTPS; dwa klucze manifestu nieaktywne. Wcześniejsze uzgodnienie źródeł/syntetyczne odtworzenie odebrane osobno. Limity produkcji, kopie, ochrona i odzyskiwanie starego wdrożenia/przełączenie otwarte; uploady/worker wyłączone. Procenty i estymaty z 4 października bez nowego pomiaru czy obiecanego terminu.
+Implementacja napisów odebrana w ograniczonym zakresie. Pozostają odbiór jakości/stereo/napisów, odsłuch/Safari/mobile i publikacja dwunastu obiektów/rzeczywisty HTTPS; dwanaście kluczy manifestu nieaktywne. Import/restart finalnego obrazu z mediami pozostaje, wcześniejsze syntetyczne odtworzenie osobno. Limity/kopie/ochrona/odzyskiwanie/cutover otwarte; uploady/worker wyłączone. Procenty i estymaty z 4 października bez nowego pomiaru czy obiecanego terminu.
 
 ### Dowody audytu
 
 - **Repozytorium:** `SzczepanGrela/netfilmx-movie-catalog` @ `cbf2ec16cac64d2dfe4d85b8b575f4eacdd69578`
 - **Stan źródła:** Clean preparation branch codex/netfilmx-preparation, draft PR #1 at cbf2ec1. .NET 10/keyring/migration/image preparation reviewed; release error handling requires correction. Original source retained; candidate is not production.
-- **Testy i CI:** CI/CD 38462374786 and Dependency audit 38462374948 green for 9601fd1 October 13; logs inspected. Exact image/Quality pass, publish/deploy skipped. Earlier local recovery used 986e9aa, before new credits/UI code; it is not final-image real-media acceptance or a CI recovery gate. Scanner gates fixable HIGH/CRITICAL, not every advisory.
+- **Testy i CI:** CI/CD 38704058532 and Dependency audit 38704058491 green for f4aca03 October 15; logs inspected. Image/Quality pass, publish/deploy skipped. Runtime patched to .NET 10.0.13, SDK 10.0.401 unchanged. Scanner gates fixable HIGH/CRITICAL, not every advisory. Earlier recovery remains source 986e9aa, not this final image.
 - **Produkcja:** Worker reports no production/R2 mutation; coordinator performed no fresh VPS/provider audit or app merge/deploy. No production digest published by this PR run. Uploads/worker stay off. Protection readback retains October 12 date; local recovery does not establish new release readiness.
 
 ### Zgodność ze standardem v2
@@ -121,7 +121,7 @@ Profil: **Aplikacja webowa na VPS**. Statusy odzwierciedlają wyłącznie dowody
 | Kontrola | Status | Dowód |
 | --- | --- | --- |
 | Zarządzanie repozytorium | Częściowe | Main bez ochrony, zero rulesets/environments w odczycie 12 października; kod workflow nie stanowi aktywnej ochrony. |
-| Quality CI | Częściowe | CI 9601fd1 z 13 października: 263 .NET/zero pominięć, 34 Python i kwalifikacja obrazu/Quality. Syntetyczne odtworzenie i przygotowanie mediów/przeglądarek odebrane w osobnych zakresach; odbiór ręczny/produkcji pozostaje. |
+| Quality CI | Częściowe | CI f4aca03 z 15 października: 294 .NET/zero pominięć, 34 Python, kwalifikacja obrazu/Quality i audyty zielone. Koordynator zaliczył 56 ukierunkowanych testów. Odbiór ręczny mediów, urządzeń i produkcji pozostaje. |
 | Niezmienne wydanie | Częściowe | R1 odebrane; przygotowano kwalifikowany obraz oraz workflow digest/attestation. Publikacja PR pominięta; ochrona, digest main i bootstrap nieodebrane. |
 | Dostęp wdrożeniowy | Częściowe | Ścieżka SSH wycofana w kandydacie; prywatny dostęp i chronione środowisko wymagają konfiguracji. |
 | Sieć, TLS i tożsamość klienta | Częściowe | Exact-proxy dodano w kodzie/testach; stare dowody routingu nie potwierdzają tożsamości nowej produkcji. |
@@ -131,7 +131,7 @@ Profil: **Aplikacja webowa na VPS**. Statusy odzwierciedlają wyłącznie dowody
 | Atomowa promocja i rollback | Częściowe | R1 odebrane 12 października: rollback wymaga potwierdzonego zakończenia wdrożenia; nieznany stan zatrzymuje mutacje. Pozostaje rzeczywisty chroniony rolling/rollback ze stanem. |
 | Koordynacja i retencja | Częściowe | Zachowane źródła uzgodnione; lokalne odzyskiwanie PG/keyring odebrane z syntetycznymi mediami. Pozostają odzyskiwanie/retencja starego wdrożenia i rolling produkcji; upload/worker osobno. |
 | Obserwowalność | Brak | Brak odebranych centralnych/dostarczonych alertów workera/wydania/backupów. |
-| Tożsamość webowa | Częściowe | Siedem filmów/13 grafik przechodzi lokalny Chromium/Firefox; sprawdzono widoczne credits powiązane z manifestem oraz źródła. Odbiór operatora, odsłuch/Safari/mobile i rzeczywisty HTTPS nadal otwarte. |
+| Tożsamość webowa | Częściowe | Zachowano wcześniejsze dowody siedmiu filmów/13 grafik. Nowe testy rzeczywistego playera na syntetycznych MP4/HLS: języki/Off, przewijanie/klawiatura i brak pliku napisów przechodzą w Chromium/Firefox wykonawcy. Rzeczywiste napisy/odsłuch/urządzenia i docelowy HTTPS/CORS pozostają. |
 
 ### Zadania pozostałe i bieżące
 
@@ -139,13 +139,13 @@ Profil: **Aplikacja webowa na VPS**. Statusy odzwierciedlają wyłącznie dowody
 
 **Implementacja · W toku · 85% · trudność 5/5 · 10–18 h**
 
-Preserved source reconciliation remains accepted: 77 paths, 51 identical, 25 further developed, one shared deletion. Credits now bind seven films/13 graphics to manifest URLs and configured origin; retained Gran BY3 evidence and artwork sources/notices reviewed. Two MP4 choices and accepted playback keys, remaining i18n and later worker gates stay open.
+Source reconciliation and credits/source evidence remain accepted. At f4aca03 ten Sintel WebVTTs, persistent subtitle relations, PG/SQLite migrations/import, actual player language/Off and source-retaining upload failure/retry handling are implemented and reviewed. Two MP4s unchanged. Twelve shipping keys remain null; manual media and later worker gates, remaining i18n stay open.
 
 #### Usunąć warningi, skipped testy i podatności
 
 **Jakość · W toku · 80% · trudność 4/5 · 5–10 h**
 
-Final 9601fd1 CI confirms 263 .NET/zero skips, 34 Python, three DOM tests and qualified image/Quality; publish/deploy skipped. R1 and earlier synthetic recovery at 986e9aa remain accepted. Seven films/13 graphics pass worker local Chromium/Firefox; audible sound, physical Safari/mobile and real HTTPS playback remain unaccepted.
+Final f4aca03 CI: 294 .NET/zero skips, 34 Python, image/Quality and dependency audit green; publish/deploy skipped. Runtime image patched to .NET 10.0.13. Coordinator independently passed 56 focused tests and checked media identities. Worker actual-player Chromium/Firefox tests cover local synthetic MP4/HLS and missing VTT; audible/native-device/real HTTPS and actual Sintel timing remain unaccepted.
 
 #### Wymagać zielonego CI na chronionym main
 
@@ -157,7 +157,7 @@ October 12 read-only GitHub metadata: main unprotected, zero rulesets/environmen
 
 **Dokumentacja · W toku · 90% · trudność 3/5 · 1–3 h**
 
-Catalogue-first plan and operator media packet reviewed. Credits/source evidence and local browser preparation complete within scope; operator track/quality/device decisions, scoped publication/readback, real-media import and production recovery/cutover remain. Uploads/worker stay disabled.
+Subtitle contract and twelve-object publication proposal reviewed. Keep previous rights/source/credits and synthetic recovery acceptance; operator media/device checks, publication/readback, final-image real-media import/restart and production recovery/cutover remain. Uploads/worker stay disabled.
 
 #### Dodać limity logowania, uploadu i transkodowania
 
@@ -190,4 +190,4 @@ Worker lifecycle logs and release probes exist in preparation; useful delivered 
 - Projekt podlega profilowi standardu v2: vps-web.
 - Cel migracji uaktualniony 6 września: digest GHCR w Coolify, routing Traefik/Tunnel i wspólna checklista; zachować bazy i custom routes. Zmiana celu nie jest nowym audytem źródła/produkcji.
 - Nowy katalog PostgreSQL z istniejących legalnych mediów R2, nowe konta i pusta historia; zachować starą bazę/originals i wykluczyć YouTube/demo.
-- Osobny agent domyka prawa do mediów/grafik, dwie propozycje pochodnych i pozostałe przeglądarki/rzeczywisty origin. Koordynator odebrał uzgodnienie źródeł i lokalne syntetyczne odtworzenie katalogu; odpowiada za ochronę, limity i kopie/cutover. Zachować stare źródła/dane; nie kopiować ponownie migracji przy starcie ani usuwania mediów. Uploady/worker i UI później.
+- Napisy odebrane technicznie; zachować dziesięć języków Sintel jako WebVTT bez ponownej konwersji niezmienionych MP4. Odbiór operatora i publikacja/odczyt dwunastu obiektów poprzedzają aktywację manifestu i kwalifikację finalnego obrazu. Koordynator odpowiada za ochronę, limity, kopie/cutover. Zachować oryginały i parent; uploady/worker oraz modernizacja UI później.

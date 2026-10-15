@@ -66,12 +66,12 @@
   },
   "focus": {
     "current": {
-      "en": "Draft #1 9601fd1 reviewed: credits, exact retained-media/artwork sources and local Chromium/Firefox preparation accepted; operator media acceptance next.",
-      "pl": "Draft #1 9601fd1 przejrzany: credits, źródła zachowanych mediów/grafik i przygotowanie Chromium/Firefox odebrane; teraz odbiór mediów przez operatora."
+      "en": "Draft #1 f4aca03 subtitle implementation reviewed: ten Sintel tracks, persistent links, actual player and source-retaining failure handling accepted within scope.",
+      "pl": "Implementacja napisów w draft #1 f4aca03 odebrana w swoim zakresie: dziesięć ścieżek Sintel, trwałe powiązania, rzeczywisty player i zachowanie źródła przy błędach."
     },
     "next": {
-      "en": "Approve existing MP4 tracks/quality and audible Safari/mobile playback; publish/read back accepted objects, then final manifest/image qualification. Production protection, recovery and cutover remain separate.",
-      "pl": "Odebrać ścieżki/jakość MP4 oraz odsłuch i Safari/mobile; opublikować i sprawdzić zaakceptowane obiekty, potem zakwalifikować manifest/obraz. Ochrona produkcji, odzyskiwanie i przełączenie osobno."
+      "en": "Operator checks MP4 quality, stereo, real subtitles and audible/device playback; publish/read back two MP4s plus ten VTTs before final-image import/restart. Production gates remain separate.",
+      "pl": "Operator sprawdza jakość MP4, stereo, rzeczywiste napisy, odsłuch i urządzenia; publikacja/odczyt dwóch MP4 i dziesięciu VTT przed importem/restartem finalnego obrazu. Osobno odbiór produkcji."
     }
   },
   "tasks": [
@@ -90,7 +90,7 @@
       "hoursMax": 18,
       "daysMin": 1.25,
       "daysMax": 2.25,
-      "evidence": "Preserved source reconciliation remains accepted: 77 paths, 51 identical, 25 further developed, one shared deletion. Credits now bind seven films/13 graphics to manifest URLs and configured origin; retained Gran BY3 evidence and artwork sources/notices reviewed. Two MP4 choices and accepted playback keys, remaining i18n and later worker gates stay open."
+      "evidence": "Source reconciliation and credits/source evidence remain accepted. At f4aca03 ten Sintel WebVTTs, persistent subtitle relations, PG/SQLite migrations/import, actual player language/Off and source-retaining upload failure/retry handling are implemented and reviewed. Two MP4s unchanged. Twelve shipping keys remain null; manual media and later worker gates, remaining i18n stay open."
     },
     {
       "id": "quality-security",
@@ -107,7 +107,7 @@
       "hoursMax": 10,
       "daysMin": 0.75,
       "daysMax": 1.25,
-      "evidence": "Final 9601fd1 CI confirms 263 .NET/zero skips, 34 Python, three DOM tests and qualified image/Quality; publish/deploy skipped. R1 and earlier synthetic recovery at 986e9aa remain accepted. Seven films/13 graphics pass worker local Chromium/Firefox; audible sound, physical Safari/mobile and real HTTPS playback remain unaccepted."
+      "evidence": "Final f4aca03 CI: 294 .NET/zero skips, 34 Python, image/Quality and dependency audit green; publish/deploy skipped. Runtime image patched to .NET 10.0.13. Coordinator independently passed 56 focused tests and checked media identities. Worker actual-player Chromium/Firefox tests cover local synthetic MP4/HLS and missing VTT; audible/native-device/real HTTPS and actual Sintel timing remain unaccepted."
     },
     {
       "id": "repository-governance",
@@ -141,7 +141,7 @@
       "hoursMax": 3,
       "daysMin": 0.25,
       "daysMax": 0.5,
-      "evidence": "Catalogue-first plan and operator media packet reviewed. Credits/source evidence and local browser preparation complete within scope; operator track/quality/device decisions, scoped publication/readback, real-media import and production recovery/cutover remain. Uploads/worker stay disabled."
+      "evidence": "Subtitle contract and twelve-object publication proposal reviewed. Keep previous rights/source/credits and synthetic recovery acceptance; operator media/device checks, publication/readback, final-image real-media import/restart and production recovery/cutover remain. Uploads/worker stay disabled."
     },
     {
       "id": "route-protection",
@@ -213,9 +213,9 @@
     }
   ],
   "verification": {
-    "worktree": "Clean 9601fd1c5fbde30114484f22cc470ba15581cc17 matches remote draft PR #1 at October 13 media review. Candidate and preserved dirty parent remain intact; earlier 77-path source reconciliation accepted, no bulk port remains.",
-    "tests": "Final CI confirms 263 .NET/zero skips, 34 Python and three DOM tests. Coordinator inspected new credits tests/code and worker local Chromium/Firefox seven-film/13-image evidence; independently checked retained Gran frame/media and both MP4 hashes. Decoded audio was muted, not a listening test. Earlier recovery at 986e9aa remains synthetic scope; no new full container rehearsal claimed.",
-    "ci": "CI/CD 38462374786 and Dependency audit 38462374948 green for 9601fd1 October 13; logs inspected. Exact image/Quality pass, publish/deploy skipped. Earlier local recovery used 986e9aa, before new credits/UI code; it is not final-image real-media acceptance or a CI recovery gate. Scanner gates fixable HIGH/CRITICAL, not every advisory.",
+    "worktree": "Clean f4aca03ec70af427cd3da82912d88ea1b87aec20 matches remote draft PR #1 at October 15 review. Six commits since accepted 9601fd1; worker checkout and divergent parent preserved. Coordinator used separate detached checkout for focused tests.",
+    "tests": "Inspected CI confirms 294 .NET/zero skips and 34 Python. Coordinator independently built exact head and passed 56 focused subtitle/storage/catalogue tests; verified ten VTT hashes/lengths/UTF-8 and 26 cue markers each, plus unchanged MP4 hashes. Worker actual MVC player Chromium/Firefox evidence covers synthetic MP4/HLS, selection/Off, seeking/keyboard and missing-track recovery. Real-media/native-device/manual checks remain separate.",
+    "ci": "CI/CD 38704058532 and Dependency audit 38704058491 green for f4aca03 October 15; logs inspected. Image/Quality pass, publish/deploy skipped. Runtime patched to .NET 10.0.13, SDK 10.0.401 unchanged. Scanner gates fixable HIGH/CRITICAL, not every advisory. Earlier recovery remains source 986e9aa, not this final image.",
     "production": "Worker reports no production/R2 mutation; coordinator performed no fresh VPS/provider audit or app merge/deploy. No production digest published by this PR run. Uploads/worker stay off. Protection readback retains October 12 date; local recovery does not establish new release readiness."
   },
   "media": {
@@ -246,30 +246,30 @@
       "pl": "Nowy katalog PostgreSQL z istniejących legalnych mediów R2, nowe konta i pusta historia; zachować starą bazę/originals i wykluczyć YouTube/demo."
     },
     {
-      "en": "Dedicated worker completes media/artwork rights, two offline derivative proposals and remaining browser/real-origin evidence. Coordinator accepted source reconciliation and local synthetic catalogue recovery; owns production protection, budgets and backup/cutover. Preserve legacy source/data; do not re-copy obsolete startup migrations or media deletion. Upload/worker activation and UI remain later.",
-      "pl": "Osobny agent domyka prawa do mediów/grafik, dwie propozycje pochodnych i pozostałe przeglądarki/rzeczywisty origin. Koordynator odebrał uzgodnienie źródeł i lokalne syntetyczne odtworzenie katalogu; odpowiada za ochronę, limity i kopie/cutover. Zachować stare źródła/dane; nie kopiować ponownie migracji przy starcie ani usuwania mediów. Uploady/worker i UI później."
+      "en": "Subtitle implementation reviewed; retain all ten Sintel languages as WebVTT without reconverting unchanged MP4s. Operator media acceptance and twelve-object publication/readback precede manifest activation and final-image qualification. Coordinator owns protection, budgets, backup/cutover. Preserve originals and parent; uploads/worker and UI modernization remain later.",
+      "pl": "Napisy odebrane technicznie; zachować dziesięć języków Sintel jako WebVTT bez ponownej konwersji niezmienionych MP4. Odbiór operatora i publikacja/odczyt dwunastu obiektów poprzedzają aktywację manifestu i kwalifikację finalnego obrazu. Koordynator odpowiada za ochronę, limity, kopie/cutover. Zachować oryginały i parent; uploady/worker oraz modernizacja UI później."
     }
   ],
   "audit": {
-    "date": "2026-10-13",
+    "date": "2026-10-15",
     "sources": [
-      "Draft PR #1 9601fd1c5fbde30114484f22cc470ba15581cc17; coordinator media source/results review October 13",
-      "CI/CD https://github.com/SzczepanGrela/netfilmx-movie-catalog/actions/runs/38462374786 and Dependency audit 38462374948; head-bound logs inspected",
-      "CI 263 .NET/zero skips, 34 Python and three DOM tests; qualified image/Quality pass, publish/deploy skipped",
-      "Earlier worker local recovery at 986e9aa947a58f18a405fbb59a3fec05df2bad30 with synthetic media; credits/UI changed later",
-      "Retained Gran Dillama BY3 card at 144.5 seconds; 13 artwork identities; worker local Chromium/Firefox and MP4 proposal evidence",
-      "Earlier preserved-source reconciliation: 77 paths, 51 identical/25 further developed/one shared deletion; no checkout overwritten",
+      "Draft PR #1 f4aca03ec70af427cd3da82912d88ea1b87aec20; coordinator subtitle source/results review October 15",
+      "CI/CD https://github.com/SzczepanGrela/netfilmx-movie-catalog/actions/runs/38704058532 and Dependency audit 38704058491; head-bound logs inspected",
+      "CI 294 .NET/zero skips and 34 Python; image/Quality pass, publish/deploy skipped; coordinator exact-head 56 focused tests pass",
+      "Worker Chromium/Firefox actual-player synthetic MP4/HLS/caption evidence; coordinator verified ten WebVTT identities/26 cue markers each and unchanged MP4 identities",
+      "Earlier media/source/credits acceptance at 9601fd1 and synthetic PG/keyring/two-web recovery at 986e9aa remain distinct",
+      "Earlier 77-path source reconciliation accepted; no parent overwrite or bulk re-port",
       "Protection evidence retains October 12 readback; no new production/provider audit"
     ],
     "notes": {
-      "en": "Credits, retained Gran BY3/artwork source evidence and local Chromium/Firefox preparation accepted. Operator rights/track/quality choices, audible Safari/mobile and publication/actual HTTPS acceptance remain; two manifest keys inactive. Earlier source reconciliation/synthetic recovery accepted separately. Production limits, backups, protection and legacy recovery/cutover remain open; uploads/worker off. Percentages and October 4 estimates retained without remeasurement or promised dates.",
-      "pl": "Credits, dowody Gran BY3/pochodzenia grafik i lokalne przygotowanie Chromium/Firefox odebrane. Pozostają decyzje operatora o prawach/ścieżkach/jakości, odsłuch i Safari/mobile oraz publikacja/rzeczywisty HTTPS; dwa klucze manifestu nieaktywne. Wcześniejsze uzgodnienie źródeł/syntetyczne odtworzenie odebrane osobno. Limity produkcji, kopie, ochrona i odzyskiwanie starego wdrożenia/przełączenie otwarte; uploady/worker wyłączone. Procenty i estymaty z 4 października bez nowego pomiaru czy obiecanego terminu."
+      "en": "Bounded subtitle implementation accepted. Operator quality/stereo/caption checks, audible Safari/mobile and twelve-object publication/actual HTTPS remain; twelve manifest keys inactive. Final-image real-media import/restart remains, earlier synthetic recovery is separate. Production budgets/backups/protection/legacy recovery/cutover open; uploads/worker off. Percentages and October 4 estimates retained without remeasurement or promised dates.",
+      "pl": "Implementacja napisów odebrana w ograniczonym zakresie. Pozostają odbiór jakości/stereo/napisów, odsłuch/Safari/mobile i publikacja dwunastu obiektów/rzeczywisty HTTPS; dwanaście kluczy manifestu nieaktywne. Import/restart finalnego obrazu z mediami pozostaje, wcześniejsze syntetyczne odtworzenie osobno. Limity/kopie/ochrona/odzyskiwanie/cutover otwarte; uploady/worker wyłączone. Procenty i estymaty z 4 października bez nowego pomiaru czy obiecanego terminu."
     }
   },
   "compliance": {
     "standardVersion": 2,
     "profile": "vps-web",
-    "assessmentDate": "2026-10-13",
+    "assessmentDate": "2026-10-15",
     "controls": [
       {
         "id": "governance",
@@ -286,8 +286,8 @@
         "id": "quality-ci",
         "status": "partial",
         "evidence": {
-          "en": "October 13 9601fd1 CI: 263 .NET/zero skips, 34 Python and qualified image/Quality pass. Local synthetic recovery and media/browser preparation accepted within their separate scope; manual/live gates remain.",
-          "pl": "CI 9601fd1 z 13 października: 263 .NET/zero pominięć, 34 Python i kwalifikacja obrazu/Quality. Syntetyczne odtworzenie i przygotowanie mediów/przeglądarek odebrane w osobnych zakresach; odbiór ręczny/produkcji pozostaje."
+          "en": "October 15 f4aca03 CI: 294 .NET/zero skips, 34 Python, qualified image/Quality and audits green. Coordinator passed 56 focused tests. Manual media, native devices and live gates remain.",
+          "pl": "CI f4aca03 z 15 października: 294 .NET/zero pominięć, 34 Python, kwalifikacja obrazu/Quality i audyty zielone. Koordynator zaliczył 56 ukierunkowanych testów. Odbiór ręczny mediów, urządzeń i produkcji pozostaje."
         },
         "taskIds": [
           "quality-security"
@@ -397,8 +397,8 @@
         "id": "web-identity",
         "status": "partial",
         "evidence": {
-          "en": "Seven films/13 graphics pass local Chromium/Firefox; visible manifest-bound credits and sources reviewed. Operator media acceptance, audible Safari/mobile and actual HTTPS remain pending.",
-          "pl": "Siedem filmów/13 grafik przechodzi lokalny Chromium/Firefox; sprawdzono widoczne credits powiązane z manifestem oraz źródła. Odbiór operatora, odsłuch/Safari/mobile i rzeczywisty HTTPS nadal otwarte."
+          "en": "Earlier seven-film/13-image evidence retained. New actual-player synthetic MP4/HLS caption selection/Off, seeking/keyboard and missing-track recovery pass in worker Chromium/Firefox. Real sidecars/manual audio/native devices and published HTTPS/CORS remain.",
+          "pl": "Zachowano wcześniejsze dowody siedmiu filmów/13 grafik. Nowe testy rzeczywistego playera na syntetycznych MP4/HLS: języki/Off, przewijanie/klawiatura i brak pliku napisów przechodzą w Chromium/Firefox wykonawcy. Rzeczywiste napisy/odsłuch/urządzenia i docelowy HTTPS/CORS pozostają."
         },
         "taskIds": [
           "architecture-docs"

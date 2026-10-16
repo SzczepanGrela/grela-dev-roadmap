@@ -40,38 +40,38 @@
   },
   "status": "active",
   "progress": {
-    "implementation": 85,
+    "implementation": 51,
     "quality": 60,
     "documentation": 90,
     "delivery": 44,
-    "overall": 70
+    "overall": 57
   },
   "complexity": 5,
   "forecast": {
-    "remainingHoursMin": 35,
-    "remainingHoursMax": 66,
-    "remainingDaysMin": 4.5,
-    "remainingDaysMax": 8.25,
+    "remainingHoursMin": 51,
+    "remainingHoursMax": 98,
+    "remainingDaysMin": 6.5,
+    "remainingDaysMax": 12.25,
     "hoursPerDay": 8,
     "hoursPerWeek": 30,
-    "earliest": "2026-10-05",
-    "latest": "2026-10-25",
+    "earliest": "2026-10-28",
+    "latest": "2026-11-09",
     "confidence": "low"
   },
   "estimation": {
-    "date": "2026-10-04",
+    "date": "2026-10-16",
     "mode": "source-audited",
-    "sourceRevision": "cbf2ec16cac64d2dfe4d85b8b575f4eacdd69578",
-    "sourceState": "Clean preparation branch codex/netfilmx-preparation, draft PR #1 at cbf2ec1. .NET 10/keyring/migration/image preparation reviewed; release error handling requires correction. Original source retained; candidate is not production."
+    "sourceRevision": "f4aca03ec70af427cd3da82912d88ea1b87aec20",
+    "sourceState": "Unchanged reviewed candidate f4aca03, clean worker checkout and remote draft PR #1 checked October 16. Only new UI/mobile/credits scope estimated at 16–32 h from operator feedback and reviewed UI evidence; previous task ranges retain their October 4 baseline without fresh remeasurement. Calendar rebased for the dedicated worker lane; candidate is not production."
   },
   "focus": {
     "current": {
-      "en": "Draft #1 f4aca03 subtitle implementation reviewed: ten Sintel tracks, persistent links, actual player and source-retaining failure handling accepted within scope.",
-      "pl": "Implementacja napisów w draft #1 f4aca03 odebrana w swoim zakresie: dziesięć ścieżek Sintel, trwałe powiązania, rzeczywisty player i zachowanie źródła przy błędach."
+      "en": "Draft #1 f4aca03 remains unchanged. Desktop Chrome and physical Android media acceptance is partial; Sintel synchronization remains unresolved. Credits readability and visual approval are separate.",
+      "pl": "Draft #1 f4aca03 bez zmian. Częściowy odbiór mediów w Chrome na komputerze i fizycznym Androidzie; synchronizacja Sintela pozostaje niewyjaśniona. Czytelność credits i akceptacja wyglądu są osobne."
     },
     "next": {
-      "en": "Operator checks MP4 quality, stereo, real subtitles and audible/device playback; publish/read back two MP4s plus ten VTTs before final-image import/restart. Production gates remain separate.",
-      "pl": "Operator sprawdza jakość MP4, stereo, rzeczywiste napisy, odsłuch i urządzenia; publikacja/odczyt dwóch MP4 i dziesięciu VTT przed importem/restartem finalnego obrazu. Osobno odbiór produkcji."
+      "en": "Finish the missing local/device checks and bounded Sintel comparison. Publish/read back twelve approved objects only after media acceptance; then qualify final-image import/restart and production. UI/mobile/credits has a separate later task.",
+      "pl": "Dokończyć brakujące próby lokalne/urządzeń i ograniczone porównanie Sintela. Publikacja/odczyt dwunastu zaakceptowanych obiektów po odbiorze mediów; następnie import/restart finalnego obrazu i produkcja. UI/mobile/credits mają osobne późniejsze zadanie."
     }
   },
   "tasks": [
@@ -93,6 +93,23 @@
       "evidence": "Source reconciliation and credits/source evidence remain accepted. At f4aca03 ten Sintel WebVTTs, persistent subtitle relations, PG/SQLite migrations/import, actual player language/Off and source-retaining upload failure/retry handling are implemented and reviewed. Two MP4s unchanged. Twelve shipping keys remain null; manual media and later worker gates, remaining i18n stay open."
     },
     {
+      "id": "ui-mobile-credits",
+      "title": {
+        "en": "Modernize UI, mobile interaction and credits presentation",
+        "pl": "Zmodernizować UI, obsługę mobilną i prezentację credits"
+      },
+      "dimension": "implementation",
+      "status": "planned",
+      "completion": 0,
+      "weight": 2,
+      "difficulty": 3,
+      "hoursMin": 16,
+      "hoursMax": 32,
+      "daysMin": 2.0,
+      "daysMax": 4.0,
+      "evidence": "Separate future scope after backend/media and first-release acceptance; no redesign started. Operator finds mobile credits readable but dislikes the design. Agree Ania Kubów references and visual preview, then catalogue/watch/credits/auth and shared administration UI. Acceptance: responsive PL/EN, keyboard/touch, actual player/subtitles, complete accessible attribution and physical-device checks. Canonical brief: [UI/mobile/credits](../../docs/netfilmx-ui-modernization.md). Preliminary 16–32 active hours, re-estimate after design brief; not a release date."
+    },
+    {
       "id": "quality-security",
       "title": {
         "en": "Remove warnings, skipped tests and vulnerabilities",
@@ -107,7 +124,7 @@
       "hoursMax": 10,
       "daysMin": 0.75,
       "daysMax": 1.25,
-      "evidence": "Final f4aca03 CI: 294 .NET/zero skips, 34 Python, image/Quality and dependency audit green; publish/deploy skipped. Runtime image patched to .NET 10.0.13. Coordinator independently passed 56 focused tests and checked media identities. Worker actual-player Chromium/Firefox tests cover local synthetic MP4/HLS and missing VTT; audible/native-device/real HTTPS and actual Sintel timing remain unaccepted."
+      "evidence": "October 15 f4aca03 CI: 294 .NET/zero skips, 34 Python, image/Quality and dependency audit green; publish/deploy skipped. Runtime 10.0.13, earlier coordinator 56 focused tests accepted. October 15–16 operator Chrome desktop/physical Android checks partially pass; all-ten-real-track rendering, remaining Android checks, Safari/iOS and actual HTTPS remain. Same-MP4 native/Vidstack comparison and sampled source/output timing do not resolve perceived Sintel voice/lip mismatch."
     },
     {
       "id": "repository-governance",
@@ -141,7 +158,7 @@
       "hoursMax": 3,
       "daysMin": 0.25,
       "daysMax": 0.5,
-      "evidence": "Subtitle contract and twelve-object publication proposal reviewed. Keep previous rights/source/credits and synthetic recovery acceptance; operator media/device checks, publication/readback, final-image real-media import/restart and production recovery/cutover remain. Uploads/worker stay disabled."
+      "evidence": "Subtitle contract and twelve-object proposal retained. October 16 manual record distinguishes partial local/device acceptance, unresolved Sintel sync, readable credits and unapproved visual design. UI/mobile/credits now has its own planned task and acceptance brief. Keep previous source/credits and synthetic recovery acceptance separate from publication/readback, final-image real-media import/restart and production recovery/cutover; uploads/worker off."
     },
     {
       "id": "route-protection",
@@ -213,8 +230,8 @@
     }
   ],
   "verification": {
-    "worktree": "Clean f4aca03ec70af427cd3da82912d88ea1b87aec20 matches remote draft PR #1 at October 15 review. Six commits since accepted 9601fd1; worker checkout and divergent parent preserved. Coordinator used separate detached checkout for focused tests.",
-    "tests": "Inspected CI confirms 294 .NET/zero skips and 34 Python. Coordinator independently built exact head and passed 56 focused subtitle/storage/catalogue tests; verified ten VTT hashes/lengths/UTF-8 and 26 cue markers each, plus unchanged MP4 hashes. Worker actual MVC player Chromium/Firefox evidence covers synthetic MP4/HLS, selection/Off, seeking/keyboard and missing-track recovery. Real-media/native-device/manual checks remain separate.",
+    "worktree": "Clean unchanged f4aca03ec70af427cd3da82912d88ea1b87aec20 matches remote draft PR #1 at October 16 review. No new app commits; manual evidence resides in ignored artifacts. Dirty divergent parent preserved. Earlier source/subtitle review remains accepted.",
+    "tests": "Prior exact-head CI and 56 coordinator-focused tests retained, not rerun for an unchanged app. Coordinator inspected operator records, a mobile credits screenshot and worker timing script/report: 21,312 paired video PTS unchanged; four sampled 8-second audio windows at 103–135 s show no added lag; ten VTT cue timelines match retained source. This does not establish source lip sync or device latency. Desktop Chrome and physical Android operator checks partially pass; same MP4 in native Chrome/Vidstack feels identical but Sintel sync remains open. All-ten real-track rendering, Home retry, Android ending/rotation/resume, exact device/audio details and Safari/iOS remain.",
     "ci": "CI/CD 38704058532 and Dependency audit 38704058491 green for f4aca03 October 15; logs inspected. Image/Quality pass, publish/deploy skipped. Runtime patched to .NET 10.0.13, SDK 10.0.401 unchanged. Scanner gates fixable HIGH/CRITICAL, not every advisory. Earlier recovery remains source 986e9aa, not this final image.",
     "production": "Worker reports no production/R2 mutation; coordinator performed no fresh VPS/provider audit or app merge/deploy. No production digest published by this PR run. Uploads/worker stay off. Protection readback retains October 12 date; local recovery does not establish new release readiness."
   },
@@ -248,10 +265,14 @@
     {
       "en": "Subtitle implementation reviewed; retain all ten Sintel languages as WebVTT without reconverting unchanged MP4s. Operator media acceptance and twelve-object publication/readback precede manifest activation and final-image qualification. Coordinator owns protection, budgets, backup/cutover. Preserve originals and parent; uploads/worker and UI modernization remain later.",
       "pl": "Napisy odebrane technicznie; zachować dziesięć języków Sintel jako WebVTT bez ponownej konwersji niezmienionych MP4. Odbiór operatora i publikacja/odczyt dwunastu obiektów poprzedzają aktywację manifestu i kwalifikację finalnego obrazu. Koordynator odpowiada za ochronę, limity, kopie/cutover. Zachować oryginały i parent; uploady/worker oraz modernizacja UI później."
+    },
+    {
+      "en": "October 16: preserve scoped manual passes without claiming Sintel synchronization acceptance or inventing an offset. Credits readability is partially confirmed; visual design is not approved. Plan UI/mobile/credits separately after the current release work, retaining all creator/licence/source/change attribution.",
+      "pl": "16 października: zachować odebrane próby bez uznawania synchronizacji Sintela ani zgadywania offsetu. Czytelność credits częściowo potwierdzona; wygląd niezaakceptowany. UI/mobile/credits zaplanowane osobno po bieżącym wydaniu, z zachowaniem twórców/licencji/źródeł/zmian."
     }
   ],
   "audit": {
-    "date": "2026-10-15",
+    "date": "2026-10-16",
     "sources": [
       "Draft PR #1 f4aca03ec70af427cd3da82912d88ea1b87aec20; coordinator subtitle source/results review October 15",
       "CI/CD https://github.com/SzczepanGrela/netfilmx-movie-catalog/actions/runs/38704058532 and Dependency audit 38704058491; head-bound logs inspected",
@@ -259,17 +280,21 @@
       "Worker Chromium/Firefox actual-player synthetic MP4/HLS/caption evidence; coordinator verified ten WebVTT identities/26 cue markers each and unchanged MP4 identities",
       "Earlier media/source/credits acceptance at 9601fd1 and synthetic PG/keyring/two-web recovery at 986e9aa remain distinct",
       "Earlier 77-path source reconciliation accepted; no parent overwrite or bulk re-port",
-      "Protection evidence retains October 12 readback; no new production/provider audit"
+      "Protection evidence retains October 12 readback; no new production/provider audit",
+      "October 15–16 operator local Chrome desktop/physical Android records; coordinator inspected selected mobile credits screenshot and manual statuses October 16",
+      "Worker source/output timing report and method inspected: paired video PTS, sampled audio at 103–135 s and ten VTT cue timelines; no new coordinator playback experiment",
+      "Same existing MP4 in native Chrome versus Vidstack, not original-versus-derivative or MP4-versus-HLS; Sintel concern remains unresolved",
+      "Explicit UI/mobile/credits task and docs/netfilmx-ui-modernization.md from operator visual feedback; no UI implementation or production changes"
     ],
     "notes": {
-      "en": "Bounded subtitle implementation accepted. Operator quality/stereo/caption checks, audible Safari/mobile and twelve-object publication/actual HTTPS remain; twelve manifest keys inactive. Final-image real-media import/restart remains, earlier synthetic recovery is separate. Production budgets/backups/protection/legacy recovery/cutover open; uploads/worker off. Percentages and October 4 estimates retained without remeasurement or promised dates.",
-      "pl": "Implementacja napisów odebrana w ograniczonym zakresie. Pozostają odbiór jakości/stereo/napisów, odsłuch/Safari/mobile i publikacja dwunastu obiektów/rzeczywisty HTTPS; dwanaście kluczy manifestu nieaktywne. Import/restart finalnego obrazu z mediami pozostaje, wcześniejsze syntetyczne odtworzenie osobno. Limity/kopie/ochrona/odzyskiwanie/cutover otwarte; uploady/worker wyłączone. Procenty i estymaty z 4 października bez nowego pomiaru czy obiecanego terminu."
+      "en": "Subtitle code acceptance retained; manual media acceptance is partial on desktop Chrome and physical Android. Sintel voice/lip mismatch unresolved; technical timing comparison and flash/beep control do not accept it. Finish Home retry, Android ending/rotation/resume, all ten real tracks and exact device/audio record; Safari/iOS pending. Credits readability partially confirmed, design unapproved: separate planned UI task. Twelve publication keys inactive; real HTTPS and final-image/media/production gates remain, uploads/worker off. Adding UI scope changes weighted progress 70% to 57% and effort 35–66 to 51–98 h; existing task completion is unchanged. Low-confidence calendar is a rebased projection, not booked work.",
+      "pl": "Odbiór kodu napisów zachowany; ręczny odbiór mediów częściowy w Chrome na komputerze i fizycznym Androidzie. Rozminięcie głosu i ust Sintela niewyjaśnione; porównanie czasów i próba błysk/dźwięk nie zamykają uwagi. Pozostają Home, końcówka/obrót/wznowienie Androida, wszystkie 10 ścieżek i dane urządzenia/audio; Safari/iOS pending. Credits częściowo czytelne, wygląd niezaakceptowany: osobne planowane UI. Dwanaście kluczy nieaktywnych; HTTPS i odbiór finalnego obrazu/produkcji nadal otwarte, uploady/worker wyłączone. Dodanie UI zmienia ważony postęp 70% na 57% i pracę 35–66 na 51–98 h; ukończenie wcześniejszych zadań bez zmian. Daty o niskiej pewności są przeliczoną prognozą, nie rezerwacją pracy."
     }
   },
   "compliance": {
     "standardVersion": 2,
     "profile": "vps-web",
-    "assessmentDate": "2026-10-15",
+    "assessmentDate": "2026-10-16",
     "controls": [
       {
         "id": "governance",
@@ -397,11 +422,12 @@
         "id": "web-identity",
         "status": "partial",
         "evidence": {
-          "en": "Earlier seven-film/13-image evidence retained. New actual-player synthetic MP4/HLS caption selection/Off, seeking/keyboard and missing-track recovery pass in worker Chromium/Firefox. Real sidecars/manual audio/native devices and published HTTPS/CORS remain.",
-          "pl": "Zachowano wcześniejsze dowody siedmiu filmów/13 grafik. Nowe testy rzeczywistego playera na syntetycznych MP4/HLS: języki/Off, przewijanie/klawiatura i brak pliku napisów przechodzą w Chromium/Firefox wykonawcy. Rzeczywiste napisy/odsłuch/urządzenia i docelowy HTTPS/CORS pozostają."
+          "en": "Local desktop/Android credits readability partially confirmed; visual design not approved. Future UI/mobile/credits scope has explicit responsive, accessibility, player and attribution criteria. Other presentation checks remain.",
+          "pl": "Czytelność credits częściowo potwierdzona na komputerze/Androidzie; wygląd niezaakceptowany. Osobne UI/mobile/credits ma kryteria responsywności, dostępności, playera i atrybucji. Pozostały odbiór prezentacji nadal otwarty."
         },
         "taskIds": [
-          "architecture-docs"
+          "architecture-docs",
+          "ui-mobile-credits"
         ]
       }
     ]

@@ -72,3 +72,23 @@ weighted overall progress becomes 94%. Remaining shared platform/presentation
 estimates retain their earlier scope; this is not 100% platform compliance.
 The low-confidence planning range is October 13–20, without a reserved operator
 window. Other project estimates and dates are unchanged.
+
+## NetFilmx explicit UI scope — October 16
+
+The candidate remains `f4aca03`; no application changes or production acceptance
+are inferred from the manual-media update. A separate planned
+[`ui-mobile-credits`](netfilmx-ui-modernization.md) task adds 16–32 active hours
+with implementation weight 2 and 0% completion. Existing task completion and
+October 4 effort ranges are retained without remeasurement. Consequently the
+implementation dimension changes from 85% to 51%, weighted overall progress
+from 70% to 57%, and remaining effort from 35–66 to 51–98 hours. This is newly
+explicit scope, not lost work or a regression in the accepted candidate.
+
+At six focused hours per weekday in the dedicated worker lane, rebasing from
+October 16 gives October 28–November 9 as a **low-confidence planning range**.
+It books no operator time or UI start. Re-estimate after the visual brief and
+remaining media findings; other projects retain their own dates.
+
+Osobne zadanie UI/mobile/credits dodaje jawny zakres, a nie cofa odebranych prac.
+16–32 godziny to wstępny nakład do ponownego oszacowania po briefie. Pozostałe
+estymaty nie zostały ponownie zmierzone; daty są prognozą, nie obietnicą.

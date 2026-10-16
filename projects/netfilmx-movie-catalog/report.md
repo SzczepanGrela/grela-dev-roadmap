@@ -1,8 +1,8 @@
 # NetFilmx Movie Catalog — status report / raport stanu
 
-Audit date / data audytu: **2026-10-15**<br>
-Estimated completion / szacowane ukończenie: **70%**<br>
-Forecast / prognoza: **2026-10-05–2026-10-25**, 35–66 h, low confidence / pewność: low
+Audit date / data audytu: **2026-10-16**<br>
+Estimated completion / szacowane ukończenie: **57%**<br>
+Forecast / prognoza: **2026-10-28–2026-11-09**, 51–98 h, low confidence / pewność: low
 
 > This report is synchronized from `project.json` and the versioned delivery-control catalog. / Raport jest synchronizowany z `project.json` i wersjonowanym katalogiem kontroli wdrożeniowych.
 
@@ -12,12 +12,12 @@ Forecast / prognoza: **2026-10-05–2026-10-25**, 35–66 h, low confidence / pe
 
 ASP.NET Core VOD catalogue with HLS processing, R2 storage and administration.
 
-Bounded subtitle implementation accepted. Operator quality/stereo/caption checks, audible Safari/mobile and twelve-object publication/actual HTTPS remain; twelve manifest keys inactive. Final-image real-media import/restart remains, earlier synthetic recovery is separate. Production budgets/backups/protection/legacy recovery/cutover open; uploads/worker off. Percentages and October 4 estimates retained without remeasurement or promised dates.
+Subtitle code acceptance retained; manual media acceptance is partial on desktop Chrome and physical Android. Sintel voice/lip mismatch unresolved; technical timing comparison and flash/beep control do not accept it. Finish Home retry, Android ending/rotation/resume, all ten real tracks and exact device/audio record; Safari/iOS pending. Credits readability partially confirmed, design unapproved: separate planned UI task. Twelve publication keys inactive; real HTTPS and final-image/media/production gates remain, uploads/worker off. Adding UI scope changes weighted progress 70% to 57% and effort 35–66 to 51–98 h; existing task completion is unchanged. Low-confidence calendar is a rebased projection, not booked work.
 
 ### Audit evidence
 
-- **Repozytorium:** `SzczepanGrela/netfilmx-movie-catalog` @ `cbf2ec16cac64d2dfe4d85b8b575f4eacdd69578`
-- **Source state:** Clean preparation branch codex/netfilmx-preparation, draft PR #1 at cbf2ec1. .NET 10/keyring/migration/image preparation reviewed; release error handling requires correction. Original source retained; candidate is not production.
+- **Repozytorium:** `SzczepanGrela/netfilmx-movie-catalog` @ `f4aca03ec70af427cd3da82912d88ea1b87aec20`
+- **Source state:** Unchanged reviewed candidate f4aca03, clean worker checkout and remote draft PR #1 checked October 16. Only new UI/mobile/credits scope estimated at 16–32 h from operator feedback and reviewed UI evidence; previous task ranges retain their October 4 baseline without fresh remeasurement. Calendar rebased for the dedicated worker lane; candidate is not production.
 - **Tests and CI:** CI/CD 38704058532 and Dependency audit 38704058491 green for f4aca03 October 15; logs inspected. Image/Quality pass, publish/deploy skipped. Runtime patched to .NET 10.0.13, SDK 10.0.401 unchanged. Scanner gates fixable HIGH/CRITICAL, not every advisory. Earlier recovery remains source 986e9aa, not this final image.
 - **Production:** Worker reports no production/R2 mutation; coordinator performed no fresh VPS/provider audit or app merge/deploy. No production digest published by this PR run. Uploads/worker stay off. Protection readback retains October 12 date; local recovery does not establish new release readiness.
 
@@ -38,7 +38,7 @@ Profile: **VPS web application**. Statuses reflect only evidence available on th
 | Atomic promotion and rollback | Partial | R1 accepted October 12: confirmed terminal deployment required before rollback; unknown state stops mutations. Actual protected stateful rolling/rollback still needs acceptance. |
 | Coordination and retention | Partial | Preserved source reconciled; local PG/keyring recovery accepted with synthetic media. Real legacy recovery/retention and production rolling remain; upload/worker gates stay separate. |
 | Observability | Missing | No accepted central or delivered worker/release/backup alerts. |
-| Web identity | Partial | Earlier seven-film/13-image evidence retained. New actual-player synthetic MP4/HLS caption selection/Off, seeking/keyboard and missing-track recovery pass in worker Chromium/Firefox. Real sidecars/manual audio/native devices and published HTTPS/CORS remain. |
+| Web identity | Partial | Local desktop/Android credits readability partially confirmed; visual design not approved. Future UI/mobile/credits scope has explicit responsive, accessibility, player and attribution criteria. Other presentation checks remain. |
 
 ### Remaining and active tasks
 
@@ -48,11 +48,17 @@ Profile: **VPS web application**. Statuses reflect only evidence available on th
 
 Source reconciliation and credits/source evidence remain accepted. At f4aca03 ten Sintel WebVTTs, persistent subtitle relations, PG/SQLite migrations/import, actual player language/Off and source-retaining upload failure/retry handling are implemented and reviewed. Two MP4s unchanged. Twelve shipping keys remain null; manual media and later worker gates, remaining i18n stay open.
 
+#### Modernize UI, mobile interaction and credits presentation
+
+**Implementation · Planned · 0% · difficulty 3/5 · 16–32 h**
+
+Separate future scope after backend/media and first-release acceptance; no redesign started. Operator finds mobile credits readable but dislikes the design. Agree Ania Kubów references and visual preview, then catalogue/watch/credits/auth and shared administration UI. Acceptance: responsive PL/EN, keyboard/touch, actual player/subtitles, complete accessible attribution and physical-device checks. Canonical brief: [UI/mobile/credits](../../docs/netfilmx-ui-modernization.md). Preliminary 16–32 active hours, re-estimate after design brief; not a release date.
+
 #### Remove warnings, skipped tests and vulnerabilities
 
 **Quality · In progress · 80% · difficulty 4/5 · 5–10 h**
 
-Final f4aca03 CI: 294 .NET/zero skips, 34 Python, image/Quality and dependency audit green; publish/deploy skipped. Runtime image patched to .NET 10.0.13. Coordinator independently passed 56 focused tests and checked media identities. Worker actual-player Chromium/Firefox tests cover local synthetic MP4/HLS and missing VTT; audible/native-device/real HTTPS and actual Sintel timing remain unaccepted.
+October 15 f4aca03 CI: 294 .NET/zero skips, 34 Python, image/Quality and dependency audit green; publish/deploy skipped. Runtime 10.0.13, earlier coordinator 56 focused tests accepted. October 15–16 operator Chrome desktop/physical Android checks partially pass; all-ten-real-track rendering, remaining Android checks, Safari/iOS and actual HTTPS remain. Same-MP4 native/Vidstack comparison and sampled source/output timing do not resolve perceived Sintel voice/lip mismatch.
 
 #### Require green CI on protected main
 
@@ -64,7 +70,7 @@ October 12 read-only GitHub metadata: main unprotected, zero rulesets/environmen
 
 **Documentation · In progress · 90% · difficulty 3/5 · 1–3 h**
 
-Subtitle contract and twelve-object publication proposal reviewed. Keep previous rights/source/credits and synthetic recovery acceptance; operator media/device checks, publication/readback, final-image real-media import/restart and production recovery/cutover remain. Uploads/worker stay disabled.
+Subtitle contract and twelve-object proposal retained. October 16 manual record distinguishes partial local/device acceptance, unresolved Sintel sync, readable credits and unapproved visual design. UI/mobile/credits now has its own planned task and acceptance brief. Keep previous source/credits and synthetic recovery acceptance separate from publication/readback, final-image real-media import/restart and production recovery/cutover; uploads/worker off.
 
 #### Add login, upload and transcoding limits
 
@@ -98,6 +104,7 @@ Worker lifecycle logs and release probes exist in preparation; useful delivered 
 - Migration target updated September 6: prebuilt GHCR digest in Coolify, Traefik/Tunnel routing and the shared deployment checklist; preserve databases and custom routes. This target update is not a new source/production audit.
 - Fresh PostgreSQL catalogue from existing licensed R2 media, new accounts and empty history; retain legacy database/original objects and exclude old YouTube/demo links.
 - Subtitle implementation reviewed; retain all ten Sintel languages as WebVTT without reconverting unchanged MP4s. Operator media acceptance and twelve-object publication/readback precede manifest activation and final-image qualification. Coordinator owns protection, budgets, backup/cutover. Preserve originals and parent; uploads/worker and UI modernization remain later.
+- October 16: preserve scoped manual passes without claiming Sintel synchronization acceptance or inventing an offset. Credits readability is partially confirmed; visual design is not approved. Plan UI/mobile/credits separately after the current release work, retaining all creator/licence/source/change attribution.
 
 ## Polski
 
@@ -105,12 +112,12 @@ Worker lifecycle logs and release probes exist in preparation; useful delivered 
 
 Katalog VOD ASP.NET Core z HLS, magazynem R2 i panelem administracyjnym.
 
-Implementacja napisów odebrana w ograniczonym zakresie. Pozostają odbiór jakości/stereo/napisów, odsłuch/Safari/mobile i publikacja dwunastu obiektów/rzeczywisty HTTPS; dwanaście kluczy manifestu nieaktywne. Import/restart finalnego obrazu z mediami pozostaje, wcześniejsze syntetyczne odtworzenie osobno. Limity/kopie/ochrona/odzyskiwanie/cutover otwarte; uploady/worker wyłączone. Procenty i estymaty z 4 października bez nowego pomiaru czy obiecanego terminu.
+Odbiór kodu napisów zachowany; ręczny odbiór mediów częściowy w Chrome na komputerze i fizycznym Androidzie. Rozminięcie głosu i ust Sintela niewyjaśnione; porównanie czasów i próba błysk/dźwięk nie zamykają uwagi. Pozostają Home, końcówka/obrót/wznowienie Androida, wszystkie 10 ścieżek i dane urządzenia/audio; Safari/iOS pending. Credits częściowo czytelne, wygląd niezaakceptowany: osobne planowane UI. Dwanaście kluczy nieaktywnych; HTTPS i odbiór finalnego obrazu/produkcji nadal otwarte, uploady/worker wyłączone. Dodanie UI zmienia ważony postęp 70% na 57% i pracę 35–66 na 51–98 h; ukończenie wcześniejszych zadań bez zmian. Daty o niskiej pewności są przeliczoną prognozą, nie rezerwacją pracy.
 
 ### Dowody audytu
 
-- **Repozytorium:** `SzczepanGrela/netfilmx-movie-catalog` @ `cbf2ec16cac64d2dfe4d85b8b575f4eacdd69578`
-- **Stan źródła:** Clean preparation branch codex/netfilmx-preparation, draft PR #1 at cbf2ec1. .NET 10/keyring/migration/image preparation reviewed; release error handling requires correction. Original source retained; candidate is not production.
+- **Repozytorium:** `SzczepanGrela/netfilmx-movie-catalog` @ `f4aca03ec70af427cd3da82912d88ea1b87aec20`
+- **Stan źródła:** Unchanged reviewed candidate f4aca03, clean worker checkout and remote draft PR #1 checked October 16. Only new UI/mobile/credits scope estimated at 16–32 h from operator feedback and reviewed UI evidence; previous task ranges retain their October 4 baseline without fresh remeasurement. Calendar rebased for the dedicated worker lane; candidate is not production.
 - **Testy i CI:** CI/CD 38704058532 and Dependency audit 38704058491 green for f4aca03 October 15; logs inspected. Image/Quality pass, publish/deploy skipped. Runtime patched to .NET 10.0.13, SDK 10.0.401 unchanged. Scanner gates fixable HIGH/CRITICAL, not every advisory. Earlier recovery remains source 986e9aa, not this final image.
 - **Produkcja:** Worker reports no production/R2 mutation; coordinator performed no fresh VPS/provider audit or app merge/deploy. No production digest published by this PR run. Uploads/worker stay off. Protection readback retains October 12 date; local recovery does not establish new release readiness.
 
@@ -131,7 +138,7 @@ Profil: **Aplikacja webowa na VPS**. Statusy odzwierciedlają wyłącznie dowody
 | Atomowa promocja i rollback | Częściowe | R1 odebrane 12 października: rollback wymaga potwierdzonego zakończenia wdrożenia; nieznany stan zatrzymuje mutacje. Pozostaje rzeczywisty chroniony rolling/rollback ze stanem. |
 | Koordynacja i retencja | Częściowe | Zachowane źródła uzgodnione; lokalne odzyskiwanie PG/keyring odebrane z syntetycznymi mediami. Pozostają odzyskiwanie/retencja starego wdrożenia i rolling produkcji; upload/worker osobno. |
 | Obserwowalność | Brak | Brak odebranych centralnych/dostarczonych alertów workera/wydania/backupów. |
-| Tożsamość webowa | Częściowe | Zachowano wcześniejsze dowody siedmiu filmów/13 grafik. Nowe testy rzeczywistego playera na syntetycznych MP4/HLS: języki/Off, przewijanie/klawiatura i brak pliku napisów przechodzą w Chromium/Firefox wykonawcy. Rzeczywiste napisy/odsłuch/urządzenia i docelowy HTTPS/CORS pozostają. |
+| Tożsamość webowa | Częściowe | Czytelność credits częściowo potwierdzona na komputerze/Androidzie; wygląd niezaakceptowany. Osobne UI/mobile/credits ma kryteria responsywności, dostępności, playera i atrybucji. Pozostały odbiór prezentacji nadal otwarty. |
 
 ### Zadania pozostałe i bieżące
 
@@ -141,11 +148,17 @@ Profil: **Aplikacja webowa na VPS**. Statusy odzwierciedlają wyłącznie dowody
 
 Source reconciliation and credits/source evidence remain accepted. At f4aca03 ten Sintel WebVTTs, persistent subtitle relations, PG/SQLite migrations/import, actual player language/Off and source-retaining upload failure/retry handling are implemented and reviewed. Two MP4s unchanged. Twelve shipping keys remain null; manual media and later worker gates, remaining i18n stay open.
 
+#### Zmodernizować UI, obsługę mobilną i prezentację credits
+
+**Implementacja · Planowane · 0% · trudność 3/5 · 16–32 h**
+
+Separate future scope after backend/media and first-release acceptance; no redesign started. Operator finds mobile credits readable but dislikes the design. Agree Ania Kubów references and visual preview, then catalogue/watch/credits/auth and shared administration UI. Acceptance: responsive PL/EN, keyboard/touch, actual player/subtitles, complete accessible attribution and physical-device checks. Canonical brief: [UI/mobile/credits](../../docs/netfilmx-ui-modernization.md). Preliminary 16–32 active hours, re-estimate after design brief; not a release date.
+
 #### Usunąć warningi, skipped testy i podatności
 
 **Jakość · W toku · 80% · trudność 4/5 · 5–10 h**
 
-Final f4aca03 CI: 294 .NET/zero skips, 34 Python, image/Quality and dependency audit green; publish/deploy skipped. Runtime image patched to .NET 10.0.13. Coordinator independently passed 56 focused tests and checked media identities. Worker actual-player Chromium/Firefox tests cover local synthetic MP4/HLS and missing VTT; audible/native-device/real HTTPS and actual Sintel timing remain unaccepted.
+October 15 f4aca03 CI: 294 .NET/zero skips, 34 Python, image/Quality and dependency audit green; publish/deploy skipped. Runtime 10.0.13, earlier coordinator 56 focused tests accepted. October 15–16 operator Chrome desktop/physical Android checks partially pass; all-ten-real-track rendering, remaining Android checks, Safari/iOS and actual HTTPS remain. Same-MP4 native/Vidstack comparison and sampled source/output timing do not resolve perceived Sintel voice/lip mismatch.
 
 #### Wymagać zielonego CI na chronionym main
 
@@ -157,7 +170,7 @@ October 12 read-only GitHub metadata: main unprotected, zero rulesets/environmen
 
 **Dokumentacja · W toku · 90% · trudność 3/5 · 1–3 h**
 
-Subtitle contract and twelve-object publication proposal reviewed. Keep previous rights/source/credits and synthetic recovery acceptance; operator media/device checks, publication/readback, final-image real-media import/restart and production recovery/cutover remain. Uploads/worker stay disabled.
+Subtitle contract and twelve-object proposal retained. October 16 manual record distinguishes partial local/device acceptance, unresolved Sintel sync, readable credits and unapproved visual design. UI/mobile/credits now has its own planned task and acceptance brief. Keep previous source/credits and synthetic recovery acceptance separate from publication/readback, final-image real-media import/restart and production recovery/cutover; uploads/worker off.
 
 #### Dodać limity logowania, uploadu i transkodowania
 
@@ -191,3 +204,4 @@ Worker lifecycle logs and release probes exist in preparation; useful delivered 
 - Cel migracji uaktualniony 6 września: digest GHCR w Coolify, routing Traefik/Tunnel i wspólna checklista; zachować bazy i custom routes. Zmiana celu nie jest nowym audytem źródła/produkcji.
 - Nowy katalog PostgreSQL z istniejących legalnych mediów R2, nowe konta i pusta historia; zachować starą bazę/originals i wykluczyć YouTube/demo.
 - Napisy odebrane technicznie; zachować dziesięć języków Sintel jako WebVTT bez ponownej konwersji niezmienionych MP4. Odbiór operatora i publikacja/odczyt dwunastu obiektów poprzedzają aktywację manifestu i kwalifikację finalnego obrazu. Koordynator odpowiada za ochronę, limity, kopie/cutover. Zachować oryginały i parent; uploady/worker oraz modernizacja UI później.
+- 16 października: zachować odebrane próby bez uznawania synchronizacji Sintela ani zgadywania offsetu. Czytelność credits częściowo potwierdzona; wygląd niezaakceptowany. UI/mobile/credits zaplanowane osobno po bieżącym wydaniu, z zachowaniem twórców/licencji/źródeł/zmian.

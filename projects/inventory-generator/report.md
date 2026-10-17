@@ -1,8 +1,8 @@
 # Inventory Generator — status report / raport stanu
 
 Audit date / data audytu: **2026-10-11**<br>
-Estimated completion / szacowane ukończenie: **94%**<br>
-Forecast / prognoza: **2026-10-13–2026-10-20**, 8–16 h, low confidence / pewność: low
+Estimated completion / szacowane ukończenie: **89%**<br>
+Forecast / prognoza: **2026-10-13–2026-10-20**, 10–20 h, low confidence / pewność: low
 
 > This report is synchronized from `project.json` and the versioned delivery-control catalog. / Raport jest synchronizowany z `project.json` i wersjonowanym katalogiem kontroli wdrożeniowych.
 
@@ -12,7 +12,7 @@ Forecast / prognoza: **2026-10-13–2026-10-20**, 8–16 h, low confidence / pew
 
 Local-first inventory editor and server-side DOCX, CSV and HTML generator.
 
-The final October 9 bounded canary rolling run passed after two retained incomplete attempts. All eight CSV/HTML/DOCX structures, healthy replacement and normal baseline retirement were verified. Public Inventory and neighbour health: 51 successes each, maxima 0.174565/0.183307 s. Combined sampled canary memory 423.16 MiB; minimum available host RAM 4519.71 MiB; maximum load1 2.7041. CPU peaked at 93.79% but did not breach the sustained >85% for >15 s guard. Recorded cgroup OOM counters were zero. This accepts the measured brief rolling scope, not arbitrary sustained capacity, permanent replicas, active-request drain after SIGTERM or guaranteed zero downtime. The prior ambiguous attempt and rollback-runner warning are not retroactively explained. Scoped resources are retired, evidence archived and source cleanup merged in PR #30 on October 11. D02.3a-f are accepted; no further load test is required. Remaining shared platform tasks stay separate; their older effort estimates are retained while completed documentation/rolling tasks are removed from remaining totals.
+The final October 9 bounded canary rolling run passed after two retained incomplete attempts. All eight CSV/HTML/DOCX structures, healthy replacement and normal baseline retirement were verified. Public Inventory and neighbour health: 51 successes each, maxima 0.174565/0.183307 s. Combined sampled canary memory 423.16 MiB; minimum available host RAM 4519.71 MiB; maximum load1 2.7041. CPU peaked at 93.79% but did not breach the sustained >85% for >15 s guard. Recorded cgroup OOM counters were zero. This accepts the measured brief rolling scope, not arbitrary sustained capacity, permanent replicas, active-request drain after SIGTERM or guaranteed zero downtime. The prior ambiguous attempt and rollback-runner warning are not retroactively explained. Scoped resources are retired, evidence archived and source cleanup merged in PR #30 on October 11. D02.3a-f are accepted; no further load test is required. Remaining shared platform tasks stay separate; their older effort estimates are retained while completed documentation/rolling tasks are removed from remaining totals. Planning-only update October 17: add repository-hygiene at 0% with provisional 2–4 h, excluding unestimated history rewrite. Previous audit/source dates and task completion retained; aggregate progress/effort recalculated for new scope. Calendar bounds are historical and not rescheduled for this unscheduled task; confidence low pending repository review.
 
 ### Audit evidence
 
@@ -27,7 +27,7 @@ Profile: **VPS web application**. Statuses reflect only evidence available on th
 
 | Control | Status | Evidence |
 | --- | --- | --- |
-| Repository governance | Partial | PR-only integration with strict required Quality; all three accepted PRs merged without bypass. |
+| Repository governance | Partial | PR-only integration with strict required Quality; all three accepted PRs merged without bypass. October 17 target addition: repository hygiene and neutral branch naming remain unverified; existing findings retain their original dates. |
 | Quality CI | Complete | Combined CI plus bounded real HTTP/cgroup qualification pass on the final image; live operational acceptance is separate. |
 | Immutable release | Complete | Same tested/attested digest deployed by run 37574806859 at 6971496. |
 | Deployment access | Partial | Inventory private Coolify/Tailscale production authentication succeeded; credential scope review remains separate. |
@@ -108,6 +108,12 @@ Selected operator post-release inspect, recorded October 8, confirms 6971496, no
 
 Combined browser CI covers PL/EN/ARIA recovery, mobile viewport, keyboard modal focus and exports; public frontend matches 6971496. Representative preview/licensing acceptance remains separate; no blanket WCAG claim.
 
+#### Clean tracked files and review history and neutral branch names
+
+**Quality · Planned · 0% · difficulty 3/5 · 2–4 h**
+
+Planned by owner on 2026-10-17; no repository hygiene audit or cleanup performed. Inventory tracked/ignored/generated/sensitive files; preserve legitimate assets and work; prepare scoped removal/ignore rules, prevention checks and agent-free branch names. Review historical removal separately, with exact paths/refs, isolated rehearsal, SHA/release impact and explicit rewrite approval. Do not rename active branches or rewrite now. Standard and acceptance: https://github.com/SzczepanGrela/grela-dev-roadmap/blob/main/docs/repository-hygiene-standard.md . Initial 2–4 h covers discovery/routine cleanup planning and implementation only when assigned; rewrite/large remediation requires re-estimation.
+
 ### Architecture decisions
 
 - Keep the local-first stateless architecture.
@@ -123,7 +129,7 @@ Combined browser CI covers PL/EN/ARIA recovery, mobile viewport, keyboard modal 
 
 Lokalny edytor inwentarza z serwerowym generowaniem DOCX, CSV i HTML.
 
-Końcowa ograniczona próba rolling canary 9 października przeszła po dwóch zachowanych próbach niepełnych. Sprawdzono wszystkie osiem struktur CSV/HTML/DOCX, zdrową nową instancję i prawidłowe wyłączenie starej. Zdrowie publicznego Inventory i sąsiada: po 51 sukcesów, maksima 0,174565/0,183307 s. Łączna próbkowana pamięć canary 423,16 MiB; minimum dostępnego RAM hosta 4519,71 MiB; najwyższe load1 2,7041. CPU osiągnęło 93,79%, lecz nie przekroczyło warunku ponad 85% przez ponad 15 s. Zapisane liczniki OOM były zerowe. Odbiór dotyczy zmierzonego krótkiego rolling, nie dowolnego stałego obciążenia, stałych replik, dokańczania aktywnego żądania po SIGTERM ani gwarancji zerowego downtime. Nie wyjaśnia wstecz wcześniejszej niejednoznacznej próby i ostrzeżenia runnera rollbacku. Zasoby testowe usunięte, dowody zachowane, sprzątanie źródeł scalone w PR #30 11 października. D02.3a-f są przyjęte; nie potrzeba kolejnego testu obciążenia. Wspólne zadania platformy pozostają osobne, z wcześniejszymi estymacjami; z sum odjęto ukończone zadania dokumentacji i rolling.
+Końcowa ograniczona próba rolling canary 9 października przeszła po dwóch zachowanych próbach niepełnych. Sprawdzono wszystkie osiem struktur CSV/HTML/DOCX, zdrową nową instancję i prawidłowe wyłączenie starej. Zdrowie publicznego Inventory i sąsiada: po 51 sukcesów, maksima 0,174565/0,183307 s. Łączna próbkowana pamięć canary 423,16 MiB; minimum dostępnego RAM hosta 4519,71 MiB; najwyższe load1 2,7041. CPU osiągnęło 93,79%, lecz nie przekroczyło warunku ponad 85% przez ponad 15 s. Zapisane liczniki OOM były zerowe. Odbiór dotyczy zmierzonego krótkiego rolling, nie dowolnego stałego obciążenia, stałych replik, dokańczania aktywnego żądania po SIGTERM ani gwarancji zerowego downtime. Nie wyjaśnia wstecz wcześniejszej niejednoznacznej próby i ostrzeżenia runnera rollbacku. Zasoby testowe usunięte, dowody zachowane, sprzątanie źródeł scalone w PR #30 11 października. D02.3a-f są przyjęte; nie potrzeba kolejnego testu obciążenia. Wspólne zadania platformy pozostają osobne, z wcześniejszymi estymacjami; z sum odjęto ukończone zadania dokumentacji i rolling. Aktualizacja wyłącznie planu 17 października: repository-hygiene 0%, wstępnie 2–4 h, bez jeszcze niewycenionego rewrite. Daty audytu/źródła i ukończenie wcześniejszych zadań zachowane; sumy postępu/pracy przeliczone dla nowego zakresu. Daty kalendarzowe pozostają historyczne, bez wyznaczenia terminu nowego zadania; niska pewność do przeglądu repo.
 
 ### Dowody audytu
 
@@ -138,7 +144,7 @@ Profil: **Aplikacja webowa na VPS**. Statusy odzwierciedlają wyłącznie dowody
 
 | Kontrola | Status | Dowód |
 | --- | --- | --- |
-| Zarządzanie repozytorium | Częściowe | Scalenia przez PR z wymaganym Quality; bez obchodzenia ochrony. |
+| Zarządzanie repozytorium | Częściowe | Scalenia przez PR z wymaganym Quality; bez obchodzenia ochrony. Cel dopisany 17 października: porządki repo i neutralne nazwy branchy niezweryfikowane; wcześniejsze ustalenia zachowują własne daty. |
 | Quality CI | Gotowe | Wspólne CI i ograniczone testy HTTP/cgroup końcowego obrazu przeszły; odbiór operacyjny jest osobny. |
 | Niezmienne wydanie | Gotowe | Ten sam przetestowany i poświadczony digest wdrożony przez run 37574806859, rewizja 6971496. |
 | Dostęp wdrożeniowy | Częściowe | Uwierzytelnienie produkcji przez prywatne Coolify/Tailscale przeszło; przegląd zakresu uprawnień pozostaje osobny. |
@@ -218,6 +224,12 @@ Selected operator post-release inspect, recorded October 8, confirms 6971496, no
 **Dokumentacja · W toku · 70% · trudność 2/5 · 1–2 h**
 
 Combined browser CI covers PL/EN/ARIA recovery, mobile viewport, keyboard modal focus and exports; public frontend matches 6971496. Representative preview/licensing acceptance remains separate; no blanket WCAG claim.
+
+#### Uporządkować śledzone pliki, historię i neutralne nazwy branchy
+
+**Jakość · Planowane · 0% · trudność 3/5 · 2–4 h**
+
+Planned by owner on 2026-10-17; no repository hygiene audit or cleanup performed. Inventory tracked/ignored/generated/sensitive files; preserve legitimate assets and work; prepare scoped removal/ignore rules, prevention checks and agent-free branch names. Review historical removal separately, with exact paths/refs, isolated rehearsal, SHA/release impact and explicit rewrite approval. Do not rename active branches or rewrite now. Standard and acceptance: https://github.com/SzczepanGrela/grela-dev-roadmap/blob/main/docs/repository-hygiene-standard.md . Initial 2–4 h covers discovery/routine cleanup planning and implementation only when assigned; rewrite/large remediation requires re-estimation.
 
 ### Decyzje architektoniczne
 

@@ -2,7 +2,7 @@
 
 Audit date / data audytu: **2026-10-07**<br>
 Estimated completion / szacowane ukończenie: **11%**<br>
-Forecast / prognoza: **2026-10-08–2026-10-23**, 33–58 h, low confidence / pewność: low
+Forecast / prognoza: **2026-10-08–2026-10-23**, 35–62 h, low confidence / pewność: low
 
 > This report is synchronized from `project.json` and the versioned delivery-control catalog. / Raport jest synchronizowany z `project.json` i wersjonowanym katalogiem kontroli wdrożeniowych.
 
@@ -12,7 +12,7 @@ Forecast / prognoza: **2026-10-08–2026-10-23**, 33–58 h, low confidence / pe
 
 Personal portfolio currently represented by design explorations rather than a production-ready site.
 
-Next bounded Gemini task is static portfolio engineering, preserving the current design. Use Vite/React, compile JSX, locked local assets and real responsive/browser tests. Read-only Cloudflare access cannot currently enumerate Pages; operator configuration follows a concrete candidate. No backend, application limiter or Coolify deployment is planned. Inventory corrective review was accepted October 7; Gemini may begin. Portfolio source/Pages evidence remains dated October 3; no new implementation is claimed. Delivery timing depends on candidate and operator availability.
+Next bounded Gemini task is static portfolio engineering, preserving the current design. Use Vite/React, compile JSX, locked local assets and real responsive/browser tests. Read-only Cloudflare access cannot currently enumerate Pages; operator configuration follows a concrete candidate. No backend, application limiter or Coolify deployment is planned. Inventory corrective review was accepted October 7; Gemini may begin. Portfolio source/Pages evidence remains dated October 3; no new implementation is claimed. Delivery timing depends on candidate and operator availability. Planning-only update October 17: add repository-hygiene at 0% with provisional 2–4 h, excluding unestimated history rewrite. Previous audit/source dates and task completion retained; aggregate progress/effort recalculated for new scope. Calendar bounds are historical and not rescheduled for this unscheduled task; confidence low pending repository review.
 
 ### Audit evidence
 
@@ -27,7 +27,7 @@ Profile: **Managed static hosting**. Statuses reflect only evidence available on
 
 | Control | Status | Evidence |
 | --- | --- | --- |
-| Repository governance | Missing | Production build/main/environment governance remains to implement; previous GitHub observations retain their dates. |
+| Repository governance | Missing | Production build/main/environment governance remains to implement; previous GitHub observations retain their dates. October 17 target addition: repository hygiene and neutral branch naming remain unverified; existing findings retain their original dates. |
 | Quality CI | Missing | Reviewed source has no build package/tests/workflow; add qualified static and browser checks. |
 | Immutable release | Missing | The required complete implementation was not found in the audited grela dev source. |
 | Deployment access | Not applicable | The control does not apply to the grela dev project profile. |
@@ -90,6 +90,12 @@ Prepare public availability and deployment failure visibility; prove agreed noti
 
 No accepted final favicon/metadata/canonical/social preview. Keep existing design, verify fonts/credits/content, safe unknown route and public project references.
 
+#### Clean tracked files and review history and neutral branch names
+
+**Quality · Planned · 0% · difficulty 3/5 · 2–4 h**
+
+Planned by owner on 2026-10-17; no repository hygiene audit or cleanup performed. Inventory tracked/ignored/generated/sensitive files; preserve legitimate assets and work; prepare scoped removal/ignore rules, prevention checks and agent-free branch names. Review historical removal separately, with exact paths/refs, isolated rehearsal, SHA/release impact and explicit rewrite approval. Do not rename active branches or rewrite now. Standard and acceptance: https://github.com/SzczepanGrela/grela-dev-roadmap/blob/main/docs/repository-hygiene-standard.md . Initial 2–4 h covers discovery/routine cleanup planning and implementation only when assigned; rewrite/large remediation requires re-estimation.
+
 ### Architecture decisions
 
 - Build as a static site; application rate limiting is unnecessary until dynamic endpoints exist.
@@ -103,7 +109,7 @@ No accepted final favicon/metadata/canonical/social preview. Keep existing desig
 
 Portfolio osobiste istniejące obecnie jako eksploracje designu, nie gotowa strona produkcyjna.
 
-Następne ograniczone zadanie Gemini to engineering statycznego portfolio z zachowaniem designu. Vite/React, kompilacja JSX, lokalne assety/lock i rzeczywiste testy responsive/browser. Odczyt Pages jest obecnie niedostępny; operator konfiguruje po przygotowaniu kandydata. Nie planujemy backendu, limitera aplikacyjnego ani Coolify. Przegląd poprawek Inventory przyjęto 7 października; Gemini może zacząć. Dowody źródeł/Pages pozostają z 3 października; nie deklarujemy nowej implementacji. Termin wdrożenia zależy od kandydata i operatora.
+Następne ograniczone zadanie Gemini to engineering statycznego portfolio z zachowaniem designu. Vite/React, kompilacja JSX, lokalne assety/lock i rzeczywiste testy responsive/browser. Odczyt Pages jest obecnie niedostępny; operator konfiguruje po przygotowaniu kandydata. Nie planujemy backendu, limitera aplikacyjnego ani Coolify. Przegląd poprawek Inventory przyjęto 7 października; Gemini może zacząć. Dowody źródeł/Pages pozostają z 3 października; nie deklarujemy nowej implementacji. Termin wdrożenia zależy od kandydata i operatora. Aktualizacja wyłącznie planu 17 października: repository-hygiene 0%, wstępnie 2–4 h, bez jeszcze niewycenionego rewrite. Daty audytu/źródła i ukończenie wcześniejszych zadań zachowane; sumy postępu/pracy przeliczone dla nowego zakresu. Daty kalendarzowe pozostają historyczne, bez wyznaczenia terminu nowego zadania; niska pewność do przeglądu repo.
 
 ### Dowody audytu
 
@@ -118,7 +124,7 @@ Profil: **Zarządzany hosting statyczny**. Statusy odzwierciedlają wyłącznie 
 
 | Kontrola | Status | Dowód |
 | --- | --- | --- |
-| Zarządzanie repozytorium | Brak | Build/main/environment wymagają implementacji; stare obserwacje GitHuba zachowują datę. |
+| Zarządzanie repozytorium | Brak | Build/main/environment wymagają implementacji; stare obserwacje GitHuba zachowują datę. Cel dopisany 17 października: porządki repo i neutralne nazwy branchy niezweryfikowane; wcześniejsze ustalenia zachowują własne daty. |
 | Quality CI | Brak | Źródło nie ma package/build/testów/workflow; dodać bramki static/browser. |
 | Niezmienne wydanie | Brak | W audytowanym źródle projektu grela dev nie znaleziono wymaganej kompletnej implementacji. |
 | Dostęp wdrożeniowy | Nie dotyczy | Kontrola nie dotyczy profilu projektu grela dev. |
@@ -180,6 +186,12 @@ Prepare public availability and deployment failure visibility; prove agreed noti
 **Dokumentacja · Planowane · 0% · trudność 3/5 · 2–4 h**
 
 No accepted final favicon/metadata/canonical/social preview. Keep existing design, verify fonts/credits/content, safe unknown route and public project references.
+
+#### Uporządkować śledzone pliki, historię i neutralne nazwy branchy
+
+**Jakość · Planowane · 0% · trudność 3/5 · 2–4 h**
+
+Planned by owner on 2026-10-17; no repository hygiene audit or cleanup performed. Inventory tracked/ignored/generated/sensitive files; preserve legitimate assets and work; prepare scoped removal/ignore rules, prevention checks and agent-free branch names. Review historical removal separately, with exact paths/refs, isolated rehearsal, SHA/release impact and explicit rewrite approval. Do not rename active branches or rewrite now. Standard and acceptance: https://github.com/SzczepanGrela/grela-dev-roadmap/blob/main/docs/repository-hygiene-standard.md . Initial 2–4 h covers discovery/routine cleanup planning and implementation only when assigned; rewrite/large remediation requires re-estimation.
 
 ### Decyzje architektoniczne
 

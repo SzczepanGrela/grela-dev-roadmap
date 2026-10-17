@@ -62,6 +62,17 @@ GHSA-ch52-4w7c-c8xp i jego łańcucha Astro. Bramka nadal blokuje pozostałe pod
 HIGH/CRITICAL, błędy audytu oraz zmianę sprawdzonego kodu/konfiguracji. Wyjątek
 wygasa 17 października o 00:00 UTC; CI konkretnego commitu pozostaje osobnym dowodem.
 
+## Wspólne przyszłe zadanie: porządki repozytoriów
+
+**17 października, tylko plan:** każdy z 14 projektów katalogu ma zadanie
+`repository-hygiene` (`planned`, 0%). [Standard porządkowania repozytoriów](repository-hygiene-standard.md)
+dotyczy też roadmapy, prywatnej dokumentacji i przyszłych/pozostałych repozytoriów;
+ich pokrycie prowadzi koordynator w R02. Obejmuje śledzone pliki, `.gitignore`,
+kontrolę historii oraz nazwy branchy bez nazw agentów AI. Rewrite jest osobną,
+konkretną decyzją po przeglądzie; zmiana nazwy brancha go nie wymaga.
+Obecne zlecenie nie rozpoczyna sprzątania ani nie zmienia aktywnych branchy.
+Bieżące prace NetFilmx i portfolio oraz odebrane wdrożenia zachowują swój status.
+
 ## 🛠️ Znormalizowany Standard Architektury DevOps
 
 Przyjęta platforma używa Coolify, Traefika i Cloudflare Tunnel.

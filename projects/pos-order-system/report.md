@@ -2,7 +2,7 @@
 
 Audit date / data audytu: **2026-08-25**<br>
 Estimated completion / szacowane ukończenie: **32%**<br>
-Forecast / prognoza: **2026-09-14–2026-09-18**, 13–23 h, medium confidence / pewność: medium
+Forecast / prognoza: **2026-09-14–2026-09-18**, 15–27 h, low confidence / pewność: low
 
 > This report is synchronized from `project.json` and the versioned delivery-control catalog. / Raport jest synchronizowany z `project.json` i wersjonowanym katalogiem kontroli wdrożeniowych.
 
@@ -12,7 +12,7 @@ Forecast / prognoza: **2026-09-14–2026-09-18**, 13–23 h, medium confidence /
 
 Windows desktop point-of-sale ordering application.
 
-The previous hosting entry was an architectural mismatch and is removed.
+The previous hosting entry was an architectural mismatch and is removed. Planning-only update October 17: add repository-hygiene at 0% with provisional 2–4 h, excluding unestimated history rewrite. Previous audit/source dates and task completion retained; aggregate progress/effort recalculated for new scope. Calendar bounds are historical and not rescheduled for this unscheduled task; confidence low pending repository review.
 
 ### Audit evidence
 
@@ -27,7 +27,7 @@ Profile: **Desktop application**. Statuses reflect only evidence available on th
 
 | Control | Status | Evidence |
 | --- | --- | --- |
-| Repository governance | Partial | GitHub returned no active ruleset or environment; remaining elements were assessed from the repository. |
+| Repository governance | Partial | GitHub returned no active ruleset or environment; remaining elements were assessed from the repository. October 17 target addition: repository hygiene and neutral branch naming remain unverified; existing findings retain their original dates. |
 | Quality CI | Missing | No GitHub Actions runs, ruleset or environment were found. |
 | Immutable release | Missing | The required complete implementation was not found in the audited pos order system source. |
 | Deployment access | Not applicable | The control does not apply to the pos order system project profile. |
@@ -72,6 +72,12 @@ README and MIT exist; release and troubleshooting instructions remain incomplete
 
 There is no reproducible, checksummed desktop release workflow.
 
+#### Clean tracked files and review history and neutral branch names
+
+**Quality · Planned · 0% · difficulty 3/5 · 2–4 h**
+
+Planned by owner on 2026-10-17; no repository hygiene audit or cleanup performed. Inventory tracked/ignored/generated/sensitive files; preserve legitimate assets and work; prepare scoped removal/ignore rules, prevention checks and agent-free branch names. Review historical removal separately, with exact paths/refs, isolated rehearsal, SHA/release impact and explicit rewrite approval. Do not rename active branches or rewrite now. Standard and acceptance: https://github.com/SzczepanGrela/grela-dev-roadmap/blob/main/docs/repository-hygiene-standard.md . Initial 2–4 h covers discovery/routine cleanup planning and implementation only when assigned; rewrite/large remediation requires re-estimation.
+
 ### Architecture decisions
 
 - The project remains desktop-only and will not use pos.grela.dev.
@@ -84,7 +90,7 @@ There is no reproducible, checksummed desktop release workflow.
 
 Desktopowy system Windows do składania i obsługi zamówień.
 
-Poprzedni plan hostingu był niespójny z architekturą i został usunięty.
+Poprzedni plan hostingu był niespójny z architekturą i został usunięty. Aktualizacja wyłącznie planu 17 października: repository-hygiene 0%, wstępnie 2–4 h, bez jeszcze niewycenionego rewrite. Daty audytu/źródła i ukończenie wcześniejszych zadań zachowane; sumy postępu/pracy przeliczone dla nowego zakresu. Daty kalendarzowe pozostają historyczne, bez wyznaczenia terminu nowego zadania; niska pewność do przeglądu repo.
 
 ### Dowody audytu
 
@@ -99,7 +105,7 @@ Profil: **Aplikacja desktopowa**. Statusy odzwierciedlają wyłącznie dowody do
 
 | Kontrola | Status | Dowód |
 | --- | --- | --- |
-| Zarządzanie repozytorium | Częściowe | GitHub nie zwrócił aktywnego rulesetu ani środowiska; pozostałe elementy oceniono z repozytorium. |
+| Zarządzanie repozytorium | Częściowe | GitHub nie zwrócił aktywnego rulesetu ani środowiska; pozostałe elementy oceniono z repozytorium. Cel dopisany 17 października: porządki repo i neutralne nazwy branchy niezweryfikowane; wcześniejsze ustalenia zachowują własne daty. |
 | Quality CI | Brak | GitHub nie zwrócił żadnego wykonanego workflow Quality dla tego repozytorium. |
 | Niezmienne wydanie | Brak | W audytowanym źródle projektu pos order system nie znaleziono wymaganej kompletnej implementacji. |
 | Dostęp wdrożeniowy | Nie dotyczy | Kontrola nie dotyczy profilu projektu pos order system. |
@@ -143,6 +149,12 @@ README and MIT exist; release and troubleshooting instructions remain incomplete
 **Wdrożenie · Planowane · 0% · trudność 3/5 · 4–7 h**
 
 There is no reproducible, checksummed desktop release workflow.
+
+#### Uporządkować śledzone pliki, historię i neutralne nazwy branchy
+
+**Jakość · Planowane · 0% · trudność 3/5 · 2–4 h**
+
+Planned by owner on 2026-10-17; no repository hygiene audit or cleanup performed. Inventory tracked/ignored/generated/sensitive files; preserve legitimate assets and work; prepare scoped removal/ignore rules, prevention checks and agent-free branch names. Review historical removal separately, with exact paths/refs, isolated rehearsal, SHA/release impact and explicit rewrite approval. Do not rename active branches or rewrite now. Standard and acceptance: https://github.com/SzczepanGrela/grela-dev-roadmap/blob/main/docs/repository-hygiene-standard.md . Initial 2–4 h covers discovery/routine cleanup planning and implementation only when assigned; rewrite/large remediation requires re-estimation.
 
 ### Decyzje architektoniczne
 

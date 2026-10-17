@@ -1,6 +1,6 @@
 # NetFilmx Movie Catalog — status report / raport stanu
 
-Audit date / data audytu: **2026-10-16**<br>
+Audit date / data audytu: **2026-10-17**<br>
 Estimated completion / szacowane ukończenie: **54%**<br>
 Forecast / prognoza: **2026-10-28–2026-11-09**, 53–102 h, low confidence / pewność: low
 
@@ -12,7 +12,7 @@ Forecast / prognoza: **2026-10-28–2026-11-09**, 53–102 h, low confidence / p
 
 ASP.NET Core VOD catalogue with HLS processing, R2 storage and administration.
 
-Subtitle code acceptance retained; manual media acceptance is partial on desktop Chrome and physical Android. Sintel voice/lip mismatch unresolved; technical timing comparison and flash/beep control do not accept it. Finish Home retry, Android ending/rotation/resume, all ten real tracks and exact device/audio record; Safari/iOS pending. Credits readability partially confirmed, design unapproved: separate planned UI task. Twelve publication keys inactive; real HTTPS and final-image/media/production gates remain, uploads/worker off. Adding UI scope changes weighted progress 70% to 57% and effort 35–66 to 51–98 h; existing task completion is unchanged. Low-confidence calendar is a rebased projection, not booked work. Planning-only update October 17: add repository-hygiene at 0% with provisional 2–4 h, excluding unestimated history rewrite. Previous audit/source dates and task completion retained; aggregate progress/effort recalculated for new scope. Calendar bounds are historical and not rescheduled for this unscheduled task; confidence low pending repository review.
+October 17 scoped follow-up: unchanged draft f4aca03, all ten real tracks technically pass both local browsers; Home confirmed in shown wide view, not attributed to Android. Prior desktop/Android results retained. Operator limited further testing: remaining Android/Safari checks and prepared VLC source comparison deferred, not passed. Phone/audio identified; OS tentative/browser version unknown, no version chase. Sintel cause/full synchronization acceptance unresolved; no reconversion. Credits readable, design unapproved. Next: concrete content/publication disposition, twelve-object publication/readback, real HTTPS/CORS and final-image qualification. Keys null, uploads/worker false, no app/provider/deploy changes. UI/mobile/credits and repository hygiene remain planned. Completion stays 54%, effort 53–102 h; existing task estimates/calendar retain their dates and low confidence, not newly measured or booked.
 
 ### Audit evidence
 
@@ -58,7 +58,7 @@ Separate future scope after backend/media and first-release acceptance; no redes
 
 **Quality · In progress · 80% · difficulty 4/5 · 5–10 h**
 
-October 15 f4aca03 CI: 294 .NET/zero skips, 34 Python, image/Quality and dependency audit green; publish/deploy skipped. Runtime 10.0.13, earlier coordinator 56 focused tests accepted. October 15–16 operator Chrome desktop/physical Android checks partially pass; all-ten-real-track rendering, remaining Android checks, Safari/iOS and actual HTTPS remain. Same-MP4 native/Vidstack comparison and sampled source/output timing do not resolve perceived Sintel voice/lip mismatch.
+October 15 f4aca03 CI retained: 294 .NET/zero skips, 34 Python, image/Quality/audit green; publish/deploy skipped. No full rerun. October 17 coordinator reviewed worker harness and Chromium/Firefox results for ten real VTTs: 26 cue texts/times per language, labels/characters/seeks/Off, muted. Home has a scoped operator pass, not an Android claim. Remaining manual/device trials and VLC source comparison deferred by operator; Sintel cause/full sync acceptance unresolved. Actual HTTPS/final-image acceptance remains.
 
 #### Require green CI on protected main
 
@@ -70,7 +70,7 @@ October 12 read-only GitHub metadata: main unprotected, zero rulesets/environmen
 
 **Documentation · In progress · 90% · difficulty 3/5 · 1–3 h**
 
-Subtitle contract and twelve-object proposal retained. October 16 manual record distinguishes partial local/device acceptance, unresolved Sintel sync, readable credits and unapproved visual design. UI/mobile/credits now has its own planned task and acceptance brief. Keep previous source/credits and synthetic recovery acceptance separate from publication/readback, final-image real-media import/restart and production recovery/cutover; uploads/worker off.
+October 17 record and handoff retain accepted subtitle/source/recovery work, scoped ten-real-track and Home results, explicit manual/device deferrals and unresolved Sintel sync. Current assignment no longer demands another test round. Concrete publication disposition precedes twelve-object real HTTPS/CORS and final-image import/restart; production recovery/cutover separate. UI/mobile/credits and repository hygiene stay planned; uploads/worker false.
 
 #### Add login, upload and transcoding limits
 
@@ -111,6 +111,7 @@ Planned by owner on 2026-10-17; no repository hygiene audit or cleanup performed
 - Fresh PostgreSQL catalogue from existing licensed R2 media, new accounts and empty history; retain legacy database/original objects and exclude old YouTube/demo links.
 - Subtitle implementation reviewed; retain all ten Sintel languages as WebVTT without reconverting unchanged MP4s. Operator media acceptance and twelve-object publication/readback precede manifest activation and final-image qualification. Coordinator owns protection, budgets, backup/cutover. Preserve originals and parent; uploads/worker and UI modernization remain later.
 - October 16: preserve scoped manual passes without claiming Sintel synchronization acceptance or inventing an offset. Credits readability is partially confirmed; visual design is not approved. Plan UI/mobile/credits separately after the current release work, retaining all creator/licence/source/change attribution.
+- October 17: operator reduced detailed manual testing. Preserve unperformed VLC/Android/Safari checks as deferred, not passed; do not chase exact versions or request another round. Sintel cause and full synchronization acceptance remain unresolved. Reduced scope does not itself authorize media publication.
 
 ## Polski
 
@@ -118,7 +119,7 @@ Planned by owner on 2026-10-17; no repository hygiene audit or cleanup performed
 
 Katalog VOD ASP.NET Core z HLS, magazynem R2 i panelem administracyjnym.
 
-Odbiór kodu napisów zachowany; ręczny odbiór mediów częściowy w Chrome na komputerze i fizycznym Androidzie. Rozminięcie głosu i ust Sintela niewyjaśnione; porównanie czasów i próba błysk/dźwięk nie zamykają uwagi. Pozostają Home, końcówka/obrót/wznowienie Androida, wszystkie 10 ścieżek i dane urządzenia/audio; Safari/iOS pending. Credits częściowo czytelne, wygląd niezaakceptowany: osobne planowane UI. Dwanaście kluczy nieaktywnych; HTTPS i odbiór finalnego obrazu/produkcji nadal otwarte, uploady/worker wyłączone. Dodanie UI zmienia ważony postęp 70% na 57% i pracę 35–66 na 51–98 h; ukończenie wcześniejszych zadań bez zmian. Daty o niskiej pewności są przeliczoną prognozą, nie rezerwacją pracy. Aktualizacja wyłącznie planu 17 października: repository-hygiene 0%, wstępnie 2–4 h, bez jeszcze niewycenionego rewrite. Daty audytu/źródła i ukończenie wcześniejszych zadań zachowane; sumy postępu/pracy przeliczone dla nowego zakresu. Daty kalendarzowe pozostają historyczne, bez wyznaczenia terminu nowego zadania; niska pewność do przeglądu repo.
+Przegląd 17 października: draft f4aca03 bez zmian; wszystkie 10 rzeczywistych ścieżek technicznie przechodzi obie lokalne przeglądarki. Home potwierdzone w pokazanym szerokim widoku, bez przypisania do Androida. Wcześniejsze wyniki desktop/Android zachowane. Operator ograniczył testy: pozostałe próby Android/Safari i przygotowane porównanie VLC odłożone, nie zaliczone. Telefon/audio ustalone, OS niepewny/przeglądarka bez dokładnej wersji; bez dalszych pytań o wersje. Przyczyna i pełny odbiór synchronizacji Sintela nierozstrzygnięte; bez konwersji. Credits czytelne, wygląd niezaakceptowany. Następnie konkretna decyzja o publikacji, 12 obiektów i rzeczywisty HTTPS/CORS oraz kwalifikacja finalnego obrazu. Klucze null, uploady/worker false; bez zmian aplikacji/providerów/wdrożenia. UI/mobile/credits i sprzątanie repo nadal planowane. Postęp 54%, praca 53–102 h bez zmian; dotychczasowe estymaty/datowanie i niska pewność zachowane, bez nowego pomiaru ani rezerwacji terminu.
 
 ### Dowody audytu
 
@@ -164,7 +165,7 @@ Separate future scope after backend/media and first-release acceptance; no redes
 
 **Jakość · W toku · 80% · trudność 4/5 · 5–10 h**
 
-October 15 f4aca03 CI: 294 .NET/zero skips, 34 Python, image/Quality and dependency audit green; publish/deploy skipped. Runtime 10.0.13, earlier coordinator 56 focused tests accepted. October 15–16 operator Chrome desktop/physical Android checks partially pass; all-ten-real-track rendering, remaining Android checks, Safari/iOS and actual HTTPS remain. Same-MP4 native/Vidstack comparison and sampled source/output timing do not resolve perceived Sintel voice/lip mismatch.
+October 15 f4aca03 CI retained: 294 .NET/zero skips, 34 Python, image/Quality/audit green; publish/deploy skipped. No full rerun. October 17 coordinator reviewed worker harness and Chromium/Firefox results for ten real VTTs: 26 cue texts/times per language, labels/characters/seeks/Off, muted. Home has a scoped operator pass, not an Android claim. Remaining manual/device trials and VLC source comparison deferred by operator; Sintel cause/full sync acceptance unresolved. Actual HTTPS/final-image acceptance remains.
 
 #### Wymagać zielonego CI na chronionym main
 
@@ -176,7 +177,7 @@ October 12 read-only GitHub metadata: main unprotected, zero rulesets/environmen
 
 **Dokumentacja · W toku · 90% · trudność 3/5 · 1–3 h**
 
-Subtitle contract and twelve-object proposal retained. October 16 manual record distinguishes partial local/device acceptance, unresolved Sintel sync, readable credits and unapproved visual design. UI/mobile/credits now has its own planned task and acceptance brief. Keep previous source/credits and synthetic recovery acceptance separate from publication/readback, final-image real-media import/restart and production recovery/cutover; uploads/worker off.
+October 17 record and handoff retain accepted subtitle/source/recovery work, scoped ten-real-track and Home results, explicit manual/device deferrals and unresolved Sintel sync. Current assignment no longer demands another test round. Concrete publication disposition precedes twelve-object real HTTPS/CORS and final-image import/restart; production recovery/cutover separate. UI/mobile/credits and repository hygiene stay planned; uploads/worker false.
 
 #### Dodać limity logowania, uploadu i transkodowania
 
@@ -217,3 +218,4 @@ Planned by owner on 2026-10-17; no repository hygiene audit or cleanup performed
 - Nowy katalog PostgreSQL z istniejących legalnych mediów R2, nowe konta i pusta historia; zachować starą bazę/originals i wykluczyć YouTube/demo.
 - Napisy odebrane technicznie; zachować dziesięć języków Sintel jako WebVTT bez ponownej konwersji niezmienionych MP4. Odbiór operatora i publikacja/odczyt dwunastu obiektów poprzedzają aktywację manifestu i kwalifikację finalnego obrazu. Koordynator odpowiada za ochronę, limity, kopie/cutover. Zachować oryginały i parent; uploady/worker oraz modernizacja UI później.
 - 16 października: zachować odebrane próby bez uznawania synchronizacji Sintela ani zgadywania offsetu. Czytelność credits częściowo potwierdzona; wygląd niezaakceptowany. UI/mobile/credits zaplanowane osobno po bieżącym wydaniu, z zachowaniem twórców/licencji/źródeł/zmian.
+- 17 października: operator ograniczył szczegółowe próby ręczne. Niewykonane VLC/Android/Safari pozostają odłożone, nie zaliczone; bez ponownej rundy i żądania dokładnych wersji. Przyczyna i pełny odbiór synchronizacji Sintela nierozstrzygnięte. Ograniczenie testów nie jest samo w sobie zgodą na publikację mediów.

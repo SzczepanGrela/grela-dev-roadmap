@@ -66,12 +66,12 @@
   },
   "focus": {
     "current": {
-      "en": "Draft a357fd4: seven-film adaptive HLS locally prepared and technically reviewed — 20 variants, 1398 objects, ten unchanged Sintel WebVTTs. CI green; publication and production acceptance remain.",
-      "pl": "Draft a357fd4: lokalnie przygotowano i odebrano technicznie HLS siedmiu filmów — 20 wariantów, 1398 obiektów, dziesięć niezmienionych WebVTT Sintela. CI zielone; publikacja i odbiór produkcji pozostają."
+      "en": "Draft 8c7b8d5: one-time HLS publisher locally reviewed. All 33 publication tests and full 1398-object offline preflight pass; seven-film packet unchanged. Actual publication and production acceptance remain.",
+      "pl": "Draft 8c7b8d5: odebrano lokalnie jednorazowy publikator HLS. Przechodzą 33 testy i pełna walidacja offline 1398 obiektów; pakiet siedmiu filmów bez zmian. Publikacja i odbiór produkcji pozostają."
     },
     "next": {
-      "en": "Operator decision on the exact packet and publication conditions; then authorized upload/readback and real HTTPS/CORS. Separate authorization for 17 catalogue references and final-image import/restart. Preserve manual deferrals; UI and repository hygiene remain future tasks.",
-      "pl": "Decyzja operatora o konkretnym pakiecie i warunkach publikacji; potem autoryzowana publikacja/odczyt i rzeczywisty HTTPS/CORS. Osobna zgoda na 17 referencji katalogu i import/restart finalnego obrazu. Zachować odłożone próby; UI i sprzątanie repo są późniejszymi zadaniami."
+      "en": "Confirm exact packet, CORS/profile prerequisites and a single authorized executor; then conditional upload and real HTTPS/hash/CORS readback. Separate authorization for 17 catalogue references and final-image import/restart. Preserve manual deferrals; UI and hygiene remain future tasks.",
+      "pl": "Potwierdzić pakiet, przygotować CORS/profil i wskazać jednego upoważnionego wykonawcę; potem zapis warunkowy i rzeczywisty odczyt HTTPS/sum/CORS. Osobna zgoda na 17 referencji i import/restart finalnego obrazu. Próby ręczne pozostają odłożone; UI i sprzątanie później."
     }
   },
   "tasks": [
@@ -90,7 +90,7 @@
       "hoursMax": 18,
       "daysMin": 1.25,
       "daysMax": 2.25,
-      "evidence": "At a357fd4 all seven originals use the shared FFmpegService for H.264/AAC adaptive HLS; 20 variants without upscaling, maximum 1920x1080 box and first audio/stereo. Theora ending/SAR and player readiness/quality switching corrected. Ten Sintel WebVTTs, persistent relations/import and source-retaining upload handling preserved. Current seven-playback/ten-subtitle proposal is inactive; old two-MP4 proposal is historical. Shipping catalogue unchanged; remaining i18n and later upload/worker gates stay open."
+      "evidence": "At a357fd4 all seven originals use the shared FFmpegService for H.264/AAC adaptive HLS; 20 variants without upscaling, maximum 1920x1080 box and first audio/stereo. Theora ending/SAR and player readiness/quality switching corrected. Ten Sintel WebVTTs, persistent relations/import and source-retaining upload handling preserved. Current seven-playback/ten-subtitle proposal is inactive; old two-MP4 proposal is historical. Shipping catalogue unchanged; remaining i18n and later upload/worker gates stay open. Publication tool added at 8c7b8d5; no app runtime or media change in that stage."
     },
     {
       "id": "ui-mobile-credits",
@@ -124,7 +124,7 @@
       "hoursMax": 10,
       "daysMin": 0.75,
       "daysMax": 1.25,
-      "evidence": "October 17 a357fd4 CI: 303 .NET/zero skips, image/Quality/audits green; publish/deploy skipped. Coordinator passed six HLS graph regressions and independently verified all 1398 object hashes/lengths, graph, originals/old MP4/VTT and exact 17-field proposal. Worker 14/14 real MVC/Vidstack Chromium/Firefox cases inspected: decoded qualities, Auto selection, seeks/native end and ten Sintel languages/Off. Muted/local; not full-film listening, measured network adaptation or target HTTPS. Sintel sync unresolved; manual/device deferrals preserved."
+      "evidence": "October 17 8c7b8d5 CI: 303 .NET, image/Quality/audits green; publish/deploy skipped. Coordinator passed 33 publisher tests (fake S3/loopback HTTP), verified 13 evidence hashes and ran the real 1398-object/1083549423-byte dry-run with socket/process traps: zero network/subprocess/PUT attempts. Conditional creation, full GET comparison, bound resume and HTTPS verification reviewed; no actual S3 transfer or target HTTPS test yet. Earlier accepted HLS/browser/manual evidence retains its scope; Sintel sync unresolved and manual deferrals preserved."
     },
     {
       "id": "repository-governance",
@@ -158,7 +158,7 @@
       "hoursMax": 3,
       "daysMin": 0.25,
       "daysMax": 0.5,
-      "evidence": "October 17 seven-film HLS review updates handoff and first-release plan. Exact 1398-object proposal supersedes the historical two-MP4/ten-VTT package; 17 catalogue references stay inactive. Source/encoding limits, generation versus reviewed SHA, independent versus inspected evidence and manual deferrals are explicit. Publication decision/readback precedes separate activation and final-image qualification. Production recovery/cutover separate; UI/mobile/credits and repository hygiene planned; uploads/worker false."
+      "evidence": "October 17 publisher review records exact source/package, offline evidence and execution/resume procedure at 8c7b8d5. The seven-film/1398-object proposal is unchanged; old two-MP4 package historical. Local acceptance does not authorize transfer, CORS configuration, 17-reference activation or deployment. Publication conditions and target readback precede separately authorized final-image qualification. Production recovery/cutover separate; UI/mobile/credits and repository hygiene planned; uploads/worker false."
     },
     {
       "id": "route-protection",
@@ -247,10 +247,10 @@
     }
   ],
   "verification": {
-    "worktree": "Clean a357fd455d217cf873d8b3b0b8bdc8d341a737af matches OPEN/DRAFT PR #1 at October 17 review; seven HLS-stage commits after f4aca03. Coordinator made no app edits. Dirty divergent parent, originals, previous MP4/VTT and earlier source/subtitle/R1 evidence preserved; no branch/history cleanup.",
-    "tests": "Coordinator independently checked all 1398 objects/1083549423 bytes, seven original identities, twelve retained MP4/VTT identities, complete playlist graph, exact upload/checksum lists and seventeen-field manifest proposal; six Python regressions passed. Inspected worker real local MVC/Vidstack HLS cases: 14/14 Chromium/Firefox, decoded sizes at each quality, Auto selection, seeks/replay/native end and ten real Sintel languages/Off. Tests muted, local SQLite/loopback HTTPS; not production PostgreSQL, full-film listening or measured network ABR. Earlier manual MP4/Android results retain their artifact scope. Sintel cause/full sync unresolved; Android/Safari/VLC deferrals remain, no new manual round.",
-    "ci": "CI/CD 39025600549 and Dependency audit 39025600511 green for reviewed a357fd4 October 17: 303 .NET/zero skips, image/scan/Quality pass; publish/deploy skipped. PR merge-ref build tied to reviewed head. Normal image smoke does not qualify published HLS/final PG catalogue. Earlier synthetic PG/keyring/two-web recovery remains source 986e9aa, not this final image.",
-    "production": "No app merge/deploy/manifest activation or VPS/R2/Cloudflare mutation in this stage. Worker reports no publication; coordinator performed no fresh provider/runtime audit. Uploads/worker false, two playback plus ten subtitle fields still null in shipping catalogue; proposed changes cover seven playback plus ten subtitle references. Protection evidence retains October 12 date; production limits/recovery/cutover remain."
+    "worktree": "Clean 8c7b8d5aa25c54ac981da0032f65afa1f468c717 matches OPEN/DRAFT PR #1 at October 17 review; two publication-tool commits after accepted HLS a357fd4. Coordinator made no app edits. Dirty divergent parent, originals, previous MP4/VTT and earlier source/subtitle/R1 evidence preserved; no branch/history cleanup.",
+    "tests": "Coordinator independently passed 33 publisher tests with fake S3/loopback HTTP and a full real-packet offline preflight: 1398 objects/1083549423 bytes; zero socket/subprocess/PUT attempts under explicit traps. All 13 worker provenance hashes verified. Actual AWS CLI transfer and target HTTPS remain untested. Earlier HLS graph/source/17-field checks and 14/14 inspected worker browser cases retain their accepted a357fd4 scope; no encoding or browser rerun. Sintel cause/full sync unresolved; Android/Safari/VLC deferrals retained.",
+    "ci": "CI/CD 39032806639 and Dependency audit 39032806625 green for reviewed 8c7b8d5 October 17: 303 .NET, image/scan/Quality pass; publish/deploy skipped. Normal image smoke does not qualify published HLS/final PG catalogue. Earlier synthetic PG/keyring/two-web recovery remains source 986e9aa, not this final image.",
+    "production": "No app merge/deploy, manifest activation, transfer or VPS/R2/Cloudflare mutation. Tool defaults offline; actual publication requires agreed packet/conditions, CORS/profile prerequisites and a single authorized executor. Uploads/worker false; two playback plus ten subtitle fields still null in shipping catalogue, proposal changes seven playback plus ten subtitle references. Protection evidence retains October 12 date; production limits/recovery/cutover remain."
   },
   "media": {
     "screenshot": "assets/screenshots/netfilmx-movie-catalog.png",
@@ -318,7 +318,10 @@
       "CI/CD https://github.com/SzczepanGrela/netfilmx-movie-catalog/actions/runs/39025600549 and audit https://github.com/SzczepanGrela/netfilmx-movie-catalog/actions/runs/39025600511; green, 303 .NET, publication/deployment skipped",
       "Independent coordinator hash/length/graph/upload-list/source/17-reference check and six HLS graph regressions; no repeat encoding or full browser run",
       "Inspected worker seven-film HLS verification/provenance and actual MVC/Vidstack 14-case Chromium/Firefox report; technical scope and muted/local limitations retained",
-      "Exact seven-film HLS proposal prepared locally; historical two-MP4 proposal not activated; all ten WebVTT identities and original media preserved"
+      "Exact seven-film HLS proposal prepared locally; historical two-MP4 proposal not activated; all ten WebVTT identities and original media preserved",
+      "October 17 source review 8c7b8d5aa25c54ac981da0032f65afa1f468c717; clean candidate and matching OPEN/DRAFT PR #1. qualification/publish_hls.py, tests/test_hls_publication.py and docs/hls-publication-tool.md reviewed.",
+      "CI/CD https://github.com/SzczepanGrela/netfilmx-movie-catalog/actions/runs/39032806639 and audit https://github.com/SzczepanGrela/netfilmx-movie-catalog/actions/runs/39032806625 green; 303 .NET, publication/deployment skipped.",
+      "Coordinator: 33/33 fake-S3/loopback tests; full 1398-object offline preflight with zero socket/process/PUT attempts; 13 worker evidence hashes verified. Real AWS CLI/R2 and target HTTPS not executed; exact media packet unchanged."
     ],
     "notes": {
       "en": "October 17 HLS review accepts local technical preparation at draft a357fd4: seven films, 20 variants, 1398 objects/1083549423 bytes. Independent identities/graph/proposal checks passed; worker 14/14 browser cases inspected, CI 303 .NET green. Maximum 1080 box; Tears of Steel tops at 862x360 and Elephants Dream at 426x240 from retained sources, no upscaling. First audio/AAC stereo; ten VTTs unchanged. Sintel sync unresolved, manual deferrals remain; old MP4/device results do not certify new HLS. Next: exact-packet/publication decision, actual upload/HTTPS/CORS/hash verification, separate 17-reference activation and final-image import/restart. Shipping manifest unchanged, uploads/worker false. No app/provider/deploy changes by coordinator. UI and repository hygiene remain planned. Progress 54%, effort 53–102 h and previous dated low-confidence estimates unchanged; no new schedule commitment.",

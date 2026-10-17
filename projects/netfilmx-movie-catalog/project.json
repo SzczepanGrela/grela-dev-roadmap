@@ -66,12 +66,12 @@
   },
   "focus": {
     "current": {
-      "en": "Draft #1 f4aca03 remains unchanged. Desktop Chrome and physical Android media acceptance is partial; Sintel synchronization remains unresolved. Credits readability and visual approval are separate.",
-      "pl": "Draft #1 f4aca03 bez zmian. Częściowy odbiór mediów w Chrome na komputerze i fizycznym Androidzie; synchronizacja Sintela pozostaje niewyjaśniona. Czytelność credits i akceptacja wyglądu są osobne."
+      "en": "Unchanged draft f4aca03. All ten real Sintel tracks pass scoped local Chromium/Firefox technical checks; Home confirmed in shown wide view. Earlier desktop/Android results retained; Sintel sync unresolved.",
+      "pl": "Draft f4aca03 bez zmian. Wszystkie 10 rzeczywistych ścieżek Sintela przechodzi lokalne próby techniczne Chromium/Firefox; Home potwierdzone w pokazanym szerokim widoku. Wcześniejsze wyniki desktop/Android zachowane; synchronizacja Sintela niewyjaśniona."
     },
     "next": {
-      "en": "Finish the missing local/device checks and bounded Sintel comparison. Publish/read back twelve approved objects only after media acceptance; then qualify final-image import/restart and production. UI/mobile/credits has a separate later task.",
-      "pl": "Dokończyć brakujące próby lokalne/urządzeń i ograniczone porównanie Sintela. Publikacja/odczyt dwunastu zaakceptowanych obiektów po odbiorze mediów; następnie import/restart finalnego obrazu i produkcja. UI/mobile/credits mają osobne późniejsze zadanie."
+      "en": "Operator deferred further detailed manual/device trials. Resolve the content/publication disposition without default retesting; then publish/read back twelve approved objects, verify real HTTPS/CORS and qualify final-image import/restart. UI and repository hygiene remain future tasks.",
+      "pl": "Operator odłożył dalsze szczegółowe próby ręczne/urządzeń. Ustalić decyzję o publikacji mediów bez domyślnego powtarzania testów; potem publikacja/odczyt 12 zaakceptowanych obiektów, rzeczywisty HTTPS/CORS i import/restart finalnego obrazu. UI i sprzątanie repo są późniejszymi zadaniami."
     }
   },
   "tasks": [
@@ -124,7 +124,7 @@
       "hoursMax": 10,
       "daysMin": 0.75,
       "daysMax": 1.25,
-      "evidence": "October 15 f4aca03 CI: 294 .NET/zero skips, 34 Python, image/Quality and dependency audit green; publish/deploy skipped. Runtime 10.0.13, earlier coordinator 56 focused tests accepted. October 15–16 operator Chrome desktop/physical Android checks partially pass; all-ten-real-track rendering, remaining Android checks, Safari/iOS and actual HTTPS remain. Same-MP4 native/Vidstack comparison and sampled source/output timing do not resolve perceived Sintel voice/lip mismatch."
+      "evidence": "October 15 f4aca03 CI retained: 294 .NET/zero skips, 34 Python, image/Quality/audit green; publish/deploy skipped. No full rerun. October 17 coordinator reviewed worker harness and Chromium/Firefox results for ten real VTTs: 26 cue texts/times per language, labels/characters/seeks/Off, muted. Home has a scoped operator pass, not an Android claim. Remaining manual/device trials and VLC source comparison deferred by operator; Sintel cause/full sync acceptance unresolved. Actual HTTPS/final-image acceptance remains."
     },
     {
       "id": "repository-governance",
@@ -158,7 +158,7 @@
       "hoursMax": 3,
       "daysMin": 0.25,
       "daysMax": 0.5,
-      "evidence": "Subtitle contract and twelve-object proposal retained. October 16 manual record distinguishes partial local/device acceptance, unresolved Sintel sync, readable credits and unapproved visual design. UI/mobile/credits now has its own planned task and acceptance brief. Keep previous source/credits and synthetic recovery acceptance separate from publication/readback, final-image real-media import/restart and production recovery/cutover; uploads/worker off."
+      "evidence": "October 17 record and handoff retain accepted subtitle/source/recovery work, scoped ten-real-track and Home results, explicit manual/device deferrals and unresolved Sintel sync. Current assignment no longer demands another test round. Concrete publication disposition precedes twelve-object real HTTPS/CORS and final-image import/restart; production recovery/cutover separate. UI/mobile/credits and repository hygiene stay planned; uploads/worker false."
     },
     {
       "id": "route-protection",
@@ -247,8 +247,8 @@
     }
   ],
   "verification": {
-    "worktree": "Clean unchanged f4aca03ec70af427cd3da82912d88ea1b87aec20 matches remote draft PR #1 at October 16 review. No new app commits; manual evidence resides in ignored artifacts. Dirty divergent parent preserved. Earlier source/subtitle review remains accepted.",
-    "tests": "Prior exact-head CI and 56 coordinator-focused tests retained, not rerun for an unchanged app. Coordinator inspected operator records, a mobile credits screenshot and worker timing script/report: 21,312 paired video PTS unchanged; four sampled 8-second audio windows at 103–135 s show no added lag; ten VTT cue timelines match retained source. This does not establish source lip sync or device latency. Desktop Chrome and physical Android operator checks partially pass; same MP4 in native Chrome/Vidstack feels identical but Sintel sync remains open. All-ten real-track rendering, Home retry, Android ending/rotation/resume, exact device/audio details and Safari/iOS remain.",
+    "worktree": "Clean unchanged f4aca03ec70af427cd3da82912d88ea1b87aec20 matches remote OPEN/DRAFT PR #1 at October 17 review. No new app commits; manual evidence resides in ignored artifacts. Dirty divergent parent preserved; no branch/history cleanup. Earlier source/subtitle review retained.",
+    "tests": "Existing exact-head CI and coordinator focused tests retain their dates; no full rerun. October 17 coordinator inspected worker real-track method/results: Chromium 151.0.7922.34 and Firefox 153.0 (private codec setup), actual Vidstack and all ten real Sintel VTTs, 26 texts/times per language, labels/characters/seeks/Off. Muted, not translation/audible/device/target-origin acceptance. Home screenshot/operator result accepted in shown wide view, device unspecified. Pixel 10 Pro/speaker identified; OS tentative and Chrome version unknown. Operator deferred further detail, Android remaining trials, Safari/iOS and prepared original-versus-MP4 VLC listening. Sintel cause/full sync acceptance unresolved; no shifts/reconversion. Own preview processes stopped per worker record, files retained.",
     "ci": "CI/CD 38704058532 and Dependency audit 38704058491 green for f4aca03 October 15; logs inspected. Image/Quality pass, publish/deploy skipped. Runtime patched to .NET 10.0.13, SDK 10.0.401 unchanged. Scanner gates fixable HIGH/CRITICAL, not every advisory. Earlier recovery remains source 986e9aa, not this final image.",
     "production": "Worker reports no production/R2 mutation; coordinator performed no fresh VPS/provider audit or app merge/deploy. No production digest published by this PR run. Uploads/worker stay off. Protection readback retains October 12 date; local recovery does not establish new release readiness."
   },
@@ -286,10 +286,14 @@
     {
       "en": "October 16: preserve scoped manual passes without claiming Sintel synchronization acceptance or inventing an offset. Credits readability is partially confirmed; visual design is not approved. Plan UI/mobile/credits separately after the current release work, retaining all creator/licence/source/change attribution.",
       "pl": "16 października: zachować odebrane próby bez uznawania synchronizacji Sintela ani zgadywania offsetu. Czytelność credits częściowo potwierdzona; wygląd niezaakceptowany. UI/mobile/credits zaplanowane osobno po bieżącym wydaniu, z zachowaniem twórców/licencji/źródeł/zmian."
+    },
+    {
+      "en": "October 17: operator reduced detailed manual testing. Preserve unperformed VLC/Android/Safari checks as deferred, not passed; do not chase exact versions or request another round. Sintel cause and full synchronization acceptance remain unresolved. Reduced scope does not itself authorize media publication.",
+      "pl": "17 października: operator ograniczył szczegółowe próby ręczne. Niewykonane VLC/Android/Safari pozostają odłożone, nie zaliczone; bez ponownej rundy i żądania dokładnych wersji. Przyczyna i pełny odbiór synchronizacji Sintela nierozstrzygnięte. Ograniczenie testów nie jest samo w sobie zgodą na publikację mediów."
     }
   ],
   "audit": {
-    "date": "2026-10-16",
+    "date": "2026-10-17",
     "sources": [
       "Draft PR #1 f4aca03ec70af427cd3da82912d88ea1b87aec20; coordinator subtitle source/results review October 15",
       "CI/CD https://github.com/SzczepanGrela/netfilmx-movie-catalog/actions/runs/38704058532 and Dependency audit 38704058491; head-bound logs inspected",
@@ -302,11 +306,14 @@
       "Worker source/output timing report and method inspected: paired video PTS, sampled audio at 103–135 s and ten VTT cue timelines; no new coordinator playback experiment",
       "Same existing MP4 in native Chrome versus Vidstack, not original-versus-derivative or MP4-versus-HLS; Sintel concern remains unresolved",
       "Explicit UI/mobile/credits task and docs/netfilmx-ui-modernization.md from operator visual feedback; no UI implementation or production changes",
-      "2026-10-17 owner planning request: repository-hygiene standard for every repository; no new source/history/branch scan or execution. docs/repository-hygiene-standard.md"
+      "2026-10-17 owner planning request: repository-hygiene standard for every repository; no new source/history/branch scan or execution. docs/repository-hygiene-standard.md",
+      "October 17 coordinator inspected worker real-tracks-20261017.cjs and Chromium/Firefox real-tracks-evidence.json for all ten retained VTTs; no independent playback rerun",
+      "October 17 operator Home report/screenshot, Pixel 10 Pro/speaker metadata and explicit reduced-testing preference; controlled VLC comparison prepared but not performed",
+      "Worker preview-stop-20261017.json inspected; own preview processes recorded stopped with files retained; not a fresh coordinator liveness scan"
     ],
     "notes": {
-      "en": "Subtitle code acceptance retained; manual media acceptance is partial on desktop Chrome and physical Android. Sintel voice/lip mismatch unresolved; technical timing comparison and flash/beep control do not accept it. Finish Home retry, Android ending/rotation/resume, all ten real tracks and exact device/audio record; Safari/iOS pending. Credits readability partially confirmed, design unapproved: separate planned UI task. Twelve publication keys inactive; real HTTPS and final-image/media/production gates remain, uploads/worker off. Adding UI scope changes weighted progress 70% to 57% and effort 35–66 to 51–98 h; existing task completion is unchanged. Low-confidence calendar is a rebased projection, not booked work. Planning-only update October 17: add repository-hygiene at 0% with provisional 2–4 h, excluding unestimated history rewrite. Previous audit/source dates and task completion retained; aggregate progress/effort recalculated for new scope. Calendar bounds are historical and not rescheduled for this unscheduled task; confidence low pending repository review.",
-      "pl": "Odbiór kodu napisów zachowany; ręczny odbiór mediów częściowy w Chrome na komputerze i fizycznym Androidzie. Rozminięcie głosu i ust Sintela niewyjaśnione; porównanie czasów i próba błysk/dźwięk nie zamykają uwagi. Pozostają Home, końcówka/obrót/wznowienie Androida, wszystkie 10 ścieżek i dane urządzenia/audio; Safari/iOS pending. Credits częściowo czytelne, wygląd niezaakceptowany: osobne planowane UI. Dwanaście kluczy nieaktywnych; HTTPS i odbiór finalnego obrazu/produkcji nadal otwarte, uploady/worker wyłączone. Dodanie UI zmienia ważony postęp 70% na 57% i pracę 35–66 na 51–98 h; ukończenie wcześniejszych zadań bez zmian. Daty o niskiej pewności są przeliczoną prognozą, nie rezerwacją pracy. Aktualizacja wyłącznie planu 17 października: repository-hygiene 0%, wstępnie 2–4 h, bez jeszcze niewycenionego rewrite. Daty audytu/źródła i ukończenie wcześniejszych zadań zachowane; sumy postępu/pracy przeliczone dla nowego zakresu. Daty kalendarzowe pozostają historyczne, bez wyznaczenia terminu nowego zadania; niska pewność do przeglądu repo."
+      "en": "October 17 scoped follow-up: unchanged draft f4aca03, all ten real tracks technically pass both local browsers; Home confirmed in shown wide view, not attributed to Android. Prior desktop/Android results retained. Operator limited further testing: remaining Android/Safari checks and prepared VLC source comparison deferred, not passed. Phone/audio identified; OS tentative/browser version unknown, no version chase. Sintel cause/full synchronization acceptance unresolved; no reconversion. Credits readable, design unapproved. Next: concrete content/publication disposition, twelve-object publication/readback, real HTTPS/CORS and final-image qualification. Keys null, uploads/worker false, no app/provider/deploy changes. UI/mobile/credits and repository hygiene remain planned. Completion stays 54%, effort 53–102 h; existing task estimates/calendar retain their dates and low confidence, not newly measured or booked.",
+      "pl": "Przegląd 17 października: draft f4aca03 bez zmian; wszystkie 10 rzeczywistych ścieżek technicznie przechodzi obie lokalne przeglądarki. Home potwierdzone w pokazanym szerokim widoku, bez przypisania do Androida. Wcześniejsze wyniki desktop/Android zachowane. Operator ograniczył testy: pozostałe próby Android/Safari i przygotowane porównanie VLC odłożone, nie zaliczone. Telefon/audio ustalone, OS niepewny/przeglądarka bez dokładnej wersji; bez dalszych pytań o wersje. Przyczyna i pełny odbiór synchronizacji Sintela nierozstrzygnięte; bez konwersji. Credits czytelne, wygląd niezaakceptowany. Następnie konkretna decyzja o publikacji, 12 obiektów i rzeczywisty HTTPS/CORS oraz kwalifikacja finalnego obrazu. Klucze null, uploady/worker false; bez zmian aplikacji/providerów/wdrożenia. UI/mobile/credits i sprzątanie repo nadal planowane. Postęp 54%, praca 53–102 h bez zmian; dotychczasowe estymaty/datowanie i niska pewność zachowane, bez nowego pomiaru ani rezerwacji terminu."
     }
   },
   "compliance": {

@@ -2,7 +2,7 @@
 
 Audit date / data audytu: **2026-08-25**<br>
 Estimated completion / szacowane ukończenie: **26%**<br>
-Forecast / prognoza: **2026-12-15–2027-02-18**, 9–16 h, high confidence / pewność: high
+Forecast / prognoza: **2026-12-15–2027-02-18**, 11–20 h, low confidence / pewność: low
 
 > This report is synchronized from `project.json` and the versioned delivery-control catalog. / Raport jest synchronizowany z `project.json` i wersjonowanym katalogiem kontroli wdrożeniowych.
 
@@ -12,7 +12,7 @@ Forecast / prognoza: **2026-12-15–2027-02-18**, 9–16 h, high confidence / pe
 
 Small collection of Python solutions awaiting indexing, tests and repository standardization.
 
-Progress reflects solved exercises, not repository readiness.
+Progress reflects solved exercises, not repository readiness. Planning-only update October 17: add repository-hygiene at 0% with provisional 2–4 h, excluding unestimated history rewrite. Previous audit/source dates and task completion retained; aggregate progress/effort recalculated for new scope. Calendar bounds are historical and not rescheduled for this unscheduled task; confidence low pending repository review.
 
 ### Audit evidence
 
@@ -27,7 +27,7 @@ Profile: **Source repository**. Statuses reflect only evidence available on the 
 
 | Control | Status | Evidence |
 | --- | --- | --- |
-| Repository governance | Missing | GitHub returned no active ruleset or environment; remaining elements were assessed from the repository. |
+| Repository governance | Missing | GitHub returned no active ruleset or environment; remaining elements were assessed from the repository. October 17 target addition: repository hygiene and neutral branch naming remain unverified; existing findings retain their original dates. |
 | Quality CI | Missing | No GitHub Actions runs, ruleset or environment were found. |
 | Immutable release | Missing | The required complete implementation was not found in the audited leetcode solutions source. |
 | Deployment access | Not applicable | The control does not apply to the leetcode solutions project profile. |
@@ -72,6 +72,12 @@ The public repository lacks README/license metadata and should not copy problem 
 
 The target repository naming and versioned source snapshot are not finished.
 
+#### Clean tracked files and review history and neutral branch names
+
+**Quality · Planned · 0% · difficulty 3/5 · 2–4 h**
+
+Planned by owner on 2026-10-17; no repository hygiene audit or cleanup performed. Inventory tracked/ignored/generated/sensitive files; preserve legitimate assets and work; prepare scoped removal/ignore rules, prevention checks and agent-free branch names. Review historical removal separately, with exact paths/refs, isolated rehearsal, SHA/release impact and explicit rewrite approval. Do not rename active branches or rewrite now. Standard and acceptance: https://github.com/SzczepanGrela/grela-dev-roadmap/blob/main/docs/repository-hygiene-standard.md . Initial 2–4 h covers discovery/routine cleanup planning and implementation only when assigned; rewrite/large remediation requires re-estimation.
+
 ### Architecture decisions
 
 - Do not build a hosted service; an optional future index may be static.
@@ -83,7 +89,7 @@ The target repository naming and versioned source snapshot are not finished.
 
 Mały zbiór rozwiązań Python oczekujący indeksu, testów i standaryzacji repozytorium.
 
-Postęp uwzględnia rozwiązane zadania, ale nie gotowość repozytorium.
+Postęp uwzględnia rozwiązane zadania, ale nie gotowość repozytorium. Aktualizacja wyłącznie planu 17 października: repository-hygiene 0%, wstępnie 2–4 h, bez jeszcze niewycenionego rewrite. Daty audytu/źródła i ukończenie wcześniejszych zadań zachowane; sumy postępu/pracy przeliczone dla nowego zakresu. Daty kalendarzowe pozostają historyczne, bez wyznaczenia terminu nowego zadania; niska pewność do przeglądu repo.
 
 ### Dowody audytu
 
@@ -98,7 +104,7 @@ Profil: **Repozytorium źródłowe**. Statusy odzwierciedlają wyłącznie dowod
 
 | Kontrola | Status | Dowód |
 | --- | --- | --- |
-| Zarządzanie repozytorium | Brak | GitHub nie zwrócił aktywnego rulesetu ani środowiska; pozostałe elementy oceniono z repozytorium. |
+| Zarządzanie repozytorium | Brak | GitHub nie zwrócił aktywnego rulesetu ani środowiska; pozostałe elementy oceniono z repozytorium. Cel dopisany 17 października: porządki repo i neutralne nazwy branchy niezweryfikowane; wcześniejsze ustalenia zachowują własne daty. |
 | Quality CI | Brak | GitHub nie zwrócił żadnego wykonanego workflow Quality dla tego repozytorium. |
 | Niezmienne wydanie | Brak | W audytowanym źródle projektu leetcode solutions nie znaleziono wymaganej kompletnej implementacji. |
 | Dostęp wdrożeniowy | Nie dotyczy | Kontrola nie dotyczy profilu projektu leetcode solutions. |
@@ -142,6 +148,12 @@ The public repository lacks README/license metadata and should not copy problem 
 **Wdrożenie · W toku · 30% · trudność 2/5 · 1–2 h**
 
 The target repository naming and versioned source snapshot are not finished.
+
+#### Uporządkować śledzone pliki, historię i neutralne nazwy branchy
+
+**Jakość · Planowane · 0% · trudność 3/5 · 2–4 h**
+
+Planned by owner on 2026-10-17; no repository hygiene audit or cleanup performed. Inventory tracked/ignored/generated/sensitive files; preserve legitimate assets and work; prepare scoped removal/ignore rules, prevention checks and agent-free branch names. Review historical removal separately, with exact paths/refs, isolated rehearsal, SHA/release impact and explicit rewrite approval. Do not rename active branches or rewrite now. Standard and acceptance: https://github.com/SzczepanGrela/grela-dev-roadmap/blob/main/docs/repository-hygiene-standard.md . Initial 2–4 h covers discovery/routine cleanup planning and implementation only when assigned; rewrite/large remediation requires re-estimation.
 
 ### Decyzje architektoniczne
 

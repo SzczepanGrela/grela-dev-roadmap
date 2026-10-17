@@ -1,8 +1,8 @@
 # URL Shortener System — status report / raport stanu
 
 Audit date / data audytu: **2026-08-25**<br>
-Estimated completion / szacowane ukończenie: **25%**<br>
-Forecast / prognoza: **2026-11-06–2026-12-18**, 70–115 h, low confidence / pewność: low
+Estimated completion / szacowane ukończenie: **24%**<br>
+Forecast / prognoza: **2026-11-06–2026-12-18**, 72–119 h, low confidence / pewność: low
 
 > This report is synchronized from `project.json` and the versioned delivery-control catalog. / Raport jest synchronizowany z `project.json` i wersjonowanym katalogiem kontroli wdrożeniowych.
 
@@ -12,7 +12,7 @@ Forecast / prognoza: **2026-11-06–2026-12-18**, 70–115 h, low confidence / p
 
 URL shortening and analytics services awaiting production modernization and a public UI.
 
-This is a substantial modernization rather than a simple containerization task.
+This is a substantial modernization rather than a simple containerization task. Planning-only update October 17: add repository-hygiene at 0% with provisional 2–4 h, excluding unestimated history rewrite. Previous audit/source dates and task completion retained; aggregate progress/effort recalculated for new scope. Calendar bounds are historical and not rescheduled for this unscheduled task; confidence low pending repository review.
 
 ### Audit evidence
 
@@ -27,7 +27,7 @@ Profile: **VPS web application**. Statuses reflect only evidence available on th
 
 | Control | Status | Evidence |
 | --- | --- | --- |
-| Repository governance | Missing | GitHub returned no active ruleset or environment; remaining elements were assessed from the repository. |
+| Repository governance | Missing | GitHub returned no active ruleset or environment; remaining elements were assessed from the repository. October 17 target addition: repository hygiene and neutral branch naming remain unverified; existing findings retain their original dates. |
 | Quality CI | Missing | No GitHub Actions runs, ruleset or environment were found. |
 | Immutable release | Missing | The required complete implementation was not found in the audited url shortener system source. |
 | Deployment access | Missing | The required complete implementation was not found in the audited url shortener system source. |
@@ -96,6 +96,12 @@ The target DNS is absent and edge/proxy limits and monitoring are not configured
 
 No web frontend or favicon exists.
 
+#### Clean tracked files and review history and neutral branch names
+
+**Quality · Planned · 0% · difficulty 3/5 · 2–4 h**
+
+Planned by owner on 2026-10-17; no repository hygiene audit or cleanup performed. Inventory tracked/ignored/generated/sensitive files; preserve legitimate assets and work; prepare scoped removal/ignore rules, prevention checks and agent-free branch names. Review historical removal separately, with exact paths/refs, isolated rehearsal, SHA/release impact and explicit rewrite approval. Do not rename active branches or rewrite now. Standard and acceptance: https://github.com/SzczepanGrela/grela-dev-roadmap/blob/main/docs/repository-hygiene-standard.md . Initial 2–4 h covers discovery/routine cleanup planning and implementation only when assigned; rewrite/large remediation requires re-estimation.
+
 ### Architecture decisions
 
 - Redirect traffic must not share the low creation limit.
@@ -109,7 +115,7 @@ No web frontend or favicon exists.
 
 Usługi skracania URL i analityki oczekujące modernizacji produkcyjnej oraz publicznego UI.
 
-To duża modernizacja, a nie tylko konteneryzacja.
+To duża modernizacja, a nie tylko konteneryzacja. Aktualizacja wyłącznie planu 17 października: repository-hygiene 0%, wstępnie 2–4 h, bez jeszcze niewycenionego rewrite. Daty audytu/źródła i ukończenie wcześniejszych zadań zachowane; sumy postępu/pracy przeliczone dla nowego zakresu. Daty kalendarzowe pozostają historyczne, bez wyznaczenia terminu nowego zadania; niska pewność do przeglądu repo.
 
 ### Dowody audytu
 
@@ -124,7 +130,7 @@ Profil: **Aplikacja webowa na VPS**. Statusy odzwierciedlają wyłącznie dowody
 
 | Kontrola | Status | Dowód |
 | --- | --- | --- |
-| Zarządzanie repozytorium | Brak | GitHub nie zwrócił aktywnego rulesetu ani środowiska; pozostałe elementy oceniono z repozytorium. |
+| Zarządzanie repozytorium | Brak | GitHub nie zwrócił aktywnego rulesetu ani środowiska; pozostałe elementy oceniono z repozytorium. Cel dopisany 17 października: porządki repo i neutralne nazwy branchy niezweryfikowane; wcześniejsze ustalenia zachowują własne daty. |
 | Quality CI | Brak | GitHub nie zwrócił żadnego wykonanego workflow Quality dla tego repozytorium. |
 | Niezmienne wydanie | Brak | W audytowanym źródle projektu url shortener system nie znaleziono wymaganej kompletnej implementacji. |
 | Dostęp wdrożeniowy | Brak | W audytowanym źródle projektu url shortener system nie znaleziono wymaganej kompletnej implementacji. |
@@ -192,6 +198,12 @@ The target DNS is absent and edge/proxy limits and monitoring are not configured
 **Dokumentacja · Planowane · 0% · trudność 2/5 · 1–2 h**
 
 No web frontend or favicon exists.
+
+#### Uporządkować śledzone pliki, historię i neutralne nazwy branchy
+
+**Jakość · Planowane · 0% · trudność 3/5 · 2–4 h**
+
+Planned by owner on 2026-10-17; no repository hygiene audit or cleanup performed. Inventory tracked/ignored/generated/sensitive files; preserve legitimate assets and work; prepare scoped removal/ignore rules, prevention checks and agent-free branch names. Review historical removal separately, with exact paths/refs, isolated rehearsal, SHA/release impact and explicit rewrite approval. Do not rename active branches or rewrite now. Standard and acceptance: https://github.com/SzczepanGrela/grela-dev-roadmap/blob/main/docs/repository-hygiene-standard.md . Initial 2–4 h covers discovery/routine cleanup planning and implementation only when assigned; rewrite/large remediation requires re-estimation.
 
 ### Decyzje architektoniczne
 

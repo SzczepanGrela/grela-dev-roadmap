@@ -92,3 +92,24 @@ remaining media findings; other projects retain their own dates.
 Osobne zadanie UI/mobile/credits dodaje jawny zakres, a nie cofa odebranych prac.
 16–32 godziny to wstępny nakład do ponownego oszacowania po briefie. Pozostałe
 estymaty nie zostały ponownie zmierzone; daty są prognozą, nie obietnicą.
+
+## Cross-repository hygiene planning — October 17
+
+The owner requested a future hygiene task for every repository, without execution.
+Each of the 14 catalogue records gains a planned quality task at 0%, weight 1,
+with a provisional 2–4 active-hour allowance for discovery/routine cleanup and
+branch planning. This is an allocation placeholder, not a new source audit or a
+flat estimate for history rewriting. Rewrite and larger remediation must be
+scoped and estimated after reviewing each repository.
+
+Existing task completion, audited source revisions and audit dates are retained.
+Aggregate percentages, hours and work days are recalculated mechanically for the
+added task; lower percentages do not undo accepted implementation or deployment.
+All forecast confidence is now low while this new scope is unassessed. Historical
+calendar bounds are preserved for provenance and do **not** include a newly
+reserved hygiene window; reschedule when the work is assigned. Other repositories,
+including the roadmap and private documentation, are covered by coordinator R02.
+
+Dodanie planowanych porządków nie jest deklaracją znalezienia problemów w każdym
+repo. Spadek procentów wynika z większego zakresu; dotychczasowe odbiory i daty
+audytów zachowują ważność. Nie wyznaczono nowych terminów wykonania.

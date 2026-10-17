@@ -40,22 +40,22 @@
   "status": "maintenance",
   "progress": {
     "implementation": 95,
-    "quality": 100,
+    "quality": 75,
     "documentation": 100,
     "delivery": 84,
-    "overall": 94
+    "overall": 89
   },
   "complexity": 3,
   "forecast": {
-    "remainingHoursMin": 9,
-    "remainingHoursMax": 17,
-    "remainingDaysMin": 1.25,
-    "remainingDaysMax": 2.25,
+    "remainingHoursMin": 11,
+    "remainingHoursMax": 21,
+    "remainingDaysMin": 1.5,
+    "remainingDaysMax": 2.75,
     "hoursPerDay": 8,
     "hoursPerWeek": 30,
     "earliest": "2026-10-08",
     "latest": "2026-11-02",
-    "confidence": "medium"
+    "confidence": "low"
   },
   "estimation": {
     "date": "2026-09-29",
@@ -260,6 +260,23 @@
       "daysMin": 0.25,
       "daysMax": 0.5,
       "evidence": "Adapter, durable spending ledger, backups and isolated restore accepted; all variants through 9×9 K=8 evaluated. K=9 waits for the October UTC evaluation allowance. Public activation is a separate decision; Jev remains disabled. No extra paid evaluation is part of dependency maintenance."
+    },
+    {
+      "id": "repository-hygiene",
+      "title": {
+        "en": "Clean tracked files and review history and neutral branch names",
+        "pl": "Uporządkować śledzone pliki, historię i neutralne nazwy branchy"
+      },
+      "dimension": "quality",
+      "status": "planned",
+      "completion": 0,
+      "weight": 1,
+      "difficulty": 3,
+      "hoursMin": 2,
+      "hoursMax": 4,
+      "daysMin": 0.25,
+      "daysMax": 0.5,
+      "evidence": "Planned by owner on 2026-10-17; no repository hygiene audit or cleanup performed. Inventory tracked/ignored/generated/sensitive files; preserve legitimate assets and work; prepare scoped removal/ignore rules, prevention checks and agent-free branch names. Review historical removal separately, with exact paths/refs, isolated rehearsal, SHA/release impact and explicit rewrite approval. Do not rename active branches or rewrite now. Standard and acceptance: https://github.com/SzczepanGrela/grela-dev-roadmap/blob/main/docs/repository-hygiene-standard.md . Initial 2–4 h covers discovery/routine cleanup planning and implementation only when assigned; rewrite/large remediation requires re-estimation."
     }
   ],
   "verification": {
@@ -312,11 +329,12 @@
       "September 28 operator-triggered same-image Coolify rolling acceptance: one public ten-game MCTS stream spanned old-container SIGTERM; all games and complete arrived, with no error frame. An earlier observer finished before redeployment and is explicitly inconclusive for drain.",
       "September 28 isolated local HTTP experiment at the released source revision: two processes accepted a total series cost of 60; replacing one allowed another 30 while the remaining process stayed limited. A single shared bucket ceiling was approximately 30.4 in the measured interval. This is not public ingress evidence.",
       "Operator-approved September 29 documentation plan and scoped process-local TTT limiter decision",
-      "TTT PRs #37/#38; successful main Quality/protected release 36508939688 at c031f55; selected operator runtime and backup metadata September 29"
+      "TTT PRs #37/#38; successful main Quality/protected release 36508939688 at c031f55; selected operator runtime and backup metadata September 29",
+      "2026-10-17 owner planning request: repository-hygiene standard for every repository; no new source/history/branch scan or execution. docs/repository-hygiene-standard.md"
     ],
     "notes": {
-      "en": "September 29 closes the documentation and scoped rolling-budget decision. TTT is a reusable delivery example with named exceptions; same-location edge isolation, hardening, monitoring and final Jev activation remain separate. Dates and scope are preserved; no full-server audit is implied. Other project audits retain their own dates.",
-      "pl": "29 września domknięto porządkowanie dokumentacji i decyzję o limitach podczas rolling update. TTT jest wzorcem wdrożenia z jawnymi wyjątkami; izolacja edge w jednym centrum, hardening, monitoring i końcowa aktywacja Jev pozostają osobno. Zachowano daty i zakres dowodów; nie wykonano pełnego audytu serwera. Pozostałe projekty zachowują własne daty audytu."
+      "en": "September 29 closes the documentation and scoped rolling-budget decision. TTT is a reusable delivery example with named exceptions; same-location edge isolation, hardening, monitoring and final Jev activation remain separate. Dates and scope are preserved; no full-server audit is implied. Other project audits retain their own dates. Planning-only update October 17: add repository-hygiene at 0% with provisional 2–4 h, excluding unestimated history rewrite. Previous audit/source dates and task completion retained; aggregate progress/effort recalculated for new scope. Calendar bounds are historical and not rescheduled for this unscheduled task; confidence low pending repository review.",
+      "pl": "29 września domknięto porządkowanie dokumentacji i decyzję o limitach podczas rolling update. TTT jest wzorcem wdrożenia z jawnymi wyjątkami; izolacja edge w jednym centrum, hardening, monitoring i końcowa aktywacja Jev pozostają osobno. Zachowano daty i zakres dowodów; nie wykonano pełnego audytu serwera. Pozostałe projekty zachowują własne daty audytu. Aktualizacja wyłącznie planu 17 października: repository-hygiene 0%, wstępnie 2–4 h, bez jeszcze niewycenionego rewrite. Daty audytu/źródła i ukończenie wcześniejszych zadań zachowane; sumy postępu/pracy przeliczone dla nowego zakresu. Daty kalendarzowe pozostają historyczne, bez wyznaczenia terminu nowego zadania; niska pewność do przeglądu repo."
     }
   },
   "compliance": {
@@ -326,12 +344,14 @@
     "controls": [
       {
         "id": "governance",
-        "status": "complete",
+        "status": "partial",
         "evidence": {
-          "en": "Protected main and operator-approved production accepted September 17; license and public docs maintained. Self-approval is allowed.",
-          "pl": "Chroniony main i zatwierdzane przez operatora production odebrane 17 września; licencja i dokumentacja utrzymywane. Self-approval dozwolone."
+          "en": "Protected main and operator-approved production accepted September 17; license and public docs maintained. Self-approval is allowed. October 17 target addition: repository hygiene and neutral branch naming remain unverified; existing findings retain their original dates.",
+          "pl": "Chroniony main i zatwierdzane przez operatora production odebrane 17 września; licencja i dokumentacja utrzymywane. Self-approval dozwolone. Cel dopisany 17 października: porządki repo i neutralne nazwy branchy niezweryfikowane; wcześniejsze ustalenia zachowują własne daty."
         },
-        "taskIds": []
+        "taskIds": [
+          "repository-hygiene"
+        ]
       },
       {
         "id": "quality-ci",

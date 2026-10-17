@@ -1,8 +1,8 @@
 # Smakosz Web App — status report / raport stanu
 
 Audit date / data audytu: **2026-08-25**<br>
-Estimated completion / szacowane ukończenie: **40%**<br>
-Forecast / prognoza: **2026-10-21–2026-11-23**, 54–90 h, low confidence / pewność: low
+Estimated completion / szacowane ukończenie: **38%**<br>
+Forecast / prognoza: **2026-10-21–2026-11-23**, 56–94 h, low confidence / pewność: low
 
 > This report is synchronized from `project.json` and the versioned delivery-control catalog. / Raport jest synchronizowany z `project.json` i wersjonowanym katalogiem kontroli wdrożeniowych.
 
@@ -12,7 +12,7 @@ Forecast / prognoza: **2026-10-21–2026-11-23**, 54–90 h, low confidence / pe
 
 Restaurant and dish discovery platform with moderation, recommendations and ML operations.
 
-The project is technically mature, but public documentation, canonical hosting metadata, release integrity and ownership of the existing observability stack require work.
+The project is technically mature, but public documentation, canonical hosting metadata, release integrity and ownership of the existing observability stack require work. Planning-only update October 17: add repository-hygiene at 0% with provisional 2–4 h, excluding unestimated history rewrite. Previous audit/source dates and task completion retained; aggregate progress/effort recalculated for new scope. Calendar bounds are historical and not rescheduled for this unscheduled task; confidence low pending repository review.
 
 ### Audit evidence
 
@@ -27,7 +27,7 @@ Profile: **VPS web application**. Statuses reflect only evidence available on th
 
 | Control | Status | Evidence |
 | --- | --- | --- |
-| Repository governance | Partial | GitHub returned no active ruleset or environment; remaining elements were assessed from the repository. |
+| Repository governance | Partial | GitHub returned no active ruleset or environment; remaining elements were assessed from the repository. October 17 target addition: repository hygiene and neutral branch naming remain unverified; existing findings retain their original dates. |
 | Quality CI | Partial | Both public CI/CD workflows succeeded at 7d75ca1; no ruleset or GitHub environment exists. |
 | Immutable release | Partial | smakosz web app has some mechanisms but does not yet satisfy the complete v2 control. |
 | Deployment access | Partial | smakosz web app has some mechanisms but does not yet satisfy the complete v2 control. |
@@ -96,6 +96,12 @@ The planned smakosz.grela.dev hostname does not resolve and callbacks, cookies a
 
 Prometheus, Grafana, renderer and Node Exporter are still coupled to the Smakosz stack.
 
+#### Clean tracked files and review history and neutral branch names
+
+**Quality · Planned · 0% · difficulty 3/5 · 2–4 h**
+
+Planned by owner on 2026-10-17; no repository hygiene audit or cleanup performed. Inventory tracked/ignored/generated/sensitive files; preserve legitimate assets and work; prepare scoped removal/ignore rules, prevention checks and agent-free branch names. Review historical removal separately, with exact paths/refs, isolated rehearsal, SHA/release impact and explicit rewrite approval. Do not rename active branches or rewrite now. Standard and acceptance: https://github.com/SzczepanGrela/grela-dev-roadmap/blob/main/docs/repository-hygiene-standard.md . Initial 2–4 h covers discovery/routine cleanup planning and implementation only when assigned; rewrite/large remediation requires re-estimation.
+
 ### Architecture decisions
 
 - Use user identity for authenticated writes and IP only as a safety floor.
@@ -113,7 +119,7 @@ Prometheus, Grafana, renderer and Node Exporter are still coupled to the Smakosz
 
 Platforma odkrywania restauracji i dań z moderacją, rekomendacjami i operacjami ML.
 
-Projekt jest technicznie dojrzały, ale dokumentacja, metadane hostingu, spójność wydań i odpowiedzialność za istniejący stack obserwowalności wymagają pracy.
+Projekt jest technicznie dojrzały, ale dokumentacja, metadane hostingu, spójność wydań i odpowiedzialność za istniejący stack obserwowalności wymagają pracy. Aktualizacja wyłącznie planu 17 października: repository-hygiene 0%, wstępnie 2–4 h, bez jeszcze niewycenionego rewrite. Daty audytu/źródła i ukończenie wcześniejszych zadań zachowane; sumy postępu/pracy przeliczone dla nowego zakresu. Daty kalendarzowe pozostają historyczne, bez wyznaczenia terminu nowego zadania; niska pewność do przeglądu repo.
 
 ### Dowody audytu
 
@@ -128,7 +134,7 @@ Profil: **Aplikacja webowa na VPS**. Statusy odzwierciedlają wyłącznie dowody
 
 | Kontrola | Status | Dowód |
 | --- | --- | --- |
-| Zarządzanie repozytorium | Częściowe | GitHub nie zwrócił aktywnego rulesetu ani środowiska; pozostałe elementy oceniono z repozytorium. |
+| Zarządzanie repozytorium | Częściowe | GitHub nie zwrócił aktywnego rulesetu ani środowiska; pozostałe elementy oceniono z repozytorium. Cel dopisany 17 października: porządki repo i neutralne nazwy branchy niezweryfikowane; wcześniejsze ustalenia zachowują własne daty. |
 | Quality CI | Częściowe | Quality CI istnieje, ale nie obejmuje całego bieżącego stanu lub części wymaganych kontroli v2. |
 | Niezmienne wydanie | Częściowe | Projekt smakosz web app ma część mechanizmów, ale nie spełnia jeszcze całej kontroli v2. |
 | Dostęp wdrożeniowy | Częściowe | Projekt smakosz web app ma część mechanizmów, ale nie spełnia jeszcze całej kontroli v2. |
@@ -196,6 +202,12 @@ The planned smakosz.grela.dev hostname does not resolve and callbacks, cookies a
 **Wdrożenie · Planowane · 0% · trudność 5/5 · 7–12 h**
 
 Prometheus, Grafana, renderer and Node Exporter are still coupled to the Smakosz stack.
+
+#### Uporządkować śledzone pliki, historię i neutralne nazwy branchy
+
+**Jakość · Planowane · 0% · trudność 3/5 · 2–4 h**
+
+Planned by owner on 2026-10-17; no repository hygiene audit or cleanup performed. Inventory tracked/ignored/generated/sensitive files; preserve legitimate assets and work; prepare scoped removal/ignore rules, prevention checks and agent-free branch names. Review historical removal separately, with exact paths/refs, isolated rehearsal, SHA/release impact and explicit rewrite approval. Do not rename active branches or rewrite now. Standard and acceptance: https://github.com/SzczepanGrela/grela-dev-roadmap/blob/main/docs/repository-hygiene-standard.md . Initial 2–4 h covers discovery/routine cleanup planning and implementation only when assigned; rewrite/large remediation requires re-estimation.
 
 ### Decyzje architektoniczne
 

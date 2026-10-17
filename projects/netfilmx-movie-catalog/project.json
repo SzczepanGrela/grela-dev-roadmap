@@ -41,17 +41,17 @@
   "status": "active",
   "progress": {
     "implementation": 51,
-    "quality": 60,
+    "quality": 48,
     "documentation": 90,
     "delivery": 44,
-    "overall": 57
+    "overall": 54
   },
   "complexity": 5,
   "forecast": {
-    "remainingHoursMin": 51,
-    "remainingHoursMax": 98,
-    "remainingDaysMin": 6.5,
-    "remainingDaysMax": 12.25,
+    "remainingHoursMin": 53,
+    "remainingHoursMax": 102,
+    "remainingDaysMin": 6.75,
+    "remainingDaysMax": 12.75,
     "hoursPerDay": 8,
     "hoursPerWeek": 30,
     "earliest": "2026-10-28",
@@ -227,6 +227,23 @@
       "daysMin": 0.5,
       "daysMax": 0.75,
       "evidence": "Worker lifecycle logs and release probes exist in preparation; useful delivered worker/release/backup alerts and central monitoring remain unaccepted."
+    },
+    {
+      "id": "repository-hygiene",
+      "title": {
+        "en": "Clean tracked files and review history and neutral branch names",
+        "pl": "Uporządkować śledzone pliki, historię i neutralne nazwy branchy"
+      },
+      "dimension": "quality",
+      "status": "planned",
+      "completion": 0,
+      "weight": 1,
+      "difficulty": 3,
+      "hoursMin": 2,
+      "hoursMax": 4,
+      "daysMin": 0.25,
+      "daysMax": 0.5,
+      "evidence": "Planned by owner on 2026-10-17; no repository hygiene audit or cleanup performed. Inventory tracked/ignored/generated/sensitive files; preserve legitimate assets and work; prepare scoped removal/ignore rules, prevention checks and agent-free branch names. Review historical removal separately, with exact paths/refs, isolated rehearsal, SHA/release impact and explicit rewrite approval. Do not rename active branches or rewrite now. Standard and acceptance: https://github.com/SzczepanGrela/grela-dev-roadmap/blob/main/docs/repository-hygiene-standard.md . Initial 2–4 h covers discovery/routine cleanup planning and implementation only when assigned; rewrite/large remediation requires re-estimation."
     }
   ],
   "verification": {
@@ -284,11 +301,12 @@
       "October 15–16 operator local Chrome desktop/physical Android records; coordinator inspected selected mobile credits screenshot and manual statuses October 16",
       "Worker source/output timing report and method inspected: paired video PTS, sampled audio at 103–135 s and ten VTT cue timelines; no new coordinator playback experiment",
       "Same existing MP4 in native Chrome versus Vidstack, not original-versus-derivative or MP4-versus-HLS; Sintel concern remains unresolved",
-      "Explicit UI/mobile/credits task and docs/netfilmx-ui-modernization.md from operator visual feedback; no UI implementation or production changes"
+      "Explicit UI/mobile/credits task and docs/netfilmx-ui-modernization.md from operator visual feedback; no UI implementation or production changes",
+      "2026-10-17 owner planning request: repository-hygiene standard for every repository; no new source/history/branch scan or execution. docs/repository-hygiene-standard.md"
     ],
     "notes": {
-      "en": "Subtitle code acceptance retained; manual media acceptance is partial on desktop Chrome and physical Android. Sintel voice/lip mismatch unresolved; technical timing comparison and flash/beep control do not accept it. Finish Home retry, Android ending/rotation/resume, all ten real tracks and exact device/audio record; Safari/iOS pending. Credits readability partially confirmed, design unapproved: separate planned UI task. Twelve publication keys inactive; real HTTPS and final-image/media/production gates remain, uploads/worker off. Adding UI scope changes weighted progress 70% to 57% and effort 35–66 to 51–98 h; existing task completion is unchanged. Low-confidence calendar is a rebased projection, not booked work.",
-      "pl": "Odbiór kodu napisów zachowany; ręczny odbiór mediów częściowy w Chrome na komputerze i fizycznym Androidzie. Rozminięcie głosu i ust Sintela niewyjaśnione; porównanie czasów i próba błysk/dźwięk nie zamykają uwagi. Pozostają Home, końcówka/obrót/wznowienie Androida, wszystkie 10 ścieżek i dane urządzenia/audio; Safari/iOS pending. Credits częściowo czytelne, wygląd niezaakceptowany: osobne planowane UI. Dwanaście kluczy nieaktywnych; HTTPS i odbiór finalnego obrazu/produkcji nadal otwarte, uploady/worker wyłączone. Dodanie UI zmienia ważony postęp 70% na 57% i pracę 35–66 na 51–98 h; ukończenie wcześniejszych zadań bez zmian. Daty o niskiej pewności są przeliczoną prognozą, nie rezerwacją pracy."
+      "en": "Subtitle code acceptance retained; manual media acceptance is partial on desktop Chrome and physical Android. Sintel voice/lip mismatch unresolved; technical timing comparison and flash/beep control do not accept it. Finish Home retry, Android ending/rotation/resume, all ten real tracks and exact device/audio record; Safari/iOS pending. Credits readability partially confirmed, design unapproved: separate planned UI task. Twelve publication keys inactive; real HTTPS and final-image/media/production gates remain, uploads/worker off. Adding UI scope changes weighted progress 70% to 57% and effort 35–66 to 51–98 h; existing task completion is unchanged. Low-confidence calendar is a rebased projection, not booked work. Planning-only update October 17: add repository-hygiene at 0% with provisional 2–4 h, excluding unestimated history rewrite. Previous audit/source dates and task completion retained; aggregate progress/effort recalculated for new scope. Calendar bounds are historical and not rescheduled for this unscheduled task; confidence low pending repository review.",
+      "pl": "Odbiór kodu napisów zachowany; ręczny odbiór mediów częściowy w Chrome na komputerze i fizycznym Androidzie. Rozminięcie głosu i ust Sintela niewyjaśnione; porównanie czasów i próba błysk/dźwięk nie zamykają uwagi. Pozostają Home, końcówka/obrót/wznowienie Androida, wszystkie 10 ścieżek i dane urządzenia/audio; Safari/iOS pending. Credits częściowo czytelne, wygląd niezaakceptowany: osobne planowane UI. Dwanaście kluczy nieaktywnych; HTTPS i odbiór finalnego obrazu/produkcji nadal otwarte, uploady/worker wyłączone. Dodanie UI zmienia ważony postęp 70% na 57% i pracę 35–66 na 51–98 h; ukończenie wcześniejszych zadań bez zmian. Daty o niskiej pewności są przeliczoną prognozą, nie rezerwacją pracy. Aktualizacja wyłącznie planu 17 października: repository-hygiene 0%, wstępnie 2–4 h, bez jeszcze niewycenionego rewrite. Daty audytu/źródła i ukończenie wcześniejszych zadań zachowane; sumy postępu/pracy przeliczone dla nowego zakresu. Daty kalendarzowe pozostają historyczne, bez wyznaczenia terminu nowego zadania; niska pewność do przeglądu repo."
     }
   },
   "compliance": {
@@ -300,11 +318,12 @@
         "id": "governance",
         "status": "partial",
         "evidence": {
-          "en": "Main unprotected, zero rulesets/environments at October 12 readback; workflow gate code is not installed protection.",
-          "pl": "Main bez ochrony, zero rulesets/environments w odczycie 12 października; kod workflow nie stanowi aktywnej ochrony."
+          "en": "Main unprotected, zero rulesets/environments at October 12 readback; workflow gate code is not installed protection. October 17 target addition: repository hygiene and neutral branch naming remain unverified; existing findings retain their original dates.",
+          "pl": "Main bez ochrony, zero rulesets/environments w odczycie 12 października; kod workflow nie stanowi aktywnej ochrony. Cel dopisany 17 października: porządki repo i neutralne nazwy branchy niezweryfikowane; wcześniejsze ustalenia zachowują własne daty."
         },
         "taskIds": [
-          "repository-governance"
+          "repository-governance",
+          "repository-hygiene"
         ]
       },
       {

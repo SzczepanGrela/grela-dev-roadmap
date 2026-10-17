@@ -1,8 +1,8 @@
 # AudioMaster — status report / raport stanu
 
 Audit date / data audytu: **2026-08-25**<br>
-Estimated completion / szacowane ukończenie: **53%**<br>
-Forecast / prognoza: **2026-10-06–2026-10-26**, 12–20 h, medium confidence / pewność: medium
+Estimated completion / szacowane ukończenie: **50%**<br>
+Forecast / prognoza: **2026-10-06–2026-10-26**, 14–24 h, low confidence / pewność: low
 
 > This report is synchronized from `project.json` and the versioned delivery-control catalog. / Raport jest synchronizowany z `project.json` i wersjonowanym katalogiem kontroli wdrożeniowych.
 
@@ -12,7 +12,7 @@ Forecast / prognoza: **2026-10-06–2026-10-26**, 12–20 h, medium confidence /
 
 Cross-platform desktop audio editor using PySide6 and FFmpeg.
 
-Previous hygiene tasks to remove IDE/executable artifacts are already complete.
+Previous hygiene tasks to remove IDE/executable artifacts are already complete. Planning-only update October 17: add repository-hygiene at 0% with provisional 2–4 h, excluding unestimated history rewrite. Previous audit/source dates and task completion retained; aggregate progress/effort recalculated for new scope. Calendar bounds are historical and not rescheduled for this unscheduled task; confidence low pending repository review.
 
 ### Audit evidence
 
@@ -27,7 +27,7 @@ Profile: **Desktop application**. Statuses reflect only evidence available on th
 
 | Control | Status | Evidence |
 | --- | --- | --- |
-| Repository governance | Partial | GitHub returned no active ruleset or environment; remaining elements were assessed from the repository. |
+| Repository governance | Partial | GitHub returned no active ruleset or environment; remaining elements were assessed from the repository. October 17 target addition: repository hygiene and neutral branch naming remain unverified; existing findings retain their original dates. |
 | Quality CI | Complete | Latest Quality checks succeeded; no ruleset or environment exists. |
 | Immutable release | Missing | The required complete implementation was not found in the audited audio master source. |
 | Deployment access | Not applicable | The control does not apply to the audio master project profile. |
@@ -72,6 +72,12 @@ README exists; release support and cross-platform constraints need final documen
 
 No reproducible release artifact is published by the current workflow.
 
+#### Clean tracked files and review history and neutral branch names
+
+**Quality · Planned · 0% · difficulty 3/5 · 2–4 h**
+
+Planned by owner on 2026-10-17; no repository hygiene audit or cleanup performed. Inventory tracked/ignored/generated/sensitive files; preserve legitimate assets and work; prepare scoped removal/ignore rules, prevention checks and agent-free branch names. Review historical removal separately, with exact paths/refs, isolated rehearsal, SHA/release impact and explicit rewrite approval. Do not rename active branches or rewrite now. Standard and acceptance: https://github.com/SzczepanGrela/grela-dev-roadmap/blob/main/docs/repository-hygiene-standard.md . Initial 2–4 h covers discovery/routine cleanup planning and implementation only when assigned; rewrite/large remediation requires re-estimation.
+
 ### Architecture decisions
 
 - No web hosting or HTTP rate limiting.
@@ -84,7 +90,7 @@ No reproducible release artifact is published by the current workflow.
 
 Wieloplatformowy desktopowy edytor audio oparty o PySide6 i FFmpeg.
 
-Poprzednie zadania usunięcia artefaktów IDE/exe są już wykonane.
+Poprzednie zadania usunięcia artefaktów IDE/exe są już wykonane. Aktualizacja wyłącznie planu 17 października: repository-hygiene 0%, wstępnie 2–4 h, bez jeszcze niewycenionego rewrite. Daty audytu/źródła i ukończenie wcześniejszych zadań zachowane; sumy postępu/pracy przeliczone dla nowego zakresu. Daty kalendarzowe pozostają historyczne, bez wyznaczenia terminu nowego zadania; niska pewność do przeglądu repo.
 
 ### Dowody audytu
 
@@ -99,7 +105,7 @@ Profil: **Aplikacja desktopowa**. Statusy odzwierciedlają wyłącznie dowody do
 
 | Kontrola | Status | Dowód |
 | --- | --- | --- |
-| Zarządzanie repozytorium | Częściowe | GitHub nie zwrócił aktywnego rulesetu ani środowiska; pozostałe elementy oceniono z repozytorium. |
+| Zarządzanie repozytorium | Częściowe | GitHub nie zwrócił aktywnego rulesetu ani środowiska; pozostałe elementy oceniono z repozytorium. Cel dopisany 17 października: porządki repo i neutralne nazwy branchy niezweryfikowane; wcześniejsze ustalenia zachowują własne daty. |
 | Quality CI | Gotowe | GitHub Actions potwierdza zielony, proporcjonalny zestaw kontroli jakości dla audytowanego commitu. |
 | Niezmienne wydanie | Brak | W audytowanym źródle projektu audio master nie znaleziono wymaganej kompletnej implementacji. |
 | Dostęp wdrożeniowy | Nie dotyczy | Kontrola nie dotyczy profilu projektu audio master. |
@@ -143,6 +149,12 @@ README exists; release support and cross-platform constraints need final documen
 **Wdrożenie · Planowane · 0% · trudność 3/5 · 4–7 h**
 
 No reproducible release artifact is published by the current workflow.
+
+#### Uporządkować śledzone pliki, historię i neutralne nazwy branchy
+
+**Jakość · Planowane · 0% · trudność 3/5 · 2–4 h**
+
+Planned by owner on 2026-10-17; no repository hygiene audit or cleanup performed. Inventory tracked/ignored/generated/sensitive files; preserve legitimate assets and work; prepare scoped removal/ignore rules, prevention checks and agent-free branch names. Review historical removal separately, with exact paths/refs, isolated rehearsal, SHA/release impact and explicit rewrite approval. Do not rename active branches or rewrite now. Standard and acceptance: https://github.com/SzczepanGrela/grela-dev-roadmap/blob/main/docs/repository-hygiene-standard.md . Initial 2–4 h covers discovery/routine cleanup planning and implementation only when assigned; rewrite/large remediation requires re-estimation.
 
 ### Decyzje architektoniczne
 

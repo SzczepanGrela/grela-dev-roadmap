@@ -1,8 +1,8 @@
 # Tic-Tac-Toe AI — status report / raport stanu
 
 Audit date / data audytu: **2026-09-29**<br>
-Estimated completion / szacowane ukończenie: **94%**<br>
-Forecast / prognoza: **2026-10-08–2026-11-02**, 9–17 h, medium confidence / pewność: medium
+Estimated completion / szacowane ukończenie: **89%**<br>
+Forecast / prognoza: **2026-10-08–2026-11-02**, 11–21 h, low confidence / pewność: low
 
 > This report is synchronized from `project.json` and the versioned delivery-control catalog. / Raport jest synchronizowany z `project.json` i wersjonowanym katalogiem kontroli wdrożeniowych.
 
@@ -12,7 +12,7 @@ Forecast / prognoza: **2026-10-08–2026-11-02**, 9–17 h, medium confidence / 
 
 Browser game with 3×3, 5×5 and 9×9 boards, local and agent play, and streamed series. MCTS supports 5×5; the optional Jev provider remains disabled pending its final evaluation and activation decision. Training modules remain in the repository.
 
-September 29 closes the documentation and scoped rolling-budget decision. TTT is a reusable delivery example with named exceptions; same-location edge isolation, hardening, monitoring and final Jev activation remain separate. Dates and scope are preserved; no full-server audit is implied. Other project audits retain their own dates.
+September 29 closes the documentation and scoped rolling-budget decision. TTT is a reusable delivery example with named exceptions; same-location edge isolation, hardening, monitoring and final Jev activation remain separate. Dates and scope are preserved; no full-server audit is implied. Other project audits retain their own dates. Planning-only update October 17: add repository-hygiene at 0% with provisional 2–4 h, excluding unestimated history rewrite. Previous audit/source dates and task completion retained; aggregate progress/effort recalculated for new scope. Calendar bounds are historical and not rescheduled for this unscheduled task; confidence low pending repository review.
 
 ### Audit evidence
 
@@ -27,7 +27,7 @@ Profile: **VPS web application**. Statuses reflect only evidence available on th
 
 | Control | Status | Evidence |
 | --- | --- | --- |
-| Repository governance | Complete | Protected main and operator-approved production accepted September 17; license and public docs maintained. Self-approval is allowed. |
+| Repository governance | Partial | Protected main and operator-approved production accepted September 17; license and public docs maintained. Self-approval is allowed. October 17 target addition: repository hygiene and neutral branch naming remain unverified; existing findings retain their original dates. |
 | Quality CI | Complete | Feature CI passed; dependency updates use a separate fresh PR gate. |
 | Immutable release | Complete | CI qualifies and attests one image; protected deployment promotes its digest and verifies public revision. |
 | Deployment access | Complete | Private Coolify API, production-scoped credentials and mapped OIDC identity accepted; old TTT repository secrets and host account retired. Token scope is the Coolify team. |
@@ -108,6 +108,12 @@ September 11 operator readback confirms non-root, cap-drop ALL, init, CPU/RAM li
 
 Adapter, durable spending ledger, backups and isolated restore accepted; all variants through 9×9 K=8 evaluated. K=9 waits for the October UTC evaluation allowance. Public activation is a separate decision; Jev remains disabled. No extra paid evaluation is part of dependency maintenance.
 
+#### Clean tracked files and review history and neutral branch names
+
+**Quality · Planned · 0% · difficulty 3/5 · 2–4 h**
+
+Planned by owner on 2026-10-17; no repository hygiene audit or cleanup performed. Inventory tracked/ignored/generated/sensitive files; preserve legitimate assets and work; prepare scoped removal/ignore rules, prevention checks and agent-free branch names. Review historical removal separately, with exact paths/refs, isolated rehearsal, SHA/release impact and explicit rewrite approval. Do not rename active branches or rewrite now. Standard and acceptance: https://github.com/SzczepanGrela/grela-dev-roadmap/blob/main/docs/repository-hygiene-standard.md . Initial 2–4 h covers discovery/routine cleanup planning and implementation only when assigned; rewrite/large remediation requires re-estimation.
+
 ### Architecture decisions
 
 - Moves use a 30/min token bucket with burst 10; series consume tokens by requested game count.
@@ -122,7 +128,7 @@ Adapter, durable spending ledger, backups and isolated restore accepted; all var
 
 Gra przeglądarkowa z planszami 3×3, 5×5 i 9×9, grą lokalną i agentami oraz przyrostowymi seriami. MCTS obsługuje 5×5; opcjonalny Jev pozostaje wyłączony do zakończenia oceny i decyzji o aktywacji. Moduły treningowe pozostają w repozytorium.
 
-29 września domknięto porządkowanie dokumentacji i decyzję o limitach podczas rolling update. TTT jest wzorcem wdrożenia z jawnymi wyjątkami; izolacja edge w jednym centrum, hardening, monitoring i końcowa aktywacja Jev pozostają osobno. Zachowano daty i zakres dowodów; nie wykonano pełnego audytu serwera. Pozostałe projekty zachowują własne daty audytu.
+29 września domknięto porządkowanie dokumentacji i decyzję o limitach podczas rolling update. TTT jest wzorcem wdrożenia z jawnymi wyjątkami; izolacja edge w jednym centrum, hardening, monitoring i końcowa aktywacja Jev pozostają osobno. Zachowano daty i zakres dowodów; nie wykonano pełnego audytu serwera. Pozostałe projekty zachowują własne daty audytu. Aktualizacja wyłącznie planu 17 października: repository-hygiene 0%, wstępnie 2–4 h, bez jeszcze niewycenionego rewrite. Daty audytu/źródła i ukończenie wcześniejszych zadań zachowane; sumy postępu/pracy przeliczone dla nowego zakresu. Daty kalendarzowe pozostają historyczne, bez wyznaczenia terminu nowego zadania; niska pewność do przeglądu repo.
 
 ### Dowody audytu
 
@@ -137,7 +143,7 @@ Profil: **Aplikacja webowa na VPS**. Statusy odzwierciedlają wyłącznie dowody
 
 | Kontrola | Status | Dowód |
 | --- | --- | --- |
-| Zarządzanie repozytorium | Gotowe | Chroniony main i zatwierdzane przez operatora production odebrane 17 września; licencja i dokumentacja utrzymywane. Self-approval dozwolone. |
+| Zarządzanie repozytorium | Częściowe | Chroniony main i zatwierdzane przez operatora production odebrane 17 września; licencja i dokumentacja utrzymywane. Self-approval dozwolone. Cel dopisany 17 października: porządki repo i neutralne nazwy branchy niezweryfikowane; wcześniejsze ustalenia zachowują własne daty. |
 | Quality CI | Gotowe | CI wydania funkcjonalnego przeszło; zależności podlegają osobnej bieżącej walidacji PR. |
 | Niezmienne wydanie | Gotowe | CI kwalifikuje i atestuje jeden obraz; chroniony deploy promuje jego digest i sprawdza publiczną rewizję. |
 | Dostęp wdrożeniowy | Gotowe | Odebrane prywatne API Coolify, sekrety production i tożsamość OIDC; stare sekrety repo oraz konto hosta TTT wycofane. Token ma zakres zespołu Coolify. |
@@ -217,6 +223,12 @@ September 11 operator readback confirms non-root, cap-drop ALL, init, CPU/RAM li
 **Implementacja · Zablokowane · 85% · trudność 3/5 · 2–4 h**
 
 Adapter, durable spending ledger, backups and isolated restore accepted; all variants through 9×9 K=8 evaluated. K=9 waits for the October UTC evaluation allowance. Public activation is a separate decision; Jev remains disabled. No extra paid evaluation is part of dependency maintenance.
+
+#### Uporządkować śledzone pliki, historię i neutralne nazwy branchy
+
+**Jakość · Planowane · 0% · trudność 3/5 · 2–4 h**
+
+Planned by owner on 2026-10-17; no repository hygiene audit or cleanup performed. Inventory tracked/ignored/generated/sensitive files; preserve legitimate assets and work; prepare scoped removal/ignore rules, prevention checks and agent-free branch names. Review historical removal separately, with exact paths/refs, isolated rehearsal, SHA/release impact and explicit rewrite approval. Do not rename active branches or rewrite now. Standard and acceptance: https://github.com/SzczepanGrela/grela-dev-roadmap/blob/main/docs/repository-hygiene-standard.md . Initial 2–4 h covers discovery/routine cleanup planning and implementation only when assigned; rewrite/large remediation requires re-estimation.
 
 ### Decyzje architektoniczne
 

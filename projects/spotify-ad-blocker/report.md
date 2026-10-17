@@ -2,7 +2,7 @@
 
 Audit date / data audytu: **2026-08-25**<br>
 Estimated completion / szacowane ukończenie: **27%**<br>
-Forecast / prognoza: **2026-12-17–2027-02-23**, 11–20 h, medium confidence / pewność: medium
+Forecast / prognoza: **2026-12-17–2027-02-23**, 13–24 h, low confidence / pewność: low
 
 > This report is synchronized from `project.json` and the versioned delivery-control catalog. / Raport jest synchronizowany z `project.json` i wersjonowanym katalogiem kontroli wdrożeniowych.
 
@@ -12,7 +12,7 @@ Forecast / prognoza: **2026-12-17–2027-02-23**, 11–20 h, medium confidence /
 
 Windows tray utility that detects and skips Spotify advertisements.
 
-The roadmap must not imply affiliation with Spotify or legal certainty.
+The roadmap must not imply affiliation with Spotify or legal certainty. Planning-only update October 17: add repository-hygiene at 0% with provisional 2–4 h, excluding unestimated history rewrite. Previous audit/source dates and task completion retained; aggregate progress/effort recalculated for new scope. Calendar bounds are historical and not rescheduled for this unscheduled task; confidence low pending repository review.
 
 ### Audit evidence
 
@@ -27,7 +27,7 @@ Profile: **Desktop application**. Statuses reflect only evidence available on th
 
 | Control | Status | Evidence |
 | --- | --- | --- |
-| Repository governance | Missing | GitHub returned no active ruleset or environment; remaining elements were assessed from the repository. |
+| Repository governance | Missing | GitHub returned no active ruleset or environment; remaining elements were assessed from the repository. October 17 target addition: repository hygiene and neutral branch naming remain unverified; existing findings retain their original dates. |
 | Quality CI | Missing | No GitHub Actions runs, ruleset or environment were found. |
 | Immutable release | Missing | The required complete implementation was not found in the audited spotify ad blocker source. |
 | Deployment access | Not applicable | The control does not apply to the spotify ad blocker project profile. |
@@ -72,6 +72,12 @@ README exists, but legal limitations, troubleshooting and attribution need a bil
 
 No signed or checksummed versioned release workflow exists.
 
+#### Clean tracked files and review history and neutral branch names
+
+**Quality · Planned · 0% · difficulty 3/5 · 2–4 h**
+
+Planned by owner on 2026-10-17; no repository hygiene audit or cleanup performed. Inventory tracked/ignored/generated/sensitive files; preserve legitimate assets and work; prepare scoped removal/ignore rules, prevention checks and agent-free branch names. Review historical removal separately, with exact paths/refs, isolated rehearsal, SHA/release impact and explicit rewrite approval. Do not rename active branches or rewrite now. Standard and acceptance: https://github.com/SzczepanGrela/grela-dev-roadmap/blob/main/docs/repository-hygiene-standard.md . Initial 2–4 h covers discovery/routine cleanup planning and implementation only when assigned; rewrite/large remediation requires re-estimation.
+
 ### Architecture decisions
 
 - No web hosting or HTTP rate limiting.
@@ -84,7 +90,7 @@ No signed or checksummed versioned release workflow exists.
 
 Narzędzie Windows w trayu wykrywające i pomijające reklamy Spotify.
 
-Roadmapa nie może sugerować powiązania ze Spotify ani pewności prawnej.
+Roadmapa nie może sugerować powiązania ze Spotify ani pewności prawnej. Aktualizacja wyłącznie planu 17 października: repository-hygiene 0%, wstępnie 2–4 h, bez jeszcze niewycenionego rewrite. Daty audytu/źródła i ukończenie wcześniejszych zadań zachowane; sumy postępu/pracy przeliczone dla nowego zakresu. Daty kalendarzowe pozostają historyczne, bez wyznaczenia terminu nowego zadania; niska pewność do przeglądu repo.
 
 ### Dowody audytu
 
@@ -99,7 +105,7 @@ Profil: **Aplikacja desktopowa**. Statusy odzwierciedlają wyłącznie dowody do
 
 | Kontrola | Status | Dowód |
 | --- | --- | --- |
-| Zarządzanie repozytorium | Brak | GitHub nie zwrócił aktywnego rulesetu ani środowiska; pozostałe elementy oceniono z repozytorium. |
+| Zarządzanie repozytorium | Brak | GitHub nie zwrócił aktywnego rulesetu ani środowiska; pozostałe elementy oceniono z repozytorium. Cel dopisany 17 października: porządki repo i neutralne nazwy branchy niezweryfikowane; wcześniejsze ustalenia zachowują własne daty. |
 | Quality CI | Brak | GitHub nie zwrócił żadnego wykonanego workflow Quality dla tego repozytorium. |
 | Niezmienne wydanie | Brak | W audytowanym źródle projektu spotify ad blocker nie znaleziono wymaganej kompletnej implementacji. |
 | Dostęp wdrożeniowy | Nie dotyczy | Kontrola nie dotyczy profilu projektu spotify ad blocker. |
@@ -143,6 +149,12 @@ README exists, but legal limitations, troubleshooting and attribution need a bil
 **Wdrożenie · Planowane · 0% · trudność 3/5 · 3–5 h**
 
 No signed or checksummed versioned release workflow exists.
+
+#### Uporządkować śledzone pliki, historię i neutralne nazwy branchy
+
+**Jakość · Planowane · 0% · trudność 3/5 · 2–4 h**
+
+Planned by owner on 2026-10-17; no repository hygiene audit or cleanup performed. Inventory tracked/ignored/generated/sensitive files; preserve legitimate assets and work; prepare scoped removal/ignore rules, prevention checks and agent-free branch names. Review historical removal separately, with exact paths/refs, isolated rehearsal, SHA/release impact and explicit rewrite approval. Do not rename active branches or rewrite now. Standard and acceptance: https://github.com/SzczepanGrela/grela-dev-roadmap/blob/main/docs/repository-hygiene-standard.md . Initial 2–4 h covers discovery/routine cleanup planning and implementation only when assigned; rewrite/large remediation requires re-estimation.
 
 ### Decyzje architektoniczne
 

@@ -44,15 +44,15 @@
   },
   "complexity": 3,
   "forecast": {
-    "remainingHoursMin": 11,
-    "remainingHoursMax": 20,
-    "remainingDaysMin": 1.5,
-    "remainingDaysMax": 2.5,
+    "remainingHoursMin": 13,
+    "remainingHoursMax": 24,
+    "remainingDaysMin": 1.75,
+    "remainingDaysMax": 3.0,
     "hoursPerDay": 8,
     "hoursPerWeek": 30,
     "earliest": "2026-12-17",
     "latest": "2027-02-23",
-    "confidence": "medium"
+    "confidence": "low"
   },
   "estimation": {
     "date": "2026-08-25",
@@ -155,6 +155,23 @@
       "daysMin": 0.5,
       "daysMax": 0.75,
       "evidence": "No signed or checksummed versioned release workflow exists."
+    },
+    {
+      "id": "repository-hygiene",
+      "title": {
+        "en": "Clean tracked files and review history and neutral branch names",
+        "pl": "Uporządkować śledzone pliki, historię i neutralne nazwy branchy"
+      },
+      "dimension": "quality",
+      "status": "planned",
+      "completion": 0,
+      "weight": 1,
+      "difficulty": 3,
+      "hoursMin": 2,
+      "hoursMax": 4,
+      "daysMin": 0.25,
+      "daysMax": 0.5,
+      "evidence": "Planned by owner on 2026-10-17; no repository hygiene audit or cleanup performed. Inventory tracked/ignored/generated/sensitive files; preserve legitimate assets and work; prepare scoped removal/ignore rules, prevention checks and agent-free branch names. Review historical removal separately, with exact paths/refs, isolated rehearsal, SHA/release impact and explicit rewrite approval. Do not rename active branches or rewrite now. Standard and acceptance: https://github.com/SzczepanGrela/grela-dev-roadmap/blob/main/docs/repository-hygiene-standard.md . Initial 2–4 h covers discovery/routine cleanup planning and implementation only when assigned; rewrite/large remediation requires re-estimation."
     }
   ],
   "verification": {
@@ -188,11 +205,12 @@
     "sources": [
       "audited source tree and git status",
       "GitHub repository, Actions, rulesets and environments API",
-      "public DNS and HTTPS checks where applicable"
+      "public DNS and HTTPS checks where applicable",
+      "2026-10-17 owner planning request: repository-hygiene standard for every repository; no new source/history/branch scan or execution. docs/repository-hygiene-standard.md"
     ],
     "notes": {
-      "en": "The roadmap must not imply affiliation with Spotify or legal certainty.",
-      "pl": "Roadmapa nie może sugerować powiązania ze Spotify ani pewności prawnej."
+      "en": "The roadmap must not imply affiliation with Spotify or legal certainty. Planning-only update October 17: add repository-hygiene at 0% with provisional 2–4 h, excluding unestimated history rewrite. Previous audit/source dates and task completion retained; aggregate progress/effort recalculated for new scope. Calendar bounds are historical and not rescheduled for this unscheduled task; confidence low pending repository review.",
+      "pl": "Roadmapa nie może sugerować powiązania ze Spotify ani pewności prawnej. Aktualizacja wyłącznie planu 17 października: repository-hygiene 0%, wstępnie 2–4 h, bez jeszcze niewycenionego rewrite. Daty audytu/źródła i ukończenie wcześniejszych zadań zachowane; sumy postępu/pracy przeliczone dla nowego zakresu. Daty kalendarzowe pozostają historyczne, bez wyznaczenia terminu nowego zadania; niska pewność do przeglądu repo."
     }
   },
   "compliance": {
@@ -204,11 +222,12 @@
         "id": "governance",
         "status": "missing",
         "evidence": {
-          "en": "GitHub returned no active ruleset or environment; remaining elements were assessed from the repository.",
-          "pl": "GitHub nie zwrócił aktywnego rulesetu ani środowiska; pozostałe elementy oceniono z repozytorium."
+          "en": "GitHub returned no active ruleset or environment; remaining elements were assessed from the repository. October 17 target addition: repository hygiene and neutral branch naming remain unverified; existing findings retain their original dates.",
+          "pl": "GitHub nie zwrócił aktywnego rulesetu ani środowiska; pozostałe elementy oceniono z repozytorium. Cel dopisany 17 października: porządki repo i neutralne nazwy branchy niezweryfikowane; wcześniejsze ustalenia zachowują własne daty."
         },
         "taskIds": [
-          "repository-governance"
+          "repository-governance",
+          "repository-hygiene"
         ]
       },
       {

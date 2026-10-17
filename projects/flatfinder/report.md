@@ -1,8 +1,8 @@
 # Flatfinder — status report / raport stanu
 
 Audit date / data audytu: **2026-08-25**<br>
-Estimated completion / szacowane ukończenie: **26%**<br>
-Forecast / prognoza: **2026-12-04–2027-02-02**, 119–192 h, low confidence / pewność: low
+Estimated completion / szacowane ukończenie: **25%**<br>
+Forecast / prognoza: **2026-12-04–2027-02-02**, 121–196 h, low confidence / pewność: low
 
 > This report is synchronized from `project.json` and the versioned delivery-control catalog. / Raport jest synchronizowany z `project.json` i wersjonowanym katalogiem kontroli wdrożeniowych.
 
@@ -12,7 +12,7 @@ Forecast / prognoza: **2026-12-04–2027-02-02**, 119–192 h, low confidence / 
 
 Multi-portal property search, scraping and multimodal classification platform under reconstruction.
 
-The report separates the impressive code volume from milestone completion and deploy readiness.
+The report separates the impressive code volume from milestone completion and deploy readiness. Planning-only update October 17: add repository-hygiene at 0% with provisional 2–4 h, excluding unestimated history rewrite. Previous audit/source dates and task completion retained; aggregate progress/effort recalculated for new scope. Calendar bounds are historical and not rescheduled for this unscheduled task; confidence low pending repository review.
 
 ### Audit evidence
 
@@ -27,7 +27,7 @@ Profile: **VPS web application**. Statuses reflect only evidence available on th
 
 | Control | Status | Evidence |
 | --- | --- | --- |
-| Repository governance | Partial | GitHub returned no active ruleset or environment; remaining elements were assessed from the repository. |
+| Repository governance | Partial | GitHub returned no active ruleset or environment; remaining elements were assessed from the repository. October 17 target addition: repository hygiene and neutral branch naming remain unverified; existing findings retain their original dates. |
 | Quality CI | Blocked | The latest two CI runs failed at 28885c2 and a752d73; no ruleset or environment exists. |
 | Immutable release | Missing | The required complete implementation was not found in the audited flatfinder source. |
 | Deployment access | Missing | The required complete implementation was not found in the audited flatfinder source. |
@@ -96,6 +96,12 @@ Scraping, export and VLM costs require dedicated quotas and central observabilit
 
 Design assets exist, but no deployed public UI verifies the final identity.
 
+#### Clean tracked files and review history and neutral branch names
+
+**Quality · Planned · 0% · difficulty 3/5 · 2–4 h**
+
+Planned by owner on 2026-10-17; no repository hygiene audit or cleanup performed. Inventory tracked/ignored/generated/sensitive files; preserve legitimate assets and work; prepare scoped removal/ignore rules, prevention checks and agent-free branch names. Review historical removal separately, with exact paths/refs, isolated rehearsal, SHA/release impact and explicit rewrite approval. Do not rename active branches or rewrite now. Standard and acceptance: https://github.com/SzczepanGrela/grela-dev-roadmap/blob/main/docs/repository-hygiene-standard.md . Initial 2–4 h covers discovery/routine cleanup planning and implementation only when assigned; rewrite/large remediation requires re-estimation.
+
 ### Architecture decisions
 
 - Public anonymous scraping is forbidden; use authenticated jobs and per-portal concurrency.
@@ -109,7 +115,7 @@ Design assets exist, but no deployed public UI verifies the final identity.
 
 Wielportalowa wyszukiwarka, scraper i platforma multimodalnej klasyfikacji nieruchomości w przebudowie.
 
-Raport oddziela dużą ilość kodu od ukończenia milestone'ów i gotowości do deployu.
+Raport oddziela dużą ilość kodu od ukończenia milestone'ów i gotowości do deployu. Aktualizacja wyłącznie planu 17 października: repository-hygiene 0%, wstępnie 2–4 h, bez jeszcze niewycenionego rewrite. Daty audytu/źródła i ukończenie wcześniejszych zadań zachowane; sumy postępu/pracy przeliczone dla nowego zakresu. Daty kalendarzowe pozostają historyczne, bez wyznaczenia terminu nowego zadania; niska pewność do przeglądu repo.
 
 ### Dowody audytu
 
@@ -124,7 +130,7 @@ Profil: **Aplikacja webowa na VPS**. Statusy odzwierciedlają wyłącznie dowody
 
 | Kontrola | Status | Dowód |
 | --- | --- | --- |
-| Zarządzanie repozytorium | Częściowe | GitHub nie zwrócił aktywnego rulesetu ani środowiska; pozostałe elementy oceniono z repozytorium. |
+| Zarządzanie repozytorium | Częściowe | GitHub nie zwrócił aktywnego rulesetu ani środowiska; pozostałe elementy oceniono z repozytorium. Cel dopisany 17 października: porządki repo i neutralne nazwy branchy niezweryfikowane; wcześniejsze ustalenia zachowują własne daty. |
 | Quality CI | Zablokowane | Najnowszy workflow Quality jest czerwony i blokuje uznanie tej kontroli za spełnioną. |
 | Niezmienne wydanie | Brak | W audytowanym źródle projektu flatfinder nie znaleziono wymaganej kompletnej implementacji. |
 | Dostęp wdrożeniowy | Brak | W audytowanym źródle projektu flatfinder nie znaleziono wymaganej kompletnej implementacji. |
@@ -192,6 +198,12 @@ Scraping, export and VLM costs require dedicated quotas and central observabilit
 **Dokumentacja · W toku · 35% · trudność 2/5 · 2–3 h**
 
 Design assets exist, but no deployed public UI verifies the final identity.
+
+#### Uporządkować śledzone pliki, historię i neutralne nazwy branchy
+
+**Jakość · Planowane · 0% · trudność 3/5 · 2–4 h**
+
+Planned by owner on 2026-10-17; no repository hygiene audit or cleanup performed. Inventory tracked/ignored/generated/sensitive files; preserve legitimate assets and work; prepare scoped removal/ignore rules, prevention checks and agent-free branch names. Review historical removal separately, with exact paths/refs, isolated rehearsal, SHA/release impact and explicit rewrite approval. Do not rename active branches or rewrite now. Standard and acceptance: https://github.com/SzczepanGrela/grela-dev-roadmap/blob/main/docs/repository-hygiene-standard.md . Initial 2–4 h covers discovery/routine cleanup planning and implementation only when assigned; rewrite/large remediation requires re-estimation.
 
 ### Decyzje architektoniczne
 

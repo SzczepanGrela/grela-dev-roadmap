@@ -1,8 +1,8 @@
 # MovieRAG — status report / raport stanu
 
 Audit date / data audytu: **2026-08-25**<br>
-Estimated completion / szacowane ukończenie: **56%**<br>
-Forecast / prognoza: **2026-12-11–2027-02-15**, 26–43 h, medium confidence / pewność: medium
+Estimated completion / szacowane ukończenie: **53%**<br>
+Forecast / prognoza: **2026-12-11–2027-02-15**, 28–47 h, low confidence / pewność: low
 
 > This report is synchronized from `project.json` and the versioned delivery-control catalog. / Raport jest synchronizowany z `project.json` i wersjonowanym katalogiem kontroli wdrożeniowych.
 
@@ -12,7 +12,7 @@ Forecast / prognoza: **2026-12-11–2027-02-15**, 26–43 h, medium confidence /
 
 Semantic and agentic movie search over plots, scenes, themes and cast.
 
-The application is live and mature; remaining work is production polish rather than core delivery.
+The application is live and mature; remaining work is production polish rather than core delivery. Planning-only update October 17: add repository-hygiene at 0% with provisional 2–4 h, excluding unestimated history rewrite. Previous audit/source dates and task completion retained; aggregate progress/effort recalculated for new scope. Calendar bounds are historical and not rescheduled for this unscheduled task; confidence low pending repository review.
 
 ### Audit evidence
 
@@ -27,7 +27,7 @@ Profile: **VPS web application**. Statuses reflect only evidence available on th
 
 | Control | Status | Evidence |
 | --- | --- | --- |
-| Repository governance | Partial | GitHub returned no active ruleset or environment; remaining elements were assessed from the repository. |
+| Repository governance | Partial | GitHub returned no active ruleset or environment; remaining elements were assessed from the repository. October 17 target addition: repository hygiene and neutral branch naming remain unverified; existing findings retain their original dates. |
 | Quality CI | Complete | Latest CI/CD runs succeeded; GHCR images exist but use latest/short SHA deployment; no ruleset or environment exists. |
 | Immutable release | Partial | movie rag has some mechanisms but does not yet satisfy the complete v2 control. |
 | Deployment access | Partial | movie rag has some mechanisms but does not yet satisfy the complete v2 control. |
@@ -84,6 +84,12 @@ The workflow publishes images but deploys latest/short tags and globally prunes 
 
 Central resource/deployment visibility and tested database backups were not verified.
 
+#### Clean tracked files and review history and neutral branch names
+
+**Quality · Planned · 0% · difficulty 3/5 · 2–4 h**
+
+Planned by owner on 2026-10-17; no repository hygiene audit or cleanup performed. Inventory tracked/ignored/generated/sensitive files; preserve legitimate assets and work; prepare scoped removal/ignore rules, prevention checks and agent-free branch names. Review historical removal separately, with exact paths/refs, isolated rehearsal, SHA/release impact and explicit rewrite approval. Do not rename active branches or rewrite now. Standard and acceptance: https://github.com/SzczepanGrela/grela-dev-roadmap/blob/main/docs/repository-hygiene-standard.md . Initial 2–4 h covers discovery/routine cleanup planning and implementation only when assigned; rewrite/large remediation requires re-estimation.
+
 ### Architecture decisions
 
 - Search and Ask AI use separate policies and SLAs.
@@ -97,7 +103,7 @@ Central resource/deployment visibility and tested database backups were not veri
 
 Semantyczne i agentowe wyszukiwanie filmów po fabule, scenach, motywach i obsadzie.
 
-Aplikacja jest dojrzała i live; pozostał głównie polish produkcyjny.
+Aplikacja jest dojrzała i live; pozostał głównie polish produkcyjny. Aktualizacja wyłącznie planu 17 października: repository-hygiene 0%, wstępnie 2–4 h, bez jeszcze niewycenionego rewrite. Daty audytu/źródła i ukończenie wcześniejszych zadań zachowane; sumy postępu/pracy przeliczone dla nowego zakresu. Daty kalendarzowe pozostają historyczne, bez wyznaczenia terminu nowego zadania; niska pewność do przeglądu repo.
 
 ### Dowody audytu
 
@@ -112,7 +118,7 @@ Profil: **Aplikacja webowa na VPS**. Statusy odzwierciedlają wyłącznie dowody
 
 | Kontrola | Status | Dowód |
 | --- | --- | --- |
-| Zarządzanie repozytorium | Częściowe | GitHub nie zwrócił aktywnego rulesetu ani środowiska; pozostałe elementy oceniono z repozytorium. |
+| Zarządzanie repozytorium | Częściowe | GitHub nie zwrócił aktywnego rulesetu ani środowiska; pozostałe elementy oceniono z repozytorium. Cel dopisany 17 października: porządki repo i neutralne nazwy branchy niezweryfikowane; wcześniejsze ustalenia zachowują własne daty. |
 | Quality CI | Gotowe | GitHub Actions potwierdza zielony, proporcjonalny zestaw kontroli jakości dla audytowanego commitu. |
 | Niezmienne wydanie | Częściowe | Projekt movie rag ma część mechanizmów, ale nie spełnia jeszcze całej kontroli v2. |
 | Dostęp wdrożeniowy | Częściowe | Projekt movie rag ma część mechanizmów, ale nie spełnia jeszcze całej kontroli v2. |
@@ -168,6 +174,12 @@ The workflow publishes images but deploys latest/short tags and globally prunes 
 **Wdrożenie · Planowane · 0% · trudność 4/5 · 3–5 h**
 
 Central resource/deployment visibility and tested database backups were not verified.
+
+#### Uporządkować śledzone pliki, historię i neutralne nazwy branchy
+
+**Jakość · Planowane · 0% · trudność 3/5 · 2–4 h**
+
+Planned by owner on 2026-10-17; no repository hygiene audit or cleanup performed. Inventory tracked/ignored/generated/sensitive files; preserve legitimate assets and work; prepare scoped removal/ignore rules, prevention checks and agent-free branch names. Review historical removal separately, with exact paths/refs, isolated rehearsal, SHA/release impact and explicit rewrite approval. Do not rename active branches or rewrite now. Standard and acceptance: https://github.com/SzczepanGrela/grela-dev-roadmap/blob/main/docs/repository-hygiene-standard.md . Initial 2–4 h covers discovery/routine cleanup planning and implementation only when assigned; rewrite/large remediation requires re-estimation.
 
 ### Decyzje architektoniczne
 

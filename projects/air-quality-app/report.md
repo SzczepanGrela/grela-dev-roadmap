@@ -1,8 +1,8 @@
 # Air Quality App — status report / raport stanu
 
 Audit date / data audytu: **2026-08-25**<br>
-Estimated completion / szacowane ukończenie: **45%**<br>
-Forecast / prognoza: **2026-10-02–2026-10-20**, 36–58 h, low confidence / pewność: low
+Estimated completion / szacowane ukończenie: **42%**<br>
+Forecast / prognoza: **2026-10-02–2026-10-20**, 38–62 h, low confidence / pewność: low
 
 > This report is synchronized from `project.json` and the versioned delivery-control catalog. / Raport jest synchronizowany z `project.json` i wersjonowanym katalogiem kontroli wdrożeniowych.
 
@@ -12,7 +12,7 @@ Forecast / prognoza: **2026-10-02–2026-10-20**, 36–58 h, low confidence / pe
 
 Polish air-quality dashboard with history, maps, interpolation and ML estimates.
 
-The local work is valuable but counts as in progress until tested and pushed.
+The local work is valuable but counts as in progress until tested and pushed. Planning-only update October 17: add repository-hygiene at 0% with provisional 2–4 h, excluding unestimated history rewrite. Previous audit/source dates and task completion retained; aggregate progress/effort recalculated for new scope. Calendar bounds are historical and not rescheduled for this unscheduled task; confidence low pending repository review.
 
 ### Audit evidence
 
@@ -27,7 +27,7 @@ Profile: **VPS web application**. Statuses reflect only evidence available on th
 
 | Control | Status | Evidence |
 | --- | --- | --- |
-| Repository governance | Partial | GitHub returned no active ruleset or environment; remaining elements were assessed from the repository. |
+| Repository governance | Partial | GitHub returned no active ruleset or environment; remaining elements were assessed from the repository. October 17 target addition: repository hygiene and neutral branch naming remain unverified; existing findings retain their original dates. |
 | Quality CI | Partial | Latest CI and deploy workflow succeeded at d627511, but local backend/frontend changes remain unaudited by CI; no ruleset or environment exists. |
 | Immutable release | Missing | The required complete implementation was not found in the audited air quality app source. |
 | Deployment access | Partial | air quality app has some mechanisms but does not yet satisfy the complete v2 control. |
@@ -96,6 +96,12 @@ No verified central dashboards or alerts cover the complete service.
 
 No favicon reference was found in the audited frontend.
 
+#### Clean tracked files and review history and neutral branch names
+
+**Quality · Planned · 0% · difficulty 3/5 · 2–4 h**
+
+Planned by owner on 2026-10-17; no repository hygiene audit or cleanup performed. Inventory tracked/ignored/generated/sensitive files; preserve legitimate assets and work; prepare scoped removal/ignore rules, prevention checks and agent-free branch names. Review historical removal separately, with exact paths/refs, isolated rehearsal, SHA/release impact and explicit rewrite approval. Do not rename active branches or rewrite now. Standard and acceptance: https://github.com/SzczepanGrela/grela-dev-roadmap/blob/main/docs/repository-hygiene-standard.md . Initial 2–4 h covers discovery/routine cleanup planning and implementation only when assigned; rewrite/large remediation requires re-estimation.
+
 ### Architecture decisions
 
 - Map tiles use a high cached limit; estimates use a lower CPU-aware limit.
@@ -109,7 +115,7 @@ No favicon reference was found in the audited frontend.
 
 Panel jakości powietrza w Polsce z historią, mapami, interpolacją i estymacją ML.
 
-Lokalna praca jest wartościowa, ale pozostaje w toku do czasu testów i pushu.
+Lokalna praca jest wartościowa, ale pozostaje w toku do czasu testów i pushu. Aktualizacja wyłącznie planu 17 października: repository-hygiene 0%, wstępnie 2–4 h, bez jeszcze niewycenionego rewrite. Daty audytu/źródła i ukończenie wcześniejszych zadań zachowane; sumy postępu/pracy przeliczone dla nowego zakresu. Daty kalendarzowe pozostają historyczne, bez wyznaczenia terminu nowego zadania; niska pewność do przeglądu repo.
 
 ### Dowody audytu
 
@@ -124,7 +130,7 @@ Profil: **Aplikacja webowa na VPS**. Statusy odzwierciedlają wyłącznie dowody
 
 | Kontrola | Status | Dowód |
 | --- | --- | --- |
-| Zarządzanie repozytorium | Częściowe | GitHub nie zwrócił aktywnego rulesetu ani środowiska; pozostałe elementy oceniono z repozytorium. |
+| Zarządzanie repozytorium | Częściowe | GitHub nie zwrócił aktywnego rulesetu ani środowiska; pozostałe elementy oceniono z repozytorium. Cel dopisany 17 października: porządki repo i neutralne nazwy branchy niezweryfikowane; wcześniejsze ustalenia zachowują własne daty. |
 | Quality CI | Częściowe | Quality CI istnieje, ale nie obejmuje całego bieżącego stanu lub części wymaganych kontroli v2. |
 | Niezmienne wydanie | Brak | W audytowanym źródle projektu air quality app nie znaleziono wymaganej kompletnej implementacji. |
 | Dostęp wdrożeniowy | Częściowe | Projekt air quality app ma część mechanizmów, ale nie spełnia jeszcze całej kontroli v2. |
@@ -192,6 +198,12 @@ No verified central dashboards or alerts cover the complete service.
 **Dokumentacja · Planowane · 0% · trudność 2/5 · 1–2 h**
 
 No favicon reference was found in the audited frontend.
+
+#### Uporządkować śledzone pliki, historię i neutralne nazwy branchy
+
+**Jakość · Planowane · 0% · trudność 3/5 · 2–4 h**
+
+Planned by owner on 2026-10-17; no repository hygiene audit or cleanup performed. Inventory tracked/ignored/generated/sensitive files; preserve legitimate assets and work; prepare scoped removal/ignore rules, prevention checks and agent-free branch names. Review historical removal separately, with exact paths/refs, isolated rehearsal, SHA/release impact and explicit rewrite approval. Do not rename active branches or rewrite now. Standard and acceptance: https://github.com/SzczepanGrela/grela-dev-roadmap/blob/main/docs/repository-hygiene-standard.md . Initial 2–4 h covers discovery/routine cleanup planning and implementation only when assigned; rewrite/large remediation requires re-estimation.
 
 ### Decyzje architektoniczne
 

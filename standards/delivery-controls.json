@@ -34,7 +34,7 @@
     {
       "id": "governance",
       "title": {"en": "Repository governance", "pl": "Zarządzanie repozytorium"},
-      "description": {"en": "Protected default branch, required checks, license and maintained public documentation.", "pl": "Chroniona gałąź domyślna, wymagane kontrole, licencja i aktualna dokumentacja publiczna."},
+      "description": {"en": "Protected default branch, required checks, license and maintained public documentation; reviewed tracked files/ignore rules, explicitly scoped history cleanup and neutral task-based branch names under docs/repository-hygiene-standard.md.", "pl": "Chroniona gałąź domyślna, wymagane kontrole, licencja i aktualna dokumentacja publiczna; przegląd śledzonych plików/ignore, jawny zakres porządkowania historii i neutralne nazwy branchy według docs/repository-hygiene-standard.md."},
       "profiles": ["vps-web", "static-web", "desktop", "repository", "developer-tool"]
     },
     {

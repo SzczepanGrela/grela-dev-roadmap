@@ -12,14 +12,14 @@ Forecast / prognoza: **2026-10-28–2026-11-09**, 53–102 h, low confidence / p
 
 ASP.NET Core VOD catalogue with HLS processing, R2 storage and administration.
 
-October 17 scoped follow-up: unchanged draft f4aca03, all ten real tracks technically pass both local browsers; Home confirmed in shown wide view, not attributed to Android. Prior desktop/Android results retained. Operator limited further testing: remaining Android/Safari checks and prepared VLC source comparison deferred, not passed. Phone/audio identified; OS tentative/browser version unknown, no version chase. Sintel cause/full synchronization acceptance unresolved; no reconversion. Credits readable, design unapproved. Next: concrete content/publication disposition, twelve-object publication/readback, real HTTPS/CORS and final-image qualification. Keys null, uploads/worker false, no app/provider/deploy changes. UI/mobile/credits and repository hygiene remain planned. Completion stays 54%, effort 53–102 h; existing task estimates/calendar retain their dates and low confidence, not newly measured or booked.
+October 17 HLS review accepts local technical preparation at draft a357fd4: seven films, 20 variants, 1398 objects/1083549423 bytes. Independent identities/graph/proposal checks passed; worker 14/14 browser cases inspected, CI 303 .NET green. Maximum 1080 box; Tears of Steel tops at 862x360 and Elephants Dream at 426x240 from retained sources, no upscaling. First audio/AAC stereo; ten VTTs unchanged. Sintel sync unresolved, manual deferrals remain; old MP4/device results do not certify new HLS. Next: exact-packet/publication decision, actual upload/HTTPS/CORS/hash verification, separate 17-reference activation and final-image import/restart. Shipping manifest unchanged, uploads/worker false. No app/provider/deploy changes by coordinator. UI and repository hygiene remain planned. Progress 54%, effort 53–102 h and previous dated low-confidence estimates unchanged; no new schedule commitment.
 
 ### Audit evidence
 
-- **Repozytorium:** `SzczepanGrela/netfilmx-movie-catalog` @ `f4aca03ec70af427cd3da82912d88ea1b87aec20`
-- **Source state:** Unchanged reviewed candidate f4aca03, clean worker checkout and remote draft PR #1 checked October 16. Only new UI/mobile/credits scope estimated at 16–32 h from operator feedback and reviewed UI evidence; previous task ranges retain their October 4 baseline without fresh remeasurement. Calendar rebased for the dedicated worker lane; candidate is not production.
-- **Tests and CI:** CI/CD 38704058532 and Dependency audit 38704058491 green for f4aca03 October 15; logs inspected. Image/Quality pass, publish/deploy skipped. Runtime patched to .NET 10.0.13, SDK 10.0.401 unchanged. Scanner gates fixable HIGH/CRITICAL, not every advisory. Earlier recovery remains source 986e9aa, not this final image.
-- **Production:** Worker reports no production/R2 mutation; coordinator performed no fresh VPS/provider audit or app merge/deploy. No production digest published by this PR run. Uploads/worker stay off. Protection readback retains October 12 date; local recovery does not establish new release readiness.
+- **Repozytorium:** `SzczepanGrela/netfilmx-movie-catalog` @ `a357fd455d217cf873d8b3b0b8bdc8d341a737af`
+- **Source state:** October 17 bounded review of clean HLS candidate a357fd4 and matching draft PR #1. This source/evidence update does not re-estimate effort: October 16 UI/mobile/credits 16–32 h and earlier task ranges/calendar retain their dates and low confidence. Candidate is not production.
+- **Tests and CI:** CI/CD 39025600549 and Dependency audit 39025600511 green for reviewed a357fd4 October 17: 303 .NET/zero skips, image/scan/Quality pass; publish/deploy skipped. PR merge-ref build tied to reviewed head. Normal image smoke does not qualify published HLS/final PG catalogue. Earlier synthetic PG/keyring/two-web recovery remains source 986e9aa, not this final image.
+- **Production:** No app merge/deploy/manifest activation or VPS/R2/Cloudflare mutation in this stage. Worker reports no publication; coordinator performed no fresh provider/runtime audit. Uploads/worker false, two playback plus ten subtitle fields still null in shipping catalogue; proposed changes cover seven playback plus ten subtitle references. Protection evidence retains October 12 date; production limits/recovery/cutover remain.
 
 ### v2 standard compliance
 
@@ -28,7 +28,7 @@ Profile: **VPS web application**. Statuses reflect only evidence available on th
 | Control | Status | Evidence |
 | --- | --- | --- |
 | Repository governance | Partial | Main unprotected, zero rulesets/environments at October 12 readback; workflow gate code is not installed protection. October 17 target addition: repository hygiene and neutral branch naming remain unverified; existing findings retain their original dates. |
-| Quality CI | Partial | October 15 f4aca03 CI: 294 .NET/zero skips, 34 Python, qualified image/Quality and audits green. Coordinator passed 56 focused tests. Manual media, native devices and live gates remain. |
+| Quality CI | Partial | October 17 scoped update at a357fd4: 303 .NET/zero skips, qualified image/Quality/audits green. Coordinator checked 1398 objects/graph/proposal and six regressions; worker local HLS browser results inspected. Production qualification remains; manual/device deferrals are not passes. Other control assessments retain their dates. |
 | Immutable release | Partial | R1 accepted; one qualified image and digest/attestation workflow prepared. PR publication skipped; effective protection, main digest and bootstrap unaccepted. |
 | Deployment access | Partial | Legacy SSH path retired in candidate; scoped private access and protected environment still need effective configuration. |
 | Network, TLS and client identity | Partial | Exact proxy source/tests added to candidate; older public routing evidence does not prove new production identity. |
@@ -46,7 +46,7 @@ Profile: **VPS web application**. Statuses reflect only evidence available on th
 
 **Implementation · In progress · 85% · difficulty 5/5 · 10–18 h**
 
-Source reconciliation and credits/source evidence remain accepted. At f4aca03 ten Sintel WebVTTs, persistent subtitle relations, PG/SQLite migrations/import, actual player language/Off and source-retaining upload failure/retry handling are implemented and reviewed. Two MP4s unchanged. Twelve shipping keys remain null; manual media and later worker gates, remaining i18n stay open.
+At a357fd4 all seven originals use the shared FFmpegService for H.264/AAC adaptive HLS; 20 variants without upscaling, maximum 1920x1080 box and first audio/stereo. Theora ending/SAR and player readiness/quality switching corrected. Ten Sintel WebVTTs, persistent relations/import and source-retaining upload handling preserved. Current seven-playback/ten-subtitle proposal is inactive; old two-MP4 proposal is historical. Shipping catalogue unchanged; remaining i18n and later upload/worker gates stay open.
 
 #### Modernize UI, mobile interaction and credits presentation
 
@@ -58,7 +58,7 @@ Separate future scope after backend/media and first-release acceptance; no redes
 
 **Quality · In progress · 80% · difficulty 4/5 · 5–10 h**
 
-October 15 f4aca03 CI retained: 294 .NET/zero skips, 34 Python, image/Quality/audit green; publish/deploy skipped. No full rerun. October 17 coordinator reviewed worker harness and Chromium/Firefox results for ten real VTTs: 26 cue texts/times per language, labels/characters/seeks/Off, muted. Home has a scoped operator pass, not an Android claim. Remaining manual/device trials and VLC source comparison deferred by operator; Sintel cause/full sync acceptance unresolved. Actual HTTPS/final-image acceptance remains.
+October 17 a357fd4 CI: 303 .NET/zero skips, image/Quality/audits green; publish/deploy skipped. Coordinator passed six HLS graph regressions and independently verified all 1398 object hashes/lengths, graph, originals/old MP4/VTT and exact 17-field proposal. Worker 14/14 real MVC/Vidstack Chromium/Firefox cases inspected: decoded qualities, Auto selection, seeks/native end and ten Sintel languages/Off. Muted/local; not full-film listening, measured network adaptation or target HTTPS. Sintel sync unresolved; manual/device deferrals preserved.
 
 #### Require green CI on protected main
 
@@ -70,7 +70,7 @@ October 12 read-only GitHub metadata: main unprotected, zero rulesets/environmen
 
 **Documentation · In progress · 90% · difficulty 3/5 · 1–3 h**
 
-October 17 record and handoff retain accepted subtitle/source/recovery work, scoped ten-real-track and Home results, explicit manual/device deferrals and unresolved Sintel sync. Current assignment no longer demands another test round. Concrete publication disposition precedes twelve-object real HTTPS/CORS and final-image import/restart; production recovery/cutover separate. UI/mobile/credits and repository hygiene stay planned; uploads/worker false.
+October 17 seven-film HLS review updates handoff and first-release plan. Exact 1398-object proposal supersedes the historical two-MP4/ten-VTT package; 17 catalogue references stay inactive. Source/encoding limits, generation versus reviewed SHA, independent versus inspected evidence and manual deferrals are explicit. Publication decision/readback precedes separate activation and final-image qualification. Production recovery/cutover separate; UI/mobile/credits and repository hygiene planned; uploads/worker false.
 
 #### Add login, upload and transcoding limits
 
@@ -109,9 +109,10 @@ Planned by owner on 2026-10-17; no repository hygiene audit or cleanup performed
 - The project follows the v2 standard profile: vps-web.
 - Migration target updated September 6: prebuilt GHCR digest in Coolify, Traefik/Tunnel routing and the shared deployment checklist; preserve databases and custom routes. This target update is not a new source/production audit.
 - Fresh PostgreSQL catalogue from existing licensed R2 media, new accounts and empty history; retain legacy database/original objects and exclude old YouTube/demo links.
-- Subtitle implementation reviewed; retain all ten Sintel languages as WebVTT without reconverting unchanged MP4s. Operator media acceptance and twelve-object publication/readback precede manifest activation and final-image qualification. Coordinator owns protection, budgets, backup/cutover. Preserve originals and parent; uploads/worker and UI modernization remain later.
+- Historical October 15 subtitle decision: ten Sintel WebVTTs retained with existing MP4s. The earlier two-MP4/ten-VTT publication proposal is superseded by the October 17 seven-film HLS decision below; preserve its files/evidence, do not apply its patch.
 - October 16: preserve scoped manual passes without claiming Sintel synchronization acceptance or inventing an offset. Credits readability is partially confirmed; visual design is not approved. Plan UI/mobile/credits separately after the current release work, retaining all creator/licence/source/change attribution.
 - October 17: operator reduced detailed manual testing. Preserve unperformed VLC/Android/Safari checks as deferred, not passed; do not chase exact versions or request another round. Sintel cause and full synchronization acceptance remain unresolved. Reduced scope does not itself authorize media publication.
+- October 17: prepare adaptive HLS for all seven originals through the shared pipeline, without upscaling or sync offsets. Technical local review accepted a357fd4; 1398 objects/20 variants with ten byte-identical VTTs. Maximum 1080 bounding box, source-limited quality and first audio/stereo are explicit publication choices. Operator must accept the exact packet/conditions before publication; HTTPS/hash readback precedes separately authorized 17-reference activation and final-image qualification. No current merge/deploy/provider write; uploads/worker false.
 
 ## Polski
 
@@ -119,14 +120,14 @@ Planned by owner on 2026-10-17; no repository hygiene audit or cleanup performed
 
 Katalog VOD ASP.NET Core z HLS, magazynem R2 i panelem administracyjnym.
 
-Przegląd 17 października: draft f4aca03 bez zmian; wszystkie 10 rzeczywistych ścieżek technicznie przechodzi obie lokalne przeglądarki. Home potwierdzone w pokazanym szerokim widoku, bez przypisania do Androida. Wcześniejsze wyniki desktop/Android zachowane. Operator ograniczył testy: pozostałe próby Android/Safari i przygotowane porównanie VLC odłożone, nie zaliczone. Telefon/audio ustalone, OS niepewny/przeglądarka bez dokładnej wersji; bez dalszych pytań o wersje. Przyczyna i pełny odbiór synchronizacji Sintela nierozstrzygnięte; bez konwersji. Credits czytelne, wygląd niezaakceptowany. Następnie konkretna decyzja o publikacji, 12 obiektów i rzeczywisty HTTPS/CORS oraz kwalifikacja finalnego obrazu. Klucze null, uploady/worker false; bez zmian aplikacji/providerów/wdrożenia. UI/mobile/credits i sprzątanie repo nadal planowane. Postęp 54%, praca 53–102 h bez zmian; dotychczasowe estymaty/datowanie i niska pewność zachowane, bez nowego pomiaru ani rezerwacji terminu.
+Przegląd HLS z 17 października przyjmuje lokalne przygotowanie techniczne draftu a357fd4: siedem filmów, 20 wariantów, 1398 obiektów/1083549423 bajty. Niezależna kontrola plików/grafu/propozycji zaliczona; sprawdzono wyniki 14/14 prób przeglądarek workera, CI 303 .NET zielone. Maksymalna ramka 1080; Tears of Steel do 862x360, Elephants Dream do 426x240 zgodnie z zachowanymi źródłami, bez upscalingu. Pierwsze audio/AAC stereo, dziesięć VTT bez zmian. Synchronizacja Sintela nierozstrzygnięta, próby ręczne nadal odłożone; stare wyniki MP4/urządzeń nie stanowią odbioru nowego HLS. Następnie decyzja o konkretnym pakiecie/publikacji, rzeczywista publikacja/HTTPS/CORS/sumy, osobna aktywacja 17 referencji i import/restart finalnego obrazu. Manifest bez zmian, uploads/worker false. Koordynator nie zmieniał aplikacji/providerów/wdrożenia. UI i porządki repo nadal planowane. Postęp 54%, praca 53–102 h i wcześniejsze datowane estymaty o niskiej pewności bez zmian; bez nowego zobowiązania terminowego.
 
 ### Dowody audytu
 
-- **Repozytorium:** `SzczepanGrela/netfilmx-movie-catalog` @ `f4aca03ec70af427cd3da82912d88ea1b87aec20`
-- **Stan źródła:** Unchanged reviewed candidate f4aca03, clean worker checkout and remote draft PR #1 checked October 16. Only new UI/mobile/credits scope estimated at 16–32 h from operator feedback and reviewed UI evidence; previous task ranges retain their October 4 baseline without fresh remeasurement. Calendar rebased for the dedicated worker lane; candidate is not production.
-- **Testy i CI:** CI/CD 38704058532 and Dependency audit 38704058491 green for f4aca03 October 15; logs inspected. Image/Quality pass, publish/deploy skipped. Runtime patched to .NET 10.0.13, SDK 10.0.401 unchanged. Scanner gates fixable HIGH/CRITICAL, not every advisory. Earlier recovery remains source 986e9aa, not this final image.
-- **Produkcja:** Worker reports no production/R2 mutation; coordinator performed no fresh VPS/provider audit or app merge/deploy. No production digest published by this PR run. Uploads/worker stay off. Protection readback retains October 12 date; local recovery does not establish new release readiness.
+- **Repozytorium:** `SzczepanGrela/netfilmx-movie-catalog` @ `a357fd455d217cf873d8b3b0b8bdc8d341a737af`
+- **Stan źródła:** October 17 bounded review of clean HLS candidate a357fd4 and matching draft PR #1. This source/evidence update does not re-estimate effort: October 16 UI/mobile/credits 16–32 h and earlier task ranges/calendar retain their dates and low confidence. Candidate is not production.
+- **Testy i CI:** CI/CD 39025600549 and Dependency audit 39025600511 green for reviewed a357fd4 October 17: 303 .NET/zero skips, image/scan/Quality pass; publish/deploy skipped. PR merge-ref build tied to reviewed head. Normal image smoke does not qualify published HLS/final PG catalogue. Earlier synthetic PG/keyring/two-web recovery remains source 986e9aa, not this final image.
+- **Produkcja:** No app merge/deploy/manifest activation or VPS/R2/Cloudflare mutation in this stage. Worker reports no publication; coordinator performed no fresh provider/runtime audit. Uploads/worker false, two playback plus ten subtitle fields still null in shipping catalogue; proposed changes cover seven playback plus ten subtitle references. Protection evidence retains October 12 date; production limits/recovery/cutover remain.
 
 ### Zgodność ze standardem v2
 
@@ -135,7 +136,7 @@ Profil: **Aplikacja webowa na VPS**. Statusy odzwierciedlają wyłącznie dowody
 | Kontrola | Status | Dowód |
 | --- | --- | --- |
 | Zarządzanie repozytorium | Częściowe | Main bez ochrony, zero rulesets/environments w odczycie 12 października; kod workflow nie stanowi aktywnej ochrony. Cel dopisany 17 października: porządki repo i neutralne nazwy branchy niezweryfikowane; wcześniejsze ustalenia zachowują własne daty. |
-| Quality CI | Częściowe | CI f4aca03 z 15 października: 294 .NET/zero pominięć, 34 Python, kwalifikacja obrazu/Quality i audyty zielone. Koordynator zaliczył 56 ukierunkowanych testów. Odbiór ręczny mediów, urządzeń i produkcji pozostaje. |
+| Quality CI | Częściowe | Aktualizacja zakresu 17 października na a357fd4: 303 .NET/zero pominięć, kwalifikacja obrazu/Quality/audyty zielone. Koordynator sprawdził 1398 obiektów/graf/propozycję i sześć regresji oraz wyniki lokalnych przeglądarek workera. Kwalifikacja produkcji pozostaje; odłożone próby ręczne/urządzeń nie są zaliczone. Oceny pozostałych kontroli zachowują daty. |
 | Niezmienne wydanie | Częściowe | R1 odebrane; przygotowano kwalifikowany obraz oraz workflow digest/attestation. Publikacja PR pominięta; ochrona, digest main i bootstrap nieodebrane. |
 | Dostęp wdrożeniowy | Częściowe | Ścieżka SSH wycofana w kandydacie; prywatny dostęp i chronione środowisko wymagają konfiguracji. |
 | Sieć, TLS i tożsamość klienta | Częściowe | Exact-proxy dodano w kodzie/testach; stare dowody routingu nie potwierdzają tożsamości nowej produkcji. |
@@ -153,7 +154,7 @@ Profil: **Aplikacja webowa na VPS**. Statusy odzwierciedlają wyłącznie dowody
 
 **Implementacja · W toku · 85% · trudność 5/5 · 10–18 h**
 
-Source reconciliation and credits/source evidence remain accepted. At f4aca03 ten Sintel WebVTTs, persistent subtitle relations, PG/SQLite migrations/import, actual player language/Off and source-retaining upload failure/retry handling are implemented and reviewed. Two MP4s unchanged. Twelve shipping keys remain null; manual media and later worker gates, remaining i18n stay open.
+At a357fd4 all seven originals use the shared FFmpegService for H.264/AAC adaptive HLS; 20 variants without upscaling, maximum 1920x1080 box and first audio/stereo. Theora ending/SAR and player readiness/quality switching corrected. Ten Sintel WebVTTs, persistent relations/import and source-retaining upload handling preserved. Current seven-playback/ten-subtitle proposal is inactive; old two-MP4 proposal is historical. Shipping catalogue unchanged; remaining i18n and later upload/worker gates stay open.
 
 #### Zmodernizować UI, obsługę mobilną i prezentację credits
 
@@ -165,7 +166,7 @@ Separate future scope after backend/media and first-release acceptance; no redes
 
 **Jakość · W toku · 80% · trudność 4/5 · 5–10 h**
 
-October 15 f4aca03 CI retained: 294 .NET/zero skips, 34 Python, image/Quality/audit green; publish/deploy skipped. No full rerun. October 17 coordinator reviewed worker harness and Chromium/Firefox results for ten real VTTs: 26 cue texts/times per language, labels/characters/seeks/Off, muted. Home has a scoped operator pass, not an Android claim. Remaining manual/device trials and VLC source comparison deferred by operator; Sintel cause/full sync acceptance unresolved. Actual HTTPS/final-image acceptance remains.
+October 17 a357fd4 CI: 303 .NET/zero skips, image/Quality/audits green; publish/deploy skipped. Coordinator passed six HLS graph regressions and independently verified all 1398 object hashes/lengths, graph, originals/old MP4/VTT and exact 17-field proposal. Worker 14/14 real MVC/Vidstack Chromium/Firefox cases inspected: decoded qualities, Auto selection, seeks/native end and ten Sintel languages/Off. Muted/local; not full-film listening, measured network adaptation or target HTTPS. Sintel sync unresolved; manual/device deferrals preserved.
 
 #### Wymagać zielonego CI na chronionym main
 
@@ -177,7 +178,7 @@ October 12 read-only GitHub metadata: main unprotected, zero rulesets/environmen
 
 **Dokumentacja · W toku · 90% · trudność 3/5 · 1–3 h**
 
-October 17 record and handoff retain accepted subtitle/source/recovery work, scoped ten-real-track and Home results, explicit manual/device deferrals and unresolved Sintel sync. Current assignment no longer demands another test round. Concrete publication disposition precedes twelve-object real HTTPS/CORS and final-image import/restart; production recovery/cutover separate. UI/mobile/credits and repository hygiene stay planned; uploads/worker false.
+October 17 seven-film HLS review updates handoff and first-release plan. Exact 1398-object proposal supersedes the historical two-MP4/ten-VTT package; 17 catalogue references stay inactive. Source/encoding limits, generation versus reviewed SHA, independent versus inspected evidence and manual deferrals are explicit. Publication decision/readback precedes separate activation and final-image qualification. Production recovery/cutover separate; UI/mobile/credits and repository hygiene planned; uploads/worker false.
 
 #### Dodać limity logowania, uploadu i transkodowania
 
@@ -216,6 +217,7 @@ Planned by owner on 2026-10-17; no repository hygiene audit or cleanup performed
 - Projekt podlega profilowi standardu v2: vps-web.
 - Cel migracji uaktualniony 6 września: digest GHCR w Coolify, routing Traefik/Tunnel i wspólna checklista; zachować bazy i custom routes. Zmiana celu nie jest nowym audytem źródła/produkcji.
 - Nowy katalog PostgreSQL z istniejących legalnych mediów R2, nowe konta i pusta historia; zachować starą bazę/originals i wykluczyć YouTube/demo.
-- Napisy odebrane technicznie; zachować dziesięć języków Sintel jako WebVTT bez ponownej konwersji niezmienionych MP4. Odbiór operatora i publikacja/odczyt dwunastu obiektów poprzedzają aktywację manifestu i kwalifikację finalnego obrazu. Koordynator odpowiada za ochronę, limity, kopie/cutover. Zachować oryginały i parent; uploady/worker oraz modernizacja UI później.
+- Historyczna decyzja o napisach z 15 października: dziesięć WebVTT Sintela zachowanych z istniejącymi MP4. Plan publikacji dwóch MP4 i dziesięciu VTT zastępuje poniższa decyzja o HLS siedmiu filmów z 17 października; zachować pliki/dowody, nie stosować starego patcha.
 - 16 października: zachować odebrane próby bez uznawania synchronizacji Sintela ani zgadywania offsetu. Czytelność credits częściowo potwierdzona; wygląd niezaakceptowany. UI/mobile/credits zaplanowane osobno po bieżącym wydaniu, z zachowaniem twórców/licencji/źródeł/zmian.
 - 17 października: operator ograniczył szczegółowe próby ręczne. Niewykonane VLC/Android/Safari pozostają odłożone, nie zaliczone; bez ponownej rundy i żądania dokładnych wersji. Przyczyna i pełny odbiór synchronizacji Sintela nierozstrzygnięte. Ograniczenie testów nie jest samo w sobie zgodą na publikację mediów.
+- 17 października: HLS wszystkich siedmiu oryginałów przez wspólny pipeline, bez upscalingu i przesuwania synchronizacji. Lokalny odbiór techniczny a357fd4 zaliczony; 1398 obiektów/20 wariantów i dziesięć identycznych bajtowo VTT. Maksymalna ramka 1080, jakość ograniczona źródłem i pierwsze audio/stereo są jawnymi wyborami publikacji. Operator akceptuje konkretny pakiet/warunki przed publikacją; odczyt HTTPS/sum poprzedza osobno autoryzowaną aktywację 17 referencji i kwalifikację finalnego obrazu. Bez bieżącego merge/deploy/zapisu providerów; uploads/worker false.

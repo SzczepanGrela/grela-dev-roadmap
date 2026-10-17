@@ -18,8 +18,8 @@ October 17 HLS review accepts local technical preparation at draft a357fd4: seve
 
 - **Repozytorium:** `SzczepanGrela/netfilmx-movie-catalog` @ `a357fd455d217cf873d8b3b0b8bdc8d341a737af`
 - **Source state:** October 17 bounded review of clean HLS candidate a357fd4 and matching draft PR #1. This source/evidence update does not re-estimate effort: October 16 UI/mobile/credits 16–32 h and earlier task ranges/calendar retain their dates and low confidence. Candidate is not production.
-- **Tests and CI:** CI/CD 39025600549 and Dependency audit 39025600511 green for reviewed a357fd4 October 17: 303 .NET/zero skips, image/scan/Quality pass; publish/deploy skipped. PR merge-ref build tied to reviewed head. Normal image smoke does not qualify published HLS/final PG catalogue. Earlier synthetic PG/keyring/two-web recovery remains source 986e9aa, not this final image.
-- **Production:** No app merge/deploy/manifest activation or VPS/R2/Cloudflare mutation in this stage. Worker reports no publication; coordinator performed no fresh provider/runtime audit. Uploads/worker false, two playback plus ten subtitle fields still null in shipping catalogue; proposed changes cover seven playback plus ten subtitle references. Protection evidence retains October 12 date; production limits/recovery/cutover remain.
+- **Tests and CI:** CI/CD 39032806639 and Dependency audit 39032806625 green for reviewed 8c7b8d5 October 17: 303 .NET, image/scan/Quality pass; publish/deploy skipped. Normal image smoke does not qualify published HLS/final PG catalogue. Earlier synthetic PG/keyring/two-web recovery remains source 986e9aa, not this final image.
+- **Production:** No app merge/deploy, manifest activation, transfer or VPS/R2/Cloudflare mutation. Tool defaults offline; actual publication requires agreed packet/conditions, CORS/profile prerequisites and a single authorized executor. Uploads/worker false; two playback plus ten subtitle fields still null in shipping catalogue, proposal changes seven playback plus ten subtitle references. Protection evidence retains October 12 date; production limits/recovery/cutover remain.
 
 ### v2 standard compliance
 
@@ -46,7 +46,7 @@ Profile: **VPS web application**. Statuses reflect only evidence available on th
 
 **Implementation · In progress · 85% · difficulty 5/5 · 10–18 h**
 
-At a357fd4 all seven originals use the shared FFmpegService for H.264/AAC adaptive HLS; 20 variants without upscaling, maximum 1920x1080 box and first audio/stereo. Theora ending/SAR and player readiness/quality switching corrected. Ten Sintel WebVTTs, persistent relations/import and source-retaining upload handling preserved. Current seven-playback/ten-subtitle proposal is inactive; old two-MP4 proposal is historical. Shipping catalogue unchanged; remaining i18n and later upload/worker gates stay open.
+At a357fd4 all seven originals use the shared FFmpegService for H.264/AAC adaptive HLS; 20 variants without upscaling, maximum 1920x1080 box and first audio/stereo. Theora ending/SAR and player readiness/quality switching corrected. Ten Sintel WebVTTs, persistent relations/import and source-retaining upload handling preserved. Current seven-playback/ten-subtitle proposal is inactive; old two-MP4 proposal is historical. Shipping catalogue unchanged; remaining i18n and later upload/worker gates stay open. Publication tool added at 8c7b8d5; no app runtime or media change in that stage.
 
 #### Modernize UI, mobile interaction and credits presentation
 
@@ -58,7 +58,7 @@ Separate future scope after backend/media and first-release acceptance; no redes
 
 **Quality · In progress · 80% · difficulty 4/5 · 5–10 h**
 
-October 17 a357fd4 CI: 303 .NET/zero skips, image/Quality/audits green; publish/deploy skipped. Coordinator passed six HLS graph regressions and independently verified all 1398 object hashes/lengths, graph, originals/old MP4/VTT and exact 17-field proposal. Worker 14/14 real MVC/Vidstack Chromium/Firefox cases inspected: decoded qualities, Auto selection, seeks/native end and ten Sintel languages/Off. Muted/local; not full-film listening, measured network adaptation or target HTTPS. Sintel sync unresolved; manual/device deferrals preserved.
+October 17 8c7b8d5 CI: 303 .NET, image/Quality/audits green; publish/deploy skipped. Coordinator passed 33 publisher tests (fake S3/loopback HTTP), verified 13 evidence hashes and ran the real 1398-object/1083549423-byte dry-run with socket/process traps: zero network/subprocess/PUT attempts. Conditional creation, full GET comparison, bound resume and HTTPS verification reviewed; no actual S3 transfer or target HTTPS test yet. Earlier accepted HLS/browser/manual evidence retains its scope; Sintel sync unresolved and manual deferrals preserved.
 
 #### Require green CI on protected main
 
@@ -70,7 +70,7 @@ October 12 read-only GitHub metadata: main unprotected, zero rulesets/environmen
 
 **Documentation · In progress · 90% · difficulty 3/5 · 1–3 h**
 
-October 17 seven-film HLS review updates handoff and first-release plan. Exact 1398-object proposal supersedes the historical two-MP4/ten-VTT package; 17 catalogue references stay inactive. Source/encoding limits, generation versus reviewed SHA, independent versus inspected evidence and manual deferrals are explicit. Publication decision/readback precedes separate activation and final-image qualification. Production recovery/cutover separate; UI/mobile/credits and repository hygiene planned; uploads/worker false.
+October 17 publisher review records exact source/package, offline evidence and execution/resume procedure at 8c7b8d5. The seven-film/1398-object proposal is unchanged; old two-MP4 package historical. Local acceptance does not authorize transfer, CORS configuration, 17-reference activation or deployment. Publication conditions and target readback precede separately authorized final-image qualification. Production recovery/cutover separate; UI/mobile/credits and repository hygiene planned; uploads/worker false.
 
 #### Add login, upload and transcoding limits
 
@@ -126,8 +126,8 @@ Przegląd HLS z 17 października przyjmuje lokalne przygotowanie techniczne draf
 
 - **Repozytorium:** `SzczepanGrela/netfilmx-movie-catalog` @ `a357fd455d217cf873d8b3b0b8bdc8d341a737af`
 - **Stan źródła:** October 17 bounded review of clean HLS candidate a357fd4 and matching draft PR #1. This source/evidence update does not re-estimate effort: October 16 UI/mobile/credits 16–32 h and earlier task ranges/calendar retain their dates and low confidence. Candidate is not production.
-- **Testy i CI:** CI/CD 39025600549 and Dependency audit 39025600511 green for reviewed a357fd4 October 17: 303 .NET/zero skips, image/scan/Quality pass; publish/deploy skipped. PR merge-ref build tied to reviewed head. Normal image smoke does not qualify published HLS/final PG catalogue. Earlier synthetic PG/keyring/two-web recovery remains source 986e9aa, not this final image.
-- **Produkcja:** No app merge/deploy/manifest activation or VPS/R2/Cloudflare mutation in this stage. Worker reports no publication; coordinator performed no fresh provider/runtime audit. Uploads/worker false, two playback plus ten subtitle fields still null in shipping catalogue; proposed changes cover seven playback plus ten subtitle references. Protection evidence retains October 12 date; production limits/recovery/cutover remain.
+- **Testy i CI:** CI/CD 39032806639 and Dependency audit 39032806625 green for reviewed 8c7b8d5 October 17: 303 .NET, image/scan/Quality pass; publish/deploy skipped. Normal image smoke does not qualify published HLS/final PG catalogue. Earlier synthetic PG/keyring/two-web recovery remains source 986e9aa, not this final image.
+- **Produkcja:** No app merge/deploy, manifest activation, transfer or VPS/R2/Cloudflare mutation. Tool defaults offline; actual publication requires agreed packet/conditions, CORS/profile prerequisites and a single authorized executor. Uploads/worker false; two playback plus ten subtitle fields still null in shipping catalogue, proposal changes seven playback plus ten subtitle references. Protection evidence retains October 12 date; production limits/recovery/cutover remain.
 
 ### Zgodność ze standardem v2
 
@@ -154,7 +154,7 @@ Profil: **Aplikacja webowa na VPS**. Statusy odzwierciedlają wyłącznie dowody
 
 **Implementacja · W toku · 85% · trudność 5/5 · 10–18 h**
 
-At a357fd4 all seven originals use the shared FFmpegService for H.264/AAC adaptive HLS; 20 variants without upscaling, maximum 1920x1080 box and first audio/stereo. Theora ending/SAR and player readiness/quality switching corrected. Ten Sintel WebVTTs, persistent relations/import and source-retaining upload handling preserved. Current seven-playback/ten-subtitle proposal is inactive; old two-MP4 proposal is historical. Shipping catalogue unchanged; remaining i18n and later upload/worker gates stay open.
+At a357fd4 all seven originals use the shared FFmpegService for H.264/AAC adaptive HLS; 20 variants without upscaling, maximum 1920x1080 box and first audio/stereo. Theora ending/SAR and player readiness/quality switching corrected. Ten Sintel WebVTTs, persistent relations/import and source-retaining upload handling preserved. Current seven-playback/ten-subtitle proposal is inactive; old two-MP4 proposal is historical. Shipping catalogue unchanged; remaining i18n and later upload/worker gates stay open. Publication tool added at 8c7b8d5; no app runtime or media change in that stage.
 
 #### Zmodernizować UI, obsługę mobilną i prezentację credits
 
@@ -166,7 +166,7 @@ Separate future scope after backend/media and first-release acceptance; no redes
 
 **Jakość · W toku · 80% · trudność 4/5 · 5–10 h**
 
-October 17 a357fd4 CI: 303 .NET/zero skips, image/Quality/audits green; publish/deploy skipped. Coordinator passed six HLS graph regressions and independently verified all 1398 object hashes/lengths, graph, originals/old MP4/VTT and exact 17-field proposal. Worker 14/14 real MVC/Vidstack Chromium/Firefox cases inspected: decoded qualities, Auto selection, seeks/native end and ten Sintel languages/Off. Muted/local; not full-film listening, measured network adaptation or target HTTPS. Sintel sync unresolved; manual/device deferrals preserved.
+October 17 8c7b8d5 CI: 303 .NET, image/Quality/audits green; publish/deploy skipped. Coordinator passed 33 publisher tests (fake S3/loopback HTTP), verified 13 evidence hashes and ran the real 1398-object/1083549423-byte dry-run with socket/process traps: zero network/subprocess/PUT attempts. Conditional creation, full GET comparison, bound resume and HTTPS verification reviewed; no actual S3 transfer or target HTTPS test yet. Earlier accepted HLS/browser/manual evidence retains its scope; Sintel sync unresolved and manual deferrals preserved.
 
 #### Wymagać zielonego CI na chronionym main
 
@@ -178,7 +178,7 @@ October 12 read-only GitHub metadata: main unprotected, zero rulesets/environmen
 
 **Dokumentacja · W toku · 90% · trudność 3/5 · 1–3 h**
 
-October 17 seven-film HLS review updates handoff and first-release plan. Exact 1398-object proposal supersedes the historical two-MP4/ten-VTT package; 17 catalogue references stay inactive. Source/encoding limits, generation versus reviewed SHA, independent versus inspected evidence and manual deferrals are explicit. Publication decision/readback precedes separate activation and final-image qualification. Production recovery/cutover separate; UI/mobile/credits and repository hygiene planned; uploads/worker false.
+October 17 publisher review records exact source/package, offline evidence and execution/resume procedure at 8c7b8d5. The seven-film/1398-object proposal is unchanged; old two-MP4 package historical. Local acceptance does not authorize transfer, CORS configuration, 17-reference activation or deployment. Publication conditions and target readback precede separately authorized final-image qualification. Production recovery/cutover separate; UI/mobile/credits and repository hygiene planned; uploads/worker false.
 
 #### Dodać limity logowania, uploadu i transkodowania
 

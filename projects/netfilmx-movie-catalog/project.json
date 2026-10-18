@@ -66,12 +66,12 @@
   },
   "focus": {
     "current": {
-      "en": "NHP17-1 accepted at draft 82f6a79: fixed verifier identity and failure metadata, all controls retained. Coordinator 36 tests and sealed evidence checks pass; CI/audits green, 303 .NET. Completed HLS publication/full HTTP acceptance retained.",
-      "pl": "NHP17-1 odebrane na drafcie 82f6a79: stała identyfikacja weryfikatora i metadane błędów, wszystkie kontrole zachowane. Koordynator: 36 testów i kontrola dowodów zaliczone; CI/audyty zielone, 303 .NET. Odbiór publikacji HLS/pełnego HTTP zachowany."
+      "en": "Accepted at draft 6f57dbb: 17 HLS/VTT references active; real PostgreSQL import/refusal/restart and 14 actual-player public-media browser cases pass locally. Coordinator 24 tests and evidence/image checks pass; CI 304 .NET green.",
+      "pl": "Odebrane na drafcie 6f57dbb: aktywne 17 referencji HLS/VTT; lokalny rzeczywisty import PostgreSQL/odmowa/restart i 14 prób playera z publicznymi mediami zaliczone. Koordynator: 24 testy i kontrola dowodów/obrazu zaliczone; CI 304 .NET zielone."
     },
     "next": {
-      "en": "No remaining verifier correction. Separately authorized activation of seven playback and ten subtitle references, then final-image import/restart/browser qualification with published media. No repeat transfer/encoding/full HTTP/manual round; production gates and later UI/hygiene remain.",
-      "pl": "Brak dalszej poprawki weryfikatora. Osobno autoryzowana aktywacja siedmiu odnośników HLS i dziesięciu napisów, potem kwalifikacja importu/restartu/playera finalnego obrazu z opublikowanymi mediami. Bez ponownego transferu/kodowania/pełnego HTTP/rundy ręcznej; produkcja oraz późniejsze UI/porządki pozostają."
+      "en": "Coordinator first-release preparation: effective protection, legacy data/writers, consistent backup/restore, production budgets and explicit bootstrap/cutover/rollback. Separate authorization before app merge/GHCR/deploy. No repeat media stage; uploads/worker off, UI/hygiene planned.",
+      "pl": "Koordynator przygotowuje pierwsze wydanie: rzeczywistą ochronę, dane i procesy starego wdrożenia, spójne kopie/odtworzenie, limity i bootstrap/przełączenie/rollback. Osobne upoważnienie przed merge/GHCR/deploy. Bez powtarzania etapu mediów; uploads/worker wyłączone, UI/porządki planowane."
     }
   },
   "tasks": [
@@ -90,7 +90,7 @@
       "hoursMax": 18,
       "daysMin": 1.25,
       "daysMax": 2.25,
-      "evidence": "At a357fd4 all seven originals use the shared FFmpegService for H.264/AAC adaptive HLS; 20 variants without upscaling, maximum 1920x1080 box and first audio/stereo. Theora ending/SAR and player readiness/quality switching corrected. Ten Sintel WebVTTs, persistent relations/import and source-retaining upload handling preserved. Current seven-playback/ten-subtitle proposal is inactive; old two-MP4 proposal is historical. Shipping catalogue unchanged; remaining i18n and later upload/worker gates stay open. Publication tool added at 8c7b8d5; no app runtime or media change in that stage. October 17 later execution: exact HLS objects published; shipping references remain inactive and require a separate activation stage. NHP17-1 accepted at 82f6a79; fixed verifier identity only, no runtime/manifest activation."
+      "evidence": "At a357fd4 all seven retained originals use the shared FFmpegService for H.264/AAC adaptive HLS: 20 variants without upscaling, maximum 1920x1080 bounding box, first audio/AAC stereo. Theora ending/SAR and player readiness/quality switching corrected. Ten Sintel WebVTTs, persistent relations/import and source-retaining upload handling preserved. October 18 superseding acceptance at 6f57dbb activates exactly seven HLS and ten VTT references, byte-identical approved proposal; real CLI import/restart and actual-player public-media results accepted locally. Historical two-MP4 proposal is not used. Production import, remaining i18n and later upload/worker gates stay open."
     },
     {
       "id": "ui-mobile-credits",
@@ -124,7 +124,7 @@
       "hoursMax": 10,
       "daysMin": 0.75,
       "daysMax": 1.25,
-      "evidence": "October 17 NHP17-1 closed at 82f6a79: coordinator 36 publisher tests pass, all-method User-Agent and 403 stop/result metadata tested; original content/TLS/CORS/redirect controls unchanged. 17 new/61 prior sealed files verify; worker 3 public samples inspected without adapter. CI/audits green, 303 .NET/image/scan/Quality; Publish/Deploy skipped. Previous publication/full HTTP remains accepted; final-image/browser/production gates and manual deferrals remain."
+      "evidence": "October 18 draft 6f57dbb: CI/CD 39086857490 and audit 39086857541 green, 304 .NET/image/scan/Quality; Publish/Deploy skipped. Coordinator 24 focused manifest/credits tests and 67 new/78 prior evidence checks pass; local image ID independently read. Worker 14 actual-player public HLS cases inspected, TLS/CORS enabled, app origin represented privately. Production gates, Sintel uncertainty and manual deferrals remain."
     },
     {
       "id": "repository-governance",
@@ -158,7 +158,7 @@
       "hoursMax": 3,
       "daysMin": 0.25,
       "daysMax": 0.5,
-      "evidence": "October 17 NHP17-1 acceptance updates the supported verifier identity and result metadata; historical default HTTP failure and successful adapter retained separately. No corrective assignment or repeat transfer remains. Handoff awaits separate 17-reference activation/final-image stage. Production recovery/cutover separate; UI/mobile/credits and repository hygiene planned; uploads/worker false."
+      "evidence": "October 18 coordinator acceptance records activated HLS/VTT manifest and local final-image PG import/restart/public-media player qualification; earlier publication/NHP17-1 retained. Handoff moves to coordinator protection, legacy recovery, budgets and release plan. Production acceptance separate; UI/mobile/credits and repository hygiene planned; uploads/worker false."
     },
     {
       "id": "route-protection",
@@ -247,10 +247,10 @@
     }
   ],
   "verification": {
-    "worktree": "Clean 82f6a7966fced2ff746a6cd33bc8e410ceb0ac5e matches OPEN/DRAFT PR #1 in October 17 readback; one NHP17-1 commit after accepted publication source 8c7b8d5. Coordinator made no app edits. Dirty parent, originals and prior evidence preserved; no history/branch cleanup.",
-    "tests": "NHP17-1: coordinator reran 36 publisher tests (fake S3/loopback), zero failures/skips; all-method fixed-header and 403-stop/failure-metadata regressions pass. Verified 17 new and 61 prior sealed evidence files. Inspected worker direct-class public segment/VTT/master sample: 3/3, 12 requests, 1618077 bytes, full local packet validation first; no adapter or partial-list CLI. No redundant coordinator public download or media/browser rerun. Prior full publication/HTTP, HLS browser scope, Sintel uncertainty and manual deferrals retained.",
-    "ci": "CI/CD 39066441683 and dependency audit 39066441637 successful at 82f6a79 in live October 17 readback. Sealed TRX: 303 .NET passed, zero failures/skips; image/scan/Quality pass, Publish/Deploy skipped. Normal PR merge-ref CI does not qualify an activated real-media final image; earlier synthetic recovery remains tied to 986e9aa.",
-    "production": "Media publication completed by the authorized worker: 1398 new objects, all 24 old objects retained, no overwrite/delete; operator capacity condition satisfied. Target HTTPS accepted with identified client, not yet browser/final-image acceptance. Coordinator performed read-only samples and no provider mutation. No app merge/deploy/VPS change or manifest activation; uploads/worker false. Seven playback plus ten subtitle references await separate authorization, two playback plus ten subtitle fields still null in shipping catalogue. Production protection/budgets/recovery/cutover remain."
+    "worktree": "Clean 6f57dbb83ab814b3a99a2c90e9cb9652e8b138ab matches OPEN/DRAFT PR #1 in October 18 live readback; seven commits after accepted 82f6a79. Coordinator made no app edits. Dirty parent, originals and earlier evidence preserved; no cleanup/rewrite.",
+    "tests": "Coordinator independently passed 24 focused .NET manifest/credits tests, verified 67 new + 17 verifier + 61 publication sealed files, exact 17 manifest changes/proposal identity and local Docker image/revision. Inspected worker real image-CLI PG migration/import (7 films/1 series/3 links/10 subtitles), repeated-import refusal and restart preserving IDs/mappings. Worker actual MVC/Vidstack 14/14 Chromium/Firefox public-media cases, 20 decoded variants per engine, ten languages/Off, selected seeking/end/replay; TLS/CORS enabled, private local app origin. No independent full browser/transfer replay or audible/device acceptance.",
+    "ci": "CI/CD 39086857490 and dependency audit 39086857541 successful at 6f57dbb in live October 18 readback. Sealed TRX: 304 .NET, zero failures/skips; image/scan/Quality pass, Publish/Deploy skipped. Local public-media image identity is distinct from CI build and is not a published GHCR digest. Earlier two-web recovery stays tied to 986e9aa.",
+    "production": "Earlier 1398-object media publication/full HTTPS and 24 retained old objects remain accepted. Exactly 17 catalogue references active in draft candidate; local real-media image/player acceptance complete. No app merge/GHCR/deploy/VPS change; uploads/worker false. Local app origin does not prove production app routing/certificate/proxy. Production protection/budgets/legacy backup/recovery/cutover remain."
   },
   "media": {
     "screenshot": "assets/screenshots/netfilmx-movie-catalog.png",
@@ -302,10 +302,14 @@
     {
       "en": "October 17 NHP17-1 accepted at 82f6a79. No further client correction or repeat publication; manifest activation remains separately authorized.",
       "pl": "17 października NHP17-1 odebrane na 82f6a79. Bez dalszej poprawki klienta i ponownej publikacji; aktywacja manifestu wymaga osobnego upoważnienia."
+    },
+    {
+      "en": "October 18: accept exactly 17 candidate references and local final-image catalogue/player qualification at 6f57dbb. Do not repeat completed publication or deferred manual tests. Production release remains separately authorized.",
+      "pl": "18 października: odebrać dokładnie 17 referencji kandydata oraz lokalną kwalifikację finalnego obrazu/katalogu/playera na 6f57dbb. Nie powtarzać publikacji ani odłożonych prób ręcznych. Wydanie produkcyjne wymaga osobnego upoważnienia."
     }
   ],
   "audit": {
-    "date": "2026-10-17",
+    "date": "2026-10-18",
     "sources": [
       "Draft PR #1 f4aca03ec70af427cd3da82912d88ea1b87aec20; coordinator subtitle source/results review October 15",
       "CI/CD https://github.com/SzczepanGrela/netfilmx-movie-catalog/actions/runs/38704058532 and Dependency audit 38704058491; head-bound logs inspected",
@@ -334,11 +338,14 @@
       "One-off identified HTTP adapter reviewed: only User-Agent changed, original verification methods inherited. Coordinator five loopback/regression tests and three public segment/VTT/master samples pass. Failed default HTTP 403/1010 retained; tracked CLI identity follow-up NHP17-1 pending. No repeat full transfer, full HTTP or browser acceptance.",
       "October 17 NHP17-1 source review at 82f6a7966fced2ff746a6cd33bc8e410ceb0ac5e and matching live OPEN/DRAFT PR #1: fixed client identity plus result metadata; original validation/S3/HTTP content controls unchanged.",
       "Coordinator 36 publisher tests pass; 17 new and 61 prior sealed evidence files verified. Worker direct HttpVerifier 3-object sample inspected, no adapter/partial-list CLI; no repeated coordinator public/media run.",
-      "CI/CD https://github.com/SzczepanGrela/netfilmx-movie-catalog/actions/runs/39066441683 and dependency audit https://github.com/SzczepanGrela/netfilmx-movie-catalog/actions/runs/39066441637 successful at 82f6a79; 303 .NET in sealed TRX, image/scan/Quality pass, Publish/Deploy skipped."
+      "CI/CD https://github.com/SzczepanGrela/netfilmx-movie-catalog/actions/runs/39066441683 and dependency audit https://github.com/SzczepanGrela/netfilmx-movie-catalog/actions/runs/39066441637 successful at 82f6a79; 303 .NET in sealed TRX, image/scan/Quality pass, Publish/Deploy skipped.",
+      "October 18 source diff and live OPEN/DRAFT PR #1 at 6f57dbb83ab814b3a99a2c90e9cb9652e8b138ab; independent 17-leaf manifest/proposal comparison and local Docker image/revision inspect.",
+      "Coordinator 24 focused .NET tests pass; 67 new/78 prior sealed files verified. Worker real PG image-CLI import/repeat refusal/restart plus actual MVC/Vidstack 14/14 public HLS/VTT browser cases inspected. Private local app origin with real public media TLS/CORS; not production app routing.",
+      "CI/CD https://github.com/SzczepanGrela/netfilmx-movie-catalog/actions/runs/39086857490 and audit https://github.com/SzczepanGrela/netfilmx-movie-catalog/actions/runs/39086857541 successful at reviewed head; sealed TRX 304 .NET, Publish/Deploy skipped."
     ],
     "notes": {
-      "en": "Latest October 17 review closes NHP17-1 at draft 82f6a79: fixed honest verifier identity, stopped-result metadata, all controls retained. Coordinator 36 tests and sealed evidence checks pass; worker 3 public samples inspected. CI/audits green with 303 .NET. No further corrective work or repeated transfer. Completed 1398-object publication/full identified-client HTTP and 24 retained old objects keep their earlier scope. Next separate authorization for 17 references and real-media final-image/browser qualification; no activation/deploy in this review. Sintel unresolved, manual trials deferred; uploads/worker false, UI/hygiene planned. Progress 54%, effort 53–102 h and dated estimates unchanged.",
-      "pl": "Najnowszy odbiór 17 października zamyka NHP17-1 na drafcie 82f6a79: stała jawna identyfikacja weryfikatora, metadane błędów, wszystkie kontrole zachowane. Koordynator: 36 testów i kontrola dowodów zaliczone; sprawdzono trzy publiczne próbki workera. CI/audyty zielone, 303 .NET. Brak dalszej poprawki i potrzeby ponownego transferu. Publikacja 1398 obiektów/pełny HTTP z jawnym klientem oraz zachowane 24 stare obiekty utrzymują wcześniejszy zakres. Następnie osobna zgoda na 17 referencji i kwalifikację finalnego obrazu/playera; bez aktywacji/wdrożenia w tym przeglądzie. Sintel nierozstrzygnięty, próby ręczne odłożone; uploads/worker false, UI/porządki planowane. Postęp 54%, praca 53–102 h i datowane estymaty bez zmian."
+      "en": "Latest October 18 review accepts activated catalogue and local final-image PG import/restart/public-media browser qualification at draft 6f57dbb. Exactly 17 references; coordinator 24 tests and evidence/image checks pass; CI 304 .NET green. No blocking corrective assignment. Production protection, legacy backup/restore, budgets and release remain open; no app merge/GHCR/deploy. Sintel unresolved, manual trials deferred, uploads/worker false; UI/hygiene planned. Progress 54%, effort 53–102 h and dated estimates unchanged.",
+      "pl": "Najnowszy odbiór 18 października przyjmuje aktywowany katalog oraz lokalną kwalifikację finalnego obrazu: import PostgreSQL/restart/player z publicznymi mediami, draft 6f57dbb. Dokładnie 17 referencji; koordynator: 24 testy i kontrola dowodów/obrazu zaliczone; CI 304 .NET zielone. Brak blokującej poprawki. Ochrona produkcji, kopie/odtworzenie starego wdrożenia, limity i wydanie pozostają otwarte; bez merge/GHCR/deploy. Sintel nierozstrzygnięty, próby ręczne odłożone, uploads/worker false; UI/porządki planowane. Postęp 54%, praca 53–102 h i datowane estymaty bez zmian."
     }
   },
   "compliance": {
@@ -362,8 +369,8 @@
         "id": "quality-ci",
         "status": "partial",
         "evidence": {
-          "en": "October 17 82f6a79 CI/audits pass, 303 .NET; NHP17-1 accepted with 36 coordinator publisher tests and inspected worker public samples. Final-image/browser/production acceptance remains; other control dates unchanged.",
-          "pl": "CI/audyty 82f6a79 z 17 października zielone, 303 .NET; NHP17-1 odebrane, 36 testów publikatora koordynatora i sprawdzone publiczne próbki workera. Finalny obraz/player/produkcja nadal do odbioru; daty pozostałych kontroli zachowane."
+          "en": "October 18 6f57dbb CI/audits green, 304 .NET; coordinator 24 focused tests and evidence/image checks pass. Local final-image real catalogue/player accepted; production gates remain. Other control dates unchanged.",
+          "pl": "18 października 6f57dbb: CI/audyty zielone, 304 .NET; 24 testy koordynatora i kontrola dowodów/obrazu zaliczone. Lokalny finalny obraz z rzeczywistym katalogiem/playerem odebrany; bramki produkcyjne pozostają. Daty innych kontroli bez zmian."
         },
         "taskIds": [
           "quality-security"
@@ -428,8 +435,8 @@
         "id": "readiness-preflight",
         "status": "partial",
         "evidence": {
-          "en": "Explicit migration, runtime-role grants and synthetic empty-catalogue import/refusal pass locally; real accepted manifest and production bootstrap/schema-compatible rollback remain.",
-          "pl": "Jawna migracja, uprawnienia runtime i syntetyczny import/odmowa importu przechodzą lokalnie; pozostają rzeczywisty manifest i produkcyjny bootstrap/rollback zgodny ze schematem."
+          "en": "October 18 real approved manifest imported by candidate image CLI after explicit PG migration/runtime grants; repeat refused, PG/web restart preserves IDs/mappings and readiness. Production bootstrap/schema-compatible rollback still unaccepted.",
+          "pl": "18 października rzeczywisty zatwierdzony manifest zaimportowano CLI obrazu po jawnej migracji PG/uprawnieniach runtime; powtórka odrzucona, restart PG/web zachowuje ID/powiązania i readiness. Produkcyjny bootstrap/rollback zgodny ze schematem nadal nieodebrany."
         },
         "taskIds": [
           "blue-green"

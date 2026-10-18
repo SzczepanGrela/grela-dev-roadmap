@@ -1,6 +1,6 @@
 # NetFilmx Movie Catalog — status report / raport stanu
 
-Audit date / data audytu: **2026-10-17**<br>
+Audit date / data audytu: **2026-10-18**<br>
 Estimated completion / szacowane ukończenie: **54%**<br>
 Forecast / prognoza: **2026-10-28–2026-11-09**, 53–102 h, low confidence / pewność: low
 
@@ -12,14 +12,14 @@ Forecast / prognoza: **2026-10-28–2026-11-09**, 53–102 h, low confidence / p
 
 ASP.NET Core VOD catalogue with HLS processing, R2 storage and administration.
 
-Latest October 17 review closes NHP17-1 at draft 82f6a79: fixed honest verifier identity, stopped-result metadata, all controls retained. Coordinator 36 tests and sealed evidence checks pass; worker 3 public samples inspected. CI/audits green with 303 .NET. No further corrective work or repeated transfer. Completed 1398-object publication/full identified-client HTTP and 24 retained old objects keep their earlier scope. Next separate authorization for 17 references and real-media final-image/browser qualification; no activation/deploy in this review. Sintel unresolved, manual trials deferred; uploads/worker false, UI/hygiene planned. Progress 54%, effort 53–102 h and dated estimates unchanged.
+Latest October 18 review accepts activated catalogue and local final-image PG import/restart/public-media browser qualification at draft 6f57dbb. Exactly 17 references; coordinator 24 tests and evidence/image checks pass; CI 304 .NET green. No blocking corrective assignment. Production protection, legacy backup/restore, budgets and release remain open; no app merge/GHCR/deploy. Sintel unresolved, manual trials deferred, uploads/worker false; UI/hygiene planned. Progress 54%, effort 53–102 h and dated estimates unchanged.
 
 ### Audit evidence
 
 - **Repozytorium:** `SzczepanGrela/netfilmx-movie-catalog` @ `a357fd455d217cf873d8b3b0b8bdc8d341a737af`
 - **Source state:** October 17 bounded review of clean HLS candidate a357fd4 and matching draft PR #1. This source/evidence update does not re-estimate effort: October 16 UI/mobile/credits 16–32 h and earlier task ranges/calendar retain their dates and low confidence. Candidate is not production.
-- **Tests and CI:** CI/CD 39066441683 and dependency audit 39066441637 successful at 82f6a79 in live October 17 readback. Sealed TRX: 303 .NET passed, zero failures/skips; image/scan/Quality pass, Publish/Deploy skipped. Normal PR merge-ref CI does not qualify an activated real-media final image; earlier synthetic recovery remains tied to 986e9aa.
-- **Production:** Media publication completed by the authorized worker: 1398 new objects, all 24 old objects retained, no overwrite/delete; operator capacity condition satisfied. Target HTTPS accepted with identified client, not yet browser/final-image acceptance. Coordinator performed read-only samples and no provider mutation. No app merge/deploy/VPS change or manifest activation; uploads/worker false. Seven playback plus ten subtitle references await separate authorization, two playback plus ten subtitle fields still null in shipping catalogue. Production protection/budgets/recovery/cutover remain.
+- **Tests and CI:** CI/CD 39086857490 and dependency audit 39086857541 successful at 6f57dbb in live October 18 readback. Sealed TRX: 304 .NET, zero failures/skips; image/scan/Quality pass, Publish/Deploy skipped. Local public-media image identity is distinct from CI build and is not a published GHCR digest. Earlier two-web recovery stays tied to 986e9aa.
+- **Production:** Earlier 1398-object media publication/full HTTPS and 24 retained old objects remain accepted. Exactly 17 catalogue references active in draft candidate; local real-media image/player acceptance complete. No app merge/GHCR/deploy/VPS change; uploads/worker false. Local app origin does not prove production app routing/certificate/proxy. Production protection/budgets/legacy backup/recovery/cutover remain.
 
 ### v2 standard compliance
 
@@ -28,13 +28,13 @@ Profile: **VPS web application**. Statuses reflect only evidence available on th
 | Control | Status | Evidence |
 | --- | --- | --- |
 | Repository governance | Partial | Main unprotected, zero rulesets/environments at October 12 readback; workflow gate code is not installed protection. October 17 target addition: repository hygiene and neutral branch naming remain unverified; existing findings retain their original dates. |
-| Quality CI | Partial | October 17 82f6a79 CI/audits pass, 303 .NET; NHP17-1 accepted with 36 coordinator publisher tests and inspected worker public samples. Final-image/browser/production acceptance remains; other control dates unchanged. |
+| Quality CI | Partial | October 18 6f57dbb CI/audits green, 304 .NET; coordinator 24 focused tests and evidence/image checks pass. Local final-image real catalogue/player accepted; production gates remain. Other control dates unchanged. |
 | Immutable release | Partial | R1 accepted; one qualified image and digest/attestation workflow prepared. PR publication skipped; effective protection, main digest and bootstrap unaccepted. |
 | Deployment access | Partial | Legacy SSH path retired in candidate; scoped private access and protected environment still need effective configuration. |
 | Network, TLS and client identity | Partial | Exact proxy source/tests added to candidate; older public routing evidence does not prove new production identity. |
 | Abuse protection | Partial | Candidate auth/write/body/concurrency/image bounds implemented; public/aggregate/rolling acceptance remains. |
 | Runtime safety | Partial | Local two-web/PG/keyring fixture verifies effective 1 CPU/512 MiB limits, no swap and non-root web; maximum web peak 441.76 MiB. Production/encoder headroom unaccepted. |
-| Readiness and preflight | Partial | Explicit migration, runtime-role grants and synthetic empty-catalogue import/refusal pass locally; real accepted manifest and production bootstrap/schema-compatible rollback remain. |
+| Readiness and preflight | Partial | October 18 real approved manifest imported by candidate image CLI after explicit PG migration/runtime grants; repeat refused, PG/web restart preserves IDs/mappings and readiness. Production bootstrap/schema-compatible rollback still unaccepted. |
 | Atomic promotion and rollback | Partial | R1 accepted October 12: confirmed terminal deployment required before rollback; unknown state stops mutations. Actual protected stateful rolling/rollback still needs acceptance. |
 | Coordination and retention | Partial | Preserved source reconciled; local PG/keyring recovery accepted with synthetic media. Real legacy recovery/retention and production rolling remain; upload/worker gates stay separate. |
 | Observability | Missing | No accepted central or delivered worker/release/backup alerts. |
@@ -46,7 +46,7 @@ Profile: **VPS web application**. Statuses reflect only evidence available on th
 
 **Implementation · In progress · 85% · difficulty 5/5 · 10–18 h**
 
-At a357fd4 all seven originals use the shared FFmpegService for H.264/AAC adaptive HLS; 20 variants without upscaling, maximum 1920x1080 box and first audio/stereo. Theora ending/SAR and player readiness/quality switching corrected. Ten Sintel WebVTTs, persistent relations/import and source-retaining upload handling preserved. Current seven-playback/ten-subtitle proposal is inactive; old two-MP4 proposal is historical. Shipping catalogue unchanged; remaining i18n and later upload/worker gates stay open. Publication tool added at 8c7b8d5; no app runtime or media change in that stage. October 17 later execution: exact HLS objects published; shipping references remain inactive and require a separate activation stage. NHP17-1 accepted at 82f6a79; fixed verifier identity only, no runtime/manifest activation.
+At a357fd4 all seven retained originals use the shared FFmpegService for H.264/AAC adaptive HLS: 20 variants without upscaling, maximum 1920x1080 bounding box, first audio/AAC stereo. Theora ending/SAR and player readiness/quality switching corrected. Ten Sintel WebVTTs, persistent relations/import and source-retaining upload handling preserved. October 18 superseding acceptance at 6f57dbb activates exactly seven HLS and ten VTT references, byte-identical approved proposal; real CLI import/restart and actual-player public-media results accepted locally. Historical two-MP4 proposal is not used. Production import, remaining i18n and later upload/worker gates stay open.
 
 #### Modernize UI, mobile interaction and credits presentation
 
@@ -58,7 +58,7 @@ Separate future scope after backend/media and first-release acceptance; no redes
 
 **Quality · In progress · 80% · difficulty 4/5 · 5–10 h**
 
-October 17 NHP17-1 closed at 82f6a79: coordinator 36 publisher tests pass, all-method User-Agent and 403 stop/result metadata tested; original content/TLS/CORS/redirect controls unchanged. 17 new/61 prior sealed files verify; worker 3 public samples inspected without adapter. CI/audits green, 303 .NET/image/scan/Quality; Publish/Deploy skipped. Previous publication/full HTTP remains accepted; final-image/browser/production gates and manual deferrals remain.
+October 18 draft 6f57dbb: CI/CD 39086857490 and audit 39086857541 green, 304 .NET/image/scan/Quality; Publish/Deploy skipped. Coordinator 24 focused manifest/credits tests and 67 new/78 prior evidence checks pass; local image ID independently read. Worker 14 actual-player public HLS cases inspected, TLS/CORS enabled, app origin represented privately. Production gates, Sintel uncertainty and manual deferrals remain.
 
 #### Require green CI on protected main
 
@@ -70,7 +70,7 @@ October 12 read-only GitHub metadata: main unprotected, zero rulesets/environmen
 
 **Documentation · In progress · 90% · difficulty 3/5 · 1–3 h**
 
-October 17 NHP17-1 acceptance updates the supported verifier identity and result metadata; historical default HTTP failure and successful adapter retained separately. No corrective assignment or repeat transfer remains. Handoff awaits separate 17-reference activation/final-image stage. Production recovery/cutover separate; UI/mobile/credits and repository hygiene planned; uploads/worker false.
+October 18 coordinator acceptance records activated HLS/VTT manifest and local final-image PG import/restart/public-media player qualification; earlier publication/NHP17-1 retained. Handoff moves to coordinator protection, legacy recovery, budgets and release plan. Production acceptance separate; UI/mobile/credits and repository hygiene planned; uploads/worker false.
 
 #### Add login, upload and transcoding limits
 
@@ -115,6 +115,7 @@ Planned by owner on 2026-10-17; no repository hygiene audit or cleanup performed
 - October 17: prepare adaptive HLS for all seven originals through the shared pipeline, without upscaling or sync offsets. Technical local review accepted a357fd4; 1398 objects/20 variants with ten byte-identical VTTs. Maximum 1080 bounding box, source-limited quality and first audio/stereo are explicit publication choices. Operator must accept the exact packet/conditions before publication; HTTPS/hash readback precedes separately authorized 17-reference activation and final-image qualification. No current merge/deploy/provider write; uploads/worker false.
 - October 17 later execution: accept exact packet publication and identified-client HTTPS result, preserving failed default HTTP evidence and all old objects. Use the fixed honest NetFilmxPublicationVerifier/1.0 User-Agent in the supported CLI; keep all controls and 403 rejection, no browser impersonation or provider-rule changes. No repeat transfer. Manifest activation and final-image/player acceptance remain separate.
 - October 17 NHP17-1 accepted at 82f6a79. No further client correction or repeat publication; manifest activation remains separately authorized.
+- October 18: accept exactly 17 candidate references and local final-image catalogue/player qualification at 6f57dbb. Do not repeat completed publication or deferred manual tests. Production release remains separately authorized.
 
 ## Polski
 
@@ -122,14 +123,14 @@ Planned by owner on 2026-10-17; no repository hygiene audit or cleanup performed
 
 Katalog VOD ASP.NET Core z HLS, magazynem R2 i panelem administracyjnym.
 
-Najnowszy odbiór 17 października zamyka NHP17-1 na drafcie 82f6a79: stała jawna identyfikacja weryfikatora, metadane błędów, wszystkie kontrole zachowane. Koordynator: 36 testów i kontrola dowodów zaliczone; sprawdzono trzy publiczne próbki workera. CI/audyty zielone, 303 .NET. Brak dalszej poprawki i potrzeby ponownego transferu. Publikacja 1398 obiektów/pełny HTTP z jawnym klientem oraz zachowane 24 stare obiekty utrzymują wcześniejszy zakres. Następnie osobna zgoda na 17 referencji i kwalifikację finalnego obrazu/playera; bez aktywacji/wdrożenia w tym przeglądzie. Sintel nierozstrzygnięty, próby ręczne odłożone; uploads/worker false, UI/porządki planowane. Postęp 54%, praca 53–102 h i datowane estymaty bez zmian.
+Najnowszy odbiór 18 października przyjmuje aktywowany katalog oraz lokalną kwalifikację finalnego obrazu: import PostgreSQL/restart/player z publicznymi mediami, draft 6f57dbb. Dokładnie 17 referencji; koordynator: 24 testy i kontrola dowodów/obrazu zaliczone; CI 304 .NET zielone. Brak blokującej poprawki. Ochrona produkcji, kopie/odtworzenie starego wdrożenia, limity i wydanie pozostają otwarte; bez merge/GHCR/deploy. Sintel nierozstrzygnięty, próby ręczne odłożone, uploads/worker false; UI/porządki planowane. Postęp 54%, praca 53–102 h i datowane estymaty bez zmian.
 
 ### Dowody audytu
 
 - **Repozytorium:** `SzczepanGrela/netfilmx-movie-catalog` @ `a357fd455d217cf873d8b3b0b8bdc8d341a737af`
 - **Stan źródła:** October 17 bounded review of clean HLS candidate a357fd4 and matching draft PR #1. This source/evidence update does not re-estimate effort: October 16 UI/mobile/credits 16–32 h and earlier task ranges/calendar retain their dates and low confidence. Candidate is not production.
-- **Testy i CI:** CI/CD 39066441683 and dependency audit 39066441637 successful at 82f6a79 in live October 17 readback. Sealed TRX: 303 .NET passed, zero failures/skips; image/scan/Quality pass, Publish/Deploy skipped. Normal PR merge-ref CI does not qualify an activated real-media final image; earlier synthetic recovery remains tied to 986e9aa.
-- **Produkcja:** Media publication completed by the authorized worker: 1398 new objects, all 24 old objects retained, no overwrite/delete; operator capacity condition satisfied. Target HTTPS accepted with identified client, not yet browser/final-image acceptance. Coordinator performed read-only samples and no provider mutation. No app merge/deploy/VPS change or manifest activation; uploads/worker false. Seven playback plus ten subtitle references await separate authorization, two playback plus ten subtitle fields still null in shipping catalogue. Production protection/budgets/recovery/cutover remain.
+- **Testy i CI:** CI/CD 39086857490 and dependency audit 39086857541 successful at 6f57dbb in live October 18 readback. Sealed TRX: 304 .NET, zero failures/skips; image/scan/Quality pass, Publish/Deploy skipped. Local public-media image identity is distinct from CI build and is not a published GHCR digest. Earlier two-web recovery stays tied to 986e9aa.
+- **Produkcja:** Earlier 1398-object media publication/full HTTPS and 24 retained old objects remain accepted. Exactly 17 catalogue references active in draft candidate; local real-media image/player acceptance complete. No app merge/GHCR/deploy/VPS change; uploads/worker false. Local app origin does not prove production app routing/certificate/proxy. Production protection/budgets/legacy backup/recovery/cutover remain.
 
 ### Zgodność ze standardem v2
 
@@ -138,13 +139,13 @@ Profil: **Aplikacja webowa na VPS**. Statusy odzwierciedlają wyłącznie dowody
 | Kontrola | Status | Dowód |
 | --- | --- | --- |
 | Zarządzanie repozytorium | Częściowe | Main bez ochrony, zero rulesets/environments w odczycie 12 października; kod workflow nie stanowi aktywnej ochrony. Cel dopisany 17 października: porządki repo i neutralne nazwy branchy niezweryfikowane; wcześniejsze ustalenia zachowują własne daty. |
-| Quality CI | Częściowe | CI/audyty 82f6a79 z 17 października zielone, 303 .NET; NHP17-1 odebrane, 36 testów publikatora koordynatora i sprawdzone publiczne próbki workera. Finalny obraz/player/produkcja nadal do odbioru; daty pozostałych kontroli zachowane. |
+| Quality CI | Częściowe | 18 października 6f57dbb: CI/audyty zielone, 304 .NET; 24 testy koordynatora i kontrola dowodów/obrazu zaliczone. Lokalny finalny obraz z rzeczywistym katalogiem/playerem odebrany; bramki produkcyjne pozostają. Daty innych kontroli bez zmian. |
 | Niezmienne wydanie | Częściowe | R1 odebrane; przygotowano kwalifikowany obraz oraz workflow digest/attestation. Publikacja PR pominięta; ochrona, digest main i bootstrap nieodebrane. |
 | Dostęp wdrożeniowy | Częściowe | Ścieżka SSH wycofana w kandydacie; prywatny dostęp i chronione środowisko wymagają konfiguracji. |
 | Sieć, TLS i tożsamość klienta | Częściowe | Exact-proxy dodano w kodzie/testach; stare dowody routingu nie potwierdzają tożsamości nowej produkcji. |
 | Ochrona przed nadużyciami | Częściowe | Limity auth/write/body/współbieżności/obrazów zaimplementowano; odbiór publiczny/aggregate/rolling pozostaje. |
 | Bezpieczeństwo runtime | Częściowe | Lokalny test dwóch webów/PG/keyring potwierdza 1 CPU/512 MiB, brak swapu i non-root web; maksymalny pik weba 441.76 MiB. Zapas produkcji/kodowania nieodebrany. |
-| Readiness i preflight | Częściowe | Jawna migracja, uprawnienia runtime i syntetyczny import/odmowa importu przechodzą lokalnie; pozostają rzeczywisty manifest i produkcyjny bootstrap/rollback zgodny ze schematem. |
+| Readiness i preflight | Częściowe | 18 października rzeczywisty zatwierdzony manifest zaimportowano CLI obrazu po jawnej migracji PG/uprawnieniach runtime; powtórka odrzucona, restart PG/web zachowuje ID/powiązania i readiness. Produkcyjny bootstrap/rollback zgodny ze schematem nadal nieodebrany. |
 | Atomowa promocja i rollback | Częściowe | R1 odebrane 12 października: rollback wymaga potwierdzonego zakończenia wdrożenia; nieznany stan zatrzymuje mutacje. Pozostaje rzeczywisty chroniony rolling/rollback ze stanem. |
 | Koordynacja i retencja | Częściowe | Zachowane źródła uzgodnione; lokalne odzyskiwanie PG/keyring odebrane z syntetycznymi mediami. Pozostają odzyskiwanie/retencja starego wdrożenia i rolling produkcji; upload/worker osobno. |
 | Obserwowalność | Brak | Brak odebranych centralnych/dostarczonych alertów workera/wydania/backupów. |
@@ -156,7 +157,7 @@ Profil: **Aplikacja webowa na VPS**. Statusy odzwierciedlają wyłącznie dowody
 
 **Implementacja · W toku · 85% · trudność 5/5 · 10–18 h**
 
-At a357fd4 all seven originals use the shared FFmpegService for H.264/AAC adaptive HLS; 20 variants without upscaling, maximum 1920x1080 box and first audio/stereo. Theora ending/SAR and player readiness/quality switching corrected. Ten Sintel WebVTTs, persistent relations/import and source-retaining upload handling preserved. Current seven-playback/ten-subtitle proposal is inactive; old two-MP4 proposal is historical. Shipping catalogue unchanged; remaining i18n and later upload/worker gates stay open. Publication tool added at 8c7b8d5; no app runtime or media change in that stage. October 17 later execution: exact HLS objects published; shipping references remain inactive and require a separate activation stage. NHP17-1 accepted at 82f6a79; fixed verifier identity only, no runtime/manifest activation.
+At a357fd4 all seven retained originals use the shared FFmpegService for H.264/AAC adaptive HLS: 20 variants without upscaling, maximum 1920x1080 bounding box, first audio/AAC stereo. Theora ending/SAR and player readiness/quality switching corrected. Ten Sintel WebVTTs, persistent relations/import and source-retaining upload handling preserved. October 18 superseding acceptance at 6f57dbb activates exactly seven HLS and ten VTT references, byte-identical approved proposal; real CLI import/restart and actual-player public-media results accepted locally. Historical two-MP4 proposal is not used. Production import, remaining i18n and later upload/worker gates stay open.
 
 #### Zmodernizować UI, obsługę mobilną i prezentację credits
 
@@ -168,7 +169,7 @@ Separate future scope after backend/media and first-release acceptance; no redes
 
 **Jakość · W toku · 80% · trudność 4/5 · 5–10 h**
 
-October 17 NHP17-1 closed at 82f6a79: coordinator 36 publisher tests pass, all-method User-Agent and 403 stop/result metadata tested; original content/TLS/CORS/redirect controls unchanged. 17 new/61 prior sealed files verify; worker 3 public samples inspected without adapter. CI/audits green, 303 .NET/image/scan/Quality; Publish/Deploy skipped. Previous publication/full HTTP remains accepted; final-image/browser/production gates and manual deferrals remain.
+October 18 draft 6f57dbb: CI/CD 39086857490 and audit 39086857541 green, 304 .NET/image/scan/Quality; Publish/Deploy skipped. Coordinator 24 focused manifest/credits tests and 67 new/78 prior evidence checks pass; local image ID independently read. Worker 14 actual-player public HLS cases inspected, TLS/CORS enabled, app origin represented privately. Production gates, Sintel uncertainty and manual deferrals remain.
 
 #### Wymagać zielonego CI na chronionym main
 
@@ -180,7 +181,7 @@ October 12 read-only GitHub metadata: main unprotected, zero rulesets/environmen
 
 **Dokumentacja · W toku · 90% · trudność 3/5 · 1–3 h**
 
-October 17 NHP17-1 acceptance updates the supported verifier identity and result metadata; historical default HTTP failure and successful adapter retained separately. No corrective assignment or repeat transfer remains. Handoff awaits separate 17-reference activation/final-image stage. Production recovery/cutover separate; UI/mobile/credits and repository hygiene planned; uploads/worker false.
+October 18 coordinator acceptance records activated HLS/VTT manifest and local final-image PG import/restart/public-media player qualification; earlier publication/NHP17-1 retained. Handoff moves to coordinator protection, legacy recovery, budgets and release plan. Production acceptance separate; UI/mobile/credits and repository hygiene planned; uploads/worker false.
 
 #### Dodać limity logowania, uploadu i transkodowania
 
@@ -225,3 +226,4 @@ Planned by owner on 2026-10-17; no repository hygiene audit or cleanup performed
 - 17 października: HLS wszystkich siedmiu oryginałów przez wspólny pipeline, bez upscalingu i przesuwania synchronizacji. Lokalny odbiór techniczny a357fd4 zaliczony; 1398 obiektów/20 wariantów i dziesięć identycznych bajtowo VTT. Maksymalna ramka 1080, jakość ograniczona źródłem i pierwsze audio/stereo są jawnymi wyborami publikacji. Operator akceptuje konkretny pakiet/warunki przed publikacją; odczyt HTTPS/sum poprzedza osobno autoryzowaną aktywację 17 referencji i kwalifikację finalnego obrazu. Bez bieżącego merge/deploy/zapisu providerów; uploads/worker false.
 - Późniejszy odbiór 17 października: przyjąć publikację dokładnego pakietu i HTTPS z jawnym klientem; zachować nieudaną próbę domyślnego HTTP oraz wszystkie stare obiekty. W CLI użyć stałego jawnego User-Agent NetFilmxPublicationVerifier/1.0; wszystkie kontrole i zatrzymanie przy 403 pozostają, bez podszywania się pod przeglądarkę i zmiany reguł providera. Nie ponawiać transferu. Aktywacja manifestu oraz finalny obraz/player pozostają osobnym etapem.
 - 17 października NHP17-1 odebrane na 82f6a79. Bez dalszej poprawki klienta i ponownej publikacji; aktywacja manifestu wymaga osobnego upoważnienia.
+- 18 października: odebrać dokładnie 17 referencji kandydata oraz lokalną kwalifikację finalnego obrazu/katalogu/playera na 6f57dbb. Nie powtarzać publikacji ani odłożonych prób ręcznych. Wydanie produkcyjne wymaga osobnego upoważnienia.

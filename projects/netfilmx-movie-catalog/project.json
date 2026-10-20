@@ -62,7 +62,7 @@
     "date": "2026-10-16",
     "mode": "source-audited",
     "sourceRevision": "a357fd455d217cf873d8b3b0b8bdc8d341a737af",
-    "sourceState": "October 17 bounded review of clean HLS candidate a357fd4 and matching draft PR #1. This source/evidence update does not re-estimate effort: October 16 UI/mobile/credits 16–32 h and earlier task ranges/calendar retain their dates and low confidence. Candidate is not production. October 20 operating-policy change only: no new source audit or effort/calendar re-estimate; mandatory backup/uptime work withdrawn."
+    "sourceState": "October 17 bounded review of clean HLS candidate a357fd4 and matching draft PR #1. This source/evidence update does not re-estimate effort: October 16 UI/mobile/credits 16–32 h and earlier task ranges/calendar retain their dates and low confidence. Candidate is not production. October 20 phase clarification only: bootstrap downtime accepted; final rolling and required-data backups retained. No new source audit, acceptance or effort/calendar estimate."
   },
   "focus": {
     "current": {
@@ -70,8 +70,8 @@
       "pl": "Odebrane na drafcie 6f57dbb: aktywne 17 referencji HLS/VTT; lokalny rzeczywisty import PostgreSQL/odmowa/restart i 14 prób playera z publicznymi mediami zaliczone. Koordynator: 24 testy i kontrola dowodów/obrazu zaliczone; CI 304 .NET zielone."
     },
     "next": {
-      "en": "Prepare the first catalogue release with accepted downtime: protection/access, one qualified image, one web, fresh PG, persistent keys, explicit import, bounded resources and public smoke. No legacy backup/off-host/restore or availability drill gate. Separate release authorization; uploads/worker off.",
-      "pl": "Przygotować pierwsze wydanie katalogu z akceptowaną przerwą: ochrona/dostęp, sprawdzony obraz, jeden web, świeży PG, trwałe klucze, jawny import, limity i publiczny smoke. Bez bramki backup/off-host/restore legacy ani prób ciągłości. Wydanie osobno zlecane; uploads/worker off."
+      "en": "Coordinator: prepare protection/access, resources and first fresh-PG catalogue release with accepted downtime. No further legacy backup/off-host/restore round. Then finish final Coolify rolling and backups/recovery of new PG/keyring/configuration. Separate app merge/GHCR/deploy instruction; uploads/worker off; UI/hygiene planned.",
+      "pl": "Koordynator: ochrona/dostęp, zasoby i pierwsze wydanie katalogu na świeżym PG z dozwoloną przerwą. Bez kolejnej rundy backup/off-host/restore legacy. Następnie domknąć docelowy rolling Coolify i backupy/odtworzenie nowego PG/kluczy/konfiguracji. Merge/GHCR/deploy osobno zlecane; uploads/worker off; UI/porządki planowane."
     }
   },
   "tasks": [
@@ -197,8 +197,8 @@
     {
       "id": "blue-green",
       "title": {
-        "en": "Accept readiness and the first catalogue deployment",
-        "pl": "Odebrać readiness i pierwsze wdrożenie katalogu"
+        "en": "Accept health-gated rolling releases and scoped recovery",
+        "pl": "Odebrać rolling update z bramką zdrowia i odzyskiwanie w ustalonym zakresie"
       },
       "dimension": "delivery",
       "status": "in-progress",
@@ -209,13 +209,13 @@
       "hoursMax": 12,
       "daysMin": 0.75,
       "daysMax": 1.5,
-      "evidence": "October 20 planning revision: Accepted local PG/keyring/two-web tests retain their dated scope. Next: one web, fresh PG, persistent keys, explicit import, resource caps and public HTTPS/login/player smoke. Production rolling/rollback/restore drills and backup/off-host selection are not required; keep existing R1/code guards and uploads/worker=false. Previous completion/effort values retain their historical estimate; no new implementation or live test is claimed. Stable task ID retained."
+      "evidence": "Local persistent PostgreSQL/keyring restore and two actual web containers pass on source 986e9aa: cross-instance/recreated/restored sessions and antiforgery, wrong-key rejection and logout/refresh revocation. Synthetic media URLs; 13.487-second DB/key/count restore excludes web startup, not production RTO. Actual protected stateful rolling/rollback, production budgets/recovery and later worker/staging/encoder gates remain. October 20 clarification: migration/first routing may use downtime; final scope includes health-gated rolling, functional smoke, scoped rollback and necessary-data backups/recovery. Stable ID and historical progress/effort retained; no new live acceptance. NetFilmx: no further legacy recovery/off-host prerequisite; use accepted local tests and verify final new-deployment coverage."
     },
     {
       "id": "service-observability",
       "title": {
-        "en": "Add useful transcoding and deployment diagnostics",
-        "pl": "Dodać użyteczną diagnostykę transkodowania i wdrożeń"
+        "en": "Add transcoding and deployment metrics",
+        "pl": "Dodać metryki transkodowania i wdrożeń"
       },
       "dimension": "delivery",
       "status": "planned",
@@ -226,7 +226,7 @@
       "hoursMax": 5,
       "daysMin": 0.5,
       "daysMax": 0.75,
-      "evidence": "October 20 planning revision: Worker lifecycle logs and release probes exist. Add resource/cost/failure diagnostics when uploads are enabled; backup/uptime alert delivery is not a release gate. Previous completion/effort values retain their historical estimate; no new implementation or live test is claimed. Stable task ID retained."
+      "evidence": "Worker lifecycle logs and release probes exist in preparation; useful delivered worker/release/backup alerts and central monitoring remain unaccepted. Final-operation backup-failure visibility remains applicable to protected datasets; no numeric uptime SLA."
     },
     {
       "id": "repository-hygiene",
@@ -250,7 +250,7 @@
     "worktree": "Clean 6f57dbb83ab814b3a99a2c90e9cb9652e8b138ab matches OPEN/DRAFT PR #1 in October 18 live readback; seven commits after accepted 82f6a79. Coordinator made no app edits. Dirty parent, originals and earlier evidence preserved; no cleanup/rewrite.",
     "tests": "Coordinator independently passed 24 focused .NET manifest/credits tests, verified 67 new + 17 verifier + 61 publication sealed files, exact 17 manifest changes/proposal identity and local Docker image/revision. Inspected worker real image-CLI PG migration/import (7 films/1 series/3 links/10 subtitles), repeated-import refusal and restart preserving IDs/mappings. Worker actual MVC/Vidstack 14/14 Chromium/Firefox public-media cases, 20 decoded variants per engine, ten languages/Off, selected seeking/end/replay; TLS/CORS enabled, private local app origin. No independent full browser/transfer replay or audible/device acceptance.",
     "ci": "CI/CD 39086857490 and dependency audit 39086857541 successful at 6f57dbb in live October 18 readback. Sealed TRX: 304 .NET, zero failures/skips; image/scan/Quality pass, Publish/Deploy skipped. Local public-media image identity is distinct from CI build and is not a published GHCR digest. Earlier two-web recovery stays tied to 986e9aa.",
-    "production": "Earlier 1398-object media publication/full HTTPS and 24 retained old objects remain accepted. Exactly 17 catalogue references active in draft candidate; local real-media image/player acceptance complete. No app merge/GHCR/deploy/VPS change; uploads/worker false. Local app origin does not prove production app routing/certificate/proxy. Production protection/budgets and functional cutover remain. October 20 policy withdraws legacy backup/off-host/recovery and availability-drill prerequisites; no app deployment is claimed."
+    "production": "Earlier 1398-object media publication/full HTTPS and 24 retained old objects remain accepted. Exactly 17 catalogue references active in draft candidate; local real-media image/player acceptance complete. No app merge/GHCR/deploy/VPS change; uploads/worker false. Local app origin does not prove production app routing/certificate/proxy. Production protection/budgets/cutover remain. Further legacy backup/off-host/restore is withdrawn; final rolling and new-PG/keyring/configuration backup/recovery remain planned, not accepted."
   },
   "media": {
     "screenshot": "assets/screenshots/netfilmx-movie-catalog.png",
@@ -308,8 +308,8 @@
       "pl": "18 października: odebrać dokładnie 17 referencji kandydata oraz lokalną kwalifikację finalnego obrazu/katalogu/playera na 6f57dbb. Nie powtarzać publikacji ani odłożonych prób ręcznych. Wydanie produkcyjne wymaga osobnego upoważnienia."
     },
     {
-      "en": "October 20 owner policy: portfolio apps have no promoted user traffic requirement, uptime SLA or mandatory backups. Downtime/stop-start is acceptable; off-host copies, restore drills and availability exercises are optional, not release gates. Keep correctness/security/resource/cost controls and existing data/configuration. docs/operating-standard.md applies to this and future repositories. Prior source/audit dates and effort estimates are historical, not a fresh scope estimate.",
-      "pl": "Decyzja właściciela 20 października: aplikacje portfolio nie wymagają ciągłości ruchu, SLA uptime ani backupów. Przerwy/stop-start są akceptowalne; off-host, restore i ćwiczenia ciągłości są opcjonalne, nie blokują wydania. Zachować kontrole funkcji/bezpieczeństwa/zasobów/kosztów i istniejące dane/konfigurację. docs/operating-standard.md obejmuje to i przyszłe repozytoria. Starsze daty audytu/źródeł i estymaty pozostają historyczne, bez nowej wyceny zakresu."
+      "en": "October 20 clarification: downtime is accepted during preparation, initial deployment and migration. Final Coolify operation still requires health-gated rolling updates and backups of necessary durable data/configuration/keys with proportionate recovery verification. No numeric uptime SLA, permanent replicas or multi-host HA. Stateless/static/non-server projects use their applicable hosting and data scope. Existing data, backup schedules and release guards remain. This is planning, not new runtime acceptance or re-estimation; docs/operating-standard.md applies to future repositories too.",
+      "pl": "Doprecyzowanie 20 października: przerwy są dozwolone podczas przygotowania, pierwszego wdrożenia i migracji. Docelowy Coolify nadal wymaga rolling update z bramką zdrowia i backupów potrzebnych danych/konfiguracji/kluczy z proporcjonalnym sprawdzeniem odtworzenia. Bez liczbowego SLA, stałych replik i HA wielu hostów. Dla projektów stateless/statycznych/bez serwera stosować właściwy zakres hostingu i danych. Zachować dane, harmonogramy kopii i zabezpieczenia wdrożeń. To plan, nie nowy odbiór ani estymacja; docs/operating-standard.md obejmuje też przyszłe repozytoria."
     }
   ],
   "audit": {
@@ -450,8 +450,8 @@
         "id": "atomic-promotion-rollback",
         "status": "partial",
         "evidence": {
-          "en": "R1 accepted October 12: confirmed terminal deployment required before rollback; unknown state stops mutations. Actual protected stateful rolling/rollback still needs acceptance. October 20 scope: verify the selected deployment and public smoke; downtime allowed. Earlier missing blue-green/automatic rollback evidence is not a release blocker. Existing status records historical evidence, not a fresh acceptance.",
-          "pl": "R1 odebrane 12 października: rollback wymaga potwierdzonego zakończenia wdrożenia; nieznany stan zatrzymuje mutacje. Pozostaje rzeczywisty chroniony rolling/rollback ze stanem. Zakres 20 października: sprawdzić wybrane wdrożenie i publiczny smoke; przerwa dozwolona. Wcześniejszy brak blue-green/automatycznego rollbacku nie blokuje wydania. Status zachowuje dowód historyczny, nie jest nowym odbiorem."
+          "en": "R1 accepted October 12: confirmed terminal deployment required before rollback; unknown state stops mutations. Actual protected stateful rolling/rollback still needs acceptance. October 20: downtime is allowed during migration/bootstrap; final managed release/recovery requirements remain. Existing status is not a new runtime acceptance.",
+          "pl": "R1 odebrane 12 października: rollback wymaga potwierdzonego zakończenia wdrożenia; nieznany stan zatrzymuje mutacje. Pozostaje rzeczywisty chroniony rolling/rollback ze stanem. 20 października: przerwa dozwolona na migrację/bootstrap; docelowe wymagania wdrożeń/odzyskiwania pozostają. Status nie oznacza nowego odbioru runtime."
         },
         "taskIds": [
           "blue-green"
@@ -473,8 +473,8 @@
         "id": "observability",
         "status": "missing",
         "evidence": {
-          "en": "No accepted central or delivered worker/release/backup alerts. October 20: backup/uptime alert requirements withdrawn; useful resource/cost diagnostics remain separate.",
-          "pl": "Brak odebranych centralnych/dostarczonych alertów workera/wydania/backupów. 20 października: wycofano wymóg alertów backup/uptime; użyteczna diagnostyka zasobów/kosztów pozostaje osobno."
+          "en": "No accepted central or delivered worker/release/backup alerts.",
+          "pl": "Brak odebranych centralnych/dostarczonych alertów workera/wydania/backupów."
         },
         "taskIds": [
           "service-observability"

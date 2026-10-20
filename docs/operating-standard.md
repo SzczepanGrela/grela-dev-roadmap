@@ -1,53 +1,59 @@
 # Standard utrzymania projektów portfolio
 
-**Decyzja właściciela, 20 października 2026.** Obecne aplikacje nie mają ruchu
-użytkowników ani promowanych odnośników według właściciela. To kontekst działania,
-nie pomiar ruchu botów. Żadna aplikacja nie wymaga obecnie 99% uptime, wysokiej
-dostępności ani backupów. Zasada dotyczy wszystkich obecnych i przyszłych
-repozytoriów, również roadmapy i dokumentacji infrastruktury.
+**Doprecyzowanie właściciela, 20 października 2026:** przerwy są akceptowalne
+podczas przygotowania, pierwszego wdrożenia i migracji projektów. **Docelowy stan
+w Coolify nadal obejmuje rolling update i backupy.** Poprzedni zapis o trwałej
+rezygnacji z backupów był zbyt szeroką interpretacją koordynatora i zostaje zastąpiony.
 
-## Domyślny zakres
+## Dwa etapy
 
-- Przerwy podczas rozwoju, wdrożenia, migracji i naprawy są akceptowalne.
-  Pojedyncza instancja i zatrzymanie/uruchomienie aplikacji są poprawną strategią.
-  Blue-green, HA, zerowy downtime i osobne próby overlap/drain/awarii nie są
-  obowiązkowym zadaniem dla każdego projektu.
-- Backupy, kopie poza serwerem, snapshoty, retencja, próby odtworzenia i wybór
-  RPO/RTO są opcjonalne i obecnie niezlecone. Ich brak nie blokuje wydania.
-  Wycofanie wymogu nie oznacza, że niewykonany test został zaliczony.
-- Zachowujemy istniejące działające mechanizmy wdrożeń. Nie trzeba usuwać rolling
-  update ani rollbacku, ale następny projekt nie musi odtwarzać całego ich odbioru.
-  Przy awarii można zatrzymać aplikację, poprawić ją i ponownie wdrożyć.
-- Nadal wymagamy właściwych testów funkcji i bezpieczeństwa, chronionych sekretów,
-  kontroli dostępu, zależności, limitów zasobów/kosztów oraz sprawdzenia działania
-  po wdrożeniu. Brak promowanego ruchu nie usuwa ryzyka nadużyć publicznego API.
-- Trwała baza i klucze potrzebne przy zwykłym restarcie pozostają częścią aplikacji.
-  Nie są równoznaczne z backupem. Zakres danych sprawdzamy pod konkretną zmianę.
-- Ta aktualizacja planu nie usuwa plików, danych, kopii, mediów ani kontenerów
-  i nie wyłącza istniejących harmonogramów. Nie uruchamia wdrożenia ani porządków
-  repozytorium. Takie wykonanie ma osobno ustalony zakres.
+1. **Pierwsze uruchomienie / migracja:** można zaplanować przerwę i stop/start.
+   Nie trzeba przed nim kończyć programu odzyskiwania starej aplikacji ani
+   powtarzać wszystkich historycznych prób canary. Nadal chronimy dane, dostęp,
+   sekrety, poprawność funkcji i koszty.
+2. **Domknięcie docelowego utrzymania:** kwalifikowany obraz CI wdrażany po digescie,
+   chroniony dostęp, readiness, rolling update Coolify, publiczny smoke,
+   limity zasobów i sprawdzona obsługa rollbacku/niepewnego wdrożenia. Potrzebne
+   trwałe dane, klucze i konfiguracja mają backupy: określony zakres, miejsce,
+   harmonogram, dostęp, retencję/pojemność, informację o błędzie oraz proporcjonalne
+   sprawdzenie odtworzenia. Pierwsze działające wdrożenie nie zamyka tych zadań.
 
-To aktualna zasada nadrzędna wobec starszych opisów obowiązkowego backupu,
-bezprzerwowej promocji i prób odzyskiwania. Datowane wyniki pozostają historią.
-Wymagania zwiększamy dopiero po nowej decyzji właściciela, np. gdy pojawią się
-użytkownicy lub dane wymagające ochrony.
+Jedna zwykle działająca instancja web może podczas rolling chwilowo działać obok
+następnej. Trzeba uwzględnić zasoby, zgodność schematu, wspólne klucze i procesy
+zapisujące dane. Bazy i pojedynczego workera nie duplikujemy automatycznie.
+Migracja łamiąca zgodność może nadal wymagać zaplanowanej przerwy.
+
+Nie narzucamy 99%/99,9% SLA, HA na wielu serwerach, stałych replik ani rozbudowanych
+prób awarii dla każdego repozytorium. Rolling ogranicza przerwę przy wymianie weba,
+ale nie gwarantuje dostępności całego VPS. Wykorzystujemy aktualne, już odebrane
+dowody i badamy zmieniony zakres.
+
+Backup dobieramy do rzeczywistych danych. Aplikacji stateless nie dopisujemy
+fikcyjnej bazy; zachowujemy właściwe artefakty i konfigurację do odtworzenia.
+Hosting statyczny i projekty bez serwera stosują własny profil. Trwały wolumen
+nie jest backupem, a kopia bazy panelu Coolify nie zabezpiecza danych wszystkich
+aplikacji. Miejsce/off-host i retencję ustalamy dla konkretnego zbioru danych.
+
+Ta zmiana dotyczy planowania wszystkich obecnych i przyszłych repozytoriów.
+Nie zmienia kodu ani harmonogramów, nie usuwa danych/kopii/mediów, nie uruchamia
+wdrożenia, sprzątania repozytorium ani rewrite historii. Zachowujemy zabezpieczenia
+wdrożeń, w tym zatrzymanie mutacji przy nierozstrzygniętym stanie.
 
 ## NetFilmx
 
-Zakończone próby starego wdrożenia zachowujemy w historii. Nie planujemy następnego
-backupu legacy, kopii off-host ani dalszych prób jego odzyskiwania. Kolejny etap
-to przygotowanie pierwszego wydania zaakceptowanego katalogu: chroniony proces
-wydania, jeden web, świeży PostgreSQL, trwałe klucze, jawna migracja/import,
-limity zasobów i sprawdzenie publicznego HTTPS/logowania/playera.
-Przełączenie może mieć przerwę; nie wymaga produkcyjnego ćwiczenia rolling/rollback.
-Nowe konta, pusta historia, istniejący katalog HLS i wyłączone uploady/worker
-pozostają zgodne z planem. Wykonanie wydania nadal wymaga osobnego zlecenia.
+Nie wracamy do kolejnego backupu, off-host ani prób restore starej wersji.
+Zakończone lokalne próby pozostają historią; nie oznaczają naprawy starego katalogu.
+Następny krok to ochrona/dostęp, sprawdzony obraz, jeden web, świeży PostgreSQL,
+trwałe klucze, jawna migracja/import, limity oraz publiczny HTTPS/login/player smoke.
+Przełączenie może mieć przerwę. Wykonanie wydania jest osobno zlecane.
 
-## Aktualizacja zadań i estymat
+Następnie domykamy rolling i backupy **nowego PostgreSQL, kluczy i potrzebnej
+konfiguracji** ze sprawdzeniem odzyskiwania. Nowe konta/pusta historia, odebrany HLS
+oraz uploads/worker false pozostają bez zmian. Nie ponawiamy etapu mediów.
 
-Zachowujemy stabilne ID zadań nawet wtedy, gdy ich stary identyfikator zawiera
-`blue-green`. Tytuły i bieżące opisy wskazują uproszczony zakres.
-Zakończonych prób nie cofamy; wycofanych wymagań nie liczymy jako wykonanej pracy.
-Dotychczasowe godziny, procenty i daty są historycznymi estymatami, a nie nową
-wyceną po redukcji zakresu. Przeliczymy je przy kolejnym planowaniu konkretnego
-repozytorium; nie tworzymy sztucznego wzrostu postępu samą zmianą polityki.
+## Zadania i estymaty
+
+Stabilne ID (także zawierające historyczne `blue-green`) zostają. Niewykonane
+zadania docelowe są otwarte; wycofana praca legacy nie jest zaliczonym testem.
+Dotychczasowe godziny/procenty/datowania pozostają historycznymi estymatami, bez
+nowej wyceny lub wzrostu postępu samym doprecyzowaniem planu.

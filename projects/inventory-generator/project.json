@@ -60,7 +60,7 @@
     "date": "2026-10-11",
     "mode": "source-audited",
     "sourceRevision": "672d160a9f789a2b758a3bb3f7834986682256ff",
-    "sourceState": "PR #30 merged at 672d160 after full green Quality for reviewed a25abb1; temporary exercise workflow/modules/injection hooks retired, ordinary release/rollback tests retained. October 10 operator cleanup and public health confirm retained runtime 6971496. D02.3a-f accepted. Remaining platform and presentation estimates retain their earlier scope; task totals update only completed operations docs and rolling acceptance, not a new full application audit. October 20 operating-policy change only: no new source audit or effort/calendar re-estimate; mandatory backup/uptime work withdrawn."
+    "sourceState": "PR #30 merged at 672d160 after full green Quality for reviewed a25abb1; temporary exercise workflow/modules/injection hooks retired, ordinary release/rollback tests retained. October 10 operator cleanup and public health confirm retained runtime 6971496. D02.3a-f accepted. Remaining platform and presentation estimates retain their earlier scope; task totals update only completed operations docs and rolling acceptance, not a new full application audit. October 20 phase clarification only: bootstrap downtime accepted; final rolling and required-data backups retained. No new source audit, acceptance or effort/calendar estimate."
   },
   "focus": {
     "current": {
@@ -68,8 +68,8 @@
       "pl": "Odbiór wdrożenia Inventory i sprzątanie zakończone. Zasoby testowe usunięte, dowody zachowane, PR #30 scalony; produkcja pozostaje na przyjętym 6971496."
     },
     "next": {
-      "en": "Continue shared platform gaps: useful resource/cost diagnostics (uptime/backup alerts optional), same-colo edge isolation, credential scope and runtime hardening. No repeat Inventory load run or cleanup-only production promotion is needed.",
-      "pl": "Kontynuować wspólne zadania platformy: użyteczna diagnostyka zasobów/kosztów (alerty uptime/backup opcjonalne), izolację edge w tym samym colo, zakres poświadczeń i hardening. Nie potrzeba kolejnej próby obciążenia Inventory ani wdrożenia tylko dla sprzątania."
+      "en": "Continue shared platform gaps: monitoring and alerts, same-colo edge isolation, credential scope and runtime hardening. No repeat Inventory load run or cleanup-only production promotion is needed.",
+      "pl": "Kontynuować wspólne zadania platformy: monitoring i alerty, izolację edge w tym samym colo, zakres poświadczeń i hardening. Nie potrzeba kolejnej próby obciążenia Inventory ani wdrożenia tylko dla sprzątania."
     }
   },
   "tasks": [
@@ -178,8 +178,8 @@
     {
       "id": "blue-green",
       "title": {
-        "en": "Verify health-gated rolling updates and rollback",
-        "pl": "Zweryfikować rolling update z bramką zdrowia i rollback"
+        "en": "Accept health-gated rolling releases and scoped recovery",
+        "pl": "Odebrać rolling update z bramką zdrowia i odzyskiwanie w ustalonym zakresie"
       },
       "dimension": "delivery",
       "status": "done",
@@ -190,7 +190,7 @@
       "hoursMax": 0,
       "daysMin": 0,
       "daysMax": 0,
-      "evidence": "Normal protected release passed at 6971496. Isolated health gate run 37892036349 and controlled failed-smoke rollback run 37894951905 restored the exact prior image, with healthy-before-stop ordering and export smoke. Final October 9 bounded canary rolling run validated eight CSV/HTML/DOCX outputs, old SIGTERM/exit 0 and sole healthy replacement; 51 successful health probes per app, no guard rejection. All exercise gates passed; cleanup was pending at that checkpoint. One earlier runner warning remains unexplained; no zero-downtime claim. October 10 operator confirmation and selected Docker/public-health readbacks accept temporary app, dedicated network/destination and empty-project cleanup. Full passing JSONL archived and verified privately. PR #30 merged October 11 as 672d160 retires exercise tools and records acceptance; production remains 6971496. No repeat drill required."
+      "evidence": "Normal protected release passed at 6971496. Isolated health gate run 37892036349 and controlled failed-smoke rollback run 37894951905 restored the exact prior image, with healthy-before-stop ordering and export smoke. Final October 9 bounded canary rolling run validated eight CSV/HTML/DOCX outputs, old SIGTERM/exit 0 and sole healthy replacement; 51 successful health probes per app, no guard rejection. All exercise gates passed; cleanup was pending at that checkpoint. One earlier runner warning remains unexplained; no zero-downtime claim. October 10 operator confirmation and selected Docker/public-health readbacks accept temporary app, dedicated network/destination and empty-project cleanup. Full passing JSONL archived and verified privately. PR #30 merged October 11 as 672d160 retires exercise tools and records acceptance; production remains 6971496. No repeat drill required. October 20 clarification: migration/first routing may use downtime; final scope includes health-gated rolling, functional smoke, scoped rollback and necessary-data backups/recovery. Stable ID and historical progress/effort retained; no new live acceptance."
     },
     {
       "id": "service-observability",
@@ -207,7 +207,7 @@
       "hoursMax": 4,
       "daysMin": 0.25,
       "daysMax": 0.5,
-      "evidence": "Validation logs now use bounded reason codes/counts, with three integration regressions checking submitted names do not appear. Duration/outcome hooks retained. Central integration, delivered alerts and client-IP retention review remain separate acceptance work."
+      "evidence": "Validation logs now use bounded reason codes/counts, with three integration regressions checking submitted names do not appear. Duration/outcome hooks retained. Central integration, delivered alerts and client-IP retention review remain separate acceptance work. Final-operation backup-failure visibility remains applicable to protected datasets; no numeric uptime SLA."
     },
     {
       "id": "coolify-cd",
@@ -316,8 +316,8 @@
       "pl": "Zachować liczniki procesu dla jednej zwykłej instancji i krótkiego rolling dwóch instancji przy limitach przetestowanych 9 października: trzy sloty bez czekania, 1 CPU/512 MiB na kontener. Warunek pomiarów spełniony; stałe repliki lub większe limity wymagają nowej oceny. Brak wspólnego licznika."
     },
     {
-      "en": "October 20 owner policy: portfolio apps have no promoted user traffic requirement, uptime SLA or mandatory backups. Downtime/stop-start is acceptable; off-host copies, restore drills and availability exercises are optional, not release gates. Keep correctness/security/resource/cost controls and existing data/configuration. docs/operating-standard.md applies to this and future repositories. Prior source/audit dates and effort estimates are historical, not a fresh scope estimate.",
-      "pl": "Decyzja właściciela 20 października: aplikacje portfolio nie wymagają ciągłości ruchu, SLA uptime ani backupów. Przerwy/stop-start są akceptowalne; off-host, restore i ćwiczenia ciągłości są opcjonalne, nie blokują wydania. Zachować kontrole funkcji/bezpieczeństwa/zasobów/kosztów i istniejące dane/konfigurację. docs/operating-standard.md obejmuje to i przyszłe repozytoria. Starsze daty audytu/źródeł i estymaty pozostają historyczne, bez nowej wyceny zakresu."
+      "en": "October 20 clarification: downtime is accepted during preparation, initial deployment and migration. Final Coolify operation still requires health-gated rolling updates and backups of necessary durable data/configuration/keys with proportionate recovery verification. No numeric uptime SLA, permanent replicas or multi-host HA. Stateless/static/non-server projects use their applicable hosting and data scope. Existing data, backup schedules and release guards remain. This is planning, not new runtime acceptance or re-estimation; docs/operating-standard.md applies to future repositories too.",
+      "pl": "Doprecyzowanie 20 października: przerwy są dozwolone podczas przygotowania, pierwszego wdrożenia i migracji. Docelowy Coolify nadal wymaga rolling update z bramką zdrowia i backupów potrzebnych danych/konfiguracji/kluczy z proporcjonalnym sprawdzeniem odtworzenia. Bez liczbowego SLA, stałych replik i HA wielu hostów. Dla projektów stateless/statycznych/bez serwera stosować właściwy zakres hostingu i danych. Zachować dane, harmonogramy kopii i zabezpieczenia wdrożeń. To plan, nie nowy odbiór ani estymacja; docs/operating-standard.md obejmuje też przyszłe repozytoria."
     }
   ],
   "audit": {
@@ -442,8 +442,8 @@
         "id": "atomic-promotion-rollback",
         "status": "complete",
         "evidence": {
-          "en": "Normal release, isolated unhealthy-candidate rejection, controlled failed-smoke recovery to the exact prior image and bounded rolling workload passed. One earlier runner probe warning remains unexplained; this certifies the tested release/recovery paths, not zero downtime. October 20 scope: verify the selected deployment and public smoke; downtime allowed. Earlier missing blue-green/automatic rollback evidence is not a release blocker. Existing status records historical evidence, not a fresh acceptance.",
-          "pl": "Zwykłe wdrożenie, odrzucenie niezdrowego kandydata, kontrolowany failed-smoke rollback do dokładnego obrazu i ograniczony test rolling przeszły. Jedno wcześniejsze ostrzeżenie runnera pozostaje niewyjaśnione; przyjęto przetestowane ścieżki dostawy i odzyskiwania, bez gwarancji zerowego downtime. Zakres 20 października: sprawdzić wybrane wdrożenie i publiczny smoke; przerwa dozwolona. Wcześniejszy brak blue-green/automatycznego rollbacku nie blokuje wydania. Status zachowuje dowód historyczny, nie jest nowym odbiorem."
+          "en": "Normal release, isolated unhealthy-candidate rejection, controlled failed-smoke recovery to the exact prior image and bounded rolling workload passed. One earlier runner probe warning remains unexplained; this certifies the tested release/recovery paths, not zero downtime. October 20: downtime is allowed during migration/bootstrap; final managed release/recovery requirements remain. Existing status is not a new runtime acceptance.",
+          "pl": "Zwykłe wdrożenie, odrzucenie niezdrowego kandydata, kontrolowany failed-smoke rollback do dokładnego obrazu i ograniczony test rolling przeszły. Jedno wcześniejsze ostrzeżenie runnera pozostaje niewyjaśnione; przyjęto przetestowane ścieżki dostawy i odzyskiwania, bez gwarancji zerowego downtime. 20 października: przerwa dozwolona na migrację/bootstrap; docelowe wymagania wdrożeń/odzyskiwania pozostają. Status nie oznacza nowego odbioru runtime."
         },
         "taskIds": []
       },
@@ -460,8 +460,8 @@
         "id": "observability",
         "status": "partial",
         "evidence": {
-          "en": "Bounded validation reason-code logs and no-submitted-name regressions accepted; central integration, retention and alert delivery still open. October 20: backup/uptime alert requirements withdrawn; useful resource/cost diagnostics remain separate.",
-          "pl": "Uznano ograniczone logi reason-code i regresje braku przesłanych nazw; integracja centralna, retencja i dostarczanie alertów pozostają otwarte. 20 października: wycofano wymóg alertów backup/uptime; użyteczna diagnostyka zasobów/kosztów pozostaje osobno."
+          "en": "Bounded validation reason-code logs and no-submitted-name regressions accepted; central integration, retention and alert delivery still open.",
+          "pl": "Uznano ograniczone logi reason-code i regresje braku przesłanych nazw; integracja centralna, retencja i dostarczanie alertów pozostają otwarte."
         },
         "taskIds": [
           "service-observability"

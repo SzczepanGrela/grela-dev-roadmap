@@ -1,6 +1,6 @@
 # NetFilmx Movie Catalog — status report / raport stanu
 
-Audit date / data audytu: **2026-10-18**<br>
+Audit date / data audytu: **2026-10-20**<br>
 Estimated completion / szacowane ukończenie: **54%**<br>
 Forecast / prognoza: **2026-10-28–2026-11-09**, 53–102 h, low confidence / pewność: low
 
@@ -12,14 +12,14 @@ Forecast / prognoza: **2026-10-28–2026-11-09**, 53–102 h, low confidence / p
 
 ASP.NET Core VOD catalogue with HLS processing, R2 storage and administration.
 
-Latest October 18 review accepts activated catalogue and local final-image PG import/restart/public-media browser qualification at draft 6f57dbb. Exactly 17 references; coordinator 24 tests and evidence/image checks pass; CI 304 .NET green. No blocking corrective assignment. Production protection, legacy backup/restore, budgets and release remain open; no app merge/GHCR/deploy. Sintel unresolved, manual trials deferred, uploads/worker false; UI/hygiene planned. Progress 54%, effort 53–102 h and dated estimates unchanged.
+Latest October 20 review accepts documentation-only 052f439 and the A/B/C release plan without blocking findings. Accepted runtime/active catalogue/local image stay at 6f57dbb. Coordinator next owns effective protection/access, selected main digest and fresh-PG bootstrap inputs. Further legacy backup/off-host/restore is withdrawn; final rolling and new-PG/keyring/configuration backup/recovery remain open. No app merge/GHCR/deploy. Sintel unresolved, manual trials deferred, uploads/worker false; UI/hygiene planned. Progress, effort and dated estimates unchanged.
 
 ### Audit evidence
 
 - **Repozytorium:** `SzczepanGrela/netfilmx-movie-catalog` @ `a357fd455d217cf873d8b3b0b8bdc8d341a737af`
 - **Source state:** October 17 bounded review of clean HLS candidate a357fd4 and matching draft PR #1. This source/evidence update does not re-estimate effort: October 16 UI/mobile/credits 16–32 h and earlier task ranges/calendar retain their dates and low confidence. Candidate is not production. October 20 phase clarification only: bootstrap downtime accepted; final rolling and required-data backups retained. No new source audit, acceptance or effort/calendar estimate.
-- **Tests and CI:** CI/CD 39086857490 and dependency audit 39086857541 successful at 6f57dbb in live October 18 readback. Sealed TRX: 304 .NET, zero failures/skips; image/scan/Quality pass, Publish/Deploy skipped. Local public-media image identity is distinct from CI build and is not a published GHCR digest. Earlier two-web recovery stays tied to 986e9aa.
-- **Production:** Earlier 1398-object media publication/full HTTPS and 24 retained old objects remain accepted. Exactly 17 catalogue references active in draft candidate; local real-media image/player acceptance complete. No app merge/GHCR/deploy/VPS change; uploads/worker false. Local app origin does not prove production app routing/certificate/proxy. Production protection/budgets/cutover remain. Further legacy backup/off-host/restore is withdrawn; final rolling and new-PG/keyring/configuration backup/recovery remain planned, not accepted.
+- **Tests and CI:** October 20 CI/CD 39403987568 and dependency audit 39403987575 successful for 052f439; sealed TRX 304 .NET with zero failures/skips, image/scan/Quality pass, Publish/Deploy skipped. Accepted real-media local image remains based on 6f57dbb, distinct from CI and not a published main digest. Earlier two-web recovery remains tied to 986e9aa.
+- **Production:** Earlier 1398-object media publication/full HTTPS and 24 retained old objects remain accepted. Exactly 17 catalogue references active in draft candidate; local real-media image/player acceptance complete. No app merge/GHCR/deploy/VPS change; uploads/worker false. Local app origin does not prove production app routing/certificate/proxy. Production protection/budgets/cutover remain. Further legacy backup/off-host/restore is withdrawn; final rolling and new-PG/keyring/configuration backup/recovery remain planned, not accepted. October 20 accepts only the release instructions; no protection/setup or app release was performed by that review.
 
 ### v2 standard compliance
 
@@ -36,7 +36,7 @@ Profile: **VPS web application**. Statuses reflect only evidence available on th
 | Runtime safety | Partial | Local two-web/PG/keyring fixture verifies effective 1 CPU/512 MiB limits, no swap and non-root web; maximum web peak 441.76 MiB. Production/encoder headroom unaccepted. |
 | Readiness and preflight | Partial | October 18 real approved manifest imported by candidate image CLI after explicit PG migration/runtime grants; repeat refused, PG/web restart preserves IDs/mappings and readiness. Production bootstrap/schema-compatible rollback still unaccepted. |
 | Managed release and recovery | Partial | R1 accepted October 12: confirmed terminal deployment required before rollback; unknown state stops mutations. Actual protected stateful rolling/rollback still needs acceptance. October 20: downtime is allowed during migration/bootstrap; final managed release/recovery requirements remain. Existing status is not a new runtime acceptance. |
-| Coordination and retention | Partial | Preserved source reconciled; local PG/keyring recovery accepted with synthetic media. Real legacy recovery/retention and production rolling remain; upload/worker gates stay separate. |
+| Coordination and retention | Partial | Preserved source reconciled; local PG/keyring recovery accepted with synthetic media. October 20 policy withdraws further legacy backup/off-host/restore; existing copies/results remain. Final new-deployment rolling and new-PG/keyring/configuration backup/recovery are planned, not accepted; uploads/worker gates stay separate. No new runtime control assessment. |
 | Observability | Missing | No accepted central or delivered worker/release/backup alerts. |
 | Web identity | Partial | Local desktop/Android credits readability partially confirmed; visual design not approved. Future UI/mobile/credits scope has explicit responsive, accessibility, player and attribution criteria. Other presentation checks remain. |
 
@@ -70,7 +70,7 @@ October 12 read-only GitHub metadata: main unprotected, zero rulesets/environmen
 
 **Documentation · In progress · 90% · difficulty 3/5 · 1–3 h**
 
-October 18 coordinator acceptance records activated HLS/VTT manifest and local final-image PG import/restart/public-media player qualification; earlier publication/NHP17-1 retained. Handoff moves to coordinator protection, legacy recovery, budgets and release plan. Production acceptance separate; UI/mobile/credits and repository hygiene planned; uploads/worker false.
+October 20 coordinator accepted 052f439: first-release/delivery/status/database/keyring/recovery docs separate launch A from final rolling/new-state backups B and later uploads C. Existing commands, R1 and bootstrap separation preserved; stale media blocker removed. No further legacy recovery/off-host prerequisite. Runtime/media acceptance remains 6f57dbb; real production settings/results still need recording. No new runtime pass or effort re-estimate.
 
 #### Add login, upload and transcoding limits
 
@@ -117,6 +117,7 @@ Planned by owner on 2026-10-17; no repository hygiene audit or cleanup performed
 - October 17 NHP17-1 accepted at 82f6a79. No further client correction or repeat publication; manifest activation remains separately authorized.
 - October 18: accept exactly 17 candidate references and local final-image catalogue/player qualification at 6f57dbb. Do not repeat completed publication or deferred manual tests. Production release remains separately authorized.
 - October 20 clarification: downtime is accepted during preparation, initial deployment and migration. Final Coolify operation still requires health-gated rolling updates and backups of necessary durable data/configuration/keys with proportionate recovery verification. No numeric uptime SLA, permanent replicas or multi-host HA. Stateless/static/non-server projects use their applicable hosting and data scope. Existing data, backup schedules and release guards remain. This is planning, not new runtime acceptance or re-estimation; docs/operating-standard.md applies to future repositories too.
+- October 20 release-plan review accepts documentation-only 052f439 without corrective assignment. Coordinator next owns protection/access and concrete first-launch inputs; no acknowledgement-only test/report cycle. A/B/C remain separate, preserving accepted runtime/media 6f57dbb, R1 and disabled uploads/worker. No app merge/GHCR/deploy authorization is implied.
 
 ## Polski
 
@@ -124,14 +125,14 @@ Planned by owner on 2026-10-17; no repository hygiene audit or cleanup performed
 
 Katalog VOD ASP.NET Core z HLS, magazynem R2 i panelem administracyjnym.
 
-Najnowszy odbiór 18 października przyjmuje aktywowany katalog oraz lokalną kwalifikację finalnego obrazu: import PostgreSQL/restart/player z publicznymi mediami, draft 6f57dbb. Dokładnie 17 referencji; koordynator: 24 testy i kontrola dowodów/obrazu zaliczone; CI 304 .NET zielone. Brak blokującej poprawki. Ochrona produkcji, kopie/odtworzenie starego wdrożenia, limity i wydanie pozostają otwarte; bez merge/GHCR/deploy. Sintel nierozstrzygnięty, próby ręczne odłożone, uploads/worker false; UI/porządki planowane. Postęp 54%, praca 53–102 h i datowane estymaty bez zmian.
+Najnowszy odbiór 20 października przyjmuje dokumentacyjny 052f439 i plan A/B/C bez uwag blokujących. Odebrany kod/aktywny katalog/lokalny obraz pozostają na 6f57dbb. Koordynator odpowiada teraz za skuteczną ochronę/dostęp, wybrany digest main i dane bootstrapu świeżego PG. Dalsze backupy/off-host/restore legacy wycofane; docelowy rolling i backupy/odtworzenie nowego PG/kluczy/konfiguracji otwarte. Bez merge/GHCR/deploy aplikacji. Sintel nierozstrzygnięty, próby ręczne odłożone, uploads/worker false; UI/porządki planowane. Postęp, praca i datowane estymaty bez zmian.
 
 ### Dowody audytu
 
 - **Repozytorium:** `SzczepanGrela/netfilmx-movie-catalog` @ `a357fd455d217cf873d8b3b0b8bdc8d341a737af`
 - **Stan źródła:** October 17 bounded review of clean HLS candidate a357fd4 and matching draft PR #1. This source/evidence update does not re-estimate effort: October 16 UI/mobile/credits 16–32 h and earlier task ranges/calendar retain their dates and low confidence. Candidate is not production. October 20 phase clarification only: bootstrap downtime accepted; final rolling and required-data backups retained. No new source audit, acceptance or effort/calendar estimate.
-- **Testy i CI:** CI/CD 39086857490 and dependency audit 39086857541 successful at 6f57dbb in live October 18 readback. Sealed TRX: 304 .NET, zero failures/skips; image/scan/Quality pass, Publish/Deploy skipped. Local public-media image identity is distinct from CI build and is not a published GHCR digest. Earlier two-web recovery stays tied to 986e9aa.
-- **Produkcja:** Earlier 1398-object media publication/full HTTPS and 24 retained old objects remain accepted. Exactly 17 catalogue references active in draft candidate; local real-media image/player acceptance complete. No app merge/GHCR/deploy/VPS change; uploads/worker false. Local app origin does not prove production app routing/certificate/proxy. Production protection/budgets/cutover remain. Further legacy backup/off-host/restore is withdrawn; final rolling and new-PG/keyring/configuration backup/recovery remain planned, not accepted.
+- **Testy i CI:** October 20 CI/CD 39403987568 and dependency audit 39403987575 successful for 052f439; sealed TRX 304 .NET with zero failures/skips, image/scan/Quality pass, Publish/Deploy skipped. Accepted real-media local image remains based on 6f57dbb, distinct from CI and not a published main digest. Earlier two-web recovery remains tied to 986e9aa.
+- **Produkcja:** Earlier 1398-object media publication/full HTTPS and 24 retained old objects remain accepted. Exactly 17 catalogue references active in draft candidate; local real-media image/player acceptance complete. No app merge/GHCR/deploy/VPS change; uploads/worker false. Local app origin does not prove production app routing/certificate/proxy. Production protection/budgets/cutover remain. Further legacy backup/off-host/restore is withdrawn; final rolling and new-PG/keyring/configuration backup/recovery remain planned, not accepted. October 20 accepts only the release instructions; no protection/setup or app release was performed by that review.
 
 ### Zgodność ze standardem v2
 
@@ -148,7 +149,7 @@ Profil: **Aplikacja webowa na VPS**. Statusy odzwierciedlają wyłącznie dowody
 | Bezpieczeństwo runtime | Częściowe | Lokalny test dwóch webów/PG/keyring potwierdza 1 CPU/512 MiB, brak swapu i non-root web; maksymalny pik weba 441.76 MiB. Zapas produkcji/kodowania nieodebrany. |
 | Readiness i preflight | Częściowe | 18 października rzeczywisty zatwierdzony manifest zaimportowano CLI obrazu po jawnej migracji PG/uprawnieniach runtime; powtórka odrzucona, restart PG/web zachowuje ID/powiązania i readiness. Produkcyjny bootstrap/rollback zgodny ze schematem nadal nieodebrany. |
 | Zarządzane wydanie i odzyskiwanie | Częściowe | R1 odebrane 12 października: rollback wymaga potwierdzonego zakończenia wdrożenia; nieznany stan zatrzymuje mutacje. Pozostaje rzeczywisty chroniony rolling/rollback ze stanem. 20 października: przerwa dozwolona na migrację/bootstrap; docelowe wymagania wdrożeń/odzyskiwania pozostają. Status nie oznacza nowego odbioru runtime. |
-| Koordynacja i retencja | Częściowe | Zachowane źródła uzgodnione; lokalne odzyskiwanie PG/keyring odebrane z syntetycznymi mediami. Pozostają odzyskiwanie/retencja starego wdrożenia i rolling produkcji; upload/worker osobno. |
+| Koordynacja i retencja | Częściowe | Zachowane źródła uzgodnione; lokalne odzyskiwanie PG/keyring odebrane z syntetycznymi mediami. Polityka z 20 października wycofuje dalsze backupy/off-host/restore legacy; kopie/wyniki zachowane. Docelowy rolling nowego wdrożenia i backupy/odtworzenie nowego PG/kluczy/konfiguracji są planowane, nie odebrane; upload/worker osobno. Bez nowej oceny runtime. |
 | Obserwowalność | Brak | Brak odebranych centralnych/dostarczonych alertów workera/wydania/backupów. |
 | Tożsamość webowa | Częściowe | Czytelność credits częściowo potwierdzona na komputerze/Androidzie; wygląd niezaakceptowany. Osobne UI/mobile/credits ma kryteria responsywności, dostępności, playera i atrybucji. Pozostały odbiór prezentacji nadal otwarty. |
 
@@ -182,7 +183,7 @@ October 12 read-only GitHub metadata: main unprotected, zero rulesets/environmen
 
 **Dokumentacja · W toku · 90% · trudność 3/5 · 1–3 h**
 
-October 18 coordinator acceptance records activated HLS/VTT manifest and local final-image PG import/restart/public-media player qualification; earlier publication/NHP17-1 retained. Handoff moves to coordinator protection, legacy recovery, budgets and release plan. Production acceptance separate; UI/mobile/credits and repository hygiene planned; uploads/worker false.
+October 20 coordinator accepted 052f439: first-release/delivery/status/database/keyring/recovery docs separate launch A from final rolling/new-state backups B and later uploads C. Existing commands, R1 and bootstrap separation preserved; stale media blocker removed. No further legacy recovery/off-host prerequisite. Runtime/media acceptance remains 6f57dbb; real production settings/results still need recording. No new runtime pass or effort re-estimate.
 
 #### Dodać limity logowania, uploadu i transkodowania
 
@@ -229,3 +230,4 @@ Planned by owner on 2026-10-17; no repository hygiene audit or cleanup performed
 - 17 października NHP17-1 odebrane na 82f6a79. Bez dalszej poprawki klienta i ponownej publikacji; aktywacja manifestu wymaga osobnego upoważnienia.
 - 18 października: odebrać dokładnie 17 referencji kandydata oraz lokalną kwalifikację finalnego obrazu/katalogu/playera na 6f57dbb. Nie powtarzać publikacji ani odłożonych prób ręcznych. Wydanie produkcyjne wymaga osobnego upoważnienia.
 - Doprecyzowanie 20 października: przerwy są dozwolone podczas przygotowania, pierwszego wdrożenia i migracji. Docelowy Coolify nadal wymaga rolling update z bramką zdrowia i backupów potrzebnych danych/konfiguracji/kluczy z proporcjonalnym sprawdzeniem odtworzenia. Bez liczbowego SLA, stałych replik i HA wielu hostów. Dla projektów stateless/statycznych/bez serwera stosować właściwy zakres hostingu i danych. Zachować dane, harmonogramy kopii i zabezpieczenia wdrożeń. To plan, nie nowy odbiór ani estymacja; docs/operating-standard.md obejmuje też przyszłe repozytoria.
+- Odbiór planu 20 października przyjmuje dokumentacyjny 052f439 bez poprawki dla workera. Następny krok koordynatora to ochrona/dostęp i konkretne dane pierwszego uruchomienia; bez rundy testów/raportów tylko dla potwierdzenia. A/B/C osobno, z zachowaniem odebranych kodu/mediów 6f57dbb, R1 oraz wyłączonych uploads/worker. Odbiór nie oznacza zgody na merge/GHCR/deploy aplikacji.

@@ -17,7 +17,7 @@ The project is technically mature, but public documentation, canonical hosting m
 ### Audit evidence
 
 - **Repozytorium:** `SzczepanGrela/SmakoszWebApp` @ `7d75ca159441b6f5f9f335b84f8fbe27361c8fcc`
-- **Source state:** clean public main shallow clone
+- **Source state:** clean public main shallow clone October 20 operating-policy change only: no new source audit or effort/calendar re-estimate; mandatory backup/uptime work withdrawn.
 - **Tests and CI:** Both public CI/CD workflows succeeded at 7d75ca1; no ruleset or GitHub environment exists.
 - **Production:** smakosz.grela.dev did not resolve; running Smakosz containers were previously verified on the VPS under another/current address.
 
@@ -35,9 +35,9 @@ Profile: **VPS web application**. Statuses reflect only evidence available on th
 | Abuse protection | Partial | smakosz web app has some mechanisms but does not yet satisfy the complete v2 control. |
 | Runtime safety | Partial | smakosz web app has some mechanisms but does not yet satisfy the complete v2 control. |
 | Readiness and preflight | Partial | smakosz web app has some mechanisms but does not yet satisfy the complete v2 control. |
-| Atomic promotion and rollback | Partial | smakosz web app has some mechanisms but does not yet satisfy the complete v2 control. |
+| Verified deployment | Partial | smakosz web app has some mechanisms but does not yet satisfy the complete v2 control. October 20 scope: verify the selected deployment and public smoke; downtime allowed. Earlier missing blue-green/automatic rollback evidence is not a release blocker. Existing status records historical evidence, not a fresh acceptance. |
 | Coordination and retention | Partial | smakosz web app has some mechanisms but does not yet satisfy the complete v2 control. |
-| Observability | Partial | smakosz web app has some mechanisms but does not yet satisfy the complete v2 control. |
+| Observability | Partial | smakosz web app has some mechanisms but does not yet satisfy the complete v2 control. October 20: backup/uptime alert requirements withdrawn; useful resource/cost diagnostics remain separate. |
 | Web identity | Complete | The audit verified full implementation of web-identity. |
 
 ### Remaining and active tasks
@@ -78,11 +78,11 @@ Mail delivery is blocked by an expired API key and should move behind an SMTP se
 
 Application limits and forwarded-header handling exist, but distributed state and outer policies need verification. Target revised September 6: implement the delivery step through Coolify using the shared checklist, an immutable GHCR digest and Traefik/Tunnel; preserve data and custom routes. Production migration not verified in this update.
 
-#### Implement digests, readiness and safe blue-green
+#### Implement digests, readiness and explicit migrations
 
 **Delivery · In progress · 30% · difficulty 5/5 · 14–24 h**
 
-Current workflows use moving configuration and require immutable manifests, migration gates and real rollback.
+October 20 planning revision: Moving configuration still needs exact release manifests and explicit migration/worker coordination. Stop/start with downtime is valid; blue-green, fresh-backup and rollback drills are not mandatory. Previous completion/effort values retain their historical estimate; no new implementation or live test is claimed. Stable task ID retained.
 
 #### Select and migrate the canonical domain
 
@@ -112,6 +112,7 @@ Planned by owner on 2026-10-17; no repository hygiene audit or cleanup performed
 - Run one independent observability stack per VPS environment and preserve Smakosz dashboards, alerts and history during the staged migration.
 - The project follows the v2 standard profile: vps-web.
 - Migration target updated September 6: prebuilt GHCR digest in Coolify, Traefik/Tunnel routing and the shared deployment checklist; preserve databases and custom routes. This target update is not a new source/production audit.
+- October 20 owner policy: portfolio apps have no promoted user traffic requirement, uptime SLA or mandatory backups. Downtime/stop-start is acceptable; off-host copies, restore drills and availability exercises are optional, not release gates. Keep correctness/security/resource/cost controls and existing data/configuration. docs/operating-standard.md applies to this and future repositories. Prior source/audit dates and effort estimates are historical, not a fresh scope estimate.
 
 ## Polski
 
@@ -124,7 +125,7 @@ Projekt jest technicznie dojrzały, ale dokumentacja, metadane hostingu, spójno
 ### Dowody audytu
 
 - **Repozytorium:** `SzczepanGrela/SmakoszWebApp` @ `7d75ca159441b6f5f9f335b84f8fbe27361c8fcc`
-- **Stan źródła:** clean public main shallow clone
+- **Stan źródła:** clean public main shallow clone October 20 operating-policy change only: no new source audit or effort/calendar re-estimate; mandatory backup/uptime work withdrawn.
 - **Testy i CI:** Both public CI/CD workflows succeeded at 7d75ca1; no ruleset or GitHub environment exists.
 - **Produkcja:** smakosz.grela.dev did not resolve; running Smakosz containers were previously verified on the VPS under another/current address.
 
@@ -142,9 +143,9 @@ Profil: **Aplikacja webowa na VPS**. Statusy odzwierciedlają wyłącznie dowody
 | Ochrona przed nadużyciami | Częściowe | Projekt smakosz web app ma część mechanizmów, ale nie spełnia jeszcze całej kontroli v2. |
 | Bezpieczeństwo runtime | Częściowe | Projekt smakosz web app ma część mechanizmów, ale nie spełnia jeszcze całej kontroli v2. |
 | Readiness i preflight | Częściowe | Projekt smakosz web app ma część mechanizmów, ale nie spełnia jeszcze całej kontroli v2. |
-| Atomowa promocja i rollback | Częściowe | Projekt smakosz web app ma część mechanizmów, ale nie spełnia jeszcze całej kontroli v2. |
+| Sprawdzone wdrożenie | Częściowe | Projekt smakosz web app ma część mechanizmów, ale nie spełnia jeszcze całej kontroli v2. Zakres 20 października: sprawdzić wybrane wdrożenie i publiczny smoke; przerwa dozwolona. Wcześniejszy brak blue-green/automatycznego rollbacku nie blokuje wydania. Status zachowuje dowód historyczny, nie jest nowym odbiorem. |
 | Koordynacja i retencja | Częściowe | Projekt smakosz web app ma część mechanizmów, ale nie spełnia jeszcze całej kontroli v2. |
-| Obserwowalność | Częściowe | Projekt smakosz web app ma część mechanizmów, ale nie spełnia jeszcze całej kontroli v2. |
+| Obserwowalność | Częściowe | Projekt smakosz web app ma część mechanizmów, ale nie spełnia jeszcze całej kontroli v2. 20 października: wycofano wymóg alertów backup/uptime; użyteczna diagnostyka zasobów/kosztów pozostaje osobno. |
 | Tożsamość webowa | Gotowe | Audyt potwierdził pełną realizację kontroli „web-identity”. |
 
 ### Zadania pozostałe i bieżące
@@ -185,11 +186,11 @@ Mail delivery is blocked by an expired API key and should move behind an SMTP se
 
 Application limits and forwarded-header handling exist, but distributed state and outer policies need verification. Target revised September 6: implement the delivery step through Coolify using the shared checklist, an immutable GHCR digest and Traefik/Tunnel; preserve data and custom routes. Production migration not verified in this update.
 
-#### Wdrożyć digests, readiness i bezpieczne blue-green
+#### Wdrożyć digests, readiness i jawne migracje
 
 **Wdrożenie · W toku · 30% · trudność 5/5 · 14–24 h**
 
-Current workflows use moving configuration and require immutable manifests, migration gates and real rollback.
+October 20 planning revision: Moving configuration still needs exact release manifests and explicit migration/worker coordination. Stop/start with downtime is valid; blue-green, fresh-backup and rollback drills are not mandatory. Previous completion/effort values retain their historical estimate; no new implementation or live test is claimed. Stable task ID retained.
 
 #### Wybrać i zmigrować domenę kanoniczną
 
@@ -219,3 +220,4 @@ Planned by owner on 2026-10-17; no repository hygiene audit or cleanup performed
 - Utrzymywać jeden niezależny stack obserwowalności na środowisko VPS oraz zachować dashboardy, alerty i historię Smakosza podczas migracji etapowej.
 - Projekt podlega profilowi standardu v2: vps-web.
 - Cel migracji uaktualniony 6 września: digest GHCR w Coolify, routing Traefik/Tunnel i wspólna checklista; zachować bazy i custom routes. Zmiana celu nie jest nowym audytem źródła/produkcji.
+- Decyzja właściciela 20 października: aplikacje portfolio nie wymagają ciągłości ruchu, SLA uptime ani backupów. Przerwy/stop-start są akceptowalne; off-host, restore i ćwiczenia ciągłości są opcjonalne, nie blokują wydania. Zachować kontrole funkcji/bezpieczeństwa/zasobów/kosztów i istniejące dane/konfigurację. docs/operating-standard.md obejmuje to i przyszłe repozytoria. Starsze daty audytu/źródeł i estymaty pozostają historyczne, bez nowej wyceny zakresu.

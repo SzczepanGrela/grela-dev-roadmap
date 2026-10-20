@@ -58,7 +58,7 @@
     "date": "2026-08-25",
     "mode": "source-audited",
     "sourceRevision": "f6d4f3589aa7842f681290c96e0b1eda54059a83",
-    "sourceState": "clean public main shallow clone"
+    "sourceState": "clean public main shallow clone October 20 operating-policy change only: no new source audit or effort/calendar re-estimate; mandatory backup/uptime work withdrawn."
   },
   "focus": {
     "current": {
@@ -194,6 +194,10 @@
     {
       "en": "The project follows the v2 standard profile: developer-tool.",
       "pl": "Projekt podlega profilowi standardu v2: developer-tool."
+    },
+    {
+      "en": "October 20 owner policy: portfolio apps have no promoted user traffic requirement, uptime SLA or mandatory backups. Downtime/stop-start is acceptable; off-host copies, restore drills and availability exercises are optional, not release gates. Keep correctness/security/resource/cost controls and existing data/configuration. docs/operating-standard.md applies to this and future repositories. Prior source/audit dates and effort estimates are historical, not a fresh scope estimate.",
+      "pl": "Decyzja właściciela 20 października: aplikacje portfolio nie wymagają ciągłości ruchu, SLA uptime ani backupów. Przerwy/stop-start są akceptowalne; off-host, restore i ćwiczenia ciągłości są opcjonalne, nie blokują wydania. Zachować kontrole funkcji/bezpieczeństwa/zasobów/kosztów i istniejące dane/konfigurację. docs/operating-standard.md obejmuje to i przyszłe repozytoria. Starsze daty audytu/źródeł i estymaty pozostają historyczne, bez nowej wyceny zakresu."
     }
   ],
   "audit": {

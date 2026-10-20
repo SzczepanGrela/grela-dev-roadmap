@@ -61,7 +61,7 @@
     "date": "2026-08-25",
     "mode": "source-audited",
     "sourceRevision": "28885c20643b6cf68fbd55d2b9dc0df90383c77f",
-    "sourceState": "clean public main shallow clone with failing CI"
+    "sourceState": "clean public main shallow clone with failing CI October 20 operating-policy change only: no new source audit or effort/calendar re-estimate; mandatory backup/uptime work withdrawn."
   },
   "focus": {
     "current": {
@@ -179,8 +179,8 @@
     {
       "id": "immutable-blue-green",
       "title": {
-        "en": "Add digests, migrations, preflight and blue-green",
-        "pl": "Dodać digests, migracje, preflight i blue-green"
+        "en": "Add digests, explicit migrations and deployment smoke",
+        "pl": "Dodać digests, jawne migracje i smoke wdrożenia"
       },
       "dimension": "delivery",
       "status": "planned",
@@ -191,7 +191,7 @@
       "hoursMax": 12,
       "daysMin": 1,
       "daysMax": 1.5,
-      "evidence": "The stateful application requires schema-compatible promotion and exact release artifacts. Target revised September 6: implement the delivery step through Coolify using the shared checklist, an immutable GHCR digest and Traefik/Tunnel; preserve data and custom routes. Production migration not verified in this update."
+      "evidence": "October 20 planning revision: Use exact artifacts, private deployment and explicit schema handling; single-instance stop/start with downtime is allowed. No blue-green, backup or recovery-drill gate. Previous completion/effort values retain their historical estimate; no new implementation or live test is claimed. Stable task ID retained."
     },
     {
       "id": "abuse-observability",
@@ -273,6 +273,10 @@
     {
       "en": "Migration target updated September 6: prebuilt GHCR digest in Coolify, Traefik/Tunnel routing and the shared deployment checklist; preserve databases and custom routes. This target update is not a new source/production audit.",
       "pl": "Cel migracji uaktualniony 6 września: digest GHCR w Coolify, routing Traefik/Tunnel i wspólna checklista; zachować bazy i custom routes. Zmiana celu nie jest nowym audytem źródła/produkcji."
+    },
+    {
+      "en": "October 20 owner policy: portfolio apps have no promoted user traffic requirement, uptime SLA or mandatory backups. Downtime/stop-start is acceptable; off-host copies, restore drills and availability exercises are optional, not release gates. Keep correctness/security/resource/cost controls and existing data/configuration. docs/operating-standard.md applies to this and future repositories. Prior source/audit dates and effort estimates are historical, not a fresh scope estimate.",
+      "pl": "Decyzja właściciela 20 października: aplikacje portfolio nie wymagają ciągłości ruchu, SLA uptime ani backupów. Przerwy/stop-start są akceptowalne; off-host, restore i ćwiczenia ciągłości są opcjonalne, nie blokują wydania. Zachować kontrole funkcji/bezpieczeństwa/zasobów/kosztów i istniejące dane/konfigurację. docs/operating-standard.md obejmuje to i przyszłe repozytoria. Starsze daty audytu/źródeł i estymaty pozostają historyczne, bez nowej wyceny zakresu."
     }
   ],
   "audit": {
@@ -386,8 +390,8 @@
         "id": "atomic-promotion-rollback",
         "status": "missing",
         "evidence": {
-          "en": "The required complete implementation was not found in the audited flatfinder source.",
-          "pl": "W audytowanym źródle projektu flatfinder nie znaleziono wymaganej kompletnej implementacji."
+          "en": "The required complete implementation was not found in the audited flatfinder source. October 20 scope: verify the selected deployment and public smoke; downtime allowed. Earlier missing blue-green/automatic rollback evidence is not a release blocker. Existing status records historical evidence, not a fresh acceptance.",
+          "pl": "W audytowanym źródle projektu flatfinder nie znaleziono wymaganej kompletnej implementacji. Zakres 20 października: sprawdzić wybrane wdrożenie i publiczny smoke; przerwa dozwolona. Wcześniejszy brak blue-green/automatycznego rollbacku nie blokuje wydania. Status zachowuje dowód historyczny, nie jest nowym odbiorem."
         },
         "taskIds": [
           "immutable-blue-green"
@@ -408,8 +412,8 @@
         "id": "observability",
         "status": "missing",
         "evidence": {
-          "en": "The required complete implementation was not found in the audited flatfinder source.",
-          "pl": "W audytowanym źródle projektu flatfinder nie znaleziono wymaganej kompletnej implementacji."
+          "en": "The required complete implementation was not found in the audited flatfinder source. October 20: backup/uptime alert requirements withdrawn; useful resource/cost diagnostics remain separate.",
+          "pl": "W audytowanym źródle projektu flatfinder nie znaleziono wymaganej kompletnej implementacji. 20 października: wycofano wymóg alertów backup/uptime; użyteczna diagnostyka zasobów/kosztów pozostaje osobno."
         },
         "taskIds": [
           "abuse-observability"

@@ -1,5 +1,7 @@
 # Effort estimation methodology
 
+**Decyzja właściciela, 2026-10-20:** [standard utrzymania](operating-standard.md) dopuszcza przerwy we wszystkich aplikacjach. Backupy, off-host, RPO/RTO, HA oraz ćwiczenia ciągłości/odzyskiwania nie są obowiązkowymi warunkami wydania. Zasada zastępuje starsze wymagania poniżej; datowane wyniki pozostają historią.
+
 ## Scope
 
 Task ranges describe the remaining active engineering effort, not elapsed calendar time. They include implementation, review, tests, local verification and the task-specific documentation needed to finish safely. Waiting for DNS propagation, external approvals or unattended CI does not count as active effort.

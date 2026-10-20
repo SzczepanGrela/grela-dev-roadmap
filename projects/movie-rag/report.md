@@ -17,7 +17,7 @@ The application is live and mature; remaining work is production polish rather t
 ### Audit evidence
 
 - **Repozytorium:** `SzczepanGrela/movie-rag` @ `8f525098c70afddaa0a0aba847fb3881956649cf`
-- **Source state:** clean public main shallow clone
+- **Source state:** clean public main shallow clone October 20 operating-policy change only: no new source audit or effort/calendar re-estimate; mandatory backup/uptime work withdrawn.
 - **Tests and CI:** Latest CI/CD runs succeeded; GHCR images exist but use latest/short SHA deployment; no ruleset or environment exists.
 - **Production:** movierag.grela.dev returned HTTPS 200 through Cloudflare on 2026-08-25.
 
@@ -35,9 +35,9 @@ Profile: **VPS web application**. Statuses reflect only evidence available on th
 | Abuse protection | Partial | movie rag has some mechanisms but does not yet satisfy the complete v2 control. |
 | Runtime safety | Partial | movie rag has some mechanisms but does not yet satisfy the complete v2 control. |
 | Readiness and preflight | Partial | movie rag has some mechanisms but does not yet satisfy the complete v2 control. |
-| Atomic promotion and rollback | Missing | The required complete implementation was not found in the audited movie rag source. |
+| Verified deployment | Missing | The required complete implementation was not found in the audited movie rag source. October 20 scope: verify the selected deployment and public smoke; downtime allowed. Earlier missing blue-green/automatic rollback evidence is not a release blocker. Existing status records historical evidence, not a fresh acceptance. |
 | Coordination and retention | Partial | movie rag has some mechanisms but does not yet satisfy the complete v2 control. |
-| Observability | Partial | movie rag has some mechanisms but does not yet satisfy the complete v2 control. |
+| Observability | Partial | movie rag has some mechanisms but does not yet satisfy the complete v2 control. October 20: backup/uptime alert requirements withdrawn; useful resource/cost diagnostics remain separate. |
 | Web identity | Complete | The audit verified full implementation of web-identity. |
 
 ### Remaining and active tasks
@@ -60,11 +60,11 @@ CI is green and rate-limit tests exist; public-chain and sustained-load scenario
 
 GitHub reports no recognized license, ruleset or environment.
 
-#### Complete attribution, backups and runbook
+#### Complete attribution and the operating runbook
 
 **Documentation · In progress · 55% · difficulty 3/5 · 3–5 h**
 
-Operational backup/restore and licensing documentation remain incomplete.
+October 20 planning revision: Attribution/licensing and useful runbook work remain. Backup/restore documentation is optional, not a release prerequisite. Previous completion/effort values retain their historical estimate; no new implementation or live test is claimed. Stable task ID retained.
 
 #### Split Search, Ask AI and ingestion limits
 
@@ -72,17 +72,17 @@ Operational backup/restore and licensing documentation remain incomplete.
 
 Ask AI has in-memory per-IP and daily limits plus Turnstile; other costly paths and shared state remain.
 
-#### Deploy digests with preflight and blue-green
+#### Deploy qualified digests with functional smoke
 
 **Delivery · Planned · 0% · difficulty 5/5 · 6–10 h**
 
-The workflow publishes images but deploys latest/short tags and globally prunes images without true blue-green. Target revised September 6: implement the delivery step through Coolify using the shared checklist, an immutable GHCR digest and Traefik/Tunnel; preserve data and custom routes. Production migration not verified in this update.
+October 20 planning revision: Replace mutable deployment inputs and global prune with scoped Coolify digest deployment, routing and query/streaming smoke. Downtime allowed; no mandatory blue-green/backup/restore exercise. Previous completion/effort values retain their historical estimate; no new implementation or live test is claimed. Stable task ID retained.
 
-#### Add backups, telemetry and Groq alerts
+#### Add useful resource and Groq cost diagnostics
 
 **Delivery · Planned · 0% · difficulty 4/5 · 3–5 h**
 
-Central resource/deployment visibility and tested database backups were not verified.
+October 20 planning revision: Bound resource/cost/deployment visibility to useful needs. Mandatory tested backups and availability alerts are removed from this task. Previous completion/effort values retain their historical estimate; no new implementation or live test is claimed. Stable task ID retained.
 
 #### Clean tracked files and review history and neutral branch names
 
@@ -96,6 +96,7 @@ Planned by owner on 2026-10-17; no repository hygiene audit or cleanup performed
 - Ask AI keeps Turnstile, daily quota, global concurrency and a Groq circuit breaker.
 - The project follows the v2 standard profile: vps-web.
 - Migration target updated September 6: prebuilt GHCR digest in Coolify, Traefik/Tunnel routing and the shared deployment checklist; preserve databases and custom routes. This target update is not a new source/production audit.
+- October 20 owner policy: portfolio apps have no promoted user traffic requirement, uptime SLA or mandatory backups. Downtime/stop-start is acceptable; off-host copies, restore drills and availability exercises are optional, not release gates. Keep correctness/security/resource/cost controls and existing data/configuration. docs/operating-standard.md applies to this and future repositories. Prior source/audit dates and effort estimates are historical, not a fresh scope estimate.
 
 ## Polski
 
@@ -108,7 +109,7 @@ Aplikacja jest dojrzała i live; pozostał głównie polish produkcyjny. Aktuali
 ### Dowody audytu
 
 - **Repozytorium:** `SzczepanGrela/movie-rag` @ `8f525098c70afddaa0a0aba847fb3881956649cf`
-- **Stan źródła:** clean public main shallow clone
+- **Stan źródła:** clean public main shallow clone October 20 operating-policy change only: no new source audit or effort/calendar re-estimate; mandatory backup/uptime work withdrawn.
 - **Testy i CI:** Latest CI/CD runs succeeded; GHCR images exist but use latest/short SHA deployment; no ruleset or environment exists.
 - **Produkcja:** movierag.grela.dev returned HTTPS 200 through Cloudflare on 2026-08-25.
 
@@ -126,9 +127,9 @@ Profil: **Aplikacja webowa na VPS**. Statusy odzwierciedlają wyłącznie dowody
 | Ochrona przed nadużyciami | Częściowe | Projekt movie rag ma część mechanizmów, ale nie spełnia jeszcze całej kontroli v2. |
 | Bezpieczeństwo runtime | Częściowe | Projekt movie rag ma część mechanizmów, ale nie spełnia jeszcze całej kontroli v2. |
 | Readiness i preflight | Częściowe | Projekt movie rag ma część mechanizmów, ale nie spełnia jeszcze całej kontroli v2. |
-| Atomowa promocja i rollback | Brak | W audytowanym źródle projektu movie rag nie znaleziono wymaganej kompletnej implementacji. |
+| Sprawdzone wdrożenie | Brak | W audytowanym źródle projektu movie rag nie znaleziono wymaganej kompletnej implementacji. Zakres 20 października: sprawdzić wybrane wdrożenie i publiczny smoke; przerwa dozwolona. Wcześniejszy brak blue-green/automatycznego rollbacku nie blokuje wydania. Status zachowuje dowód historyczny, nie jest nowym odbiorem. |
 | Koordynacja i retencja | Częściowe | Projekt movie rag ma część mechanizmów, ale nie spełnia jeszcze całej kontroli v2. |
-| Obserwowalność | Częściowe | Projekt movie rag ma część mechanizmów, ale nie spełnia jeszcze całej kontroli v2. |
+| Obserwowalność | Częściowe | Projekt movie rag ma część mechanizmów, ale nie spełnia jeszcze całej kontroli v2. 20 października: wycofano wymóg alertów backup/uptime; użyteczna diagnostyka zasobów/kosztów pozostaje osobno. |
 | Tożsamość webowa | Gotowe | Audyt potwierdził pełną realizację kontroli „web-identity”. |
 
 ### Zadania pozostałe i bieżące
@@ -151,11 +152,11 @@ CI is green and rate-limit tests exist; public-chain and sustained-load scenario
 
 GitHub reports no recognized license, ruleset or environment.
 
-#### Dokończyć atrybucję, backupy i runbook
+#### Dokończyć atrybucję i runbook utrzymania
 
 **Dokumentacja · W toku · 55% · trudność 3/5 · 3–5 h**
 
-Operational backup/restore and licensing documentation remain incomplete.
+October 20 planning revision: Attribution/licensing and useful runbook work remain. Backup/restore documentation is optional, not a release prerequisite. Previous completion/effort values retain their historical estimate; no new implementation or live test is claimed. Stable task ID retained.
 
 #### Rozdzielić limity Search, Ask AI i ingestion
 
@@ -163,17 +164,17 @@ Operational backup/restore and licensing documentation remain incomplete.
 
 Ask AI has in-memory per-IP and daily limits plus Turnstile; other costly paths and shared state remain.
 
-#### Wdrażać digests z preflight i blue-green
+#### Wdrażać sprawdzone digests ze smoke funkcji
 
 **Wdrożenie · Planowane · 0% · trudność 5/5 · 6–10 h**
 
-The workflow publishes images but deploys latest/short tags and globally prunes images without true blue-green. Target revised September 6: implement the delivery step through Coolify using the shared checklist, an immutable GHCR digest and Traefik/Tunnel; preserve data and custom routes. Production migration not verified in this update.
+October 20 planning revision: Replace mutable deployment inputs and global prune with scoped Coolify digest deployment, routing and query/streaming smoke. Downtime allowed; no mandatory blue-green/backup/restore exercise. Previous completion/effort values retain their historical estimate; no new implementation or live test is claimed. Stable task ID retained.
 
-#### Dodać backupy, telemetry i alerty Groq
+#### Dodać diagnostykę zasobów i kosztów Groq
 
 **Wdrożenie · Planowane · 0% · trudność 4/5 · 3–5 h**
 
-Central resource/deployment visibility and tested database backups were not verified.
+October 20 planning revision: Bound resource/cost/deployment visibility to useful needs. Mandatory tested backups and availability alerts are removed from this task. Previous completion/effort values retain their historical estimate; no new implementation or live test is claimed. Stable task ID retained.
 
 #### Uporządkować śledzone pliki, historię i neutralne nazwy branchy
 
@@ -187,3 +188,4 @@ Planned by owner on 2026-10-17; no repository hygiene audit or cleanup performed
 - Ask AI zachowuje Turnstile, quota, global concurrency i circuit breaker Groq.
 - Projekt podlega profilowi standardu v2: vps-web.
 - Cel migracji uaktualniony 6 września: digest GHCR w Coolify, routing Traefik/Tunnel i wspólna checklista; zachować bazy i custom routes. Zmiana celu nie jest nowym audytem źródła/produkcji.
+- Decyzja właściciela 20 października: aplikacje portfolio nie wymagają ciągłości ruchu, SLA uptime ani backupów. Przerwy/stop-start są akceptowalne; off-host, restore i ćwiczenia ciągłości są opcjonalne, nie blokują wydania. Zachować kontrole funkcji/bezpieczeństwa/zasobów/kosztów i istniejące dane/konfigurację. docs/operating-standard.md obejmuje to i przyszłe repozytoria. Starsze daty audytu/źródeł i estymaty pozostają historyczne, bez nowej wyceny zakresu.

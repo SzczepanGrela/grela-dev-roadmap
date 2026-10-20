@@ -62,7 +62,7 @@
     "date": "2026-08-25",
     "mode": "source-audited",
     "sourceRevision": "7d75ca159441b6f5f9f335b84f8fbe27361c8fcc",
-    "sourceState": "clean public main shallow clone"
+    "sourceState": "clean public main shallow clone October 20 operating-policy change only: no new source audit or effort/calendar re-estimate; mandatory backup/uptime work withdrawn."
   },
   "focus": {
     "current": {
@@ -70,8 +70,8 @@
       "pl": "Przywrócić e-maile przez SMTP i naprawić spójność niezmiennych wydań."
     },
     "next": {
-      "en": "Select and migrate the canonical domain, then finish safe blue-green promotion.",
-      "pl": "Wybrać i zmigrować domenę kanoniczną, następnie ukończyć bezpieczne blue-green."
+      "en": "Select the canonical domain and prepare immutable deployment, explicit migrations and public app smoke. Downtime accepted; no blue-green or backup/restore prerequisite.",
+      "pl": "Wybrać domenę i przygotować niezmienne wdrożenie, jawne migracje i publiczny smoke aplikacji. Przerwy dozwolone; bez bramki blue-green lub backup/restore."
     }
   },
   "tasks": [
@@ -180,8 +180,8 @@
     {
       "id": "cicd-repair",
       "title": {
-        "en": "Implement digests, readiness and safe blue-green",
-        "pl": "Wdrożyć digests, readiness i bezpieczne blue-green"
+        "en": "Implement digests, readiness and explicit migrations",
+        "pl": "Wdrożyć digests, readiness i jawne migracje"
       },
       "dimension": "delivery",
       "status": "in-progress",
@@ -192,7 +192,7 @@
       "hoursMax": 24,
       "daysMin": 1.75,
       "daysMax": 3,
-      "evidence": "Current workflows use moving configuration and require immutable manifests, migration gates and real rollback."
+      "evidence": "October 20 planning revision: Moving configuration still needs exact release manifests and explicit migration/worker coordination. Stop/start with downtime is valid; blue-green, fresh-backup and rollback drills are not mandatory. Previous completion/effort values retain their historical estimate; no new implementation or live test is claimed. Stable task ID retained."
     },
     {
       "id": "domain-migration",
@@ -290,6 +290,10 @@
     {
       "en": "Migration target updated September 6: prebuilt GHCR digest in Coolify, Traefik/Tunnel routing and the shared deployment checklist; preserve databases and custom routes. This target update is not a new source/production audit.",
       "pl": "Cel migracji uaktualniony 6 września: digest GHCR w Coolify, routing Traefik/Tunnel i wspólna checklista; zachować bazy i custom routes. Zmiana celu nie jest nowym audytem źródła/produkcji."
+    },
+    {
+      "en": "October 20 owner policy: portfolio apps have no promoted user traffic requirement, uptime SLA or mandatory backups. Downtime/stop-start is acceptable; off-host copies, restore drills and availability exercises are optional, not release gates. Keep correctness/security/resource/cost controls and existing data/configuration. docs/operating-standard.md applies to this and future repositories. Prior source/audit dates and effort estimates are historical, not a fresh scope estimate.",
+      "pl": "Decyzja właściciela 20 października: aplikacje portfolio nie wymagają ciągłości ruchu, SLA uptime ani backupów. Przerwy/stop-start są akceptowalne; off-host, restore i ćwiczenia ciągłości są opcjonalne, nie blokują wydania. Zachować kontrole funkcji/bezpieczeństwa/zasobów/kosztów i istniejące dane/konfigurację. docs/operating-standard.md obejmuje to i przyszłe repozytoria. Starsze daty audytu/źródeł i estymaty pozostają historyczne, bez nowej wyceny zakresu."
     }
   ],
   "audit": {
@@ -403,8 +407,8 @@
         "id": "atomic-promotion-rollback",
         "status": "partial",
         "evidence": {
-          "en": "smakosz web app has some mechanisms but does not yet satisfy the complete v2 control.",
-          "pl": "Projekt smakosz web app ma część mechanizmów, ale nie spełnia jeszcze całej kontroli v2."
+          "en": "smakosz web app has some mechanisms but does not yet satisfy the complete v2 control. October 20 scope: verify the selected deployment and public smoke; downtime allowed. Earlier missing blue-green/automatic rollback evidence is not a release blocker. Existing status records historical evidence, not a fresh acceptance.",
+          "pl": "Projekt smakosz web app ma część mechanizmów, ale nie spełnia jeszcze całej kontroli v2. Zakres 20 października: sprawdzić wybrane wdrożenie i publiczny smoke; przerwa dozwolona. Wcześniejszy brak blue-green/automatycznego rollbacku nie blokuje wydania. Status zachowuje dowód historyczny, nie jest nowym odbiorem."
         },
         "taskIds": [
           "cicd-repair"
@@ -425,8 +429,8 @@
         "id": "observability",
         "status": "partial",
         "evidence": {
-          "en": "smakosz web app has some mechanisms but does not yet satisfy the complete v2 control.",
-          "pl": "Projekt smakosz web app ma część mechanizmów, ale nie spełnia jeszcze całej kontroli v2."
+          "en": "smakosz web app has some mechanisms but does not yet satisfy the complete v2 control. October 20: backup/uptime alert requirements withdrawn; useful resource/cost diagnostics remain separate.",
+          "pl": "Projekt smakosz web app ma część mechanizmów, ale nie spełnia jeszcze całej kontroli v2. 20 października: wycofano wymóg alertów backup/uptime; użyteczna diagnostyka zasobów/kosztów pozostaje osobno."
         },
         "taskIds": [
           "central-observability-migration"

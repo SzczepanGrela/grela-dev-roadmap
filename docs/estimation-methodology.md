@@ -1,6 +1,6 @@
 # Effort estimation methodology
 
-**Decyzja właściciela, 2026-10-20:** [standard utrzymania](operating-standard.md) dopuszcza przerwy we wszystkich aplikacjach. Backupy, off-host, RPO/RTO, HA oraz ćwiczenia ciągłości/odzyskiwania nie są obowiązkowymi warunkami wydania. Zasada zastępuje starsze wymagania poniżej; datowane wyniki pozostają historią.
+**Doprecyzowanie właściciela, 2026-10-20:** [standard utrzymania](operating-standard.md): przerwy są akceptowalne podczas przygotowania i migracji. Docelowy Coolify obejmuje rolling update i backupy potrzebnych danych/kluczy/konfiguracji z proporcjonalnym odbiorem. Pierwsze uruchomienie nie oznacza pełnego domknięcia. Bez liczbowego SLA i HA; dalsze backupy/restore legacy NetFilmxa nie wracają do planu. Starsze datowane wyniki zachowują swój zakres.
 
 ## Scope
 

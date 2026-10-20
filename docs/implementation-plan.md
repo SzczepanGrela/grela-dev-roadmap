@@ -1,6 +1,6 @@
 # Plan portfolio i standardu wdrożeń grela.dev (wersja 21, polityka 2026-10-20)
 
-**Decyzja właściciela, 2026-10-20:** [standard utrzymania](operating-standard.md) dopuszcza przerwy we wszystkich aplikacjach. Backupy, off-host, RPO/RTO, HA oraz ćwiczenia ciągłości/odzyskiwania nie są obowiązkowymi warunkami wydania. Zasada zastępuje starsze wymagania poniżej; datowane wyniki pozostają historią.
+**Doprecyzowanie właściciela, 2026-10-20:** [standard utrzymania](operating-standard.md): przerwy są akceptowalne podczas przygotowania i migracji. Docelowy Coolify obejmuje rolling update i backupy potrzebnych danych/kluczy/konfiguracji z proporcjonalnym odbiorem. Pierwsze uruchomienie nie oznacza pełnego domknięcia. Bez liczbowego SLA i HA; dalsze backupy/restore legacy NetFilmxa nie wracają do planu. Starsze datowane wyniki zachowują swój zakres.
 
 > [!NOTE]
 > Ten dokument jest długoterminową mapą prac portfolio i publicznym opisem standardu wdrożeń. Kolejność projektów niżej jest katalogiem, nie kolejką zmian na VPS. Stan pojedynczego projektu ma datę w jego `projects/<slug>/report.md`; starszego raportu nie należy traktować jako bieżącego odczytu produkcji.
@@ -13,7 +13,7 @@
 **Aktualna kolejka, 20 października:** NetFilmx ma odebrane 17 referencji i lokalny
 finalny obraz na 6f57dbb; media są opublikowane. Teraz ochrona/dostęp, zasoby i proste
 pierwsze wdrożenie z publicznym smoke. Wycofano dalsze backupy/restore/off-host legacy
-oraz obowiązkowy odbiór ciągłości. Dalej MovieRAG i Smakosz według tej samej zasady.
+jako warunki bootstrapu. Docelowy rolling oraz backupy nowego wdrożenia pozostają do odbioru. Dalej MovieRAG i Smakosz według tej samej zasady.
 Inventory zakończyło swój odbiór; nie powtarzać dawnych prób. Poniższe starsze
 chronologie zachowują daty i nie wznawiają zastąpionych zadań.
 
@@ -26,8 +26,8 @@ Przegląd 2026-10-03 dodaje źródła/CI Inventory, przygotowany draft NetFilmx 
 | Wydanie TTT (`D01`, `D02.2`, `D03.1`) | Bramka zdrowia, odrzucenie wadliwego kandydata, failed-smoke rollback, serializacja i pomiar overlap przeszły 16–17 września. Kolejne wydania korzystają z tego procesu. 28 września publiczna seria MCTS dokończyła gry 9–10 po SIGTERM starego kontenera i dostarczyła komplet wyników. | Lokalny test potwierdził niezależne budżety i reset po wymianie. 29 września zaakceptowano ten wyjątek dla jednego procesu i krótkiego rolling overlap; wrócić do niego przed stałymi replikami lub ścisłymi kwotami. Inventory ma odrębny odbiór. | Nie powtarzać zakończonych testów jako stałego środowiska canary. |
 | Funkcje TTT (`G01–G07`, `J01`) | Plansze 3×3/5×5/9×9, MCTS 5×5, odnowiony responsywny interfejs, przyrostowe serie NDJSON. Jev ma trwały licznik, backup/restore, ukończone próbki do K=9 i eksperymentalne publiczne włączenie 29 września. | Rozszerzanie wytrenowanych modeli pozostaje odroczone; monitoring i wyjątki platformy są osobne. | Zachować licznik/budżet; zwykłe CI nie wykonuje płatnych testów. |
 | Edge i limity aplikacji (`D04`, `P06.1a`) | Reguła obejmuje `/api/matches/stream`; pojedynczy klient przeszedł edge 200/429/recovery. 28 września przeszły izolacja dwóch publicznych klientów aplikacji, jej budżet/recovery, przyrostowe dostarczanie streamu i anulowanie pracy potwierdzone logami VPS. Wspólna blokada TTT/Inventory i recovery również przeszły; równoległe źródła CDG/WAW zachowały niezależność. Minimum TLS 1.2 potwierdzone dla obu stref 27 września. | Różne IP w jednym centrum Cloudflare; origin TLS/ACME i przypięcie proxy osobno. TTT ma jawny wyjątek lokalnych budżetów podczas krótkiego overlap. | Odbiór limitera aplikacji nie zamyka całego D04. |
-| Dane i kopie (`B01–B08`, `P02`) | Wcześniejsze kopie i próby zachowują datowane wyniki. | B02–B08/P02 opcjonalne, niezaplanowane; brak wymogu off-host/restore/RPO/RTO. B01 tylko dla danych dotkniętych zmianą. | Nie blokują wdrożeń; nie zmieniamy istniejących timerów ani plików. |
-| Migracje (`M01 → M02 → M03`) | NetFilmx: HLS opublikowane, 17 referencji i lokalny finalny obraz/player odebrane na 6f57dbb. | Pierwsze wydanie: ochrona/dostęp, jeden web, świeży PG, trwałe klucze, zasoby, jawny import i publiczny smoke. Potem MovieRAG/Smakosz. | Przerwy dozwolone; backupy i próby ciągłości nie są bramką. Uploads/worker false; wykonanie osobno zlecane. |
+| Dane i kopie (`B01–B08`, `P02`) | Wcześniejsze kopie i próby zachowują datowane wyniki. | B02/B03/B08 i właściwy zakres P02 pozostają zadaniami docelowych backupów. Odroczone odzyskiwanie całej platformy pozostaje odroczone. | Nie wymagają kolejnego backupu legacy przed bootstrapem; są częścią domknięcia nowego wdrożenia. Timerów i plików nie zmieniono. |
+| Migracje (`M01 → M02 → M03`) | NetFilmx: HLS opublikowane, 17 referencji i lokalny finalny obraz/player odebrane na 6f57dbb. | Pierwsze wydanie: ochrona/dostęp, jeden web, świeży PG, trwałe klucze, zasoby, jawny import i publiczny smoke. Potem MovieRAG/Smakosz. | Przerwy dozwolone na migrację; docelowy rolling i backupy nowego stanu pozostają do odbioru. Uploads/worker false; wykonanie osobno zlecane. |
 | Domknięcie (`N03`, `O01/O02`, `D05.3`) | Tymczasowe zasoby testowe TTT wycofano; PR #36 usunął stare skrypty SSH, ich testy i instrukcje fallback (D05.3). Monitoring pozostaje przy Smakoszu. | Zachować dane przy końcowym usunięciu NPM, wydzielić monitoring i przetestować alerty. | Bez globalnego prune i utraty historii. |
 
 Pakiet → podzadanie → test odbioru. Jeden zakończony podtest nie zamyka całego pakietu. Publiczne dowody implementacji: [wydanie przez Coolify #9](https://github.com/SzczepanGrela/tic-tac-toe-ai/pull/9), [kontrola zdrowia #15](https://github.com/SzczepanGrela/tic-tac-toe-ai/pull/15), [rollback #17](https://github.com/SzczepanGrela/tic-tac-toe-ai/pull/17), [porządkowanie zasobów testowych #20](https://github.com/SzczepanGrela/tic-tac-toe-ai/pull/20), [MCTS/Jev #24](https://github.com/SzczepanGrela/tic-tac-toe-ai/pull/24), [raport oceny #33](https://github.com/SzczepanGrela/tic-tac-toe-ai/pull/33), [interfejs #34](https://github.com/SzczepanGrela/tic-tac-toe-ai/pull/34) i [przyrostowe serie #35](https://github.com/SzczepanGrela/tic-tac-toe-ai/pull/35). PR dowodzi zmiany źródła; wyniki hosta i testów zewnętrznych zachowują własne daty w prywatnej dokumentacji.
@@ -115,8 +115,8 @@ flowchart LR
 7.  **Niezmienne i sprawdzone wydanie:**
     * Obraz zbudowany/testowany w CI dla pełnego SHA; wdrożenie tego samego digestu GHCR, bez rebuilda na VPS ani ruchomego `latest`.
     * Konfiguracja i obrazy odpowiadają temu samemu manifestowi. Kontrole dostępu, pochodzenia i zależności pozostają.
-    * Domyślnie wystarcza jedna instancja i stop/start z przerwą. Zachowujemy istniejący rolling/rollback, lecz nie wymagamy blue-green, HA ani nowego canary tylko dla uptime.
-    * Migracje są jawnym krokiem, nie wyścigiem replik przy starcie. Można zatrzymać writerów i wdrożyć w przerwie. Backup, expand/contract i kompatybilność dwóch wersji nie są uniwersalną bramką; są potrzebne tylko dla świadomie wybranego zakresu danych/overlap.
+    * Na bootstrap/migrację dopuszczamy stop/start. Docelowo Coolify wykonuje rolling update z bramką zdrowia, publicznym smoke i sprawdzoną obsługą rollbacku. Jedna normalna instancja może mieć krótkie nakładanie z następną; nie wymagamy stałych replik ani HA.
+    * Migracje są jawnym krokiem, nie wyścigiem replik przy starcie. Można zatrzymać writerów i wdrożyć w przerwie. Docelowy rolling wymaga zgodności schematu, kluczy i writerów podczas overlap; migracja łamiąca zgodność może mieć zaplanowaną przerwę. Backupy potrzebnego nowego stanu i sprawdzenie odtworzenia domykają wdrożenie.
     * Serializować mutacje i ograniczyć CPU/RAM/dysk dla rzeczywistej topologii. Nie dublować usług tylko po to, by udowodnić ciągłość.
     * Odbiór: właściwy digest/revision, readiness, efektywne ustawienia, HTTPS i reprezentatywna funkcja aplikacji. Przy błędzie zatrzymać, sprawdzić i poprawić/ponowić. Nie maskować niepewnego stanu wdrożenia kolejną mutacją.
 8.  **Automatyzacja CI → Coolify:** chroniony dostęp, kwalifikowany digest, śledzenie rzeczywistego wdrożenia i publiczny smoke. Przed włączeniem automatyzacji sprawdzić właściwego callera. Działające mechanizmy TTT/Inventory oraz NetFilmx R1 zachowujemy; osobne ćwiczenia awarii/rollbacku/drain nie są obowiązkiem każdego repozytorium.
@@ -128,15 +128,15 @@ flowchart LR
     *   Każdy scrape target otrzymuje spójne labels: co najmniej `application`, `service`, `environment` i `instance`. Konfiguracja dzieli dashboardy i reguły alertów na foldery per aplikacja oraz zapewnia dashboardy globalne dla hosta, wszystkich kontenerów, dostępności, błędów HTTP, wykorzystania zasobów i historii deploymentów.
     *   Node Exporter działa dokładnie raz na host. Do metryk CPU/RAM/restartów poszczególnych kontenerów dodajemy jeden centralny cAdvisor, jeżeli jego koszt i zakres dostępu do Dockera zostaną zaakceptowane. Grafana Unified Alerting może pozostać mechanizmem alertów; osobny Alertmanager nie jest obowiązkowy na pojedynczym VPS.
     *   Prometheus ma ustaloną retencję, limit pamięci i budżet dysku dobrane po pomiarze cardinality całego VPS. Monitoring wolnego miejsca, OOM/restartów oraz samego Prometheusa jest obowiązkowy. Obrazy są przypięte do kontrolowanych wersji/digestów i aktualizowane niezależnie od aplikacji.
-    *   Dashboardy, provisioning i reguły alertów są wersjonowane; sekrety Grafany/SMTP pozostają w pliku środowiskowym z prawami `600`. Backup wolumenów i testy odtworzenia są opcjonalne, bez bramki wydania.
-    *   Migracja monitoringu może mieć przerwę. Sprawdzić potrzebną konfigurację, targets i dostęp; brak obowiązku równoległego stacku, zachowania historii lub backupu. Usuwanie konkretnych zasobów nadal wymaga ustalonego zakresu.
+    *   Dashboardy, provisioning i reguły alertów są wersjonowane; sekrety Grafany/SMTP pozostają w pliku środowiskowym z prawami `600`. Docelowo zabezpieczyć potrzebną konfigurację i trwały stan oraz sprawdzić odtworzenie. Retencję odtwarzalnej historii metryk dobrać osobno, bez domyślnego backupu wszystkich danych.
+    *   Migracja monitoringu może mieć przerwę. Sprawdzić potrzebną konfigurację, targets i dostęp; nie wymaga stałego równoległego stacku ani całej historii metryk. Backup potrzebnego stanu/konfiguracji należy do docelowego utrzymania. Usuwanie konkretnych zasobów nadal wymaga ustalonego zakresu.
 
 ---
 
 ## Zasady kontroli zmian
 
 > [!IMPORTANT]
-> **Operator zatwierdza zmiany produkcyjne i decyzje architektoniczne.** Przed ich wykonaniem otrzymuje konkretną propozycję i proporcjonalny test odbioru. Backup i ciągłość nie są domyślną bramką. Commity, push i zmiany nazw repozytoriów następują po jego wyraźnej akceptacji konkretnego wyniku lub poleceniu wykonania tych działań.
+> **Operator zatwierdza zmiany produkcyjne i decyzje architektoniczne.** Przed ich wykonaniem otrzymuje konkretną propozycję i proporcjonalny test odbioru. Downtime migracji jest dozwolony, ale docelowy rolling i backupy pozostają w planie. Commity, push i zmiany nazw repozytoriów następują po jego wyraźnej akceptacji konkretnego wyniku lub poleceniu wykonania tych działań.
 
 ---
 
@@ -184,7 +184,7 @@ pakietu nadrzędnego. Szczegóły VPS i dane dostępu pozostają prywatne.
 *   **Docelowe zarządzanie wdrożeniem:** zasób Coolify; nie tworzyć nowego konta aplikacyjnego w grupie docker.
 *   **Technologia:** Python
 *   **Zadania Dev:** Zmiana nazwy na `air-quality-app`, licencja MIT, README.md (EN). Implementacja brakujących funkcjonalności (zapisywanie historii pomiarów, wykresy jakości powietrza w matplotlib/plotly).
-*   **Zadania DevOps:** Konteneryzacja aplikacji Python i wdrożenie pod `air.grela.dev`. Upewnienie się, że aplikacja ma favicon i wielowarstwowy rate limiting; sprawdzone wydanie i publiczny smoke z akceptowaną przerwą zgodnie ze standardem powyżej.
+*   **Zadania DevOps:** Konteneryzacja aplikacji Python i wdrożenie pod `air.grela.dev`. Upewnienie się, że aplikacja ma favicon i wielowarstwowy rate limiting; pierwsze wdrożenie z dozwoloną przerwą, a docelowo rolling update, publiczny smoke i backupy właściwe dla danych aplikacji.
 
 ### 5. `AudioMaster` (Czerwiec 2025)
 *   **Proponowana nazwa:** `audio-master`
@@ -206,7 +206,7 @@ pakietu nadrzędnego. Szczegóły VPS i dane dostępu pozostają prywatne.
 *   **Docelowe zarządzanie wdrożeniem:** zasób Coolify; nie tworzyć nowego konta aplikacyjnego w grupie docker.
 *   **Technologia:** C# (.NET 10) + Blazor WASM (PWA) + PyTorch/ONNX + Docker
 *   **Zadania Dev:** Zmiana nazwy na `smakosz-web-app`, licencja MIT, stworzenie obszernego README.md (EN) na podstawie Twojej pracy inżynierskiej (`2026.IN.w67131.pdf`). **Naprawa e-maili:** usunąć zależność od wygasłego klucza Brevo API i przejść na SMTP Brevo przez wydzieloną abstrakcję nadawcy (np. MailKit), sekrety środowiskowe, kolejkę/retry z idempotencją oraz testy potwierdzenia konta, resetu hasła i ponownego wysłania wiadomości. Zweryfikować domenę nadawcy, SPF, DKIM i DMARC; usunąć/wycofać stare dane API i nie logować poświadczeń SMTP.
-*   **Stan i pakiety M03/O01–O02:** harmonogram i wykonanie lokalnego backupu przeszły 27 września; katalogi bieżących kopii daily/weekly są czytelne, bez nowej próby restore. Starsze odczyty potwierdzały działające kontenery i niedostępną trasę przez zatrzymane NPM; pomyślny handshake TLS 27 września nie potwierdza dostępności HTTP. Przy migracji ustalić dotknięte dane/model/konfigurację bez obowiązkowej kopii; testować `/api` i `/api/`, auth, wspólne limity, websockety, assety/PWA oraz rollback. **Wydanie stanowe:** naprawić CI/CD zgodnie ze standardem: manifest pełnego SHA i dokładne digests zamiast `latest`, bez pobierania Compose/skryptów z ruchomego `main`; połączyć zdublowany workflow force; sprawdzone wdrożenie klienta/API z dozwoloną przerwą, singleton/drain orchestratora, osobne kompatybilne migracje EF, publiczny smoke i rollback, rzeczywista blokada, bez globalnego prune i restartu proxy. **Centralna obserwowalność:** wydzielić Prometheus/Grafanę/renderera/Node Exporter do niezależnego stacku z zachowaniem danych, dashboardów i alertów, a następnie objąć pozostałe aplikacje. **Zmiana domeny:** dopiero po decyzji właściciela zmienić Tunnel/Traefik, CORS/callbacki/cookies, linki e-mail i PWA, zachować stary adres przejściowo i przetestować oba. Favicon i wielowarstwowe limity pozostają osobnymi odbiorami.
+*   **Stan i pakiety M03/O01–O02:** harmonogram i wykonanie lokalnego backupu przeszły 27 września; katalogi bieżących kopii daily/weekly są czytelne, bez nowej próby restore. Starsze odczyty potwierdzały działające kontenery i niedostępną trasę przez zatrzymane NPM; pomyślny handshake TLS 27 września nie potwierdza dostępności HTTP. Przy migracji ustalić dotknięte dane/model/konfigurację z ustaleniem docelowej ochrony danych; testować `/api` i `/api/`, auth, wspólne limity, websockety, assety/PWA oraz rollback. **Wydanie stanowe:** naprawić CI/CD zgodnie ze standardem: manifest pełnego SHA i dokładne digests zamiast `latest`, bez pobierania Compose/skryptów z ruchomego `main`; połączyć zdublowany workflow force; pierwsze wdrożenie klienta/API z dozwoloną przerwą, następnie docelowy rolling/rollback, singleton/drain orchestratora, osobne kompatybilne migracje EF, publiczny smoke i rollback, rzeczywista blokada, bez globalnego prune i restartu proxy. **Centralna obserwowalność:** wydzielić Prometheus/Grafanę/renderera/Node Exporter do niezależnego stacku z zachowaniem danych, dashboardów i alertów, a następnie objąć pozostałe aplikacje. **Zmiana domeny:** dopiero po decyzji właściciela zmienić Tunnel/Traefik, CORS/callbacki/cookies, linki e-mail i PWA, zachować stary adres przejściowo i przetestować oba. Favicon i wielowarstwowe limity pozostają osobnymi odbiorami.
 
 ### 8. `UrlShortenerSystem` (Lipiec 2025)
 *   **Proponowana nazwa:** `url-shortener-system`
@@ -215,7 +215,7 @@ pakietu nadrzędnego. Szczegóły VPS i dane dostępu pozostają prywatne.
 *   **Docelowe zarządzanie wdrożeniem:** zasób Coolify; nie tworzyć nowego konta aplikacyjnego w grupie docker.
 *   **Technologia:** C# (.NET) + HTML/JS/CSS (nowe UI)
 *   **Zadania Dev:** Zmiana nazwy na `url-shortener-system`, licencja MIT, README.md (EN). Stworzenie prostego, responsywnego UI w HTML/JS do skracania linków.
-*   **Zadania DevOps:** Wdrożenie produkcyjne API + UI pod subdomenę `s.grela.dev`. Upewnienie się, że aplikacja ma favicon i wielowarstwowy rate limiting; sprawdzone wydanie i publiczny smoke z akceptowaną przerwą zgodnie ze standardem powyżej.
+*   **Zadania DevOps:** Wdrożenie produkcyjne API + UI pod subdomenę `s.grela.dev`. Upewnienie się, że aplikacja ma favicon i wielowarstwowy rate limiting; pierwsze wdrożenie z dozwoloną przerwą, a docelowo rolling update, publiczny smoke i backupy właściwe dla danych aplikacji.
 
 ### 9. `OlxScrapper` (Lipiec 2025)
 *   **Proponowana nazwa:** `flat-finder`
@@ -224,7 +224,7 @@ pakietu nadrzędnego. Szczegóły VPS i dane dostępu pozostają prywatne.
 *   **Docelowe zarządzanie wdrożeniem:** zasób Coolify; nie tworzyć nowego konta aplikacyjnego w grupie docker.
 *   **Technologia:** Python + HTML
 *   **Zadania Dev:** Zmiana nazwy na `flat-finder`, licencja MIT, README.md (EN). Uporządkowanie skryptów ML i scrapera, dokończenie skryptu treningowego i zintegrowanie go z aplikacją.
-*   **Zadania DevOps:** Wdrożenie produkcyjne dashboardu wyszukiwarki mieszkań pod `flatfinder.grela.dev`. Upewnienie się, że aplikacja ma favicon i wielowarstwowy rate limiting; sprawdzone wydanie i publiczny smoke z akceptowaną przerwą zgodnie ze standardem powyżej.
+*   **Zadania DevOps:** Wdrożenie produkcyjne dashboardu wyszukiwarki mieszkań pod `flatfinder.grela.dev`. Upewnienie się, że aplikacja ma favicon i wielowarstwowy rate limiting; pierwsze wdrożenie z dozwoloną przerwą, a docelowo rolling update, publiczny smoke i backupy właściwe dla danych aplikacji.
 
 ### 10. `clean-commits-skill` (Maj 2026)
 *   **Nazwa:** Bez zmian (`clean-commits-skill`)
@@ -236,7 +236,7 @@ pakietu nadrzędnego. Szczegóły VPS i dane dostępu pozostają prywatne.
 *   **Port kontenera:** ustalić z Dockerfile i procesu przy migracji; bez domyślnego mapowania na hosta.
 *   **Docelowe zarządzanie wdrożeniem:** zasób Coolify; nie tworzyć nowego konta aplikacyjnego w grupie docker.
 *   **Zadania Dev:** Dodanie daty do README.md, licencja MIT, schemat przepływu RAG.
-*   **Stan i następny pakiet (M02):** stare kontenery i baza pgvector pozostawały uruchomione 12 września, ale publiczny host zwracał błąd przy zatrzymanym NPM; nowej trasy w Traefiku nie potwierdzono. Przy migracji ustalić dotkniętą bazę/wektory i stan zewnętrzny bez obowiązkowej kopii, potem zachować dokładne oraz prefiksowe `/api/explain`, priorytet frontend/API, streaming/SSE, anulowanie, timeouty i websockety. Sprawdzić prawdziwe zapytania, favicon, limity i działanie aplikacji przed wycofaniem starej wersji; bez ćwiczenia ciągłości.
+*   **Stan i następny pakiet (M02):** stare kontenery i baza pgvector pozostawały uruchomione 12 września, ale publiczny host zwracał błąd przy zatrzymanym NPM; nowej trasy w Traefiku nie potwierdzono. Przy migracji ustalić dotkniętą bazę/wektory i stan zewnętrzny z ustaleniem docelowej ochrony danych, potem zachować dokładne oraz prefiksowe `/api/explain`, priorytet frontend/API, streaming/SSE, anulowanie, timeouty i websockety. Sprawdzić prawdziwe zapytania, favicon, limity i działanie aplikacji przed wycofaniem starej wersji; docelowy rolling i backupy/odzyskiwanie pozostają do domknięcia.
 
 ### 12. `leetcode` (Czerwiec 2026)
 *   **Proponowana nazwa:** `leetcode-solutions`

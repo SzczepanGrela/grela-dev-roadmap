@@ -17,7 +17,7 @@ The previous hosting entry was an architectural mismatch and is removed. Plannin
 ### Audit evidence
 
 - **Repozytorium:** `SzczepanGrela/pos-order-system` @ `47e9998d0308c82c80bf01d5a426bd51b7f584e1`
-- **Source state:** clean local worktree October 20 operating-policy change only: no new source audit or effort/calendar re-estimate; mandatory backup/uptime work withdrawn.
+- **Source state:** clean local worktree October 20 phase clarification only: bootstrap downtime accepted; final rolling and required-data backups retained. No new source audit, acceptance or effort/calendar estimate.
 - **Tests and CI:** No GitHub Actions runs, ruleset or environment were found.
 - **Production:** Not applicable: the project remains a Windows desktop application.
 
@@ -35,7 +35,7 @@ Profile: **Desktop application**. Statuses reflect only evidence available on th
 | Abuse protection | Not applicable | The control does not apply to the pos order system project profile. |
 | Runtime safety | Not applicable | The control does not apply to the pos order system project profile. |
 | Readiness and preflight | Not applicable | The control does not apply to the pos order system project profile. |
-| Verified deployment | Not applicable | The control does not apply to the pos order system project profile. |
+| Managed release and recovery | Not applicable | The control does not apply to the pos order system project profile. |
 | Coordination and retention | Missing | The required complete implementation was not found in the audited pos order system source. |
 | Observability | Not applicable | The control does not apply to the pos order system project profile. |
 | Web identity | Not applicable | The control does not apply to the pos order system project profile. |
@@ -83,7 +83,7 @@ Planned by owner on 2026-10-17; no repository hygiene audit or cleanup performed
 - The project remains desktop-only and will not use pos.grela.dev.
 - Web rate limiting and blue-green deployment do not apply.
 - The project follows the v2 standard profile: desktop.
-- October 20 owner policy: portfolio apps have no promoted user traffic requirement, uptime SLA or mandatory backups. Downtime/stop-start is acceptable; off-host copies, restore drills and availability exercises are optional, not release gates. Keep correctness/security/resource/cost controls and existing data/configuration. docs/operating-standard.md applies to this and future repositories. Prior source/audit dates and effort estimates are historical, not a fresh scope estimate.
+- October 20 clarification: downtime is accepted during preparation, initial deployment and migration. Final Coolify operation still requires health-gated rolling updates and backups of necessary durable data/configuration/keys with proportionate recovery verification. No numeric uptime SLA, permanent replicas or multi-host HA. Stateless/static/non-server projects use their applicable hosting and data scope. Existing data, backup schedules and release guards remain. This is planning, not new runtime acceptance or re-estimation; docs/operating-standard.md applies to future repositories too.
 
 ## Polski
 
@@ -96,7 +96,7 @@ Poprzedni plan hostingu był niespójny z architekturą i został usunięty. Akt
 ### Dowody audytu
 
 - **Repozytorium:** `SzczepanGrela/pos-order-system` @ `47e9998d0308c82c80bf01d5a426bd51b7f584e1`
-- **Stan źródła:** clean local worktree October 20 operating-policy change only: no new source audit or effort/calendar re-estimate; mandatory backup/uptime work withdrawn.
+- **Stan źródła:** clean local worktree October 20 phase clarification only: bootstrap downtime accepted; final rolling and required-data backups retained. No new source audit, acceptance or effort/calendar estimate.
 - **Testy i CI:** No GitHub Actions runs, ruleset or environment were found.
 - **Produkcja:** Not applicable: the project remains a Windows desktop application.
 
@@ -114,7 +114,7 @@ Profil: **Aplikacja desktopowa**. Statusy odzwierciedlają wyłącznie dowody do
 | Ochrona przed nadużyciami | Nie dotyczy | Kontrola nie dotyczy profilu projektu pos order system. |
 | Bezpieczeństwo runtime | Nie dotyczy | Kontrola nie dotyczy profilu projektu pos order system. |
 | Readiness i preflight | Nie dotyczy | Kontrola nie dotyczy profilu projektu pos order system. |
-| Sprawdzone wdrożenie | Nie dotyczy | Kontrola nie dotyczy profilu projektu pos order system. |
+| Zarządzane wydanie i odzyskiwanie | Nie dotyczy | Kontrola nie dotyczy profilu projektu pos order system. |
 | Koordynacja i retencja | Brak | W audytowanym źródle projektu pos order system nie znaleziono wymaganej kompletnej implementacji. |
 | Obserwowalność | Nie dotyczy | Kontrola nie dotyczy profilu projektu pos order system. |
 | Tożsamość webowa | Nie dotyczy | Kontrola nie dotyczy profilu projektu pos order system. |
@@ -162,4 +162,4 @@ Planned by owner on 2026-10-17; no repository hygiene audit or cleanup performed
 - Projekt pozostaje desktopowy i nie używa pos.grela.dev.
 - Webowy rate limiting i blue-green nie mają zastosowania.
 - Projekt podlega profilowi standardu v2: desktop.
-- Decyzja właściciela 20 października: aplikacje portfolio nie wymagają ciągłości ruchu, SLA uptime ani backupów. Przerwy/stop-start są akceptowalne; off-host, restore i ćwiczenia ciągłości są opcjonalne, nie blokują wydania. Zachować kontrole funkcji/bezpieczeństwa/zasobów/kosztów i istniejące dane/konfigurację. docs/operating-standard.md obejmuje to i przyszłe repozytoria. Starsze daty audytu/źródeł i estymaty pozostają historyczne, bez nowej wyceny zakresu.
+- Doprecyzowanie 20 października: przerwy są dozwolone podczas przygotowania, pierwszego wdrożenia i migracji. Docelowy Coolify nadal wymaga rolling update z bramką zdrowia i backupów potrzebnych danych/konfiguracji/kluczy z proporcjonalnym sprawdzeniem odtworzenia. Bez liczbowego SLA, stałych replik i HA wielu hostów. Dla projektów stateless/statycznych/bez serwera stosować właściwy zakres hostingu i danych. Zachować dane, harmonogramy kopii i zabezpieczenia wdrożeń. To plan, nie nowy odbiór ani estymacja; docs/operating-standard.md obejmuje też przyszłe repozytoria.

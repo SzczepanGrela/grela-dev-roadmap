@@ -59,7 +59,7 @@
     "date": "2026-08-25",
     "mode": "source-audited",
     "sourceRevision": "5596d689aefbf80ac12700a9e9ff77ca14702112",
-    "sourceState": "clean public master shallow clone October 20 operating-policy change only: no new source audit or effort/calendar re-estimate; mandatory backup/uptime work withdrawn."
+    "sourceState": "clean public master shallow clone October 20 phase clarification only: bootstrap downtime accepted; final rolling and required-data backups retained. No new source audit, acceptance or effort/calendar estimate."
   },
   "focus": {
     "current": {
@@ -177,8 +177,8 @@
     {
       "id": "immutable-blue-green",
       "title": {
-        "en": "Add immutable CI/CD and deployment smoke",
-        "pl": "Dodać niezmienne CI/CD i smoke wdrożenia"
+        "en": "Accept health-gated rolling releases and scoped recovery",
+        "pl": "Odebrać rolling update z bramką zdrowia i odzyskiwanie w ustalonym zakresie"
       },
       "dimension": "delivery",
       "status": "planned",
@@ -189,7 +189,7 @@
       "hoursMax": 14,
       "daysMin": 1,
       "daysMax": 1.75,
-      "evidence": "October 20 planning revision: Prepare qualified GHCR digests, private deployment and correct routing. Downtime allowed; no mandatory blue-green or automatic recovery drill. Previous completion/effort values retain their historical estimate; no new implementation or live test is claimed. Stable task ID retained."
+      "evidence": "GHCR digests, OIDC deploy, stable routing and rollback do not exist. Target revised September 6: implement the delivery step through Coolify using the shared checklist, an immutable GHCR digest and Traefik/Tunnel; preserve data and custom routes. Production migration not verified in this update. October 20 clarification: migration/first routing may use downtime; final scope includes health-gated rolling, functional smoke, scoped rollback and necessary-data backups/recovery. Stable ID and historical progress/effort retained; no new live acceptance."
     },
     {
       "id": "edge-observability",
@@ -273,8 +273,8 @@
       "pl": "Cel migracji uaktualniony 6 września: digest GHCR w Coolify, routing Traefik/Tunnel i wspólna checklista; zachować bazy i custom routes. Zmiana celu nie jest nowym audytem źródła/produkcji."
     },
     {
-      "en": "October 20 owner policy: portfolio apps have no promoted user traffic requirement, uptime SLA or mandatory backups. Downtime/stop-start is acceptable; off-host copies, restore drills and availability exercises are optional, not release gates. Keep correctness/security/resource/cost controls and existing data/configuration. docs/operating-standard.md applies to this and future repositories. Prior source/audit dates and effort estimates are historical, not a fresh scope estimate.",
-      "pl": "Decyzja właściciela 20 października: aplikacje portfolio nie wymagają ciągłości ruchu, SLA uptime ani backupów. Przerwy/stop-start są akceptowalne; off-host, restore i ćwiczenia ciągłości są opcjonalne, nie blokują wydania. Zachować kontrole funkcji/bezpieczeństwa/zasobów/kosztów i istniejące dane/konfigurację. docs/operating-standard.md obejmuje to i przyszłe repozytoria. Starsze daty audytu/źródeł i estymaty pozostają historyczne, bez nowej wyceny zakresu."
+      "en": "October 20 clarification: downtime is accepted during preparation, initial deployment and migration. Final Coolify operation still requires health-gated rolling updates and backups of necessary durable data/configuration/keys with proportionate recovery verification. No numeric uptime SLA, permanent replicas or multi-host HA. Stateless/static/non-server projects use their applicable hosting and data scope. Existing data, backup schedules and release guards remain. This is planning, not new runtime acceptance or re-estimation; docs/operating-standard.md applies to future repositories too.",
+      "pl": "Doprecyzowanie 20 października: przerwy są dozwolone podczas przygotowania, pierwszego wdrożenia i migracji. Docelowy Coolify nadal wymaga rolling update z bramką zdrowia i backupów potrzebnych danych/konfiguracji/kluczy z proporcjonalnym sprawdzeniem odtworzenia. Bez liczbowego SLA, stałych replik i HA wielu hostów. Dla projektów stateless/statycznych/bez serwera stosować właściwy zakres hostingu i danych. Zachować dane, harmonogramy kopii i zabezpieczenia wdrożeń. To plan, nie nowy odbiór ani estymacja; docs/operating-standard.md obejmuje też przyszłe repozytoria."
     }
   ],
   "audit": {
@@ -388,8 +388,8 @@
         "id": "atomic-promotion-rollback",
         "status": "missing",
         "evidence": {
-          "en": "The required complete implementation was not found in the audited url shortener system source. October 20 scope: verify the selected deployment and public smoke; downtime allowed. Earlier missing blue-green/automatic rollback evidence is not a release blocker. Existing status records historical evidence, not a fresh acceptance.",
-          "pl": "W audytowanym źródle projektu url shortener system nie znaleziono wymaganej kompletnej implementacji. Zakres 20 października: sprawdzić wybrane wdrożenie i publiczny smoke; przerwa dozwolona. Wcześniejszy brak blue-green/automatycznego rollbacku nie blokuje wydania. Status zachowuje dowód historyczny, nie jest nowym odbiorem."
+          "en": "The required complete implementation was not found in the audited url shortener system source. October 20: downtime is allowed during migration/bootstrap; final managed release/recovery requirements remain. Existing status is not a new runtime acceptance.",
+          "pl": "W audytowanym źródle projektu url shortener system nie znaleziono wymaganej kompletnej implementacji. 20 października: przerwa dozwolona na migrację/bootstrap; docelowe wymagania wdrożeń/odzyskiwania pozostają. Status nie oznacza nowego odbioru runtime."
         },
         "taskIds": [
           "immutable-blue-green"
@@ -410,8 +410,8 @@
         "id": "observability",
         "status": "missing",
         "evidence": {
-          "en": "The required complete implementation was not found in the audited url shortener system source. October 20: backup/uptime alert requirements withdrawn; useful resource/cost diagnostics remain separate.",
-          "pl": "W audytowanym źródle projektu url shortener system nie znaleziono wymaganej kompletnej implementacji. 20 października: wycofano wymóg alertów backup/uptime; użyteczna diagnostyka zasobów/kosztów pozostaje osobno."
+          "en": "The required complete implementation was not found in the audited url shortener system source.",
+          "pl": "W audytowanym źródle projektu url shortener system nie znaleziono wymaganej kompletnej implementacji."
         },
         "taskIds": [
           "edge-observability"

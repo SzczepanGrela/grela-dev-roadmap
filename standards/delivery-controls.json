@@ -81,20 +81,20 @@
     },
     {
       "id": "atomic-promotion-rollback",
-      "title": {"en": "Verified deployment", "pl": "Sprawdzone wdrożenie"},
-      "description": {"en": "Qualified artifact, actual readiness and external functional smoke. Downtime/stop-start is accepted under the October 20 operating policy; blue-green, automatic rollback and continuity drills are optional. Preserve existing release guards.", "pl": "Sprawdzony artefakt, rzeczywiste readiness i publiczny smoke funkcji. Zgodnie z decyzją 20 października przerwa/stop-start są dozwolone; blue-green, automatyczny rollback i próby ciągłości opcjonalne. Zachować istniejące kontrole wydania."},
+      "title": {"en": "Managed release and recovery", "pl": "Zarządzane wydanie i odzyskiwanie"},
+      "description": {"en": "Final VPS operation uses health-gated rolling, external functional smoke and scoped rollback/recovery; static hosting uses verified managed promotion. Bootstrap/migration may have downtime. Preserve existing uncertainty guards; rolling alone does not prove rollback or an uptime SLA.", "pl": "Docelowy VPS używa rolling z bramką zdrowia, publicznym smoke i scoped rollback/odzyskiwaniem; hosting statyczny sprawdzonej promocji platformy. Bootstrap/migracja mogą mieć przerwę. Zachować kontrole niepewności; rolling sam nie dowodzi rollbacku ani SLA."},
       "profiles": ["vps-web", "static-web"]
     },
     {
       "id": "coordination-retention",
       "title": {"en": "Coordination and retention", "pl": "Koordynacja i retencja"},
-      "description": {"en": "Serialized releases, capacity checks and scoped retention preserving a known-good artifact.", "pl": "Serializowane wydania, kontrola pojemności i ograniczona retencja zachowująca sprawdzony artefakt."},
+      "description": {"en": "Serialize releases, check actual overlap capacity and retain known-good artifacts. Final operation includes appropriate backups of necessary durable data/keys/configuration and proportionate restore checks; stateless/non-server projects use their actual data scope.", "pl": "Serializować wydania, sprawdzać zasoby rzeczywistego overlap i zachować sprawdzone artefakty. Docelowe utrzymanie obejmuje backupy potrzebnych danych/kluczy/konfiguracji i proporcjonalny restore; stateless/projekty bez serwera stosują rzeczywisty zakres danych."},
       "profiles": ["vps-web", "static-web", "desktop", "repository", "developer-tool"]
     },
     {
       "id": "observability",
       "title": {"en": "Observability", "pl": "Obserwowalność"},
-      "description": {"en": "Useful logs and resource/cost/deployment diagnostics, proportionate to portfolio use. No uptime SLA or mandatory backup/availability alerts.", "pl": "Użyteczne logi i diagnostyka zasobów/kosztów/wdrożeń, proporcjonalna do portfolio. Bez SLA uptime i obowiązkowych alertów backup/dostępności."},
+      "description": {"en": "Useful logs, resource/cost/deployment diagnostics and backup-failure visibility for protected datasets. Proportionate to portfolio use; no numeric uptime SLA.", "pl": "Użyteczne logi, diagnostyka zasobów/kosztów/wdrożeń i widoczność błędów kopii chronionych danych. Zakres proporcjonalny do portfolio, bez liczbowego SLA uptime."},
       "profiles": ["vps-web", "static-web"]
     },
     {

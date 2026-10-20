@@ -17,7 +17,7 @@ This is a substantial modernization rather than a simple containerization task. 
 ### Audit evidence
 
 - **Repozytorium:** `SzczepanGrela/UrlShortenerSystem` @ `5596d689aefbf80ac12700a9e9ff77ca14702112`
-- **Source state:** clean public master shallow clone October 20 operating-policy change only: no new source audit or effort/calendar re-estimate; mandatory backup/uptime work withdrawn.
+- **Source state:** clean public master shallow clone October 20 phase clarification only: bootstrap downtime accepted; final rolling and required-data backups retained. No new source audit, acceptance or effort/calendar estimate.
 - **Tests and CI:** No GitHub Actions runs, ruleset or environment were found.
 - **Production:** s.grela.dev did not resolve in public DNS on 2026-08-25.
 
@@ -35,9 +35,9 @@ Profile: **VPS web application**. Statuses reflect only evidence available on th
 | Abuse protection | Partial | url shortener system has some mechanisms but does not yet satisfy the complete v2 control. |
 | Runtime safety | Missing | The required complete implementation was not found in the audited url shortener system source. |
 | Readiness and preflight | Partial | url shortener system has some mechanisms but does not yet satisfy the complete v2 control. |
-| Verified deployment | Missing | The required complete implementation was not found in the audited url shortener system source. October 20 scope: verify the selected deployment and public smoke; downtime allowed. Earlier missing blue-green/automatic rollback evidence is not a release blocker. Existing status records historical evidence, not a fresh acceptance. |
+| Managed release and recovery | Missing | The required complete implementation was not found in the audited url shortener system source. October 20: downtime is allowed during migration/bootstrap; final managed release/recovery requirements remain. Existing status is not a new runtime acceptance. |
 | Coordination and retention | Missing | The required complete implementation was not found in the audited url shortener system source. |
-| Observability | Missing | The required complete implementation was not found in the audited url shortener system source. October 20: backup/uptime alert requirements withdrawn; useful resource/cost diagnostics remain separate. |
+| Observability | Missing | The required complete implementation was not found in the audited url shortener system source. |
 | Web identity | Missing | The required complete implementation was not found in the audited url shortener system source. |
 
 ### Remaining and active tasks
@@ -78,11 +78,11 @@ The repository lacks a public README/license baseline and target deployment docu
 
 No frontend, production container topology or deployment workflow is present.
 
-#### Add immutable CI/CD and deployment smoke
+#### Accept health-gated rolling releases and scoped recovery
 
 **Delivery · Planned · 0% · difficulty 5/5 · 8–14 h**
 
-October 20 planning revision: Prepare qualified GHCR digests, private deployment and correct routing. Downtime allowed; no mandatory blue-green or automatic recovery drill. Previous completion/effort values retain their historical estimate; no new implementation or live test is claimed. Stable task ID retained.
+GHCR digests, OIDC deploy, stable routing and rollback do not exist. Target revised September 6: implement the delivery step through Coolify using the shared checklist, an immutable GHCR digest and Traefik/Tunnel; preserve data and custom routes. Production migration not verified in this update. October 20 clarification: migration/first routing may use downtime; final scope includes health-gated rolling, functional smoke, scoped rollback and necessary-data backups/recovery. Stable ID and historical progress/effort retained; no new live acceptance.
 
 #### Configure domain, limits and monitoring
 
@@ -108,7 +108,7 @@ Planned by owner on 2026-10-17; no repository hygiene audit or cleanup performed
 - Use trusted proxy middleware, SSRF/private-address validation and a bounded analytics worker.
 - The project follows the v2 standard profile: vps-web.
 - Migration target updated September 6: prebuilt GHCR digest in Coolify, Traefik/Tunnel routing and the shared deployment checklist; preserve databases and custom routes. This target update is not a new source/production audit.
-- October 20 owner policy: portfolio apps have no promoted user traffic requirement, uptime SLA or mandatory backups. Downtime/stop-start is acceptable; off-host copies, restore drills and availability exercises are optional, not release gates. Keep correctness/security/resource/cost controls and existing data/configuration. docs/operating-standard.md applies to this and future repositories. Prior source/audit dates and effort estimates are historical, not a fresh scope estimate.
+- October 20 clarification: downtime is accepted during preparation, initial deployment and migration. Final Coolify operation still requires health-gated rolling updates and backups of necessary durable data/configuration/keys with proportionate recovery verification. No numeric uptime SLA, permanent replicas or multi-host HA. Stateless/static/non-server projects use their applicable hosting and data scope. Existing data, backup schedules and release guards remain. This is planning, not new runtime acceptance or re-estimation; docs/operating-standard.md applies to future repositories too.
 
 ## Polski
 
@@ -121,7 +121,7 @@ To duża modernizacja, a nie tylko konteneryzacja. Aktualizacja wyłącznie plan
 ### Dowody audytu
 
 - **Repozytorium:** `SzczepanGrela/UrlShortenerSystem` @ `5596d689aefbf80ac12700a9e9ff77ca14702112`
-- **Stan źródła:** clean public master shallow clone October 20 operating-policy change only: no new source audit or effort/calendar re-estimate; mandatory backup/uptime work withdrawn.
+- **Stan źródła:** clean public master shallow clone October 20 phase clarification only: bootstrap downtime accepted; final rolling and required-data backups retained. No new source audit, acceptance or effort/calendar estimate.
 - **Testy i CI:** No GitHub Actions runs, ruleset or environment were found.
 - **Produkcja:** s.grela.dev did not resolve in public DNS on 2026-08-25.
 
@@ -139,9 +139,9 @@ Profil: **Aplikacja webowa na VPS**. Statusy odzwierciedlają wyłącznie dowody
 | Ochrona przed nadużyciami | Częściowe | Projekt url shortener system ma część mechanizmów, ale nie spełnia jeszcze całej kontroli v2. |
 | Bezpieczeństwo runtime | Brak | W audytowanym źródle projektu url shortener system nie znaleziono wymaganej kompletnej implementacji. |
 | Readiness i preflight | Częściowe | Projekt url shortener system ma część mechanizmów, ale nie spełnia jeszcze całej kontroli v2. |
-| Sprawdzone wdrożenie | Brak | W audytowanym źródle projektu url shortener system nie znaleziono wymaganej kompletnej implementacji. Zakres 20 października: sprawdzić wybrane wdrożenie i publiczny smoke; przerwa dozwolona. Wcześniejszy brak blue-green/automatycznego rollbacku nie blokuje wydania. Status zachowuje dowód historyczny, nie jest nowym odbiorem. |
+| Zarządzane wydanie i odzyskiwanie | Brak | W audytowanym źródle projektu url shortener system nie znaleziono wymaganej kompletnej implementacji. 20 października: przerwa dozwolona na migrację/bootstrap; docelowe wymagania wdrożeń/odzyskiwania pozostają. Status nie oznacza nowego odbioru runtime. |
 | Koordynacja i retencja | Brak | W audytowanym źródle projektu url shortener system nie znaleziono wymaganej kompletnej implementacji. |
-| Obserwowalność | Brak | W audytowanym źródle projektu url shortener system nie znaleziono wymaganej kompletnej implementacji. 20 października: wycofano wymóg alertów backup/uptime; użyteczna diagnostyka zasobów/kosztów pozostaje osobno. |
+| Obserwowalność | Brak | W audytowanym źródle projektu url shortener system nie znaleziono wymaganej kompletnej implementacji. |
 | Tożsamość webowa | Brak | W audytowanym źródle projektu url shortener system nie znaleziono wymaganej kompletnej implementacji. |
 
 ### Zadania pozostałe i bieżące
@@ -182,11 +182,11 @@ The repository lacks a public README/license baseline and target deployment docu
 
 No frontend, production container topology or deployment workflow is present.
 
-#### Dodać niezmienne CI/CD i smoke wdrożenia
+#### Odebrać rolling update z bramką zdrowia i odzyskiwanie w ustalonym zakresie
 
 **Wdrożenie · Planowane · 0% · trudność 5/5 · 8–14 h**
 
-October 20 planning revision: Prepare qualified GHCR digests, private deployment and correct routing. Downtime allowed; no mandatory blue-green or automatic recovery drill. Previous completion/effort values retain their historical estimate; no new implementation or live test is claimed. Stable task ID retained.
+GHCR digests, OIDC deploy, stable routing and rollback do not exist. Target revised September 6: implement the delivery step through Coolify using the shared checklist, an immutable GHCR digest and Traefik/Tunnel; preserve data and custom routes. Production migration not verified in this update. October 20 clarification: migration/first routing may use downtime; final scope includes health-gated rolling, functional smoke, scoped rollback and necessary-data backups/recovery. Stable ID and historical progress/effort retained; no new live acceptance.
 
 #### Skonfigurować domenę, limity i monitoring
 
@@ -212,4 +212,4 @@ Planned by owner on 2026-10-17; no repository hygiene audit or cleanup performed
 - Użyć trusted proxy, ochrony SSRF/private IP i ograniczonego workera analityki.
 - Projekt podlega profilowi standardu v2: vps-web.
 - Cel migracji uaktualniony 6 września: digest GHCR w Coolify, routing Traefik/Tunnel i wspólna checklista; zachować bazy i custom routes. Zmiana celu nie jest nowym audytem źródła/produkcji.
-- Decyzja właściciela 20 października: aplikacje portfolio nie wymagają ciągłości ruchu, SLA uptime ani backupów. Przerwy/stop-start są akceptowalne; off-host, restore i ćwiczenia ciągłości są opcjonalne, nie blokują wydania. Zachować kontrole funkcji/bezpieczeństwa/zasobów/kosztów i istniejące dane/konfigurację. docs/operating-standard.md obejmuje to i przyszłe repozytoria. Starsze daty audytu/źródeł i estymaty pozostają historyczne, bez nowej wyceny zakresu.
+- Doprecyzowanie 20 października: przerwy są dozwolone podczas przygotowania, pierwszego wdrożenia i migracji. Docelowy Coolify nadal wymaga rolling update z bramką zdrowia i backupów potrzebnych danych/konfiguracji/kluczy z proporcjonalnym sprawdzeniem odtworzenia. Bez liczbowego SLA, stałych replik i HA wielu hostów. Dla projektów stateless/statycznych/bez serwera stosować właściwy zakres hostingu i danych. Zachować dane, harmonogramy kopii i zabezpieczenia wdrożeń. To plan, nie nowy odbiór ani estymacja; docs/operating-standard.md obejmuje też przyszłe repozytoria.

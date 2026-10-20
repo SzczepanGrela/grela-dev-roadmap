@@ -1,6 +1,6 @@
 # Checklista wdrożenia przez Coolify
 
-**Decyzja właściciela, 2026-10-20:** [standard utrzymania](operating-standard.md) dopuszcza przerwy we wszystkich aplikacjach. Backupy, off-host, RPO/RTO, HA oraz ćwiczenia ciągłości/odzyskiwania nie są obowiązkowymi warunkami wydania. Zasada zastępuje starsze wymagania poniżej; datowane wyniki pozostają historią.
+**Doprecyzowanie właściciela, 2026-10-20:** [standard utrzymania](operating-standard.md): przerwy są akceptowalne podczas przygotowania i migracji. Docelowy Coolify obejmuje rolling update i backupy potrzebnych danych/kluczy/konfiguracji z proporcjonalnym odbiorem. Pierwsze uruchomienie nie oznacza pełnego domknięcia. Bez liczbowego SLA i HA; dalsze backupy/restore legacy NetFilmxa nie wracają do planu. Starsze datowane wyniki zachowują swój zakres.
 
 Wersja odniesienia: 4.3.14; przegląd 2026-09-29. To wymagania i wskazówki,
 nie deklaracja, że każdy projekt już je spełnia. Konkretne dane VPS, UUID,
@@ -179,11 +179,11 @@ wyjątek procesu i uprawnień hosta jest opisany tylko w prywatnym runbooku.
   zewnętrzne DB/obiekty, uploady, writerów i spójność kopii. Brak mountów nie
   dowodzi bezstanowości.
 - [ ] Zapisać dane/writerów dotkniętych migracją oraz docelową persystencję.
-  Domyślnie przerwy dozwolone; backup, stary obraz i restore nie są bramką wydania.
+  Przerwa dozwolona na migrację/bootstrap. Dalsze kopie/restore legacy NetFilmxa nie blokują pierwszego wydania; docelowe backupy nowego stanu pozostają wymagane.
   Istniejących danych/kopii nie usuwa sama zmiana tej polityki.
 - [ ] Przy overlap stary/nowy kod musi być zgodny ze schematem, zadania
   singletonem albo pod blokadą, a liczniki limitera współdzielone tam, gdzie
-  wymaga tego polityka. Jeżeli wybieramy overlap, sprawdzić potrzebną współbieżność i pojemność; stop/start jest dozwolony.
+  wymaga tego polityka. Dla docelowego rolling sprawdzić współbieżność, zgodność i pojemność; bootstrap lub niezgodna migracja może mieć przerwę.
 - [ ] Przy zmianie sieci/proxy zachować dostęp administracyjny i kontrolę originu.
   Backup providerowy jest opcjonalny, nie jest bramką wdrożenia aplikacji.
 
@@ -238,7 +238,7 @@ HTTP i liczniki żądań wymagają osobnych testów. Wybór współdzielonego ma
 gdy pojawią się przesłanki do ponownego rozpatrzenia wyjątku TTT.
 
 Opcjonalny Jev wymaga trwałego licznika wydatków także podczas rolling update.
-Jeżeli wykonujemy opcjonalny backup SQLite, zrobić go spójnie; przy odtworzeniu wstrzymać płatne wywołania i uzgodnić
+Backup SQLite wykonywać spójnie; przy odtworzeniu wstrzymać płatne wywołania i uzgodnić
 wydatki z dostawcą. Cofnięcie obrazu zachowuje aktualny licznik. Sekret dostawcy
 jest wyłącznie runtime; nie dodawać go automatycznie do preview ani testów CI.
 Jev pozostaje publicznie wyłączony. Awaria opcjonalnego dostawcy nie wyłącza
@@ -282,3 +282,15 @@ nie każdą dowolnie długą odpowiedź.
 Zmiana wyłącznie dokumentacji nie wymaga wdrożenia aplikacji: wykonać właściwe
 checki i anulować ewentualny oczekujący deploy bez zatwierdzania production.
 Rewizja działającego obrazu może wtedy poprzedzać commit dokumentacji.
+
+## Domknięcie docelowego utrzymania
+
+- [ ] Oddzielić odbiór pierwszego uruchomienia od odbioru docelowego Coolify.
+- [ ] Potwierdzić rolling z bramką zdrowia, rzeczywisty smoke, zasoby overlap,
+  kompatybilność stanu/schematu i scoped rollback; wykorzystać aktualne dowody.
+- [ ] Dla potrzebnego trwałego stanu dobrać backup: dane, klucze i konfigurację,
+  harmonogram, dostęp, miejsce, retencję/pojemność, informację o błędzie oraz
+  proporcjonalny test odtworzenia. Wolumen i backup panelu Coolify nie zastępują
+  kopii danych aplikacji. Nie wymyślać bazy do backupu dla aplikacji stateless.
+- Nie wymagać 99% SLA, wielu serwerów ani ponawiania całej historii canary/load.
+  Niezrobione zadania docelowe są nadal otwarte, nawet jeśli pierwsze wydanie działa.

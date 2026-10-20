@@ -17,7 +17,7 @@ Progress reflects solved exercises, not repository readiness. Planning-only upda
 ### Audit evidence
 
 - **Repozytorium:** `SzczepanGrela/leetcode` @ `2f2c8f7c97a360f9a12f12f0e082cea892581e61`
-- **Source state:** clean public main shallow clone October 20 operating-policy change only: no new source audit or effort/calendar re-estimate; mandatory backup/uptime work withdrawn.
+- **Source state:** clean public main shallow clone October 20 phase clarification only: bootstrap downtime accepted; final rolling and required-data backups retained. No new source audit, acceptance or effort/calendar estimate.
 - **Tests and CI:** No GitHub Actions runs, ruleset or environment were found.
 - **Production:** Not applicable: source solutions remain a repository, not a service.
 
@@ -35,7 +35,7 @@ Profile: **Source repository**. Statuses reflect only evidence available on the 
 | Abuse protection | Not applicable | The control does not apply to the leetcode solutions project profile. |
 | Runtime safety | Not applicable | The control does not apply to the leetcode solutions project profile. |
 | Readiness and preflight | Not applicable | The control does not apply to the leetcode solutions project profile. |
-| Verified deployment | Not applicable | The control does not apply to the leetcode solutions project profile. |
+| Managed release and recovery | Not applicable | The control does not apply to the leetcode solutions project profile. |
 | Coordination and retention | Missing | The required complete implementation was not found in the audited leetcode solutions source. |
 | Observability | Not applicable | The control does not apply to the leetcode solutions project profile. |
 | Web identity | Not applicable | The control does not apply to the leetcode solutions project profile. |
@@ -82,7 +82,7 @@ Planned by owner on 2026-10-17; no repository hygiene audit or cleanup performed
 
 - Do not build a hosted service; an optional future index may be static.
 - The project follows the v2 standard profile: repository.
-- October 20 owner policy: portfolio apps have no promoted user traffic requirement, uptime SLA or mandatory backups. Downtime/stop-start is acceptable; off-host copies, restore drills and availability exercises are optional, not release gates. Keep correctness/security/resource/cost controls and existing data/configuration. docs/operating-standard.md applies to this and future repositories. Prior source/audit dates and effort estimates are historical, not a fresh scope estimate.
+- October 20 clarification: downtime is accepted during preparation, initial deployment and migration. Final Coolify operation still requires health-gated rolling updates and backups of necessary durable data/configuration/keys with proportionate recovery verification. No numeric uptime SLA, permanent replicas or multi-host HA. Stateless/static/non-server projects use their applicable hosting and data scope. Existing data, backup schedules and release guards remain. This is planning, not new runtime acceptance or re-estimation; docs/operating-standard.md applies to future repositories too.
 
 ## Polski
 
@@ -95,7 +95,7 @@ Postęp uwzględnia rozwiązane zadania, ale nie gotowość repozytorium. Aktual
 ### Dowody audytu
 
 - **Repozytorium:** `SzczepanGrela/leetcode` @ `2f2c8f7c97a360f9a12f12f0e082cea892581e61`
-- **Stan źródła:** clean public main shallow clone October 20 operating-policy change only: no new source audit or effort/calendar re-estimate; mandatory backup/uptime work withdrawn.
+- **Stan źródła:** clean public main shallow clone October 20 phase clarification only: bootstrap downtime accepted; final rolling and required-data backups retained. No new source audit, acceptance or effort/calendar estimate.
 - **Testy i CI:** No GitHub Actions runs, ruleset or environment were found.
 - **Produkcja:** Not applicable: source solutions remain a repository, not a service.
 
@@ -113,7 +113,7 @@ Profil: **Repozytorium źródłowe**. Statusy odzwierciedlają wyłącznie dowod
 | Ochrona przed nadużyciami | Nie dotyczy | Kontrola nie dotyczy profilu projektu leetcode solutions. |
 | Bezpieczeństwo runtime | Nie dotyczy | Kontrola nie dotyczy profilu projektu leetcode solutions. |
 | Readiness i preflight | Nie dotyczy | Kontrola nie dotyczy profilu projektu leetcode solutions. |
-| Sprawdzone wdrożenie | Nie dotyczy | Kontrola nie dotyczy profilu projektu leetcode solutions. |
+| Zarządzane wydanie i odzyskiwanie | Nie dotyczy | Kontrola nie dotyczy profilu projektu leetcode solutions. |
 | Koordynacja i retencja | Brak | W audytowanym źródle projektu leetcode solutions nie znaleziono wymaganej kompletnej implementacji. |
 | Obserwowalność | Nie dotyczy | Kontrola nie dotyczy profilu projektu leetcode solutions. |
 | Tożsamość webowa | Nie dotyczy | Kontrola nie dotyczy profilu projektu leetcode solutions. |
@@ -160,4 +160,4 @@ Planned by owner on 2026-10-17; no repository hygiene audit or cleanup performed
 
 - Nie budować usługi; ewentualny indeks może być statyczny.
 - Projekt podlega profilowi standardu v2: repository.
-- Decyzja właściciela 20 października: aplikacje portfolio nie wymagają ciągłości ruchu, SLA uptime ani backupów. Przerwy/stop-start są akceptowalne; off-host, restore i ćwiczenia ciągłości są opcjonalne, nie blokują wydania. Zachować kontrole funkcji/bezpieczeństwa/zasobów/kosztów i istniejące dane/konfigurację. docs/operating-standard.md obejmuje to i przyszłe repozytoria. Starsze daty audytu/źródeł i estymaty pozostają historyczne, bez nowej wyceny zakresu.
+- Doprecyzowanie 20 października: przerwy są dozwolone podczas przygotowania, pierwszego wdrożenia i migracji. Docelowy Coolify nadal wymaga rolling update z bramką zdrowia i backupów potrzebnych danych/konfiguracji/kluczy z proporcjonalnym sprawdzeniem odtworzenia. Bez liczbowego SLA, stałych replik i HA wielu hostów. Dla projektów stateless/statycznych/bez serwera stosować właściwy zakres hostingu i danych. Zachować dane, harmonogramy kopii i zabezpieczenia wdrożeń. To plan, nie nowy odbiór ani estymacja; docs/operating-standard.md obejmuje też przyszłe repozytoria.

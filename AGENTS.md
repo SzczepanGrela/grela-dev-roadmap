@@ -1,21 +1,21 @@
 # Roadmap editing instructions
 
 Read [the operating standard](docs/operating-standard.md) before planning tasks.
-The October 20, 2026 owner decision applies to all current and future repositories:
-downtime is accepted; no uptime SLA, mandatory backups, off-host copies, restore
-drills or availability exercises. Do not recreate these as default release gates.
-Keep correctness/security/resource/cost checks and existing release safeguards.
-This policy does not authorize deleting data, disabling backup timers or deploying apps.
+October 20 clarification applies to all current and future repositories: downtime
+is accepted during preparation, bootstrap and migration. Final Coolify closeout
+still requires health-gated rolling and backups of necessary durable data/keys/
+configuration with proportionate recovery verification. Do not confuse first
+routing with final completion. No numeric uptime SLA, permanent replicas or HA.
+Further NetFilmx legacy backup/off-host/restore work is withdrawn; new-deployment
+backup coverage remains planned. Keep existing release and uncertainty safeguards.
+This planning correction does not authorize data deletion, timer changes or deployment.
 
-Edit project tasks and decisions in `projects/*/project.json`, then regenerate
-reports with `python3 scripts/sync_reports.py --write`. Preserve stable task IDs
-and evidence dates. A requirement withdrawn by the owner is not a test passed;
-do not invent progress or treat historical effort estimates as a fresh forecast.
+Edit project tasks/decisions in `projects/*/project.json`, then regenerate reports
+with `python3 scripts/sync_reports.py --write`. Preserve stable IDs and dated
+results. Do not mark unchecked tasks passed or invent progress/effort estimates.
 Update shared instructions for future projects as well as individual records.
 
-Keep private topology, credentials and operator evidence in the private
-infrastructure repository. Repository hygiene remains planned under
-[its standard](docs/repository-hygiene-standard.md); no implicit branch renaming,
-history rewrite or cleanup. New branch names describe the task without agent names.
-
-Validate JSON/schema/report consistency and the relevant existing site checks.
+Keep private topology, credentials and operator evidence in private infrastructure
+docs. Repository hygiene stays planned under [its standard](docs/repository-hygiene-standard.md);
+no implicit branch renaming, history rewrite or cleanup. Use neutral new branch names.
+Validate JSON/schema/report consistency and the existing site checks.

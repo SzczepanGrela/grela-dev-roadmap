@@ -63,7 +63,7 @@
     "date": "2026-08-25",
     "mode": "source-audited",
     "sourceRevision": "8f525098c70afddaa0a0aba847fb3881956649cf",
-    "sourceState": "clean public main shallow clone"
+    "sourceState": "clean public main shallow clone October 20 operating-policy change only: no new source audit or effort/calendar re-estimate; mandatory backup/uptime work withdrawn."
   },
   "focus": {
     "current": {
@@ -130,8 +130,8 @@
     {
       "id": "operations-docs",
       "title": {
-        "en": "Complete attribution, backups and runbook",
-        "pl": "Dokończyć atrybucję, backupy i runbook"
+        "en": "Complete attribution and the operating runbook",
+        "pl": "Dokończyć atrybucję i runbook utrzymania"
       },
       "dimension": "documentation",
       "status": "in-progress",
@@ -142,7 +142,7 @@
       "hoursMax": 5,
       "daysMin": 0.5,
       "daysMax": 0.75,
-      "evidence": "Operational backup/restore and licensing documentation remain incomplete."
+      "evidence": "October 20 planning revision: Attribution/licensing and useful runbook work remain. Backup/restore documentation is optional, not a release prerequisite. Previous completion/effort values retain their historical estimate; no new implementation or live test is claimed. Stable task ID retained."
     },
     {
       "id": "cost-protection",
@@ -164,8 +164,8 @@
     {
       "id": "immutable-blue-green",
       "title": {
-        "en": "Deploy digests with preflight and blue-green",
-        "pl": "Wdrażać digests z preflight i blue-green"
+        "en": "Deploy qualified digests with functional smoke",
+        "pl": "Wdrażać sprawdzone digests ze smoke funkcji"
       },
       "dimension": "delivery",
       "status": "planned",
@@ -176,13 +176,13 @@
       "hoursMax": 10,
       "daysMin": 0.75,
       "daysMax": 1.25,
-      "evidence": "The workflow publishes images but deploys latest/short tags and globally prunes images without true blue-green. Target revised September 6: implement the delivery step through Coolify using the shared checklist, an immutable GHCR digest and Traefik/Tunnel; preserve data and custom routes. Production migration not verified in this update."
+      "evidence": "October 20 planning revision: Replace mutable deployment inputs and global prune with scoped Coolify digest deployment, routing and query/streaming smoke. Downtime allowed; no mandatory blue-green/backup/restore exercise. Previous completion/effort values retain their historical estimate; no new implementation or live test is claimed. Stable task ID retained."
     },
     {
       "id": "service-observability",
       "title": {
-        "en": "Add backups, telemetry and Groq alerts",
-        "pl": "Dodać backupy, telemetry i alerty Groq"
+        "en": "Add useful resource and Groq cost diagnostics",
+        "pl": "Dodać diagnostykę zasobów i kosztów Groq"
       },
       "dimension": "delivery",
       "status": "planned",
@@ -193,7 +193,7 @@
       "hoursMax": 5,
       "daysMin": 0.5,
       "daysMax": 0.75,
-      "evidence": "Central resource/deployment visibility and tested database backups were not verified."
+      "evidence": "October 20 planning revision: Bound resource/cost/deployment visibility to useful needs. Mandatory tested backups and availability alerts are removed from this task. Previous completion/effort values retain their historical estimate; no new implementation or live test is claimed. Stable task ID retained."
     },
     {
       "id": "repository-hygiene",
@@ -241,6 +241,10 @@
     {
       "en": "Migration target updated September 6: prebuilt GHCR digest in Coolify, Traefik/Tunnel routing and the shared deployment checklist; preserve databases and custom routes. This target update is not a new source/production audit.",
       "pl": "Cel migracji uaktualniony 6 września: digest GHCR w Coolify, routing Traefik/Tunnel i wspólna checklista; zachować bazy i custom routes. Zmiana celu nie jest nowym audytem źródła/produkcji."
+    },
+    {
+      "en": "October 20 owner policy: portfolio apps have no promoted user traffic requirement, uptime SLA or mandatory backups. Downtime/stop-start is acceptable; off-host copies, restore drills and availability exercises are optional, not release gates. Keep correctness/security/resource/cost controls and existing data/configuration. docs/operating-standard.md applies to this and future repositories. Prior source/audit dates and effort estimates are historical, not a fresh scope estimate.",
+      "pl": "Decyzja właściciela 20 października: aplikacje portfolio nie wymagają ciągłości ruchu, SLA uptime ani backupów. Przerwy/stop-start są akceptowalne; off-host, restore i ćwiczenia ciągłości są opcjonalne, nie blokują wydania. Zachować kontrole funkcji/bezpieczeństwa/zasobów/kosztów i istniejące dane/konfigurację. docs/operating-standard.md obejmuje to i przyszłe repozytoria. Starsze daty audytu/źródeł i estymaty pozostają historyczne, bez nowej wyceny zakresu."
     }
   ],
   "audit": {
@@ -352,8 +356,8 @@
         "id": "atomic-promotion-rollback",
         "status": "missing",
         "evidence": {
-          "en": "The required complete implementation was not found in the audited movie rag source.",
-          "pl": "W audytowanym źródle projektu movie rag nie znaleziono wymaganej kompletnej implementacji."
+          "en": "The required complete implementation was not found in the audited movie rag source. October 20 scope: verify the selected deployment and public smoke; downtime allowed. Earlier missing blue-green/automatic rollback evidence is not a release blocker. Existing status records historical evidence, not a fresh acceptance.",
+          "pl": "W audytowanym źródle projektu movie rag nie znaleziono wymaganej kompletnej implementacji. Zakres 20 października: sprawdzić wybrane wdrożenie i publiczny smoke; przerwa dozwolona. Wcześniejszy brak blue-green/automatycznego rollbacku nie blokuje wydania. Status zachowuje dowód historyczny, nie jest nowym odbiorem."
         },
         "taskIds": [
           "immutable-blue-green"
@@ -374,8 +378,8 @@
         "id": "observability",
         "status": "partial",
         "evidence": {
-          "en": "movie rag has some mechanisms but does not yet satisfy the complete v2 control.",
-          "pl": "Projekt movie rag ma część mechanizmów, ale nie spełnia jeszcze całej kontroli v2."
+          "en": "movie rag has some mechanisms but does not yet satisfy the complete v2 control. October 20: backup/uptime alert requirements withdrawn; useful resource/cost diagnostics remain separate.",
+          "pl": "Projekt movie rag ma część mechanizmów, ale nie spełnia jeszcze całej kontroli v2. 20 października: wycofano wymóg alertów backup/uptime; użyteczna diagnostyka zasobów/kosztów pozostaje osobno."
         },
         "taskIds": [
           "service-observability"

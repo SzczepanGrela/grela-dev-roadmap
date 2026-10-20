@@ -81,8 +81,8 @@
     },
     {
       "id": "atomic-promotion-rollback",
-      "title": {"en": "Atomic promotion and rollback", "pl": "Atomowa promocja i rollback"},
-      "description": {"en": "Blue-green or verified managed promotion with external smoke and automatic recovery; a successful rolling update alone does not prove rollback.", "pl": "Blue-green lub sprawdzona promocja platformy z publicznym smoke i automatycznym odzyskiwaniem; udany rolling update sam nie dowodzi rollbacku."},
+      "title": {"en": "Verified deployment", "pl": "Sprawdzone wdrożenie"},
+      "description": {"en": "Qualified artifact, actual readiness and external functional smoke. Downtime/stop-start is accepted under the October 20 operating policy; blue-green, automatic rollback and continuity drills are optional. Preserve existing release guards.", "pl": "Sprawdzony artefakt, rzeczywiste readiness i publiczny smoke funkcji. Zgodnie z decyzją 20 października przerwa/stop-start są dozwolone; blue-green, automatyczny rollback i próby ciągłości opcjonalne. Zachować istniejące kontrole wydania."},
       "profiles": ["vps-web", "static-web"]
     },
     {
@@ -94,7 +94,7 @@
     {
       "id": "observability",
       "title": {"en": "Observability", "pl": "Obserwowalność"},
-      "description": {"en": "Availability, errors, latency, resource pressure and deployment failures are visible and actionable.", "pl": "Dostępność, błędy, opóźnienia, presja zasobów i awarie wdrożeń są widoczne i obsługiwalne."},
+      "description": {"en": "Useful logs and resource/cost/deployment diagnostics, proportionate to portfolio use. No uptime SLA or mandatory backup/availability alerts.", "pl": "Użyteczne logi i diagnostyka zasobów/kosztów/wdrożeń, proporcjonalna do portfolio. Bez SLA uptime i obowiązkowych alertów backup/dostępności."},
       "profiles": ["vps-web", "static-web"]
     },
     {

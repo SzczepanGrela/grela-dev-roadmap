@@ -17,9 +17,9 @@ Latest October 18 review accepts activated catalogue and local final-image PG im
 ### Audit evidence
 
 - **Repozytorium:** `SzczepanGrela/netfilmx-movie-catalog` @ `a357fd455d217cf873d8b3b0b8bdc8d341a737af`
-- **Source state:** October 17 bounded review of clean HLS candidate a357fd4 and matching draft PR #1. This source/evidence update does not re-estimate effort: October 16 UI/mobile/credits 16–32 h and earlier task ranges/calendar retain their dates and low confidence. Candidate is not production.
+- **Source state:** October 17 bounded review of clean HLS candidate a357fd4 and matching draft PR #1. This source/evidence update does not re-estimate effort: October 16 UI/mobile/credits 16–32 h and earlier task ranges/calendar retain their dates and low confidence. Candidate is not production. October 20 operating-policy change only: no new source audit or effort/calendar re-estimate; mandatory backup/uptime work withdrawn.
 - **Tests and CI:** CI/CD 39086857490 and dependency audit 39086857541 successful at 6f57dbb in live October 18 readback. Sealed TRX: 304 .NET, zero failures/skips; image/scan/Quality pass, Publish/Deploy skipped. Local public-media image identity is distinct from CI build and is not a published GHCR digest. Earlier two-web recovery stays tied to 986e9aa.
-- **Production:** Earlier 1398-object media publication/full HTTPS and 24 retained old objects remain accepted. Exactly 17 catalogue references active in draft candidate; local real-media image/player acceptance complete. No app merge/GHCR/deploy/VPS change; uploads/worker false. Local app origin does not prove production app routing/certificate/proxy. Production protection/budgets/legacy backup/recovery/cutover remain.
+- **Production:** Earlier 1398-object media publication/full HTTPS and 24 retained old objects remain accepted. Exactly 17 catalogue references active in draft candidate; local real-media image/player acceptance complete. No app merge/GHCR/deploy/VPS change; uploads/worker false. Local app origin does not prove production app routing/certificate/proxy. Production protection/budgets and functional cutover remain. October 20 policy withdraws legacy backup/off-host/recovery and availability-drill prerequisites; no app deployment is claimed.
 
 ### v2 standard compliance
 
@@ -35,9 +35,9 @@ Profile: **VPS web application**. Statuses reflect only evidence available on th
 | Abuse protection | Partial | Candidate auth/write/body/concurrency/image bounds implemented; public/aggregate/rolling acceptance remains. |
 | Runtime safety | Partial | Local two-web/PG/keyring fixture verifies effective 1 CPU/512 MiB limits, no swap and non-root web; maximum web peak 441.76 MiB. Production/encoder headroom unaccepted. |
 | Readiness and preflight | Partial | October 18 real approved manifest imported by candidate image CLI after explicit PG migration/runtime grants; repeat refused, PG/web restart preserves IDs/mappings and readiness. Production bootstrap/schema-compatible rollback still unaccepted. |
-| Atomic promotion and rollback | Partial | R1 accepted October 12: confirmed terminal deployment required before rollback; unknown state stops mutations. Actual protected stateful rolling/rollback still needs acceptance. |
+| Verified deployment | Partial | R1 accepted October 12: confirmed terminal deployment required before rollback; unknown state stops mutations. Actual protected stateful rolling/rollback still needs acceptance. October 20 scope: verify the selected deployment and public smoke; downtime allowed. Earlier missing blue-green/automatic rollback evidence is not a release blocker. Existing status records historical evidence, not a fresh acceptance. |
 | Coordination and retention | Partial | Preserved source reconciled; local PG/keyring recovery accepted with synthetic media. Real legacy recovery/retention and production rolling remain; upload/worker gates stay separate. |
-| Observability | Missing | No accepted central or delivered worker/release/backup alerts. |
+| Observability | Missing | No accepted central or delivered worker/release/backup alerts. October 20: backup/uptime alert requirements withdrawn; useful resource/cost diagnostics remain separate. |
 | Web identity | Partial | Local desktop/Android credits readability partially confirmed; visual design not approved. Future UI/mobile/credits scope has explicit responsive, accessibility, player and attribution criteria. Other presentation checks remain. |
 
 ### Remaining and active tasks
@@ -84,17 +84,17 @@ Candidate exact trusted proxy handling, auth/write/body/concurrency/image bounds
 
 One qualified image, GHCR attestation and serialized Coolify promotion are prepared. R1 is accepted: rollback requires confirmed terminal deployment state; unknown queue/status/cancellation stops mutations. Draft CI publish/deploy skipped. Effective protection, published main digest and separate first healthy bootstrap remain unaccepted.
 
-#### Qualify readiness, stateful rolling updates and rollback
+#### Accept readiness and the first catalogue deployment
 
 **Delivery · In progress · 35% · difficulty 5/5 · 6–12 h**
 
-Local persistent PostgreSQL/keyring restore and two actual web containers pass on source 986e9aa: cross-instance/recreated/restored sessions and antiforgery, wrong-key rejection and logout/refresh revocation. Synthetic media URLs; 13.487-second DB/key/count restore excludes web startup, not production RTO. Actual protected stateful rolling/rollback, production budgets/recovery and later worker/staging/encoder gates remain.
+October 20 planning revision: Accepted local PG/keyring/two-web tests retain their dated scope. Next: one web, fresh PG, persistent keys, explicit import, resource caps and public HTTPS/login/player smoke. Production rolling/rollback/restore drills and backup/off-host selection are not required; keep existing R1/code guards and uploads/worker=false. Previous completion/effort values retain their historical estimate; no new implementation or live test is claimed. Stable task ID retained.
 
-#### Add transcoding and deployment metrics
+#### Add useful transcoding and deployment diagnostics
 
 **Delivery · Planned · 0% · difficulty 3/5 · 3–5 h**
 
-Worker lifecycle logs and release probes exist in preparation; useful delivered worker/release/backup alerts and central monitoring remain unaccepted.
+October 20 planning revision: Worker lifecycle logs and release probes exist. Add resource/cost/failure diagnostics when uploads are enabled; backup/uptime alert delivery is not a release gate. Previous completion/effort values retain their historical estimate; no new implementation or live test is claimed. Stable task ID retained.
 
 #### Clean tracked files and review history and neutral branch names
 
@@ -116,6 +116,7 @@ Planned by owner on 2026-10-17; no repository hygiene audit or cleanup performed
 - October 17 later execution: accept exact packet publication and identified-client HTTPS result, preserving failed default HTTP evidence and all old objects. Use the fixed honest NetFilmxPublicationVerifier/1.0 User-Agent in the supported CLI; keep all controls and 403 rejection, no browser impersonation or provider-rule changes. No repeat transfer. Manifest activation and final-image/player acceptance remain separate.
 - October 17 NHP17-1 accepted at 82f6a79. No further client correction or repeat publication; manifest activation remains separately authorized.
 - October 18: accept exactly 17 candidate references and local final-image catalogue/player qualification at 6f57dbb. Do not repeat completed publication or deferred manual tests. Production release remains separately authorized.
+- October 20 owner policy: portfolio apps have no promoted user traffic requirement, uptime SLA or mandatory backups. Downtime/stop-start is acceptable; off-host copies, restore drills and availability exercises are optional, not release gates. Keep correctness/security/resource/cost controls and existing data/configuration. docs/operating-standard.md applies to this and future repositories. Prior source/audit dates and effort estimates are historical, not a fresh scope estimate.
 
 ## Polski
 
@@ -128,9 +129,9 @@ Najnowszy odbiór 18 października przyjmuje aktywowany katalog oraz lokalną kw
 ### Dowody audytu
 
 - **Repozytorium:** `SzczepanGrela/netfilmx-movie-catalog` @ `a357fd455d217cf873d8b3b0b8bdc8d341a737af`
-- **Stan źródła:** October 17 bounded review of clean HLS candidate a357fd4 and matching draft PR #1. This source/evidence update does not re-estimate effort: October 16 UI/mobile/credits 16–32 h and earlier task ranges/calendar retain their dates and low confidence. Candidate is not production.
+- **Stan źródła:** October 17 bounded review of clean HLS candidate a357fd4 and matching draft PR #1. This source/evidence update does not re-estimate effort: October 16 UI/mobile/credits 16–32 h and earlier task ranges/calendar retain their dates and low confidence. Candidate is not production. October 20 operating-policy change only: no new source audit or effort/calendar re-estimate; mandatory backup/uptime work withdrawn.
 - **Testy i CI:** CI/CD 39086857490 and dependency audit 39086857541 successful at 6f57dbb in live October 18 readback. Sealed TRX: 304 .NET, zero failures/skips; image/scan/Quality pass, Publish/Deploy skipped. Local public-media image identity is distinct from CI build and is not a published GHCR digest. Earlier two-web recovery stays tied to 986e9aa.
-- **Produkcja:** Earlier 1398-object media publication/full HTTPS and 24 retained old objects remain accepted. Exactly 17 catalogue references active in draft candidate; local real-media image/player acceptance complete. No app merge/GHCR/deploy/VPS change; uploads/worker false. Local app origin does not prove production app routing/certificate/proxy. Production protection/budgets/legacy backup/recovery/cutover remain.
+- **Produkcja:** Earlier 1398-object media publication/full HTTPS and 24 retained old objects remain accepted. Exactly 17 catalogue references active in draft candidate; local real-media image/player acceptance complete. No app merge/GHCR/deploy/VPS change; uploads/worker false. Local app origin does not prove production app routing/certificate/proxy. Production protection/budgets and functional cutover remain. October 20 policy withdraws legacy backup/off-host/recovery and availability-drill prerequisites; no app deployment is claimed.
 
 ### Zgodność ze standardem v2
 
@@ -146,9 +147,9 @@ Profil: **Aplikacja webowa na VPS**. Statusy odzwierciedlają wyłącznie dowody
 | Ochrona przed nadużyciami | Częściowe | Limity auth/write/body/współbieżności/obrazów zaimplementowano; odbiór publiczny/aggregate/rolling pozostaje. |
 | Bezpieczeństwo runtime | Częściowe | Lokalny test dwóch webów/PG/keyring potwierdza 1 CPU/512 MiB, brak swapu i non-root web; maksymalny pik weba 441.76 MiB. Zapas produkcji/kodowania nieodebrany. |
 | Readiness i preflight | Częściowe | 18 października rzeczywisty zatwierdzony manifest zaimportowano CLI obrazu po jawnej migracji PG/uprawnieniach runtime; powtórka odrzucona, restart PG/web zachowuje ID/powiązania i readiness. Produkcyjny bootstrap/rollback zgodny ze schematem nadal nieodebrany. |
-| Atomowa promocja i rollback | Częściowe | R1 odebrane 12 października: rollback wymaga potwierdzonego zakończenia wdrożenia; nieznany stan zatrzymuje mutacje. Pozostaje rzeczywisty chroniony rolling/rollback ze stanem. |
+| Sprawdzone wdrożenie | Częściowe | R1 odebrane 12 października: rollback wymaga potwierdzonego zakończenia wdrożenia; nieznany stan zatrzymuje mutacje. Pozostaje rzeczywisty chroniony rolling/rollback ze stanem. Zakres 20 października: sprawdzić wybrane wdrożenie i publiczny smoke; przerwa dozwolona. Wcześniejszy brak blue-green/automatycznego rollbacku nie blokuje wydania. Status zachowuje dowód historyczny, nie jest nowym odbiorem. |
 | Koordynacja i retencja | Częściowe | Zachowane źródła uzgodnione; lokalne odzyskiwanie PG/keyring odebrane z syntetycznymi mediami. Pozostają odzyskiwanie/retencja starego wdrożenia i rolling produkcji; upload/worker osobno. |
-| Obserwowalność | Brak | Brak odebranych centralnych/dostarczonych alertów workera/wydania/backupów. |
+| Obserwowalność | Brak | Brak odebranych centralnych/dostarczonych alertów workera/wydania/backupów. 20 października: wycofano wymóg alertów backup/uptime; użyteczna diagnostyka zasobów/kosztów pozostaje osobno. |
 | Tożsamość webowa | Częściowe | Czytelność credits częściowo potwierdzona na komputerze/Androidzie; wygląd niezaakceptowany. Osobne UI/mobile/credits ma kryteria responsywności, dostępności, playera i atrybucji. Pozostały odbiór prezentacji nadal otwarty. |
 
 ### Zadania pozostałe i bieżące
@@ -195,17 +196,17 @@ Candidate exact trusted proxy handling, auth/write/body/concurrency/image bounds
 
 One qualified image, GHCR attestation and serialized Coolify promotion are prepared. R1 is accepted: rollback requires confirmed terminal deployment state; unknown queue/status/cancellation stops mutations. Draft CI publish/deploy skipped. Effective protection, published main digest and separate first healthy bootstrap remain unaccepted.
 
-#### Sprawdzić readiness, rolling update ze stanem i rollback
+#### Odebrać readiness i pierwsze wdrożenie katalogu
 
 **Wdrożenie · W toku · 35% · trudność 5/5 · 6–12 h**
 
-Local persistent PostgreSQL/keyring restore and two actual web containers pass on source 986e9aa: cross-instance/recreated/restored sessions and antiforgery, wrong-key rejection and logout/refresh revocation. Synthetic media URLs; 13.487-second DB/key/count restore excludes web startup, not production RTO. Actual protected stateful rolling/rollback, production budgets/recovery and later worker/staging/encoder gates remain.
+October 20 planning revision: Accepted local PG/keyring/two-web tests retain their dated scope. Next: one web, fresh PG, persistent keys, explicit import, resource caps and public HTTPS/login/player smoke. Production rolling/rollback/restore drills and backup/off-host selection are not required; keep existing R1/code guards and uploads/worker=false. Previous completion/effort values retain their historical estimate; no new implementation or live test is claimed. Stable task ID retained.
 
-#### Dodać metryki transkodowania i wdrożeń
+#### Dodać użyteczną diagnostykę transkodowania i wdrożeń
 
 **Wdrożenie · Planowane · 0% · trudność 3/5 · 3–5 h**
 
-Worker lifecycle logs and release probes exist in preparation; useful delivered worker/release/backup alerts and central monitoring remain unaccepted.
+October 20 planning revision: Worker lifecycle logs and release probes exist. Add resource/cost/failure diagnostics when uploads are enabled; backup/uptime alert delivery is not a release gate. Previous completion/effort values retain their historical estimate; no new implementation or live test is claimed. Stable task ID retained.
 
 #### Uporządkować śledzone pliki, historię i neutralne nazwy branchy
 
@@ -227,3 +228,4 @@ Planned by owner on 2026-10-17; no repository hygiene audit or cleanup performed
 - Późniejszy odbiór 17 października: przyjąć publikację dokładnego pakietu i HTTPS z jawnym klientem; zachować nieudaną próbę domyślnego HTTP oraz wszystkie stare obiekty. W CLI użyć stałego jawnego User-Agent NetFilmxPublicationVerifier/1.0; wszystkie kontrole i zatrzymanie przy 403 pozostają, bez podszywania się pod przeglądarkę i zmiany reguł providera. Nie ponawiać transferu. Aktywacja manifestu oraz finalny obraz/player pozostają osobnym etapem.
 - 17 października NHP17-1 odebrane na 82f6a79. Bez dalszej poprawki klienta i ponownej publikacji; aktywacja manifestu wymaga osobnego upoważnienia.
 - 18 października: odebrać dokładnie 17 referencji kandydata oraz lokalną kwalifikację finalnego obrazu/katalogu/playera na 6f57dbb. Nie powtarzać publikacji ani odłożonych prób ręcznych. Wydanie produkcyjne wymaga osobnego upoważnienia.
+- Decyzja właściciela 20 października: aplikacje portfolio nie wymagają ciągłości ruchu, SLA uptime ani backupów. Przerwy/stop-start są akceptowalne; off-host, restore i ćwiczenia ciągłości są opcjonalne, nie blokują wydania. Zachować kontrole funkcji/bezpieczeństwa/zasobów/kosztów i istniejące dane/konfigurację. docs/operating-standard.md obejmuje to i przyszłe repozytoria. Starsze daty audytu/źródeł i estymaty pozostają historyczne, bez nowej wyceny zakresu.

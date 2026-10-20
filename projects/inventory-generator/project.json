@@ -60,7 +60,7 @@
     "date": "2026-10-11",
     "mode": "source-audited",
     "sourceRevision": "672d160a9f789a2b758a3bb3f7834986682256ff",
-    "sourceState": "PR #30 merged at 672d160 after full green Quality for reviewed a25abb1; temporary exercise workflow/modules/injection hooks retired, ordinary release/rollback tests retained. October 10 operator cleanup and public health confirm retained runtime 6971496. D02.3a-f accepted. Remaining platform and presentation estimates retain their earlier scope; task totals update only completed operations docs and rolling acceptance, not a new full application audit."
+    "sourceState": "PR #30 merged at 672d160 after full green Quality for reviewed a25abb1; temporary exercise workflow/modules/injection hooks retired, ordinary release/rollback tests retained. October 10 operator cleanup and public health confirm retained runtime 6971496. D02.3a-f accepted. Remaining platform and presentation estimates retain their earlier scope; task totals update only completed operations docs and rolling acceptance, not a new full application audit. October 20 operating-policy change only: no new source audit or effort/calendar re-estimate; mandatory backup/uptime work withdrawn."
   },
   "focus": {
     "current": {
@@ -68,8 +68,8 @@
       "pl": "Odbiór wdrożenia Inventory i sprzątanie zakończone. Zasoby testowe usunięte, dowody zachowane, PR #30 scalony; produkcja pozostaje na przyjętym 6971496."
     },
     "next": {
-      "en": "Continue shared platform gaps: monitoring and alerts, same-colo edge isolation, credential scope and runtime hardening. No repeat Inventory load run or cleanup-only production promotion is needed.",
-      "pl": "Kontynuować wspólne zadania platformy: monitoring i alerty, izolację edge w tym samym colo, zakres poświadczeń i hardening. Nie potrzeba kolejnej próby obciążenia Inventory ani wdrożenia tylko dla sprzątania."
+      "en": "Continue shared platform gaps: useful resource/cost diagnostics (uptime/backup alerts optional), same-colo edge isolation, credential scope and runtime hardening. No repeat Inventory load run or cleanup-only production promotion is needed.",
+      "pl": "Kontynuować wspólne zadania platformy: użyteczna diagnostyka zasobów/kosztów (alerty uptime/backup opcjonalne), izolację edge w tym samym colo, zakres poświadczeń i hardening. Nie potrzeba kolejnej próby obciążenia Inventory ani wdrożenia tylko dla sprzątania."
     }
   },
   "tasks": [
@@ -314,6 +314,10 @@
     {
       "en": "Keep process-local counters for one ordinary process and brief two-instance rolling overlap at the October 9 tested limits: three slots without waiting, 1 CPU/512 MiB per container. The bounded measurement condition passed; permanent replicas or larger budgets need a new assessment. No shared counter installed.",
       "pl": "Zachować liczniki procesu dla jednej zwykłej instancji i krótkiego rolling dwóch instancji przy limitach przetestowanych 9 października: trzy sloty bez czekania, 1 CPU/512 MiB na kontener. Warunek pomiarów spełniony; stałe repliki lub większe limity wymagają nowej oceny. Brak wspólnego licznika."
+    },
+    {
+      "en": "October 20 owner policy: portfolio apps have no promoted user traffic requirement, uptime SLA or mandatory backups. Downtime/stop-start is acceptable; off-host copies, restore drills and availability exercises are optional, not release gates. Keep correctness/security/resource/cost controls and existing data/configuration. docs/operating-standard.md applies to this and future repositories. Prior source/audit dates and effort estimates are historical, not a fresh scope estimate.",
+      "pl": "Decyzja właściciela 20 października: aplikacje portfolio nie wymagają ciągłości ruchu, SLA uptime ani backupów. Przerwy/stop-start są akceptowalne; off-host, restore i ćwiczenia ciągłości są opcjonalne, nie blokują wydania. Zachować kontrole funkcji/bezpieczeństwa/zasobów/kosztów i istniejące dane/konfigurację. docs/operating-standard.md obejmuje to i przyszłe repozytoria. Starsze daty audytu/źródeł i estymaty pozostają historyczne, bez nowej wyceny zakresu."
     }
   ],
   "audit": {
@@ -438,8 +442,8 @@
         "id": "atomic-promotion-rollback",
         "status": "complete",
         "evidence": {
-          "en": "Normal release, isolated unhealthy-candidate rejection, controlled failed-smoke recovery to the exact prior image and bounded rolling workload passed. One earlier runner probe warning remains unexplained; this certifies the tested release/recovery paths, not zero downtime.",
-          "pl": "Zwykłe wdrożenie, odrzucenie niezdrowego kandydata, kontrolowany failed-smoke rollback do dokładnego obrazu i ograniczony test rolling przeszły. Jedno wcześniejsze ostrzeżenie runnera pozostaje niewyjaśnione; przyjęto przetestowane ścieżki dostawy i odzyskiwania, bez gwarancji zerowego downtime."
+          "en": "Normal release, isolated unhealthy-candidate rejection, controlled failed-smoke recovery to the exact prior image and bounded rolling workload passed. One earlier runner probe warning remains unexplained; this certifies the tested release/recovery paths, not zero downtime. October 20 scope: verify the selected deployment and public smoke; downtime allowed. Earlier missing blue-green/automatic rollback evidence is not a release blocker. Existing status records historical evidence, not a fresh acceptance.",
+          "pl": "Zwykłe wdrożenie, odrzucenie niezdrowego kandydata, kontrolowany failed-smoke rollback do dokładnego obrazu i ograniczony test rolling przeszły. Jedno wcześniejsze ostrzeżenie runnera pozostaje niewyjaśnione; przyjęto przetestowane ścieżki dostawy i odzyskiwania, bez gwarancji zerowego downtime. Zakres 20 października: sprawdzić wybrane wdrożenie i publiczny smoke; przerwa dozwolona. Wcześniejszy brak blue-green/automatycznego rollbacku nie blokuje wydania. Status zachowuje dowód historyczny, nie jest nowym odbiorem."
         },
         "taskIds": []
       },
@@ -456,8 +460,8 @@
         "id": "observability",
         "status": "partial",
         "evidence": {
-          "en": "Bounded validation reason-code logs and no-submitted-name regressions accepted; central integration, retention and alert delivery still open.",
-          "pl": "Uznano ograniczone logi reason-code i regresje braku przesłanych nazw; integracja centralna, retencja i dostarczanie alertów pozostają otwarte."
+          "en": "Bounded validation reason-code logs and no-submitted-name regressions accepted; central integration, retention and alert delivery still open. October 20: backup/uptime alert requirements withdrawn; useful resource/cost diagnostics remain separate.",
+          "pl": "Uznano ograniczone logi reason-code i regresje braku przesłanych nazw; integracja centralna, retencja i dostarczanie alertów pozostają otwarte. 20 października: wycofano wymóg alertów backup/uptime; użyteczna diagnostyka zasobów/kosztów pozostaje osobno."
         },
         "taskIds": [
           "service-observability"

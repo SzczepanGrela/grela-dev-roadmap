@@ -1,5 +1,7 @@
 # Checklista wdrożenia przez Coolify
 
+**Decyzja właściciela, 2026-10-20:** [standard utrzymania](operating-standard.md) dopuszcza przerwy we wszystkich aplikacjach. Backupy, off-host, RPO/RTO, HA oraz ćwiczenia ciągłości/odzyskiwania nie są obowiązkowymi warunkami wydania. Zasada zastępuje starsze wymagania poniżej; datowane wyniki pozostają historią.
+
 Wersja odniesienia: 4.3.14; przegląd 2026-09-29. To wymagania i wskazówki,
 nie deklaracja, że każdy projekt już je spełnia. Konkretne dane VPS, UUID,
 adresy zarządzania i sekrety pozostają w prywatnej dokumentacji infrastruktury.
@@ -101,9 +103,9 @@ była wyłączona. Po włączeniu zarządzanej kontroli TTT poprawiony test prze
 ## Runtime i zdrowie
 
 - [ ] Non-root USER w obrazie, brak Docker socketa i zbędnych uprawnień.
-  Zachować generowane nazwy kontenerów dla rolling updates; rozpoznawać zasób
+  Zachować generowane nazwy kontenerów jeżeli używana jest istniejąca ścieżka rolling; rozpoznawać zasób
   po etykietach i panelu, nie po stałym sufiksie nazwy.
-- [ ] Jawne limity CPU/RAM/PID, rotacja logów i zapas na kandydata.
+- [ ] Jawne limity CPU/RAM/PID i rotacja logów dla wybranej topologii; zapas na overlap tylko jeśli występuje.
   Odczyt 11 września potwierdza u obu małych aplikacji 1 CPU, 512 MiB hard,
   128 MiB reservation, 512 MiB łącznego memory/swap i lokalne logi 10m/3;
   `PidsLimit` pozostał pusty. Inne obciążenia wymagają pomiaru i osobnego budżetu.
@@ -127,7 +129,7 @@ była wyłączona. Po włączeniu zarządzanej kontroli TTT poprawiony test prze
 - [ ] Dla TTT zaakceptowano Coolify CMD `python -m web.healthcheck`, interval 5s,
   timeout 5s, retries 10 i start period 10s. Docker uruchamia probe wewnątrz
   kontenera, Coolify czeka na zdrowie przed usunięciem starej wersji. Dla nowej
-  aplikacji dobrać własną komendę i przetestować wadliwego kandydata oraz rollback.
+  aplikacji dobrać własną komendę; próba wadliwego kandydata i rollbacku jest opcjonalna.
 - [ ] Przed wdrożeniem sprawdzać stabilny kontrakt aktualnej wersji; po promocji
   pełny kontrakt wydania docelowego. Nie blokować wdrożenia przez wymaganie
   nowego endpointu od starej produkcji. Przy rollbacku używać kompatybilnego probe.
@@ -176,14 +178,14 @@ wyjątek procesu i uprawnień hosta jest opisany tylko w prywatnym runbooku.
 - [ ] Ustalić trwałe dane aplikacji: volumes, bind mounts, zapisywalny layer,
   zewnętrzne DB/obiekty, uploady, writerów i spójność kopii. Brak mountów nie
   dowodzi bezstanowości.
-- [ ] Przed migracją stanowej aplikacji potwierdzić świeży backup jej danych,
-  działający stary obraz i sposób przywrócenia; `Success` ani czytelny katalog
-  dumpu nie są testem restore.
+- [ ] Zapisać dane/writerów dotkniętych migracją oraz docelową persystencję.
+  Domyślnie przerwy dozwolone; backup, stary obraz i restore nie są bramką wydania.
+  Istniejących danych/kopii nie usuwa sama zmiana tej polityki.
 - [ ] Przy overlap stary/nowy kod musi być zgodny ze schematem, zadania
   singletonem albo pod blokadą, a liczniki limitera współdzielone tam, gdzie
-  wymaga tego polityka. Przetestować rzeczywistą współbieżność i pojemność VPS.
-- [ ] Kontrola originu i backup providerowy są odrębnymi bramkami przed zmianą
-  sieci/proxy; zachować zatwierdzone wyjątki administracyjne.
+  wymaga tego polityka. Jeżeli wybieramy overlap, sprawdzić potrzebną współbieżność i pojemność; stop/start jest dozwolony.
+- [ ] Przy zmianie sieci/proxy zachować dostęp administracyjny i kontrolę originu.
+  Backup providerowy jest opcjonalny, nie jest bramką wdrożenia aplikacji.
 
 ## Dostęp i kontrola wydania
 
@@ -205,9 +207,9 @@ wyjątek procesu i uprawnień hosta jest opisany tylko w prywatnym runbooku.
   Nie eksportować całych envów/tokenów do dokumentacji.
 - [ ] Sprawdzić publiczny HTTPS, health revision, favicon, krytyczną akcję i
   normalny ruch użytkownika. Zbadać real-IP, izolację użytkowników i limity.
-- [ ] Oddzielnie przetestować niezdrowego kandydata i rollback po błędzie smoke.
+- Opcjonalnie, tylko w zleconym zakresie: test niezdrowego kandydata/rollbacku po smoke.
   Sukces rolling update nie jest dowodem blue-green ani automatycznego rollbacku.
-- [ ] Dla dłuższych operacji uruchomić próbę na podstawie zdarzenia startu
+- Opcjonalna próba ciągłości dłuższych operacji: uruchomić ją na podstawie zdarzenia startu
   kandydata, zachować logi starego kontenera przed usunięciem i potwierdzić,
   że konkretna operacja trwała przy SIGTERM oraz dostarczyła kompletny wynik.
   Zakończenie testu przed wymianą ani ponowienie workflow pomijającego ten sam
@@ -236,7 +238,7 @@ HTTP i liczniki żądań wymagają osobnych testów. Wybór współdzielonego ma
 gdy pojawią się przesłanki do ponownego rozpatrzenia wyjątku TTT.
 
 Opcjonalny Jev wymaga trwałego licznika wydatków także podczas rolling update.
-Backup SQLite wykonywać spójnie, odtwarzać w stanie wstrzymanym i uzgodnić
+Jeżeli wykonujemy opcjonalny backup SQLite, zrobić go spójnie; przy odtworzeniu wstrzymać płatne wywołania i uzgodnić
 wydatki z dostawcą. Cofnięcie obrazu zachowuje aktualny licznik. Sekret dostawcy
 jest wyłącznie runtime; nie dodawać go automatycznie do preview ani testów CI.
 Jev pozostaje publicznie wyłączony. Awaria opcjonalnego dostawcy nie wyłącza

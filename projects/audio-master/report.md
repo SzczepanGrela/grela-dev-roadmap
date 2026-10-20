@@ -17,7 +17,7 @@ Previous hygiene tasks to remove IDE/executable artifacts are already complete. 
 ### Audit evidence
 
 - **Repozytorium:** `SzczepanGrela/audio-master` @ `5846404e980f06541c475f2715a8603caa507f9d`
-- **Source state:** clean local worktree
+- **Source state:** clean local worktree October 20 operating-policy change only: no new source audit or effort/calendar re-estimate; mandatory backup/uptime work withdrawn.
 - **Tests and CI:** Latest Quality checks succeeded; no ruleset or environment exists.
 - **Production:** Not applicable: AudioMaster is a local desktop/audio-processing tool.
 
@@ -35,7 +35,7 @@ Profile: **Desktop application**. Statuses reflect only evidence available on th
 | Abuse protection | Not applicable | The control does not apply to the audio master project profile. |
 | Runtime safety | Not applicable | The control does not apply to the audio master project profile. |
 | Readiness and preflight | Not applicable | The control does not apply to the audio master project profile. |
-| Atomic promotion and rollback | Not applicable | The control does not apply to the audio master project profile. |
+| Verified deployment | Not applicable | The control does not apply to the audio master project profile. |
 | Coordination and retention | Missing | The required complete implementation was not found in the audited audio master source. |
 | Observability | Not applicable | The control does not apply to the audio master project profile. |
 | Web identity | Not applicable | The control does not apply to the audio master project profile. |
@@ -83,6 +83,7 @@ Planned by owner on 2026-10-17; no repository hygiene audit or cleanup performed
 - No web hosting or HTTP rate limiting.
 - Limit local FFmpeg concurrency and input sizes instead.
 - The project follows the v2 standard profile: desktop.
+- October 20 owner policy: portfolio apps have no promoted user traffic requirement, uptime SLA or mandatory backups. Downtime/stop-start is acceptable; off-host copies, restore drills and availability exercises are optional, not release gates. Keep correctness/security/resource/cost controls and existing data/configuration. docs/operating-standard.md applies to this and future repositories. Prior source/audit dates and effort estimates are historical, not a fresh scope estimate.
 
 ## Polski
 
@@ -95,7 +96,7 @@ Poprzednie zadania usunięcia artefaktów IDE/exe są już wykonane. Aktualizacj
 ### Dowody audytu
 
 - **Repozytorium:** `SzczepanGrela/audio-master` @ `5846404e980f06541c475f2715a8603caa507f9d`
-- **Stan źródła:** clean local worktree
+- **Stan źródła:** clean local worktree October 20 operating-policy change only: no new source audit or effort/calendar re-estimate; mandatory backup/uptime work withdrawn.
 - **Testy i CI:** Latest Quality checks succeeded; no ruleset or environment exists.
 - **Produkcja:** Not applicable: AudioMaster is a local desktop/audio-processing tool.
 
@@ -113,7 +114,7 @@ Profil: **Aplikacja desktopowa**. Statusy odzwierciedlają wyłącznie dowody do
 | Ochrona przed nadużyciami | Nie dotyczy | Kontrola nie dotyczy profilu projektu audio master. |
 | Bezpieczeństwo runtime | Nie dotyczy | Kontrola nie dotyczy profilu projektu audio master. |
 | Readiness i preflight | Nie dotyczy | Kontrola nie dotyczy profilu projektu audio master. |
-| Atomowa promocja i rollback | Nie dotyczy | Kontrola nie dotyczy profilu projektu audio master. |
+| Sprawdzone wdrożenie | Nie dotyczy | Kontrola nie dotyczy profilu projektu audio master. |
 | Koordynacja i retencja | Brak | W audytowanym źródle projektu audio master nie znaleziono wymaganej kompletnej implementacji. |
 | Obserwowalność | Nie dotyczy | Kontrola nie dotyczy profilu projektu audio master. |
 | Tożsamość webowa | Nie dotyczy | Kontrola nie dotyczy profilu projektu audio master. |
@@ -161,3 +162,4 @@ Planned by owner on 2026-10-17; no repository hygiene audit or cleanup performed
 - Bez hostingu webowego i HTTP rate limitingu.
 - Ograniczać lokalną współbieżność FFmpeg i rozmiary wejścia.
 - Projekt podlega profilowi standardu v2: desktop.
+- Decyzja właściciela 20 października: aplikacje portfolio nie wymagają ciągłości ruchu, SLA uptime ani backupów. Przerwy/stop-start są akceptowalne; off-host, restore i ćwiczenia ciągłości są opcjonalne, nie blokują wydania. Zachować kontrole funkcji/bezpieczeństwa/zasobów/kosztów i istniejące dane/konfigurację. docs/operating-standard.md obejmuje to i przyszłe repozytoria. Starsze daty audytu/źródeł i estymaty pozostają historyczne, bez nowej wyceny zakresu.

@@ -61,7 +61,7 @@
     "date": "2026-09-29",
     "mode": "source-audited",
     "sourceRevision": "c031f55bfc42de1699dfac951353514d791f6605",
-    "sourceState": "Scoped September 29 release/operating-decision reconciliation and operator-supplied VPS runtime/backup metadata. Historical tests retain their dates. Scoped provider configuration readback passed; only Pages metadata needs access review; no full-host audit."
+    "sourceState": "Scoped September 29 release/operating-decision reconciliation and operator-supplied VPS runtime/backup metadata. Historical tests retain their dates. Scoped provider configuration readback passed; only Pages metadata needs access review; no full-host audit. October 20 operating-policy change only: no new source audit or effort/calendar re-estimate; mandatory backup/uptime work withdrawn."
   },
   "focus": {
     "current": {
@@ -311,6 +311,10 @@
     {
       "en": "September 29 operator decision: accept process-local request buckets for one normal process and brief managed-rolling overlap. No shared counter installed. Revisit before permanent replicas, multiple workers, strict quotas or measured overload; Jev paid accounting remains durable and separate.",
       "pl": "Decyzja operatora z 29 września: akceptujemy lokalne liczniki żądań dla jednego procesu i krótkiego overlap podczas rolling update. Nie wdrożono wspólnego licznika. Wrócić do decyzji przed stałymi replikami, wieloma workerami, ścisłymi kwotami lub przy przeciążeniu; trwały budżet płatnego Jev pozostaje osobny."
+    },
+    {
+      "en": "October 20 owner policy: portfolio apps have no promoted user traffic requirement, uptime SLA or mandatory backups. Downtime/stop-start is acceptable; off-host copies, restore drills and availability exercises are optional, not release gates. Keep correctness/security/resource/cost controls and existing data/configuration. docs/operating-standard.md applies to this and future repositories. Prior source/audit dates and effort estimates are historical, not a fresh scope estimate.",
+      "pl": "Decyzja właściciela 20 października: aplikacje portfolio nie wymagają ciągłości ruchu, SLA uptime ani backupów. Przerwy/stop-start są akceptowalne; off-host, restore i ćwiczenia ciągłości są opcjonalne, nie blokują wydania. Zachować kontrole funkcji/bezpieczeństwa/zasobów/kosztów i istniejące dane/konfigurację. docs/operating-standard.md obejmuje to i przyszłe repozytoria. Starsze daty audytu/źródeł i estymaty pozostają historyczne, bez nowej wyceny zakresu."
     }
   ],
   "audit": {
@@ -424,8 +428,8 @@
         "id": "atomic-promotion-rollback",
         "status": "complete",
         "evidence": {
-          "en": "Managed rolling and automatic restoration of the previous attested digest after forced public revision failure passed September 16–17. A September 28 public MCTS series also completed across old-container SIGTERM. No claim of blue-green slots.",
-          "pl": "Zarządzany rolling i przywrócenie poprzedniego atestowanego digestu po wymuszonym błędzie publicznej rewizji przeszły 16–17 września. 28 września publiczna seria MCTS zakończyła się również po SIGTERM starego kontenera. Nie deklarujemy slotów blue-green."
+          "en": "Managed rolling and automatic restoration of the previous attested digest after forced public revision failure passed September 16–17. A September 28 public MCTS series also completed across old-container SIGTERM. No claim of blue-green slots. October 20 scope: verify the selected deployment and public smoke; downtime allowed. Earlier missing blue-green/automatic rollback evidence is not a release blocker. Existing status records historical evidence, not a fresh acceptance.",
+          "pl": "Zarządzany rolling i przywrócenie poprzedniego atestowanego digestu po wymuszonym błędzie publicznej rewizji przeszły 16–17 września. 28 września publiczna seria MCTS zakończyła się również po SIGTERM starego kontenera. Nie deklarujemy slotów blue-green. Zakres 20 października: sprawdzić wybrane wdrożenie i publiczny smoke; przerwa dozwolona. Wcześniejszy brak blue-green/automatycznego rollbacku nie blokuje wydania. Status zachowuje dowód historyczny, nie jest nowym odbiorem."
         },
         "taskIds": []
       },
@@ -442,8 +446,8 @@
         "id": "observability",
         "status": "missing",
         "evidence": {
-          "en": "The required complete implementation was not found in the audited tic tac toe ai source.",
-          "pl": "W audytowanym źródle projektu tic tac toe ai nie znaleziono wymaganej kompletnej implementacji."
+          "en": "The required complete implementation was not found in the audited tic tac toe ai source. October 20: backup/uptime alert requirements withdrawn; useful resource/cost diagnostics remain separate.",
+          "pl": "W audytowanym źródle projektu tic tac toe ai nie znaleziono wymaganej kompletnej implementacji. 20 października: wycofano wymóg alertów backup/uptime; użyteczna diagnostyka zasobów/kosztów pozostaje osobno."
         },
         "taskIds": [
           "service-observability"

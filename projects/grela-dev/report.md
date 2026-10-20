@@ -17,7 +17,7 @@ Next bounded Gemini task is static portfolio engineering, preserving the current
 ### Audit evidence
 
 - **Repozytorium:** `SzczepanGrela/grela-dev` @ `2b3e09330e50e6c291e5696a97ec8430d1ef2935`
-- **Source state:** Clean source reviewed October 3; integrated Portfolio.html selected over auxiliary prototypes. No production application implementation performed by coordinator.
+- **Source state:** Clean source reviewed October 3; integrated Portfolio.html selected over auxiliary prototypes. No production application implementation performed by coordinator. October 20 operating-policy change only: no new source audit or effort/calendar re-estimate; mandatory backup/uptime work withdrawn.
 - **Tests and CI:** No implementation or deploy pipeline was introduced in this coordination task. Qualified static artifact Quality/preview/production is the assigned next work.
 - **Production:** Pages project metadata remains unknown after October 3 authentication failure. No new portfolio deployment accepted; August 25 HTTP 525 is historical evidence.
 
@@ -35,9 +35,9 @@ Profile: **Managed static hosting**. Statuses reflect only evidence available on
 | Abuse protection | Partial | Static-only scope; assess managed platform/cache/asset costs. No dynamic app limiter is planned. |
 | Runtime safety | Not applicable | The control does not apply to the grela dev project profile. |
 | Readiness and preflight | Missing | The required complete implementation was not found in the audited grela dev source. |
-| Atomic promotion and rollback | Missing | The required complete implementation was not found in the audited grela dev source. |
+| Verified deployment | Missing | The required complete implementation was not found in the audited grela dev source. October 20 scope: verify the selected deployment and public smoke; downtime allowed. Earlier missing blue-green/automatic rollback evidence is not a release blocker. Existing status records historical evidence, not a fresh acceptance. |
 | Coordination and retention | Missing | The required complete implementation was not found in the audited grela dev source. |
-| Observability | Missing | The required complete implementation was not found in the audited grela dev source. |
+| Observability | Missing | The required complete implementation was not found in the audited grela dev source. October 20: backup/uptime alert requirements withdrawn; useful resource/cost diagnostics remain separate. |
 | Web identity | Missing | The required complete implementation was not found in the audited grela dev source. |
 
 ### Remaining and active tasks
@@ -102,6 +102,7 @@ Planned by owner on 2026-10-17; no repository hygiene audit or cleanup performed
 - The roadmap site remains a separate repository and data source.
 - The project follows the v2 standard profile: static-web.
 - Gemini after Inventory review; start from Portfolio.html, preserve design and use Vite/React static output. Coordinator owns status/platform changes; Pages CI has minimal account Pages permissions, not DNS/R2/Tunnel permissions.
+- October 20 owner policy: portfolio apps have no promoted user traffic requirement, uptime SLA or mandatory backups. Downtime/stop-start is acceptable; off-host copies, restore drills and availability exercises are optional, not release gates. Keep correctness/security/resource/cost controls and existing data/configuration. docs/operating-standard.md applies to this and future repositories. Prior source/audit dates and effort estimates are historical, not a fresh scope estimate.
 
 ## Polski
 
@@ -114,7 +115,7 @@ Następne ograniczone zadanie Gemini to engineering statycznego portfolio z zach
 ### Dowody audytu
 
 - **Repozytorium:** `SzczepanGrela/grela-dev` @ `2b3e09330e50e6c291e5696a97ec8430d1ef2935`
-- **Stan źródła:** Clean source reviewed October 3; integrated Portfolio.html selected over auxiliary prototypes. No production application implementation performed by coordinator.
+- **Stan źródła:** Clean source reviewed October 3; integrated Portfolio.html selected over auxiliary prototypes. No production application implementation performed by coordinator. October 20 operating-policy change only: no new source audit or effort/calendar re-estimate; mandatory backup/uptime work withdrawn.
 - **Testy i CI:** No implementation or deploy pipeline was introduced in this coordination task. Qualified static artifact Quality/preview/production is the assigned next work.
 - **Produkcja:** Pages project metadata remains unknown after October 3 authentication failure. No new portfolio deployment accepted; August 25 HTTP 525 is historical evidence.
 
@@ -132,9 +133,9 @@ Profil: **Zarządzany hosting statyczny**. Statusy odzwierciedlają wyłącznie 
 | Ochrona przed nadużyciami | Częściowe | Zakres static-only; ocenić koszty platformy/cache/assetów. Limiter dynamicznej aplikacji nie jest planowany. |
 | Bezpieczeństwo runtime | Nie dotyczy | Kontrola nie dotyczy profilu projektu grela dev. |
 | Readiness i preflight | Brak | W audytowanym źródle projektu grela dev nie znaleziono wymaganej kompletnej implementacji. |
-| Atomowa promocja i rollback | Brak | W audytowanym źródle projektu grela dev nie znaleziono wymaganej kompletnej implementacji. |
+| Sprawdzone wdrożenie | Brak | W audytowanym źródle projektu grela dev nie znaleziono wymaganej kompletnej implementacji. Zakres 20 października: sprawdzić wybrane wdrożenie i publiczny smoke; przerwa dozwolona. Wcześniejszy brak blue-green/automatycznego rollbacku nie blokuje wydania. Status zachowuje dowód historyczny, nie jest nowym odbiorem. |
 | Koordynacja i retencja | Brak | W audytowanym źródle projektu grela dev nie znaleziono wymaganej kompletnej implementacji. |
-| Obserwowalność | Brak | W audytowanym źródle projektu grela dev nie znaleziono wymaganej kompletnej implementacji. |
+| Obserwowalność | Brak | W audytowanym źródle projektu grela dev nie znaleziono wymaganej kompletnej implementacji. 20 października: wycofano wymóg alertów backup/uptime; użyteczna diagnostyka zasobów/kosztów pozostaje osobno. |
 | Tożsamość webowa | Brak | W audytowanym źródle projektu grela dev nie znaleziono wymaganej kompletnej implementacji. |
 
 ### Zadania pozostałe i bieżące
@@ -199,3 +200,4 @@ Planned by owner on 2026-10-17; no repository hygiene audit or cleanup performed
 - Strona roadmapy pozostaje osobnym repozytorium i źródłem danych.
 - Projekt podlega profilowi standardu v2: static-web.
 - Gemini po przeglądzie Inventory; Portfolio.html, zachowanie designu i static Vite/React. Koordynator prowadzi status/platformę; CI Pages ma minimalne uprawnienia Pages konta, bez DNS/R2/Tunnel.
+- Decyzja właściciela 20 października: aplikacje portfolio nie wymagają ciągłości ruchu, SLA uptime ani backupów. Przerwy/stop-start są akceptowalne; off-host, restore i ćwiczenia ciągłości są opcjonalne, nie blokują wydania. Zachować kontrole funkcji/bezpieczeństwa/zasobów/kosztów i istniejące dane/konfigurację. docs/operating-standard.md obejmuje to i przyszłe repozytoria. Starsze daty audytu/źródeł i estymaty pozostają historyczne, bez nowej wyceny zakresu.

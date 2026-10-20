@@ -59,7 +59,7 @@
     "date": "2026-08-25",
     "mode": "source-audited",
     "sourceRevision": "5596d689aefbf80ac12700a9e9ff77ca14702112",
-    "sourceState": "clean public master shallow clone"
+    "sourceState": "clean public master shallow clone October 20 operating-policy change only: no new source audit or effort/calendar re-estimate; mandatory backup/uptime work withdrawn."
   },
   "focus": {
     "current": {
@@ -177,8 +177,8 @@
     {
       "id": "immutable-blue-green",
       "title": {
-        "en": "Add immutable CI/CD, preflight and blue-green",
-        "pl": "Dodać niezmienne CI/CD, preflight i blue-green"
+        "en": "Add immutable CI/CD and deployment smoke",
+        "pl": "Dodać niezmienne CI/CD i smoke wdrożenia"
       },
       "dimension": "delivery",
       "status": "planned",
@@ -189,7 +189,7 @@
       "hoursMax": 14,
       "daysMin": 1,
       "daysMax": 1.75,
-      "evidence": "GHCR digests, OIDC deploy, stable routing and rollback do not exist. Target revised September 6: implement the delivery step through Coolify using the shared checklist, an immutable GHCR digest and Traefik/Tunnel; preserve data and custom routes. Production migration not verified in this update."
+      "evidence": "October 20 planning revision: Prepare qualified GHCR digests, private deployment and correct routing. Downtime allowed; no mandatory blue-green or automatic recovery drill. Previous completion/effort values retain their historical estimate; no new implementation or live test is claimed. Stable task ID retained."
     },
     {
       "id": "edge-observability",
@@ -271,6 +271,10 @@
     {
       "en": "Migration target updated September 6: prebuilt GHCR digest in Coolify, Traefik/Tunnel routing and the shared deployment checklist; preserve databases and custom routes. This target update is not a new source/production audit.",
       "pl": "Cel migracji uaktualniony 6 września: digest GHCR w Coolify, routing Traefik/Tunnel i wspólna checklista; zachować bazy i custom routes. Zmiana celu nie jest nowym audytem źródła/produkcji."
+    },
+    {
+      "en": "October 20 owner policy: portfolio apps have no promoted user traffic requirement, uptime SLA or mandatory backups. Downtime/stop-start is acceptable; off-host copies, restore drills and availability exercises are optional, not release gates. Keep correctness/security/resource/cost controls and existing data/configuration. docs/operating-standard.md applies to this and future repositories. Prior source/audit dates and effort estimates are historical, not a fresh scope estimate.",
+      "pl": "Decyzja właściciela 20 października: aplikacje portfolio nie wymagają ciągłości ruchu, SLA uptime ani backupów. Przerwy/stop-start są akceptowalne; off-host, restore i ćwiczenia ciągłości są opcjonalne, nie blokują wydania. Zachować kontrole funkcji/bezpieczeństwa/zasobów/kosztów i istniejące dane/konfigurację. docs/operating-standard.md obejmuje to i przyszłe repozytoria. Starsze daty audytu/źródeł i estymaty pozostają historyczne, bez nowej wyceny zakresu."
     }
   ],
   "audit": {
@@ -384,8 +388,8 @@
         "id": "atomic-promotion-rollback",
         "status": "missing",
         "evidence": {
-          "en": "The required complete implementation was not found in the audited url shortener system source.",
-          "pl": "W audytowanym źródle projektu url shortener system nie znaleziono wymaganej kompletnej implementacji."
+          "en": "The required complete implementation was not found in the audited url shortener system source. October 20 scope: verify the selected deployment and public smoke; downtime allowed. Earlier missing blue-green/automatic rollback evidence is not a release blocker. Existing status records historical evidence, not a fresh acceptance.",
+          "pl": "W audytowanym źródle projektu url shortener system nie znaleziono wymaganej kompletnej implementacji. Zakres 20 października: sprawdzić wybrane wdrożenie i publiczny smoke; przerwa dozwolona. Wcześniejszy brak blue-green/automatycznego rollbacku nie blokuje wydania. Status zachowuje dowód historyczny, nie jest nowym odbiorem."
         },
         "taskIds": [
           "immutable-blue-green"
@@ -406,8 +410,8 @@
         "id": "observability",
         "status": "missing",
         "evidence": {
-          "en": "The required complete implementation was not found in the audited url shortener system source.",
-          "pl": "W audytowanym źródle projektu url shortener system nie znaleziono wymaganej kompletnej implementacji."
+          "en": "The required complete implementation was not found in the audited url shortener system source. October 20: backup/uptime alert requirements withdrawn; useful resource/cost diagnostics remain separate.",
+          "pl": "W audytowanym źródle projektu url shortener system nie znaleziono wymaganej kompletnej implementacji. 20 października: wycofano wymóg alertów backup/uptime; użyteczna diagnostyka zasobów/kosztów pozostaje osobno."
         },
         "taskIds": [
           "edge-observability"

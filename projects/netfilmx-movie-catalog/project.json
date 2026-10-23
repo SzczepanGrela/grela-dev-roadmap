@@ -66,12 +66,12 @@
   },
   "focus": {
     "current": {
-      "en": "October 22: NP18-1 accepted at draft 206b467. PostgreSQL 18.6-trixie pin/storage and bounded migration/import/grants, persistent data, two-web sessions and new-PG restore pass. Coordinator: 79 Python tests, 23 sealed evidence files and image/CI checks; CI 304 .NET green. Starting 1 CPU/512 MiB per PG/web selected, not installed on production.",
-      "pl": "22 października: NP18-1 odebrane na drafcie 206b467. PostgreSQL 18.6-trixie: przypięty obraz/storage, migracje/import/uprawnienia, trwałość danych, sesje dwóch webów i odtworzenie nowego PG zaliczone lokalnie. Koordynator: 79 testów Python, 23 pliki dowodów i kontrola obrazu/CI; CI 304 .NET zielone. Wybrano startowe 1 CPU/512 MiB na PG/web; produkcja jeszcze bez tych zmian."
+      "en": "October 23: PR #1 merged at main a5a0d90. Main CI qualified and published the image to GHCR; exact digest and provenance/SPDX attestations independently verified. Deploy skipped and both release flags remain false. Fresh PostgreSQL, separate credentials and durable key-directory/auth preparation are confirmed; the new web is not launched.",
+      "pl": "23 października: PR #1 scalony do main a5a0d90. CI sprawdziło i opublikowało obraz w GHCR; konkretny digest i attestacje pochodzenia/SPDX zweryfikowane niezależnie. Deploy pominięty, obie flagi wdrożeń false. Potwierdzono przygotowanie świeżego PostgreSQL, osobnych poświadczeń oraz trwałego katalogu kluczy i konfiguracji logowania; nowy web nie został uruchomiony."
     },
     "next": {
-      "en": "Coordinator/operator: review actual saved Coolify target/storage/limits, private access and host headroom, then prepare fresh-PG bootstrap and remaining keyring/proxy/release inputs. Worker has no corrective or acknowledgement-only task. First launch may have downtime; final rolling/new-state backups remain separate. App merge/GHCR/deploy still need their execution instruction.",
-      "pl": "Koordynator/operator: sprawdzić zapisane ustawienia celu/storage/limitów Coolify, prywatny dostęp i zapas hosta, następnie przygotować bootstrap świeżego PG oraz klucze/proxy/wydanie. Worker nie ma zadania poprawkowego ani potwierdzenia dla samego potwierdzenia. Pierwszy start może mieć przerwę; docelowy rolling/backupy nowego stanu osobno. Merge/GHCR/deploy wymagają instrukcji wykonania."
+      "en": "Coordinator/operator: configure the actual Coolify web resource, private access, persistent mounts, runtime settings and proxy contract. Then separately authorize explicit migration/import and first launch using the published digest. Final rolling/new-state backups remain open. No new worker implementation, encoding/media test or legacy recovery round is assigned.",
+      "pl": "Koordynator/operator: skonfigurować właściwy zasób web w Coolify, prywatny dostęp, trwałe mounty, ustawienia runtime i proxy. Następnie osobno zatwierdzić jawną migrację/import i pierwszy start z opublikowanego digestu. Docelowy rolling/backupy nowego stanu pozostają otwarte. Bez nowej implementacji dla workera, kodowania/testów mediów ani odzyskiwania legacy."
     }
   },
   "tasks": [
@@ -124,7 +124,7 @@
       "hoursMax": 10,
       "daysMin": 0.75,
       "daysMax": 1.25,
-      "evidence": "October 18 draft 6f57dbb: CI/CD 39086857490 and audit 39086857541 green, 304 .NET/image/scan/Quality; Publish/Deploy skipped. Coordinator 24 focused manifest/credits tests and 67 new/78 prior evidence checks pass; local image ID independently read. Worker 14 actual-player public HLS cases inspected, TLS/CORS enabled, app origin represented privately. Production gates, Sintel uncertainty and manual deferrals remain. October 22 NP18-1 at 206b467: CI 39688750629 / audit 39688750573 success, 304 .NET and image/Quality; Publish/Deploy skipped. Coordinator independently passes 79 Python tests, verifies 23 worker files and local image identity; 14 local PG tests and bounded PG18 workload evidence inspected."
+      "evidence": "October 18 draft 6f57dbb: CI/CD 39086857490 and audit 39086857541 green, 304 .NET/image/scan/Quality; Publish/Deploy skipped. Coordinator 24 focused manifest/credits tests and 67 new/78 prior evidence checks pass; local image ID independently read. Worker 14 actual-player public HLS cases inspected, TLS/CORS enabled, app origin represented privately. Production gates, Sintel uncertainty and manual deferrals remain. October 22 NP18-1 at 206b467: CI 39688750629 / audit 39688750573 success, 304 .NET and image/Quality; Publish/Deploy skipped. Coordinator independently passes 79 Python tests, verifies 23 worker files and local image identity; 14 local PG tests and bounded PG18 workload evidence inspected. October 23 main CI 39875110432 passes application tests/audits, exact-image qualification, scan, SBOM and Quality. This is a publication checkpoint, not application deployment or new manual media acceptance."
     },
     {
       "id": "repository-governance",
@@ -141,7 +141,7 @@
       "hoursMax": 3,
       "daysMin": 0.25,
       "daysMax": 0.5,
-      "evidence": "October 20 live effective readback: main ruleset 25478258 active, PR/resolved threads/strict Quality gate bound to GitHub Actions required, no force-push/deletion/bypass. Production requires operator review with self-review allowed, no admin bypass and main branch only. Both activation variables false. Single-operator zero independent PR approvals retained. Actual private access/caller and credential-consumer reconciliation remain separate; no source merge or release."
+      "evidence": "October 20 live effective readback: main ruleset 25478258 active, PR/resolved threads/strict Quality gate bound to GitHub Actions required, no force-push/deletion/bypass. Production requires operator review with self-review allowed, no admin bypass and main branch only. Both activation variables false. Single-operator zero independent PR approvals retained. Actual private access/caller and credential-consumer reconciliation remain separate; no source merge or release. October 23 PR #1 merged through normal protection with exact-head checking and no bypass or branch deletion. Deployment flags remain false."
     },
     {
       "id": "architecture-docs",
@@ -158,7 +158,7 @@
       "hoursMax": 3,
       "daysMin": 0.25,
       "daysMax": 0.5,
-      "evidence": "October 20 coordinator accepted 052f439: first-release/delivery/status/database/keyring/recovery docs separate launch A from final rolling/new-state backups B and later uploads C. Existing commands, R1 and bootstrap separation preserved; stale media blocker removed. No further legacy recovery/off-host prerequisite. Runtime/media acceptance remains 6f57dbb; real production settings/results still need recording. No new runtime pass or effort re-estimate. October 22 PG18 configuration, storage and local qualification docs accepted at 206b467. Current target uses the reviewed PG18.6-trixie digest and fresh parent volume; earlier PG16/media evidence remains historical. A/B/C unchanged."
+      "evidence": "October 20 coordinator accepted 052f439: first-release/delivery/status/database/keyring/recovery docs separate launch A from final rolling/new-state backups B and later uploads C. Existing commands, R1 and bootstrap separation preserved; stale media blocker removed. No further legacy recovery/off-host prerequisite. Runtime/media acceptance remains 6f57dbb; real production settings/results still need recording. No new runtime pass or effort re-estimate. October 22 PG18 configuration, storage and local qualification docs accepted at 206b467. Current target uses the reviewed PG18.6-trixie digest and fresh parent volume; earlier PG16/media evidence remains historical. A/B/C unchanged. October 23 coordinator records fresh-PG/credential/key-directory/auth preparation and main image publication separately from pending app bootstrap; no effort re-estimate."
     },
     {
       "id": "route-protection",
@@ -192,7 +192,7 @@
       "hoursMax": 8,
       "daysMin": 0.5,
       "daysMax": 1.0,
-      "evidence": "One qualified image, GHCR attestation and serialized Coolify promotion are prepared. R1 is accepted: rollback requires confirmed terminal deployment state; unknown queue/status/cancellation stops mutations. Draft CI publish/deploy skipped. Main/environment protection installed and read back October 20. Private access, published main digest, first healthy bootstrap and real protected caller remain unaccepted. October 22 NP18-1 accepted locally at 206b467: consistent PG18.6-trixie pin and fresh parent data volume across active CI/local/target settings. Actual Coolify configuration/startup and published main digest remain pending."
+      "evidence": "October 23: operator-authorized PR #1 merged at main a5a0d90a332cc47931b5aff924f817ab6366918c. CI 39875110432 qualifies and publishes ghcr.io/szczepangrela/netfilmx-movie-catalog@sha256:ea01f504718a014ee92baf1276d2586044d5eaed80dd7fe203d50504fd10c47b without rebuilding. Coordinator verifies exact-main provenance/SPDX attestations. Deploy skipped; both release flags false. Actual Coolify web/access/mount/proxy contract, first bootstrap and protected caller remain unaccepted; R1 preserved. Historical progress/effort unchanged."
     },
     {
       "id": "blue-green",
@@ -322,10 +322,14 @@
     {
       "en": "October 21: select PostgreSQL 18 before first launch for its longer support horizon. Worker prepares the official pinned image, CI/fixtures/storage and bounded database qualification; no 16-to-18 data migration, media retest or legacy restore. Use a fresh PG18 volume. Keep R1, active media manifest, draft PR and false upload/worker/release flags. Existing progress/effort estimates remain dated and unchanged.",
       "pl": "21 października: wybrać PostgreSQL 18 przed pierwszym uruchomieniem ze względu na dłuższe wsparcie. Worker przygotuje oficjalny przypięty obraz, CI/fixtures/storage i ograniczoną kwalifikację bazy; bez migracji danych 16→18, ponownego odbioru mediów ani restore legacy. Nowy wolumen PG18. Zachować R1, aktywny manifest, draft PR i false flagi uploads/worker/wdrożeń. Datowane estymaty postępu/pracy bez zmian."
+    },
+    {
+      "en": "October 23: authorize marking PR #1 ready, merging accepted 206b467 and publishing its qualified main image to GHCR while leaving both deployment flags false. This supersedes the draft/no-merge boundary only for this publication; it does not authorize production migration/import, app startup or routing changes.",
+      "pl": "23 października: zatwierdzono wyjście PR #1 z draftu, scalenie odebranego 206b467 i publikację kwalifikowanego obrazu main w GHCR przy obu flagach wdrożeń false. Zastępuje to zakaz merge tylko dla tej publikacji; nie upoważnia do produkcyjnej migracji/importu, uruchomienia aplikacji ani zmiany routingu."
     }
   ],
   "audit": {
-    "date": "2026-10-22",
+    "date": "2026-10-23",
     "sources": [
       "Draft PR #1 f4aca03ec70af427cd3da82912d88ea1b87aec20; coordinator subtitle source/results review October 15",
       "CI/CD https://github.com/SzczepanGrela/netfilmx-movie-catalog/actions/runs/38704058532 and Dependency audit 38704058491; head-bound logs inspected",
@@ -365,11 +369,14 @@
       "October 21 operator chose PostgreSQL 18; coordinator checked remote OPEN/DRAFT 052f439, active CI/local PG16 references and official PostgreSQL versioning/Coolify data-path documentation. NP18-1 is assigned, not a new test pass; no application edits or release by coordinator.",
       "October 22 coordinator source review through 206b467b85dd52206df17a60eea91dbc8721cd3b and matching OPEN/DRAFT PR #1. Application dependencies, migrations, approved manifest and R1 unchanged.",
       "Coordinator independently passed 79 Python tests after loopback sandbox restriction, verified 23 sealed worker evidence files and local image identity. Inspected worker 14 local PG tests and bounded exact-image PG18 persistence/session/new-DB restore evidence; did not repeat media or DB workload.",
-      "CI https://github.com/SzczepanGrela/netfilmx-movie-catalog/actions/runs/39688750629 and audit https://github.com/SzczepanGrela/netfilmx-movie-catalog/actions/runs/39688750573 confirmed successful at reviewed head. 304 .NET, image/Quality pass; Publish/Deploy skipped."
+      "CI https://github.com/SzczepanGrela/netfilmx-movie-catalog/actions/runs/39688750629 and audit https://github.com/SzczepanGrela/netfilmx-movie-catalog/actions/runs/39688750573 confirmed successful at reviewed head. 304 .NET, image/Quality pass; Publish/Deploy skipped.",
+      "Operator selected-field output confirms fresh PostgreSQL startup, restricted-role credentials and positive/negative TCP authentication, plus durable key-directory and guarded JWT configuration preparation; detailed topology/secrets metadata remain private.",
+      "PR https://github.com/SzczepanGrela/netfilmx-movie-catalog/pull/1 merged at a5a0d90a332cc47931b5aff924f817ab6366918c, 2026-10-22T23:57:24Z (October 23 Europe/Warsaw). Approved branch and merged main have the same Git tree; unrelated parent and candidate checkout preserved.",
+      "Main CI https://github.com/SzczepanGrela/netfilmx-movie-catalog/actions/runs/39875110432 passes qualification/publication; Deploy skipped. Published digest sha256:ea01f504718a014ee92baf1276d2586044d5eaed80dd7fe203d50504fd10c47b; provenance/SPDX verification enforces exact source SHA, main, signer workflow and GitHub-hosted runner. Both deployment flags read back false."
     ],
     "notes": {
-      "en": "October 22 NP18-1 accepted at 206b467; exact PG18.6-trixie selection, parent volume and starting limits now reviewed. Local maximum web 432.44 MiB / PG 185.99 MiB under 512 MiB caps is bounded evidence, not production-load acceptance. Coordinator/operator own saved Coolify settings, actual volumes, private access and first startup. PR draft; uploads/worker false; no app merge/GHCR/deploy or provider writes. Earlier media/R1, Sintel uncertainty, manual deferrals and historical progress/effort estimates unchanged. No corrective worker or acknowledgement-only task.",
-      "pl": "22 października odebrano NP18-1 na 206b467: konkretny obraz PG18.6-trixie, wolumen nadrzędny i startowe limity są sprawdzone. Lokalny szczyt weba 432,44 MiB / PG 185,99 MiB przy limitach 512 MiB jest wynikiem ograniczonej próby, nie odbiorem obciążenia produkcji. Koordynator/operator odpowiada za zapisane ustawienia Coolify, rzeczywiste wolumeny, dostęp i pierwszy start. PR draft; uploads/worker false; bez merge/GHCR/deploy i zmian dostawców. Odbiór mediów/R1, niepewność Sintela, odłożone próby i historyczne estymaty bez zmian. Brak zadania poprawkowego lub samego potwierdzenia dla workera."
+      "en": "October 23 publication complete: reviewed source merged, qualified main image published and attestations verified. The new application has not been launched. PG/credential/key-directory/auth preparation is distinct from pending effective web mounts, access/proxy configuration and explicit migration/import. Final rolling/backups, uploads/worker, Sintel uncertainty and deferred manual trials retain scope. No new progress/effort/calendar estimate.",
+      "pl": "23 października zakończono publikację: odebrane źródła scalone, kwalifikowany obraz main opublikowany, attestacje zweryfikowane. Nowej aplikacji nie uruchomiono. Przygotowanie PG/poświadczeń/katalogu kluczy/logowania jest osobne od oczekujących mountów weba, dostępu/proxy i jawnej migracji/importu. Docelowy rolling/backupy, uploads/worker, niepewność Sintela i odłożone próby zachowują zakres. Bez nowej estymaty postępu/pracy/terminu."
     }
   },
   "compliance": {
@@ -404,8 +411,8 @@
         "id": "immutable-release",
         "status": "partial",
         "evidence": {
-          "en": "Qualified-image/digest/attestation workflow and R1 prepared. Main/environment protection installed October 20; both flags false. Private access, published main digest and bootstrap/caller acceptance still pending.",
-          "pl": "Workflow kwalifikowanego obrazu/digestu/atestacji i R1 przygotowane. Ochrona main/środowiska zainstalowana 20 października; obie flagi false. Prywatny dostęp, opublikowany digest main i odbiór bootstrapu/wywołującego nadal oczekują."
+          "en": "October 23 main a5a0d90 image published through successful CI 39875110432; immutable digest/provenance/SPDX verified independently. Deploy skipped and both flags false. Private access, actual first bootstrap and protected deployment caller remain pending; partial status retained.",
+          "pl": "23 października obraz main a5a0d90 opublikowany przez zielone CI 39875110432; niezmienny digest/pochodzenie/SPDX zweryfikowane niezależnie. Deploy pominięty i obie flagi false. Prywatny dostęp, pierwszy bootstrap i rzeczywisty chroniony deploy pozostają oczekujące; status partial zachowany."
         },
         "taskIds": [
           "immutable-deploy"

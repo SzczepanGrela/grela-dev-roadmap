@@ -1,6 +1,6 @@
 # NetFilmx Movie Catalog — status report / raport stanu
 
-Audit date / data audytu: **2026-10-22**<br>
+Audit date / data audytu: **2026-10-23**<br>
 Estimated completion / szacowane ukończenie: **54%**<br>
 Forecast / prognoza: **2026-10-28–2026-11-09**, 53–102 h, low confidence / pewność: low
 
@@ -12,7 +12,7 @@ Forecast / prognoza: **2026-10-28–2026-11-09**, 53–102 h, low confidence / p
 
 ASP.NET Core VOD catalogue with HLS processing, R2 storage and administration.
 
-October 22 NP18-1 accepted at 206b467; exact PG18.6-trixie selection, parent volume and starting limits now reviewed. Local maximum web 432.44 MiB / PG 185.99 MiB under 512 MiB caps is bounded evidence, not production-load acceptance. Coordinator/operator own saved Coolify settings, actual volumes, private access and first startup. PR draft; uploads/worker false; no app merge/GHCR/deploy or provider writes. Earlier media/R1, Sintel uncertainty, manual deferrals and historical progress/effort estimates unchanged. No corrective worker or acknowledgement-only task.
+October 23 publication complete: reviewed source merged, qualified main image published and attestations verified. The new application has not been launched. PG/credential/key-directory/auth preparation is distinct from pending effective web mounts, access/proxy configuration and explicit migration/import. Final rolling/backups, uploads/worker, Sintel uncertainty and deferred manual trials retain scope. No new progress/effort/calendar estimate.
 
 ### Audit evidence
 
@@ -29,7 +29,7 @@ Profile: **VPS web application**. Statuses reflect only evidence available on th
 | --- | --- | --- |
 | Repository governance | Partial | October 20 effective readback confirms active main PR/Quality protection, reviewed main-only production and both false release flags. This supersedes the earlier absent-protection observation. Broader repository hygiene/neutral existing branch naming remain unverified; no history/branch changes. Status retains remaining governance scope. |
 | Quality CI | Partial | October 18 6f57dbb CI/audits green, 304 .NET; coordinator 24 focused tests and evidence/image checks pass. Local final-image real catalogue/player accepted; production gates remain. Other control dates unchanged. October 22 PG18 review at 206b467: 79 coordinator Python tests, 23 evidence files, local image identity and CI/audit verified; 304 .NET. No production acceptance. |
-| Immutable release | Partial | Qualified-image/digest/attestation workflow and R1 prepared. Main/environment protection installed October 20; both flags false. Private access, published main digest and bootstrap/caller acceptance still pending. |
+| Immutable release | Partial | October 23 main a5a0d90 image published through successful CI 39875110432; immutable digest/provenance/SPDX verified independently. Deploy skipped and both flags false. Private access, actual first bootstrap and protected deployment caller remain pending; partial status retained. |
 | Deployment access | Partial | Legacy SSH path retired in candidate; production required review/main-only/no-admin-bypass configured October 20. Scoped private API/OIDC/pull access and effective caller remain unaccepted; old credential consumers not reconciled. |
 | Network, TLS and client identity | Partial | Exact proxy source/tests added to candidate; older public routing evidence does not prove new production identity. |
 | Abuse protection | Partial | Candidate auth/write/body/concurrency/image bounds implemented; public/aggregate/rolling acceptance remains. |
@@ -58,19 +58,19 @@ Separate future scope after backend/media and first-release acceptance; no redes
 
 **Quality · In progress · 80% · difficulty 4/5 · 5–10 h**
 
-October 18 draft 6f57dbb: CI/CD 39086857490 and audit 39086857541 green, 304 .NET/image/scan/Quality; Publish/Deploy skipped. Coordinator 24 focused manifest/credits tests and 67 new/78 prior evidence checks pass; local image ID independently read. Worker 14 actual-player public HLS cases inspected, TLS/CORS enabled, app origin represented privately. Production gates, Sintel uncertainty and manual deferrals remain. October 22 NP18-1 at 206b467: CI 39688750629 / audit 39688750573 success, 304 .NET and image/Quality; Publish/Deploy skipped. Coordinator independently passes 79 Python tests, verifies 23 worker files and local image identity; 14 local PG tests and bounded PG18 workload evidence inspected.
+October 18 draft 6f57dbb: CI/CD 39086857490 and audit 39086857541 green, 304 .NET/image/scan/Quality; Publish/Deploy skipped. Coordinator 24 focused manifest/credits tests and 67 new/78 prior evidence checks pass; local image ID independently read. Worker 14 actual-player public HLS cases inspected, TLS/CORS enabled, app origin represented privately. Production gates, Sintel uncertainty and manual deferrals remain. October 22 NP18-1 at 206b467: CI 39688750629 / audit 39688750573 success, 304 .NET and image/Quality; Publish/Deploy skipped. Coordinator independently passes 79 Python tests, verifies 23 worker files and local image identity; 14 local PG tests and bounded PG18 workload evidence inspected. October 23 main CI 39875110432 passes application tests/audits, exact-image qualification, scan, SBOM and Quality. This is a publication checkpoint, not application deployment or new manual media acceptance.
 
 #### Require green CI on protected main
 
 **Quality · Planned · 0% · difficulty 2/5 · 2–3 h**
 
-October 20 live effective readback: main ruleset 25478258 active, PR/resolved threads/strict Quality gate bound to GitHub Actions required, no force-push/deletion/bypass. Production requires operator review with self-review allowed, no admin bypass and main branch only. Both activation variables false. Single-operator zero independent PR approvals retained. Actual private access/caller and credential-consumer reconciliation remain separate; no source merge or release.
+October 20 live effective readback: main ruleset 25478258 active, PR/resolved threads/strict Quality gate bound to GitHub Actions required, no force-push/deletion/bypass. Production requires operator review with self-review allowed, no admin bypass and main branch only. Both activation variables false. Single-operator zero independent PR approvals retained. Actual private access/caller and credential-consumer reconciliation remain separate; no source merge or release. October 23 PR #1 merged through normal protection with exact-head checking and no bypass or branch deletion. Deployment flags remain false.
 
 #### Align architecture and operations documentation
 
 **Documentation · In progress · 90% · difficulty 3/5 · 1–3 h**
 
-October 20 coordinator accepted 052f439: first-release/delivery/status/database/keyring/recovery docs separate launch A from final rolling/new-state backups B and later uploads C. Existing commands, R1 and bootstrap separation preserved; stale media blocker removed. No further legacy recovery/off-host prerequisite. Runtime/media acceptance remains 6f57dbb; real production settings/results still need recording. No new runtime pass or effort re-estimate. October 22 PG18 configuration, storage and local qualification docs accepted at 206b467. Current target uses the reviewed PG18.6-trixie digest and fresh parent volume; earlier PG16/media evidence remains historical. A/B/C unchanged.
+October 20 coordinator accepted 052f439: first-release/delivery/status/database/keyring/recovery docs separate launch A from final rolling/new-state backups B and later uploads C. Existing commands, R1 and bootstrap separation preserved; stale media blocker removed. No further legacy recovery/off-host prerequisite. Runtime/media acceptance remains 6f57dbb; real production settings/results still need recording. No new runtime pass or effort re-estimate. October 22 PG18 configuration, storage and local qualification docs accepted at 206b467. Current target uses the reviewed PG18.6-trixie digest and fresh parent volume; earlier PG16/media evidence remains historical. A/B/C unchanged. October 23 coordinator records fresh-PG/credential/key-directory/auth preparation and main image publication separately from pending app bootstrap; no effort re-estimate.
 
 #### Add login, upload and transcoding limits
 
@@ -82,7 +82,7 @@ Candidate exact trusted proxy handling, auth/write/body/concurrency/image bounds
 
 **Delivery · In progress · 60% · difficulty 4/5 · 4–8 h**
 
-One qualified image, GHCR attestation and serialized Coolify promotion are prepared. R1 is accepted: rollback requires confirmed terminal deployment state; unknown queue/status/cancellation stops mutations. Draft CI publish/deploy skipped. Main/environment protection installed and read back October 20. Private access, published main digest, first healthy bootstrap and real protected caller remain unaccepted. October 22 NP18-1 accepted locally at 206b467: consistent PG18.6-trixie pin and fresh parent data volume across active CI/local/target settings. Actual Coolify configuration/startup and published main digest remain pending.
+October 23: operator-authorized PR #1 merged at main a5a0d90a332cc47931b5aff924f817ab6366918c. CI 39875110432 qualifies and publishes ghcr.io/szczepangrela/netfilmx-movie-catalog@sha256:ea01f504718a014ee92baf1276d2586044d5eaed80dd7fe203d50504fd10c47b without rebuilding. Coordinator verifies exact-main provenance/SPDX attestations. Deploy skipped; both release flags false. Actual Coolify web/access/mount/proxy contract, first bootstrap and protected caller remain unaccepted; R1 preserved. Historical progress/effort unchanged.
 
 #### Accept health-gated rolling releases and scoped recovery
 
@@ -120,6 +120,7 @@ Planned by owner on 2026-10-17; no repository hygiene audit or cleanup performed
 - October 20 release-plan review accepts documentation-only 052f439 without corrective assignment. Coordinator next owns protection/access and concrete first-launch inputs; no acknowledgement-only test/report cycle. A/B/C remain separate, preserving accepted runtime/media 6f57dbb, R1 and disabled uploads/worker. No app merge/GHCR/deploy authorization is implied.
 - October 20: apply only reviewed GitHub protection and explicit false release flags; keep the app PR draft and do not trigger deployment. Next prepare concrete Coolify/PG/keyring/access/resource settings. Existing legacy credential consumers require separate reconciliation.
 - October 21: select PostgreSQL 18 before first launch for its longer support horizon. Worker prepares the official pinned image, CI/fixtures/storage and bounded database qualification; no 16-to-18 data migration, media retest or legacy restore. Use a fresh PG18 volume. Keep R1, active media manifest, draft PR and false upload/worker/release flags. Existing progress/effort estimates remain dated and unchanged.
+- October 23: authorize marking PR #1 ready, merging accepted 206b467 and publishing its qualified main image to GHCR while leaving both deployment flags false. This supersedes the draft/no-merge boundary only for this publication; it does not authorize production migration/import, app startup or routing changes.
 
 ## Polski
 
@@ -127,7 +128,7 @@ Planned by owner on 2026-10-17; no repository hygiene audit or cleanup performed
 
 Katalog VOD ASP.NET Core z HLS, magazynem R2 i panelem administracyjnym.
 
-22 października odebrano NP18-1 na 206b467: konkretny obraz PG18.6-trixie, wolumen nadrzędny i startowe limity są sprawdzone. Lokalny szczyt weba 432,44 MiB / PG 185,99 MiB przy limitach 512 MiB jest wynikiem ograniczonej próby, nie odbiorem obciążenia produkcji. Koordynator/operator odpowiada za zapisane ustawienia Coolify, rzeczywiste wolumeny, dostęp i pierwszy start. PR draft; uploads/worker false; bez merge/GHCR/deploy i zmian dostawców. Odbiór mediów/R1, niepewność Sintela, odłożone próby i historyczne estymaty bez zmian. Brak zadania poprawkowego lub samego potwierdzenia dla workera.
+23 października zakończono publikację: odebrane źródła scalone, kwalifikowany obraz main opublikowany, attestacje zweryfikowane. Nowej aplikacji nie uruchomiono. Przygotowanie PG/poświadczeń/katalogu kluczy/logowania jest osobne od oczekujących mountów weba, dostępu/proxy i jawnej migracji/importu. Docelowy rolling/backupy, uploads/worker, niepewność Sintela i odłożone próby zachowują zakres. Bez nowej estymaty postępu/pracy/terminu.
 
 ### Dowody audytu
 
@@ -144,7 +145,7 @@ Profil: **Aplikacja webowa na VPS**. Statusy odzwierciedlają wyłącznie dowody
 | --- | --- | --- |
 | Zarządzanie repozytorium | Częściowe | Odczyt 20 października potwierdza ochronę PR/Quality main, zatwierdzane production ograniczone do main i obie flagi wdrożeń false. Zastępuje wcześniejszy brak ochrony. Szersze porządki repo/neutralne nazwy istniejących branchy pozostają niezweryfikowane; bez zmian historii/branchy. Status zachowuje pozostały zakres governance. |
 | Quality CI | Częściowe | 18 października 6f57dbb: CI/audyty zielone, 304 .NET; 24 testy koordynatora i kontrola dowodów/obrazu zaliczone. Lokalny finalny obraz z rzeczywistym katalogiem/playerem odebrany; bramki produkcyjne pozostają. Daty innych kontroli bez zmian. 22 października odbiór PG18 na 206b467: 79 testów Python koordynatora, 23 pliki dowodów, tożsamość obrazu i CI/audyt zweryfikowane; 304 .NET. Bez odbioru produkcji. |
-| Niezmienne wydanie | Częściowe | Workflow kwalifikowanego obrazu/digestu/atestacji i R1 przygotowane. Ochrona main/środowiska zainstalowana 20 października; obie flagi false. Prywatny dostęp, opublikowany digest main i odbiór bootstrapu/wywołującego nadal oczekują. |
+| Niezmienne wydanie | Częściowe | 23 października obraz main a5a0d90 opublikowany przez zielone CI 39875110432; niezmienny digest/pochodzenie/SPDX zweryfikowane niezależnie. Deploy pominięty i obie flagi false. Prywatny dostęp, pierwszy bootstrap i rzeczywisty chroniony deploy pozostają oczekujące; status partial zachowany. |
 | Dostęp wdrożeniowy | Częściowe | Ścieżka SSH wycofana w kandydacie; zatwierdzanie production/main-only/bez omijania przez administratora skonfigurowane 20 października. Prywatne API/OIDC/pull access i rzeczywisty wywołujący nieodebrane; konsumenci starych poświadczeń nieuzgodnieni. |
 | Sieć, TLS i tożsamość klienta | Częściowe | Exact-proxy dodano w kodzie/testach; stare dowody routingu nie potwierdzają tożsamości nowej produkcji. |
 | Ochrona przed nadużyciami | Częściowe | Limity auth/write/body/współbieżności/obrazów zaimplementowano; odbiór publiczny/aggregate/rolling pozostaje. |
@@ -173,19 +174,19 @@ Separate future scope after backend/media and first-release acceptance; no redes
 
 **Jakość · W toku · 80% · trudność 4/5 · 5–10 h**
 
-October 18 draft 6f57dbb: CI/CD 39086857490 and audit 39086857541 green, 304 .NET/image/scan/Quality; Publish/Deploy skipped. Coordinator 24 focused manifest/credits tests and 67 new/78 prior evidence checks pass; local image ID independently read. Worker 14 actual-player public HLS cases inspected, TLS/CORS enabled, app origin represented privately. Production gates, Sintel uncertainty and manual deferrals remain. October 22 NP18-1 at 206b467: CI 39688750629 / audit 39688750573 success, 304 .NET and image/Quality; Publish/Deploy skipped. Coordinator independently passes 79 Python tests, verifies 23 worker files and local image identity; 14 local PG tests and bounded PG18 workload evidence inspected.
+October 18 draft 6f57dbb: CI/CD 39086857490 and audit 39086857541 green, 304 .NET/image/scan/Quality; Publish/Deploy skipped. Coordinator 24 focused manifest/credits tests and 67 new/78 prior evidence checks pass; local image ID independently read. Worker 14 actual-player public HLS cases inspected, TLS/CORS enabled, app origin represented privately. Production gates, Sintel uncertainty and manual deferrals remain. October 22 NP18-1 at 206b467: CI 39688750629 / audit 39688750573 success, 304 .NET and image/Quality; Publish/Deploy skipped. Coordinator independently passes 79 Python tests, verifies 23 worker files and local image identity; 14 local PG tests and bounded PG18 workload evidence inspected. October 23 main CI 39875110432 passes application tests/audits, exact-image qualification, scan, SBOM and Quality. This is a publication checkpoint, not application deployment or new manual media acceptance.
 
 #### Wymagać zielonego CI na chronionym main
 
 **Jakość · Planowane · 0% · trudność 2/5 · 2–3 h**
 
-October 20 live effective readback: main ruleset 25478258 active, PR/resolved threads/strict Quality gate bound to GitHub Actions required, no force-push/deletion/bypass. Production requires operator review with self-review allowed, no admin bypass and main branch only. Both activation variables false. Single-operator zero independent PR approvals retained. Actual private access/caller and credential-consumer reconciliation remain separate; no source merge or release.
+October 20 live effective readback: main ruleset 25478258 active, PR/resolved threads/strict Quality gate bound to GitHub Actions required, no force-push/deletion/bypass. Production requires operator review with self-review allowed, no admin bypass and main branch only. Both activation variables false. Single-operator zero independent PR approvals retained. Actual private access/caller and credential-consumer reconciliation remain separate; no source merge or release. October 23 PR #1 merged through normal protection with exact-head checking and no bypass or branch deletion. Deployment flags remain false.
 
 #### Uzgodnić dokumentację architektury i operacji
 
 **Dokumentacja · W toku · 90% · trudność 3/5 · 1–3 h**
 
-October 20 coordinator accepted 052f439: first-release/delivery/status/database/keyring/recovery docs separate launch A from final rolling/new-state backups B and later uploads C. Existing commands, R1 and bootstrap separation preserved; stale media blocker removed. No further legacy recovery/off-host prerequisite. Runtime/media acceptance remains 6f57dbb; real production settings/results still need recording. No new runtime pass or effort re-estimate. October 22 PG18 configuration, storage and local qualification docs accepted at 206b467. Current target uses the reviewed PG18.6-trixie digest and fresh parent volume; earlier PG16/media evidence remains historical. A/B/C unchanged.
+October 20 coordinator accepted 052f439: first-release/delivery/status/database/keyring/recovery docs separate launch A from final rolling/new-state backups B and later uploads C. Existing commands, R1 and bootstrap separation preserved; stale media blocker removed. No further legacy recovery/off-host prerequisite. Runtime/media acceptance remains 6f57dbb; real production settings/results still need recording. No new runtime pass or effort re-estimate. October 22 PG18 configuration, storage and local qualification docs accepted at 206b467. Current target uses the reviewed PG18.6-trixie digest and fresh parent volume; earlier PG16/media evidence remains historical. A/B/C unchanged. October 23 coordinator records fresh-PG/credential/key-directory/auth preparation and main image publication separately from pending app bootstrap; no effort re-estimate.
 
 #### Dodać limity logowania, uploadu i transkodowania
 
@@ -197,7 +198,7 @@ Candidate exact trusted proxy handling, auth/write/body/concurrency/image bounds
 
 **Wdrożenie · W toku · 60% · trudność 4/5 · 4–8 h**
 
-One qualified image, GHCR attestation and serialized Coolify promotion are prepared. R1 is accepted: rollback requires confirmed terminal deployment state; unknown queue/status/cancellation stops mutations. Draft CI publish/deploy skipped. Main/environment protection installed and read back October 20. Private access, published main digest, first healthy bootstrap and real protected caller remain unaccepted. October 22 NP18-1 accepted locally at 206b467: consistent PG18.6-trixie pin and fresh parent data volume across active CI/local/target settings. Actual Coolify configuration/startup and published main digest remain pending.
+October 23: operator-authorized PR #1 merged at main a5a0d90a332cc47931b5aff924f817ab6366918c. CI 39875110432 qualifies and publishes ghcr.io/szczepangrela/netfilmx-movie-catalog@sha256:ea01f504718a014ee92baf1276d2586044d5eaed80dd7fe203d50504fd10c47b without rebuilding. Coordinator verifies exact-main provenance/SPDX attestations. Deploy skipped; both release flags false. Actual Coolify web/access/mount/proxy contract, first bootstrap and protected caller remain unaccepted; R1 preserved. Historical progress/effort unchanged.
 
 #### Odebrać rolling update z bramką zdrowia i odzyskiwanie w ustalonym zakresie
 
@@ -235,3 +236,4 @@ Planned by owner on 2026-10-17; no repository hygiene audit or cleanup performed
 - Odbiór planu 20 października przyjmuje dokumentacyjny 052f439 bez poprawki dla workera. Następny krok koordynatora to ochrona/dostęp i konkretne dane pierwszego uruchomienia; bez rundy testów/raportów tylko dla potwierdzenia. A/B/C osobno, z zachowaniem odebranych kodu/mediów 6f57dbb, R1 oraz wyłączonych uploads/worker. Odbiór nie oznacza zgody na merge/GHCR/deploy aplikacji.
 - 20 października: zastosować uzgodnioną ochronę GitHub i jawne false flagi wdrożeń; zachować draft aplikacji bez wywoływania wdrożenia. Następnie przygotować konkretne ustawienia Coolify/PG/kluczy/dostępu/zasobów. Konsumenci starych poświadczeń wymagają osobnego uzgodnienia.
 - 21 października: wybrać PostgreSQL 18 przed pierwszym uruchomieniem ze względu na dłuższe wsparcie. Worker przygotuje oficjalny przypięty obraz, CI/fixtures/storage i ograniczoną kwalifikację bazy; bez migracji danych 16→18, ponownego odbioru mediów ani restore legacy. Nowy wolumen PG18. Zachować R1, aktywny manifest, draft PR i false flagi uploads/worker/wdrożeń. Datowane estymaty postępu/pracy bez zmian.
+- 23 października: zatwierdzono wyjście PR #1 z draftu, scalenie odebranego 206b467 i publikację kwalifikowanego obrazu main w GHCR przy obu flagach wdrożeń false. Zastępuje to zakaz merge tylko dla tej publikacji; nie upoważnia do produkcyjnej migracji/importu, uruchomienia aplikacji ani zmiany routingu.

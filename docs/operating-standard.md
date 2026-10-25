@@ -39,13 +39,26 @@ Nie zmienia kodu ani harmonogramów, nie usuwa danych/kopii/mediów, nie urucham
 wdrożenia, sprzątania repozytorium ani rewrite historii. Zachowujemy zabezpieczenia
 wdrożeń, w tym zatrzymanie mutacji przy nierozstrzygniętym stanie.
 
+## Ochrona publicznych operacji
+
+**Uzgodnienie operatora, 25 października 2026:** stosujemy
+[standard ochrony przed botami](anti-bot-standard.md) do publicznych formularzy
+kont, anonimowych zapisów i kosztownych operacji przeglądarkowych. Zakres zależy
+od funkcji aplikacji; limity i autoryzacja pozostają. Wymagamy walidacji tokenu
+w backendzie i osobnego odbioru ochrony. Gotowość strony lub pozytywny test
+logowania nie dowodzą ochrony antybotowej. Standard dotyczy również przyszłych
+projektów, bez obowiązkowego wyzwania dla statycznych stron, odczytów i mediów.
+
 ## NetFilmx
 
 Nie wracamy do kolejnego backupu, off-host ani prób restore starej wersji.
 Zakończone lokalne próby pozostają historią; nie oznaczają naprawy starego katalogu.
-Następny krok to ochrona/dostęp, sprawdzony obraz, jeden web, świeży PostgreSQL,
-trwałe klucze, jawna migracja/import, limity oraz publiczny HTTPS/login/player smoke.
-Przełączenie może mieć przerwę. Wykonanie wydania jest osobno zlecane.
+Zakres pierwszego uruchomienia obejmuje ochronę/dostęp, sprawdzony obraz, jeden
+web, świeży PostgreSQL, trwałe klucze, jawną migrację/import, limity oraz publiczny
+HTTPS/login/player smoke. [Odbiór z 24 października](2026-10-24-netfilmx-first-launch.md)
+potwierdza uruchomienie w tym zakresie. Osobny otwarty punkt `route-protection`
+obejmuje teraz Turnstile rejestracji/logowania i testy odrzucenia. Wykonanie tej
+poprawki pozostaje następnym etapem; zmiana roadmapy jej nie wdraża.
 
 Następnie domykamy rolling i backupy **nowego PostgreSQL, kluczy i potrzebnej
 konfiguracji** ze sprawdzeniem odzyskiwania. Nowe konta/pusta historia, odebrany HLS

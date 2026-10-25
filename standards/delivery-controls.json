@@ -64,7 +64,7 @@
     {
       "id": "abuse-protection",
       "title": {"en": "Abuse protection", "pl": "Ochrona przed nadużyciami"},
-      "description": {"en": "Cost-aware edge, proxy and application limits plus bounded concurrency where applicable.", "pl": "Limity zależne od kosztu na edge, proxy i w aplikacji oraz ograniczona współbieżność, gdy potrzebna."},
+      "description": {"en": "Cost-aware limits, bounded concurrency and paid budgets; scoped Turnstile for public account forms, anonymous writes and costly browser operations, with backend validation and separate negative/public acceptance under docs/anti-bot-standard.md. Preserve static/read/media exclusions and conditional export protection.", "pl": "Limity kosztów, współbieżności i płatnych budżetów; Turnstile publicznych formularzy kont, anonimowych zapisów i kosztownych operacji przeglądarkowych z walidacją backendu i osobnym odbiorem negatywnym/publicznym według docs/anti-bot-standard.md. Zachować wyłączenia statyczne/odczytów/mediów i warunkową ochronę eksportów."},
       "profiles": ["vps-web", "static-web"]
     },
     {

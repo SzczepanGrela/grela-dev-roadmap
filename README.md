@@ -12,6 +12,7 @@ The repository is the source of truth for the published interactive roadmap webs
 - bilingual project reports;
 - normalized JSON data validated against JSON Schema;
 - a shared production and rate-limiting standard;
+- [anti-bot requirements and acceptance by application](docs/anti-bot-standard.md);
 - [portfolio operations: migration downtime, final rolling releases and backups](docs/operating-standard.md), applicable to all current and future repositories;
 - [planned repository hygiene, history review and neutral branch naming](docs/repository-hygiene-standard.md) for every repository;
 - [Coolify deployment checklist and known parser limitations](docs/coolify-deployment-checklist.md);

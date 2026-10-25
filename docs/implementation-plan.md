@@ -10,10 +10,13 @@
 
 ## Stan wdrożeń i najbliższa kolejka
 
-**Aktualna kolejka, 20 października:** NetFilmx ma odebrane 17 referencji i lokalny
-finalny obraz na 6f57dbb; media są opublikowane. Teraz ochrona/dostęp, zasoby i proste
-pierwsze wdrożenie z publicznym smoke. Wycofano dalsze backupy/restore/off-host legacy
-jako warunki bootstrapu. Docelowy rolling oraz backupy nowego wdrożenia pozostają do odbioru. Dalej MovieRAG i Smakosz według tej samej zasady.
+**Aktualna kolejka, 25 października:** NetFilmx przeszedł pierwszy publiczny start
+na main a5a0d90 i [ograniczony odbiór z 24 października](2026-10-24-netfilmx-first-launch.md).
+Następna poprawka: Turnstile rejestracji/logowania w `route-protection` według
+[wspólnego standardu antybotowego](anti-bot-standard.md), z walidacją backendu
+i osobnym odbiorem. Publiczny smoke nie potwierdza ochrony botowej. Wycofano dalsze
+backupy/restore/off-host legacy. Docelowy rolling, zgodny rollback i backupy nowego
+wdrożenia pozostają otwarte. Dalej MovieRAG i Smakosz według tej samej zasady.
 Inventory zakończyło swój odbiór; nie powtarzać dawnych prób. Poniższe starsze
 chronologie zachowują daty i nie wznawiają zastąpionych zadań.
 
@@ -108,6 +111,7 @@ flowchart LR
     *   **Każda publiczna aplikacja webowa** posiada zaimplementowany **Rate Limiting** zapobiegający przeciążeniom serwera, drenażowi zasobów i atakom typu DoS.
     *   Ochrona działa wielowarstwowo: reguły Cloudflare na krawędzi oraz per-aplikacyjne i per-endpointowe limity Traefika na poziomie reverse proxy (do wdrożenia i przetestowania) oraz wbudowane middleware Rate Limiting w aplikacji (.NET `Microsoft.AspNetCore.RateLimiting` / Express / FastAPI).
     *   Szczególny nacisk położony jest na endpointy generujące pliki i zużywające CPU/RAM (np. `/api/export/docx`).
+    *   **Cel od 25 października:** [standard antybotowy](anti-bot-standard.md) określa Turnstile publicznych formularzy kont, anonimowych zapisów i kosztownych operacji AI, backend Siteverify oraz oddzielny odbiór negatywny/publiczny. Wymagania są zapisane w istniejących zadaniach siedmiu projektów; Inventory eksporty są warunkowe, portfolio pozostaje statyczne, odczyty/HLS/healthchecki bez obowiązkowego wyzwania. Testowe klucze i bypassy nie trafiają do produkcji. Limity, autoryzacja i budżety kosztów nadal obowiązują.
 4.  **Izolacja i runtime:** każda aplikacja działa jako non-root we własnej sieci zarządzanej przez Coolify, bez publikacji portu procesu na hoście i bez Docker socketa. Osobne konto w grupie docker jest root-equivalent, nie stanowi twardej izolacji i nie jest tworzone dla nowych zasobów Coolify. Po migracji usuwać stare konta/skrypty tylko po kontroli danych i zakresu; wolumeny baz pozostają chronione. Limity CPU/RAM/PID i logów dobierać do aplikacji. Stosować cap-drop ALL, init i docelowo no-new-privileges/read-only/tmpfs; ograniczenia parsera 4.3.14 oraz przyjęty wyjątek opisuje checklista. Usługi Compose pozostają na izolowanej sieci stosu, jeżeli nie potrzebują predefined network; jawna dedykowana sieć connector–proxy nie uzasadnia dostępu do współdzielonej sieci platformy.
 5.  **Routing, TLS i klient:** publiczny HTTPS kończy się na Cloudflare, a zaszyfrowany tunel prowadzi do konektora. W przyjętym wariancie dalsze odcinki do Traefika i kontenera używają lokalnego HTTP. Ustawienia domeny, portu, redirectu i strip prefixes muszą odpowiadać tej ścieżce. Nie zakładać TLS do kontenera na podstawie prefiksu https w UI. Zweryfikować dokładny zaufany łańcuch connector → Traefik → aplikacja; nigdy nie ufać dowolnemu X-Forwarded-For ani CF-Connecting-IP bez granicy zaufania. Adresy Cloudflare nie są bezpośrednimi peerami aplikacji. Origin ma docelowo być niedostępny publicznie, co wymaga osobnego testu IPv4/IPv6 i publikacji Dockera. Dla wielu usług zachować semantykę tras API, kolejność matchów, websockets/SSE, body limits i timeouty. Stare NPM Custom Locations są materiałem do migracji, nie konfiguracją nowego proxy. Admin i domeny assetów/R2 wymagają osobnego zakresu.
 6.  **Sekrety i retencja:** runtime secrets przechowywać w Coolify lub chronionych plikach hosta; CI credentials w odpowiednim GitHub Environment. Nie przenosić danych produkcyjnych do publicznych repo. Klucz SSH dotyczy tylko zatwierdzonej ścieżki zarządzania, z przypiętym zweryfikowanym host key. Po migracji wycofać zbędne klucze i OIDC grants; usunięcie konta na VPS samo ich nie usuwa. Zachować co najmniej ostatni sprawdzony digest i stosować retencję per aplikacja.

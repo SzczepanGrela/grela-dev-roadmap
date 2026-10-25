@@ -15,6 +15,13 @@ with `python3 scripts/sync_reports.py --write`. Preserve stable IDs and dated
 results. Do not mark unchecked tasks passed or invent progress/effort estimates.
 Update shared instructions for future projects as well as individual records.
 
+Apply [the anti-bot standard](docs/anti-bot-standard.md) to public account forms,
+anonymous writes and costly browser operations. Record applicability, backend
+token validation and separate negative/public acceptance; green functional CI
+or a public smoke is not anti-bot acceptance. Keep conditional export protection,
+static/read/media exclusions and existing cost budgets explicit. Test keys and
+bypasses must not enter production. Planning requirements are not deployed facts.
+
 Keep private topology, credentials and operator evidence in private infrastructure
 docs. Repository hygiene stays planned under [its standard](docs/repository-hygiene-standard.md);
 no implicit branch renaming, history rewrite or cleanup. Use neutral new branch names.

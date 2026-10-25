@@ -32,7 +32,7 @@ Profile: **VPS web application**. Statuses reflect only evidence available on th
 | Immutable release | Partial | movie rag has some mechanisms but does not yet satisfy the complete v2 control. |
 | Deployment access | Partial | movie rag has some mechanisms but does not yet satisfy the complete v2 control. |
 | Network, TLS and client identity | Partial | movierag.grela.dev returned HTTPS 200 through Cloudflare on 2026-08-25. |
-| Abuse protection | Partial | movie rag has some mechanisms but does not yet satisfy the complete v2 control. |
+| Abuse protection | Partial | movie rag has some mechanisms but does not yet satisfy the complete v2 control. Target, October 25: Retain the historically reported Ask AI Turnstile integration; verify current server validation, host/action checks, replay rejection, provider failure and public acceptance. Preserve daily cost caps, concurrency and circuit breaker. This is a target, not a new implementation or production readback. |
 | Runtime safety | Partial | movie rag has some mechanisms but does not yet satisfy the complete v2 control. |
 | Readiness and preflight | Partial | movie rag has some mechanisms but does not yet satisfy the complete v2 control. |
 | Managed release and recovery | Missing | The required complete implementation was not found in the audited movie rag source. October 20: downtime is allowed during migration/bootstrap; final managed release/recovery requirements remain. Existing status is not a new runtime acceptance. |
@@ -66,11 +66,11 @@ GitHub reports no recognized license, ruleset or environment.
 
 Operational backup/restore and licensing documentation remain incomplete.
 
-#### Split Search, Ask AI and ingestion limits
+#### Verify Ask AI Turnstile and separate operation budgets
 
 **Delivery · In progress · 55% · difficulty 4/5 · 4–7 h**
 
-Ask AI has in-memory per-IP and daily limits plus Turnstile; other costly paths and shared state remain.
+Ask AI has in-memory per-IP and daily limits plus Turnstile; other costly paths and shared state remain. Target, October 25, 2026: Retain the historically reported Ask AI Turnstile integration; verify current server validation, host/action checks, replay rejection, provider failure and public acceptance. Preserve daily cost caps, concurrency and circuit breaker. This is a target, not a new implementation or production readback. See docs/anti-bot-standard.md. Existing effort/progress estimates are historical; no re-estimation or implementation credit in this update.
 
 #### Accept health-gated rolling releases and scoped recovery
 
@@ -97,6 +97,7 @@ Planned by owner on 2026-10-17; no repository hygiene audit or cleanup performed
 - The project follows the v2 standard profile: vps-web.
 - Migration target updated September 6: prebuilt GHCR digest in Coolify, Traefik/Tunnel routing and the shared deployment checklist; preserve databases and custom routes. This target update is not a new source/production audit.
 - October 20 clarification: downtime is accepted during preparation, initial deployment and migration. Final Coolify operation still requires health-gated rolling updates and backups of necessary durable data/configuration/keys with proportionate recovery verification. No numeric uptime SLA, permanent replicas or multi-host HA. Stateless/static/non-server projects use their applicable hosting and data scope. Existing data, backup schedules and release guards remain. This is planning, not new runtime acceptance or re-estimation; docs/operating-standard.md applies to future repositories too.
+- Target, October 25, 2026 — Retain the historically reported Ask AI Turnstile integration; verify current server validation, host/action checks, replay rejection, provider failure and public acceptance. Preserve daily cost caps, concurrency and circuit breaker. This is a target, not a new implementation or production readback. Apply docs/anti-bot-standard.md; functional smoke is separate from anti-bot acceptance.
 
 ## Polski
 
@@ -124,7 +125,7 @@ Profil: **Aplikacja webowa na VPS**. Statusy odzwierciedlają wyłącznie dowody
 | Niezmienne wydanie | Częściowe | Projekt movie rag ma część mechanizmów, ale nie spełnia jeszcze całej kontroli v2. |
 | Dostęp wdrożeniowy | Częściowe | Projekt movie rag ma część mechanizmów, ale nie spełnia jeszcze całej kontroli v2. |
 | Sieć, TLS i tożsamość klienta | Częściowe | Część publicznego HTTPS lub routingu działa, ale pełny zaufany łańcuch sieciowy nie został potwierdzony. |
-| Ochrona przed nadużyciami | Częściowe | Projekt movie rag ma część mechanizmów, ale nie spełnia jeszcze całej kontroli v2. |
+| Ochrona przed nadużyciami | Częściowe | Projekt movie rag ma część mechanizmów, ale nie spełnia jeszcze całej kontroli v2. Cel, 25 października: Zachować historycznie opisaną integrację Turnstile Ask AI; sprawdzić obecną walidację serwera, host/action, odrzucenie replay, awarię dostawcy i odbiór publiczny. Zachować dzienne budżety kosztów, współbieżność i circuit breaker. To cel, nie nowa implementacja ani odczyt produkcji. |
 | Bezpieczeństwo runtime | Częściowe | Projekt movie rag ma część mechanizmów, ale nie spełnia jeszcze całej kontroli v2. |
 | Readiness i preflight | Częściowe | Projekt movie rag ma część mechanizmów, ale nie spełnia jeszcze całej kontroli v2. |
 | Zarządzane wydanie i odzyskiwanie | Brak | W audytowanym źródle projektu movie rag nie znaleziono wymaganej kompletnej implementacji. 20 października: przerwa dozwolona na migrację/bootstrap; docelowe wymagania wdrożeń/odzyskiwania pozostają. Status nie oznacza nowego odbioru runtime. |
@@ -158,11 +159,11 @@ GitHub reports no recognized license, ruleset or environment.
 
 Operational backup/restore and licensing documentation remain incomplete.
 
-#### Rozdzielić limity Search, Ask AI i ingestion
+#### Odebrać Turnstile Ask AI i rozdzielić budżety operacji
 
 **Wdrożenie · W toku · 55% · trudność 4/5 · 4–7 h**
 
-Ask AI has in-memory per-IP and daily limits plus Turnstile; other costly paths and shared state remain.
+Ask AI has in-memory per-IP and daily limits plus Turnstile; other costly paths and shared state remain. Target, October 25, 2026: Retain the historically reported Ask AI Turnstile integration; verify current server validation, host/action checks, replay rejection, provider failure and public acceptance. Preserve daily cost caps, concurrency and circuit breaker. This is a target, not a new implementation or production readback. See docs/anti-bot-standard.md. Existing effort/progress estimates are historical; no re-estimation or implementation credit in this update.
 
 #### Odebrać rolling update z bramką zdrowia i odzyskiwanie w ustalonym zakresie
 
@@ -189,3 +190,4 @@ Planned by owner on 2026-10-17; no repository hygiene audit or cleanup performed
 - Projekt podlega profilowi standardu v2: vps-web.
 - Cel migracji uaktualniony 6 września: digest GHCR w Coolify, routing Traefik/Tunnel i wspólna checklista; zachować bazy i custom routes. Zmiana celu nie jest nowym audytem źródła/produkcji.
 - Doprecyzowanie 20 października: przerwy są dozwolone podczas przygotowania, pierwszego wdrożenia i migracji. Docelowy Coolify nadal wymaga rolling update z bramką zdrowia i backupów potrzebnych danych/konfiguracji/kluczy z proporcjonalnym sprawdzeniem odtworzenia. Bez liczbowego SLA, stałych replik i HA wielu hostów. Dla projektów stateless/statycznych/bez serwera stosować właściwy zakres hostingu i danych. Zachować dane, harmonogramy kopii i zabezpieczenia wdrożeń. To plan, nie nowy odbiór ani estymacja; docs/operating-standard.md obejmuje też przyszłe repozytoria.
+- Cel, 25 października 2026 — Zachować historycznie opisaną integrację Turnstile Ask AI; sprawdzić obecną walidację serwera, host/action, odrzucenie replay, awarię dostawcy i odbiór publiczny. Zachować dzienne budżety kosztów, współbieżność i circuit breaker. To cel, nie nowa implementacja ani odczyt produkcji. Stosować docs/anti-bot-standard.md; odbiór funkcjonalny jest osobny od antybotowego.

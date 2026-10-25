@@ -75,8 +75,8 @@
     {
       "id": "api-security",
       "title": {
-        "en": "Fix XFF, SSRF and endpoint policies",
-        "pl": "Naprawić XFF, SSRF i polityki endpointów"
+        "en": "Protect link creation with Turnstile and fix XFF/SSRF",
+        "pl": "Chronić tworzenie linków przez Turnstile i naprawić XFF/SSRF"
       },
       "dimension": "implementation",
       "status": "in-progress",
@@ -87,7 +87,7 @@
       "hoursMax": 28,
       "daysMin": 2.25,
       "daysMax": 3.5,
-      "evidence": "The API has tests and an in-memory limiter, but trusts unsafe client identity and lacks cost-separated policies."
+      "evidence": "The API has tests and an in-memory limiter, but trusts unsafe client identity and lacks cost-separated policies. Target, October 25, 2026: Require Turnstile with backend validation and negative/public acceptance for anonymous browser link creation before public launch. Keep redirects challenge-free; preserve SSRF/anti-phishing checks and quotas. Any machine API requires separate credentials, authorization and budgets, not an anonymous bypass. See docs/anti-bot-standard.md. Existing effort/progress estimates are historical; no re-estimation or implementation credit in this update."
     },
     {
       "id": "analytics-queue",
@@ -275,6 +275,10 @@
     {
       "en": "October 20 clarification: downtime is accepted during preparation, initial deployment and migration. Final Coolify operation still requires health-gated rolling updates and backups of necessary durable data/configuration/keys with proportionate recovery verification. No numeric uptime SLA, permanent replicas or multi-host HA. Stateless/static/non-server projects use their applicable hosting and data scope. Existing data, backup schedules and release guards remain. This is planning, not new runtime acceptance or re-estimation; docs/operating-standard.md applies to future repositories too.",
       "pl": "Doprecyzowanie 20 października: przerwy są dozwolone podczas przygotowania, pierwszego wdrożenia i migracji. Docelowy Coolify nadal wymaga rolling update z bramką zdrowia i backupów potrzebnych danych/konfiguracji/kluczy z proporcjonalnym sprawdzeniem odtworzenia. Bez liczbowego SLA, stałych replik i HA wielu hostów. Dla projektów stateless/statycznych/bez serwera stosować właściwy zakres hostingu i danych. Zachować dane, harmonogramy kopii i zabezpieczenia wdrożeń. To plan, nie nowy odbiór ani estymacja; docs/operating-standard.md obejmuje też przyszłe repozytoria."
+    },
+    {
+      "en": "Target, October 25, 2026 — Require Turnstile with backend validation and negative/public acceptance for anonymous browser link creation before public launch. Keep redirects challenge-free; preserve SSRF/anti-phishing checks and quotas. Any machine API requires separate credentials, authorization and budgets, not an anonymous bypass. Apply docs/anti-bot-standard.md; functional smoke is separate from anti-bot acceptance.",
+      "pl": "Cel, 25 października 2026 — Wymagać Turnstile z walidacją backendu i odbiorem negatywnym/publicznym dla anonimowego tworzenia linków w przeglądarce przed publikacją. Przekierowania bez wyzwania; zachować ochronę SSRF/antyphishing i kwoty. API maszynowe wymaga osobnych poświadczeń, autoryzacji i budżetów, nie anonimowego obejścia. Stosować docs/anti-bot-standard.md; odbiór funkcjonalny jest osobny od antybotowego."
     }
   ],
   "audit": {
@@ -283,7 +287,8 @@
       "audited source tree and git status",
       "GitHub repository, Actions, rulesets and environments API",
       "public DNS and HTTPS checks where applicable",
-      "2026-10-17 owner planning request: repository-hygiene standard for every repository; no new source/history/branch scan or execution. docs/repository-hygiene-standard.md"
+      "2026-10-17 owner planning request: repository-hygiene standard for every repository; no new source/history/branch scan or execution. docs/repository-hygiene-standard.md",
+      "October 25, 2026 operator-approved anti-bot roadmap standard: docs/anti-bot-standard.md. Scope/planning update only; no new app/provider changes, no completed anti-bot acceptance or revised effort estimates."
     ],
     "notes": {
       "en": "This is a substantial modernization rather than a simple containerization task. Planning-only update October 17: add repository-hygiene at 0% with provisional 2–4 h, excluding unestimated history rewrite. Previous audit/source dates and task completion retained; aggregate progress/effort recalculated for new scope. Calendar bounds are historical and not rescheduled for this unscheduled task; confidence low pending repository review.",
@@ -355,8 +360,8 @@
         "id": "abuse-protection",
         "status": "partial",
         "evidence": {
-          "en": "url shortener system has some mechanisms but does not yet satisfy the complete v2 control.",
-          "pl": "Projekt url shortener system ma część mechanizmów, ale nie spełnia jeszcze całej kontroli v2."
+          "en": "url shortener system has some mechanisms but does not yet satisfy the complete v2 control. Target, October 25: Require Turnstile with backend validation and negative/public acceptance for anonymous browser link creation before public launch. Keep redirects challenge-free; preserve SSRF/anti-phishing checks and quotas. Any machine API requires separate credentials, authorization and budgets, not an anonymous bypass.",
+          "pl": "Projekt url shortener system ma część mechanizmów, ale nie spełnia jeszcze całej kontroli v2. Cel, 25 października: Wymagać Turnstile z walidacją backendu i odbiorem negatywnym/publicznym dla anonimowego tworzenia linków w przeglądarce przed publikacją. Przekierowania bez wyzwania; zachować ochronę SSRF/antyphishing i kwoty. API maszynowe wymaga osobnych poświadczeń, autoryzacji i budżetów, nie anonimowego obejścia."
         },
         "taskIds": [
           "api-security"

@@ -32,7 +32,7 @@ Profile: **VPS web application**. Statuses reflect only evidence available on th
 | Immutable release | Missing | The required complete implementation was not found in the audited url shortener system source. |
 | Deployment access | Missing | The required complete implementation was not found in the audited url shortener system source. |
 | Network, TLS and client identity | Missing | s.grela.dev did not resolve in public DNS on 2026-08-25. |
-| Abuse protection | Partial | url shortener system has some mechanisms but does not yet satisfy the complete v2 control. |
+| Abuse protection | Partial | url shortener system has some mechanisms but does not yet satisfy the complete v2 control. Target, October 25: Require Turnstile with backend validation and negative/public acceptance for anonymous browser link creation before public launch. Keep redirects challenge-free; preserve SSRF/anti-phishing checks and quotas. Any machine API requires separate credentials, authorization and budgets, not an anonymous bypass. |
 | Runtime safety | Missing | The required complete implementation was not found in the audited url shortener system source. |
 | Readiness and preflight | Partial | url shortener system has some mechanisms but does not yet satisfy the complete v2 control. |
 | Managed release and recovery | Missing | The required complete implementation was not found in the audited url shortener system source. October 20: downtime is allowed during migration/bootstrap; final managed release/recovery requirements remain. Existing status is not a new runtime acceptance. |
@@ -42,11 +42,11 @@ Profile: **VPS web application**. Statuses reflect only evidence available on th
 
 ### Remaining and active tasks
 
-#### Fix XFF, SSRF and endpoint policies
+#### Protect link creation with Turnstile and fix XFF/SSRF
 
 **Implementation · In progress · 45% · difficulty 5/5 · 18–28 h**
 
-The API has tests and an in-memory limiter, but trusts unsafe client identity and lacks cost-separated policies.
+The API has tests and an in-memory limiter, but trusts unsafe client identity and lacks cost-separated policies. Target, October 25, 2026: Require Turnstile with backend validation and negative/public acceptance for anonymous browser link creation before public launch. Keep redirects challenge-free; preserve SSRF/anti-phishing checks and quotas. Any machine API requires separate credentials, authorization and budgets, not an anonymous bypass. See docs/anti-bot-standard.md. Existing effort/progress estimates are historical; no re-estimation or implementation credit in this update.
 
 #### Bound and harden the analytics queue
 
@@ -109,6 +109,7 @@ Planned by owner on 2026-10-17; no repository hygiene audit or cleanup performed
 - The project follows the v2 standard profile: vps-web.
 - Migration target updated September 6: prebuilt GHCR digest in Coolify, Traefik/Tunnel routing and the shared deployment checklist; preserve databases and custom routes. This target update is not a new source/production audit.
 - October 20 clarification: downtime is accepted during preparation, initial deployment and migration. Final Coolify operation still requires health-gated rolling updates and backups of necessary durable data/configuration/keys with proportionate recovery verification. No numeric uptime SLA, permanent replicas or multi-host HA. Stateless/static/non-server projects use their applicable hosting and data scope. Existing data, backup schedules and release guards remain. This is planning, not new runtime acceptance or re-estimation; docs/operating-standard.md applies to future repositories too.
+- Target, October 25, 2026 — Require Turnstile with backend validation and negative/public acceptance for anonymous browser link creation before public launch. Keep redirects challenge-free; preserve SSRF/anti-phishing checks and quotas. Any machine API requires separate credentials, authorization and budgets, not an anonymous bypass. Apply docs/anti-bot-standard.md; functional smoke is separate from anti-bot acceptance.
 
 ## Polski
 
@@ -136,7 +137,7 @@ Profil: **Aplikacja webowa na VPS**. Statusy odzwierciedlają wyłącznie dowody
 | Niezmienne wydanie | Brak | W audytowanym źródle projektu url shortener system nie znaleziono wymaganej kompletnej implementacji. |
 | Dostęp wdrożeniowy | Brak | W audytowanym źródle projektu url shortener system nie znaleziono wymaganej kompletnej implementacji. |
 | Sieć, TLS i tożsamość klienta | Brak | Docelowa domena lub kompletna konfiguracja routingu/TLS nie jest obecnie dostępna. |
-| Ochrona przed nadużyciami | Częściowe | Projekt url shortener system ma część mechanizmów, ale nie spełnia jeszcze całej kontroli v2. |
+| Ochrona przed nadużyciami | Częściowe | Projekt url shortener system ma część mechanizmów, ale nie spełnia jeszcze całej kontroli v2. Cel, 25 października: Wymagać Turnstile z walidacją backendu i odbiorem negatywnym/publicznym dla anonimowego tworzenia linków w przeglądarce przed publikacją. Przekierowania bez wyzwania; zachować ochronę SSRF/antyphishing i kwoty. API maszynowe wymaga osobnych poświadczeń, autoryzacji i budżetów, nie anonimowego obejścia. |
 | Bezpieczeństwo runtime | Brak | W audytowanym źródle projektu url shortener system nie znaleziono wymaganej kompletnej implementacji. |
 | Readiness i preflight | Częściowe | Projekt url shortener system ma część mechanizmów, ale nie spełnia jeszcze całej kontroli v2. |
 | Zarządzane wydanie i odzyskiwanie | Brak | W audytowanym źródle projektu url shortener system nie znaleziono wymaganej kompletnej implementacji. 20 października: przerwa dozwolona na migrację/bootstrap; docelowe wymagania wdrożeń/odzyskiwania pozostają. Status nie oznacza nowego odbioru runtime. |
@@ -146,11 +147,11 @@ Profil: **Aplikacja webowa na VPS**. Statusy odzwierciedlają wyłącznie dowody
 
 ### Zadania pozostałe i bieżące
 
-#### Naprawić XFF, SSRF i polityki endpointów
+#### Chronić tworzenie linków przez Turnstile i naprawić XFF/SSRF
 
 **Implementacja · W toku · 45% · trudność 5/5 · 18–28 h**
 
-The API has tests and an in-memory limiter, but trusts unsafe client identity and lacks cost-separated policies.
+The API has tests and an in-memory limiter, but trusts unsafe client identity and lacks cost-separated policies. Target, October 25, 2026: Require Turnstile with backend validation and negative/public acceptance for anonymous browser link creation before public launch. Keep redirects challenge-free; preserve SSRF/anti-phishing checks and quotas. Any machine API requires separate credentials, authorization and budgets, not an anonymous bypass. See docs/anti-bot-standard.md. Existing effort/progress estimates are historical; no re-estimation or implementation credit in this update.
 
 #### Ograniczyć i uodpornić kolejkę analityki
 
@@ -213,3 +214,4 @@ Planned by owner on 2026-10-17; no repository hygiene audit or cleanup performed
 - Projekt podlega profilowi standardu v2: vps-web.
 - Cel migracji uaktualniony 6 września: digest GHCR w Coolify, routing Traefik/Tunnel i wspólna checklista; zachować bazy i custom routes. Zmiana celu nie jest nowym audytem źródła/produkcji.
 - Doprecyzowanie 20 października: przerwy są dozwolone podczas przygotowania, pierwszego wdrożenia i migracji. Docelowy Coolify nadal wymaga rolling update z bramką zdrowia i backupów potrzebnych danych/konfiguracji/kluczy z proporcjonalnym sprawdzeniem odtworzenia. Bez liczbowego SLA, stałych replik i HA wielu hostów. Dla projektów stateless/statycznych/bez serwera stosować właściwy zakres hostingu i danych. Zachować dane, harmonogramy kopii i zabezpieczenia wdrożeń. To plan, nie nowy odbiór ani estymacja; docs/operating-standard.md obejmuje też przyszłe repozytoria.
+- Cel, 25 października 2026 — Wymagać Turnstile z walidacją backendu i odbiorem negatywnym/publicznym dla anonimowego tworzenia linków w przeglądarce przed publikacją. Przekierowania bez wyzwania; zachować ochronę SSRF/antyphishing i kwoty. API maszynowe wymaga osobnych poświadczeń, autoryzacji i budżetów, nie anonimowego obejścia. Stosować docs/anti-bot-standard.md; odbiór funkcjonalny jest osobny od antybotowego.

@@ -32,7 +32,7 @@ Profile: **VPS web application**. Statuses reflect only evidence available on th
 | Immutable release | Partial | smakosz web app has some mechanisms but does not yet satisfy the complete v2 control. |
 | Deployment access | Partial | smakosz web app has some mechanisms but does not yet satisfy the complete v2 control. |
 | Network, TLS and client identity | Partial | smakosz.grela.dev did not resolve; running Smakosz containers were previously verified on the VPS under another/current address. |
-| Abuse protection | Partial | smakosz web app has some mechanisms but does not yet satisfy the complete v2 control. |
+| Abuse protection | Partial | smakosz web app has some mechanisms but does not yet satisfy the complete v2 control. Target, October 25: Review and complete Turnstile on registration/login/reset/resend before exposing those operations, with server validation and negative/public acceptance. Existing integration and current provider configuration are not verified by this planning update. Keep refresh/logout outside the challenge and retain authorization, mail quotas and upload limits. |
 | Runtime safety | Partial | smakosz web app has some mechanisms but does not yet satisfy the complete v2 control. |
 | Readiness and preflight | Partial | smakosz web app has some mechanisms but does not yet satisfy the complete v2 control. |
 | Managed release and recovery | Partial | smakosz web app has some mechanisms but does not yet satisfy the complete v2 control. October 20: downtime is allowed during migration/bootstrap; final managed release/recovery requirements remain. Existing status is not a new runtime acceptance. |
@@ -72,11 +72,11 @@ GitHub reports no recognized license and the public operational architecture rem
 
 Mail delivery is blocked by an expired API key and should move behind an SMTP sender abstraction.
 
-#### Harden identity, proxy and runtime limits
+#### Protect account forms with Turnstile and retain runtime limits
 
 **Delivery · In progress · 50% · difficulty 4/5 · 5–8 h**
 
-Application limits and forwarded-header handling exist, but distributed state and outer policies need verification. Target revised September 6: implement the delivery step through Coolify using the shared checklist, an immutable GHCR digest and Traefik/Tunnel; preserve data and custom routes. Production migration not verified in this update.
+Application limits and forwarded-header handling exist, but distributed state and outer policies need verification. Target revised September 6: implement the delivery step through Coolify using the shared checklist, an immutable GHCR digest and Traefik/Tunnel; preserve data and custom routes. Production migration not verified in this update. Target, October 25, 2026: Review and complete Turnstile on registration/login/reset/resend before exposing those operations, with server validation and negative/public acceptance. Existing integration and current provider configuration are not verified by this planning update. Keep refresh/logout outside the challenge and retain authorization, mail quotas and upload limits. See docs/anti-bot-standard.md. Existing effort/progress estimates are historical; no re-estimation or implementation credit in this update.
 
 #### Implement digests, readiness and safe blue-green
 
@@ -113,6 +113,7 @@ Planned by owner on 2026-10-17; no repository hygiene audit or cleanup performed
 - The project follows the v2 standard profile: vps-web.
 - Migration target updated September 6: prebuilt GHCR digest in Coolify, Traefik/Tunnel routing and the shared deployment checklist; preserve databases and custom routes. This target update is not a new source/production audit.
 - October 20 clarification: downtime is accepted during preparation, initial deployment and migration. Final Coolify operation still requires health-gated rolling updates and backups of necessary durable data/configuration/keys with proportionate recovery verification. No numeric uptime SLA, permanent replicas or multi-host HA. Stateless/static/non-server projects use their applicable hosting and data scope. Existing data, backup schedules and release guards remain. This is planning, not new runtime acceptance or re-estimation; docs/operating-standard.md applies to future repositories too.
+- Target, October 25, 2026 — Review and complete Turnstile on registration/login/reset/resend before exposing those operations, with server validation and negative/public acceptance. Existing integration and current provider configuration are not verified by this planning update. Keep refresh/logout outside the challenge and retain authorization, mail quotas and upload limits. Apply docs/anti-bot-standard.md; functional smoke is separate from anti-bot acceptance.
 
 ## Polski
 
@@ -140,7 +141,7 @@ Profil: **Aplikacja webowa na VPS**. Statusy odzwierciedlają wyłącznie dowody
 | Niezmienne wydanie | Częściowe | Projekt smakosz web app ma część mechanizmów, ale nie spełnia jeszcze całej kontroli v2. |
 | Dostęp wdrożeniowy | Częściowe | Projekt smakosz web app ma część mechanizmów, ale nie spełnia jeszcze całej kontroli v2. |
 | Sieć, TLS i tożsamość klienta | Częściowe | Część publicznego HTTPS lub routingu działa, ale pełny zaufany łańcuch sieciowy nie został potwierdzony. |
-| Ochrona przed nadużyciami | Częściowe | Projekt smakosz web app ma część mechanizmów, ale nie spełnia jeszcze całej kontroli v2. |
+| Ochrona przed nadużyciami | Częściowe | Projekt smakosz web app ma część mechanizmów, ale nie spełnia jeszcze całej kontroli v2. Cel, 25 października: Sprawdzić i uzupełnić Turnstile rejestracji/logowania/reset/resend przed udostępnieniem tych operacji, z walidacją serwera i odbiorem negatywnym/publicznym. Ta aktualizacja planu nie weryfikuje istniejącej integracji ani konfiguracji dostawcy. Refresh/logout bez wyzwania; zachować autoryzację, kwoty maili i limity uploadu. |
 | Bezpieczeństwo runtime | Częściowe | Projekt smakosz web app ma część mechanizmów, ale nie spełnia jeszcze całej kontroli v2. |
 | Readiness i preflight | Częściowe | Projekt smakosz web app ma część mechanizmów, ale nie spełnia jeszcze całej kontroli v2. |
 | Zarządzane wydanie i odzyskiwanie | Częściowe | Projekt smakosz web app ma część mechanizmów, ale nie spełnia jeszcze całej kontroli v2. 20 października: przerwa dozwolona na migrację/bootstrap; docelowe wymagania wdrożeń/odzyskiwania pozostają. Status nie oznacza nowego odbioru runtime. |
@@ -180,11 +181,11 @@ GitHub reports no recognized license and the public operational architecture rem
 
 Mail delivery is blocked by an expired API key and should move behind an SMTP sender abstraction.
 
-#### Wzmocnić limity tożsamości, proxy i runtime
+#### Chronić formularze kont przez Turnstile i zachować limity runtime
 
 **Wdrożenie · W toku · 50% · trudność 4/5 · 5–8 h**
 
-Application limits and forwarded-header handling exist, but distributed state and outer policies need verification. Target revised September 6: implement the delivery step through Coolify using the shared checklist, an immutable GHCR digest and Traefik/Tunnel; preserve data and custom routes. Production migration not verified in this update.
+Application limits and forwarded-header handling exist, but distributed state and outer policies need verification. Target revised September 6: implement the delivery step through Coolify using the shared checklist, an immutable GHCR digest and Traefik/Tunnel; preserve data and custom routes. Production migration not verified in this update. Target, October 25, 2026: Review and complete Turnstile on registration/login/reset/resend before exposing those operations, with server validation and negative/public acceptance. Existing integration and current provider configuration are not verified by this planning update. Keep refresh/logout outside the challenge and retain authorization, mail quotas and upload limits. See docs/anti-bot-standard.md. Existing effort/progress estimates are historical; no re-estimation or implementation credit in this update.
 
 #### Wdrożyć digests, readiness i bezpieczne blue-green
 
@@ -221,3 +222,4 @@ Planned by owner on 2026-10-17; no repository hygiene audit or cleanup performed
 - Projekt podlega profilowi standardu v2: vps-web.
 - Cel migracji uaktualniony 6 września: digest GHCR w Coolify, routing Traefik/Tunnel i wspólna checklista; zachować bazy i custom routes. Zmiana celu nie jest nowym audytem źródła/produkcji.
 - Doprecyzowanie 20 października: przerwy są dozwolone podczas przygotowania, pierwszego wdrożenia i migracji. Docelowy Coolify nadal wymaga rolling update z bramką zdrowia i backupów potrzebnych danych/konfiguracji/kluczy z proporcjonalnym sprawdzeniem odtworzenia. Bez liczbowego SLA, stałych replik i HA wielu hostów. Dla projektów stateless/statycznych/bez serwera stosować właściwy zakres hostingu i danych. Zachować dane, harmonogramy kopii i zabezpieczenia wdrożeń. To plan, nie nowy odbiór ani estymacja; docs/operating-standard.md obejmuje też przyszłe repozytoria.
+- Cel, 25 października 2026 — Sprawdzić i uzupełnić Turnstile rejestracji/logowania/reset/resend przed udostępnieniem tych operacji, z walidacją serwera i odbiorem negatywnym/publicznym. Ta aktualizacja planu nie weryfikuje istniejącej integracji ani konfiguracji dostawcy. Refresh/logout bez wyzwania; zachować autoryzację, kwoty maili i limity uploadu. Stosować docs/anti-bot-standard.md; odbiór funkcjonalny jest osobny od antybotowego.

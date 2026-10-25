@@ -100,6 +100,22 @@ była wyłączona. Po włączeniu zarządzanej kontroli TTT poprawiony test prze
   występują w przetwarzanym łańcuchu. Nie używać `*` ani całych podsieci Docker.
   HTTP 200 nie dowodzi poprawnego IP klienta.
 
+## Ochrona przed automatycznymi nadużyciami
+
+Wymagania z 25 października 2026 według [standardu antybotowego](anti-bot-standard.md).
+Poniższe pola są kryteriami odbioru, nie potwierdzeniem wdrożenia.
+
+- [ ] Określić chronione formularze/operacje i uzasadnione wyłączenia dla odczytów,
+  mediów, statycznego hostingu oraz prywatnych API. Inventory eksporty są warunkowe.
+- [ ] Widget i backend Siteverify sprawdzają sukces, host i action przed skutkiem
+  ubocznym. Brak/błąd/wygaśnięcie/replay tokenu i awaria dostawcy blokują operację.
+- [ ] Sekret tylko w backendzie; produkcja odrzuca klucze testowe i publiczne bypassy.
+  Limity żądań, autoryzacja i budżety kosztów nadal działają.
+- [ ] CI sprawdza pozytywne i negatywne przypadki bez produkcyjnych obejść.
+  Oddzielnie wykonać publiczny odbiór z prawdziwym tokenem i odrzucenie braku tokenu.
+- [ ] Zapisać wyniki funkcjonalne i antybotowe osobno; healthcheck oraz udany
+  Playwright nie zamykają odbioru ochrony. Nie logować tokenów/sekretów.
+
 ## Runtime i zdrowie
 
 - [ ] Non-root USER w obrazie, brak Docker socketa i zbędnych uprawnień.

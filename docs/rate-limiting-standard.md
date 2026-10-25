@@ -6,6 +6,13 @@ Every public service uses layered protection. The layers are complementary: Clou
 
 There is no single low HTTP limit shared by every `grela.dev` application.
 
+**Target, October 25, 2026:** apply the [anti-bot standard](anti-bot-standard.md)
+to public account forms, anonymous writes and costly browser operations. It adds
+Turnstile with backend validation and separate acceptance; limits, authorization
+and cost budgets still apply. The applicability table covers each project and
+preserves read/media/static exclusions and conditional Inventory export checks.
+These requirements are not a declaration of current production configuration.
+
 ## Required layers
 
 1. **Cloudflare:** DDoS/WAF protection and rules per hostname. Expensive paths receive stricter rules. Static content is cached where safe.
@@ -83,6 +90,9 @@ POS Order System, AudioMaster, clean-commits-skill, LeetCode solutions and Spoti
 
 ## Operations and acceptance
 
+- Follow the [anti-bot acceptance](anti-bot-standard.md#odbiór-i-automatyzacja)
+  for applicable operations; functional smoke and provider/widget configuration
+  alone do not prove bot protection. CI test keys never belong in production.
 - Log limit decisions without credentials, tokens or request bodies.
 - Monitor `429` share, latency, concurrent work, queue size, CPU and memory.
 - Establish a normal-traffic baseline before tightening limits.

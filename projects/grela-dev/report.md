@@ -32,7 +32,7 @@ Profile: **Managed static hosting**. Statuses reflect only evidence available on
 | Immutable release | Missing | The required complete implementation was not found in the audited grela dev source. |
 | Deployment access | Not applicable | The control does not apply to the grela dev project profile. |
 | Network, TLS and client identity | Unverified | No newly accepted Pages/domain TLS state; failed metadata access does not prove absence. |
-| Abuse protection | Partial | Static-only scope; assess managed platform/cache/asset costs. No dynamic app limiter is planned. |
+| Abuse protection | Partial | Static-only scope; assess managed platform/cache/asset costs. No dynamic app limiter is planned. Target, October 25: Static pages do not require Turnstile. Any future contact form must add widget plus backend Siteverify, submission quotas and negative/public acceptance before publication. This condition does not add a form or backend to the current static portfolio scope. |
 | Runtime safety | Not applicable | The control does not apply to the grela dev project profile. |
 | Readiness and preflight | Missing | The required complete implementation was not found in the audited grela dev source. |
 | Managed release and recovery | Missing | The required complete implementation was not found in the audited grela dev source. October 20: downtime is allowed during migration/bootstrap; final managed release/recovery requirements remain. Existing status is not a new runtime acceptance. |
@@ -70,7 +70,7 @@ No maintained production README/license/content process in reviewed source. Veri
 
 **Delivery · Planned · 0% · difficulty 4/5 · 4–7 h**
 
-Prepare Pages Direct Upload CI: one tested artifact with source SHA/checksum to preview and protected production. October 3 project-metadata read failed authentication, so current Pages project state is unknown, not absent.
+Prepare Pages Direct Upload CI: one tested artifact with source SHA/checksum to preview and protected production. October 3 project-metadata read failed authentication, so current Pages project state is unknown, not absent. Target, October 25, 2026: Static pages do not require Turnstile. Any future contact form must add widget plus backend Siteverify, submission quotas and negative/public acceptance before publication. This condition does not add a form or backend to the current static portfolio scope. See docs/anti-bot-standard.md. Existing effort/progress estimates are historical; no re-estimation or implementation credit in this update.
 
 #### Repair domain, TLS and rollback
 
@@ -103,6 +103,7 @@ Planned by owner on 2026-10-17; no repository hygiene audit or cleanup performed
 - The project follows the v2 standard profile: static-web.
 - Gemini after Inventory review; start from Portfolio.html, preserve design and use Vite/React static output. Coordinator owns status/platform changes; Pages CI has minimal account Pages permissions, not DNS/R2/Tunnel permissions.
 - October 20 clarification: downtime is accepted during preparation, initial deployment and migration. Final Coolify operation still requires health-gated rolling updates and backups of necessary durable data/configuration/keys with proportionate recovery verification. No numeric uptime SLA, permanent replicas or multi-host HA. Stateless/static/non-server projects use their applicable hosting and data scope. Existing data, backup schedules and release guards remain. This is planning, not new runtime acceptance or re-estimation; docs/operating-standard.md applies to future repositories too.
+- Target, October 25, 2026 — Static pages do not require Turnstile. Any future contact form must add widget plus backend Siteverify, submission quotas and negative/public acceptance before publication. This condition does not add a form or backend to the current static portfolio scope. Apply docs/anti-bot-standard.md; functional smoke is separate from anti-bot acceptance.
 
 ## Polski
 
@@ -130,7 +131,7 @@ Profil: **Zarządzany hosting statyczny**. Statusy odzwierciedlają wyłącznie 
 | Niezmienne wydanie | Brak | W audytowanym źródle projektu grela dev nie znaleziono wymaganej kompletnej implementacji. |
 | Dostęp wdrożeniowy | Nie dotyczy | Kontrola nie dotyczy profilu projektu grela dev. |
 | Sieć, TLS i tożsamość klienta | Niezweryfikowane | Brak nowego odbioru Pages/domeny TLS; błąd dostępu do metadanych nie dowodzi braku projektu. |
-| Ochrona przed nadużyciami | Częściowe | Zakres static-only; ocenić koszty platformy/cache/assetów. Limiter dynamicznej aplikacji nie jest planowany. |
+| Ochrona przed nadużyciami | Częściowe | Zakres static-only; ocenić koszty platformy/cache/assetów. Limiter dynamicznej aplikacji nie jest planowany. Cel, 25 października: Strony statyczne nie wymagają Turnstile. Przyszły formularz kontaktowy musi przed publikacją mieć widget, backend Siteverify, kwoty wysyłki i odbiór negatywny/publiczny. Ten warunek nie dodaje formularza ani backendu do obecnego statycznego zakresu portfolio. |
 | Bezpieczeństwo runtime | Nie dotyczy | Kontrola nie dotyczy profilu projektu grela dev. |
 | Readiness i preflight | Brak | W audytowanym źródle projektu grela dev nie znaleziono wymaganej kompletnej implementacji. |
 | Zarządzane wydanie i odzyskiwanie | Brak | W audytowanym źródle projektu grela dev nie znaleziono wymaganej kompletnej implementacji. 20 października: przerwa dozwolona na migrację/bootstrap; docelowe wymagania wdrożeń/odzyskiwania pozostają. Status nie oznacza nowego odbioru runtime. |
@@ -168,7 +169,7 @@ No maintained production README/license/content process in reviewed source. Veri
 
 **Wdrożenie · Planowane · 0% · trudność 4/5 · 4–7 h**
 
-Prepare Pages Direct Upload CI: one tested artifact with source SHA/checksum to preview and protected production. October 3 project-metadata read failed authentication, so current Pages project state is unknown, not absent.
+Prepare Pages Direct Upload CI: one tested artifact with source SHA/checksum to preview and protected production. October 3 project-metadata read failed authentication, so current Pages project state is unknown, not absent. Target, October 25, 2026: Static pages do not require Turnstile. Any future contact form must add widget plus backend Siteverify, submission quotas and negative/public acceptance before publication. This condition does not add a form or backend to the current static portfolio scope. See docs/anti-bot-standard.md. Existing effort/progress estimates are historical; no re-estimation or implementation credit in this update.
 
 #### Naprawić domenę, TLS i rollback
 
@@ -201,3 +202,4 @@ Planned by owner on 2026-10-17; no repository hygiene audit or cleanup performed
 - Projekt podlega profilowi standardu v2: static-web.
 - Gemini po przeglądzie Inventory; Portfolio.html, zachowanie designu i static Vite/React. Koordynator prowadzi status/platformę; CI Pages ma minimalne uprawnienia Pages konta, bez DNS/R2/Tunnel.
 - Doprecyzowanie 20 października: przerwy są dozwolone podczas przygotowania, pierwszego wdrożenia i migracji. Docelowy Coolify nadal wymaga rolling update z bramką zdrowia i backupów potrzebnych danych/konfiguracji/kluczy z proporcjonalnym sprawdzeniem odtworzenia. Bez liczbowego SLA, stałych replik i HA wielu hostów. Dla projektów stateless/statycznych/bez serwera stosować właściwy zakres hostingu i danych. Zachować dane, harmonogramy kopii i zabezpieczenia wdrożeń. To plan, nie nowy odbiór ani estymacja; docs/operating-standard.md obejmuje też przyszłe repozytoria.
+- Cel, 25 października 2026 — Strony statyczne nie wymagają Turnstile. Przyszły formularz kontaktowy musi przed publikacją mieć widget, backend Siteverify, kwoty wysyłki i odbiór negatywny/publiczny. Ten warunek nie dodaje formularza ani backendu do obecnego statycznego zakresu portfolio. Stosować docs/anti-bot-standard.md; odbiór funkcjonalny jest osobny od antybotowego.

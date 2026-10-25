@@ -154,7 +154,7 @@
       "hoursMax": 7,
       "daysMin": 0.5,
       "daysMax": 1.0,
-      "evidence": "Prepare Pages Direct Upload CI: one tested artifact with source SHA/checksum to preview and protected production. October 3 project-metadata read failed authentication, so current Pages project state is unknown, not absent."
+      "evidence": "Prepare Pages Direct Upload CI: one tested artifact with source SHA/checksum to preview and protected production. October 3 project-metadata read failed authentication, so current Pages project state is unknown, not absent. Target, October 25, 2026: Static pages do not require Turnstile. Any future contact form must add widget plus backend Siteverify, submission quotas and negative/public acceptance before publication. This condition does not add a form or backend to the current static portfolio scope. See docs/anti-bot-standard.md. Existing effort/progress estimates are historical; no re-estimation or implementation credit in this update."
     },
     {
       "id": "domain-tls",
@@ -257,6 +257,10 @@
     {
       "en": "October 20 clarification: downtime is accepted during preparation, initial deployment and migration. Final Coolify operation still requires health-gated rolling updates and backups of necessary durable data/configuration/keys with proportionate recovery verification. No numeric uptime SLA, permanent replicas or multi-host HA. Stateless/static/non-server projects use their applicable hosting and data scope. Existing data, backup schedules and release guards remain. This is planning, not new runtime acceptance or re-estimation; docs/operating-standard.md applies to future repositories too.",
       "pl": "Doprecyzowanie 20 października: przerwy są dozwolone podczas przygotowania, pierwszego wdrożenia i migracji. Docelowy Coolify nadal wymaga rolling update z bramką zdrowia i backupów potrzebnych danych/konfiguracji/kluczy z proporcjonalnym sprawdzeniem odtworzenia. Bez liczbowego SLA, stałych replik i HA wielu hostów. Dla projektów stateless/statycznych/bez serwera stosować właściwy zakres hostingu i danych. Zachować dane, harmonogramy kopii i zabezpieczenia wdrożeń. To plan, nie nowy odbiór ani estymacja; docs/operating-standard.md obejmuje też przyszłe repozytoria."
+    },
+    {
+      "en": "Target, October 25, 2026 — Static pages do not require Turnstile. Any future contact form must add widget plus backend Siteverify, submission quotas and negative/public acceptance before publication. This condition does not add a form or backend to the current static portfolio scope. Apply docs/anti-bot-standard.md; functional smoke is separate from anti-bot acceptance.",
+      "pl": "Cel, 25 października 2026 — Strony statyczne nie wymagają Turnstile. Przyszły formularz kontaktowy musi przed publikacją mieć widget, backend Siteverify, kwoty wysyłki i odbiór negatywny/publiczny. Ten warunek nie dodaje formularza ani backendu do obecnego statycznego zakresu portfolio. Stosować docs/anti-bot-standard.md; odbiór funkcjonalny jest osobny od antybotowego."
     }
   ],
   "audit": {
@@ -266,7 +270,8 @@
       "Read-only selected Cloudflare DNS and failed Pages metadata query, October 3",
       "Operator approved Gemini portfolio assignment after Inventory corrections, October 3",
       "October 7 Inventory corrective acceptance unblocks the previously assigned portfolio work; portfolio source/Pages observations retain October 3 dates",
-      "2026-10-17 owner planning request: repository-hygiene standard for every repository; no new source/history/branch scan or execution. docs/repository-hygiene-standard.md"
+      "2026-10-17 owner planning request: repository-hygiene standard for every repository; no new source/history/branch scan or execution. docs/repository-hygiene-standard.md",
+      "October 25, 2026 operator-approved anti-bot roadmap standard: docs/anti-bot-standard.md. Scope/planning update only; no new app/provider changes, no completed anti-bot acceptance or revised effort estimates."
     ],
     "notes": {
       "en": "Next bounded Gemini task is static portfolio engineering, preserving the current design. Use Vite/React, compile JSX, locked local assets and real responsive/browser tests. Read-only Cloudflare access cannot currently enumerate Pages; operator configuration follows a concrete candidate. No backend, application limiter or Coolify deployment is planned. Inventory corrective review was accepted October 7; Gemini may begin. Portfolio source/Pages evidence remains dated October 3; no new implementation is claimed. Delivery timing depends on candidate and operator availability. Planning-only update October 17: add repository-hygiene at 0% with provisional 2–4 h, excluding unestimated history rewrite. Previous audit/source dates and task completion retained; aggregate progress/effort recalculated for new scope. Calendar bounds are historical and not rescheduled for this unscheduled task; confidence low pending repository review.",
@@ -336,8 +341,8 @@
         "id": "abuse-protection",
         "status": "partial",
         "evidence": {
-          "en": "Static-only scope; assess managed platform/cache/asset costs. No dynamic app limiter is planned.",
-          "pl": "Zakres static-only; ocenić koszty platformy/cache/assetów. Limiter dynamicznej aplikacji nie jest planowany."
+          "en": "Static-only scope; assess managed platform/cache/asset costs. No dynamic app limiter is planned. Target, October 25: Static pages do not require Turnstile. Any future contact form must add widget plus backend Siteverify, submission quotas and negative/public acceptance before publication. This condition does not add a form or backend to the current static portfolio scope.",
+          "pl": "Zakres static-only; ocenić koszty platformy/cache/assetów. Limiter dynamicznej aplikacji nie jest planowany. Cel, 25 października: Strony statyczne nie wymagają Turnstile. Przyszły formularz kontaktowy musi przed publikacją mieć widget, backend Siteverify, kwoty wysyłki i odbiór negatywny/publiczny. Ten warunek nie dodaje formularza ani backendu do obecnego statycznego zakresu portfolio."
         },
         "taskIds": [
           "cloudflare-pages"

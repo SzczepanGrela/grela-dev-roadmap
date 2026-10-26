@@ -56,13 +56,16 @@ Zakończone lokalne próby pozostają historią; nie oznaczają naprawy starego 
 Zakres pierwszego uruchomienia obejmuje ochronę/dostęp, sprawdzony obraz, jeden
 web, świeży PostgreSQL, trwałe klucze, jawną migrację/import, limity oraz publiczny
 HTTPS/login/player smoke. [Odbiór z 24 października](2026-10-24-netfilmx-first-launch.md)
-potwierdza uruchomienie w tym zakresie. Osobny otwarty punkt `route-protection`
-obejmuje teraz Turnstile rejestracji/logowania i testy odrzucenia. Wykonanie tej
-poprawki pozostaje następnym etapem; zmiana roadmapy jej nie wdraża.
+potwierdza uruchomienie w tym zakresie. [Decyzja z 25–26 października](2026-10-26-netfilmx-playback-protection.md)
+zmienia otwarty `route-protection`: anonimowi widzowie bez rejestracji/walleta,
+chroniony admin, Turnstile wydawania dostępu do filmu i prywatny R2 za Workerem.
+Nie stosujemy wyzwania na każdy segment HLS. Alerty kosztowe i odcięcie budżetowe
+są poza tym zakresem. Wykonanie i odbiór pozostają następnym etapem; plan ich nie wdraża.
 
 Następnie domykamy rolling i backupy **nowego PostgreSQL, kluczy i potrzebnej
-konfiguracji** ze sprawdzeniem odzyskiwania. Nowe konta/pusta historia, odebrany HLS
-oraz uploads/worker false pozostają bez zmian. Nie ponawiamy etapu mediów.
+konfiguracji** ze sprawdzeniem odzyskiwania. Historyczna decyzja o nowych kontach
+nie oznacza teraz obowiązku kont widzów; zachowujemy istniejące dane, odebrany HLS
+oraz uploads/worker false. Nie ponawiamy etapu mediów.
 
 ## Zadania i estymaty
 

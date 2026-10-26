@@ -70,8 +70,8 @@
       "pl": "24 października przeszedł ograniczony odbiór pierwszego publicznego startu na main a5a0d90: HTTPS/katalog, rejestracja/logowanie/refresh/logout i próbka Sintel HLS/jakości/seek/PL/EN. To nie odbiór ochrony botowej; sprawdzone źródło nie ma widgetu Turnstile/Siteverify. Uploads/worker false. Zobacz docs/2026-10-24-netfilmx-first-launch.md."
     },
     "next": {
-      "en": "Implement and accept registration/login Turnstile under route-protection. Keep final rolling/compatible rollback and new PostgreSQL/keyring/configuration backups open; normal release automation has separate acceptance. No further legacy recovery or repeat full media round; Sintel AV uncertainty remains.",
-      "pl": "Wdrożyć i odebrać Turnstile rejestracji/logowania w route-protection. Zachować otwarty docelowy rolling/zgodny rollback i backupy nowego PostgreSQL/keyringu/konfiguracji; normalna automatyzacja wydań ma osobny odbiór. Bez kolejnego odzyskiwania legacy i pełnej rundy mediów; Sintel AV pozostaje nierozstrzygnięty."
+      "en": "October 26 target: anonymous viewing; withdraw public viewer signup and pretend wallet/purchases while retaining protected admin access and stored data. Managed Turnstile validates playback-grant issuance and admin login; a private-R2 media Worker checks film-scoped signed grants before cache/R2. Public catalogue artwork remains allowlisted. Workers Free; no cost alerts or spending cutoff. Implementation and live positive/negative acceptance are pending. Preserve uploads/worker false, prior media evidence and final-operation gaps. See docs/2026-10-26-netfilmx-playback-protection.md.",
+      "pl": "Cel 26 października: anonimowe oglądanie; wycofanie publicznej rejestracji widzów i pozornego portfela/zakupów z zachowaniem chronionego admina i istniejących danych. Managed Turnstile chroni wydawanie dostępu do filmu i logowanie admina; Worker z prywatnym R2 sprawdza podpisane uprawnienie przed cache/R2. Publiczne grafiki katalogu pozostają na jawnej liście. Workers Free; bez alertów kosztowych i odcięcia budżetowego. Implementacja i odbiór pozytywny/negatywny oczekują. Zachować uploads/worker false, wcześniejsze dowody mediów i luki docelowego utrzymania. Zobacz docs/2026-10-26-netfilmx-playback-protection.md."
     }
   },
   "tasks": [
@@ -163,8 +163,8 @@
     {
       "id": "route-protection",
       "title": {
-        "en": "Add Turnstile account protection and verify route limits",
-        "pl": "Dodać Turnstile kont i zweryfikować limity tras"
+        "en": "Protect anonymous playback and retain admin access",
+        "pl": "Chronić anonimowe odtwarzanie i zachować dostęp admina"
       },
       "dimension": "delivery",
       "status": "in-progress",
@@ -175,7 +175,7 @@
       "hoursMax": 7,
       "daysMin": 0.5,
       "daysMax": 1.0,
-      "evidence": "Candidate exact trusted proxy handling, auth/write/body/concurrency/image bounds remain implemented. Limits are process-local. Public client/edge behavior and aggregate upload/transcoding costs remain unaccepted; uploads default off. Target, October 25, 2026: Next scope: add Turnstile to registration/login with backend Siteverify and negative/public acceptance. Reviewed release source has no widget or token validation; the October 24 public functional smoke did not test anti-bot enforcement. Keep uploads/worker false and prior media acceptance intact. See docs/anti-bot-standard.md. Existing effort/progress estimates are historical; no re-estimation or implementation credit in this update."
+      "evidence": "Existing exact proxy, auth/write/body/concurrency bounds remain implemented; process-local limits do not prove aggregate protection. October 26 target: anonymous viewing; withdraw public viewer signup and pretend wallet/purchases while retaining protected admin access and stored data. Managed Turnstile validates playback-grant issuance and admin login; a private-R2 media Worker checks film-scoped signed grants before cache/R2. Public catalogue artwork remains allowlisted. Workers Free; no cost alerts or spending cutoff. Implementation and live positive/negative acceptance are pending. Preserve uploads/worker false, prior media evidence and final-operation gaps. See docs/2026-10-26-netfilmx-playback-protection.md. Existing progress/effort estimates are historical and unchanged by this planning update."
     },
     {
       "id": "immutable-deploy",
@@ -226,7 +226,7 @@
       "hoursMax": 5,
       "daysMin": 0.5,
       "daysMax": 0.75,
-      "evidence": "Worker lifecycle logs and release probes exist in preparation; useful delivered worker/release/backup alerts and central monitoring remain unaccepted. Final-operation backup-failure visibility remains applicable to protected datasets; no numeric uptime SLA."
+      "evidence": "Worker lifecycle logs and release probes exist in preparation; useful delivered worker/release/backup alerts and central monitoring remain unaccepted. Final-operation backup-failure visibility remains applicable to protected datasets; no numeric uptime SLA. October 26 scope: NetFilmx playback cost alerts and spending cutoff are explicitly excluded; this does not waive separate backup-failure visibility or other applications' budgets."
     },
     {
       "id": "repository-hygiene",
@@ -328,12 +328,16 @@
       "pl": "23 października: zatwierdzono wyjście PR #1 z draftu, scalenie odebranego 206b467 i publikację kwalifikowanego obrazu main w GHCR przy obu flagach wdrożeń false. Zastępuje to zakaz merge tylko dla tej publikacji; nie upoważnia do produkcyjnej migracji/importu, uruchomienia aplikacji ani zmiany routingu."
     },
     {
-      "en": "Target, October 25, 2026 — Next scope: add Turnstile to registration/login with backend Siteverify and negative/public acceptance. Reviewed release source has no widget or token validation; the October 24 public functional smoke did not test anti-bot enforcement. Keep uploads/worker false and prior media acceptance intact. Apply docs/anti-bot-standard.md; functional smoke is separate from anti-bot acceptance.",
-      "pl": "Cel, 25 października 2026 — Najbliższy zakres: Turnstile rejestracji/logowania, Siteverify w backendzie i odbiór negatywny/publiczny. Sprawdzone źródło wydania nie ma widgetu ani walidacji tokenu; publiczny smoke z 24 października nie sprawdzał ochrony botowej. Zachować uploads/worker false i wcześniejszy odbiór mediów. Stosować docs/anti-bot-standard.md; odbiór funkcjonalny jest osobny od antybotowego."
+      "en": "Historical target, superseded by the October 26 anonymous-playback decision below. Target, October 25, 2026 — Next scope: add Turnstile to registration/login with backend Siteverify and negative/public acceptance. Reviewed release source has no widget or token validation; the October 24 public functional smoke did not test anti-bot enforcement. Keep uploads/worker false and prior media acceptance intact. Apply docs/anti-bot-standard.md; functional smoke is separate from anti-bot acceptance.",
+      "pl": "Historyczny cel zastąpiony poniższą decyzją z 26 października o anonimowym odtwarzaniu. Cel, 25 października 2026 — Najbliższy zakres: Turnstile rejestracji/logowania, Siteverify w backendzie i odbiór negatywny/publiczny. Sprawdzone źródło wydania nie ma widgetu ani walidacji tokenu; publiczny smoke z 24 października nie sprawdzał ochrony botowej. Zachować uploads/worker false i wcześniejszy odbiór mediów. Stosować docs/anti-bot-standard.md; odbiór funkcjonalny jest osobny od antybotowego."
+    },
+    {
+      "en": "October 26 target: anonymous viewing; withdraw public viewer signup and pretend wallet/purchases while retaining protected admin access and stored data. Managed Turnstile validates playback-grant issuance and admin login; a private-R2 media Worker checks film-scoped signed grants before cache/R2. Public catalogue artwork remains allowlisted. Workers Free; no cost alerts or spending cutoff. Implementation and live positive/negative acceptance are pending. Preserve uploads/worker false, prior media evidence and final-operation gaps. See docs/2026-10-26-netfilmx-playback-protection.md.",
+      "pl": "Cel 26 października: anonimowe oglądanie; wycofanie publicznej rejestracji widzów i pozornego portfela/zakupów z zachowaniem chronionego admina i istniejących danych. Managed Turnstile chroni wydawanie dostępu do filmu i logowanie admina; Worker z prywatnym R2 sprawdza podpisane uprawnienie przed cache/R2. Publiczne grafiki katalogu pozostają na jawnej liście. Workers Free; bez alertów kosztowych i odcięcia budżetowego. Implementacja i odbiór pozytywny/negatywny oczekują. Zachować uploads/worker false, wcześniejsze dowody mediów i luki docelowego utrzymania. Zobacz docs/2026-10-26-netfilmx-playback-protection.md."
     }
   ],
   "audit": {
-    "date": "2026-10-25",
+    "date": "2026-10-26",
     "sources": [
       "Draft PR #1 f4aca03ec70af427cd3da82912d88ea1b87aec20; coordinator subtitle source/results review October 15",
       "CI/CD https://github.com/SzczepanGrela/netfilmx-movie-catalog/actions/runs/38704058532 and Dependency audit 38704058491; head-bound logs inspected",
@@ -378,11 +382,12 @@
       "PR https://github.com/SzczepanGrela/netfilmx-movie-catalog/pull/1 merged at a5a0d90a332cc47931b5aff924f817ab6366918c, 2026-10-22T23:57:24Z (October 23 Europe/Warsaw). Approved branch and merged main have the same Git tree; unrelated parent and candidate checkout preserved.",
       "Main CI https://github.com/SzczepanGrela/netfilmx-movie-catalog/actions/runs/39875110432 passes qualification/publication; Deploy skipped. Published digest sha256:ea01f504718a014ee92baf1276d2586044d5eaed80dd7fe203d50504fd10c47b; provenance/SPDX verification enforces exact source SHA, main, signer workflow and GitHub-hosted runner. Both deployment flags read back false.",
       "October 25, 2026 operator-approved anti-bot roadmap standard: docs/anti-bot-standard.md. Scope/planning update only; no new app/provider changes, no completed anti-bot acceptance or revised effort estimates.",
-      "October 24 coordinator public smoke and post-test runtime/own-account cleanup evidence; public-safe scope in docs/2026-10-24-netfilmx-first-launch.md. October 25 roadmap integration, no repeat deployment or live test."
+      "October 24 coordinator public smoke and post-test runtime/own-account cleanup evidence; public-safe scope in docs/2026-10-24-netfilmx-first-launch.md. October 25 roadmap integration, no repeat deployment or live test.",
+      "October 25–26 operator-approved anonymous-playback/admin scope and Workers Free screenshot; public-safe plan in docs/2026-10-26-netfilmx-playback-protection.md. Planning only; no new application/provider test or deployment."
     ],
     "notes": {
-      "en": "October 23 publication complete: reviewed source merged, qualified main image published and attestations verified. The new application has not been launched. PG/credential/key-directory/auth preparation is distinct from pending effective web mounts, access/proxy configuration and explicit migration/import. Final rolling/backups, uploads/worker, Sintel uncertainty and deferred manual trials retain scope. No new progress/effort/calendar estimate. October 24 public first launch passed in the scope of docs/2026-10-24-netfilmx-first-launch.md; anti-bot integration and final operations remain open. October 25 is a scoped planning/evidence update, not a fresh full audit.",
-      "pl": "23 października zakończono publikację: odebrane źródła scalone, kwalifikowany obraz main opublikowany, attestacje zweryfikowane. Nowej aplikacji nie uruchomiono. Przygotowanie PG/poświadczeń/katalogu kluczy/logowania jest osobne od oczekujących mountów weba, dostępu/proxy i jawnej migracji/importu. Docelowy rolling/backupy, uploads/worker, niepewność Sintela i odłożone próby zachowują zakres. Bez nowej estymaty postępu/pracy/terminu. Pierwszy publiczny start z 24 października odebrano w zakresie docs/2026-10-24-netfilmx-first-launch.md; integracja antybotowa i docelowe utrzymanie pozostają otwarte. Aktualizacja 25 października dotyczy planu i wskazanych dowodów, nie nowego pełnego audytu."
+      "en": "October 23 publication complete: reviewed source merged, qualified main image published and attestations verified. The new application has not been launched. PG/credential/key-directory/auth preparation is distinct from pending effective web mounts, access/proxy configuration and explicit migration/import. Final rolling/backups, uploads/worker, Sintel uncertainty and deferred manual trials retain scope. No new progress/effort/calendar estimate. October 24 public first launch passed in the scope of docs/2026-10-24-netfilmx-first-launch.md; anti-bot integration and final operations remain open. October 25 is a scoped planning/evidence update, not a fresh full audit. October 26 updates only the accepted playback-protection scope; prior observation dates and effort/progress estimates are retained.",
+      "pl": "23 października zakończono publikację: odebrane źródła scalone, kwalifikowany obraz main opublikowany, attestacje zweryfikowane. Nowej aplikacji nie uruchomiono. Przygotowanie PG/poświadczeń/katalogu kluczy/logowania jest osobne od oczekujących mountów weba, dostępu/proxy i jawnej migracji/importu. Docelowy rolling/backupy, uploads/worker, niepewność Sintela i odłożone próby zachowują zakres. Bez nowej estymaty postępu/pracy/terminu. Pierwszy publiczny start z 24 października odebrano w zakresie docs/2026-10-24-netfilmx-first-launch.md; integracja antybotowa i docelowe utrzymanie pozostają otwarte. Aktualizacja 25 października dotyczy planu i wskazanych dowodów, nie nowego pełnego audytu. 26 października aktualizuje wyłącznie uzgodniony zakres ochrony odtwarzania; daty wcześniejszych obserwacji i estymaty pracy/postępu pozostają zachowane."
     }
   },
   "compliance": {
@@ -450,8 +455,8 @@
         "id": "abuse-protection",
         "status": "partial",
         "evidence": {
-          "en": "Candidate auth/write/body/concurrency/image bounds implemented; public/aggregate/rolling acceptance remains. Target, October 25: Next scope: add Turnstile to registration/login with backend Siteverify and negative/public acceptance. Reviewed release source has no widget or token validation; the October 24 public functional smoke did not test anti-bot enforcement. Keep uploads/worker false and prior media acceptance intact.",
-          "pl": "Limity auth/write/body/współbieżności/obrazów zaimplementowano; odbiór publiczny/aggregate/rolling pozostaje. Cel, 25 października: Najbliższy zakres: Turnstile rejestracji/logowania, Siteverify w backendzie i odbiór negatywny/publiczny. Sprawdzone źródło wydania nie ma widgetu ani walidacji tokenu; publiczny smoke z 24 października nie sprawdzał ochrony botowej. Zachować uploads/worker false i wcześniejszy odbiór mediów."
+          "en": "Existing auth/write/body/concurrency bounds retain their evidence scope. October 26 target: anonymous viewing; withdraw public viewer signup and pretend wallet/purchases while retaining protected admin access and stored data. Managed Turnstile validates playback-grant issuance and admin login; a private-R2 media Worker checks film-scoped signed grants before cache/R2. Public catalogue artwork remains allowlisted. Workers Free; no cost alerts or spending cutoff. Implementation and live positive/negative acceptance are pending. Preserve uploads/worker false, prior media evidence and final-operation gaps. See docs/2026-10-26-netfilmx-playback-protection.md.",
+          "pl": "Istniejące limity auth/write/body/współbieżności zachowują zakres dowodów. Cel 26 października: anonimowe oglądanie; wycofanie publicznej rejestracji widzów i pozornego portfela/zakupów z zachowaniem chronionego admina i istniejących danych. Managed Turnstile chroni wydawanie dostępu do filmu i logowanie admina; Worker z prywatnym R2 sprawdza podpisane uprawnienie przed cache/R2. Publiczne grafiki katalogu pozostają na jawnej liście. Workers Free; bez alertów kosztowych i odcięcia budżetowego. Implementacja i odbiór pozytywny/negatywny oczekują. Zachować uploads/worker false, wcześniejsze dowody mediów i luki docelowego utrzymania. Zobacz docs/2026-10-26-netfilmx-playback-protection.md."
         },
         "taskIds": [
           "route-protection"

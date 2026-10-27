@@ -1,5 +1,11 @@
 # Roadmap editing instructions
 
+October 27: read [NetFilmx preparation](docs/2026-10-27-netfilmx-protection-preparation.md)
+and the [component release standard](docs/release-components-standard.md).
+Implementation/publication, saved provider configuration and active production
+protection are separate states. Record versions/owners, workflow coverage,
+compatible recovery and real-provider acceptance for each applicable component.
+
 Read [the operating standard](docs/operating-standard.md) before planning tasks.
 October 20 clarification applies to all current and future repositories: downtime
 is accepted during preparation, bootstrap and migration. Final Coolify closeout

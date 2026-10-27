@@ -60,6 +60,13 @@ tym zadaniem; istniejące budżety innych aplikacji pozostają obowiązujące.
 
 ## Odbiór i automatyzacja
 
+Lekcja P1 NetFilmx, 27 października: widget i jego callbacki należą do konkretnej
+próby weryfikacji. Po przekazaniu tokenu stary expiry/error/timeout/success nie
+może zmienić aktywnego grantu ani nowej próby. Grant ma własny termin ważności.
+Regresja powinna sprawdzić także spóźnione callbacki, retry i odnowienie sesji.
+Przy zewnętrznym gatewayu stosować [standard komponentów](release-components-standard.md):
+autoryzacja przed cache, brak publicznych aliasów, zgodne klucze i osobny rollback.
+
 1. **CI:** kontrolowany adapter Siteverify / oficjalne klucze testowe wyłącznie
    poza produkcją. Testy poprawnego tokenu oraz braku, błędu, wygaśnięcia, replay,
    niezgodnego hosta/action i awarii dostawcy. Sprawdzić brak skutków ubocznych

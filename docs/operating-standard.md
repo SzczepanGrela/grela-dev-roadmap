@@ -69,6 +69,13 @@ oraz uploads/worker false. Nie ponawiamy etapu mediów.
 
 ## Zadania i estymaty
 
+Uzupełnienie z 27 października: stosujemy [standard komponentów wydania](release-components-standard.md)
+do rzeczywistych zależności projektu. Web, baza, edge Worker, domeny i klucze mają
+odrębne wersje, sposoby zmiany i dowody aktywacji. Wspólny CI nie oznacza wspólnego
+deployu. [Stan NetFilmx](2026-10-27-netfilmx-protection-preparation.md) potwierdza
+scalenie/publikację kodu i konfigurację zasobów; nadal nie potwierdza prywatności
+produkcyjnych mediów ani gotowości normalnego CD.
+
 Stabilne ID (także zawierające historyczne `blue-green`) zostają. Niewykonane
 zadania docelowe są otwarte; wycofana praca legacy nie jest zaliczonym testem.
 Dotychczasowe godziny/procenty/datowania pozostają historycznymi estymatami, bez

@@ -16,6 +16,7 @@ The repository is the source of truth for the published interactive roadmap webs
 - [portfolio operations: migration downtime, final rolling releases and backups](docs/operating-standard.md), applicable to all current and future repositories;
 - [planned repository hygiene, history review and neutral branch naming](docs/repository-hygiene-standard.md) for every repository;
 - [Coolify deployment checklist and known parser limitations](docs/coolify-deployment-checklist.md);
+- [separate web/database/edge component releases, keys and recovery](docs/release-components-standard.md);
 - a versioned compliance profile and evidence matrix for every project;
 - source-audited planning estimates in hours and eight-hour work days;
 - a responsive, Mini Metro-inspired Astro/React roadmap frontend;
@@ -64,6 +65,9 @@ Publiczny plan portfolio i jego bieżące pakiety prac znajdują się w
 statusy i zagnieżdżone zadania infrastruktury są w prywatnym
 `grela-dev-infrastructure/docs/current-priorities.md`; raporty projektów mają
 własne daty audytu i nie są automatycznym odczytem bieżącej produkcji.
+
+NetFilmx: [stan z 27 października — kod opublikowany i konfiguracja przygotowana](docs/2026-10-27-netfilmx-protection-preparation.md).
+Ochrona mediów, pełne CD i backupy nowego wdrożenia mają osobne, nadal otwarte odbiory.
 
 ## License
 

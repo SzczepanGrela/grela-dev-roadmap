@@ -1,5 +1,7 @@
 # NetFilmx: anonimowe oglądanie i ochrona mediów
 
+Aktualizacja wykonania: [27 października — kod opublikowany, konfiguracja przygotowana](2026-10-27-netfilmx-protection-preparation.md). Poniżej zachowano historyczny plan; jego oczekująca implementacja i obowiązkowa kolejność tworzenia admina nie opisują najnowszego stanu.
+
 Target, decyzja operatora z 25–26 października 2026. To plan następnego etapu,
 bez wdrożenia aplikacji ani zmian Cloudflare. Zastępuje poprzedni plan ochrony
 publicznej rejestracji i logowania widzów. ID route-protection pozostaje bez zmian;

@@ -66,6 +66,11 @@ może zmienić aktywnego grantu ani nowej próby. Grant ma własny termin ważno
 Regresja powinna sprawdzić także spóźnione callbacki, retry i odnowienie sesji.
 Przy zewnętrznym gatewayu stosować [standard komponentów](release-components-standard.md):
 autoryzacja przed cache, brak publicznych aliasów, zgodne klucze i osobny rollback.
+Lekcja 28–29 października: pozytywny odbiór prawdziwego dostawcy jest osobny od
+odmów i testów atrap. Dla uzgodnionej weryfikacji w tle zachować zwykłą czynność,
+intencję użytkownika, ograniczone próby i dostępny retry. Tryb dostawcy/kodu,
+wymagany odnośnik prywatności i niesekretne kody etapów określa ten sam standard;
+Invisible nie jest obowiązkowy dla wszystkich aplikacji.
 
 1. **CI:** kontrolowany adapter Siteverify / oficjalne klucze testowe wyłącznie
    poza produkcją. Testy poprawnego tokenu oraz braku, błędu, wygaśnięcia, replay,

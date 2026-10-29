@@ -1,5 +1,9 @@
 # NetFilmx — wdrożony katalog i przygotowana ochrona
 
+Historyczny checkpoint z 27 października. Bieżący stan po przełączeniu 28 października
+oraz nieudanej próbie Firefox opisuje [aktualizacja z 29 października](2026-10-29-netfilmx-cutover-followup.md).
+Poniższe wyniki przygotowania zachowują pierwotną datę i zakres.
+
 Stan sprawdzony 27 października 2026. To odbiór implementacji, publikacji obrazu
 i przygotowań konfiguracji; **nowa ochrona nie została jeszcze włączona produkcyjnie**.
 Szczegółowe identyfikatory zasobów, ścieżki i poświadczenia należą do prywatnej

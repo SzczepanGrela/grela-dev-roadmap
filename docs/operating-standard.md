@@ -60,7 +60,13 @@ potwierdza uruchomienie w tym zakresie. [Decyzja z 25–26 października](2026-1
 zmienia otwarty `route-protection`: anonimowi widzowie bez rejestracji/walleta,
 chroniony admin, Turnstile wydawania dostępu do filmu i prywatny R2 za Workerem.
 Nie stosujemy wyzwania na każdy segment HLS. Alerty kosztowe i odcięcie budżetowe
-są poza tym zakresem. Wykonanie i odbiór pozostają następnym etapem; plan ich nie wdraża.
+są poza tym zakresem. [Przełączenie z 28 października](2026-10-29-netfilmx-cutover-followup.md)
+uruchomiło kwalifikowany web i prywatne media za Workerem. Próby negatywne przeszły,
+lecz rzeczywiste odtwarzanie w Firefox zawiodło. Odbiór ochrony pozostaje otwarty;
+29 października poprawka main 7559e833 i zgodny tryb Invisible są aktywne.
+Późniejsza diagnostyka prawdziwego SDK zawiodła (ready()/async 3857); poprawkę
+PR #4/main 9f67ed88 wdrożono i potwierdzono healthy. Pozytywny test człowieka
+na nowym wydaniu nadal oczekuje, bez zamknięcia odbioru ochrony.
 
 Następnie domykamy rolling i backupy **nowego PostgreSQL, kluczy i potrzebnej
 konfiguracji** ze sprawdzeniem odzyskiwania. Historyczna decyzja o nowych kontach
@@ -72,9 +78,12 @@ oraz uploads/worker false. Nie ponawiamy etapu mediów.
 Uzupełnienie z 27 października: stosujemy [standard komponentów wydania](release-components-standard.md)
 do rzeczywistych zależności projektu. Web, baza, edge Worker, domeny i klucze mają
 odrębne wersje, sposoby zmiany i dowody aktywacji. Wspólny CI nie oznacza wspólnego
-deployu. [Stan NetFilmx](2026-10-27-netfilmx-protection-preparation.md) potwierdza
-scalenie/publikację kodu i konfigurację zasobów; nadal nie potwierdza prywatności
-produkcyjnych mediów ani gotowości normalnego CD.
+deployu. [Aktualny stan NetFilmx](2026-10-29-netfilmx-cutover-followup.md) potwierdza
+prywatność R2, aktywację Workera i kwalifikowanego weba z weryfikacją w tle.
+Po wcześniejszym błędzie test człowieka na nowej wersji oczekuje; odbiór ochrony
+pozostaje otwarty. Normalny CD nadal jest wyłączony. Datowane
+[przygotowanie z 27 października](2026-10-27-netfilmx-protection-preparation.md)
+nie jest bieżącym odczytem produkcji.
 
 Stabilne ID (także zawierające historyczne `blue-green`) zostają. Niewykonane
 zadania docelowe są otwarte; wycofana praca legacy nie jest zaliczonym testem.

@@ -1,5 +1,12 @@
 # Roadmap editing instructions
 
+October 29 current checkpoint: [SDK release and pending live acceptance](docs/2026-10-29-netfilmx-cutover-followup.md).
+Qualified main 9f67ed88/17a0fcea is deployed and healthy; Invisible and private
+R2/Worker remain active. Source/main CI and runtime RO key mount pass. Positive
+real-provider/human playback remains pending; protection is not accepted. Preserve
+earlier failed live/SDK/CI records as history, admin deferred and CI flags false.
+Do not turn fixture/readiness or headless rejection into a positive acceptance.
+
 October 27: read [NetFilmx preparation](docs/2026-10-27-netfilmx-protection-preparation.md)
 and the [component release standard](docs/release-components-standard.md).
 Implementation/publication, saved provider configuration and active production

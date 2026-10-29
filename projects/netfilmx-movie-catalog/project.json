@@ -66,12 +66,12 @@
   },
   "focus": {
     "current": {
-      "en": "October 27: NAB26-1/P1 accepted and merged in PR #2; main 2e7cd6f8 has a qualified published image with verified provenance/SBOM. Turnstile, an unrouted media Worker, RSA/JWKS and Coolify settings are prepared. Running public app remains a5a0d90 and R2 media remain public; production protection is not active. See docs/2026-10-27-netfilmx-protection-preparation.md.",
-      "pl": "27 października: NAB26-1/P1 odebrane i scalone w PR #2; main 2e7cd6f8 ma kwalifikowany opublikowany obraz ze sprawdzonym provenance/SBOM. Turnstile, Worker bez publicznej trasy, RSA/JWKS i ustawienia Coolify są przygotowane. Publiczna aplikacja nadal działa na a5a0d90, a media R2 są publiczne; nowa ochrona nie jest aktywna. Zobacz docs/2026-10-27-netfilmx-protection-preparation.md."
+      "en": "October 29: SDK-corrected main 9f67ed88/digest 17a0fcea is deployed healthy; Invisible and private R2/Worker active, signing-key mount RO and catalogue retained. Source/main CI, provenance/SPDX/tree parity and public/negative smoke pass. Real production SDK initializes; headless 600010 rejection obtains no grant. Positive human Firefox playback is requested and pending, so protection is not accepted. See docs/2026-10-29-netfilmx-cutover-followup.md.",
+      "pl": "29 października: poprawka SDK main 9f67ed88/digest 17a0fcea wdrożona healthy; Invisible i prywatny R2/Worker aktywne, mount klucza RO i katalog zachowane. CI PR/main, provenance/SPDX/zgodność drzewa i public/negative smoke przeszły. Produkcyjny SDK inicjalizuje się, ale headless jest odrzucany kodem 600010 bez grantu. Zlecony pozytywny test człowieka w Firefox oczekuje; ochrona nieodebrana. Zobacz docs/2026-10-29-netfilmx-cutover-followup.md."
     },
     "next": {
-      "en": "Complete private-R2/gateway cutover and real-provider anonymous playback/negative tests; admin provisioning can be explicitly deferred with panel acceptance open. Then configure actual production CI access/contract, accept compatible rolling/rollback and backups of new PG/keys/configuration, and verify the protected caller before activating automatic promotion. UI and uploads/transcoding stay separate.",
-      "pl": "Dokończyć przełączenie na prywatny R2/gateway oraz prawdziwe testy Turnstile, anonimowego odtwarzania i odmów. Konto admina można jawnie odłożyć z otwartym odbiorem panelu. Następnie skonfigurować dostęp/kontrakt CI, odebrać zgodny rolling/rollback, backupy nowego PG/kluczy/konfiguracji i chronione wywołanie workflowu przed aktywacją automatycznej promocji. UI i upload/transkodowanie osobno."
+      "en": "Complete positive real-provider/human playback, seek/captions, valid-grant warm-cache denials and actual Workers Free CPU/quota checks. Do not repeat the deployed SDK correction or reopen R2. Admin deferred; uploads/transcoding and both CI flags false. Then accept actual CI caller/access/contract, compatible rolling/rollback and new PG/keys/configuration backup recovery before automatic promotion.",
+      "pl": "Odebrać pozytywny test dostawcy/człowieka, seek/napisy, odmowy na rozgrzanym cache i rzeczywiste limity Workers Free/CPU. Nie powtarzać wdrożonej poprawki SDK ani nie otwierać R2. Admin odłożony; uploads/transkodowanie i obie flagi CI false. Następnie odebrać rzeczywistego callera/dostęp/kontrakt CI, zgodny rolling/rollback i backup/odzyskiwanie nowego PG/kluczy/konfiguracji przed automatyczną promocją."
     }
   },
   "tasks": [
@@ -90,7 +90,7 @@
       "hoursMax": 18,
       "daysMin": 1.25,
       "daysMax": 2.25,
-      "evidence": "At a357fd4 all seven retained originals use the shared FFmpegService for H.264/AAC adaptive HLS: 20 variants without upscaling, maximum 1920x1080 bounding box, first audio/AAC stereo. Theora ending/SAR and player readiness/quality switching corrected. Ten Sintel WebVTTs, persistent relations/import and source-retaining upload handling preserved. October 18 superseding acceptance at 6f57dbb activates exactly seven HLS and ten VTT references, byte-identical approved proposal; real CLI import/restart and actual-player public-media results accepted locally. Historical two-MP4 proposal is not used. Production migration/import and catalogue launch were accepted October 24; October 27 confirms retained 7 videos/10 subtitles. Remaining i18n and later upload/transcoding gates stay open; do not repeat accepted media work."
+      "evidence": "At a357fd4 all seven retained originals use the shared FFmpegService for H.264/AAC adaptive HLS: 20 variants without upscaling, maximum 1920x1080 bounding box, first audio/AAC stereo. Theora ending/SAR and player readiness/quality switching corrected. Ten Sintel WebVTTs, persistent relations/import and source-retaining upload handling preserved. October 18 superseding acceptance at 6f57dbb activates exactly seven HLS and ten VTT references, byte-identical approved proposal; real CLI import/restart and actual-player public-media results accepted locally. Historical two-MP4 proposal is not used. Production migration/import and catalogue launch were accepted October 24; October 27 confirms retained 7 videos/10 subtitles. Remaining i18n and later upload/transcoding gates stay open; do not repeat accepted media work. October 28 selected runtime readback still has seven videos/ten subtitles; no media qualification, transfer or transcoding was repeated."
     },
     {
       "id": "ui-mobile-credits",
@@ -124,7 +124,7 @@
       "hoursMax": 10,
       "daysMin": 0.75,
       "daysMax": 1.25,
-      "evidence": "October 18 draft 6f57dbb: CI/CD 39086857490 and audit 39086857541 green, 304 .NET/image/scan/Quality; Publish/Deploy skipped. Coordinator 24 focused manifest/credits tests and 67 new/78 prior evidence checks pass; local image ID independently read. Worker 14 actual-player public HLS cases inspected, TLS/CORS enabled, app origin represented privately. Production gates, Sintel uncertainty and manual deferrals remain. October 22 NP18-1 at 206b467: CI 39688750629 / audit 39688750573 success, 304 .NET and image/Quality; Publish/Deploy skipped. Coordinator independently passes 79 Python tests, verifies 23 worker files and local image identity; 14 local PG tests and bounded PG18 workload evidence inspected. October 23 main CI 39875110432 passes application tests/audits, exact-image qualification, scan, SBOM and Quality. This is a publication checkpoint, not application deployment or new manual media acceptance. October 27 NAB26-1/P1/main CI 40460430114 passes 321 .NET, 80 Python, 23 gateway, Chromium/Firefox and exact-image/security qualification. Coordinator independently accepted P1 behavior. Historical media/device/Sintel deferrals remain; CI acceptance is distinct from live provider behavior."
+      "evidence": "October 29 PR #4 reviewed f0a5579/main 9f67ed88: source CI 40923663597, audit 40923663525 and main CI 40932096823 pass; 16 JavaScript, 321 .NET, 80 Python, 23 gateway, actual Chromium/Firefox fixtures, exact-image qualification/scan. P1 stale callback and pause/AbortError regressions retained; real3857 regression reproduced before SDK-onload fix. Earlier failed CI 40803496353/40805787744 and historical media/device results remain in docs/2026-10-29-netfilmx-cutover-followup.md. Actual deployed SDK initializes then rejects headless 600010; no positive human/provider acceptance is claimed."
     },
     {
       "id": "repository-governance",
@@ -158,7 +158,7 @@
       "hoursMax": 3,
       "daysMin": 0.25,
       "daysMax": 0.5,
-      "evidence": "October 20 coordinator accepted 052f439: first-release/delivery/status/database/keyring/recovery docs separate launch A from final rolling/new-state backups B and later uploads C. Existing commands, R1 and bootstrap separation preserved; stale media blocker removed. No further legacy recovery/off-host prerequisite. Runtime/media acceptance remains 6f57dbb; real production settings/results still need recording. No new runtime pass or effort re-estimate. October 22 PG18 configuration, storage and local qualification docs accepted at 206b467. Current target uses the reviewed PG18.6-trixie digest and fresh parent volume; earlier PG16/media evidence remains historical. A/B/C unchanged. October 23 coordinator records fresh-PG/credential/key-directory/auth preparation and main image publication separately from pending app bootstrap; no effort re-estimate. October 27: current publication/provider-preparation evidence, actual CD gaps and component/key/cache/rollback standard reconciled in roadmap/private VPS documentation. Current procedure separates web, PG and Cloudflare Worker updates; publication is not deployment. Final runtime acceptance will require another dated closeout, not a new claim here."
+      "evidence": "October 29 public/private current records reconcile actual private-R2/Worker, Invisible, deployed main 9f67ed88/digest 17a0fcea, exact runtime mount, snapshots/token revocation and pending human acceptance. Versioned web/PG/edge/key contracts and standards include real-provider acceptance, SDK loading mode, background UX/privacy and safe diagnostic codes. Earlier preparation, first launch, SDK/live/CI failures and A/B/C scope remain dated history in docs/2026-10-29-netfilmx-cutover-followup.md. Normal CI caller, rolling/rollback and new-state recovery remain open; no effort re-estimate."
     },
     {
       "id": "route-protection",
@@ -175,7 +175,7 @@
       "hoursMax": 7,
       "daysMin": 0.5,
       "daysMax": 1.0,
-      "evidence": "October 27: NAB26-1/P1 accepted, PR #2 merged and image published; Managed widget, unrouted R2 Worker, RSA/JWKS and Coolify variables/key mount prepared. Old public app and public R2 domain unchanged. Remaining: coordinated private-media cutover, qualified web deployment, real Turnstile/playback/denial/cache tests, effective RO mount and provider limit behavior. No cost alerts/spending cutoff. Admin setup can be deferred with panel test explicitly open. See docs/2026-10-27-netfilmx-protection-preparation.md."
+      "evidence": "October 29: SDK-corrected main 9f67ed88/digest 17a0fcea is deployed healthy; Invisible and private R2/Worker active, signing-key mount RO and catalogue retained. Source/main CI, provenance/SPDX/tree parity and public/negative smoke pass. Real production SDK initializes; headless 600010 rejection obtains no grant. Positive human Firefox playback is requested and pending, so protection is not accepted. See docs/2026-10-29-netfilmx-cutover-followup.md. Complete positive real-provider/human playback, seek/captions, valid-grant warm-cache denials and actual Workers Free CPU/quota checks. Do not repeat the deployed SDK correction or reopen R2. Admin deferred; uploads/transcoding and both CI flags false. Then accept actual CI caller/access/contract, compatible rolling/rollback and new PG/keys/configuration backup recovery before automatic promotion. Public artwork stays allowlisted; no per-segment Turnstile, cost alerts or spending cutoff. Historical failures and Safari/iOS/Sintel deferrals retained in dated records."
     },
     {
       "id": "immutable-deploy",
@@ -192,7 +192,7 @@
       "hoursMax": 8,
       "daysMin": 0.5,
       "daysMax": 1.0,
-      "evidence": "October 27: PR #2 main 2e7cd6f8 qualified/published at digest dc5211afde0f6e104e67125ce746032d772951d5f1a02d330d26983541c2d055 with verified attestations; previous a5a0d90 is running. Build/publish works, Deploy skipped and both flags false. GitHub production lacks required Coolify access/contract and URL configuration; actual runner OIDC/private API/caller unaccepted. Reconcile old SSH credential consumers. Workflow deploys web only; PG/Worker require separate versioned procedure. Complete access, protected baseline/rolling acceptance and controlled normal caller before activation."
+      "evidence": "October 29 PR #4 reviewed f0a5579/main 9f67ed880a37837808f01907c779af9611dd6e6b passed source CI 40923663597/audit 40923663525 and main CI 40932096823; exact sha256:17a0fcea0300cde8693ccdfe9003523172cca4d2585a80b88e130ad0e278ebfd qualified/published/operator-deployed. Signed provenance/SPDX/main/workflow/run/tree parity verified. Deployment finished 19:25:30 UTC, selected runtime healthy/RO key and catalogue retained. Normal Deploy skipped and both flags false; actual CI access/contract/caller remains unaccepted, operator API does not close it. PG/Worker separate; rolling/rollback/new-state recovery remain."
     },
     {
       "id": "blue-green",
@@ -209,7 +209,7 @@
       "hoursMax": 12,
       "daysMin": 0.75,
       "daysMax": 1.5,
-      "evidence": "Local persistent PostgreSQL/keyring restore and two actual web containers pass on source 986e9aa: cross-instance/recreated/restored sessions and antiforgery, wrong-key rejection and logout/refresh revocation. Synthetic media URLs; 13.487-second DB/key/count restore excludes web startup, not production RTO. Actual protected stateful rolling/rollback, production budgets/recovery and later worker/staging/encoder gates remain. October 20 clarification: migration/first routing may use downtime; final scope includes health-gated rolling, functional smoke, scoped rollback and necessary-data backups/recovery. Stable ID and historical progress/effort retained; no new live acceptance. NetFilmx: no further legacy recovery/off-host prerequisite; use accepted local tests and verify final new-deployment coverage. October 21 NP18-1 adds bounded local PG18 persistence/session and small new-database restore regression coverage before launch. It does not reopen legacy recovery or certify production rolling/backups. October 22 NP18-1 passes bounded PG18 migration/import/grants, same-volume recreation, two-web registration/login/CSRF/refresh/logout and small new-PG restore with original keyring. This closes the database-version qualification, not production rolling or scheduled backups. October 27: first-launch scope already accepted. Preparation saved a same-VPS private PG/keyring/credential/configuration snapshot and playback signing-key recovery copy; dump/tar readability only. Final rolling/compatible protected rollback, overlap, sessions/shared keys/schema, scheduled new-state backups/retention/location and isolated restore/failure visibility remain open. Gateway/key configuration is part of recovery. No rollback to public R2; use closed maintenance until a compatible protected baseline exists."
+      "evidence": "Earlier accepted local PG/keyring persistence, two-web sessions and small new-PG restore retain their scoped dates; no renewed legacy recovery programme. October 29 operator release finishes with one healthy9f67ed88 web, effective RO signing key and retained catalogue. Same-host snapshots preserve PG/keys/configuration and pass readability only, not scheduled backup/off-host/restore. Actual protected stateful rolling/overlap, compatible rollback, shared sessions/schema, backup policy/failure visibility and isolated new-state recovery remain open. Healthy release and headless rejection do not establish a positive protected playback baseline. Historical evidence in docs/2026-10-29-netfilmx-cutover-followup.md."
     },
     {
       "id": "service-observability",
@@ -226,7 +226,7 @@
       "hoursMax": 5,
       "daysMin": 0.5,
       "daysMax": 0.75,
-      "evidence": "Worker lifecycle logs and release probes exist in preparation; useful delivered worker/release/backup alerts and central monitoring remain unaccepted. Final-operation backup-failure visibility remains applicable to protected datasets; no numeric uptime SLA. October 26 scope: NetFilmx playback cost alerts and spending cutoff are explicitly excluded; this does not waive separate backup-failure visibility or other applications' budgets. October 27: grant-bearing URL logging disabled in prepared Worker (observability/Logpush/tails); this is secret hygiene, not accepted failure alerting. Preserve useful nonsecret deployment/backup diagnostics. Cost alerts/spending cutoff stay excluded; shared platform monitoring and later transcoding visibility remain separate."
+      "evidence": "Deployed player exposes bounded SDK/verification/grant/media stage codes without tokens or grant URLs. Gateway raw URL logging/observability/Logpush/tails remain off. These controls and release probes do not establish central monitoring, delivered worker/release/backup alerts or measured CPU/quota. Backup-failure visibility remains applicable; NetFilmx playback cost alerts/spending cutoff explicitly excluded. Shared monitoring/later transcoding visibility remain separate."
     },
     {
       "id": "repository-hygiene",
@@ -247,10 +247,10 @@
     }
   ],
   "verification": {
-    "worktree": "October 27: PR #2 merged at 2e7cd6f8a30ff5044953723c0e98775d038c681f after coordinator acceptance of c9cdd5b7466a114772e622693b6615abddda5876; Git trees identical. P1 stale Turnstile callback regression reproduced before fix and accepted afterward. Dirty parent, historical branches/media and previous evidence preserved.",
-    "tests": "NAB26-1/P1: 321 .NET, 80 Python and 23 gateway tests; Chromium/Firefox actual-player challenge/renewal cases pass, including stale callbacks, position/quality/PL/Off preservation. Qualification and image scan pass; local new-PG/keyring restart/restore retains its original scope. Turnstile tests used controlled adapters; no live-provider or native Safari/iOS acceptance. Earlier seven-film media qualification remains accepted and was not repeated.",
-    "ci": "October 27 main CI 40460430114 success: Test and audit, Qualify exact image, Quality gate and Publish tested digest. Deploy skipped. Qualified artifact published without rebuilding as sha256:dc5211afde0f6e104e67125ce746032d772951d5f1a02d330d26983541c2d055; linux/amd64, full revision and signed provenance/SPDX verified. Both deployment flags false; protected main/production confirmed. Actual private CI configuration/caller remains incomplete.",
-    "production": "First public launch accepted October 24 on a5a0d90a332cc47931b5aff924f817ab6366918c. October 27 readiness still reports that revision; selected VPS readback finds healthy web/PG, 7 videos, 10 subtitles, 0 users/admins, no restarts/OOM. Provider preparation created widget, unrouted Worker with R2 binding/limits/public JWKS and disabled outer cache/logging/public previews; Coolify settings/key mount saved, successor image pulled. No web/domain cutover; R2 media remain public and the runtime read-only key mount is pending. Root-only same-host snapshot readability passed, not scheduled backup/restore acceptance. No new media transfer, legacy cleanup or upload/transcoding activation. See docs/2026-10-27-netfilmx-protection-preparation.md."
+    "worktree": "PR #4 reviewed f0a5579547377a2d12329f26da4504b17e5c7bd8 merged as main 9f67ed880a37837808f01907c779af9611dd6e6b with identical Git tree. Independent four-file review found no blocker; 16 JS tests passed. Earlier P1, pause/AbortError and real-3857 failing regressions preserved; historical branches and media unchanged.",
+    "tests": "PR #4 qualification passes 16 JavaScript, 321 .NET, 80 Python, 23 gateway and actual Chromium/Firefox fixtures: SDK onload/readiness deadlines, single slow load across explicit retry, retired callbacks, no autoplay/one Play, expiry/position/quality/PL/Off/pause and AbortError retry. Exact-image scan passes. Earlier failed CI/live/SDK and media/device/Sintel evidence retain dated scope in docs/2026-10-29-netfilmx-cutover-followup.md. Real deployed SDK initializes; headless is rejected 600010 before grant, not positive human playback. No seven-film requalification or Safari/iOS acceptance.",
+    "ci": "Source CI 40923663597/audit 40923663525 and main CI 40932096823 succeed: 16 JS, 321 .NET, 80 Python, 23 gateway, Chromium/Firefox and image qualification/scan. Qualified sha256:17a0fcea0300cde8693ccdfe9003523172cca4d2585a80b88e130ad0e278ebfd published without rebuild; signed provenance/SPDX/main/ref/workflow/run/tree parity verified. Normal Deploy skipped; both activation flags false. Actual CI caller/configuration remains incomplete.",
+    "production": "October 29 SDK-corrected main 9f67ed880a37837808f01907c779af9611dd6e6b/digest 17a0fcea finished 19:25:30UTC; selected 22:04 runtime: sole healthy web, no OOM/restarts, signing key RO/readable, keyring RW, 7 videos/10 subtitles/0 users/admins. Playback true; uploads/transcoding false; Invisible, private R2/Worker, PG and keys unchanged. Public 22:05 smoke passes revision/exact playerJS/PrivacyAddendum, missing token 400 / CSRF 400 / registration 404. Unmodified production real SDK initializes, headless rejected 600010 without grant; human Firefox positive test requested/pending. Fresh private snapshot readability only, tokens revoked. Actual CI caller/rolling/backups/warm-cache/CPUquota acceptance remains open. See docs/2026-10-29-netfilmx-cutover-followup.md."
   },
   "media": {
     "screenshot": "assets/screenshots/netfilmx-movie-catalog.png",
@@ -338,10 +338,18 @@
     {
       "en": "October 27: publication/provider preparation accepted separately from active protection and final CD. Administrator identity is not a technical playback dependency; account/panel verification may be explicitly deferred. No temporary account was created. Web workflow does not update Worker or PG; follow component release/closed recovery contract.",
       "pl": "27 października: publikacja/przygotowanie dostawcy odebrane osobno od aktywnej ochrony i pełnego CD. Tożsamość admina nie jest techniczną zależnością odtwarzania; konto/test panelu można jawnie odłożyć. Nie utworzono konta tymczasowego. Workflow weba nie aktualizuje Workera/PG; stosować kontrakt komponentów i zamkniętego odzyskiwania."
+    },
+    {
+      "en": "October 29 operator decision after failed live Firefox playback: ordinary Play with automatic background verification, no separate verification screen/click. Prepare matching Invisible provider/code, bounded readiness/attempts/retry, preserved pause/time/quality/captions and provider privacy link. Keep legitimate rejection, private R2 and separate live acceptance. This pending correction does not reopen admin provisioning or activate automatic CI.",
+      "pl": "Decyzja operatora 29 października po nieudanej próbie Firefox: zwykły Play i automatyczna weryfikacja w tle, bez dodatkowego ekranu/kliknięcia. Przygotować zgodny tryb Invisible dostawcy/kodu, ograniczone terminy/próby/retry, zachowanie pauzy/czasu/jakości/napisów i odnośnik prywatności. Zachować odmowy, prywatny R2 i osobny odbiór rzeczywistego dostawcy. Oczekująca poprawka nie wznawia admina ani automatycznego CI."
+    },
+    {
+      "en": "October 29 execution follows the background-verification choice: qualified web and matching Invisible mode deployed with unchanged secrets/private storage. A fresh same-host copy is readability evidence only. Requested human Firefox retest must receive its own result; CI/readiness/negative probes do not close protection. Keep normal CI flags false and admin deferred.",
+      "pl": "Wykonanie 29 października realizuje wybór weryfikacji w tle: kwalifikowany web i zgodny Invisible wdrożono z niezmienionymi sekretami/prywatnym storage. Świeża kopia na tym samym hoście potwierdza tylko czytelność. Zlecony ponowny test człowieka w Firefox musi mieć własny wynik; CI/readiness/odmowy nie zamykają ochrony. Flagi normalnego CI false, admin odłożony."
     }
   ],
   "audit": {
-    "date": "2026-10-27",
+    "date": "2026-10-29",
     "sources": [
       "Draft PR #1 f4aca03ec70af427cd3da82912d88ea1b87aec20; coordinator subtitle source/results review October 15",
       "CI/CD https://github.com/SzczepanGrela/netfilmx-movie-catalog/actions/runs/38704058532 and Dependency audit 38704058491; head-bound logs inspected",
@@ -391,17 +399,23 @@
       "October 27 PR #2 https://github.com/SzczepanGrela/netfilmx-movie-catalog/pull/2 merged at 2e7cd6f8; reviewed c9cdd5b tree matches; P1 independent Chromium/Firefox regression accepted.",
       "Main CI https://github.com/SzczepanGrela/netfilmx-movie-catalog/actions/runs/40460430114 success; qualified digest/provenance/SPDX verified; Deploy skipped.",
       "October 27 selected VPS/provider preparation and later GitHub/environment/public-readiness readback; scoped evidence summarized in docs/2026-10-27-netfilmx-protection-preparation.md. Private metadata/receipts retained in infrastructure documentation.",
-      "October 27 documentation request adds docs/release-components-standard.md; no new production mutation, media round or full-host audit."
+      "October 27 documentation request adds docs/release-components-standard.md; no new production mutation, media round or full-host audit.",
+      "October 28 operator cutover and selected safe receipts: qualified main 2e7cd6f8 deployed, private media route active, effective read-only signing mount, negative HTTP probes passed; human Firefox playback failed. Public scope: docs/2026-10-29-netfilmx-cutover-followup.md. Exact provider/deployment/recovery metadata remain private.",
+      "October 29 final reviewed head c5f2b6495d6984f2f53d7158cfaa094ea63fe1c0: https://github.com/SzczepanGrela/netfilmx-movie-catalog/actions/runs/40874474232 and https://github.com/SzczepanGrela/netfilmx-movie-catalog/actions/runs/40874474211 pass. Historical failed runs 40803496353/40805787744 retained; pause/AbortError retry reproduced/fixed.",
+      "PR #3 merged as 7559e8336661eb8f48bd9f508156d2091ae82522; main https://github.com/SzczepanGrela/netfilmx-movie-catalog/actions/runs/40890940247 passes/publishes sha256:7a14bb14dabbeaac2512c01b8d6cca9f82735e4813c468565a658e3142a2611a. Signed provenance/SPDX and reviewed/main tree parity verified; normal Deploy skipped.",
+      "October 29 selected receipts confirm fresh snapshot readability, completed qualified web release, healthy runtime/RO signing mount, public/negative smoke and Invisible mode with unchanged secret. Post-release human Firefox retest pending. Public summary: docs/2026-10-29-netfilmx-cutover-followup.md. Private resources/receipts remain in infrastructure documentation.",
+      "October 29 SDK release main 9f67ed880a37837808f01907c779af9611dd6e6b / sha256:17a0fcea0300cde8693ccdfe9003523172cca4d2585a80b88e130ad0e278ebfd: main CI 40932096823 success, verified provenance/SPDX/tree parity, finished 19:25:30UTC and selected 22:04:33UTC healthy/read-only-key/catalogue readback. Snapshot readability only, temporary tokens revoked. Positive human/provider acceptance pending; private receipts retained in infrastructure docs.",
+      "October 29 final PR #4 source/main qualification and runtime/public smoke readback; deployed real SDK initializes and rejects headless 600010 without grant, human positive remains pending. Full historical failure/release timeline and public references: docs/2026-10-29-netfilmx-cutover-followup.md."
     ],
     "notes": {
-      "en": "October 27: NAB26-1/P1 accepted and merged in PR #2; main 2e7cd6f8 has a qualified published image with verified provenance/SBOM. Turnstile, an unrouted media Worker, RSA/JWKS and Coolify settings are prepared. Running public app remains a5a0d90 and R2 media remain public; production protection is not active. See docs/2026-10-27-netfilmx-protection-preparation.md. Complete private-R2/gateway cutover and real-provider anonymous playback/negative tests; admin provisioning can be explicitly deferred with panel acceptance open. Then configure actual production CI access/contract, accept compatible rolling/rollback and backups of new PG/keys/configuration, and verify the protected caller before activating automatic promotion. UI and uploads/transcoding stay separate. Earlier dated evidence and historical effort/calendar estimates retain scope. Only repository-governance is closed from actual readback: its 2–3 h are removed and aggregate scores/totals recomputed mechanically; no new general percentage/effort forecast is invented.",
-      "pl": "27 października: NAB26-1/P1 odebrane i scalone w PR #2; main 2e7cd6f8 ma kwalifikowany opublikowany obraz ze sprawdzonym provenance/SBOM. Turnstile, Worker bez publicznej trasy, RSA/JWKS i ustawienia Coolify są przygotowane. Publiczna aplikacja nadal działa na a5a0d90, a media R2 są publiczne; nowa ochrona nie jest aktywna. Zobacz docs/2026-10-27-netfilmx-protection-preparation.md. Dokończyć przełączenie na prywatny R2/gateway oraz prawdziwe testy Turnstile, anonimowego odtwarzania i odmów. Konto admina można jawnie odłożyć z otwartym odbiorem panelu. Następnie skonfigurować dostęp/kontrakt CI, odebrać zgodny rolling/rollback, backupy nowego PG/kluczy/konfiguracji i chronione wywołanie workflowu przed aktywacją automatycznej promocji. UI i upload/transkodowanie osobno. Wcześniejsze dowody oraz historyczne estymaty pracy/kalendarza zachowują zakres. Z rzeczywistego odczytu zamknięto tylko repository-governance: usunięto jego 2–3 h i mechanicznie przeliczono sumy/wskaźniki; bez nowej ogólnej wyceny postępu/pracy."
+      "en": "October 29: SDK-corrected main 9f67ed88/digest 17a0fcea is deployed healthy; Invisible and private R2/Worker active, signing-key mount RO and catalogue retained. Source/main CI, provenance/SPDX/tree parity and public/negative smoke pass. Real production SDK initializes; headless 600010 rejection obtains no grant. Positive human Firefox playback is requested and pending, so protection is not accepted. See docs/2026-10-29-netfilmx-cutover-followup.md. Complete positive real-provider/human playback, seek/captions, valid-grant warm-cache denials and actual Workers Free CPU/quota checks. Do not repeat the deployed SDK correction or reopen R2. Admin deferred; uploads/transcoding and both CI flags false. Then accept actual CI caller/access/contract, compatible rolling/rollback and new PG/keys/configuration backup recovery before automatic promotion.",
+      "pl": "29 października: poprawka SDK main 9f67ed88/digest 17a0fcea wdrożona healthy; Invisible i prywatny R2/Worker aktywne, mount klucza RO i katalog zachowane. CI PR/main, provenance/SPDX/zgodność drzewa i public/negative smoke przeszły. Produkcyjny SDK inicjalizuje się, ale headless jest odrzucany kodem 600010 bez grantu. Zlecony pozytywny test człowieka w Firefox oczekuje; ochrona nieodebrana. Zobacz docs/2026-10-29-netfilmx-cutover-followup.md. Odebrać pozytywny test dostawcy/człowieka, seek/napisy, odmowy na rozgrzanym cache i rzeczywiste limity Workers Free/CPU. Nie powtarzać wdrożonej poprawki SDK ani nie otwierać R2. Admin odłożony; uploads/transkodowanie i obie flagi CI false. Następnie odebrać rzeczywistego callera/dostęp/kontrakt CI, zgodny rolling/rollback i backup/odzyskiwanie nowego PG/kluczy/konfiguracji przed automatyczną promocją."
     }
   },
   "compliance": {
     "standardVersion": 2,
     "profile": "vps-web",
-    "assessmentDate": "2026-10-27",
+    "assessmentDate": "2026-10-29",
     "controls": [
       {
         "id": "governance",
@@ -428,8 +442,8 @@
         "id": "immutable-release",
         "status": "complete",
         "evidence": {
-          "en": "October 27 qualified main artifact published without rebuild; exact digest/revision/linux-amd64 and cryptographic provenance/SPDX verified. Deployment is separate and still pending for this successor.",
-          "pl": "27 października kwalifikowany artefakt main opublikowano bez przebudowy; digest/rewizja/linux-amd64 i podpisane provenance/SPDX zweryfikowane. Wdrożenie tej wersji pozostaje osobnym etapem."
+          "en": "October 29 PR #4 main 9f67ed88/digest 17a0fcea passed source/main qualification, signed provenance/SPDX and reviewed-tree parity; published and operator-deployed without rebuild. Normal CI Deploy skipped; live acceptance separate.",
+          "pl": "29 października PR #4 main 9f67ed88/digest 17a0fcea przeszedł kwalifikację PR/main, podpisane provenance/SPDX i zgodność drzewa; opublikowany i wdrożony bez rebuild. Normalny Deploy CI pominięty; odbiór live osobny."
         },
         "taskIds": []
       },
@@ -448,8 +462,8 @@
         "id": "network-tls-client-ip",
         "status": "partial",
         "evidence": {
-          "en": "First public HTTPS/catalogue/auth/player launch accepted October 24; October 27 retains private app network/no host ports and exact proxy peers. Media gateway cutover/bypass and broader identity acceptance remain separate.",
-          "pl": "Pierwszy start HTTPS/katalog/auth/player odebrano 24 października; 27 października zachowano prywatną sieć/brak portów hosta i dokładne proxy. Przełączenie/brak obejść gatewaya oraz szerszy odbiór tożsamości pozostają osobne."
+          "en": "October 28 media Custom Domain is served by the Worker with private R2; public storage aliases deny access and negative origin/path checks pass. First-launch HTTPS remains accepted. Valid-grant playback and protected warmed-cache acceptance remain open after failed human Firefox playback.",
+          "pl": "28 października domena mediów prowadzi do Workera z prywatnym R2; publiczne aliasy odmawiają, testy złego Origin/ścieżek przeszły. HTTPS pierwszego startu zachowuje odbiór. Odtwarzanie z ważnym grantem i ochrona rozgrzanego cache oczekują po nieudanej próbie Firefox."
         },
         "taskIds": [
           "route-protection"
@@ -459,8 +473,8 @@
         "id": "abuse-protection",
         "status": "partial",
         "evidence": {
-          "en": "October 27: NAB26-1/P1 accepted and merged in PR #2; main 2e7cd6f8 has a qualified published image with verified provenance/SBOM. Turnstile, an unrouted media Worker, RSA/JWKS and Coolify settings are prepared. Running public app remains a5a0d90 and R2 media remain public; production protection is not active. See docs/2026-10-27-netfilmx-protection-preparation.md. Real provider/cutover/negative acceptance pending. Admin test can be explicitly deferred; uploads/transcoding and automatic release flags stay false.",
-          "pl": "27 października: NAB26-1/P1 odebrane i scalone w PR #2; main 2e7cd6f8 ma kwalifikowany opublikowany obraz ze sprawdzonym provenance/SBOM. Turnstile, Worker bez publicznej trasy, RSA/JWKS i ustawienia Coolify są przygotowane. Publiczna aplikacja nadal działa na a5a0d90, a media R2 są publiczne; nowa ochrona nie jest aktywna. Zobacz docs/2026-10-27-netfilmx-protection-preparation.md. Odbiór prawdziwego dostawcy/przełączenia/odmów oczekuje. Test admina można jawnie odłożyć; uploads/transcoding i automatyczne wydania nadal false."
+          "en": "October 29: SDK-corrected main 9f67ed88/digest 17a0fcea is deployed healthy; Invisible and private R2/Worker active, signing-key mount RO and catalogue retained. Source/main CI, provenance/SPDX/tree parity and public/negative smoke pass. Real production SDK initializes; headless 600010 rejection obtains no grant. Positive human Firefox playback is requested and pending, so protection is not accepted. See docs/2026-10-29-netfilmx-cutover-followup.md.",
+          "pl": "29 października: poprawka SDK main 9f67ed88/digest 17a0fcea wdrożona healthy; Invisible i prywatny R2/Worker aktywne, mount klucza RO i katalog zachowane. CI PR/main, provenance/SPDX/zgodność drzewa i public/negative smoke przeszły. Produkcyjny SDK inicjalizuje się, ale headless jest odrzucany kodem 600010 bez grantu. Zlecony pozytywny test człowieka w Firefox oczekuje; ochrona nieodebrana. Zobacz docs/2026-10-29-netfilmx-cutover-followup.md."
         },
         "taskIds": [
           "route-protection"
@@ -470,8 +484,8 @@
         "id": "runtime-safety",
         "status": "partial",
         "evidence": {
-          "en": "October 27 selected live web and PG each have 1 CPU/512 MiB, no additional swap, no published host ports, healthy/no OOM/restarts. Signing-key RO mount is saved, not yet verified in a new container; overlap/security exceptions retain their scope.",
-          "pl": "Odczyt 27 października: web i PG po 1 CPU/512 MiB, bez dodatkowego swapu i portów hosta, healthy/bez OOM/restartów. Mount RO klucza podpisującego zapisany, ale jeszcze niezweryfikowany w nowym kontenerze; overlap/wyjątki bezpieczeństwa pozostają osobne."
+          "en": "October 29 sole new web healthy, no OOM/restarts, effective signing-key mount RW=false/readable by app UID and retained keyring. Playback enabled; uploads/transcoding/seed, auto deploy and previews remain off. Existing resource constraints retained. Overlap/rolling and actual Workers Free CPU/quota remain unaccepted.",
+          "pl": "29 października jeden nowy web healthy, bez OOM/restartów, skuteczny mount klucza RW=false/czytelny przez UID aplikacji i zachowany keyring. Playback aktywny; uploads/transkodowanie/seed, auto deploy i preview wyłączone. Limity zachowane. Overlap/rolling i realne limity Workers Free/CPU nieodebrane."
         },
         "taskIds": [
           "blue-green"
@@ -481,8 +495,8 @@
         "id": "readiness-preflight",
         "status": "partial",
         "evidence": {
-          "en": "Initial explicit migration/import, persistent PG/keyring and public ready revision accepted. October 27 live revision remains a5a0d90; new published candidate and real protected provider path not deployed/accepted. Managed health gate is configured but actual successor/rollback acceptance remains open.",
-          "pl": "Jawna migracja/import, trwały PG/keyring i publiczna readiness odebrane przy pierwszym starcie. 27 października produkcja nadal a5a0d90; nowy obraz i prawdziwa chroniona ścieżka nie są wdrożone/odebrane. Zarządzany healthcheck skonfigurowany, rzeczywisty następca/rollback nadal oczekuje."
+          "en": "October 29: SDK-corrected main 9f67ed88/digest 17a0fcea is deployed healthy; Invisible and private R2/Worker active, signing-key mount RO and catalogue retained. Source/main CI, provenance/SPDX/tree parity and public/negative smoke pass. Real production SDK initializes; headless 600010 rejection obtains no grant. Positive human Firefox playback is requested and pending, so protection is not accepted. See docs/2026-10-29-netfilmx-cutover-followup.md.",
+          "pl": "29 października: poprawka SDK main 9f67ed88/digest 17a0fcea wdrożona healthy; Invisible i prywatny R2/Worker aktywne, mount klucza RO i katalog zachowane. CI PR/main, provenance/SPDX/zgodność drzewa i public/negative smoke przeszły. Produkcyjny SDK inicjalizuje się, ale headless jest odrzucany kodem 600010 bez grantu. Zlecony pozytywny test człowieka w Firefox oczekuje; ochrona nieodebrana. Zobacz docs/2026-10-29-netfilmx-cutover-followup.md."
         },
         "taskIds": [
           "blue-green"
@@ -503,8 +517,8 @@
         "id": "coordination-retention",
         "status": "partial",
         "evidence": {
-          "en": "Local PG/keyring recovery evidence retained. October 27 same-VPS snapshot/readability and separate playback-key copy are preparation only. Scheduled new-PG/keys/config backup, retention/location, failure visibility and isolated restore remain; legacy recovery programme stays withdrawn.",
-          "pl": "Zachowano lokalne dowody odzyskiwania PG/keyring. Kopia na tym samym VPS/czytelność i osobna kopia klucza playback z 27 października to przygotowanie. Harmonogram backupu nowego PG/kluczy/konfiguracji, retencja/miejsce, widoczność błędów i izolowany restore oczekują; legacy pozostaje wycofane."
+          "en": "Fresh October 29 19:24 same-host SDK-release snapshot preserves PG/keys/credentials/configuration, readability only; no restore/schedule/off-host acceptance. Earlier copies retained, tokens revoked. New-state backup/recovery remains open; legacy programme withdrawn.",
+          "pl": "Świeża kopia przed wydaniem SDK z 29 października 19:24 na tym samym hoście zachowuje PG/klucze/poświadczenia/konfigurację, tylko czytelność; bez odbioru restore/harmonogramu/off-host. Starsze kopie zachowane, tokeny wycofane. Backup/odzyskiwanie nowego stanu otwarte; legacy wycofane."
         },
         "taskIds": [
           "immutable-deploy",

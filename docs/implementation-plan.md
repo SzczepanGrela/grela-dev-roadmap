@@ -10,12 +10,14 @@
 
 ## Stan wdrożeń i najbliższa kolejka
 
-**Aktualna kolejka, 27 października:** [NAB26-1/P1 scalone i opublikowane; konfiguracja przygotowana](2026-10-27-netfilmx-protection-preparation.md).
-Nowy Turnstile/Worker/klucze i ustawienia Coolify istnieją, lecz stary web oraz publiczny
-R2 nie zostały przełączone. Najpierw realna ochrona/odbiór, następnie dostęp CI,
-rolling/rollback i backupy nowego stanu oraz kontrolowany automatyczny caller.
-Admina można odłożyć z jawnym brakiem odbioru panelu. Aktualny kod weba nie wdraża
-PG ani Workera. Stosować [standard komponentów](release-components-standard.md).
+**Aktualna kolejka, 29 października:** [wydana poprawka SDK i oczekujący test człowieka](2026-10-29-netfilmx-cutover-followup.md).
+Kwalifikowany main 9f67ed88/17a0fcea jest wdrożony i healthy; Invisible, prywatny R2,
+Worker i mount klucza RO potwierdzone. CI PR #4/main przeszły; wcześniejsze błędy
+pozostają historią. Pozytywny test dostawcy/człowieka w Firefox nadal oczekuje.
+Następnie ważny grant/cache/limity, rzeczywisty caller CI, rolling/rollback oraz
+backupy nowego stanu. Admin odłożony, automatyczne wydania i uploads/transkodowanie
+false. Stosować [standard komponentów](release-components-standard.md).
+[Przygotowanie z 27 października](2026-10-27-netfilmx-protection-preparation.md) jest historyczne.
 
 **Poprzedni checkpoint, 26 października:** NetFilmx przeszedł pierwszy publiczny start
 na main a5a0d90 i [ograniczony odbiór z 24 października](2026-10-24-netfilmx-first-launch.md).

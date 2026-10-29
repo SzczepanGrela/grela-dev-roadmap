@@ -66,7 +66,7 @@ statusy i zagnieżdżone zadania infrastruktury są w prywatnym
 `grela-dev-infrastructure/docs/current-priorities.md`; raporty projektów mają
 własne daty audytu i nie są automatycznym odczytem bieżącej produkcji.
 
-NetFilmx: [stan z 27 października — kod opublikowany i konfiguracja przygotowana](docs/2026-10-27-netfilmx-protection-preparation.md).
+NetFilmx: [stan z 28–29 października — prywatne media i poprawka SDK aktywne, pozytywny test człowieka oczekuje](docs/2026-10-29-netfilmx-cutover-followup.md).
 Ochrona mediów, pełne CD i backupy nowego wdrożenia mają osobne, nadal otwarte odbiory.
 
 ## License

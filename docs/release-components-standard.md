@@ -49,6 +49,30 @@ Odczyt ustawień nie jest testem zachowania, a test z atrapą nie testuje dostaw
   mają osobne wyniki. Nie dodawać produkcyjnego obejścia wyzwania dla testów.
   Wyraźnie zapisać odłożony test lub opcjonalną funkcję; nie nazywać ich odebranymi.
 
+## Weryfikacja w tle i diagnostyka
+
+Lekcja NetFilmx z 28–29 października: jeśli produkt wybiera ochronę w tle,
+traktować ją jako część zwykłej czynności, bez dodatkowej bramki „zweryfikuj”.
+Nie wymusza to trybu Invisible we wszystkich usługach; tryb widgetu wynika
+z uzgodnionego UX i wspieranego kontraktu dostawcy.
+
+- Uzgodnić tryb w panelu dostawcy i kodzie. Zakończone ładowanie skryptu nie
+  musi oznaczać gotowości SDK; czekać na sygnał wspierany dla wybranego sposobu
+  ładowania. Sama obecność metody ready nie potwierdza poprawności jej użycia przy
+  async; fixture ma odtwarzać rzeczywisty kontrakt onload/ready i jego odmowy.
+- Ograniczyć osobno czas inicjalizacji, weryfikacji, wydania uprawnienia i mediów.
+  Zachować intencję Play/pauzy, pozycję, jakość i napisy; nie uruchamiać filmu
+  bez intencji użytkownika. Stabilne loading, dostępny fokus/aria-busy i retry
+  mają działać również po odmowie, bez nieograniczonej pętli.
+- Publiczny komunikat opisuje błąd czynności i możliwość ponowienia. Operator
+  może otrzymać stały, ograniczony kod etapu/przyczyny; bez tokenu, grantu, URL
+  poświadczenia, treści odpowiedzi dostawcy lub danych użytkownika.
+- Uzupełnić istniejącą politykę prywatności o wymagany odnośnik dostawcy,
+  np. Turnstile Privacy Addendum dla Invisible, bez dodatkowego interstitiala.
+- Zielone testy atrap, odmowy bez tokenu i healthcheck są osobnymi dowodami.
+  Wydać osobny wynik realnego człowieka z rzeczywistym SDK/Siteverify i chronioną
+  funkcją. Błąd takiej próby pozostaje błędem odbioru, nawet gdy komponenty są healthy.
+
 ## Wycofanie zmiany i odzyskiwanie
 
 Rollback wymaga zgodnej pary web/Worker, ustawień/kluczy i schematu bazy.

@@ -1,5 +1,18 @@
 # Roadmap editing instructions
 
+October 29 current checkpoint: [SDK release and pending live acceptance](docs/2026-10-29-netfilmx-cutover-followup.md).
+Qualified main 9f67ed88/17a0fcea is deployed and healthy; Invisible and private
+R2/Worker remain active. Source/main CI and runtime RO key mount pass. Positive
+real-provider/human playback remains pending; protection is not accepted. Preserve
+earlier failed live/SDK/CI records as history, admin deferred and CI flags false.
+Do not turn fixture/readiness or headless rejection into a positive acceptance.
+
+October 27: read [NetFilmx preparation](docs/2026-10-27-netfilmx-protection-preparation.md)
+and the [component release standard](docs/release-components-standard.md).
+Implementation/publication, saved provider configuration and active production
+protection are separate states. Record versions/owners, workflow coverage,
+compatible recovery and real-provider acceptance for each applicable component.
+
 Read [the operating standard](docs/operating-standard.md) before planning tasks.
 October 20 clarification applies to all current and future repositories: downtime
 is accepted during preparation, bootstrap and migration. Final Coolify closeout
@@ -21,6 +34,11 @@ token validation and separate negative/public acceptance; green functional CI
 or a public smoke is not anti-bot acceptance. Keep conditional export protection,
 static/read/media exclusions and existing cost budgets explicit. Test keys and
 bypasses must not enter production. Planning requirements are not deployed facts.
+
+For NetFilmx, the [October 26 plan](docs/2026-10-26-netfilmx-playback-protection.md)
+supersedes public viewer registration/login protection: anonymous viewing,
+retained admin, playback grants, private R2 and media Worker. No per-segment
+Turnstile, cost alerts or spending cutoff. Preserve other projects' budgets.
 
 Keep private topology, credentials and operator evidence in private infrastructure
 docs. Repository hygiene stays planned under [its standard](docs/repository-hygiene-standard.md);

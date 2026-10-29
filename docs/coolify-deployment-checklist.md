@@ -26,6 +26,20 @@ była wyłączona. Po włączeniu zarządzanej kontroli TTT poprawiony test prze
 
 ## Obraz i dostęp
 
+Aktualizacja standardu, 27 października: [wydanie wielu komponentów](release-components-standard.md).
+Przed odbiorem zapisać również:
+
+- [ ] Osobne wersje/stan weba, bazy, Workera i ustawień dostawcy oraz zakres workflowu.
+- [ ] Rzeczywiste sekrety/zmienne środowiska, tożsamość runnera i przejście przez
+  chronioną ścieżkę CI; dostęp operatora przez API nie potwierdza tego testu.
+- [ ] Mounty kluczy i preview sprawdzone w efektywnym runtime, niezależnie od UI.
+- [ ] Autoryzację przed cache/storage, zamknięte aliasy, redakcję tokenów oraz
+  osobny rzeczywisty odbiór dostawcy i przypadków odmowy, jeżeli dotyczą aplikacji.
+- [ ] Zgodną kombinację komponentów/kluczy do rollbacku; zamkniętą przerwę, jeśli
+  brak zaakceptowanej chronionej wersji. Kopia czytelna nie oznacza odebranego restore.
+
+Aktualny NetFilmx: [kod opublikowany, zasoby przygotowane, ochrona nieaktywna](2026-10-27-netfilmx-protection-preparation.md).
+
 - [ ] Testy i build wykonane w CI dla pełnego SHA; skan finalnego obrazu oraz
   zapis digestu i pochodzenia. Wdrożenie wymaga zielonego Quality.
 - [ ] Zasób Docker Image używa prebuilt GHCR. Końcowa referencja to

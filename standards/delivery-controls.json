@@ -46,13 +46,13 @@
     {
       "id": "immutable-release",
       "title": {"en": "Immutable release", "pl": "Niezmienne wydanie"},
-      "description": {"en": "One tested artifact identified by a full commit SHA and digest or checksum.", "pl": "Jeden przetestowany artefakt identyfikowany pełnym SHA i digestem lub sumą kontrolną."},
+      "description": {"en": "One tested artifact identified by a full commit SHA and digest or checksum. Track independent web/database/edge versions and qualified/published/configured/running/accepted states under docs/release-components-standard.md.", "pl": "Jeden przetestowany artefakt identyfikowany pełnym SHA i digestem lub sumą kontrolną. Zapisywać osobne wersje web/bazy/edge i stany kwalifikacji/publikacji/konfiguracji/uruchomienia/odbioru według docs/release-components-standard.md."},
       "profiles": ["vps-web", "static-web", "desktop", "repository", "developer-tool"]
     },
     {
       "id": "deployment-access",
       "title": {"en": "Deployment access", "pl": "Dostęp wdrożeniowy"},
-      "description": {"en": "Authenticated private platform deployment path, scoped credentials and verified management identity; retire obsolete per-app Docker-group accounts after migration.", "pl": "Uwierzytelniona prywatna ścieżka wdrażania przez platformę, ograniczone poświadczenia i zweryfikowana tożsamość zarządzania; wycofanie zbędnych kont Docker po migracji."},
+      "description": {"en": "Authenticated private platform deployment path, scoped credentials and verified management identity; retire obsolete per-app Docker-group accounts after migration. Operator host/API access does not certify the actual CI identity/environment/caller.", "pl": "Uwierzytelniona prywatna ścieżka wdrażania przez platformę, ograniczone poświadczenia i zweryfikowana tożsamość zarządzania; wycofanie zbędnych kont Docker po migracji. Dostęp operatora do hosta/API nie potwierdza tożsamości/środowiska/rzeczywistego wywołania CI."},
       "profiles": ["vps-web"]
     },
     {
@@ -82,7 +82,7 @@
     {
       "id": "atomic-promotion-rollback",
       "title": {"en": "Managed release and recovery", "pl": "Zarządzane wydanie i odzyskiwanie"},
-      "description": {"en": "Final VPS operation uses health-gated rolling, external functional smoke and scoped rollback/recovery; static hosting uses verified managed promotion. Bootstrap/migration may have downtime. Preserve existing uncertainty guards; rolling alone does not prove rollback or an uptime SLA.", "pl": "Docelowy VPS używa rolling z bramką zdrowia, publicznym smoke i scoped rollback/odzyskiwaniem; hosting statyczny sprawdzonej promocji platformy. Bootstrap/migracja mogą mieć przerwę. Zachować kontrole niepewności; rolling sam nie dowodzi rollbacku ani SLA."},
+      "description": {"en": "Final VPS operation uses health-gated rolling, external functional smoke and scoped rollback/recovery; static hosting uses verified managed promotion. Bootstrap/migration may have downtime. Preserve existing uncertainty guards; rolling alone does not prove rollback or an uptime SLA. External components/keys need compatible versions and closed failure behavior; web-image rollback alone may be insufficient.", "pl": "Docelowy VPS używa rolling z bramką zdrowia, publicznym smoke i scoped rollback/odzyskiwaniem; hosting statyczny sprawdzonej promocji platformy. Bootstrap/migracja mogą mieć przerwę. Zachować kontrole niepewności; rolling sam nie dowodzi rollbacku ani SLA. Zewnętrzne komponenty/klucze wymagają zgodnych wersji i zamknięcia dostępu przy awarii; sam rollback obrazu weba może nie wystarczyć."},
       "profiles": ["vps-web", "static-web"]
     },
     {

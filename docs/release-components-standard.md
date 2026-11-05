@@ -88,3 +88,10 @@ niż harmonogram/retencja oraz izolowane odtworzenie. Zachować przyjęty podzia
 
 Prywatny rekord zasobów jest źródłem konkretnych wartości; publiczna roadmapa
 publikuje zakres i status. Po zmianie komponentu aktualizować oba, z datą dowodu.
+
+## Pliki w gotowym obrazie
+
+Lekcja [NetFilmx z 5 listopada](2026-11-05-netfilmx-player-assets.md): testować przez HTTP graf zależności
+przeglądarki z rzeczywistego obrazu, także biblioteki ładowane później. Zielony
+test kodu źródłowego i healthcheck nie wykrywają wszystkich błędów pakowania.
+Odbiór artefaktu, funkcji i prawdziwego dostawcy/człowieka zachowują osobne wyniki.

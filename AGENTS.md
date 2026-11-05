@@ -1,9 +1,9 @@
 # Roadmap editing instructions
 
-November 5 current checkpoint: [packaged player correction](docs/2026-11-05-netfilmx-player-assets.md).
-Main b6e907e4/07eebd27 is deployed; public asset integrity and player registration
-pass. Positive real-provider/human playback is still pending, both CI flags false.
-Preserve previous failures and do not increase progress/effort from these checks.
+November 5 evening checkpoint: [loading-panel/runtime correction](docs/2026-11-05-netfilmx-loading-overlay.md).
+Main 9a72f671/d8669053 is deployed healthy; panel presentation and negative smoke
+pass. Positive human/provider playback remains pending, both CI flags false.
+Earlier asset/SDK failures and releases remain dated history; no progress re-estimate.
 
 October 29 current checkpoint: [SDK release and pending live acceptance](docs/2026-10-29-netfilmx-cutover-followup.md).
 Qualified main 9f67ed88/17a0fcea is deployed and healthy; Invisible and private

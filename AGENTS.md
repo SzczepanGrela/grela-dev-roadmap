@@ -1,5 +1,8 @@
 # Roadmap editing instructions
 
+Latest checkpoint: [player controls/runtime](docs/2026-11-14-netfilmx-player-controls.md); 872ef4c8/fc168de8 deployed healthy.
+Human/provider acceptance remains pending, both flags false; no progress re-estimate.
+
 November 5 evening checkpoint: [loading-panel/runtime correction](docs/2026-11-05-netfilmx-loading-overlay.md).
 Main 9a72f671/d8669053 is deployed healthy; panel presentation and negative smoke
 pass. Positive human/provider playback remains pending, both CI flags false.

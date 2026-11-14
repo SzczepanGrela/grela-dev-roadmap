@@ -15,7 +15,7 @@ i uruchamianie kosztownych operacji AI dostępnych z przeglądarki.
 
 | Projekt | Wymaganie / istniejące zadanie | Granica zakresu |
 | --- | --- | --- |
-| NetFilmx | Turnstile rejestracji i logowania w `route-protection`; backend i testy negatywne. | Najbliższa poprawka ochrony kont. Reset/resend objąć przy dodaniu tych funkcji. Katalog i HLS bez obowiązkowego wyzwania; uploads/worker pozostają false. |
+| NetFilmx | [Plan z 26 października](2026-10-26-netfilmx-playback-protection.md): Turnstile przy wydawaniu dostępu do filmu oraz logowaniu admina, w `route-protection`. | Anonimowe oglądanie; wycofanie publicznej rejestracji/walleta. Prywatny R2 i Worker sprawdzający grant przed cache. Publiczny katalog/grafiki; bez wyzwania na każdy segment HLS. Uploads/worker pozostają false. |
 | Smakosz | Rejestracja, logowanie, reset/resend w `abuse-and-runtime`; sprawdzić istniejącą implementację przed zmianą. | Wywołania refresh/logout i zwykłe odczyty nie wymagają wyzwania. Limity i autoryzacja zapisów nadal obowiązują. |
 | MovieRAG | Utrzymać i odebrać Turnstile Ask AI w `cost-protection`. | Historyczny raport opisuje implementację; bieżąca konfiguracja i pełny odbiór nie są tu potwierdzone. Search ma własne limity. |
 | Tic-Tac-Toe AI | Dodać ochronę wejścia w płatne operacje Jev w `edge-verification`. | Bez wyzwania na każdy zwykły ruch, fragment strumienia lub odczyt. Zachować trwały budżet kosztów i przyjęty wyjątek liczników podczas rolling. |
@@ -28,6 +28,11 @@ healthchecki oraz prywatni workerzy nie otrzymują obowiązkowego Turnstile.
 Prywatny scraping Flatfinder pozostaje uwierzytelniony i limitowany. Projekty
 desktopowe i repozytoria bez publicznego endpointu nie potrzebują integracji.
 Nowy formularz lub kosztowny publiczny endpoint wymaga ponownej oceny zakresu.
+
+Wyjątek NetFilmxa, zatwierdzony 25–26 października: wydanie uprawnienia do
+anonimowego odtwarzania wymaga Turnstile. Sam segment HLS korzysta z tego
+uprawnienia bez nowego wyzwania. Alerty kosztowe i odcięcie budżetowe są poza
+tym zadaniem; istniejące budżety innych aplikacji pozostają obowiązujące.
 
 ## Kontrakt implementacji
 
@@ -55,6 +60,18 @@ Nowy formularz lub kosztowny publiczny endpoint wymaga ponownej oceny zakresu.
 
 ## Odbiór i automatyzacja
 
+Lekcja P1 NetFilmx, 27 października: widget i jego callbacki należą do konkretnej
+próby weryfikacji. Po przekazaniu tokenu stary expiry/error/timeout/success nie
+może zmienić aktywnego grantu ani nowej próby. Grant ma własny termin ważności.
+Regresja powinna sprawdzić także spóźnione callbacki, retry i odnowienie sesji.
+Przy zewnętrznym gatewayu stosować [standard komponentów](release-components-standard.md):
+autoryzacja przed cache, brak publicznych aliasów, zgodne klucze i osobny rollback.
+Lekcja 28–29 października: pozytywny odbiór prawdziwego dostawcy jest osobny od
+odmów i testów atrap. Dla uzgodnionej weryfikacji w tle zachować zwykłą czynność,
+intencję użytkownika, ograniczone próby i dostępny retry. Tryb dostawcy/kodu,
+wymagany odnośnik prywatności i niesekretne kody etapów określa ten sam standard;
+Invisible nie jest obowiązkowy dla wszystkich aplikacji.
+
 1. **CI:** kontrolowany adapter Siteverify / oficjalne klucze testowe wyłącznie
    poza produkcją. Testy poprawnego tokenu oraz braku, błędu, wygaśnięcia, replay,
    niezgodnego hosta/action i awarii dostawcy. Sprawdzić brak skutków ubocznych
@@ -67,7 +84,9 @@ Nowy formularz lub kosztowny publiczny endpoint wymaga ponownej oceny zakresu.
    a także odrzucenie żądania bez tokenu / ze złym tokenem. Zapisać środowisko,
    rewizję i zakres, bez sekretów. W razie challenge automat nie dostaje
    produkcyjnego bypassu; osobno odnotować niewykonaną próbę pozytywną.
-4. **Bieżący smoke:** dostępność, katalog i media sprawdzać bez wyzwań. Testy
+4. **Bieżący smoke:** dostępność i katalog sprawdzać bez wyzwań. Chronione media
+   NetFilmxa wymagają prawidłowo uzyskanego uprawnienia; nie dodawać produkcyjnego
+   bypassu dla automatu. Pozostałe media sprawdzać według ich kontraktu. Testy
    funkcjonalne kont i testy ochrony botowej mają odrębne wyniki. Zielony build,
    healthcheck albo Playwright nie zamykają odbioru antybotowego.
 

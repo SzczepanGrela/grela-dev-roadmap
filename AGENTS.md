@@ -1,5 +1,9 @@
 # Roadmap editing instructions
 
+Latest checkpoint: [compact credits](docs/2026-11-16-netfilmx-credits-presentation.md); eb9f6ca8/07477009 deployed healthy.
+Scoped UI direction approved; ui-mobile-credits in progress, wider acceptance open.
+Human/provider playback still pending; both CI flags false, no percentage re-estimate.
+
 Latest checkpoint: [player controls/runtime](docs/2026-11-14-netfilmx-player-controls.md); 872ef4c8/fc168de8 deployed healthy.
 Human/provider acceptance remains pending, both flags false; no progress re-estimate.
 

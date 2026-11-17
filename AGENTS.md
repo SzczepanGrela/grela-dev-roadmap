@@ -1,5 +1,9 @@
 # Roadmap editing instructions
 
+Latest checkpoint: [new-state recovery and delivery](docs/2026-11-17-netfilmx-recovery-and-delivery.md).
+Selected actual backup restore passed; schedule/remote coverage, human playback and
+CI caller/rolling remain open. Both flags false; no progress re-estimate.
+
 Latest checkpoint: [compact credits](docs/2026-11-16-netfilmx-credits-presentation.md); eb9f6ca8/07477009 deployed healthy.
 Scoped UI direction approved; ui-mobile-credits in progress, wider acceptance open.
 Human/provider playback still pending; both CI flags false, no percentage re-estimate.

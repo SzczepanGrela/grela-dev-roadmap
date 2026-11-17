@@ -28,6 +28,11 @@ with the real API pass. PR integration/full CI are separate from those results.
 The API check does not inspect generated label contents; operator/runtime checks
 and public routing probes remain part of acceptance.
 
+Later November 17: PR #10 passed full CI 44147351818, including exact-image
+qualification/scan, and merged as `7d1408b` at 18:31:53 UTC. Main CI 44148850905
+started; no publication or production deployment is claimed at this checkpoint.
+Both activation flags were confirmed false before merge; running web is unchanged.
+
 Production environment protections remain configured but deployment credentials/
 configuration are not installed. Both activation flags remain false. Current
 Tailscale workload identity mapping still needs verification. Automatic CD,

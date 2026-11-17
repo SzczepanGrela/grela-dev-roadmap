@@ -40,3 +40,11 @@ Sintel synchronization retain earlier deferrals; uploads/transcoding remain off.
 No percentage, remaining effort or historical calendar was re-estimated.
 Earlier [credits release](2026-11-16-netfilmx-credits-presentation.md) and failed
 attempts remain dated evidence. No repeat media encoding or legacy recovery work.
+
+Roadmap validation: local check/build pass. Remote run 44147935518 fails the
+dependency audit after the November 17 update of
+[GHSA-fc5q-39xc-vjpf](https://github.com/advisories/GHSA-fc5q-39xc-vjpf).
+All published picomatch versions through 4.0.7 are affected; no patched release
+is listed and registry latest remains 4.0.7. No exception or forced downgrade was
+introduced. This separate roadmap dependency blocker does not alter NetFilmx's
+running deployment or the recorded recovery results.

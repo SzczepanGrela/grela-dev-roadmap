@@ -10,11 +10,21 @@
 
 ## Stan wdrożeń i najbliższa kolejka
 
-**Aktualna kolejka, 25 października:** NetFilmx przeszedł pierwszy publiczny start
+**Aktualna kolejka, 29 października:** [wydana poprawka SDK i oczekujący test człowieka](2026-10-29-netfilmx-cutover-followup.md).
+Kwalifikowany main 9f67ed88/17a0fcea jest wdrożony i healthy; Invisible, prywatny R2,
+Worker i mount klucza RO potwierdzone. CI PR #4/main przeszły; wcześniejsze błędy
+pozostają historią. Pozytywny test dostawcy/człowieka w Firefox nadal oczekuje.
+Następnie ważny grant/cache/limity, rzeczywisty caller CI, rolling/rollback oraz
+backupy nowego stanu. Admin odłożony, automatyczne wydania i uploads/transkodowanie
+false. Stosować [standard komponentów](release-components-standard.md).
+[Przygotowanie z 27 października](2026-10-27-netfilmx-protection-preparation.md) jest historyczne.
+
+**Poprzedni checkpoint, 26 października:** NetFilmx przeszedł pierwszy publiczny start
 na main a5a0d90 i [ograniczony odbiór z 24 października](2026-10-24-netfilmx-first-launch.md).
-Następna poprawka: Turnstile rejestracji/logowania w `route-protection` według
-[wspólnego standardu antybotowego](anti-bot-standard.md), z walidacją backendu
-i osobnym odbiorem. Publiczny smoke nie potwierdza ochrony botowej. Wycofano dalsze
+Następny etap `route-protection`: [anonimowe oglądanie i ochrona mediów](2026-10-26-netfilmx-playback-protection.md).
+Wycofanie publicznej rejestracji/walleta, zachowany admin, Turnstile wydawania
+dostępu do filmu i prywatny R2 za Workerem. Workers Free; bez alertów kosztowych
+i odcięcia budżetowego. Publiczny smoke nie potwierdza ochrony botowej. Wycofano dalsze
 backupy/restore/off-host legacy. Docelowy rolling, zgodny rollback i backupy nowego
 wdrożenia pozostają otwarte. Dalej MovieRAG i Smakosz według tej samej zasady.
 Inventory zakończyło swój odbiór; nie powtarzać dawnych prób. Poniższe starsze
@@ -30,7 +40,7 @@ Przegląd 2026-10-03 dodaje źródła/CI Inventory, przygotowany draft NetFilmx 
 | Funkcje TTT (`G01–G07`, `J01`) | Plansze 3×3/5×5/9×9, MCTS 5×5, odnowiony responsywny interfejs, przyrostowe serie NDJSON. Jev ma trwały licznik, backup/restore, ukończone próbki do K=9 i eksperymentalne publiczne włączenie 29 września. | Rozszerzanie wytrenowanych modeli pozostaje odroczone; monitoring i wyjątki platformy są osobne. | Zachować licznik/budżet; zwykłe CI nie wykonuje płatnych testów. |
 | Edge i limity aplikacji (`D04`, `P06.1a`) | Reguła obejmuje `/api/matches/stream`; pojedynczy klient przeszedł edge 200/429/recovery. 28 września przeszły izolacja dwóch publicznych klientów aplikacji, jej budżet/recovery, przyrostowe dostarczanie streamu i anulowanie pracy potwierdzone logami VPS. Wspólna blokada TTT/Inventory i recovery również przeszły; równoległe źródła CDG/WAW zachowały niezależność. Minimum TLS 1.2 potwierdzone dla obu stref 27 września. | Różne IP w jednym centrum Cloudflare; origin TLS/ACME i przypięcie proxy osobno. TTT ma jawny wyjątek lokalnych budżetów podczas krótkiego overlap. | Odbiór limitera aplikacji nie zamyka całego D04. |
 | Dane i kopie (`B01–B08`, `P02`) | Wcześniejsze kopie i próby zachowują datowane wyniki. | B02/B03/B08 i właściwy zakres P02 pozostają zadaniami docelowych backupów. Odroczone odzyskiwanie całej platformy pozostaje odroczone. | Nie wymagają kolejnego backupu legacy przed bootstrapem; są częścią domknięcia nowego wdrożenia. Timerów i plików nie zmieniono. |
-| Migracje (`M01 → M02 → M03`) | NetFilmx: HLS opublikowane, 17 referencji i lokalny finalny obraz/player odebrane na 6f57dbb. | Pierwsze wydanie: ochrona/dostęp, jeden web, świeży PG, trwałe klucze, zasoby, jawny import i publiczny smoke. Potem MovieRAG/Smakosz. | Przerwy dozwolone na migrację; docelowy rolling i backupy nowego stanu pozostają do odbioru. Uploads/worker false; wykonanie osobno zlecane. |
+| Migracje (`M01 → M02 → M03`) | NetFilmx: pierwszy publiczny start odebrany 24 października na a5a0d90; wcześniejszy HLS zachowuje zakres dowodów. | Ochrona anonimowego odtwarzania i zachowanego admina według planu z 26 października; potem finalne utrzymanie oraz MovieRAG/Smakosz. | Przerwy dozwolone na migrację; docelowy rolling i backupy nowego stanu pozostają do odbioru. Uploads/worker false; wdrożenie po gotowym kandydacie i przeglądzie. |
 | Domknięcie (`N03`, `O01/O02`, `D05.3`) | Tymczasowe zasoby testowe TTT wycofano; PR #36 usunął stare skrypty SSH, ich testy i instrukcje fallback (D05.3). Monitoring pozostaje przy Smakoszu. | Zachować dane przy końcowym usunięciu NPM, wydzielić monitoring i przetestować alerty. | Bez globalnego prune i utraty historii. |
 
 Pakiet → podzadanie → test odbioru. Jeden zakończony podtest nie zamyka całego pakietu. Publiczne dowody implementacji: [wydanie przez Coolify #9](https://github.com/SzczepanGrela/tic-tac-toe-ai/pull/9), [kontrola zdrowia #15](https://github.com/SzczepanGrela/tic-tac-toe-ai/pull/15), [rollback #17](https://github.com/SzczepanGrela/tic-tac-toe-ai/pull/17), [porządkowanie zasobów testowych #20](https://github.com/SzczepanGrela/tic-tac-toe-ai/pull/20), [MCTS/Jev #24](https://github.com/SzczepanGrela/tic-tac-toe-ai/pull/24), [raport oceny #33](https://github.com/SzczepanGrela/tic-tac-toe-ai/pull/33), [interfejs #34](https://github.com/SzczepanGrela/tic-tac-toe-ai/pull/34) i [przyrostowe serie #35](https://github.com/SzczepanGrela/tic-tac-toe-ai/pull/35). PR dowodzi zmiany źródła; wyniki hosta i testów zewnętrznych zachowują własne daty w prywatnej dokumentacji.

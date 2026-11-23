@@ -1,5 +1,12 @@
 # Roadmap editing instructions
 
+Latest checkpoint: [November 23 backup preparation](docs/2026-11-23-netfilmx-backup-preparation.md).
+Owner confirms human playback and expected OIDC fields; actual CI caller remains
+open. Daily seven local/thirty encrypted off-host copies selected; storage/tools/
+local identity prepared, collector/units not installed. Credential, produced-set
+recovery/schedule and rolling remain open. Main publication passed, no new deploy,
+both flags false. Do not re-ask the accepted inputs or re-estimate effort.
+
 Latest checkpoint: [new-state recovery and delivery](docs/2026-11-17-netfilmx-recovery-and-delivery.md).
 Selected actual backup restore passed; schedule/remote coverage, human playback and
 CI caller/rolling remain open. Both flags false; no progress re-estimate.

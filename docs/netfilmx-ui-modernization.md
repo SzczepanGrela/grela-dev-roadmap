@@ -1,10 +1,10 @@
 # NetFilmx UI, mobile and credits modernization
 
-Planned task: **`ui-mobile-credits`** in the
-[project record](../projects/netfilmx-movie-catalog/project.json).
-Defined October 16, 2026 from operator feedback: mobile credits are readable,
-but the visual presentation is not approved. This is a later product stage,
-after the backend/media and first-release acceptance. No redesign has started.
+Task **`ui-mobile-credits`** is in progress for the scoped attribution change
+approved by the operator on November 16. [Release evidence](2026-11-16-netfilmx-credits-presentation.md) records compact
+Watch/Details attribution, full Credits groups and PL/EN checks. This is not
+acceptance of the whole redesign. The October 16 plan below remains the wider
+scope; physical-device and final visual review are still open.
 
 ## Scope and sequence
 
@@ -62,8 +62,8 @@ change the current production acceptance criteria.
 
 The implementation owner is the dedicated app worker; the coordinator schedules
 the stage and reviews evidence, and the operator selects/accepts the design.
-Work remains planned at 0%. The initial **16–32 active-hour** range includes
+The scoped credits implementation has started; no percentage re-estimate was made. The initial **16–32 active-hour** range includes
 brief/proposals, implementation, review and tests. Confidence is low; revise the
-range after selecting screens/references. No UI start date or deployment window
+range after selecting screens/references. No start date or deployment window for the remaining broad redesign
 has been booked. Existing source, data, licensed media and application behavior
 must be preserved.
